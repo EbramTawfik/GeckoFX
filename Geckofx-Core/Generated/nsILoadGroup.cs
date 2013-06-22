@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3de0a31c-feaf-400f-9f1e-4ef71f8b20cc")]
+	[Guid("19501006-46e3-4634-b97d-26eff894b4d3")]
 	public interface nsILoadGroup : nsIRequest
 	{
 		
@@ -239,5 +239,45 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetNotificationCallbacksAttribute([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aNotificationCallbacks);
+		
+		/// <summary>
+        /// Connection information for managing things like js/css
+        /// connection blocking, and per-tab connection grouping
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsILoadGroupConnectionInfo GetConnectionInfoAttribute();
+	}
+	
+	/// <summary>
+    /// Used to maintain state about the connections of a load group and
+    /// how they interact with blocking items like HEAD css/js loads.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("d1f9f18e-3d85-473a-ad58-a2367d7cdb2a")]
+	public interface nsILoadGroupConnectionInfo
+	{
+		
+		/// <summary>
+        /// Number of active blocking transactions associated with this load group
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetBlockingTransactionCountAttribute();
+		
+		/// <summary>
+        /// Increase the number of active blocking transactions associated
+        /// with this load group by one.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddBlockingTransaction();
+		
+		/// <summary>
+        /// Decrease the number of active blocking transactions associated
+        /// with this load group by one. The return value is the number of remaining
+        /// blockers.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint RemoveBlockingTransaction();
 	}
 }

@@ -140,7 +140,7 @@ namespace Gecko
 		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
 		/// <summary>
-        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// Returns the nsIDOMEventTarget object which should be used as the target
         /// of DOMEvents.
         /// Usually |this| is returned, but for example global object returns
         /// the outer object.
@@ -150,7 +150,7 @@ namespace Gecko
 		new nsIDOMEventTarget GetTargetForDOMEvent();
 		
 		/// <summary>
-        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// Returns the nsIDOMEventTarget object which should be used as the target
         /// of the event and when constructing event target chain.
         /// Usually |this| is returned, but for example global object returns
         /// the inner object.
@@ -272,7 +272,7 @@ namespace Gecko
 	/// <summary>nsIDOMRequestService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("10996de9-e6f6-4058-97bd-45f1fe065eb5")]
+	[Guid("060df968-fd71-47ca-91a8-6b64dadceb2c")]
 	public interface nsIDOMRequestService
 	{
 		
@@ -282,6 +282,15 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest CreateRequest([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		
+		/// <summary>
+        /// @param aCallback
+        /// Called when `continue()' is called in the cursor, should be used to
+        /// notify the data provider that content wants the next result.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMCursor CreateCursor([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.Interface)] nsICursorContinueCallback aCallback);
 		
 		/// <summary>Member FireSuccess </summary>
 		/// <param name='request'> </param>
@@ -306,5 +315,10 @@ namespace Gecko
 		/// <param name='error'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void FireErrorAsync([MarshalAs(UnmanagedType.Interface)] nsIDOMDOMRequest request, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase error);
+		
+		/// <summary>Member FireDone </summary>
+		/// <param name='cursor'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void FireDone([MarshalAs(UnmanagedType.Interface)] nsIDOMDOMCursor cursor);
 	}
 }

@@ -151,20 +151,72 @@ namespace Gecko
 		void SetCarrierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCarrier);
 	}
 	
-	/// <summary>nsIDOMContactFindOptions </summary>
+	/// <summary>nsIDOMContactFindSortOptions </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e31daea0-0cb6-11e1-be50-0800200c9a66")]
-	public interface nsIDOMContactFindOptions
+	[Guid("cb008c06-3bf8-495c-8865-f9ca1673a1e1")]
+	public interface nsIDOMContactFindSortOptions
 	{
 		
-		/// <summary>Member GetFilterValueAttribute </summary>
-		/// <param name='aFilterValue'> </param>
+		/// <summary>Member GetSortByAttribute </summary>
+		/// <param name='aSortBy'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSortByAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortBy);
+		
+		/// <summary>Member SetSortByAttribute </summary>
+		/// <param name='aSortBy'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSortByAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortBy);
+		
+		/// <summary>
+        /// "givenName" or "familyName"
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSortOrderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortOrder);
+		
+		/// <summary>
+        /// "givenName" or "familyName"
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSortOrderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortOrder);
+	}
+	
+	/// <summary>
+    /// e.g. "descending"
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("e13ca4c5-c9cd-40bb-95e9-b636d42f5edf")]
+	public interface nsIDOMContactFindOptions : nsIDOMContactFindSortOptions
+	{
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetSortByAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortBy);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetSortByAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortBy);
+		
+		/// <summary>
+        /// "givenName" or "familyName"
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetSortOrderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortOrder);
+		
+		/// <summary>
+        /// "givenName" or "familyName"
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetSortOrderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortOrder);
+		
+		/// <summary>
+        /// e.g. "descending"
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetFilterValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFilterValue);
 		
-		/// <summary>Member SetFilterValueAttribute </summary>
-		/// <param name='aFilterValue'> </param>
+		/// <summary>
+        /// e.g. "descending"
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFilterValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFilterValue);
 		
@@ -196,34 +248,10 @@ namespace Gecko
         /// DOMString[], e.g. ["givenName", "nickname"]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSortByAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortBy);
-		
-		/// <summary>
-        /// DOMString[], e.g. ["givenName", "nickname"]
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSortByAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortBy);
-		
-		/// <summary>
-        /// "givenName" or "familyName"
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSortOrderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortOrder);
-		
-		/// <summary>
-        /// "givenName" or "familyName"
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSortOrderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortOrder);
-		
-		/// <summary>
-        /// e.g. "descending"
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetFilterLimitAttribute();
 		
 		/// <summary>
-        /// e.g. "descending"
+        /// DOMString[], e.g. ["givenName", "nickname"]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFilterLimitAttribute(uint aFilterLimit);

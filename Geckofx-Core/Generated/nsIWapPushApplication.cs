@@ -48,6 +48,6 @@ namespace Gecko
         /// An object containing various attributes from lower transport layer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReceiveWapPush([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] aData, uint aLength, uint aOffset, Gecko.JsVal aOptions, System.IntPtr jsContext);
+		void ReceiveWapPush([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] aData, uint aLength, uint aOffset, Gecko.JsVal aOptions);
 	}
 }

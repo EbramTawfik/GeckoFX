@@ -31,7 +31,26 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9b6b2f21-affb-4e8f-907a-fd5bd7a2d562")]
+	[Guid("0c07ffeb-791b-49f3-ae38-2c331fd55a52")]
+	public interface nsIDownloadManagerResult
+	{
+		
+		/// <summary>
+        /// Process an asynchronous result from getDownloadByGUID.
+        ///
+        /// @param aStatus The result code of the operation:
+        /// * NS_OK: an item was found. No other success values are returned.
+        /// * NS_ERROR_NOT_AVAILABLE: no such item was found.
+        /// * Other error values are possible, but less well-defined.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void HandleResult(int aStatus, [MarshalAs(UnmanagedType.Interface)] nsIDownload aDownload);
+	}
+	
+	/// <summary>nsIDownloadManager </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("b29aac15-7ec4-4ab3-a53b-08f78aed3b34")]
 	public interface nsIDownloadManager
 	{
 		
@@ -89,6 +108,19 @@ namespace Gecko
 		nsIDownload GetDownload(uint aID);
 		
 		/// <summary>
+        /// Retrieves a download managed by the download manager.  This can be one that
+        /// is in progress, or one that has completed in the past and is stored in the
+        /// database.  The result of this method is returned via an asynchronous callback,
+        /// the parameter of which will be an nsIDownload object, or null if none exists
+        /// with the provided GUID.
+        ///
+        /// @param aGUID The unique GUID of the download.
+        /// @param aCallback The callback to invoke with the result of the search.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetDownloadByGUID([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.Interface)] nsIDownloadManagerResult aCallback);
+		
+		/// <summary>
         /// Cancels the download with the specified ID if it's currently in-progress.
         /// This calls cancel(NS_BINDING_ABORTED) on the nsICancelable provided by the
         /// download.
@@ -104,9 +136,14 @@ namespace Gecko
         /// in-progress.  Whereas cancelDownload simply cancels the transfer, but
         /// retains information about it, removeDownload removes all knowledge of it.
         ///
-        /// Also notifies observers of the "download-manager-remove-download" topic
-        /// with the download id as the subject to allow any DM consumers to react to
-        /// the removal.
+        /// Also notifies observers of the "download-manager-remove-download-guid"
+        /// topic with the download guid as the subject to allow any DM consumers to
+        /// react to the removal.
+        ///
+        /// Also may notify observers of the "download-manager-remove-download" topic
+        /// with the download id as the subject, if the download removed is public
+        /// or if global private browsing mode is in use. This notification is deprecated;
+        /// the guid notification should be relied upon instead.
         ///
         /// @param aID The unique ID of the download.
         /// @throws NS_ERROR_FAILURE if the download is active.
@@ -162,41 +199,104 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		mozIStorageConnection GetDBConnectionAttribute();
 		
+		/// <summary>Member GetPrivateDBConnectionAttribute </summary>
+		/// <returns>A mozIStorageConnection</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		mozIStorageConnection GetPrivateDBConnectionAttribute();
+		
 		/// <summary>
         /// Whether or not there are downloads that can be cleaned up (removed)
         /// i.e. downloads that have completed, have failed or have been canceled.
+        /// In global private browsing mode, this reports the status of the relevant
+        /// private or public downloads. In per-window mode, it only reports for
+        /// public ones.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanCleanUpAttribute();
 		
 		/// <summary>
+        /// Whether or not there are private downloads that can be cleaned up (removed)
+        /// i.e. downloads that have completed, have failed or have been canceled.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetCanCleanUpPrivateAttribute();
+		
+		/// <summary>
         /// Removes completed, failed, and canceled downloads from the list.
+        /// In global private browsing mode, this operates on the relevant
+        /// private or public downloads. In per-window mode, it only operates
+        /// on public ones.
         ///
-        /// Also notifies observers of the "download-manager-remove-download" topic
-        /// with a null subject to allow any DM consumers to react to the removals.
+        /// Also notifies observers of the "download-manager-remove-download-gui"
+        /// and "download-manager-remove-download" topics with a null subject to
+        /// allow any DM consumers to react to the removals.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CleanUp();
 		
 		/// <summary>
+        /// Removes completed, failed, and canceled downloads from the list
+        /// of private downloads.
+        ///
+        /// Also notifies observers of the "download-manager-remove-download-gui"
+        /// and "download-manager-remove-download" topics with a null subject to
+        /// allow any DM consumers to react to the removals.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CleanUpPrivate();
+		
+		/// <summary>
         /// The number of files currently being downloaded.
+        ///
+        /// In global private browsing mode, this reports the status of the relevant
+        /// private or public downloads. In per-window mode, it only reports public
+        /// ones.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetActiveDownloadCountAttribute();
 		
 		/// <summary>
+        /// The number of private files currently being downloaded.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetActivePrivateDownloadCountAttribute();
+		
+		/// <summary>
         /// An enumeration of active nsIDownloads
+        ///
+        /// In global private browsing mode, this reports the status of the relevant
+        /// private or public downloads. In per-window mode, it only reports public
+        /// ones.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetActiveDownloadsAttribute();
 		
 		/// <summary>
-        /// Adds a listener from the download manager.
+        /// An enumeration of active private nsIDownloads
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISimpleEnumerator GetActivePrivateDownloadsAttribute();
+		
+		/// <summary>
+        /// Adds a listener to the download manager. It is expected that this
+        /// listener will only access downloads via their deprecated integer id attribute,
+        /// and when global private browsing compatibility mode is disabled, this listener
+        /// will receive no notifications for downloads marked private.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddListener([MarshalAs(UnmanagedType.Interface)] nsIDownloadProgressListener aListener);
+		
+		/// <summary>
+        /// Adds a listener to the download manager. This listener must be able to
+        /// understand and use the guid attribute of downloads for all interactions
+        /// with the download manager.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddPrivacyAwareListener([MarshalAs(UnmanagedType.Interface)] nsIDownloadProgressListener aListener);
 		
 		/// <summary>
         /// Removes a listener from the download manager.

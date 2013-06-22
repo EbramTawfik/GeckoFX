@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("15fd6940-8ea7-11d3-93ad-00104ba0fd40")]
+	[Guid("f5753fec-a051-4ddc-8891-11f1f1575072")]
 	public interface nsIProtocolHandler
 	{
 		
@@ -126,6 +126,27 @@ namespace Gecko
 		public const ulong URI_NOAUTH = (1<<1);
 		
 		// <summary>
+        // This protocol handler can be proxied via a proxy (socks or http)
+        // (e.g., irc, smtp, http, etc.).  If the protocol supports transparent
+        // proxying, the handler should implement nsIProxiedProtocolHandler.
+        //
+        // If it supports only HTTP proxying, then it need not support
+        // nsIProxiedProtocolHandler, but should instead set the ALLOWS_PROXY_HTTP
+        // flag (see below).
+        //
+        // @see nsIProxiedProtocolHandler
+        // </summary>
+		public const ulong ALLOWS_PROXY = (1<<2);
+		
+		// <summary>
+        // This protocol handler can be proxied using a http proxy (e.g., http,
+        // ftp, etc.).  nsIIOService::newChannelFromURI will feed URIs from this
+        // protocol handler to the HTTP protocol handler instead.  This flag is
+        // ignored if ALLOWS_PROXY is not set.
+        // </summary>
+		public const ulong ALLOWS_PROXY_HTTP = (1<<3);
+		
+		// <summary>
         // The URIs for this protocol have no inherent security context, so
         // documents loaded via this protocol should inherit the security context
         // from the document that loads them.
@@ -186,13 +207,7 @@ namespace Gecko
         // principal that subsumes this uri. For example, privileged code and
         // websites that are same origin as this uri.
         // </summary>
-		public const ulong URI_LOADABLE_BY_SUBSUMERS = (1<<14);
-		
-		// <summary>
-        // Loading channels from this protocol has side-effects that make
-        // it unsuitable for saving to a local file.
-        // </summary>
-		public const ulong URI_NON_PERSISTABLE = (1<<10);
+		public const ulong URI_LOADABLE_BY_SUBSUMERS = (1<<10);
 		
 		// <summary>
         // Channels using this protocol never call OnDataAvailable
@@ -214,31 +229,10 @@ namespace Gecko
 		public const ulong URI_OPENING_EXECUTES_SCRIPT = (1<<13);
 		
 		// <summary>
-        // Channels for this protocol don't need to spin the event loop to handle
-        // Open() and reads on the resulting stream.
+        // Loading channels from this protocol has side-effects that make
+        // it unsuitable for saving to a local file.
         // </summary>
-		public const ulong URI_SYNC_LOAD_IS_OK = (1<<15);
-		
-		// <summary>
-        // This protocol handler can be proxied via a proxy (socks or http)
-        // (e.g., irc, smtp, http, etc.).  If the protocol supports transparent
-        // proxying, the handler should implement nsIProxiedProtocolHandler.
-        //
-        // If it supports only HTTP proxying, then it need not support
-        // nsIProxiedProtocolHandler, but should instead set the ALLOWS_PROXY_HTTP
-        // flag (see below).
-        //
-        // @see nsIProxiedProtocolHandler
-        // </summary>
-		public const ulong ALLOWS_PROXY = (1<<2);
-		
-		// <summary>
-        // This protocol handler can be proxied using a http proxy (e.g., http,
-        // ftp, etc.).  nsIIOService::newChannelFromURI will feed URIs from this
-        // protocol handler to the HTTP protocol handler instead.  This flag is
-        // ignored if ALLOWS_PROXY is not set.
-        // </summary>
-		public const ulong ALLOWS_PROXY_HTTP = (1<<3);
+		public const ulong URI_NON_PERSISTABLE = (1<<14);
 		
 		// <summary>
         // This protocol handler forbids accessing cookies e.g. for mail related
@@ -251,5 +245,17 @@ namespace Gecko
         // when opening URIs for a different domain. See bug#773886
         // </summary>
 		public const ulong URI_CROSS_ORIGIN_NEEDS_WEBAPPS_PERM = (1<<16);
+		
+		// <summary>
+        // Channels for this protocol don't need to spin the event loop to handle
+        // Open() and reads on the resulting stream.
+        // </summary>
+		public const ulong URI_SYNC_LOAD_IS_OK = (1<<17);
+		
+		// <summary>
+        // URI is secure to load in an https page and should not be blocked
+        // by nsMixedContentBlocker
+        // </summary>
+		public const ulong URI_SAFE_TO_LOAD_IN_SECURE_CONTEXT = (1<<18);
 	}
 }

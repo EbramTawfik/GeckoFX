@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("AB36A2BF-CB32-4AA6-AB41-6B4E4444A221")]
+	[Guid("d1680bb4-1ac0-4772-9437-1188375e44f2")]
 	public interface nsIContentSecurityPolicy
 	{
 		
@@ -134,7 +134,7 @@ namespace Gecko
         /// tightened by the one specified in the string policyString.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RefinePolicy([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase policyString, [MarshalAs(UnmanagedType.Interface)] nsIURI selfURI);
+		void RefinePolicy([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase policyString, [MarshalAs(UnmanagedType.Interface)] nsIURI selfURI, [MarshalAs(UnmanagedType.U1)] bool specCompliant);
 		
 		/// <summary>
         /// Verifies ancestry as permitted by the policy.

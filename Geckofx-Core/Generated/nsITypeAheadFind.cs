@@ -128,5 +128,10 @@ namespace Gecko
         // Unsuccessful find
         // </summary>
 		public const ulong FIND_WRAPPED = 2;
+		
+		// <summary>
+        // Successful find, but wrapped around
+        // </summary>
+		public const ulong FIND_PENDING = 3;
 	}
 }

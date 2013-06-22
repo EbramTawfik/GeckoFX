@@ -262,7 +262,7 @@ namespace Gecko
 			if (string.IsNullOrEmpty(tagName))
 				return null;
 
-			return new GeckoElementCollection(_domElement.GetElementsByTagName(new nsAString(tagName)));
+			return new GeckoHtmlElementCollection(_domElement.GetElementsByTagName(new nsAString(tagName)));
 		}
 
 		public GeckoElementCollection GetElementsByTagNameNS(string namespaceURI, string localName)
@@ -272,8 +272,8 @@ namespace Gecko
 			if ( string.IsNullOrEmpty( localName ) )
 				return null;
 
-			var ret = nsString.Pass<nsIDOMNodeList>( _domElement.GetElementsByTagNameNS, namespaceURI, localName );
-			return ret == null ? null : new GeckoElementCollection( ret );
+			var ret = nsString.Pass<nsIDOMHTMLCollection>(_domElement.GetElementsByTagNameNS, namespaceURI, localName);
+			return ret == null ? null : new GeckoHtmlElementCollection(ret);
 		}
 
 
@@ -292,7 +292,11 @@ namespace Gecko
 			if (svgElement!=null)
 			{
 				Marshal.ReleaseComObject(svgElement);
+#if false
 				return DOM.Svg.SvgElement.CreateSvgElementWrapper((nsIDOMSVGElement)element);
+#else
+				throw new NotImplementedException("Re implement SvgElement support");
+#endif
 			}
 			var xulElement=Xpcom.QueryInterface<nsIDOMXULElement>( element );
 			if (xulElement!=null)

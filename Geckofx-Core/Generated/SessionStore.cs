@@ -84,7 +84,7 @@ namespace Gecko
         /// @returns A string value or an empty string if none is set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTabValue(Gecko.JsVal aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// @param aTab         is the browser tab to set the value for.
@@ -92,14 +92,14 @@ namespace Gecko
         /// @param aStringValue is the value itself (use JSON.stringify/parse before setting JS objects).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTabValue(Gecko.JsVal aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStringValue);
+		void SetTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStringValue);
 		
 		/// <summary>
         /// @param aTab is the browser tab to get the value for.
         /// @param aKey is the value's name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteTabValue(Gecko.JsVal aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey);
+		void DeleteTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey);
 		
 		/// <summary>
         /// @returns A boolean indicating we should restore previous browser session
@@ -111,9 +111,8 @@ namespace Gecko
 		/// <summary>
         /// Restores the previous browser session using a fast, lightweight strategy
         /// @param aBringToFront should a restored tab be brought to the foreground?
-        /// @param aForceRestore  whether we need to force a restore, regardless of the recent crash situation
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RestoreLastSession([MarshalAs(UnmanagedType.U1)] bool aBringToFront, [MarshalAs(UnmanagedType.U1)] bool aForceRestore);
+		void RestoreLastSession([MarshalAs(UnmanagedType.U1)] bool aBringToFront);
 	}
 }

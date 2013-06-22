@@ -119,15 +119,7 @@ namespace Gecko
 		public void SetPrevDocCharacterSetAttribute(string aPrevDocCharacterSet)
 		{
 			nsString.Set(m_markupDocumentViewer.SetPrevDocCharacterSetAttribute, aPrevDocCharacterSet);
-		}
-
-		/// <summary>
-		/// Tell the container to shrink-to-fit or grow-to-fit its contents
-		///	</summary>		
-		public void SizeToContent()
-		{
-			m_markupDocumentViewer.SizeToContent();
-		}
+		}		
 
 		/// <summary>
 		/// Use this attribute to access all the Bidi options in one operation

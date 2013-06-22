@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4a297d39-2730-47b8-b406-666b3737aacb")]
+	[Guid("214d3480-ef7b-45f2-9e21-c6763d7ff613")]
 	public interface nsIDOMNavigatorTelephony
 	{
 		
@@ -43,8 +43,5 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMTelephony GetMozTelephonyAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetMozVoicemailAttribute();
 	}
 }

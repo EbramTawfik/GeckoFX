@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3b0953cd-f483-4908-8d91-282b6bda0453")]
+	[Guid("808cf36c-4c9a-4bdb-91a4-d60a6fc25add")]
 	public interface nsPIPlacesHistoryListenersNotifier
 	{
 		
@@ -54,8 +54,11 @@ namespace Gecko
         /// @param aReason
         /// Indicates the reason for the removal.
         /// See nsINavHistoryObserver::REASON_* constants.
+        /// @param aTransitionType
+        /// If it's a valid TRANSITION_* value, all visits of the specified type
+        /// have been removed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyOnPageExpired([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aVisitTime, [MarshalAs(UnmanagedType.U1)] bool aWholeEntry, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, ushort aReason);
+		void NotifyOnPageExpired([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aVisitTime, [MarshalAs(UnmanagedType.U1)] bool aWholeEntry, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, ushort aReason, uint aTransitionType);
 	}
 }

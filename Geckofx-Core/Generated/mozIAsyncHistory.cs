@@ -27,8 +27,9 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// @status EXPERIMENTAL
-    /// </summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("1a3b1260-4bdb-45d0-a306-dc377dd9baa4")]
@@ -72,9 +73,7 @@ namespace Gecko
 		long GetSessionIdAttribute();
 	}
 	
-	/// <summary>
-    /// @status EXPERIMENTAL
-    /// </summary>
+	/// <summary>mozIPlaceInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("ad83e137-c92a-4b7b-b67e-0a318811f91e")]
@@ -119,9 +118,7 @@ namespace Gecko
 		Gecko.JsVal GetVisitsAttribute(System.IntPtr jsContext);
 	}
 	
-	/// <summary>
-    /// @status EXPERIMENTAL
-    /// </summary>
+	/// <summary>mozIVisitInfoCallback </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("1f266877-2859-418b-a11b-ec3ae4f4f93d")]
@@ -159,9 +156,7 @@ namespace Gecko
 		void HandleCompletion();
 	}
 	
-	/// <summary>
-    /// @status EXPERIMENTAL
-    /// </summary>
+	/// <summary>mozIVisitedStatusCallback </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("994092bf-936f-449b-8dd6-0941e024360d")]
@@ -180,9 +175,7 @@ namespace Gecko
 		void IsVisited([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.U1)] bool aVisitedStatus);
 	}
 	
-	/// <summary>
-    /// @status EXPERIMENTAL
-    /// </summary>
+	/// <summary>mozIAsyncHistory </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("b7edc16e-9f3c-4bf5-981b-4e8000b02d89")]

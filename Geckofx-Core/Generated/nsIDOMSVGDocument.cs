@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4AEBF9E7-F275-4147-AA90-601626476132")]
+	[Guid("8fe506e4-5563-4b16-9228-182071e3f8f8")]
 	public interface nsIDOMSVGDocument : nsIDOMDocument
 	{
 		
@@ -325,6 +325,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetDocumentURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDocumentURI);
+		
+		/// <summary>
+        /// Alias introduced for all documents in recent DOM standards
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
@@ -708,6 +714,12 @@ namespace Gecko
 		new nsIDOMElement GetMozPointerLockElementAttribute();
 		
 		/// <summary>
+        ///CaretPosition </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsISupports CaretPositionFromPoint(float x, float y);
+		
+		/// <summary>
         /// Exit pointer is lock if locked, as per the DOM pointer lock api.
         ///
         /// @see <http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html>
@@ -757,17 +769,21 @@ namespace Gecko
 		new void GetMozVisibilityStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozVisibilityState);
 		
 		/// <summary>
+        /// Returns "BackCompat" if we're in quirks mode or "CSS1Compat" if we're in
+        /// strict mode.  (XML documents are always in strict mode.)
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetCompatModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCompatMode);
+		
+		/// <summary>
         ///This Source Code Form is subject to the terms of the Mozilla Public
         /// License, v. 2.0. If a copy of the MPL was not distributed with this
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDomain);
 		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
-		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGSVGElement GetRootElementAttribute();
+		nsIDOMSVGElement GetRootElementAttribute();
 	}
 }

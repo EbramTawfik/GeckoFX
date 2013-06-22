@@ -55,7 +55,7 @@ namespace Gecko
 	/// <summary>nsISearchEngine </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("803e510b-4b27-4ba2-a16d-bb5fa953c166")]
+	[Guid("ccf6aa20-10a9-4a0c-a81d-31b10ea846de")]
 	public interface nsISearchEngine
 	{
 		
@@ -71,13 +71,18 @@ namespace Gecko
         /// The MIME type that we'd like to receive in response
         /// to this submission.  If null, will default to "text/html".
         ///
+        /// @param purpose [optional]
+        /// A string meant to indicate the context of the search request. This
+        /// allows the search service to provide a different nsISearchSubmission
+        /// depending on e.g. where the search is triggered in the UI.
+        ///
         /// @returns A nsISearchSubmission object that contains information about what
         /// to send to the search engine.  If no submission can be
         /// obtained for the given responseType, returns null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISearchSubmission GetSubmission([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase responseType);
+		nsISearchSubmission GetSubmission([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase responseType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase purpose);
 		
 		/// <summary>
         /// Adds a parameter to the search engine's submission data. This should only
@@ -172,6 +177,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetTypeAttribute();
+		
+		/// <summary>
+        /// An optional unique identifier for this search engine within the context of
+        /// the distribution, as provided by the distributing entity.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetIdentifierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIdentifier);
 	}
 	
 	/// <summary>nsISearchEngineConsts </summary>

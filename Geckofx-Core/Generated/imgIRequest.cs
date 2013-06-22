@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a5a785a8-9881-11e1-aaff-001fbc092072")]
+	[Guid("3ea9fc87-2e97-45bf-b373-d1dd253a0b5e")]
 	public interface imgIRequest : nsIRequest
 	{
 		
@@ -178,7 +178,7 @@ namespace Gecko
 		nsIURI GetURIAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIDecoderObserver GetDecoderObserverAttribute();
+		imgINotificationObserver GetNotificationObserverAttribute();
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -191,7 +191,7 @@ namespace Gecko
         /// for this image load.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIRequest Clone(imgIDecoderObserver aObserver);
+		imgIRequest Clone(imgINotificationObserver aObserver);
 		
 		/// <summary>
         /// The principal gotten from the channel the image was loaded from.
@@ -236,6 +236,9 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RequestDecode();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void StartDecoding();
 		
 		/// <summary>
         /// Locks an image. If the image does not exist yet, locks it once it becomes

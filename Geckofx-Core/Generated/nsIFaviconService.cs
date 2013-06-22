@@ -55,6 +55,8 @@ namespace Gecko
         /// @param aFaviconURI
         /// URI of the favicon to associate with the page.
         /// @throws NS_ERROR_NOT_AVAILABLE if aPageURI doesn't exist in the database.
+        ///
+        /// @deprecated Use mozIAsyncFavicons::setAndFetchFaviconForPage
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFaviconUrlForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI);
@@ -95,8 +97,7 @@ namespace Gecko
         /// Once we're done setting and/or loading the favicon, we invoke this
         /// callback.
         ///
-        /// @deprecated Use the identical function
-        /// mozIAsyncFavicons::setAndFetchFaviconForPage.
+        /// @deprecated Use mozIAsyncFavicons::setAndFetchFaviconForPage
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAndLoadFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.U1)] bool aForceReload, uint aFaviconLoadType, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback);
@@ -189,6 +190,8 @@ namespace Gecko
         /// Output parameter where the MIME type will be placed.
         /// @throws NS_ERROR_NOT_AVAILABLE
         /// Thrown when we have never heard of this favicon URI.
+        ///
+        /// @deprecated Use mozIAsyncFavicons::getFaviconDataForPage
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType, ref uint aDataLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref byte[] aData);
@@ -204,6 +207,8 @@ namespace Gecko
         /// null if we have this URL but have no data associated with it.
         /// @throws NS_ERROR_NOT_AVAILABLE
         /// Thrown when we have never heard of this favicon URL.
+        ///
+        /// @deprecated Use mozIAsyncFavicons::getFaviconDataForPage
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetFaviconDataAsDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
@@ -218,6 +223,8 @@ namespace Gecko
         /// that we know what the favicon should be.
         /// @throws NS_ERROR_NOT_AVAILABLE
         /// When the page is not found or it has no favicon.
+        ///
+        /// @deprecated Use mozIAsyncFavicons::getFaviconURLForPage
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -240,6 +247,8 @@ namespace Gecko
         /// this service.  For pages where we don't have a favicon, this will
         /// be a chrome URI of the default icon. For chrome URIs, the
         /// output will be the same as the input.
+        ///
+        /// @deprecated Use mozIAsyncFavicons::getFaviconURLForPage and getFaviconLinkForIcon
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

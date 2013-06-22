@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5556997e-d816-4218-8b54-803d4261206e")]
+	[Guid("5b1de802-9091-454f-9972-5753c0d0c70e")]
 	public interface nsISAXXMLReader : nsIStreamListener
 	{
 		
@@ -179,6 +179,25 @@ namespace Gecko
 		void SetErrorHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXErrorHandler aErrorHandler);
 		
 		/// <summary>
+        /// A handler for the (optional) XML declaration of a document.
+        /// <?xml version='1.0'?>
+        ///
+        /// @note This is not part of the SAX standard.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIMozSAXXMLDeclarationHandler GetDeclarationHandlerAttribute();
+		
+		/// <summary>
+        /// A handler for the (optional) XML declaration of a document.
+        /// <?xml version='1.0'?>
+        ///
+        /// @note This is not part of the SAX standard.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDeclarationHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsIMozSAXXMLDeclarationHandler aDeclarationHandler);
+		
+		/// <summary>
         /// If the application does not register a lexical handler, all
         /// lexical events (e.g. startDTD) reported by the SAX parser will be
         /// silently ignored.
@@ -204,7 +223,7 @@ namespace Gecko
 		void SetLexicalHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXLexicalHandler aLexicalHandler);
 		
 		/// <summary>
-        /// Set the value of a feature flag. NOT CURRENTLY IMPLEMENTED.
+        /// Set the value of a feature flag.
         ///
         /// The feature name is any fully-qualified URI.  It is possible
         /// for an XMLReader to expose a feature value but to be unable to
@@ -218,12 +237,16 @@ namespace Gecko
         ///
         /// @param name String flag for a parser feature.
         /// @param value Turn the feature on/off.
+        ///
+        /// @note This is currently supported only for
+        /// http://xml.org/sax/features/namespace-prefixes .  All other
+        /// features will result in a NOT_IMPLEMENTED exception.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFeature([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.U1)] bool value);
 		
 		/// <summary>
-        /// Look up the value of a feature flag. NOT CURRENTLY IMPLEMENTED.
+        /// Look up the value of a feature flag.
         ///
         /// The feature name is any fully-qualified URI.  It is
         /// possible for an XMLReader to recognize a feature name but
@@ -236,6 +259,10 @@ namespace Gecko
         /// http://xml.org/sax/features/namespace-prefixes feature names.
         ///
         /// @param name String flag for a parser feature.
+        ///
+        /// @note This is currently supported only for
+        /// http://xml.org/sax/features/namespace-prefixes .  All other
+        /// features will result in a NOT_IMPLEMENTED exception.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

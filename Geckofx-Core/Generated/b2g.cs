@@ -45,7 +45,7 @@ namespace Gecko
 	/// <summary>nsIB2GKeyboard </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("53990d7a-ab2a-11e1-8543-7767e4cbcbff")]
+	[Guid("94233b76-3987-4fc0-8924-7596846f9bd3")]
 	public interface nsIB2GKeyboard
 	{
 		

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("883472a0-ea9b-11da-8ad9-0800200c9a66")]
+	[Guid("0eb81d20-c37e-42d4-82a8-ca9ae96bdf52")]
 	public interface nsIConsoleService
 	{
 		
@@ -56,7 +56,7 @@ namespace Gecko
         /// 0-length array when called from script.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMessageArray([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref nsIConsoleMessage[] messages, ref uint count);
+		void GetMessageArray(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsIConsoleMessage[] messages);
 		
 		/// <summary>
         /// To guard against stack overflows from listeners that could log

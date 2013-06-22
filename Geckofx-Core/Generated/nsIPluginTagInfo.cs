@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ED83A4D9-77D2-40EA-B140-F160EDB3FE1C")]
+	[Guid("759a955e-c590-419a-b5f3-e54bb67e24b8")]
 	public interface nsIPluginTagInfo
 	{
 		
@@ -67,12 +67,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetTagTypeAttribute();
-		
-		/// <summary>
-        /// Get the complete text of the HTML tag that was used to instantiate this plugin.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTagText(ref System.IntPtr aTagText);
 		
 		/// <summary>
         /// Get a ptr to the paired list of parameter names and values,

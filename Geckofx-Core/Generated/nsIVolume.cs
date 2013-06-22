@@ -32,18 +32,39 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3c9cae8d-9da2-4aa1-b8bf-4db8c8620808")]
+	[Guid("1134f267-7b81-42f2-b64a-6edb91286576")]
 	public interface nsIVolume
 	{
 		
+		/// <summary>
+        /// But some phones support multiple volumes.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
+		/// <summary>
+        /// and is only valid when state == STATE_MOUNTED.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMountPointAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMountPoint);
 		
+		/// <summary>
+        /// from above.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetStateAttribute();
+		
+		/// <summary>
+        /// be different from the last time it transitioned to the mounted state.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetMountGenerationAttribute();
+		
+		/// <summary>
+        /// the wakelock every time the volume becomes mounted.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMountLockNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMountLockName);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

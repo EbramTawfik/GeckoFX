@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ecae54c6-2ab9-4167-b0ef-61960aadbb68")]
+	[Guid("3f8666a9-76f0-4733-ae11-4aea8753062d")]
 	public interface nsIDOMHTMLDocument : nsIDOMDocument
 	{
 		
@@ -327,6 +327,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetDocumentURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDocumentURI);
+		
+		/// <summary>
+        /// Alias introduced for all documents in recent DOM standards
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
@@ -710,6 +716,12 @@ namespace Gecko
 		new nsIDOMElement GetMozPointerLockElementAttribute();
 		
 		/// <summary>
+        ///CaretPosition </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsISupports CaretPositionFromPoint(float x, float y);
+		
+		/// <summary>
         /// Exit pointer is lock if locked, as per the DOM pointer lock api.
         ///
         /// @see <http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html>
@@ -759,17 +771,27 @@ namespace Gecko
 		new void GetMozVisibilityStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozVisibilityState);
 		
 		/// <summary>
+        /// Returns "BackCompat" if we're in quirks mode or "CSS1Compat" if we're in
+        /// strict mode.  (XML documents are always in strict mode.)
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetCompatModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCompatMode);
+		
+		/// <summary>
         /// The nsIDOMHTMLDocument interface is the interface to a [X]HTML
         /// document object.
         ///
         /// @see <http://www.whatwg.org/html/>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDomain);
 		
+		/// <summary>
+        /// The nsIDOMHTMLDocument interface is the interface to a [X]HTML
+        /// document object.
+        ///
+        /// @see <http://www.whatwg.org/html/>
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDomain);
 		
@@ -778,12 +800,6 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCookieAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCookie);
-		
-		/// <summary>
-        /// or "CSS1Compat" if we're in strict mode
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCompatModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCompatMode);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

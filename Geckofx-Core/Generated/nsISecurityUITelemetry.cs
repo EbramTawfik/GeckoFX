@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("39823a45-dd9e-4f8b-9b0a-0ad144eb0db6")]
+	[Guid("d5c7d771-53a7-40e5-8247-fb6a8795cae8")]
 	public interface nsISecurityUITelemetry
 	{
 	}
@@ -64,32 +64,12 @@ namespace Gecko
 		public const long WARNING_CONFIRM_ADDON_INSTALL_CLICK_THROUGH = 4;
 		
 		// <summary>
-        // modal dialogs/warnings
-        // </summary>
-		public const long WARNING_ENTERING_SECURE_SITE = 5;
-		
-		// 
-		public const long WARNING_ENTERING_WEAK_SITE = 6;
-		
-		// 
-		public const long WARNING_LEAVING_SECURE_SITE = 7;
-		
-		// 
-		public const long WARNING_MIXED_CONTENT = 8;
-		
-		// <summary>
         // WARNING_CONFIRM_<X> + 1 == WARNING_CONFIRM_<X>_CLICK_THROUGH
         // </summary>
 		public const long WARNING_CONFIRM_POST_TO_INSECURE_FROM_SECURE = 9;
 		
 		// 
 		public const long WARNING_CONFIRM_POST_TO_INSECURE_FROM_SECURE_CLICK_THROUGH = 10;
-		
-		// 
-		public const long WARNING_CONFIRM_POST_TO_INSECURE_FROM_INSECURE = 11;
-		
-		// 
-		public const long WARNING_CONFIRM_POST_TO_INSECURE_FROM_INSECURE_CLICK_THROUGH = 12;
 		
 		// <summary>
         // Phishing / Malware page warnings

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3a1a6d3b-3698-4561-ba00-ba648cb2b0d4")]
+	[Guid("a6d2cedd-afbc-4d25-bffb-e725b9881e30")]
 	public interface nsISelectionPrivate : nsISelection
 	{
 		
@@ -225,10 +225,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EndBatchChanges();
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIEnumerator GetEnumerator();
-		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ToStringWithFormat([MarshalAs(UnmanagedType.LPStr)] string formatType, uint flags, int wrapColumn, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
@@ -245,11 +241,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetTableSelectionType([MarshalAs(UnmanagedType.Interface)] nsIDOMRange range);
-		
-		/// <summary>
-        ///Internal utility method to set the pres shell on a newly created selection </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPresShell(System.IntPtr aPresShell);
 		
 		/// <summary>
         ///canCacheFrameOffset

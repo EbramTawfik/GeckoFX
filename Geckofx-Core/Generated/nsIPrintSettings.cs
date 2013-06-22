@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4404c94b-0506-4255-9e3c-4582dba6cfbb")]
+	[Guid("a65cfa37-b381-4fe9-81b7-db08853f54ad")]
 	public interface nsIPrintSettings
 	{
 		
@@ -607,6 +607,21 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetIsInitializedFromPrefsAttribute([MarshalAs(UnmanagedType.U1)] bool aIsInitializedFromPrefs);
+		
+		/// <summary>
+        /// This attribute tracks if the settings made on the margin box is
+        /// stored in the prefs or not.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetPersistMarginBoxSettingsAttribute();
+		
+		/// <summary>
+        /// This attribute tracks if the settings made on the margin box is
+        /// stored in the prefs or not.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPersistMarginBoxSettingsAttribute([MarshalAs(UnmanagedType.U1)] bool aPersistMarginBoxSettings);
 		
 		/// <summary>
         ///C++ Helper Functions </summary>

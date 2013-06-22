@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cc4947eb-aa39-4c25-878d-618dc4d4d2bc")]
+	[Guid("4175a903-61e6-4fa7-af0d-1e41632ee2dd")]
 	public interface nsIDOMMozMobileConnection : nsIDOMEventTarget
 	{
 		
@@ -140,7 +140,7 @@ namespace Gecko
 		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
 		/// <summary>
-        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// Returns the nsIDOMEventTarget object which should be used as the target
         /// of DOMEvents.
         /// Usually |this| is returned, but for example global object returns
         /// the outer object.
@@ -150,7 +150,7 @@ namespace Gecko
 		new nsIDOMEventTarget GetTargetForDOMEvent();
 		
 		/// <summary>
-        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// Returns the nsIDOMEventTarget object which should be used as the target
         /// of the event and when constructing event target chain.
         /// Usually |this| is returned, but for example global object returns
         /// the inner object.
@@ -242,7 +242,7 @@ namespace Gecko
 		/// <summary>
         /// Indicates the state of the device's ICC card.
         ///
-        /// Possible values: null, 'absent', 'pinRequired', 'pukRequired',
+        /// Possible values: null, 'unknown', 'absent', 'pinRequired', 'pukRequired',
         /// 'networkLocked', 'ready'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -607,6 +607,20 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnicccardlockerrorAttribute(Gecko.JsVal aOnicccardlockerror, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'oncfstatechange' event is notified whenever the call forwarding
+        /// state changes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOncfstatechangeAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'oncfstatechange' event is notified whenever the call forwarding
+        /// state changes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOncfstatechangeAttribute(Gecko.JsVal aOncfstatechange, System.IntPtr jsContext);
 	}
 	
 	/// <summary>nsIDOMMozMobileConnectionConsts </summary>
@@ -647,7 +661,7 @@ namespace Gecko
 	/// <summary>nsIDOMMozMobileConnectionInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5ea0e4a9-4684-40da-9930-8ebb61d187f3")]
+	[Guid("21a20166-a9b4-4386-b151-49e6cfb9401b")]
 	public interface nsIDOMMozMobileConnectionInfo
 	{
 		
@@ -691,6 +705,12 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMozMobileNetworkInfo GetNetworkAttribute();
+		
+		/// <summary>
+        /// Mobile Country Code (MCC) of last known network operator.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetLastKnownMccAttribute();
 		
 		/// <summary>
         /// Type of connection.
@@ -785,7 +805,7 @@ namespace Gecko
 	/// <summary>nsIDOMMozMobileICCInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("352e7f1a-c09f-44ed-8fde-a138b09a0ea9")]
+	[Guid("b794bfcd-4ba4-46f2-8bf3-b4ed1b8d2b40")]
 	public interface nsIDOMMozMobileICCInfo
 	{
 		

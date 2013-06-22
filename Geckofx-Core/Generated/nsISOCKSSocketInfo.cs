@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8f755c44-1dd2-11b2-a613-91117453fa95")]
+	[Guid("D5C0D1F9-22D7-47DC-BF91-D9AC6E1251A6")]
 	public interface nsISOCKSSocketInfo
 	{
 		

@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8456EBEE-7127-485b-9518-C2E328C09F5D")]
+	[Guid("a77b664e-e707-4017-9c03-47bcedcb5b05")]
 	public interface nsICachingChannel : nsICacheInfoChannel
 	{
 		
@@ -170,36 +170,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCacheKeyAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aCacheKey);
-		
-		/// <summary>
-        /// Specifies whether or not the data should be cached to a file.  This
-        /// may fail if the disk cache is not present.  The value of this attribute
-        /// is usually only settable during the processing of a channel's
-        /// OnStartRequest.  The default value of this attribute depends on the
-        /// particular implementation of nsICachingChannel.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetCacheAsFileAttribute();
-		
-		/// <summary>
-        /// Specifies whether or not the data should be cached to a file.  This
-        /// may fail if the disk cache is not present.  The value of this attribute
-        /// is usually only settable during the processing of a channel's
-        /// OnStartRequest.  The default value of this attribute depends on the
-        /// particular implementation of nsICachingChannel.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCacheAsFileAttribute([MarshalAs(UnmanagedType.U1)] bool aCacheAsFile);
-		
-		/// <summary>
-        /// Get the "file" where the cached data can be found.  This is valid for
-        /// as long as a reference to the cache token is held.  This may return
-        /// an error if cacheAsFile is false.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile GetCacheFileAttribute();
 	}
 	
 	/// <summary>nsICachingChannelConsts </summary>
@@ -261,6 +231,7 @@ namespace Gecko
         // cache, then the OnDataAvailable events will be skipped.  The listener
         // will only see OnStartRequest followed by OnStopRequest.
         // </summary>
-		public const ulong LOAD_ONLY_IF_MODIFIED = (ulong)1<<31;
+		public const ulong LOAD_ONLY_IF_MODIFIED = (ulong)1 << 31;
+
 	}
 }

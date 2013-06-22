@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6852369e-baa9-4c9a-bbcd-5123fc54a297")]
+	[Guid("68067eb5-ad8d-43cb-a043-1cc85ebe06e7")]
 	public interface nsIEffectiveTLDService
 	{
 		
@@ -137,5 +137,20 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetBaseDomainFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, uint aAdditionalParts, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		
+		/// <summary>
+        /// Returns the parent sub-domain of a host string. If the host is a base
+        /// domain, it will throw NS_ERROR_INSUFFICIENT_DOMAIN_LEVELS.
+        ///
+        /// For example: "player.bbc.co.uk" would return "bbc.co.uk" and
+        /// "bbc.co.uk" would throw NS_ERROR_INSUFFICIENT_DOMAIN_LEVELS.
+        ///
+        /// @param   aHost   The host to be analyzed. Any additional parts (e.g. scheme,
+        /// port, or path) will cause this method to throw. ASCII/ACE and
+        /// UTF8 encodings are acceptable as input; normalization will
+        /// be performed as specified in getBaseDomain().
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetNextSubDomain([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 	}
 }

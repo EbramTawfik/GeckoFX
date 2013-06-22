@@ -29,12 +29,12 @@ namespace Gecko
 	/// <summary>
     /// nsINetAddr
     ///
-    /// This interface represents a (native) PRNetAddr struct in a readonly
+    /// This interface represents a native NetAddr struct in a readonly
     /// interface.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c407ab6c-c3ca-4cb2-a99b-a7dfbb88af33")]
+	[Guid("4f7c40b0-fc7d-42a4-a642-1b2a703c10f6")]
 	public interface nsINetAddr
 	{
 		
@@ -48,7 +48,7 @@ namespace Gecko
 		/// <summary>
         /// @return Either the IP address (FAMILY_INET, FAMILY_INET6) or the path
         /// (FAMILY_LOCAL) in string form. IP addresses are in the format produced by
-        /// PR_NetAddrToString.
+        /// mozilla::net::NetAddrToString.
         ///
         /// Note: Paths for FAMILY_LOCAL may have length limitations which are
         /// implementation dependent and not documented as part of this interface.
@@ -84,6 +84,15 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetScopeAttribute();
+		
+		/// <summary>
+        /// @return whether a FAMILY_INET6 address is mapped from FAMILY_INET.
+        ///
+        /// @throws NS_ERROR_NOT_AVAILABLE if the address family is not FAMILY_INET6
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsV4MappedAttribute();
 	}
 	
 	/// <summary>nsINetAddrConsts </summary>
@@ -92,7 +101,7 @@ namespace Gecko
 		
 		// <summary>
         // Network address families. These correspond to all the network address
-        // families supported by the PRNetAddr struct.
+        // families supported by the NetAddr struct.
         // </summary>
 		public const ulong FAMILY_INET = 1;
 		

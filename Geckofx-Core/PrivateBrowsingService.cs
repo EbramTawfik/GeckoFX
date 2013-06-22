@@ -17,21 +17,5 @@ namespace Gecko
 		{
 			_privateBrowsingService = new ServiceWrapper<nsIPrivateBrowsingService>(Contracts.PrivateBrowsing);
 		}
-
-		public static bool AutoStarted
-		{
-			get { return _privateBrowsingService.Instance.GetAutoStartedAttribute(); }
-		}
-
-		public static bool LastChangedByCommandLine
-		{
-			get { return _privateBrowsingService.Instance.GetLastChangedByCommandLineAttribute(); }
-		}
-
-		public static bool PrivateBrowsingEnabled
-		{
-			get { return _privateBrowsingService.Instance.GetPrivateBrowsingEnabledAttribute(); }
-			set { _privateBrowsingService.Instance.SetPrivateBrowsingEnabledAttribute(value); }
-		}		
 	}
 }

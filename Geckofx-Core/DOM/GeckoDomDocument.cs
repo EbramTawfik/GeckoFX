@@ -555,7 +555,11 @@ namespace Gecko
 			if (svgDocument != null)
 			{
 				Marshal.ReleaseComObject(svgDocument);
+#if false
 				return new SvgDocument((nsIDOMSVGDocument)domDocument);
+#else
+				throw new NotImplementedException("reimplement SvgDocument wrapper support");
+#endif
 			}
 			return new GeckoDomDocument( domDocument );
 		}

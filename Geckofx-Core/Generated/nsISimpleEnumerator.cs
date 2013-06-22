@@ -49,8 +49,8 @@ namespace Gecko
         /// internal state of enumerator.
         ///
         /// @see getNext()
-        /// @return PR_TRUE if there are remaining elements in the enumerator.
-        /// PR_FALSE if there are no more elements in the enumerator.
+        /// @return true if there are remaining elements in the enumerator.
+        /// false if there are no more elements in the enumerator.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

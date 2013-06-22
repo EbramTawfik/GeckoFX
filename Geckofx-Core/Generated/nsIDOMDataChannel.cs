@@ -29,7 +29,7 @@ namespace Gecko
 	/// <summary>nsIDOMDataChannel </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fb7a8ec4-c1eb-4d9f-b927-fbb8b4493e6d")]
+	[Guid("7363aa5c-f4b2-4b86-8d15-e0f714c9216b")]
 	public interface nsIDOMDataChannel : nsIDOMEventTarget
 	{
 		
@@ -137,7 +137,7 @@ namespace Gecko
 		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
 		/// <summary>
-        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// Returns the nsIDOMEventTarget object which should be used as the target
         /// of DOMEvents.
         /// Usually |this| is returned, but for example global object returns
         /// the outer object.
@@ -147,7 +147,7 @@ namespace Gecko
 		new nsIDOMEventTarget GetTargetForDOMEvent();
 		
 		/// <summary>
-        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// Returns the nsIDOMEventTarget object which should be used as the target
         /// of the event and when constructing event target chain.
         /// Usually |this| is returned, but for example global object returns
         /// the inner object.
@@ -334,6 +334,6 @@ namespace Gecko
         /// sent successfully.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Send([MarshalAs(UnmanagedType.Interface)] nsIVariant data, System.IntPtr jsContext);
+		void Send([MarshalAs(UnmanagedType.Interface)] nsIVariant data);
 	}
 }

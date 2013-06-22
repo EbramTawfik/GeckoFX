@@ -41,7 +41,7 @@ namespace Gecko
 		/// <summary>
 		/// Gets the length of the data associated with the channel if available. A value of -1 indicates that the content length is unknown.
 		/// </summary>
-		public int ContentLength
+		public long ContentLength
 		{
 			get { return (Channel == null) ? -1 : Channel.GetContentLengthAttribute(); }
 		}

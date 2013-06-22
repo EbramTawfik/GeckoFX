@@ -86,7 +86,7 @@ namespace Gecko
 	/// <summary>nsIDOMFile </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cddf6087-0e83-4e1f-91b3-4861d5d4c53f")]
+	[Guid("6928584d-7d87-4d56-9ce1-1c89c24f2c6a")]
 	public interface nsIDOMFile : nsIDOMBlob
 	{
 		

@@ -66,6 +66,8 @@ namespace Gecko
         /// If you call this before any data has been loaded from a URI, it will succeed,
         /// but come back empty.
         ///
+        /// Hopefully this will be removed with bug 805119
+        ///
         /// @param uri The URI to look up.
         /// @returns NULL if the URL was not found in the cache
         /// </summary>

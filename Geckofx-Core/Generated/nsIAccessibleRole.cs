@@ -91,7 +91,7 @@ namespace Gecko
         // Assistive Technologies typically respond to the role by reading the entire
         // onscreen contents of containers advertising this role. Should be used for
         // warning dialogs, etc. The role is used by xul:browsermessage,
-        // role="alert", xforms:message.
+        // role="alert".
         // </summary>
 		public const ulong ROLE_ALERT = 8;
 		
@@ -231,8 +231,7 @@ namespace Gecko
 		// <summary>
         // Represents a link to something else. This object might look like text or
         // a graphic, but it acts like a button. It is used for
-        // xul:label@class="text-link", html:a, html:area,
-        // xforms:trigger@appearance="minimal".
+        // xul:label@class="text-link", html:a, html:area.
         // </summary>
 		public const ulong ROLE_LINK = 30;
 		
@@ -298,8 +297,7 @@ namespace Gecko
 		// <summary>
         // Represents read-only text, such as labels for other controls or
         // instructions in a dialog box. Static text cannot be modified or selected.
-        // Is is used for xul:label, xul:description, html:label, role="label",
-        // or xforms:output.
+        // Is is used for xul:label, xul:description, html:label, role="label".
         // </summary>
 		public const ulong ROLE_STATICTEXT = 41;
 		
@@ -310,13 +308,13 @@ namespace Gecko
 		
 		// <summary>
         // Represents a push button control. It is used for xul:button, html:button,
-        // role="button", xforms:trigger, xforms:submit.
+        // role="button".
         // </summary>
 		public const ulong ROLE_PUSHBUTTON = 43;
 		
 		// <summary>
         // Represents a check box control. It is used for xul:checkbox,
-        // html:input@type="checkbox", role="checkbox", boolean xforms:input.
+        // html:input@type="checkbox", role="checkbox".
         // </summary>
 		public const ulong ROLE_CHECKBUTTON = 44;
 		
@@ -337,7 +335,7 @@ namespace Gecko
 		public const ulong ROLE_COMBOBOX = 46;
 		
 		// <summary>
-        // Represents the calendar control. It is used for date xforms:input.
+        // Represents the calendar control.
         // </summary>
 		public const ulong ROLE_DROPLIST = 47;
 		
@@ -362,7 +360,7 @@ namespace Gecko
 		// <summary>
         // Represents a slider, which allows the user to adjust a setting in given
         // increments between minimum and maximum values. It is used by xul:scale,
-        // role="slider", xforms:range.
+        // role="slider".
         // </summary>
 		public const ulong ROLE_SLIDER = 51;
 		

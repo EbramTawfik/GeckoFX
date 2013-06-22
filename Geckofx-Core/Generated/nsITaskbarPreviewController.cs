@@ -74,7 +74,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DrawPreview([MarshalAs(UnmanagedType.Interface)] nsIDOMCanvasRenderingContext2D ctx);
+		bool DrawPreview([MarshalAs(UnmanagedType.Interface)] nsISupports ctx);
 		
 		/// <summary>
         /// Invoked by the taskbar preview when it needs to draw the thumbnail in the
@@ -91,7 +91,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DrawThumbnail([MarshalAs(UnmanagedType.Interface)] nsIDOMCanvasRenderingContext2D ctx, uint width, uint height);
+		bool DrawThumbnail([MarshalAs(UnmanagedType.Interface)] nsISupports ctx, uint width, uint height);
 		
 		/// <summary>
         /// Invoked when the user presses the close button on the tab preview.

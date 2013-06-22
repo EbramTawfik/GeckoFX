@@ -106,7 +106,7 @@ namespace Gecko
 	/// <summary>nsIDOMTouchEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dfaac0c6-9c4a-4a95-8872-1d58f19d5768")]
+	[Guid("9a043d55-f59e-4790-8fc7-1fab1c727732")]
 	public interface nsIDOMTouchEvent : nsIDOMUIEvent
 	{
 		

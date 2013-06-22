@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7f69936f-2948-4733-ba41-c7e1d657a88b")]
+	[Guid("c611b701-ddfc-456d-893a-3b3fcb30d9fd")]
 	public interface nsIDOMDeviceStorage : nsIDOMEventTarget
 	{
 		
@@ -140,7 +140,7 @@ namespace Gecko
 		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
 		/// <summary>
-        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// Returns the nsIDOMEventTarget object which should be used as the target
         /// of DOMEvents.
         /// Usually |this| is returned, but for example global object returns
         /// the outer object.
@@ -150,7 +150,7 @@ namespace Gecko
 		new nsIDOMEventTarget GetTargetForDOMEvent();
 		
 		/// <summary>
-        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// Returns the nsIDOMEventTarget object which should be used as the target
         /// of the event and when constructing event target chain.
         /// Usually |this| is returned, but for example global object returns
         /// the inner object.
@@ -287,7 +287,15 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest Stat();
+		nsIDOMDOMRequest FreeSpace();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest UsedSpace();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest Available();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

@@ -94,6 +94,14 @@ namespace Gecko
 		new nsIDNSRecord Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHostName, uint aFlags);
 		
 		/// <summary>
+        /// The method takes a pointer to an nsTArray
+        /// and fills it with cache entry data
+        /// Called by the networking dashboard
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetDNSCacheEntries(System.IntPtr args);
+		
+		/// <summary>
         /// @return the hostname of the operating system.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

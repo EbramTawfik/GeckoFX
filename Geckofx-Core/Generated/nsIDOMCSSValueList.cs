@@ -27,15 +27,12 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// The nsIDOMCSSValueList interface is a datatype for a list of CSS
-    /// values in the Document Object Model.
-    ///
-    /// For more information on this interface please see
-    /// http://www.w3.org/TR/DOM-Level-2-Style
-    /// </summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8f09fa84-39b9-4dca-9b2f-db0eeb186286")]
+	[Guid("92364ed1-e364-4175-bc52-c2fe9671cbc7")]
 	public interface nsIDOMCSSValueList : nsIDOMCSSValue
 	{
 		
@@ -50,19 +47,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetCssValueTypeAttribute();
-		
-		/// <summary>
-        /// The nsIDOMCSSValueList interface is a datatype for a list of CSS
-        /// values in the Document Object Model.
-        ///
-        /// For more information on this interface please see
-        /// http://www.w3.org/TR/DOM-Level-2-Style
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetLengthAttribute();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSValue Item(uint index);
 	}
 }

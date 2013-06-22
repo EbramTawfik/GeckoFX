@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6AC9A699-D12A-45dc-9B02-9E5E0DD831B9")]
+	[Guid("a8285dae-f125-454f-9d1b-089e3f01b2c4")]
 	public interface nsIAssociatedContentSecurity
 	{
 		
@@ -51,7 +51,7 @@ namespace Gecko
         /// a case it is loaded from this object stored in nsIChannel.securityInfo.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetCountSubRequestsHighSecurityAttribute();
+		int GetCountSubRequestsBrokenSecurityAttribute();
 		
 		/// <summary>
         /// This interface is used to cache associated (sub) content security
@@ -62,18 +62,6 @@ namespace Gecko
         /// and therefor the subcontent state could not be determined. In such
         /// a case it is loaded from this object stored in nsIChannel.securityInfo.
         /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCountSubRequestsHighSecurityAttribute(int aCountSubRequestsHighSecurity);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetCountSubRequestsLowSecurityAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCountSubRequestsLowSecurityAttribute(int aCountSubRequestsLowSecurity);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetCountSubRequestsBrokenSecurityAttribute();
-		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCountSubRequestsBrokenSecurityAttribute(int aCountSubRequestsBrokenSecurity);
 		

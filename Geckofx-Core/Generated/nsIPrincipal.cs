@@ -30,7 +30,7 @@ namespace Gecko
     ///Defines the abstract interface for a principal. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("011966C0-8564-438D-B37A-08D7E1195E5A")]
+	[Guid("dbda8bb0-3023-4aec-ad98-8e9931a29d70")]
 	public interface nsIPrincipal : nsISerializable
 	{
 		
@@ -207,6 +207,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetExtendedOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aExtendedOrigin);
+		
+		/// <summary>
+        /// The base domain of the codebase URI to which this principal pertains
+        /// (generally the document URI), handling null principals and
+        /// non-hierarchical schemes correctly.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBaseDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aBaseDomain);
 		
 		/// <summary>
         /// Gets the principal's app status, which indicates whether the principal

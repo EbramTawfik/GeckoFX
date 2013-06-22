@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("753f0f13-681d-4de3-a6c6-11aa7e0b3afd")]
+	[Guid("bb2bb490-3ba4-4254-b8f5-8b43c7b714ea")]
 	public interface nsISSLSocketControl
 	{
 		
@@ -91,5 +91,11 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool JoinConnection([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase npnProtocol, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase hostname, int port);
+		
+		/// <summary>
+        /// The original flags from the socket provider.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetProviderFlagsAttribute();
 	}
 }

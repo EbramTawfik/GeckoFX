@@ -42,7 +42,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("98f3b51b-bb55-4276-a43c-db636f8d77e3")]
+	[Guid("2a8a7237-c1e2-4de7-b669-2002af29e42d")]
 	public interface nsIChannel : nsIRequest
 	{
 		
@@ -350,25 +350,21 @@ namespace Gecko
 		
 		/// <summary>
         /// The length of the data associated with the channel if available.  A value
-        /// of -1 indicates that the content length is unknown.
-        ///
-        /// Callers should prefer getting the "content-length" property
-        /// as 64-bit value by QIing the channel to nsIPropertyBag2,
-        /// if that interface is exposed by the channel.
+        /// of -1 indicates that the content length is unknown. Note that this is a
+        /// 64-bit value and obsoletes the "content-length" property used on some
+        /// channels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetContentLengthAttribute();
+		long GetContentLengthAttribute();
 		
 		/// <summary>
         /// The length of the data associated with the channel if available.  A value
-        /// of -1 indicates that the content length is unknown.
-        ///
-        /// Callers should prefer getting the "content-length" property
-        /// as 64-bit value by QIing the channel to nsIPropertyBag2,
-        /// if that interface is exposed by the channel.
+        /// of -1 indicates that the content length is unknown. Note that this is a
+        /// 64-bit value and obsoletes the "content-length" property used on some
+        /// channels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentLengthAttribute(int aContentLength);
+		void SetContentLengthAttribute(long aContentLength);
 		
 		/// <summary>
         /// Synchronously open the channel.
@@ -573,6 +569,17 @@ namespace Gecko
         // passed.
         // </summary>
 		public const ulong LOAD_TREAT_APPLICATION_OCTET_STREAM_AS_UNKNOWN = 1<<23;
+		
+		// <summary>
+        // Set to let explicitely provided credentials be used over credentials
+        // we have cached previously. In some situations like form login using HTTP
+        // auth via XMLHttpRequest we need to let consumers override the cached
+        // credentials explicitely. For form login 403 response instead of 401 is
+        // usually used to prevent an auth dialog. But any code other then 401/7
+        // will leave original credentials in the cache and there is then no way
+        // to override them for the same user name.
+        // </summary>
+		public const ulong LOAD_EXPLICIT_CREDENTIALS = 1<<24;
 		
 		// 
 		public const ulong DISPOSITION_INLINE = 0;

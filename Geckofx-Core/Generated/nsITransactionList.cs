@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("97f863f3-f886-11d4-9d39-0060b0f8baff")]
+	[Guid("d007ceff-c978-486a-b697-384ca01997be")]
 	public interface nsITransactionList
 	{
 		
@@ -69,6 +69,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITransaction GetItem(int aIndex);
+		
+		/// <summary>
+        /// getData() returns the data (of type nsISupports array) associated with
+        /// the transaction list.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetData(int aIndex, ref uint aLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref nsISupports[] aData);
 		
 		/// <summary>
         /// getNumChildrenForItem() returns the number of child (auto-aggreated)

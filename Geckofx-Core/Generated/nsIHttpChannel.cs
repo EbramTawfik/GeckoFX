@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9277fe09-f0cc-4cd9-bbce-581dd94b0260")]
+	[Guid("a01362a0-5c45-11e2-bcfd-0800200c9a66")]
 	public interface nsIHttpChannel : nsIChannel
 	{
 		
@@ -343,25 +343,21 @@ namespace Gecko
 		
 		/// <summary>
         /// The length of the data associated with the channel if available.  A value
-        /// of -1 indicates that the content length is unknown.
-        ///
-        /// Callers should prefer getting the "content-length" property
-        /// as 64-bit value by QIing the channel to nsIPropertyBag2,
-        /// if that interface is exposed by the channel.
+        /// of -1 indicates that the content length is unknown. Note that this is a
+        /// 64-bit value and obsoletes the "content-length" property used on some
+        /// channels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetContentLengthAttribute();
+		new long GetContentLengthAttribute();
 		
 		/// <summary>
         /// The length of the data associated with the channel if available.  A value
-        /// of -1 indicates that the content length is unknown.
-        ///
-        /// Callers should prefer getting the "content-length" property
-        /// as 64-bit value by QIing the channel to nsIPropertyBag2,
-        /// if that interface is exposed by the channel.
+        /// of -1 indicates that the content length is unknown. Note that this is a
+        /// 64-bit value and obsoletes the "content-length" property used on some
+        /// channels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentLengthAttribute(int aContentLength);
+		new void SetContentLengthAttribute(long aContentLength);
 		
 		/// <summary>
         /// Synchronously open the channel.
@@ -805,5 +801,18 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsNoCacheResponse();
+		
+		/// <summary>
+        /// Instructs the channel to immediately redirect to a new destination.
+        /// Can only be called on channels not yet opened.
+        ///
+        /// This method provides no explicit conflict resolution. The last
+        /// caller to call it wins.
+        ///
+        /// @throws NS_ERROR_ALREADY_OPENED if called after the channel
+        /// has been opened.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RedirectTo([MarshalAs(UnmanagedType.Interface)] nsIURI aNewURI);
 	}
 }

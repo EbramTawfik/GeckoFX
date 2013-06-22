@@ -45,6 +45,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
 	}
 	
 	/// <summary>nsIGetUserMediaDevicesSuccessCallback </summary>
@@ -69,7 +72,7 @@ namespace Gecko
 		
 		/// <summary>
         /// value must be a nsIDOMBlob if picture is true and a
-        /// nsIDOMMediaStream if either audio or video are true.
+        /// nsIDOMLocalMediaStream if either audio or video are true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnSuccess([MarshalAs(UnmanagedType.Interface)] nsISupports value);
@@ -91,7 +94,7 @@ namespace Gecko
 	/// <summary>nsIMediaStreamOptions </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("36d9c3b7-7594-4035-8a7e-92c2cecdb2c5")]
+	[Guid("f34a3616-395a-43cd-b275-bf81750ac8b9")]
 	public interface nsIMediaStreamOptions
 	{
 		
@@ -124,11 +127,17 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCameraAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCamera);
 		
-		/// <summary>Member GetDeviceAttribute </summary>
+		/// <summary>Member GetAudioDeviceAttribute </summary>
 		/// <returns>A nsIMediaDevice</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMediaDevice GetDeviceAttribute();
+		nsIMediaDevice GetAudioDeviceAttribute();
+		
+		/// <summary>Member GetVideoDeviceAttribute </summary>
+		/// <returns>A nsIMediaDevice</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIMediaDevice GetVideoDeviceAttribute();
 	}
 	
 	/// <summary>nsIDOMNavigatorUserMedia </summary>

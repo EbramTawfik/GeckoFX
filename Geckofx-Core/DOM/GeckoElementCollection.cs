@@ -8,11 +8,12 @@ namespace Gecko
 	/// </summary>
 	public class GeckoElementCollection : IEnumerable<GeckoHtmlElement>
 	{
+		nsIDOMNodeList List;		
+
 		internal GeckoElementCollection(nsIDOMNodeList list)
 		{
 			this.List = list;
-		}
-		nsIDOMNodeList List;
+		}		
 
 		public virtual int Count
 		{

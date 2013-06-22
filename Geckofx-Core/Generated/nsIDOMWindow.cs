@@ -27,27 +27,6 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///This Source Code Form is subject to the terms of the Mozilla Public
-    /// License, v. 2.0. If a copy of the MPL was not distributed with this
-    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8fc58f56-f769-4368-a098-edd08550cf1a")]
-	public interface nsIDOMMozURLProperty
-	{
-		
-		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this
-        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateObjectURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RevokeObjectURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase URL);
-	}
-	
-	/// <summary>
     /// The nsIDOMWindow interface is the primary interface for a DOM
     /// window object. It represents a single window object that may
     /// contain child windows if the document in the window contains a
@@ -57,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7afa38e6-45a1-4f0b-ae84-997669d14059")]
+	[Guid("39cb59d4-fba9-48a9-b70b-570a7ec2ebfa")]
 	public interface nsIDOMWindow
 	{
 		
@@ -305,7 +284,7 @@ namespace Gecko
         /// @see <http://www.whatwg.org/html/#dom-window-postmessage>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PostMessage(Gecko.JsVal message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase targetOrigin, System.IntPtr jsContext);
+		void PostMessage(Gecko.JsVal message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase targetOrigin, Gecko.JsVal transfer, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Ascii base64 data to binary data and vice versa...
@@ -447,6 +426,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pseudoElt);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMCSSStyleDeclaration GetDefaultComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pseudoElt);
+		
 		/// <summary>
         /// Get the window root for this window. This is useful for hooking
         /// up event listeners to this window and every other window nested
@@ -519,9 +502,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetClosedAttribute();
 		
-		/// <summary>
-        /// http://wiki.whatwg.org/wiki/Crypto
-        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCrypto GetCryptoAttribute();
@@ -661,13 +641,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetMozAnimationStartTimeAttribute();
-		
-		/// <summary>
-        /// @see <http://dev.w3.org/2006/webapi/FileAPI/#creating-revoking>
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozURLProperty GetURLAttribute();
 		
 		/// <summary>
         /// HTML5 event attributes that only apply to windows and <body>/<frameset>
@@ -829,7 +802,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8da641ab-906a-456e-97f2-b77df4ca2d95")]
+	[Guid("a5cd0946-bac1-4606-9aaa-9e68dd0a3279")]
 	public interface nsIDOMWindowInternal : nsIDOMWindow
 	{
 		
@@ -1077,7 +1050,7 @@ namespace Gecko
         /// @see <http://www.whatwg.org/html/#dom-window-postmessage>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PostMessage(Gecko.JsVal message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase targetOrigin, System.IntPtr jsContext);
+		new void PostMessage(Gecko.JsVal message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase targetOrigin, Gecko.JsVal transfer, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Ascii base64 data to binary data and vice versa...
@@ -1219,6 +1192,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pseudoElt);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMCSSStyleDeclaration GetDefaultComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pseudoElt);
+		
 		/// <summary>
         /// Get the window root for this window. This is useful for hooking
         /// up event listeners to this window and every other window nested
@@ -1291,9 +1268,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetClosedAttribute();
 		
-		/// <summary>
-        /// http://wiki.whatwg.org/wiki/Crypto
-        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMCrypto GetCryptoAttribute();
@@ -1433,13 +1407,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new long GetMozAnimationStartTimeAttribute();
-		
-		/// <summary>
-        /// @see <http://dev.w3.org/2006/webapi/FileAPI/#creating-revoking>
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMMozURLProperty GetURLAttribute();
 		
 		/// <summary>
         /// HTML5 event attributes that only apply to windows and <body>/<frameset>

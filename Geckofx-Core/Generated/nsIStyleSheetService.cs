@@ -85,5 +85,8 @@ namespace Gecko
 		
 		// 
 		public const ulong USER_SHEET = 1;
+		
+		// 
+		public const ulong AUTHOR_SHEET = 2;
 	}
 }

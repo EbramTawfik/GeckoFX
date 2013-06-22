@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("16955eee-6c48-4152-9309-c42a465138a1")]
+	[Guid("c6138514-f212-4747-98c2-7abfce3be293")]
 	public interface nsIStrictTransportSecurityService
 	{
 		
@@ -45,21 +45,28 @@ namespace Gecko
         ///
         /// @param aSourceURI the URI of the resource with the HTTP header.
         /// @param aHeader the HTTP response header specifying STS data.
+        /// @param aFlags  options for this request as defined in nsISocketProvider:
+        /// NO_PERMANENT_STORAGE
+        /// @param aMaxAge the parsed max-age directive of the header.
+        /// @param aIncludeSubdomains the parsed includeSubdomains directive.
         /// @return NS_OK            if it succeeds
         /// NS_ERROR_FAILURE if it can't be parsed
         /// NS_SUCCESS_LOSS_OF_INSIGNIFICANT_DATA
         /// if there are unrecognized tokens in the header.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ProcessStsHeader([MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.LPStr)] string aHeader);
+		void ProcessStsHeader([MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.LPStr)] string aHeader, uint aFlags, ref ulong aMaxAge, [MarshalAs(UnmanagedType.U1)] ref bool aIncludeSubdomains);
 		
 		/// <summary>
         /// Removes the STS state of a host, including the includeSubdomains state
         /// that would affect subdomains.  This essentially removes STS state for
         /// the domain tree rooted at this host.
+        /// @param aURI    the URI of the target host
+        /// @param aFlags  options for this request as defined in nsISocketProvider:
+        /// NO_PERMANENT_STORAGE
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveStsState([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		void RemoveStsState([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlags);
 		
 		/// <summary>
         /// Checks if the given security info is for an STS host with a broken
@@ -75,10 +82,12 @@ namespace Gecko
         /// its super-domains has an STS "includeSubdomains" permission set.
         ///
         /// @param aHost the hostname (punycode) to query for STS state.
+        /// @param aFlags  options for this request as defined in nsISocketProvider:
+        /// NO_PERMANENT_STORAGE
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsStsHost([MarshalAs(UnmanagedType.LPStr)] string aHost);
+		bool IsStsHost([MarshalAs(UnmanagedType.LPStr)] string aHost, uint aFlags);
 		
 		/// <summary>
         /// Checks whether or not the URI's hostname has STS state set.
@@ -89,9 +98,11 @@ namespace Gecko
         /// such as path and port.
         ///
         /// @param aURI the URI to query for STS state.
+        /// @param aFlags  options for this request as defined in nsISocketProvider:
+        /// NO_PERMANENT_STORAGE
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsStsURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		bool IsStsURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlags);
 	}
 }

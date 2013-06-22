@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ead94080-cfd6-4a3e-8353-bd45333061d2")]
+	[Guid("c7e8eed7-2be9-40b0-be7c-b682097f5b28")]
 	public interface imgIContainer
 	{
 		
@@ -77,14 +77,6 @@ namespace Gecko
 		bool GetAnimatedAttribute();
 		
 		/// <summary>
-        /// Whether the current frame is opaque; that is, needs the background painted
-        /// behind it.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetCurrentFrameIsOpaqueAttribute();
-		
-		/// <summary>
         /// Get a surface for the given frame. This may be a platform-native,
         /// optimized surface, so you cannot inspect its pixel data.
         ///
@@ -95,11 +87,21 @@ namespace Gecko
 		System.IntPtr GetFrame(uint aWhichFrame, uint aFlags);
 		
 		/// <summary>
+        /// Whether the given frame is opaque; that is, needs the background painted
+        /// behind it.
+        ///
+        /// @param aWhichFrame Frame specifier of the FRAME_* variety.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool FrameIsOpaque(uint aWhichFrame);
+		
+		/// <summary>
         /// Attempts to create an ImageContainer (and Image) containing the current
         /// frame. Only valid for RASTER type images.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetImageContainer();
+		System.IntPtr GetImageContainer(System.IntPtr aManager);
 		
 		/// <summary>
         /// Create and return a new copy of the given frame that you can write to
@@ -169,6 +171,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RequestDecode();
+		
+		/// <summary>
+        /// This is equivalent to requestDecode() but it also decodes some of the image.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void StartDecoding();
 		
 		/// <summary>
         /// Increments the lock count on the image. An image will not be discarded

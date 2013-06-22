@@ -180,17 +180,7 @@ namespace Gecko
 		public const ulong RESULT_TYPE_VISIT = 1;
 		
 		// <summary>
-        // nsINavHistoryVisitResultNode
-        // </summary>
-		public const ulong RESULT_TYPE_FULL_VISIT = 2;
-		
-		// <summary>
-        // This const exists just to avoid reusing the value.
-        // </summary>
-		public const ulong RESULT_TYPE_DYNAMIC_CONTAINER = 4;
-		
-		// <summary>
-        // nsINavHistoryContainerResultNode
+        // const unsigned long RESULT_TYPE_DYNAMIC_CONTAINER = 4; // nsINavHistoryContainerResultNode
         // </summary>
 		public const ulong RESULT_TYPE_QUERY = 5;
 		
@@ -353,171 +343,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetSessionIdAttribute();
-	}
-	
-	/// <summary>
-    /// This structure will be returned when you request RESULT_TYPE_FULL_VISIT in
-    /// the query options. This includes uncommonly used information about each
-    /// visit.
-    /// </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c49fd9d5-56e2-43eb-932c-f933f28cba85")]
-	public interface nsINavHistoryFullVisitResultNode : nsINavHistoryVisitResultNode
-	{
-		
-		/// <summary>
-        /// Indentifies the parent result node in the result set. This is null for
-        /// top level nodes.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryContainerResultNode GetParentAttribute();
-		
-		/// <summary>
-        /// The history-result to which this node belongs.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResult GetParentResultAttribute();
-		
-		/// <summary>
-        /// URI of the resource in question. For visits and URLs, this is the URL of
-        /// the page. For folders and queries, this is the place: URI of the
-        /// corresponding folder or query. This may be empty for other types of
-        /// objects like host containers.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aUri);
-		
-		/// <summary>
-        /// nsINavHistoryQueryResultNode
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetTypeAttribute();
-		
-		/// <summary>
-        /// Title of the web page, or of the node's query (day, host, folder, etc)
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle);
-		
-		/// <summary>
-        /// Total number of times the URI has ever been accessed. For hosts, this
-        /// is the total of the children under it, NOT the total times the host has
-        /// been accessed (this would require an additional query, so is not given
-        /// by default when most of the time it is never needed).
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetAccessCountAttribute();
-		
-		/// <summary>
-        /// This is the time the user accessed the page.
-        ///
-        /// If this is a visit, it is the exact time that the page visit occurred.
-        ///
-        /// If this is a URI, it is the most recent time that the URI was visited.
-        /// Even if you ask for all URIs for a given date range long ago, this might
-        /// contain today's date if the URI was visited today.
-        ///
-        /// For hosts, or other node types with children, this is the most recent
-        /// access time for any of the children.
-        ///
-        /// For days queries this is the respective endTime - a maximum possible
-        /// visit time to fit in the day range.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new long GetTimeAttribute();
-		
-		/// <summary>
-        /// This URI can be used as an image source URI and will give you the favicon
-        /// for the page. It is *not* the URI of the favicon, but rather something
-        /// that will resolve to the actual image.
-        ///
-        /// In most cases, this is an annotation URI that will query the favicon
-        /// service. If the entry has no favicon, this is the chrome URI of the
-        /// default favicon. If the favicon originally lived in chrome, this will
-        /// be the original chrome URI of the icon.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aIcon);
-		
-		/// <summary>
-        /// This is the number of levels between this node and the top of the
-        /// hierarchy. The members of result.children have indentLevel = 0, their
-        /// children have indentLevel = 1, etc. The indent level of the root node is
-        /// set to -1.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetIndentLevelAttribute();
-		
-		/// <summary>
-        /// When this item is in a bookmark folder (parent is of type folder), this is
-        /// the index into that folder of this node. These indices start at 0 and
-        /// increase in the order that they appear in the bookmark folder. For items
-        /// that are not in a bookmark folder, this value is -1.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetBookmarkIndexAttribute();
-		
-		/// <summary>
-        /// If the node is an item (bookmark, folder or a separator) this value is the
-        /// row ID of that bookmark in the database. For other nodes, this value is
-        /// set to -1.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new long GetItemIdAttribute();
-		
-		/// <summary>
-        /// If the node is an item (bookmark, folder or a separator) this value is the
-        /// time that the item was created. For other nodes, this value is 0.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new long GetDateAddedAttribute();
-		
-		/// <summary>
-        /// If the node is an item (bookmark, folder or a separator) this value is the
-        /// time that the item was last modified. For other nodes, this value is 0.
-        ///
-        /// @note When an item is added lastModified is set to the same value as
-        /// dateAdded.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new long GetLastModifiedAttribute();
-		
-		/// <summary>
-        /// For uri nodes, this is a sorted list of the tags, delimited with commans,
-        /// for the uri represented by this node. Otherwise this is an empty string.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTags);
-		
-		/// <summary>
-        /// This indicates the session ID of the * visit. This is used for session
-        /// grouping when a tree view is sorted by date.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new long GetSessionIdAttribute();
-		
-		/// <summary>
-        /// This indicates the visit ID of the visit.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		long GetVisitIdAttribute();
-		
-		/// <summary>
-        /// This indicates the referring visit ID of the visit. The referrer should
-        /// have the same sessionId.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		long GetReferringVisitIdAttribute();
-		
-		/// <summary>
-        /// Indicates the transition type of the visit.
-        /// One of nsINavHistoryService.TRANSITION_*
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetTransitionTypeAttribute();
 	}
 	
 	/// <summary>
@@ -1057,7 +882,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("547102c4-ab84-4058-b9d4-6f99f6c80893")]
+	[Guid("f62d8b6b-3c4e-4a9f-a897-db605d0b7a0f")]
 	public interface nsINavHistoryResultObserver
 	{
 		
@@ -1192,22 +1017,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NodeLastModifiedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, long aNewValue);
-		
-		/// <summary>
-        /// Called when an item is being replaced with another item at the exact
-        /// same position.
-        ///
-        /// @param aParentNode
-        /// the parent node of the node which is being replaced
-        /// @param aOldNode
-        /// the node which is being replaced
-        /// @param aNewNode
-        /// the new node
-        /// @param aParentNode
-        /// the index in aParentNode, at which a node is being replaced
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeReplaced([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aParentNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aOldNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNewNode, uint aIndex);
 		
 		/// <summary>
         /// Called after a container changes state.
@@ -1423,22 +1232,6 @@ namespace Gecko
 		new void NodeLastModifiedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, long aNewValue);
 		
 		/// <summary>
-        /// Called when an item is being replaced with another item at the exact
-        /// same position.
-        ///
-        /// @param aParentNode
-        /// the parent node of the node which is being replaced
-        /// @param aOldNode
-        /// the node which is being replaced
-        /// @param aNewNode
-        /// the new node
-        /// @param aParentNode
-        /// the index in aParentNode, at which a node is being replaced
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeReplaced([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aParentNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aOldNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNewNode, uint aIndex);
-		
-		/// <summary>
         /// Called after a container changes state.
         ///
         /// @param aContainerNode
@@ -1646,7 +1439,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c837f6ba-6ad7-4810-a425-8ce29e05d17e")]
+	[Guid("45e2970b-9b00-4473-9938-39d6beaf4248")]
 	public interface nsINavHistoryObserver
 	{
 		
@@ -1679,13 +1472,10 @@ namespace Gecko
         /// @param aReferringID    The ID of the visit the user came from. 0 if empty.
         /// @param aTransitionType One of nsINavHistory.TRANSITION_*
         /// @param aGUID           The unique ID associated with the page.
-        /// @param aAdded          Incremented by query nodes when the visited uri
-        /// belongs to them. If no such query exists, the
-        /// history result creates a new query node dynamically.
-        /// It is used in places views only and can be ignored.
+        /// @param aHidden         Whether the visited page is marked as hidden.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnVisit([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aVisitID, long aTime, long aSessionID, long aReferringID, uint aTransitionType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, ref uint aAdded);
+		void OnVisit([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aVisitID, long aTime, long aSessionID, long aReferringID, uint aTransitionType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.U1)] bool aHidden);
 		
 		/// <summary>
         /// Called whenever either the "real" title or the custom title of the page
@@ -1709,20 +1499,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnTitleChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPageTitle, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
-		
-		/// <summary>
-        /// This page and all of its visits are about to be deleted.  Note: the page
-        /// may not necessarily have actually existed for this function to be called.
-        ///
-        /// @param aURI
-        /// The URI being deleted.
-        /// @param aGUID
-        /// The unique ID associated with the page.
-        /// @param aReason
-        /// Indicates the reason for the removal.  See REASON_* constants.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnBeforeDeleteURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, ushort aReason);
 		
 		/// <summary>
         /// This page and all of its visits are being deleted. Note: the page may not
@@ -1782,9 +1558,12 @@ namespace Gecko
         /// anymore visits for it.
         /// @param aReason
         /// Indicates the reason for the removal.  see REASON_* constants.
+        /// @param aTransitionType
+        /// If it's a valid TRANSITION_* value, all visits of the specified type
+        /// have been removed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDeleteVisits([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aVisitTime, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, ushort aReason);
+		void OnDeleteVisits([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aVisitTime, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, ushort aReason, uint aTransitionType);
 	}
 	
 	/// <summary>nsINavHistoryObserverConsts </summary>
@@ -2649,6 +2428,8 @@ namespace Gecko
         /// @return The ID of the created visit. This will be 0 if the URI cannot
         /// be added to history (canAddURI = false) or the visit is session
         /// persistent (TRANSITION_EMBED).
+        ///
+        /// @deprecated Use mozIAsyncHistory::updatePlaces
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int AddVisit([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aTime, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferringURI, int aTransitionType, [MarshalAs(UnmanagedType.U1)] bool aIsRedirect, long aSessionID);

@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b31bd379-4bd2-4189-a85b-c0927a266a85")]
+	[Guid("597403c6-5ba4-4e7b-b3f4-ed3f05f775d8")]
 	public interface nsIVolumeService
 	{
 		
@@ -47,5 +47,12 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVolume GetVolumeByPath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase path);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void BroadcastVolume([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase volName);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIVolumeMountLock CreateMountLock([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase volName);
 	}
 }

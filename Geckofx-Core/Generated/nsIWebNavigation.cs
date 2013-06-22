@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("F5D9E7B0-D930-11d3-B057-00A024FFC08C")]
+	[Guid("28404f7e-0f17-4dc3-a21a-2074d8659b02")]
 	public interface nsIWebNavigation
 	{
 		
@@ -263,11 +263,10 @@ namespace Gecko
 		public const ulong LOAD_FLAGS_FROM_EXTERNAL = 0x1000;
 		
 		// <summary>
-        // This flag specifies that the URI may be submitted to a third-party
-        // server for correction. This should only be applied to non-sensitive
-        // URIs entered by users.  This flag must not be passed to Reload.
+        //This flag is set when a user explicitly disables the Mixed Content
+        //    Blocker, and allows Mixed Content to load on an https page.
         // </summary>
-		public const ulong LOAD_FLAGS_ALLOW_THIRD_PARTY_FIXUP = 0x2000;
+		public const ulong LOAD_FLAGS_ALLOW_MIXED_CONTENT = 0x2000;
 		
 		// <summary>
         // This flag specifies that this is the first load in this object.
@@ -305,6 +304,13 @@ namespace Gecko
         // Assume the URI is encoded in UTF-8.
         // </summary>
 		public const ulong LOAD_FLAGS_URI_IS_UTF8 = 0x80000;
+		
+		// <summary>
+        // This flag specifies that the URI may be submitted to a third-party
+        // server for correction. This should only be applied to non-sensitive
+        // URIs entered by users.  This flag must not be passed to Reload.
+        // </summary>
+		public const ulong LOAD_FLAGS_ALLOW_THIRD_PARTY_FIXUP = 0x100000;
 		
 		// <summary>
         // This flag specifies that all network activity should be stopped.  This

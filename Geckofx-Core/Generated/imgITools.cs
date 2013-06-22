@@ -34,26 +34,41 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("53dd1cbe-cb9f-4d9e-8104-1ab72851c88e")]
+	[Guid("4c2383a4-931c-484d-8c4a-973590f66e3f")]
 	public interface imgITools
 	{
+		
+		/// <summary>
+        /// decodeImage
+        /// Caller provides an input stream and mimetype. We read from the stream
+        /// and decompress it (according to the specified mime type) and return
+        /// the resulting imgIContainer.
+        ///
+        /// @param aStream
+        /// An input stream for an encoded image file.
+        /// @param aMimeType
+        /// Type of image in the stream.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		imgIContainer DecodeImage([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType);
 		
 		/// <summary>
         /// decodeImageData
         /// Caller provides an input stream and mimetype. We read from the stream
         /// and decompress it (according to the specified mime type) and return
-        /// the resulting imgIContainer. (If the caller already has a container,
-        /// it can be provided as input to be reused).
+        /// the resulting imgIContainer.
+        ///
+        /// This method is deprecated and will be removed at some time in the future;
+        /// new code should use |decodeImage|.
         ///
         /// @param aStream
         /// An input stream for an encoded image file.
         /// @param aMimeType
         /// Type of image in the stream.
         /// @param aContainer
-        /// An imgIContainer holding the decoded image. Specify |null| when
-        /// calling to have one created, otherwise specify a container to
-        /// be used. It is an error to pass an already-initialized container
-        /// as aContainer.
+        /// An imgIContainer holding the decoded image will be returned via
+        /// this parameter. It is an error to provide any initial value but
+        /// |null|.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DecodeImageData([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, ref imgIContainer aContainer);
@@ -141,5 +156,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIInputStream EncodeCroppedImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, int aOffsetX, int aOffsetY, int aWidth, int aHeight, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase outputOptions);
+		
+		/// <summary>
+        /// Create a wrapper around a scripted notification observer (ordinarily
+        /// imgINotificationObserver cannot be implemented from scripts).
+        ///
+        /// @param aObserver The scripted observer to wrap
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		imgINotificationObserver CreateScriptedObserver(imgIScriptedNotificationObserver aObserver);
 	}
 }

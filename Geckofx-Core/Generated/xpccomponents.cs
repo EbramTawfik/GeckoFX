@@ -160,7 +160,7 @@ namespace Gecko
     /// interface of Components.utils </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("36c19d92-d4a9-4ad1-bee3-945f60c6c991")]
+	[Guid("5b62c98f-5ff8-41f9-bcb8-a24d1b4255d4")]
 	public interface nsIXPCComponents_Utils
 	{
 		
@@ -352,6 +352,14 @@ namespace Gecko
 		/// <summary>
         /// To be called from JS only.
         ///
+        /// Returns a date given timestamp |msec| created in |vobj|'s compartment.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal CreateDateIn(Gecko.JsVal vobj, long msec, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// To be called from JS only.
+        ///
         /// Ensures that all functions come from vobj's scope (and aren't cross
         /// compartment wrappers).
         /// </summary>
@@ -374,11 +382,21 @@ namespace Gecko
         /// disappear at any moment.
         ///
         /// Forces a recomputation of all wrappers in and out of the compartment
-        /// containing |obj|. If |obj| is not an object, all wrappers system-wide
+        /// containing |vobj|. If |vobj| is not an object, all wrappers system-wide
         /// are recomputed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RecomputeWrappers(Gecko.JsVal vobj, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// To be called from JS only. This is for Gecko internal use only, and may
+        /// disappear at any moment.
+        ///
+        /// Enables Xray vision for same-compartment access for the compartment
+        /// indicated by |vscope|. All outgoing wrappers are recomputed.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetWantXrays(Gecko.JsVal vscope, System.IntPtr jsContext);
 		
 		/// <summary>
         /// This seemingly-paradoxical API allows privileged code to explicitly give
@@ -442,20 +460,6 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetXmlAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXmlAttribute([MarshalAs(UnmanagedType.U1)] bool aXml, System.IntPtr jsContext);
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetRelimitAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRelimitAttribute([MarshalAs(UnmanagedType.U1)] bool aRelimit, System.IntPtr jsContext);
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMethodjitAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -487,6 +491,21 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NukeSandbox(Gecko.JsVal obj, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Check whether the given object is an XrayWrapper.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsXrayWrapper(Gecko.JsVal obj);
+		
+		/// <summary>
+        /// Get a DOM classinfo for the given classname.  Only some class
+        /// names are supported.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIClassInfo GetDOMClassInfo([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClassName);
 	}
 	
 	/// <summary>

@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("35dddb4c-3d35-11e2-978c-10bf48d64bd4")]
+	[Guid("c7227506-5f8e-11e2-8bb3-10bf48d64bd4")]
 	public interface nsIAudioChannelAgentCallback
 	{
 		

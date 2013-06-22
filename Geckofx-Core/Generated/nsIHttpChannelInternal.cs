@@ -49,7 +49,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9363fd96-af59-47e8-bddf-1d5e91acd336")]
+	[Guid("74d13d41-85cd-490f-9942-300d0c01c726")]
 	public interface nsIHttpChannelInternal
 	{
 		
@@ -218,5 +218,43 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAllowSpdyAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowSpdy);
+		
+		/// <summary>
+        /// Set (e.g., by the docshell) to indicate whether or not the channel
+        /// corresponds to content that should be given a degree of network exclusivity
+        /// with respect to other members of its load group.
+        /// Examples are js from the HTML head and css which are latency
+        /// sensitive and should not compete with images for bandwidth. Default false.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetLoadAsBlockingAttribute();
+		
+		/// <summary>
+        /// Set (e.g., by the docshell) to indicate whether or not the channel
+        /// corresponds to content that should be given a degree of network exclusivity
+        /// with respect to other members of its load group.
+        /// Examples are js from the HTML head and css which are latency
+        /// sensitive and should not compete with images for bandwidth. Default false.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetLoadAsBlockingAttribute([MarshalAs(UnmanagedType.U1)] bool aLoadAsBlocking);
+		
+		/// <summary>
+        /// If set, this channel will load in parallel with the rest of the load
+        /// group even if a blocking subset of the group would normally be given
+        /// exclusivity. Default false.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetLoadUnblockedAttribute();
+		
+		/// <summary>
+        /// If set, this channel will load in parallel with the rest of the load
+        /// group even if a blocking subset of the group would normally be given
+        /// exclusivity. Default false.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetLoadUnblockedAttribute([MarshalAs(UnmanagedType.U1)] bool aLoadUnblocked);
 	}
 }

@@ -47,7 +47,7 @@ namespace Gecko
         /// the cookie value
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aValue);
+		new void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aValue);
 		
 		/// <summary>
         /// true if the cookie is a domain cookie, false otherwise

@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2fb820a9-9331-4c02-ae41-32a82a4b7aa1")]
+	[Guid("8ab925f8-af9b-4837-afa0-ffed507212ce")]
 	public interface nsINavBookmarkObserver
 	{
 		
@@ -80,24 +80,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnItemAdded(long aItemId, long aParentId, int aIndex, ushort aItemType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle, long aDateAdded, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGUID);
-		
-		/// <summary>
-        /// Notifies that an item is about to be removed.  Called before the actual
-        /// removal will take place.
-        ///
-        /// @param aItemId
-        /// The id of the bookmark to be removed.
-        /// @param aItemType
-        /// The type of the item to be removed (see TYPE_* constants below).
-        /// @param aParentId
-        /// The id of the folder containing the item.
-        /// @param aGUID
-        /// The unique ID associated with the item.
-        /// @param aParentGUID
-        /// The unique ID associated with the item's parent.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnBeforeItemRemoved(long aItemId, ushort aItemType, long aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGUID);
 		
 		/// <summary>
         /// Notifies that an item was removed.  Called after the actual remove took

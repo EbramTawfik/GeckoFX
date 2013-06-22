@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9014d2be-be9e-4d0c-b7ae-4e82857b153d")]
+	[Guid("02d37b31-e654-4b74-9bc3-14dfe0020bb3")]
 	public interface nsIMarkupDocumentViewer
 	{
 		
@@ -87,37 +87,39 @@ namespace Gecko
 		void SetDefaultCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aDefaultCharacterSet);
 		
 		/// <summary>
-        ///XXX Comment here!
+        /// XXX comm-central only: bug 829543. Not the Character Encoding menu in
+        /// browser!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetForceCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aForceCharacterSet);
 		
 		/// <summary>
-        ///XXX Comment here!
+        /// XXX comm-central only: bug 829543. Not the Character Encoding menu in
+        /// browser!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetForceCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aForceCharacterSet);
 		
 		/// <summary>
-        ///XXX Comment here!
+        /// XXX comm-central only: bug 829543.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetHintCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHintCharacterSet);
 		
 		/// <summary>
-        ///XXX Comment here!
+        /// XXX comm-central only: bug 829543.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetHintCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHintCharacterSet);
 		
 		/// <summary>
-        ///XXX Comment here!
+        /// XXX comm-central only: bug 829543.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetHintCharacterSetSourceAttribute();
 		
 		/// <summary>
-        ///XXX Comment here!
+        /// XXX comm-central only: bug 829543.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetHintCharacterSetSourceAttribute(int aHintCharacterSetSource);
@@ -135,10 +137,10 @@ namespace Gecko
 		void SetPrevDocCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPrevDocCharacterSet);
 		
 		/// <summary>
-        /// Tell the container to shrink-to-fit or grow-to-fit its contents
-        ///	 </summary>
+        /// Requests the size of the content to the container.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SizeToContent();
+		void GetContentSize(ref int width, ref int height);
 		
 		/// <summary>
         /// bidiTextDirection: the default direction for the layout of bidirectional text.

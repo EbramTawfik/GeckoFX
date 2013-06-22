@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a7a3358c-9af2-41e3-adfe-3bf0b7ac2c38")]
+	[Guid("4dcd6a12-a091-4f38-8360-022929635746")]
 	public interface nsIDownloadHistory
 	{
 		
@@ -57,8 +57,25 @@ namespace Gecko
         /// In a situation where a history implementation is not available,
         /// where 'history implementation' refers to something like
         /// nsIGlobalHistory and friends.
+        /// @note This addition is not guaranteed to be synchronous, since it delegates
+        /// the actual addition to the underlying history implementation.  If you
+        /// need to observe the completion of the addition, use the underlying
+        /// history implementation's notifications system (e.g. nsINavHistoryObserver
+        /// for toolkit's implementation of this interface).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddDownload([MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, long aStartTime, [MarshalAs(UnmanagedType.Interface)] nsIURI aDestination);
+		
+		/// <summary>
+        /// Remove all downloads from history.
+        ///
+        /// @note This removal is not guaranteed to be synchronous, since it delegates
+        /// the actual removal to the underlying history implementation.  If you
+        /// need to observe the completion of the removal, use the underlying
+        /// history implementation's notifications system (e.g. nsINavHistoryObserver
+        /// for toolkit's implementation of this interface).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveAllDownloads();
 	}
 }

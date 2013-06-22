@@ -169,7 +169,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b10bbf29-5a54-4e1e-aa64-c4e4e5819a52")]
+	[Guid("8f7185a7-056a-45a8-985c-1cb39cf7b7a8")]
 	public interface nsIUpdate
 	{
 		
@@ -393,6 +393,22 @@ namespace Gecko
 		void SetShowSurveyAttribute([MarshalAs(UnmanagedType.U1)] bool aShowSurvey);
 		
 		/// <summary>
+        /// Allows overriding the default amount of time in seconds before prompting the
+        /// user to apply an update. If not specified, the value of
+        /// app.update.promptWaitTime will be used.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetPromptWaitTimeAttribute();
+		
+		/// <summary>
+        /// Allows overriding the default amount of time in seconds before prompting the
+        /// user to apply an update. If not specified, the value of
+        /// app.update.promptWaitTime will be used.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPromptWaitTimeAttribute(long aPromptWaitTime);
+		
+		/// <summary>
         /// Whether or not the update being downloaded is a complete replacement of
         /// the user's existing installation or a patch representing the difference
         /// between the new version and the previous version.
@@ -560,22 +576,9 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8cbceb6e-8e27-46f2-8808-444c6499f836")]
+	[Guid("4aa2b4bb-39ea-407b-98ff-89f19134d4c0")]
 	public interface nsIUpdateCheckListener
 	{
-		
-		/// <summary>
-        /// Called every time there is a progress notification loading the Update
-        /// Service file.
-        /// @param   request
-        /// The nsIXMLHttpRequest handling the update check.
-        /// @param   position
-        /// The current byte downloaded
-        /// @param   totalSize
-        /// The total number of bytes that have to be downloaded
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProgress([MarshalAs(UnmanagedType.Interface)] nsIXMLHttpRequest request, uint position, uint totalSize);
 		
 		/// <summary>
         /// The update check was completed.

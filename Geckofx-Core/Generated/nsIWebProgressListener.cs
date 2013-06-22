@@ -327,6 +327,40 @@ namespace Gecko
 		public const ulong STATE_IS_SECURE = 0x00000002;
 		
 		// <summary>
+        // Mixed active content flags
+        //
+        // May be set in addition to the State Security Flags, to indicate that
+        // mixed active content has been encountered.
+        //
+        // STATE_BLOCKED_MIXED_ACTIVE_CONTENT
+        // Mixed active content has been blocked from loading.
+        //
+        // STATE_LOADED_MIXED_ACTIVE_CONTENT
+        // Mixed active content has been loaded. State should be STATE_IS_BROKEN.
+        // </summary>
+		public const ulong STATE_BLOCKED_MIXED_ACTIVE_CONTENT = 0x00000010;
+		
+		// 
+		public const ulong STATE_LOADED_MIXED_ACTIVE_CONTENT = 0x00000020;
+		
+		// <summary>
+        // Mixed display content flags
+        //
+        // May be set in addition to the State Security Flags, to indicate that
+        // mixed display content has been encountered.
+        //
+        // STATE_BLOCKED_MIXED_DISPLAY_CONTENT
+        // Mixed display content has been blocked from loading.
+        //
+        // STATE_LOADED_MIXED_DISPLAY_CONTENT
+        // Mixed display content has been loaded. State should be STATE_IS_BROKEN.
+        // </summary>
+		public const ulong STATE_BLOCKED_MIXED_DISPLAY_CONTENT = 0x00000100;
+		
+		// 
+		public const ulong STATE_LOADED_MIXED_DISPLAY_CONTENT = 0x00000200;
+		
+		// <summary>
         // Security Strength Flags
         //
         // These flags describe the security strength and accompany STATE_IS_SECURE

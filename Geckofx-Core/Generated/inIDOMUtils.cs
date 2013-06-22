@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f7a37305-a963-4a2a-b951-2c97a6b27fb4")]
+	[Guid("dd8a9dfd-336f-4cce-8ec1-0365ede9a3a8")]
 	public interface inIDOMUtils
 	{
 		
@@ -45,6 +45,28 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetRuleLine([MarshalAs(UnmanagedType.Interface)] nsIDOMCSSStyleRule aRule);
+		
+		/// <summary>
+        /// should consider using [ChromeOnly] APIs on that.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetSelectorCount([MarshalAs(UnmanagedType.Interface)] nsIDOMCSSStyleRule aRule);
+		
+		/// <summary>
+        /// For all three functions below, aSelectorIndex is 0-based
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSelectorText([MarshalAs(UnmanagedType.Interface)] nsIDOMCSSStyleRule aRule, uint aSelectorIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetSpecificity([MarshalAs(UnmanagedType.Interface)] nsIDOMCSSStyleRule aRule, uint aSelectorIndex);
+		
+		/// <summary>
+        /// idea what the right scope is.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool SelectorMatchesElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.Interface)] nsIDOMCSSStyleRule aRule, uint aSelectorIndex);
 		
 		/// <summary>
         /// Returns true if the string names a property that is inherited by default.

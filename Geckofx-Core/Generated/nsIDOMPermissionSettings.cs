@@ -45,5 +45,15 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Set([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase permission, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase origin, [MarshalAs(UnmanagedType.U1)] bool browserFlag);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsExplicit([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase permission, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase origin, [MarshalAs(UnmanagedType.U1)] bool browserFlag);
+		
+		/// <summary>
+        /// and pages that have browserFlag=true, so remove() doesn't have a browserFlag parameter.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase permission, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase origin);
 	}
 }

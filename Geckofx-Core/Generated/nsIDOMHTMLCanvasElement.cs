@@ -331,7 +331,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMDOMTokenList GetClassListAttribute();
+		new nsISupports GetClassListAttribute();
 		
 		/// <summary>Member GetAttribute </summary>
 		/// <param name='name'> </param>
@@ -423,18 +423,18 @@ namespace Gecko
 		
 		/// <summary>Member GetElementsByTagName </summary>
 		/// <param name='name'> </param>
-		/// <returns>A nsIDOMNodeList</returns>
+		/// <returns>A nsIDOMHTMLCollection</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNodeList GetElementsByTagName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
+		new nsIDOMHTMLCollection GetElementsByTagName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>Member GetElementsByTagNameNS </summary>
 		/// <param name='namespaceURI'> </param>
 		/// <param name='localName'> </param>
-		/// <returns>A nsIDOMNodeList</returns>
+		/// <returns>A nsIDOMHTMLCollection</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNodeList GetElementsByTagNameNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
+		new nsIDOMHTMLCollection GetElementsByTagNameNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
 		
 		/// <summary>
         /// Retrieve elements matching all classes listed in a
@@ -442,7 +442,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNodeList GetElementsByClassName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase classes);
+		new nsIDOMHTMLCollection GetElementsByClassName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase classes);
 		
 		/// <summary>
         /// Returns a live nsIDOMNodeList of the current child elements.
@@ -721,10 +721,10 @@ namespace Gecko
 		new void SetClassNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClassName);
 		
 		/// <summary>Member GetDatasetAttribute </summary>
-		/// <returns>A nsIDOMDOMStringMap</returns>
+		/// <returns>A nsISupports</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMDOMStringMap GetDatasetAttribute();
+		new nsISupports GetDatasetAttribute();
 		
 		/// <summary>Member GetItemScopeAttribute </summary>
 		/// <returns>A System.Boolean</returns>
@@ -759,10 +759,10 @@ namespace Gecko
 		new void SetItemIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aItemId);
 		
 		/// <summary>Member GetPropertiesAttribute </summary>
-		/// <returns>A nsIDOMHTMLPropertiesCollection</returns>
+		/// <returns>A nsISupports</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMHTMLPropertiesCollection GetPropertiesAttribute();
+		new nsISupports GetPropertiesAttribute();
 		
 		/// <summary>
         /// PutForwards, so we express them as nsIVariants to deal with this.

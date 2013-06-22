@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4802360b-f1c0-4d84-bb9e-9d2ccb9de461")]
+	[Guid("9eb5268f-73a4-41da-9790-d21fcefd5ffa")]
 	public interface nsIDOMPaintRequest
 	{
 		

@@ -94,5 +94,15 @@ namespace Gecko
         // if this flag is set.
         // </summary>
 		public const long ANONYMOUS_CONNECT = 1<<1;
+		
+		// <summary>
+        // If set, indicates that the connection was initiated from a source
+        // defined as being private in the sense of Private Browsing. Generally,
+        // there should be no state shared between connections that are private
+        // and those that are not; it is OK for multiple private connections
+        // to share state with each other, and it is OK for multiple non-private
+        // connections to share state with each other.
+        // </summary>
+		public const ulong NO_PERMANENT_STORAGE = 1<<2;
 	}
 }

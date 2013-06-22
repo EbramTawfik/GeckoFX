@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("51CAC889-ABC6-4948-97A3-4F135A6E7630")]
+	[Guid("5e0adf7d-9785-45c3-a193-04f25a75da8f")]
 	public interface nsIStreamTransportService
 	{
 		
@@ -84,36 +84,5 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITransport CreateOutputTransport([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream, long aStartOffset, long aWriteLimit, [MarshalAs(UnmanagedType.U1)] bool aCloseWhenDone);
-		
-		/// <summary>
-        /// Raise the maximum number of active threads by one.
-        ///
-        /// Calling this method won't create any additional thread synchronously.
-        /// It will be only created when it's needed (lazily).
-        ///
-        /// Used by mozilla::dom::file::FileService to increase the maximum number
-        /// of active threads in the thread pool for asynchronous file IO.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RaiseThreadLimit();
-		
-		/// <summary>
-        /// Lower the maximum number of active threads by one.
-        /// lowerThreadLimit() should be always paired with raiseThreadLimit().
-        ///
-        /// Calling this method won't destroy any already running thread
-        /// synchronously. It will be only destroyed when it's done with
-        /// currently running event.
-        ///
-        /// This will never lower the maximum number of active threads beyond
-        /// the internal limit.
-        ///
-        /// @throws NS_ERROR_UNEXPECTED
-        /// When trying to lower the maximum number of active threads
-        /// beyond the internal limit (for example in the case of badly
-        /// nested calls)
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LowerThreadLimit();
 	}
 }

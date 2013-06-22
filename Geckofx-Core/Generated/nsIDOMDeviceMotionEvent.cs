@@ -76,7 +76,7 @@ namespace Gecko
 	/// <summary>nsIDOMDeviceMotionEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1b3d39f2-8f8b-454f-83ad-acbdd32fa2c3")]
+	[Guid("64c300f8-4bf9-47d0-86bc-2fafd7de38c7")]
 	public interface nsIDOMDeviceMotionEvent : nsIDOMEvent
 	{
 		

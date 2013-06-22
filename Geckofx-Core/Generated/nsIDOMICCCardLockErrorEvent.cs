@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("109c1117-1199-47aa-aad2-ea9f456220fa")]
+	[Guid("05d269bc-7049-4df8-b72f-4318aaee54de")]
 	public interface nsIDOMICCCardLockErrorEvent : nsIDOMEvent
 	{
 		

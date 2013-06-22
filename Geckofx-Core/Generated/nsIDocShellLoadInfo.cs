@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("92a0a637-373e-4647-9476-ead11e005c75")]
+	[Guid("5b041ea4-6655-434c-b3d3-cbbc9441f86a")]
 	public interface nsIDocShellLoadInfo
 	{
 		
@@ -239,5 +239,8 @@ namespace Gecko
         // history.pushState or replaceState
         // </summary>
 		public const long loadReplaceBypassCache = 18;
+		
+		// 
+		public const long loadMixedContent = 19;
 	}
 }

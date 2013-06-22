@@ -90,7 +90,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0748e618-6612-45d7-8d34-1f56d546e04a")]
+	[Guid("0cd3fde1-0c99-49cc-a74e-9a9348864307")]
 	public interface nsIDOMSimpleGestureEvent : nsIDOMMouseEvent
 	{
 		

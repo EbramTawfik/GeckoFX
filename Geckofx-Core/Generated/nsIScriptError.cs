@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ddc19b34-e22e-46d5-9f7f-c7768a7dc50a")]
+	[Guid("ec640482-be5f-49a0-a9cb-c87eacce9291")]
 	public interface nsIScriptError : nsIConsoleMessage
 	{
 		
@@ -99,6 +99,10 @@ namespace Gecko
         ///       returned if init() was used instead of initWithWindowID(). </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ulong GetInnerWindowIDAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsFromPrivateWindowAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceLine, uint lineNumber, uint columnNumber, uint flags, [MarshalAs(UnmanagedType.LPStr)] string category);

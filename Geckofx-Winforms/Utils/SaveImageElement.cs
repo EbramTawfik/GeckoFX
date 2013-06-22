@@ -32,8 +32,12 @@ namespace Gecko.Utils
                     context = (nsIDOMCanvasRenderingContext2D)canvasPtr.MozGetIPCContext(str);
                 }
 
+#if false
                 context.DrawImage((nsIDOMElement)element.DomObject, xOffset, yOffset, width, height, xOffset, yOffset,
                                   width, height, 6);
+#else
+				throw new NotImplementedException("nsIDOMCanvasRenderingContext2D not longer exposes DrawImage");
+#endif
 
                 return canvas;
             }

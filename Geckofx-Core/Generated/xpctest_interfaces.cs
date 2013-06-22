@@ -76,4 +76,22 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetNameAttribute([MarshalAs(UnmanagedType.LPStr)] string aName);
 	}
+	
+	/// <summary>nsIXPCTestInterfaceC </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("401cf1b4-355b-4cee-b7b3-c7973aee49bd")]
+	public interface nsIXPCTestInterfaceC
+	{
+		
+		/// <summary>Member GetSomeIntegerAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetSomeIntegerAttribute();
+		
+		/// <summary>Member SetSomeIntegerAttribute </summary>
+		/// <param name='aSomeInteger'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSomeIntegerAttribute(int aSomeInteger);
+	}
 }

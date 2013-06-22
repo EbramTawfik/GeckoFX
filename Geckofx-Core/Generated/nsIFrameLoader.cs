@@ -143,7 +143,7 @@ namespace Gecko
 	/// <summary>nsIFrameLoader </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f234c232-bb17-4450-b324-bf1ef5ccfd34")]
+	[Guid("a4db652e-e3b0-4345-8107-cf6a30486759")]
 	public interface nsIFrameLoader
 	{
 		

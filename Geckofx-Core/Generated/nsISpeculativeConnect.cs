@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b3c53863-1313-480a-90a2-5b0da651ee5e")]
+	[Guid("fa580a8d-f4a4-47c5-8ade-4f9786e8d1de")]
 	public interface nsISpeculativeConnect
 	{
 		
@@ -48,11 +48,9 @@ namespace Gecko
         /// @param aURI the URI of the hinted transaction
         /// @param aCallbacks any security callbacks for use with SSL for interfaces
         /// such as nsIBadCertListener. May be null.
-        /// @param aTarget the thread on which the release of the callbacks will
-        /// occur. May be null for "any thread".
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SpeculativeConnect([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aCallbacks, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aTarget);
+		void SpeculativeConnect([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aCallbacks);
 	}
 }

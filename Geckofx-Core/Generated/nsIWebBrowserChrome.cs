@@ -196,6 +196,14 @@ namespace Gecko
 		public const ulong CHROME_WINDOW_POPUP = 0x00008000;
 		
 		// <summary>
+        // window will be non-private.
+        // </summary>
+		public const ulong CHROME_PRIVATE_WINDOW = 0x00010000;
+		
+		// 
+		public const ulong CHROME_NON_PRIVATE_WINDOW = 0x00020000;
+		
+		// <summary>
         // platforms.
         // </summary>
 		public const ulong CHROME_MAC_SUPPRESS_ANIMATION = 0x01000000;

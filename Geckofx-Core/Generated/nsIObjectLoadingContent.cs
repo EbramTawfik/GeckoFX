@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a812424b-4820-4e28-96c8-dd2b69e36496")]
+	[Guid("5804ab94-4fa1-4720-8f3e-655b769ea2df")]
 	public interface nsIObjectLoadingContent
 	{
 		
@@ -87,19 +87,26 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetPrintFrame();
 		
+		/// <summary>
+        /// Notifications from pluginhost that our instance crashed or was destroyed.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void PluginDestroyed();
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PluginCrashed([MarshalAs(UnmanagedType.Interface)] nsIPluginTag pluginTag, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pluginDumpID, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase browserDumpID, [MarshalAs(UnmanagedType.U1)] bool submittedCrashReport);
 		
 		/// <summary>
         /// This method will play a plugin that has been stopped by the
-        /// click-to-play plugins feature.
+        /// click-to-play plugins or play-preview features.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PlayPlugin();
 		
 		/// <summary>
-        /// This attribute will return true if the plugin has been activated and
-        /// false if the plugin is still in the click-to-play or play preview state.
+        /// This attribute will return true if the current content type has been
+        /// activated, either explicitly or by passing checks that would have it be
+        /// click-to-play or play-preview.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -113,6 +120,30 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AsyncStartPluginInstance();
+		
+		/// <summary>
+        /// Puts the tag in the "waiting on a channel" state and adopts this
+        /// channel. This does not override the normal logic of examining attributes
+        /// and the channel type, so the load may cancel this channel if it decides not
+        /// to use one.
+        ///
+        /// This assumes:
+        /// - This tag has not begun loading yet
+        /// - This channel has not yet hit OnStartRequest
+        /// - The caller will continue to pass channel events to us as a listener
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitializeFromChannel([MarshalAs(UnmanagedType.Interface)] nsIRequest request);
+		
+		/// <summary>
+        /// Requests the plugin instance for scripting, attempting to spawn it if
+        /// appropriate.
+        ///
+        /// The first time content js tries to access a pre-empted plugin
+        /// (click-to-play or play preview), an event is dispatched.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr ScriptRequestPluginInstance([MarshalAs(UnmanagedType.U1)] bool callerIsContentJS);
 		
 		/// <summary>
         /// The URL of the data/src loaded in the object. This may be null (i.e.

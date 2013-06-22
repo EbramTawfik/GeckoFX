@@ -46,122 +46,18 @@ namespace Gecko
     /// missed.  We should NOT freeze this interface without considering
     /// this issue.  (It could be that the image status on imgIRequest is
     /// sufficient, when combined with the imageBlockingStatus information.)
+    ///
+    /// Please make sure to update the HTMLImageElement and SVGImageElement
+    /// Web IDL interfaces to mirror this interface when changing it.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4bf1a7c5-6edb-4191-a257-e31a90f6aa85")]
-	public interface nsIImageLoadingContent : imgIDecoderObserver
+	[Guid("497bfb9b-d996-4d1e-a647-8137b0cfc876")]
+	public interface nsIImageLoadingContent : imgINotificationObserver
 	{
 		
-		/// <summary>
-        /// imgIContainerObserver interface
-        ///
-        /// @author Stuart Parmenter <pavlov@netscape.com>
-        /// @version 0.1
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void FrameChanged(imgIRequest aRequest, imgIContainer aContainer, [MarshalAs(UnmanagedType.Interface)] nsIntRect aDirtyRect);
-		
-		/// <summary>
-        /// Load notification.
-        ///
-        /// called at the same time that nsIRequestObserver::onStartRequest would be
-        /// (used only for observers of imgIRequest objects, which are nsIRequests,
-        /// not imgIDecoder objects)
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStartRequest(imgIRequest aRequest);
-		
-		/// <summary>
-        /// Decode notification.
-        ///
-        /// Called as soon as the image begins getting decoded. This does not include
-        /// "header-only" decodes used by decode-on-draw to parse the width/height
-        /// out of the image. Thus, it is a decode notification only.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStartDecode(imgIRequest aRequest);
-		
-		/// <summary>
-        /// Load notification.
-        ///
-        /// Called once enough data has been loaded from the network that we were able
-        /// to parse the width/height from the image. By the time this callback is been
-        /// called, the size has been set on the container and STATUS_SIZE_AVAILABLE
-        /// has been set on the associated imgRequest.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStartContainer(imgIRequest aRequest, imgIContainer aContainer);
-		
-		/// <summary>
-        /// Decode notification.
-        ///
-        /// called when each frame is created.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStartFrame(imgIRequest aRequest, uint aFrame);
-		
-		/// <summary>
-        /// Decode notification.
-        ///
-        /// called when there is more to paint.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnDataAvailable(imgIRequest aRequest, [MarshalAs(UnmanagedType.U1)] bool aCurrentFrame, [MarshalAs(UnmanagedType.Interface)] nsIntRect aRect);
-		
-		/// <summary>
-        /// Decode notification.
-        ///
-        /// called when a frame is finished decoding.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStopFrame(imgIRequest aRequest, uint aFrame);
-		
-		/// <summary>
-        /// Do not implement this. It is useless and going away.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStopContainer(imgIRequest aRequest, imgIContainer aContainer);
-		
-		/// <summary>
-        /// Notification for when an image is known to be animated. This should be
-        /// fired at the earliest possible time.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnImageIsAnimated(imgIRequest aRequest);
-		
-		/// <summary>
-        /// In theory a decode notification, but currently a load notification.
-        ///
-        /// Ideally this would be called when the decode is complete. Unfortunately,
-        /// this is currently the only way to signal decoding errors to consumers,
-        /// and the only decoding errors that consumers care about (indeed, the only
-        /// ones that they're prepared to hear about) are failures to instantiate the
-        /// decoder (<img src="foo.html"> for example). Thus, currently this is just
-        /// a companion to onStopDecode to signal success or failure. This will be
-        /// revisited in bug 505385. If you're thinking of doing something new with
-        /// this, please talk to bholley first.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStopDecode(imgIRequest aRequest, int status, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string statusArg);
-		
-		/// <summary>
-        /// Load notification.
-        ///
-        /// called at the same time that nsIRequestObserver::onStopRequest would be
-        /// (used only for observers of imgIRequest objects, which are nsIRequests,
-        /// not imgIDecoder objects)
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStopRequest(imgIRequest aRequest, [MarshalAs(UnmanagedType.U1)] bool aIsLastPart);
-		
-		/// <summary>
-        /// Called when the decoded image data is discarded. This means that the frames
-        /// no longer exist in decoded form, and any attempt to access or draw the
-        /// image will initiate a new series of progressive decode notifications.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnDiscard(imgIRequest aRequest);
+		new void Notify(imgIRequest aProxy, int aType, [MarshalAs(UnmanagedType.Interface)] nsIntRect aRect);
 		
 		/// <summary>
         /// loadingEnabled is used to enable and disable loading in
@@ -201,7 +97,7 @@ namespace Gecko
         /// @throws NS_ERROR_OUT_OF_MEMORY
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver(imgIDecoderObserver aObserver);
+		void AddObserver(imgINotificationObserver aObserver);
 		
 		/// <summary>
         /// Used to unregister an image decoder observer.
@@ -209,7 +105,7 @@ namespace Gecko
         /// @param aObserver the observer to unregister
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver(imgIDecoderObserver aObserver);
+		void RemoveObserver(imgINotificationObserver aObserver);
 		
 		/// <summary>
         /// Accessor to get the image requests
@@ -241,7 +137,7 @@ namespace Gecko
 		
 		/// <summary>
         /// Used to find out what type of request one is dealing with (eg
-        /// which request got passed through to the imgIDecoderObserver
+        /// which request got passed through to the imgINotificationObserver
         /// interface of an observer)
         ///
         /// @param aRequest the request whose type we want to know

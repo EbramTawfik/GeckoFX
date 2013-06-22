@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ca7663d5-69e3-4c4a-b754-f462bd36b05f")]
+	[Guid("0c76d4cf-0b06-4c1a-9bea-520c7bbdba99")]
 	public interface nsIDownloadManagerUI
 	{
 		
@@ -41,15 +41,18 @@ namespace Gecko
         ///
         /// @param [optional] aWindowContext
         /// The parent window context to show the UI.
-        /// @param [optional] aID
-        /// The id of the download to be preselected upon opening.
+        /// @param [optional] aDownload
+        /// The download to be preselected upon opening.
         /// @param [optional] aReason
         /// The reason to show the download manager's UI.  This defaults to
         /// REASON_USER_INTERACTED, and should be one of the previously listed
         /// constants.
+        /// @param [optional] aUsePrivateUI
+        /// Pass true as this argument to hint to the implementation that it
+        /// should only display private downloads in the UI, if possible.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Show([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext, uint aID, short aReason);
+		void Show([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext, [MarshalAs(UnmanagedType.Interface)] nsIDownload aDownload, short aReason, [MarshalAs(UnmanagedType.U1)] bool aUsePrivateUI);
 		
 		/// <summary>
         /// Indicates if the UI is visible or not.

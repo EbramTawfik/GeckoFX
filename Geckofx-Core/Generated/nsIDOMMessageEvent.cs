@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ba747c2b-ec12-4e0d-8de4-d749a6b572e6")]
+	[Guid("bb869a03-5fc0-4a1b-838a-342e5025fc05")]
 	public interface nsIDOMMessageEvent : nsIDOMEvent
 	{
 		

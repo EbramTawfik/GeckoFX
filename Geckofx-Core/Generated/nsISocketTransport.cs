@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("91ca3523-fc52-4dea-b167-ef8f56473dde")]
+	[Guid("A8318027-0DDC-4E60-A89B-D81AFE3B5020")]
 	public interface nsISocketTransport : nsITransport
 	{
 		
@@ -355,5 +355,21 @@ namespace Gecko
         // connect to IPv4 ones.
         // </summary>
 		public const ulong DISABLE_IPV6 = (1<<2);
+		
+		// <summary>
+        // If set, indicates that the connection was initiated from a source
+        // defined as being private in the sense of Private Browsing. Generally,
+        // there should be no state shared between connections that are private
+        // and those that are not; it is OK for multiple private connections
+        // to share state with each other, and it is OK for multiple non-private
+        // connections to share state with each other.
+        // </summary>
+		public const ulong NO_PERMANENT_STORAGE = (1<<3);
+		
+		// <summary>
+        // If set, we will skip all IPv4 addresses the host may have and only
+        // connect to IPv6 ones.
+        // </summary>
+		public const ulong DISABLE_IPV4 = (1<<4);
 	}
 }

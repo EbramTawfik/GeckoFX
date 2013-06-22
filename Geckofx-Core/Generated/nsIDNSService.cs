@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("F6E05CC3-8A13-463D-877F-D59B20B59724")]
+	[Guid("f1971942-19db-44bf-81e8-d15df220a39f")]
 	public interface nsIDNSService
 	{
 		
@@ -93,6 +93,14 @@ namespace Gecko
 		nsIDNSRecord Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHostName, uint aFlags);
 		
 		/// <summary>
+        /// The method takes a pointer to an nsTArray
+        /// and fills it with cache entry data
+        /// Called by the networking dashboard
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetDNSCacheEntries(System.IntPtr args);
+		
+		/// <summary>
         /// @return the hostname of the operating system.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -138,5 +146,10 @@ namespace Gecko
         // asyncResolve.
         // </summary>
 		public const ulong RESOLVE_OFFLINE = (1<<6);
+		
+		// <summary>
+        // If set, only IPv6 addresses will be returned from resolve/asyncResolve.
+        // </summary>
+		public const ulong RESOLVE_DISABLE_IPV4 = (1<<7);
 	}
 }

@@ -31,9 +31,186 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("318CE516-3F7A-41F6-8F3D-3661650F7A46")]
-	public interface nsIDocShell
+	[Guid("e8f6f3e5-8cee-4be3-8d56-5ed617305bf8")]
+	public interface nsIDocShell : nsIDocShellTreeItem
 	{
+		
+		/// <summary>
+        ///The current number of DocShells which are immediate children of the
+        ///	this object.
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetChildCountAttribute();
+		
+		/// <summary>
+        ///Add a new child DocShellTreeItem.  Adds to the end of the list.
+        ///	Note that this does NOT take a reference to the child.  The child stays
+        ///	alive only as long as it's referenced from outside the docshell tree.
+        ///	@throws NS_ERROR_ILLEGAL_VALUE if child corresponds to the same
+        ///	        object as this treenode or an ancestor of this treenode
+        ///	@throws NS_ERROR_UNEXPECTED if this node is a leaf in the tree.
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem child);
+		
+		/// <summary>
+        ///Removes a child DocShellTreeItem.
+        ///	@throws NS_ERROR_UNEXPECTED if this node is a leaf in the tree.
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem child);
+		
+		/// <summary>
+        /// Return the child at the index requested.  This is 0-based.
+        ///
+        /// @throws NS_ERROR_UNEXPECTED if the index is out of range
+        ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDocShellTreeItem GetChildAt(int index);
+		
+		/// <summary>
+        ///Return the child DocShellTreeItem with the specified name.
+        ///	aName - This is the name of the item that is trying to be found.
+        ///	aRecurse - Is used to tell the function to recurse through children.
+        ///		Note, recursion will only happen through items of the same type.
+        ///	aSameType - If this is set only children of the same type will be returned.
+        ///	aRequestor - This is the docshellTreeItem that is requesting the find.  This
+        ///		parameter is used when recursion is being used to avoid searching the same
+        ///		tree again when a child has asked a parent to search for children.
+        ///	aOriginalRequestor - The original treeitem that made the request, if any.
+        ///    	This is used to ensure that we don't run into cross-site issues.
+        ///	Note the search is depth first when recursing.
+        ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDocShellTreeItem FindChildWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.U1)] bool aRecurse, [MarshalAs(UnmanagedType.U1)] bool aSameType, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aOriginalRequestor);
+		
+		/// <summary>
+        ///name of the DocShellTreeItem
+        ///	 </summary>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new string GetNameAttribute();
+		
+		/// <summary>
+        ///name of the DocShellTreeItem
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aName);
+		
+		/// <summary>
+        /// Compares the provided name against the item's name and
+        /// returns the appropriate result.
+        ///
+        /// @return <CODE>PR_TRUE</CODE> if names match;
+        /// <CODE>PR_FALSE</CODE> otherwise.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool NameEquals([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string name);
+		
+		/// <summary>
+        ///The type this item is.
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetItemTypeAttribute();
+		
+		/// <summary>
+        ///The type this item is.
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetItemTypeAttribute(int aItemType);
+		
+		/// <summary>
+        ///Parent DocShell.
+        ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDocShellTreeItem GetParentAttribute();
+		
+		/// <summary>
+        ///This getter returns the same thing parent does however if the parent
+        ///	is of a different itemType, or if the parent is an <iframe mozbrowser>
+        ///	or <iframe mozapp>, it will instead return nullptr.  This call is a
+        ///	convience function for those wishing to not cross the boundaries at
+        ///	which item types change.
+        ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDocShellTreeItem GetSameTypeParentAttribute();
+		
+		/// <summary>
+        ///Returns the root DocShellTreeItem.  This is a convience equivalent to
+        ///	getting the parent and its parent until there isn't a parent.
+        ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDocShellTreeItem GetRootTreeItemAttribute();
+		
+		/// <summary>
+        ///Returns the root DocShellTreeItem of the same type.  This is a convience
+        ///	equivalent to getting the parent of the same type and its parent until
+        ///	there isn't a parent.
+        ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDocShellTreeItem GetSameTypeRootTreeItemAttribute();
+		
+		/// <summary>
+        ///Returns the docShellTreeItem with the specified name.  Search order is as
+        ///	follows...
+        ///	1.)  Check name of self, if it matches return it.
+        ///	2.)  For each immediate child.
+        ///		a.) Check name of child and if it matches return it.
+        ///		b.)  Ask the child to perform the check
+        ///			i.) Do not ask a child if it is the aRequestor
+        ///			ii.) Do not ask a child if it is of a different item type.
+        ///	3.)  If there is a parent of the same item type ask parent to perform the check
+        ///		a.) Do not ask parent if it is the aRequestor
+        ///	4.)  If there is a tree owner ask the tree owner to perform the check
+        ///		a.)  Do not ask the tree owner if it is the aRequestor
+        ///		b.)  This should only be done if there is no parent of the same type.
+        ///	Return the child DocShellTreeItem with the specified name.
+        ///	name - This is the name of the item that is trying to be found.
+        ///	aRequestor - This is the object that is requesting the find.  This
+        ///		parameter is used to identify when the child is asking its parent to find
+        ///		a child with the specific name.  The parent uses this parameter to ensure
+        ///		a resursive state does not occur by not again asking the requestor to find
+        ///		a shell by the specified name.  Inversely the child uses it to ensure it
+        ///		does not ask its parent to do the search if its parent is the one that
+        ///		asked it to search.  Children also use this to test against the treeOwner;
+        ///	aOriginalRequestor - The original treeitem that made the request, if any.
+        ///		This is used to ensure that we don't run into cross-site issues.
+        ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDocShellTreeItem FindItemWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string name, [MarshalAs(UnmanagedType.Interface)] nsISupports aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aOriginalRequestor);
+		
+		/// <summary>
+        ///The owner of the DocShell Tree.  This interface will be called upon when
+        ///	the docshell has things it needs to tell to the owner of the docshell.
+        ///	Note that docShell tree ownership does not cross tree types.  Meaning
+        ///	setting ownership on a chrome tree does not set ownership on the content
+        ///	sub-trees.  A given tree's boundaries are identified by the type changes.
+        ///	Trees of different types may be connected, but should not be traversed
+        ///	for things such as ownership.
+        ///	
+        ///	Note implementers of this interface should NOT effect the lifetime of the
+        ///	parent DocShell by holding this reference as it creates a cycle.  Owners
+        ///	when releasing this interface should set the treeOwner to nullptr.
+        ///	Implementers of this interface are guaranteed that when treeOwner is
+        ///	set that the poitner is valid without having to addref.
+        ///	
+        ///	Further note however when others try to get the interface it should be
+        ///	addref'd before handing it to them.
+        ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDocShellTreeOwner GetTreeOwnerAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTreeOwner([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeOwner treeOwner);
 		
 		/// <summary>
         /// Loads a given URI.  This will give priority to loading the requested URI
@@ -94,6 +271,8 @@ namespace Gecko
         /// @param aWindowTarget   - Window target for the load.
         /// @param aTypeHint       - A hint as to the content-type of the resulting
         /// data.  May be null or empty if no hint.
+        /// @param aFileName       - Non-null when the link should be downloaded as
+        ///                              the given filename.
         /// @param aPostDataStream - Post data stream (if POSTing)
         /// @param aHeadersStream  - Stream containing "extra" request headers...
         /// @param aLoadFlags      - Flags to modify load behaviour. Flags are defined
@@ -101,7 +280,7 @@ namespace Gecko
         /// @param aSHEntry        - Active Session History entry (if loading from SH)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InternalLoad([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsISupports aOwner, uint aFlags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aWindowTarget, [MarshalAs(UnmanagedType.LPStr)] string aTypeHint, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostDataStream, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aHeadersStream, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISHEntry aSHEntry, [MarshalAs(UnmanagedType.U1)] bool firstParty, [MarshalAs(UnmanagedType.Interface)] ref nsIDocShell aDocShell, [MarshalAs(UnmanagedType.Interface)] ref nsIRequest aRequest);
+		void InternalLoad([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsISupports aOwner, uint aFlags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aWindowTarget, [MarshalAs(UnmanagedType.LPStr)] string aTypeHint, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFileName, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostDataStream, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aHeadersStream, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISHEntry aSHEntry, [MarshalAs(UnmanagedType.U1)] bool firstParty, [MarshalAs(UnmanagedType.Interface)] ref nsIDocShell aDocShell, [MarshalAs(UnmanagedType.Interface)] ref nsIRequest aRequest);
 		
 		/// <summary>
         /// Do either a history.pushState() or history.replaceState() operation,
@@ -153,7 +332,7 @@ namespace Gecko
         /// Presentation shell for the currently loaded document.  This may be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetPresShellAttribute();
+		System.IntPtr GetPresShell();
 		
 		/// <summary>
         /// Presentation shell for the oldest document, if this docshell is
@@ -572,6 +751,53 @@ namespace Gecko
 		bool GetChannelIsUnsafeAttribute();
 		
 		/// <summary>
+        /// This attribute determines whether Mixed Active Content is loaded on the
+        /// document. When it is true, mixed active content was not blocked and has
+        /// loaded (or is about to load) on the page. When it is false, mixed active content
+        /// has not loaded on the page, either because there was no mixed active content
+        /// requests on the page or such requests were blocked by nsMixedContentBlocker.
+        /// This boolean is set to true in nsMixedContentBlocker if Mixed Active Content
+        /// is allowed (either explicitly on the page by the user or when the about:config
+        /// setting security.mixed_content.block_active_content is set to false).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHasMixedActiveContentLoadedAttribute();
+		
+		/// <summary>
+        /// This attribute determines whether a document has Mixed Active Content
+        /// that has been blocked from loading. When it is true, there is definitely
+        /// mixed active content on a page that has been blocked by
+        /// nsMixedContentBlocker.  When it is false, there may or may not be mixed
+        /// active content on a page, but if there is, it will load. Note that if the
+        /// about:config setting security.mixed_content.block_active_content is set
+        /// false, this boolean will be false, since blocking active content has been
+        /// disabled.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHasMixedActiveContentBlockedAttribute();
+		
+		/// <summary>
+        /// This attribute determines whether Mixed Display Content is loaded on the
+        /// document. When it is true, mixed display content was not blocked and has
+        /// loaded (or is about to load) on the page. Similar behavior to
+        /// hasMixedActiveContentLoaded.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHasMixedDisplayContentLoadedAttribute();
+		
+		/// <summary>
+        /// This attribute determines whether a document has Mixed Display Content
+        /// that has been blocked from loading. Similar behavior to
+        /// hasMixedActiveContentBlocked.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHasMixedDisplayContentBlockedAttribute();
+		
+		/// <summary>
         /// Disconnects this docshell's editor from its window, and stores the
         /// editor data in the open document's session history entry.  This
         /// should be called only during page transitions.
@@ -773,14 +999,14 @@ namespace Gecko
 		
 		/// <summary>
         /// In a child docshell, this is the source of parentCharset
-        /// @see nsIParser
+        /// @see nsCharsetSource.h
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetParentCharsetSourceAttribute();
 		
 		/// <summary>
         /// In a child docshell, this is the source of parentCharset
-        /// @see nsIParser
+        /// @see nsCharsetSource.h
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetParentCharsetSourceAttribute(int aParentCharsetSource);
@@ -936,6 +1162,57 @@ namespace Gecko
 		void SetSandboxFlagsAttribute(uint aSandboxFlags);
 		
 		/// <summary>
+        /// This member variable determines whether a document has Mixed Active Content that
+        /// was initially blocked from loading, but the user has choosen to override the
+        /// block and allow the content to load. mMixedContentChannel is set to the document's
+        /// channel when the user allows mixed content. The nsMixedContentBlocker content policy
+        /// checks if the document's root channel matches the mMixedContentChannel.  If it matches,
+        /// then Mixed Content is loaded.  If it does match, mixed content is blocked.
+        ///
+        /// A match implies that there is definitely mixed active content on a page that was
+        /// initially blocked by nsMixedContentBlocker and then allowed and loaded by the user.
+        /// A miss imples that IF there is mixed active content on the page AND it was
+        /// blocked by nsMixedContentBlocker.cpp, the user has not choosen to override
+        /// the block. Note that if the about:config setting
+        /// security.mixed_content.block_active_content is set to false, this boolean
+        /// will be false, mMixedContentChannel will remain null since blocking active content has
+        /// been disabled and hence mMixedContentChannel will never be set.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIChannel GetMixedContentChannelAttribute();
+		
+		/// <summary>
+        /// This member variable determines whether a document has Mixed Active Content that
+        /// was initially blocked from loading, but the user has choosen to override the
+        /// block and allow the content to load. mMixedContentChannel is set to the document's
+        /// channel when the user allows mixed content. The nsMixedContentBlocker content policy
+        /// checks if the document's root channel matches the mMixedContentChannel.  If it matches,
+        /// then Mixed Content is loaded.  If it does match, mixed content is blocked.
+        ///
+        /// A match implies that there is definitely mixed active content on a page that was
+        /// initially blocked by nsMixedContentBlocker and then allowed and loaded by the user.
+        /// A miss imples that IF there is mixed active content on the page AND it was
+        /// blocked by nsMixedContentBlocker.cpp, the user has not choosen to override
+        /// the block. Note that if the about:config setting
+        /// security.mixed_content.block_active_content is set to false, this boolean
+        /// will be false, mMixedContentChannel will remain null since blocking active content has
+        /// been disabled and hence mMixedContentChannel will never be set.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMixedContentChannelAttribute([MarshalAs(UnmanagedType.Interface)] nsIChannel aMixedContentChannel);
+		
+		/// <summary>
+        /// Checks whether the channel associated with the root docShell is equal to
+        /// mMixedContentChannel. If they are the same, allowMixedContent is set to true.
+        /// Checks if the root document has a secure connection. If it is, sets
+        /// rootHasSecureConnection to true. If the docShell is the root doc shell,
+        /// isRootDocShell is set to true.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAllowMixedContentAndConnectionData([MarshalAs(UnmanagedType.U1)] ref bool rootHasSecureConnection, [MarshalAs(UnmanagedType.U1)] ref bool allowMixedContent, [MarshalAs(UnmanagedType.U1)] ref bool isRootDocShell);
+		
+		/// <summary>
         /// Are plugins allowed in the current document loaded in this docshell ?
         /// (if there is one). This depends on whether plugins are allowed by this
         /// docshell itself or if the document is sandboxed and hence plugins should
@@ -961,6 +1238,48 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFullscreenAllowed([MarshalAs(UnmanagedType.U1)] bool allowed);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAffectPrivateSessionLifetimeAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAffectPrivateSessionLifetimeAttribute([MarshalAs(UnmanagedType.U1)] bool aAffectPrivateSessionLifetime);
+		
+		/// <summary>
+        /// Indicates whether the UI may enable the character encoding menu. The UI
+        /// must disable the menu when this property is false.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetMayEnableCharacterEncodingMenuAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIEditor GetEditorAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetEditorAttribute([MarshalAs(UnmanagedType.Interface)] nsIEditor aEditor);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetEditableAttribute();
+		
+		/// <summary>
+        ///this docShell is editable </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHasEditingSessionAttribute();
+		
+		/// <summary>
+        /// Make this docShell editable, setting a flag that causes
+        /// an editor to get created, either immediately, or after
+        /// a url has been loaded.
+        /// @param  inWaitForUriLoad    true to wait for a URI before
+        /// creating the editor.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void MakeEditable([MarshalAs(UnmanagedType.U1)] bool inWaitForUriLoad);
 	}
 	
 	/// <summary>nsIDocShellConsts </summary>

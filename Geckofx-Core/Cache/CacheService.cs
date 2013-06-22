@@ -15,7 +15,11 @@ namespace Gecko.Cache
 
 		public static CacheSession CreateSession(string clientID, CacheStoragePolicy storagePolicy, bool streamBased)
 		{
+#if false
 			return new CacheSession(_cacheService.Instance.CreateSession(clientID, (int)storagePolicy, streamBased));
+#else
+			throw new NotImplementedException();
+#endif
 		}
 
 		public static string[] Search(string deviceID, Predicate<CacheEntryInfo> predicate)
@@ -54,8 +58,12 @@ namespace Gecko.Cache
 		/// <remarks>This function may evict some items but will throw if it fails to evict everything.</remarks>
 		/// <exception cref="System.Runtime.InteropServices.COMException"></exception>
 		public static void Clear(CacheStoragePolicy storagePolicy)
-		{			
+		{	
+#if false
 			_cacheService.Instance.EvictEntries((int)storagePolicy);
+#else
+			throw new NotImplementedException();
+#endif
 		}
 
 		public static readonly string MemoryCacheDevice = "memory";

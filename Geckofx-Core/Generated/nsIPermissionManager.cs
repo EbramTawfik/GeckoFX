@@ -52,7 +52,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ad79e135-6904-4734-8137-a511016d2723")]
+	[Guid("b38c982d-30bc-463f-9afc-0ca339eac03c")]
 	public interface nsIPermissionManager
 	{
 		
@@ -167,6 +167,32 @@ namespace Gecko
 		uint TestExactPermissionFromPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string type);
 		
 		/// <summary>
+        /// Test whether a website has permission to perform the given action
+        /// ignoring active sessions.
+        /// System principals will always have permissions granted.
+        ///
+        /// @param principal the principal
+        /// @param type      a case-sensitive ASCII string, identifying the consumer
+        /// @param return    see add(), param permission. returns UNKNOWN_ACTION when
+        /// there is no stored permission for this uri and / or type.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint TestExactPermanentPermission([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string type);
+		
+		/// <summary>
+        /// Increment or decrement our "refcount" of an app id.
+        ///
+        /// We use this refcount to determine an app's lifetime.  When an app's
+        /// refcount goes to 0, we clear the permissions given to the app which are
+        /// set to expire at the end of its session.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddrefAppId(uint appId);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ReleaseAppId(uint appId);
+		
+		/// <summary>
         /// Allows enumeration of all stored permissions
         /// @return an nsISimpleEnumerator interface that allows access to
         /// nsIPermission objects
@@ -177,9 +203,12 @@ namespace Gecko
 		
 		/// <summary>
         /// Remove all permissions associated with a given app id.
+        /// @param aAppId       The appId of the app
+        /// @param aBrowserOnly Whether we should remove permissions associated with
+        /// a browser element (true) or all permissions (false).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePermissionsForApp(uint appId);
+		void RemovePermissionsForApp(uint appId, [MarshalAs(UnmanagedType.U1)] bool browserOnly);
 	}
 	
 	/// <summary>nsIPermissionManagerConsts </summary>

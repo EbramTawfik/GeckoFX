@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4a182c18-dbdf-4f9c-93a0-0f0cffb88ed0")]
+	[Guid("4ac27836-4d79-4d35-b105-d6fb7f4f8e41")]
 	public interface nsIAppsService
 	{
 		
@@ -77,5 +77,20 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCSPByLocalId(uint localId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
+		/// <summary>
+        /// Returns the basepath for core apps
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCoreAppsBasePath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
+		/// <summary>
+        /// Returns the basepath for regular packaged apps
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetWebAppsBasePath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetAppInfo([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase appId);
 	}
 }

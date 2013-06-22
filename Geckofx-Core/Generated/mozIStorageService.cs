@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fe8e95cb-b377-4c8d-bccb-d9198c67542b")]
+	[Guid("12bfad34-cca3-40fb-8736-d8bf9db61a27")]
 	public interface mozIStorageService
 	{
 		
@@ -130,6 +130,17 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		mozIStorageConnection OpenUnsharedDatabase([MarshalAs(UnmanagedType.Interface)] nsIFile aDatabaseFile);
+		
+		/// <summary>
+        /// See openDatabase(). Exactly the same only initialized with a file URL.
+        /// Custom parameters can be passed to SQLite and VFS implementations through
+        /// the query part of the URL.
+        ///
+        /// @param aURL
+        /// A nsIFileURL that represents the database that is to be opened.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		mozIStorageConnection OpenDatabaseWithFileURL([MarshalAs(UnmanagedType.Interface)] nsIFileURL aFileURL);
 		
 		/// <summary>
         /// Copies the specified database file to the specified parent directory with

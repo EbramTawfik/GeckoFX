@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ead9e9d8-7eef-4dae-a7f0-a1edcfb20478")]
+	[Guid("95ced6f3-44b4-4427-a149-c9a1e033d852")]
 	public interface nsIDNSRecord
 	{
 		
@@ -51,16 +51,30 @@ namespace Gecko
 		
 		/// <summary>
         /// this function copies the value of the next IP address into the
-        /// given PRNetAddr struct and increments the internal address iterator.
+        /// given NetAddr struct and increments the internal address iterator.
         ///
         /// @param aPort
-        /// A port number to initialize the PRNetAddr with.
+        /// A port number to initialize the NetAddr with.
         ///
         /// @throws NS_ERROR_NOT_AVAILABLE if there is not another IP address in
         /// the record.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetNextAddr(ushort aPort);
+		
+		/// <summary>
+        /// this function returns the value of the next IP address as a
+        /// scriptable address and increments the internal address iterator.
+        ///
+        /// @param aPort
+        /// A port number to initialize the nsINetAddr with.
+        ///
+        /// @throws NS_ERROR_NOT_AVAILABLE if there is not another IP address in
+        /// the record.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsINetAddr GetScriptableNextAddr(ushort aPort);
 		
 		/// <summary>
         /// this function returns the value of the next IP address as a

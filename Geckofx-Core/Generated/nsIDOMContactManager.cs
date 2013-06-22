@@ -64,7 +64,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d88af7e0-a45f-11e1-b3dd-0800200c9a66")]
+	[Guid("1d70322b-f11b-4f19-9586-7bf291f212aa")]
 	public interface nsIDOMContactManager
 	{
 		
@@ -74,6 +74,10 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest Find([MarshalAs(UnmanagedType.Interface)] nsIDOMContactFindOptions options);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMCursor GetAll([MarshalAs(UnmanagedType.Interface)] nsIDOMContactFindSortOptions options);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

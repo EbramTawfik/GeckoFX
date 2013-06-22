@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6AD1B199-95D3-448B-98D7-896BCE3A1DCD")]
+	[Guid("ACCEA57B-C3D8-4B6E-9101-90F04EE9DEA0")]
 	public interface nsIPopupBoxObject
 	{
 		
@@ -186,6 +186,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMClientRect GetOuterScreenRect();
+		
+		/// <summary>
+        /// Move an open popup to the given anchor position. The arguments have the same
+        /// meaning as the corresponding argument to openPopup. This method has no effect
+        /// on popups that are not open.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void MoveToAnchor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement anchorElement, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase position, int x, int y, [MarshalAs(UnmanagedType.U1)] bool attributesOverride);
 	}
 	
 	/// <summary>nsIPopupBoxObjectConsts </summary>

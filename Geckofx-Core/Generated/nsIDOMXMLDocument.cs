@@ -327,6 +327,12 @@ namespace Gecko
 		new void GetDocumentURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDocumentURI);
 		
 		/// <summary>
+        /// Alias introduced for all documents in recent DOM standards
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
+		
+		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -708,6 +714,12 @@ namespace Gecko
 		new nsIDOMElement GetMozPointerLockElementAttribute();
 		
 		/// <summary>
+        ///CaretPosition </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsISupports CaretPositionFromPoint(float x, float y);
+		
+		/// <summary>
         /// Exit pointer is lock if locked, as per the DOM pointer lock api.
         ///
         /// @see <http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html>
@@ -755,6 +767,13 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetMozVisibilityStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozVisibilityState);
+		
+		/// <summary>
+        /// Returns "BackCompat" if we're in quirks mode or "CSS1Compat" if we're in
+        /// strict mode.  (XML documents are always in strict mode.)
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetCompatModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCompatMode);
 		
 		/// <summary>
         /// Whether to load synchronously or asynchronously.

@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ac0639d5-f95b-4e2b-970c-9eab281fb6a5")]
+	[Guid("f7e531b6-bc29-4d3d-8c91-60fc2b71eb40")]
 	public interface nsIAccessibleProvider
 	{
 		
@@ -145,8 +145,8 @@ namespace Gecko
 		public const long XULTabs = 0x00001018;
 		
 		// <summary>
-        //Used for XUL deck frame </summary>
-		public const long XULDeck = 0x00001019;
+        //Used for XUL tabpanels element </summary>
+		public const long XULTabpanels = 0x00001019;
 		
 		// 
 		public const long XULText = 0x0000101A;
@@ -177,89 +177,5 @@ namespace Gecko
 		
 		// 
 		public const long XULToolbarButton = 0x00001023;
-		
-		// <summary>
-        //Used for xforms elements that provide accessible object for itself as
-        // well for anonymous content. This property are used for upload,
-        // input[type="xsd:gDay"] and input[type="xsd:gMonth"] </summary>
-		public const long XFormsContainer = 0x00002000;
-		
-		// <summary>
-        //Used for label element </summary>
-		public const long XFormsLabel = 0x00002001;
-		
-		// <summary>
-        //Used for output element </summary>
-		public const long XFormsOutput = 0x00002002;
-		
-		// <summary>
-        //Used for trigger and submit elements </summary>
-		public const long XFormsTrigger = 0x00002003;
-		
-		// <summary>
-        //Used for input and textarea elements </summary>
-		public const long XFormsInput = 0x00002004;
-		
-		// <summary>
-        //Used for input[xsd:boolean] element </summary>
-		public const long XFormsInputBoolean = 0x00002005;
-		
-		// <summary>
-        //Used for input[xsd:date] element </summary>
-		public const long XFormsInputDate = 0x00002006;
-		
-		// <summary>
-        //Used for secret element </summary>
-		public const long XFormsSecret = 0x00002007;
-		
-		// <summary>
-        //Used for range element represented by slider </summary>
-		public const long XFormsSliderRange = 0x00002008;
-		
-		// <summary>
-        //Used for select and select1 that are implemented using host document's
-        // native widget. For example, a select1 in a xhtml document may be
-        // represented by the native html control html:select </summary>
-		public const long XFormsSelect = 0x00002009;
-		
-		// <summary>
-        //Used for xforms choices element </summary>
-		public const long XFormsChoices = 0x00002010;
-		
-		// <summary>
-        //Used for xforms full select/select1 elements that may be represented by
-        // group of checkboxes and radiogroup </summary>
-		public const long XFormsSelectFull = 0x00002011;
-		
-		// <summary>
-        //Used for xforms item element that is used inside xforms select elements
-        // represented by group of checkboxes </summary>
-		public const long XFormsItemCheckgroup = 0x00002012;
-		
-		// <summary>
-        //Used for xforms item element that is used inside xforms select1 elements
-        // represented by radio group </summary>
-		public const long XFormsItemRadiogroup = 0x00002013;
-		
-		// <summary>
-        //Used for xforms select1 element that is represented by combobox </summary>
-		public const long XFormsSelectCombobox = 0x00002014;
-		
-		// <summary>
-        //Used for xforms item element that is used inside xforms select1
-        // elements represented by combobox </summary>
-		public const long XFormsItemCombobox = 0x00002015;
-		
-		// <summary>
-        //Used for dropmarker widget that is used by xforms elements </summary>
-		public const long XFormsDropmarkerWidget = 0x00002101;
-		
-		// <summary>
-        //Used for calendar widget that is used by xforms elements </summary>
-		public const long XFormsCalendarWidget = 0x00002102;
-		
-		// <summary>
-        //Used for popup widget that is used by xforms minimal select1 elements </summary>
-		public const long XFormsComboboxPopupWidget = 0x00002103;
 	}
 }

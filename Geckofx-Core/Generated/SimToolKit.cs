@@ -32,7 +32,6 @@ namespace Gecko
     /// When typeOfCommand is
     /// - STK_CMD_DISPLAY_TEXT
     /// - STK_CMD_SET_UP_IDLE_MODE_TEXT
-    /// - STK_CMD_REFRESH
     /// - STK_CMD_SEND_{SS|USSD|SMS|DTMF},
     /// options is MozStkTextMessage.
     ///
@@ -67,6 +66,14 @@ namespace Gecko
     /// options is MozStkDuration.
     ///
     /// When typeOfCommand is
+    /// - STK_CMD_PROVIDE_LOCAL_INFO
+    /// options is MozStkProvideLocalInfo.
+    ///
+    /// When typeOfCommand is
+    /// - STK_CMD_TIMER_MANAGEMENT
+    /// option is MozStkTimer
+    ///
+    /// When typeOfCommand is
     /// - STK_CMD_POLL_OFF
     /// options is null.
     ///
@@ -75,7 +82,7 @@ namespace Gecko
     /// options is null.
     /// </summary>
 	[ComImport()]
-	[Guid("06bbc6fa-9b59-4db6-b66b-3b26f9c379df")]
+	[Guid("21cd2f25-ebea-43f8-8255-eaa4e1182858")]
 	public interface nsIDOMMozStkCommandEvent : nsIDOMEvent
 	{
 		

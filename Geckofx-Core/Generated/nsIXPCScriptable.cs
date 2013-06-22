@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c4788e02-3239-490a-8aeb-60fad08303fd")]
+	[Guid("1236e34a-21e0-423c-a8c8-9b3f1e6d7060")]
 	public interface nsIXPCScriptable
 	{
 		
@@ -116,10 +116,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasInstance([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, Gecko.JsVal val, [MarshalAs(UnmanagedType.U1)] ref bool bp);
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Equality([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, Gecko.JsVal val);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr OuterObject([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj);
@@ -216,14 +212,10 @@ namespace Gecko
 		// 
 		public const long DONT_REFLECT_INTERFACE_NAMES = 1<<27;
 		
-		// 
-		public const long WANT_EQUALITY = 1<<28;
-		
-		// 
+		// <summary>
+        // Unused bit here!
+        // </summary>
 		public const long WANT_OUTER_OBJECT = 1<<29;
-		
-		// 
-		public const long USE_STUB_EQUALITY_HOOK = 1<<30;
 		
 		// <summary>
         // with this bit set.

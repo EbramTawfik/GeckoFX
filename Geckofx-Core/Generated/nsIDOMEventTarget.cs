@@ -143,7 +143,7 @@ namespace Gecko
 		bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
 		/// <summary>
-        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// Returns the nsIDOMEventTarget object which should be used as the target
         /// of DOMEvents.
         /// Usually |this| is returned, but for example global object returns
         /// the outer object.
@@ -153,7 +153,7 @@ namespace Gecko
 		nsIDOMEventTarget GetTargetForDOMEvent();
 		
 		/// <summary>
-        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// Returns the nsIDOMEventTarget object which should be used as the target
         /// of the event and when constructing event target chain.
         /// Usually |this| is returned, but for example global object returns
         /// the inner object.

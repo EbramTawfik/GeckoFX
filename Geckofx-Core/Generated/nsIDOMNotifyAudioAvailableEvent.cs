@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("34139b4f-ac78-4372-98d3-12d6dcf478ef")]
+	[Guid("2345d43d-197a-4589-a4b7-983b41b76c25")]
 	public interface nsIDOMNotifyAudioAvailableEvent : nsIDOMEvent
 	{
 		

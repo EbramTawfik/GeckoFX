@@ -241,7 +241,7 @@ namespace Gecko
 		void ScrollPage([MarshalAs(UnmanagedType.U1)] bool forward);
 		
 		/// <summary>
-        ///ScrolLine will scroll line up or down dependent on the boolean
+        ///ScrollLine will scroll line up or down dependent on the boolean
         /// @param aForward scroll forward or backwards in selection
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

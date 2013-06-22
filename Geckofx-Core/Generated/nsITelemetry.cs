@@ -32,7 +32,22 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("de54f594-4c20-4968-a27a-83b38ff952b9")]
+	[Guid("3d3b9075-5549-4244-9c08-b64fefa1dd60")]
+	public interface nsIFetchTelemetryDataCallback
+	{
+		
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Complete();
+	}
+	
+	/// <summary>nsITelemetry </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("e70ba4cc-7ccd-41fe-a75c-e4042233a8cb")]
 	public interface nsITelemetry
 	{
 		
@@ -50,6 +65,20 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetHistogramSnapshotsAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The amount of time, in milliseconds, that the last session took
+        /// to shutdown.  Reads as 0 to indicate failure.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetLastShutdownDurationAttribute();
+		
+		/// <summary>
+        /// The number of failed profile lock attempts that have occurred prior to
+        /// successfully locking the profile
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetFailedProfileLockCountAttribute();
 		
 		/// <summary>
         /// An object containing information about slow SQL statements.
@@ -89,6 +118,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetChromeHangsAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// An object with two fields: memoryMap and stacks.
+        /// * memoryMap is a list of loaded libraries.
+        /// * stacks is a list of stacks. Each stack is a list of pairs of the form
+        /// [moduleIndex, offset]. The moduleIndex is an index into the memoryMap and
+        /// offset is an offset in the library at memoryMap[moduleIndex].
+        /// This format is used to make it easier to send the stacks to the
+        /// symbolication server.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetLateWritesAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// An object whose properties are the names of histograms defined in
@@ -201,6 +242,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetAddonHistogramSnapshotsAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Read data from the previous run. After the callback is called, the last
+        /// shutdown time is available in lastShutdownDuration and any late
+        /// writes in lateWrites.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AsyncFetchTelemetryData([MarshalAs(UnmanagedType.Interface)] nsIFetchTelemetryDataCallback aCallback);
 	}
 	
 	/// <summary>nsITelemetryConsts </summary>

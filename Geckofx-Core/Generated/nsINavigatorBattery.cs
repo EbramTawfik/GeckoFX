@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4a78a8d5-5bbb-4a92-ad97-f19e853a7008")]
+	[Guid("16ed7adc-b3e0-43c6-a121-5a2b500e90d0")]
 	public interface nsINavigatorBattery
 	{
 		
@@ -42,6 +42,6 @@ namespace Gecko
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBatteryManager GetBatteryAttribute();
+		nsISupports GetBatteryAttribute();
 	}
 }

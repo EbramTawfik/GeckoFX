@@ -37,6 +37,13 @@ namespace Gecko
 	{
 		
 		/// <summary>
+        /// Whether this lock is invalid
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetClosedAttribute();
+		
+		/// <summary>
         /// Contains a JSON object with name/value pairs to be set.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]

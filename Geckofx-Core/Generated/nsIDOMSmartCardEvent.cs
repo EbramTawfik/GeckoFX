@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("88ae203d-12b8-4a85-a69f-6f83a8b5c226")]
+	[Guid("cd251f11-7020-4f85-a7bd-94c98d884fa7")]
 	public interface nsIDOMSmartCardEvent : nsIDOMEvent
 	{
 		
@@ -239,6 +239,6 @@ namespace Gecko
 		void GetTokenNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTokenName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent @event);
+		void InitSmartCardEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTypeArg, [MarshalAs(UnmanagedType.U1)] bool aCanBubbleArg, [MarshalAs(UnmanagedType.U1)] bool aCancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTokenNAme);
 	}
 }

@@ -63,7 +63,7 @@ namespace Gecko.Net
 			set { nsString.Set(_channel.SetContentCharsetAttribute, value); }
 		}
 
-		public int ContentLength
+		public long ContentLength
 		{
 			get { return _channel.GetContentLengthAttribute(); }
 			set { _channel.SetContentLengthAttribute( value ); }

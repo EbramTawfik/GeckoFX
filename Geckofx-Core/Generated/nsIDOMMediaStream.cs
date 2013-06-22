@@ -27,20 +27,22 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///This Source Code Form is subject to the terms of the Mozilla Public
-    /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
-    /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+    /// undef the GetCurrentTime macro defined in WinBase.h from the MS Platform SDK
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f37c2871-4cb7-4672-bb28-c2d601f7cc9e")]
+	[Guid("3ef760bb-ff19-4dbb-b552-af27ab84b9b8")]
 	public interface nsIDOMMediaStream
 	{
-		
-		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
-        /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetCurrentTimeAttribute();
+	}
+	
+	/// <summary>
+    ///Placeholder interface only; will be removed after further WebIDL conversion.
+    ///     Do not add anything here. </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("dd37150a-9823-4605-ac4c-3516629a8aaf")]
+	public interface nsIDOMLocalMediaStream : nsIDOMMediaStream
+	{
 	}
 }

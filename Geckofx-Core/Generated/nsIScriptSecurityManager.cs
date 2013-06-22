@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("90c6b901-9952-4934-a560-974dfd144af7")]
+	[Guid("ae486501-ec57-4ec8-a565-6880ca4ae6c4")]
 	public interface nsIScriptSecurityManager : nsIXPCSecurityManager
 	{
 		
@@ -213,14 +213,6 @@ namespace Gecko
 		void CheckSameOriginURI([MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aTargetURI, [MarshalAs(UnmanagedType.U1)] bool reportError);
 		
 		/// <summary>
-        /// Returns the principal of the global object of the given context, or null
-        /// if no global or no principal.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetPrincipalFromContext(System.IntPtr cx);
-		
-		/// <summary>
         /// Get the principal for the given channel.  This will typically be the
         /// channel owner if there is one, and the codebase principal for the
         /// channel's URI otherwise.  aChannel must not be null.
@@ -247,10 +239,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrincipal GetCxSubjectPrincipal(System.IntPtr cx);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetCxSubjectPrincipalAndFrame(System.IntPtr cx, ref System.IntPtr fp);
 		
 		/// <summary>
         /// Returns the extended origin for the uri.

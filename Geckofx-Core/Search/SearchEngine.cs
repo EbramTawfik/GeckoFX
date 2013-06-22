@@ -42,9 +42,9 @@ namespace Gecko.Search
 			set{_searchEngine.SetHiddenAttribute( value );}
 		}
 
-		public object GetSubmission(string data,string responseType)
+		public object GetSubmission(string data, string responseType, string purpose)
 		{
-			return nsString.Pass<nsISearchSubmission>( _searchEngine.GetSubmission, data, responseType );
+			return nsString.Pass<nsISearchSubmission>(_searchEngine.GetSubmission, data, responseType, purpose);
 		}
 
 		internal static SearchEngine Create(nsISearchEngine searchEngine)

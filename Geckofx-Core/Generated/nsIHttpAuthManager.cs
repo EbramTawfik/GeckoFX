@@ -42,7 +42,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7ce8e9d1-8b4b-4883-a307-66fe12a50153")]
+	[Guid("54f90444-c52b-4d2d-8916-c59a2bb25938")]
 	public interface nsIHttpAuthManager
 	{
 		
@@ -69,9 +69,15 @@ namespace Gecko
         /// return value containing user name.
         /// @param aUserPassword
         /// return value containing user password.
+        /// @param aIsPrivate
+        /// whether to look up a private or public identity (they are
+        /// stored separately, for use by private browsing)
+        /// @param aPrincipal
+        /// the principal from which to derive information about which
+        /// app/mozbrowser is in use for this request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAuthIdentity([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHost, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAuthType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRealm, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserDomain, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserPassword);
+		void GetAuthIdentity([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHost, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAuthType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRealm, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserDomain, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserPassword, [MarshalAs(UnmanagedType.U1)] bool aIsPrivate, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal);
 		
 		/// <summary>
         /// Store auth identity.
@@ -96,9 +102,15 @@ namespace Gecko
         /// optional string containing user name.
         /// @param aUserPassword
         /// optional string containing user password.
+        /// @param aIsPrivate
+        /// whether to store a private or public identity (they are
+        /// stored separately, for use by private browsing)
+        /// @param aPrincipal
+        /// the principal from which to derive information about which
+        /// app/mozbrowser is in use for this request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAuthIdentity([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHost, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAuthType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRealm, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserDomain, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserPassword);
+		void SetAuthIdentity([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHost, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAuthType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRealm, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserDomain, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserPassword, [MarshalAs(UnmanagedType.U1)] bool aIsPrivate, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal);
 		
 		/// <summary>
         /// Clear all auth cache.

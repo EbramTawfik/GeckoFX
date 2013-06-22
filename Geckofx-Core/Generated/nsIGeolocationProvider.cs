@@ -53,7 +53,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("483BE98B-F747-490A-8AF1-53146D2D5373")]
+	[Guid("d32b87b3-fe96-4f42-81ab-2f39f7ec43ff")]
 	public interface nsIGeolocationProvider
 	{
 		
@@ -66,10 +66,13 @@ namespace Gecko
 		
 		/// <summary>
         /// watch
-        /// When a location change is observed, notify the callback
+        /// When a location change is observed, notify the callback. The privacy
+        /// argument informs the provider whether the initiating request came from
+        /// a private context; it is up to the provider to use that information
+        /// in a sensible manner.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Watch([MarshalAs(UnmanagedType.Interface)] nsIGeolocationUpdate callback);
+		void Watch([MarshalAs(UnmanagedType.Interface)] nsIGeolocationUpdate callback, [MarshalAs(UnmanagedType.U1)] bool requestPrivate);
 		
 		/// <summary>
         /// shutdown

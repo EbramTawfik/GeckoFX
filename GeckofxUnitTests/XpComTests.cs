@@ -250,22 +250,7 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
-
-		[Test]
-		public void CreateInstance_CreatingXtfXmlContentBuilder_ReturnsValidInstance()
-		{
-			var instance = Xpcom.CreateInstance<nsIXMLContentBuilder>("@mozilla.org/xtf/xml-contentbuilder;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingXtfElementFactory_ThrowsClassNotRegistered()
-		{
-			Assert.Throws<COMException>(() => Xpcom.CreateInstance<nsIXTFElementFactory>("@mozilla.org/xtf/element-factory;1"));
-		}
-
-
+	
 		[Test]
 		public void CreateInstance_CreatingXtfService_ReturnsValidInstance()
 		{

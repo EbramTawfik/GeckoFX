@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e590e74f-bac7-4876-8c58-54dde92befb2")]
+	[Guid("e48e3024-f302-4a16-b8b6-2034d3a4b279")]
 	public interface nsIContentPolicy
 	{
 		
@@ -58,6 +58,8 @@ namespace Gecko
         /// @param aContext          OPTIONAL. the nsIDOMNode or nsIDOMWindow that
         /// initiated the request, or something that can QI
         /// to one of those; can be null if inapplicable.
+        /// Note that for navigation events (new windows and
+        /// link clicks), this is the NEW window.
         ///
         /// @param aMimeTypeGuess    OPTIONAL. a guess for the requested content's
         /// MIME type, based on information available to
@@ -67,6 +69,12 @@ namespace Gecko
         ///
         /// @param aExtra            an OPTIONAL argument, pass-through for non-Gecko
         /// callers to pass extra data to callees.
+        ///
+        /// @param aRequestPrincipal an OPTIONAL argument, defines the principal that
+        /// caused the load. This is optional only for
+        /// non-gecko code: all gecko code should set this
+        /// argument.  For navigation events, this is
+        /// the principal of the page that caused this load.
         ///
         /// @return ACCEPT or REJECT_*
         ///
@@ -88,7 +96,7 @@ namespace Gecko
         /// above, do them off timeout or event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short ShouldLoad(uint aContentType, [MarshalAs(UnmanagedType.Interface)] nsIURI aContentLocation, [MarshalAs(UnmanagedType.Interface)] nsIURI aRequestOrigin, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeTypeGuess, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtra, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aRequestPrincipal);
+		short ShouldLoad(System.IntPtr aContentType, [MarshalAs(UnmanagedType.Interface)] nsIURI aContentLocation, [MarshalAs(UnmanagedType.Interface)] nsIURI aRequestOrigin, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeTypeGuess, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtra, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aRequestPrincipal);
 		
 		/// <summary>
         /// Should the resource be processed?
@@ -126,7 +134,7 @@ namespace Gecko
         /// what this means for implementors of this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short ShouldProcess(uint aContentType, [MarshalAs(UnmanagedType.Interface)] nsIURI aContentLocation, [MarshalAs(UnmanagedType.Interface)] nsIURI aRequestOrigin, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtra, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aRequestPrincipal);
+		short ShouldProcess(System.IntPtr aContentType, [MarshalAs(UnmanagedType.Interface)] nsIURI aContentLocation, [MarshalAs(UnmanagedType.Interface)] nsIURI aRequestOrigin, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtra, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aRequestPrincipal);
 	}
 	
 	/// <summary>nsIContentPolicyConsts </summary>
@@ -134,46 +142,58 @@ namespace Gecko
 	{
 		
 		// <summary>
-        // Interface for content policy mechanism.  Implementations of this
-        // interface can be used to control loading of various types of out-of-line
-        // content, or processing of certain types of in-line content.
+        // Gecko/Firefox developers: Do not use TYPE_OTHER under any circumstances.
         //
-        // WARNING: do not block the caller from shouldLoad or shouldProcess (e.g.,
-        // by launching a dialog to prompt the user for something).
+        // Extension developers: Whenever it is reasonable, use one of the existing
+        // content types. If none of the existing content types are right for
+        // something you are doing, file a bug in the Core/DOM component that
+        // includes a patch that adds your new content type to the end of the list of
+        // TYPE_* constants here. But, don't start using your new content type until
+        // your patch has been accepted, because it will be uncertain what exact
+        // value and name your new content type will have; in that interim period,
+        // use TYPE_OTHER. In your patch, document your new content type in the style
+        // of the existing ones. In the bug you file, provide a more detailed
+        // description of the new type of content you want Gecko to support, so that
+        // the existing implementations of nsIContentPolicy can be properly modified
+        // to deal with that new type of content.
+        //
+        // Implementations of nsIContentPolicy should treat this the same way they
+        // treat unknown types, because existing users of TYPE_OTHER may be converted
+        // to use new content types.
         // </summary>
-		public const ulong TYPE_OTHER = 1;
+		public const long TYPE_OTHER = 1;
 		
 		// <summary>
         // Indicates an executable script (such as JavaScript).
         // </summary>
-		public const ulong TYPE_SCRIPT = 2;
+		public const long TYPE_SCRIPT = 2;
 		
 		// <summary>
         // Indicates an image (e.g., IMG elements).
         // </summary>
-		public const ulong TYPE_IMAGE = 3;
+		public const long TYPE_IMAGE = 3;
 		
 		// <summary>
         // Indicates a stylesheet (e.g., STYLE elements).
         // </summary>
-		public const ulong TYPE_STYLESHEET = 4;
+		public const long TYPE_STYLESHEET = 4;
 		
 		// <summary>
         // Indicates a generic object (plugin-handled content typically falls under
         // this category).
         // </summary>
-		public const ulong TYPE_OBJECT = 5;
+		public const long TYPE_OBJECT = 5;
 		
 		// <summary>
         // Indicates a document at the top-level (i.e., in a browser).
         // </summary>
-		public const ulong TYPE_DOCUMENT = 6;
+		public const long TYPE_DOCUMENT = 6;
 		
 		// <summary>
         // Indicates a document contained within another document (e.g., IFRAMEs,
         // FRAMES, and OBJECTs).
         // </summary>
-		public const ulong TYPE_SUBDOCUMENT = 7;
+		public const long TYPE_SUBDOCUMENT = 7;
 		
 		// <summary>
         // Indicates a timed refresh.
@@ -185,51 +205,56 @@ namespace Gecko
         // shouldProcess will get this for, e.g., META Refresh elements and HTTP
         // Refresh headers.
         // </summary>
-		public const ulong TYPE_REFRESH = 8;
+		public const long TYPE_REFRESH = 8;
 		
 		// <summary>
         // Indicates an XBL binding request, triggered either by -moz-binding CSS
-        // property or Document.addBinding method.
+        // property.
         // </summary>
-		public const ulong TYPE_XBL = 9;
+		public const long TYPE_XBL = 9;
 		
 		// <summary>
         // Indicates a ping triggered by a click on <A PING="..."> element.
         // </summary>
-		public const ulong TYPE_PING = 10;
+		public const long TYPE_PING = 10;
 		
 		// <summary>
         // Indicates an XMLHttpRequest. Also used for document.load and for EventSource.
         // </summary>
-		public const ulong TYPE_XMLHTTPREQUEST = 11;
+		public const long TYPE_XMLHTTPREQUEST = 11;
 		
 		// 
-		public const ulong TYPE_DATAREQUEST = 11;
+		public const long TYPE_DATAREQUEST = 11;
 		
 		// <summary>
         // Indicates a request by a plugin.
         // </summary>
-		public const ulong TYPE_OBJECT_SUBREQUEST = 12;
+		public const long TYPE_OBJECT_SUBREQUEST = 12;
 		
 		// <summary>
         // Indicates a DTD loaded by an XML document.
         // </summary>
-		public const ulong TYPE_DTD = 13;
+		public const long TYPE_DTD = 13;
 		
 		// <summary>
         // Indicates a font loaded via @font-face rule.
         // </summary>
-		public const ulong TYPE_FONT = 14;
+		public const long TYPE_FONT = 14;
 		
 		// <summary>
         // Indicates a video or audio load.
         // </summary>
-		public const ulong TYPE_MEDIA = 15;
+		public const long TYPE_MEDIA = 15;
 		
 		// <summary>
         // Indicates a WebSocket load.
         // </summary>
-		public const ulong TYPE_WEBSOCKET = 16;
+		public const long TYPE_WEBSOCKET = 16;
+		
+		// <summary>
+        // Indicates a Content Security Policy report.
+        // </summary>
+		public const long TYPE_CSP_REPORT = 17;
 		
 		// <summary>
         // Returned from shouldLoad or shouldProcess if the load or process request

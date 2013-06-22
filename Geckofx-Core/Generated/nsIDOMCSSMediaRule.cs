@@ -27,13 +27,12 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///This Source Code Form is subject to the terms of the Mozilla Public
-    /// License, v. 2.0. If a copy of the MPL was not distributed with this
-    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+    /// Interface for @media rules in the CSS OM.
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a6cf90bc-15b3-11d2-932e-00805f8add32")]
-	public interface nsIDOMCSSMediaRule : nsIDOMCSSRule
+	[Guid("1f491b05-932b-4aa1-a1f1-466505d70898")]
+	public interface nsIDOMCSSMediaRule : nsIDOMCSSConditionRule
 	{
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -57,21 +56,37 @@ namespace Gecko
 		new nsIDOMCSSRule GetParentRuleAttribute();
 		
 		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this
-        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+        /// Interface for at-rules that have child rules in the CSS OM.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMCSSRuleList GetCssRulesAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new uint InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase rule, uint index);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void DeleteRule(uint index);
+		
+		/// <summary>
+        /// Interface in the CSS OM for at-rules that conditionally apply their
+        /// child rules.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetConditionTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aConditionText);
+		
+		/// <summary>
+        /// Interface in the CSS OM for at-rules that conditionally apply their
+        /// child rules.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetConditionTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aConditionText);
+		
+		/// <summary>
+        /// Interface for @media rules in the CSS OM.
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMediaList GetMediaAttribute();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSRuleList GetCssRulesAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase rule, uint index);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteRule(uint index);
 	}
 }

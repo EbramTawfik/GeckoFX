@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("424b7efc-5d56-4717-9a71-8db9dcaaa618")]
+	[Guid("df702bb0-55b8-11e2-bcfd-0800200c9a66")]
 	public interface nsIPrivateBrowsingChannel
 	{
 		
@@ -61,6 +61,17 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPrivate([MarshalAs(UnmanagedType.U1)] bool aPrivate);
+		
+		/// <summary>
+        /// States whether the channel is in private browsing mode. This may either
+        /// happen because the channel is opened from a private mode context or
+        /// when the mode is explicitly set with ::setPrivate().
+        ///
+        /// This attribute is equivalent to NS_UsePrivateBrowsing(), but scriptable.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsChannelPrivateAttribute();
 		
 		/// <summary>
         /// This function is used to determine whether the channel's private mode

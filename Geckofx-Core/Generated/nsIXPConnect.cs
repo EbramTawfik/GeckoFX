@@ -41,7 +41,7 @@ namespace Gecko
 	/// <summary>nsIXPConnectWrappedNative </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f819a95a-6ab5-4a02-bda6-32861e859581")]
+	[Guid("92e98688-0154-4b65-971b-0d4afe8fd7cb")]
 	public interface nsIXPConnectWrappedNative : nsIXPConnectJSObjectHolder
 	{
 		
@@ -80,6 +80,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIInterfaceInfo FindInterfaceWithName(System.IntPtr nameID);
+		
+		/// <summary>Member HasNativeMember </summary>
+		/// <param name='name'> </param>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool HasNativeMember(System.IntPtr name);
 		
 		/// <summary>Member DebugDump </summary>
 		/// <param name='depth'> </param>
@@ -375,7 +382,7 @@ namespace Gecko
 	/// <summary> </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d94c13ae-7585-4e7b-b7ad-482976bc6f1b")]
+	[Guid("3e825850-3a5f-11e2-81c1-0800200c9a66")]
 	public interface nsIXPConnect
 	{
 		
@@ -577,12 +584,11 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFunctionThisTranslator(ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsIXPCFunctionThisTranslator aTranslator);
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPConnectJSObjectHolder ReparentWrappedNativeIfFound(System.IntPtr aJSContext, System.IntPtr aScope, System.IntPtr aNewParent, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj);
+		void ReparentWrappedNativeIfFound(System.IntPtr aJSContext, System.IntPtr aScope, System.IntPtr aNewParent, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MoveWrappers(System.IntPtr aJSContext, System.IntPtr aOldScope, System.IntPtr aNewScope);
+		void RescueOrphansInScope(System.IntPtr aJSContext, System.IntPtr aScope);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearAllWrappedNativeSecurityPolicies();

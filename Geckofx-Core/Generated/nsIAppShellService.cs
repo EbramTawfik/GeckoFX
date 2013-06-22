@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("EBCD34E2-2E43-45C0-AAC8-E6F1C692B371")]
+	[Guid("5c19ab54-67bf-46d0-ac5b-21abd9050c3b")]
 	public interface nsIAppShellService
 	{
 		
@@ -65,6 +65,28 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetHiddenDOMWindowAttribute();
+		
+		/// <summary>
+        /// Return the (singleton) application hidden private window, automatically
+        /// created and maintained by this AppShellService.  This window is created
+        /// in private browsing mode.
+        /// @param aResult the hidden private window.  Do not unhide hidden window.
+        /// Do not taunt hidden window.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIXULWindow GetHiddenPrivateWindowAttribute();
+		
+		/// <summary>
+        /// Return the (singleton) application hidden private window, automatically
+        /// created and maintained by this AppShellService.  This window is created
+        /// in private browsing mode.
+        /// @param aResult the hidden private window.  Do not unhide hidden window.
+        /// Do not taunt hidden window.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow GetHiddenPrivateDOMWindowAttribute();
 		
 		/// <summary>
         /// Return the (singleton) application hidden window as an nsIDOMWindow,
@@ -104,6 +126,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterTopLevelWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aWindow);
+		
+		/// <summary>
+        /// Whether the hidden private window has been lazily created.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHasHiddenPrivateWindowAttribute();
 	}
 	
 	/// <summary>nsIAppShellServiceConsts </summary>

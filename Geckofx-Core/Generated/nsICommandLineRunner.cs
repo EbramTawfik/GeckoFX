@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c1f4cfbf-a41f-4628-aa6c-9fb914478af8")]
+	[Guid("c9f2996c-b25a-4d3d-821f-4cd0c4bc8afb")]
 	public interface nsICommandLineRunner : nsICommandLine
 	{
 		

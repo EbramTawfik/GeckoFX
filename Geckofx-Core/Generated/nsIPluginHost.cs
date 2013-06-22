@@ -32,7 +32,29 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d70af999-cb1f-4429-b85e-f18cdbabc43c")]
+	[Guid("f89e7679-0adf-4a30-bda9-1afe1ee270d6")]
+	public interface nsIPluginPlayPreviewInfo
+	{
+		
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMimeTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIgnoreCTPAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetRedirectURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aRedirectURL);
+	}
+	
+	/// <summary>nsIPluginHost </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("67ebff01-0dce-48f7-b6a5-6235fc78382b")]
 	public interface nsIPluginHost
 	{
 		
@@ -46,6 +68,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReloadPlugins([MarshalAs(UnmanagedType.U1)] bool reloadPages);
 		
+		/// <summary>Member GetPluginTags </summary>
+		/// <param name='aPluginCount'> </param>
+		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetPluginTags(ref uint aPluginCount);
 		
@@ -89,14 +114,36 @@ namespace Gecko
 		/// <summary>
         /// Registers the play preview plugin mode for specific mime type
         ///
-        /// @param mimeType - specified mime type
+        /// @param mimeType: specifies plugin mime type.
+        /// @param ignoreCTP: if true, the play preview ignores CTP rules, e.g.
+        ///                       whitelisted websites, will not notify about plugin
+        ///                       presence in the address bar.
+        /// @param redirectURL: specifies url for the overlay iframe
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterPlayPreviewMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
+		void RegisterPlayPreviewMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType, [MarshalAs(UnmanagedType.U1)] bool ignoreCTP, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase redirectURL);
 		
+		/// <summary>Member UnregisterPlayPreviewMimeType </summary>
+		/// <param name='mimeType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterPlayPreviewMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
 		
+		/// <summary>Member GetPlayPreviewInfo </summary>
+		/// <param name='mimeType'> </param>
+		/// <returns>A nsIPluginPlayPreviewInfo</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIPluginPlayPreviewInfo GetPlayPreviewInfo([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
+		
+		/// <summary>Member GetPermissionStringForType </summary>
+		/// <param name='mimeType'> </param>
+		/// <param name='retval'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPermissionStringForType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		
+		/// <summary>Member IsPluginClickToPlayForType </summary>
+		/// <param name='mimeType'> </param>
+		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsPluginClickToPlayForType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);

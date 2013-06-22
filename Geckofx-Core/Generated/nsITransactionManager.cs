@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("58e330c2-7b48-11d2-98b9-00805f297d89")]
+	[Guid("c77763df-0fb9-41a8-8074-8e882f605755")]
 	public interface nsITransactionManager
 	{
 		
@@ -71,20 +71,37 @@ namespace Gecko
 		void Clear();
 		
 		/// <summary>
+        /// Clears the undo stack only.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ClearUndoStack();
+		
+		/// <summary>
+        /// Clears the redo stack only.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ClearRedoStack();
+		
+		/// <summary>
         /// Turns on the transaction manager's batch mode, forcing all transactions
         /// executed by the transaction manager's doTransaction() method to be
         /// aggregated together until EndBatch() is called.  This mode allows an
         /// application to execute and group together several independent transactions
         /// so they can be undone with a single call to undoTransaction().
+        /// @param aData An arbitrary nsISupports object that is associated with the
+        /// batch. Can be retrieved from nsITransactionList.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginBatch();
+		void BeginBatch([MarshalAs(UnmanagedType.Interface)] nsISupports aData);
 		
 		/// <summary>
         /// Turns off the transaction manager's batch mode.
+        /// @param aAllowEmpty If true, a batch containing no children will be
+        /// pushed onto the undo stack. Otherwise, ending a batch with no
+        /// children will result in no transactions being pushed on the undo stack.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EndBatch();
+		void EndBatch([MarshalAs(UnmanagedType.U1)] bool aAllowEmpty);
 		
 		/// <summary>
         /// The number of items on the undo stack.
@@ -129,6 +146,21 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMaxTransactionCountAttribute(int aMaxTransactionCount);
+		
+		/// <summary>
+        /// Combines the transaction at the top of the undo stack (if any) with the
+        /// preceding undo transaction (if any) into a batch transaction. Thus,
+        /// a call to undoTransaction() will undo both transactions.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void BatchTopUndo();
+		
+		/// <summary>
+        /// Removes the transaction at the top of the undo stack (if any) without
+        /// transacting.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveTopUndo();
 		
 		/// <summary>
         /// Returns an AddRef'd pointer to the transaction at the top of the

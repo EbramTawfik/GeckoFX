@@ -109,21 +109,4 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.Interface)] nsIURI documentURI, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI, System.IntPtr scriptObject);
 	}
-	
-	/// <summary>
-    /// The nsIDOMParserJS interface provides a scriptable way of calling init().
-    /// Do NOT use this interface from languages other than JavaScript.
-    /// </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ba6bcd6c-63d8-49b3-bc8a-1e5e895645bc")]
-	public interface nsIDOMParserJS
-	{
-		
-		/// <summary>
-        /// Just like nsIDOMParser.init, but callable from JS.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.Interface)] nsIURI documentURI, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI);
-	}
 }

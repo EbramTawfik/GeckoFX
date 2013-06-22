@@ -74,7 +74,7 @@ namespace Gecko
 	/// <summary>nsIEventListenerService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0cf94aa6-ea9a-44cb-a063-be834afa679d")]
+	[Guid("f6964bfb-dabe-4cab-9733-be0ee2bf8171")]
 	public interface nsIEventListenerService
 	{
 		
@@ -114,5 +114,22 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveSystemEventListener([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget target, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool useCapture);
+		
+		/// <summary>Member AddListenerForAllEvents </summary>
+		/// <param name='target'> </param>
+		/// <param name='listener'> </param>
+		/// <param name='aUseCapture'> </param>
+		/// <param name='aWantsUntrusted'> </param>
+		/// <param name='aSystemEventGroup'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddListenerForAllEvents([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget target, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool aUseCapture, [MarshalAs(UnmanagedType.U1)] bool aWantsUntrusted, [MarshalAs(UnmanagedType.U1)] bool aSystemEventGroup);
+		
+		/// <summary>Member RemoveListenerForAllEvents </summary>
+		/// <param name='target'> </param>
+		/// <param name='listener'> </param>
+		/// <param name='aUseCapture'> </param>
+		/// <param name='aSystemEventGroup'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveListenerForAllEvents([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget target, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool aUseCapture, [MarshalAs(UnmanagedType.U1)] bool aSystemEventGroup);
 	}
 }

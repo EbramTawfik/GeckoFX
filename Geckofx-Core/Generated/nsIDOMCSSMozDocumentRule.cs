@@ -27,12 +27,12 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// Modified version of nsIDOMCSSMediaRule for @-moz-document rules.
+    /// Interface for @-moz-document rules in the CSS OM.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4eb9adac-afaf-4b8a-8640-7340863c1587")]
-	public interface nsIDOMCSSMozDocumentRule : nsIDOMCSSRule
+	[Guid("f118a5a8-ac36-464f-b993-18cf6fe76fda")]
+	public interface nsIDOMCSSMozDocumentRule : nsIDOMCSSConditionRule
 	{
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -56,16 +56,30 @@ namespace Gecko
 		new nsIDOMCSSRule GetParentRuleAttribute();
 		
 		/// <summary>
-        /// Modified version of nsIDOMCSSMediaRule for @-moz-document rules.
+        /// Interface for at-rules that have child rules in the CSS OM.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSRuleList GetCssRulesAttribute();
+		new nsIDOMCSSRuleList GetCssRulesAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase rule, uint index);
+		new uint InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase rule, uint index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteRule(uint index);
+		new void DeleteRule(uint index);
+		
+		/// <summary>
+        /// Interface in the CSS OM for at-rules that conditionally apply their
+        /// child rules.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetConditionTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aConditionText);
+		
+		/// <summary>
+        /// Interface in the CSS OM for at-rules that conditionally apply their
+        /// child rules.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetConditionTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aConditionText);
 	}
 }

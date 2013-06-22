@@ -280,6 +280,21 @@ namespace Gecko
 			}
 			return ret;
 		}
+
+
+		private static T GenericPass<T, TString>(Func<TString, TString, TString, T> func, string value1, string value2, string value3)
+			where TString : IString, IDisposable, new()
+		{
+			T ret;
+			using (TString str1 = new TString(), str2 = new TString(), str3 = new TString())
+			{
+				str1.SetData(value1);
+				str2.SetData(value2);
+				str3.SetData(value3);
+				ret = func(str1, str2, str3);
+			}
+			return ret;
+		}
 		#endregion
 
 		#region nsAUTF8String
@@ -472,6 +487,11 @@ namespace Gecko
 		public static T Pass<T>(Func<nsAString,nsAString, T> func, string value1,string value2)
 		{
 			return GenericPass( func, value1, value2 );
+		}
+
+		public static T Pass<T>(Func<nsAString, nsAString, nsAString, T> func, string value1, string value2, string value3)
+		{
+			return GenericPass(func, value1, value2, value3);
 		}
 		
 		#endregion

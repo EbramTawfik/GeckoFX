@@ -45,7 +45,7 @@ namespace Gecko
 	/// <summary>nsIUrlListManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9c5598ec-9986-40cf-af40-b5e0d817a3a0")]
+	[Guid("5b4645b6-f9ca-4cb1-a821-2bdb3c3902f8")]
 	public interface nsIUrlListManager
 	{
 		
@@ -97,7 +97,7 @@ namespace Gecko
         /// belongs.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SafeLookup([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, [MarshalAs(UnmanagedType.Interface)] nsIUrlListManagerCallback cb);
+		void SafeLookup([MarshalAs(UnmanagedType.Interface)] nsIPrincipal key, [MarshalAs(UnmanagedType.Interface)] nsIUrlListManagerCallback cb);
 		
 		/// <summary>Member CheckForUpdates </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

@@ -252,7 +252,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("72fc56e5-3e6e-4d11-8967-26ab96071032")]
+	[Guid("748050ac-3ab6-4472-bc2a-cb1564ac6a81")]
 	public interface nsIZipReaderCache
 	{
 		
@@ -280,6 +280,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIZipReader GetZip([MarshalAs(UnmanagedType.Interface)] nsIFile zipFile);
+		
+		/// <summary>
+        /// returns true if this zipreader already has this file cached
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsCached([MarshalAs(UnmanagedType.Interface)] nsIFile zipFile);
 		
 		/// <summary>
         /// Returns a (possibly shared) nsIZipReader for a zip inside another zip

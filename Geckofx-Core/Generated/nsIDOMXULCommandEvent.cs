@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bb7f2758-9a71-4701-984f-eb66f08c4356")]
+	[Guid("2d5b6e19-74bb-40af-9aac-59a1e53e3fcc")]
 	public interface nsIDOMXULCommandEvent : nsIDOMUIEvent
 	{
 		

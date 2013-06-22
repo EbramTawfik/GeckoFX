@@ -88,6 +88,14 @@ namespace Gecko
 		public const ulong PAGE_RULE = 6;
 		
 		// 
+		public const ulong KEYFRAMES_RULE = 7;
+		
+		// 
+		public const ulong KEYFRAME_RULE = 8;
+		
+		// <summary>
+        // we should remove these two MOZ_* constants.
+        // </summary>
 		public const ulong MOZ_KEYFRAMES_RULE = 7;
 		
 		// 

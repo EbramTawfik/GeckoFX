@@ -27,7 +27,11 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// You probably want nsI{Moz}WebSocket.idl
+    /// Low-level websocket API: handles network protocol.
+    ///
+    /// This is primarly intended for use by the higher-level nsIWebSocket.idl.
+    /// We are also making it scriptable for now, but this may change once we have
+    /// WebSockets for Workers.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

@@ -104,6 +104,9 @@ namespace Gecko
 		void SendStkMenuSelection([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ushort itemIdentifier, [MarshalAs(UnmanagedType.U1)] bool helpRequested);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendStkTimerExpiration([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal timer);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendStkEventDownload([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal @event);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]

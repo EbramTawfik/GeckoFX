@@ -280,7 +280,7 @@ namespace Gecko
 	/// <summary>nsIMemoryReporterManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8b670411-ea2a-44c2-a36b-529db0670821")]
+	[Guid("0baaa958-3112-4952-b557-2a0c57eabb8f")]
 	public interface nsIMemoryReporterManager
 	{
 		
@@ -364,9 +364,10 @@ namespace Gecko
 		/// <summary>
         /// Run a series of GC/CC's in an attempt to minimize the application's memory
         /// usage.  When we're finished, we invoke the given runnable if it's not
-        /// null.
+        /// null.  Returns a reference to the runnable used for carrying out the task.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MinimizeMemoryUsage([MarshalAs(UnmanagedType.Interface)] nsIRunnable callback);
+		nsICancelableRunnable MinimizeMemoryUsage([MarshalAs(UnmanagedType.Interface)] nsIRunnable callback);
 	}
 }

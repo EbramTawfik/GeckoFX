@@ -140,7 +140,7 @@ namespace Gecko
 		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
 		/// <summary>
-        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// Returns the nsIDOMEventTarget object which should be used as the target
         /// of DOMEvents.
         /// Usually |this| is returned, but for example global object returns
         /// the outer object.
@@ -150,7 +150,7 @@ namespace Gecko
 		new nsIDOMEventTarget GetTargetForDOMEvent();
 		
 		/// <summary>
-        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// Returns the nsIDOMEventTarget object which should be used as the target
         /// of the event and when constructing event target chain.
         /// Usually |this| is returned, but for example global object returns
         /// the inner object.
@@ -264,6 +264,19 @@ namespace Gecko
 		void SendStkMenuSelection(ushort itemIdentifier, [MarshalAs(UnmanagedType.U1)] bool helpRequested);
 		
 		/// <summary>
+        /// Send the "Timer Expiration" Envelope command to ICC for TIMER MANAGEMENT.
+        ///  `*
+        /// @param timer
+        /// The identifier and value for a timer.
+        /// timerId: Identifier of the timer that has expired.
+        /// timerValue: Different between the time when this command is issued
+        /// and when the timer was initially started.
+        /// @see MozStkTimer
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendStkTimerExpiration(Gecko.JsVal timer);
+		
+		/// <summary>
         /// Send "Event Download" Envelope command to ICC.
         /// ICC will not respond with any data for this command.
         ///
@@ -271,6 +284,8 @@ namespace Gecko
         /// one of events below:
         /// - MozStkLocationEvent
         /// - MozStkCallEvent
+        /// - MozStkLanguageSelectionEvent
+        /// - MozStkGeneralEvent
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendStkEventDownload(Gecko.JsVal @event);
@@ -381,6 +396,12 @@ namespace Gecko
 		
 		// 
 		public const ulong STK_CMD_SET_UP_MENU = 0x25;
+		
+		// 
+		public const ulong STK_CMD_PROVIDE_LOCAL_INFO = 0x26;
+		
+		// 
+		public const ulong STK_CMD_TIMER_MANAGEMENT = 0x27;
 		
 		// 
 		public const ulong STK_CMD_SET_UP_IDLE_MODE_TEXT = 0x28;
@@ -600,5 +621,32 @@ namespace Gecko
 		
 		// 
 		public const ulong STK_TIME_UNIT_TENTH_SECOND = 0x02;
+		
+		// <summary>
+        // Local Information list
+        //
+        // @see TS 102.223, clause 8.6
+        // </summary>
+		public const ulong STK_LOCAL_INFO_LOCATION_INFO = 0x00;
+		
+		// 
+		public const ulong STK_LOCAL_INFO_IMEI = 0x01;
+		
+		// 
+		public const ulong STK_LOCAL_INFO_DATE_TIME_ZONE = 0x03;
+		
+		// 
+		public const ulong STK_LOCAL_INFO_LANGUAGE = 0x04;
+		
+		// <summary>
+        // Timer Management
+        // </summary>
+		public const ulong STK_TIMER_START = 0x00;
+		
+		// 
+		public const ulong STK_TIMER_DEACTIVATE = 0x01;
+		
+		// 
+		public const ulong STK_TIMER_GET_CURRENT_VALUE = 0x02;
 	}
 }

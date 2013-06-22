@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f5a7c016-8caf-460a-b1a1-3fe5534d5c9e")]
+	[Guid("c8126129-8dac-43cd-b1ba-3896fba2dd01")]
 	public interface imgILoader
 	{
 		
@@ -51,15 +51,13 @@ namespace Gecko
         /// @param aLoadFlags Load flags for the request
         /// @param aCacheKey cache key to use for a load if the original
         /// image came from a request that had post data
-        /// @param aRequest A newly created, unused imgIRequest object or NULL for one to
-        ///                     be created for you.
         /// libpr0n does NOT keep a strong ref to the observer; this prevents
         /// reference cycles.  This means that callers of loadImage should
         /// make sure to Cancel() the resulting request before the observer
         /// goes away.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIRequest LoadImage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aInitialDocumentURL, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aLoadingPrincipal, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup, imgIDecoderObserver aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports aCX, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISupports cacheKey, imgIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsIChannelPolicy channelPolicy);
+		imgIRequest LoadImageXPCOM([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aInitialDocumentURL, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aLoadingPrincipal, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup, imgINotificationObserver aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports aCX, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISupports cacheKey, [MarshalAs(UnmanagedType.Interface)] nsIChannelPolicy channelPolicy);
 		
 		/// <summary>
         /// Start the load and decode of an image.
@@ -79,7 +77,7 @@ namespace Gecko
         /// make sure to Cancel() the resulting request before the observer goes away.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIRequest LoadImageWithChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, imgIDecoderObserver aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports cx, [MarshalAs(UnmanagedType.Interface)] ref nsIStreamListener aListener);
+		imgIRequest LoadImageWithChannelXPCOM([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, imgINotificationObserver aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports cx, [MarshalAs(UnmanagedType.Interface)] ref nsIStreamListener aListener);
 	}
 	
 	/// <summary>imgILoaderConsts </summary>

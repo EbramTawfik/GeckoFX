@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8ac7827f-f982-40fb-be11-ba16dd665635")]
+	[Guid("cfa75628-4d31-481f-b51e-fe0ce18fa98f")]
 	public interface mozIApplication : mozIDOMApplication
 	{
 		
@@ -189,10 +189,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMDOMRequest Launch([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase startPoint);
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMDOMRequest Uninstall();
-		
 		/// <summary>
         ///Clear data that has been collected through mozbrowser elements. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -210,9 +206,19 @@ namespace Gecko
 		ushort GetAppStatusAttribute();
 		
 		/// <summary>
-        ///Returns the local id of the app (not the uuid used for sync). </summary>
+        ///Returns the uuid of the app. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
+		
+		/// <summary>
+        ///Returns the local id of the app. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetLocalIdAttribute();
+		
+		/// <summary>
+        ///Returns the base directory for the app </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBasePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBasePath);
 		
 		/// <summary>
         ///Name copied from the manifest </summary>

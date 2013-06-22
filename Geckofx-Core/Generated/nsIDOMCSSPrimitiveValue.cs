@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e249031f-8df9-4e7a-b644-18946dce0019")]
+	[Guid("f6df7293-2dc9-4cb9-9531-778caf4370e0")]
 	public interface nsIDOMCSSPrimitiveValue : nsIDOMCSSValue
 	{
 		
@@ -73,10 +73,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMRect GetRectValue();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMRGBColor GetRGBColorValue();
 	}
 	
 	/// <summary>nsIDOMCSSPrimitiveValueConsts </summary>

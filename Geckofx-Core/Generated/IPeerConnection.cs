@@ -27,6 +27,23 @@ namespace Gecko
 	
 	
 	/// <summary>
+    /// Manager interface to PeerConnection.js so it is accessible from C++.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("c2218bd2-2648-4701-8fa6-305d3379e9f8")]
+	public interface IPeerConnectionManager
+	{
+		
+		/// <summary>
+        /// Manager interface to PeerConnection.js so it is accessible from C++.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool HasActivePeerConnection(uint innerWindowID);
+	}
+	
+	/// <summary>
     ///Do not confuse with nsIDOMRTCPeerConnection. This interface is purely for
     /// communication between the PeerConnection JS DOM binding and the C++
     /// implementation in SIPCC.
@@ -64,6 +81,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnSetRemoteDescriptionError(uint code);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnAddIceCandidateSuccess(uint code);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnAddIceCandidateError(uint code);
 		
 		/// <summary>
         ///Data channel callbacks </summary>
@@ -126,25 +149,25 @@ namespace Gecko
 	/// <summary>IPeerConnection </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cb3f0048-1009-11e2-b822-87ee49eface7")]
+	[Guid("cc8327f5-66f4-42f4-820d-9a9db0474b6e")]
 	public interface IPeerConnection
 	{
 		
 		/// <summary>
         ///Must be called first. Observer events will be dispatched on the thread provided </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Initialize([MarshalAs(UnmanagedType.Interface)] IPeerConnectionObserver observer, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.Interface)] nsIThread thread);
+		void Initialize([MarshalAs(UnmanagedType.Interface)] IPeerConnectionObserver observer, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal iceServers, [MarshalAs(UnmanagedType.Interface)] nsIThread thread, System.IntPtr jsContext);
 		
 		/// <summary>
         ///JSEP calls </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateOffer([MarshalAs(UnmanagedType.LPStr)] string hints);
+		void CreateOffer(Gecko.JsVal constraints, System.IntPtr jsContext);
 		
 		/// <summary>Member CreateAnswer </summary>
-		/// <param name='hints'> </param>
-		/// <param name='offer'> </param>
+		/// <param name='constraints'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateAnswer([MarshalAs(UnmanagedType.LPStr)] string hints, [MarshalAs(UnmanagedType.LPStr)] string offer);
+		void CreateAnswer(Gecko.JsVal constraints, System.IntPtr jsContext);
 		
 		/// <summary>Member SetLocalDescription </summary>
 		/// <param name='action'> </param>
@@ -172,6 +195,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CloseStreams();
 		
+		/// <summary>Member GetLocalStreamsAttribute </summary>
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetLocalStreamsAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// MediaStream[]
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetRemoteStreamsAttribute(System.IntPtr jsContext);
+		
 		/// <summary>
         ///As the ICE candidates roll in this one should be called each time
         /// in order to keep the candidate list up-to-date for the next SDP-related
@@ -184,7 +219,7 @@ namespace Gecko
 		/// <summary>
         ///Puts the SIPCC engine back to 'kIdle', shuts down threads, deletes state </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Close();
+		void Close([MarshalAs(UnmanagedType.U1)] bool isSynchronous);
 		
 		/// <summary>
         ///Attributes </summary>
@@ -263,5 +298,15 @@ namespace Gecko
 		
 		// 
 		public const long kIceFailed = 4;
+		
+		// <summary>
+        //for 'type' in DataChannelInit dictionary </summary>
+		public const ulong kDataChannelReliable = 0;
+		
+		// 
+		public const ulong kDataChannelPartialReliableRexmit = 1;
+		
+		// 
+		public const ulong kDataChannelPartialReliableTimed = 2;
 	}
 }

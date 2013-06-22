@@ -43,7 +43,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7df46a54-d8b0-448e-903c-4341a1b2499c")]
+	[Guid("55d25e49-793f-4727-a69f-de8b15f4b985")]
 	public interface nsIPrefBranch
 	{
 		

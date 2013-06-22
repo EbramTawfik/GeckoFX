@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4f94f833-6ab4-4c45-aecc-ebe0e100194c")]
+	[Guid("5d5e6687-2eb0-4992-98c7-ec79eab9e0b1")]
 	public interface nsIMozNavigatorAudioChannelManager
 	{
 		
@@ -42,6 +42,6 @@ namespace Gecko
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAudioChannelManager GetMozAudioChannelManagerAttribute();
+		nsISupports GetMozAudioChannelManagerAttribute();
 	}
 }

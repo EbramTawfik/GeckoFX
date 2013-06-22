@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("E9FCB9A4-D376-458f-B720-E65E7DF593BC")]
+	[Guid("8684966b-1877-4f0f-8155-be4490b96bf7")]
 	public interface nsICookie
 	{
 		
@@ -46,7 +46,7 @@ namespace Gecko
         /// the cookie value
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aValue);
+		void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aValue);
 		
 		/// <summary>
         /// true if the cookie is a domain cookie, false otherwise

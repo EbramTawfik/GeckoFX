@@ -637,11 +637,11 @@ namespace Gecko
 		void RemoveDelayedFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
 	}
 	
-	/// <summary>nsIPermissionChecker </summary>
+	/// <summary>nsIProcessChecker </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5f552699-01a2-4f17-833b-ddb3fa0d98b2")]
-	public interface nsIPermissionChecker
+	[Guid("134ccbf0-5c08-11e2-bcfd-0800200c9a66")]
+	public interface nsIProcessChecker
 	{
 		
 		/// <summary>
@@ -666,5 +666,35 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool AssertPermission([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPermission);
+		
+		/// <summary>
+        /// Return true iff the "remote" process has |aManifestURL|.  This is
+        /// intended to be used by JS implementations of cross-process DOM
+        /// APIs, like so
+        ///
+        /// recvFooRequest: function(message) {
+        /// if (!message.target.assertContainApp("foo")) {
+        /// return false;
+        /// }
+        /// // service foo request
+        ///
+        /// This interface only returns meaningful data when our content is
+        /// in a separate process.  If it shares the same OS process as us,
+        /// then applying this manifest URL check doesn't add any security,
+        /// though it doesn't hurt anything either.
+        ///
+        /// Note: If the remote content process does *not* contain |aManifestURL|,
+        /// it will be killed as a precaution.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool AssertContainApp([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aManifestURL);
+		
+		/// <summary>Member AssertAppHasPermission </summary>
+		/// <param name='aPermission'> </param>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool AssertAppHasPermission([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPermission);
 	}
 }

@@ -54,7 +54,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9384802f-a783-43c9-8356-77cfc2318cc1")]
+	[Guid("ab0a1c52-f7fd-4fe7-9e65-7d3705a8580e")]
 	public interface nsIX509CertDB
 	{
 		
@@ -266,23 +266,6 @@ namespace Gecko
 		void ExportPKCS12File([MarshalAs(UnmanagedType.Interface)] nsISupports aToken, [MarshalAs(UnmanagedType.Interface)] nsIFile aFile, uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] nsIX509Cert[] aCerts);
 		
 		/// <summary>
-        /// An array of all known OCSP responders within the scope of the
-        /// certificate database.
-        ///
-        /// @return Array of OCSP responders, entries are QIable to nsIOCSPResponder.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray GetOCSPResponders();
-		
-		/// <summary>
-        /// Whether OCSP is enabled in preferences.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetIsOcspOnAttribute();
-		
-		/// <summary>
         /// Decode a raw data presentation and instantiate an object in memory.
         ///
         /// @param base64 The raw representation of a certificate,
@@ -292,6 +275,18 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIX509Cert ConstructX509FromBase64([MarshalAs(UnmanagedType.LPStr)] string base64);
+		
+		/// <summary>
+        /// Obtain a reference to the appropriate service for recent
+        /// bad certificates. May only be called on the main thread.
+        ///
+        /// @param isPrivate True if the service for certs for private connections
+        /// is desired, false otherwise.
+        /// @return The requested service.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIRecentBadCerts GetRecentBadCerts([MarshalAs(UnmanagedType.U1)] bool isPrivate);
 		
 		/// <summary>
         /// Verifies the signature on the given JAR file to verify that it has a

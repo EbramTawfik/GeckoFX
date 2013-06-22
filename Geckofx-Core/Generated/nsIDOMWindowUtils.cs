@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ed36f965-173c-4101-a615-63b44f51ed90")]
+	[Guid("16b3bdcc-75d4-11e2-8a20-aaff78957a39")]
 	public interface nsIDOMWindowUtils
 	{
 		
@@ -100,8 +100,7 @@ namespace Gecko
         /// @param aName the name of the metadata.  This should be all lowercase.
         /// @return the value of the metadata, or the empty string if it's not set
         ///
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
+        /// Will throw a DOM security error if called without chrome privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDocumentMetadata([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
@@ -120,8 +119,7 @@ namespace Gecko
         /// pixels, regardless of the size of the enclosing widget/view.
         /// This will trigger reflow.
         ///
-        /// The caller of this method must have UniversalXPConnect
-        /// privileges.
+        /// The caller of this method must have chrome privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCSSViewport(float aWidthPx, float aHeightPx);
@@ -156,8 +154,7 @@ namespace Gecko
         /// It's also legal to set a displayport that extends beyond the
         /// area's bounds.  No pixels are rendered outside the area bounds.
         ///
-        /// The caller of this method must have UniversalXPConnect
-        /// privileges.
+        /// The caller of this method must have chrome privileges.
         ///
         /// Calling this will always force a recomposite, so it should be
         /// avoided if at all possible. Client code should do checks before
@@ -166,6 +163,17 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDisplayPortForElement(float aXPx, float aYPx, float aWidthPx, float aHeightPx, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
+		
+		/// <summary>
+        /// When a display port is set, this allows a sub-section of that
+        /// display port to be marked as 'critical'. In this scenario, the
+        /// area outside of this rectangle may be rendered at a lower
+        /// detail (for example, by reducing its resolution), or not rendered
+        /// at all under some circumstances.
+        /// This call will have no effect if a display port has not been set.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCriticalDisplayPortForElement(float aXPx, float aYPx, float aWidthPx, float aHeightPx, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// Get/set the resolution at which rescalable web content is drawn.
@@ -188,18 +196,20 @@ namespace Gecko
         /// // elsewhere
         /// browser.setViewportScale(2.0, 2.0);
         ///
-        /// The caller of this method must have UniversalXPConnect
-        /// privileges.
+        /// The caller of this method must have chrome privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetResolution(float aXResolution, float aYResolution);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetResolution(ref float aXResolution, ref float aYResolution);
 		
 		/// <summary>
         /// Whether the next paint should be flagged as the first paint for a document.
         /// This gives a way to track the next paint that occurs after the flag is
         /// set. The flag gets cleared after the next paint.
         ///
-        /// Can only be accessed with UniversalXPConnect privileges.
+        /// Can only be accessed with chrome privileges.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -210,14 +220,15 @@ namespace Gecko
         /// This gives a way to track the next paint that occurs after the flag is
         /// set. The flag gets cleared after the next paint.
         ///
-        /// Can only be accessed with UniversalXPConnect privileges.
+        /// Can only be accessed with chrome privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetIsFirstPaintAttribute([MarshalAs(UnmanagedType.U1)] bool aIsFirstPaint);
 		
 		/// <summary>
         ///Synthesize a mouse event. The event types supported are:
-        /// mousedown, mouseup, mousemove, mouseover, mouseout, contextmenu
+        /// mousedown, mouseup, mousemove, mouseover, mouseout, contextmenu,
+        /// MozMouseHitTest
         ///
         /// Events are sent in coordinates offset by aX and aY from the window.
         ///
@@ -231,8 +242,7 @@ namespace Gecko
         /// should be sufficient to generate the correct over and out events as well.
         ///
         /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
+        /// Will throw a DOM security error if called without chrome privileges.
         ///
         /// The event is dispatched via the toplevel window, so it could go to any
         /// window under the toplevel window, in some cases it could never reach this
@@ -249,9 +259,12 @@ namespace Gecko
         /// @param aPressure touch input pressure: 0.0 -> 1.0
         /// @param aInputSourceArg input source, see nsIDOMMouseEvent for values,
         /// defaults to mouse input.
+        ///
+        /// returns true if the page called prevent default on this event
         /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame, float aPressure, ushort aInputSourceArg);
+		bool SendMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame, float aPressure, ushort aInputSourceArg);
 		
 		/// <summary>
         ///Synthesize a touch event. The event types supported are:
@@ -260,8 +273,7 @@ namespace Gecko
         /// Events are sent in coordinates offset by aX and aY from the window.
         ///
         /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
+        /// Will throw a DOM security error if called without chrome privileges.
         ///
         /// The event is dispatched via the toplevel window, so it could go to any
         /// window under the toplevel window, in some cases it could never reach this
@@ -303,8 +315,7 @@ namespace Gecko
         /// See nsIWidget::SynthesizeNativeKeyEvent
         ///
         /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
+        /// Will throw a DOM security error if called without chrome privileges.
         ///
         /// When you use this for tests, use the constants defined in NativeKeyCodes.js
         /// </summary>
@@ -316,8 +327,7 @@ namespace Gecko
         ///
         /// Will be called on the widget that contains aElement.
         /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
+        /// Will throw a DOM security error if called without chrome privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendNativeMouseEvent(int aScreenX, int aScreenY, int aNativeMessage, int aModifierFlags, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
@@ -327,8 +337,7 @@ namespace Gecko
         ///
         /// Will be called on the widget that contains aElement.
         /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
+        /// Will throw a DOM security error if called without chrome privileges.
         ///
         /// NOTE: The synthesized native event may be fired asynchronously.
         ///
@@ -343,8 +352,7 @@ namespace Gecko
         /// See nsIWidget::ActivateNativeMenuItemAt
         ///
         /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
+        /// Will throw a DOM security error if called without chrome privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ActivateNativeMenuItemAt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase indexString);
@@ -353,8 +361,7 @@ namespace Gecko
         /// See nsIWidget::ForceUpdateNativeMenuAt
         ///
         /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
+        /// Will throw a DOM security error if called without chrome privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ForceUpdateNativeMenuAt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase indexString);
@@ -365,8 +372,7 @@ namespace Gecko
         /// that currently has focus, and focus the document.
         ///
         /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
+        /// Will throw a DOM security error if called without chrome privileges.
         ///
         /// @param aElement the element to focus
         ///
@@ -380,8 +386,8 @@ namespace Gecko
 		/// <summary>
         /// Force a garbage collection followed by a cycle collection.
         ///
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges in non-debug builds. Available to all callers in debug builds.
+        /// Will throw a DOM security error if called without chrome privileges in
+        /// non-debug builds. Available to all callers in debug builds.
         ///
         /// @param aListener listener that receives information about the CC graph
         /// (see @mozilla.org/cycle-collector-logger;1 for a logger
@@ -399,8 +405,8 @@ namespace Gecko
 		/// <summary>
         /// Force a cycle collection without garbage collection.
         ///
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges in non-debug builds. Available to all callers in debug builds.
+        /// Will throw a DOM security error if called without chrome privileges in
+        /// non-debug builds. Available to all callers in debug builds.
         ///
         /// @param aListener listener that receives information about the CC graph
         /// (see @mozilla.org/cycle-collector-logger;1 for a logger
@@ -424,7 +430,7 @@ namespace Gecko
         ///
         /// Cannot be accessed from unprivileged context (not
         /// content-accessible) Will throw a DOM security error if called
-        /// without UniversalXPConnect privileges.
+        /// without chrome privileges.
         ///
         /// @param aType event type
         /// @param aX x offset in CSS pixels
@@ -472,7 +478,7 @@ namespace Gecko
         /// the maximum difference in a channel.  This will throw an error if
         /// the dimensions of the two canvases are different.
         ///
-        /// This method requires UniversalXPConnect privileges.
+        /// This method requires chrome privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint CompareCanvases([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLCanvasElement aCanvas1, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLCanvasElement aCanvas2, ref uint aMaxDifference);
@@ -489,8 +495,8 @@ namespace Gecko
         /// Suppresses/unsuppresses user initiated event handling in window's document
         /// and subdocuments.
         ///
-        /// @throw NS_ERROR_DOM_SECURITY_ERR if called without UniversalXPConnect
-        /// privileges and NS_ERROR_FAILURE if window doesn't have a document.
+        /// @throw NS_ERROR_DOM_SECURITY_ERR if called without chrome privileges and
+        /// NS_ERROR_FAILURE if window doesn't have a document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SuppressEventHandling([MarshalAs(UnmanagedType.U1)] bool aSuppress);
@@ -502,8 +508,7 @@ namespace Gecko
         /// Disable or enable non synthetic test mouse events on *all* windows.
         ///
         /// Cannot be accessed from unprivileged context (not content-accessible).
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
+        /// Will throw a DOM security error if called without chrome privileges.
         ///
         /// @param aDisable  If true, disable all non synthetic test mouse events
         /// on all windows.  Otherwise, enable them.
@@ -519,6 +524,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetScrollXY([MarshalAs(UnmanagedType.U1)] bool aFlushLayout, ref int aScrollX, ref int aScrollY);
+		
+		/// <summary>
+        /// Returns the scrollbar width of the window's scroll frame.
+        ///
+        /// @param aFlushLayout flushes layout if true. Otherwise, no flush occurs.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetScrollbarWidth([MarshalAs(UnmanagedType.U1)] bool aFlushLayout);
 		
 		/// <summary>
         /// Returns the bounds of the window's currently loaded document. This will
@@ -565,7 +578,7 @@ namespace Gecko
         ///
         /// Cannot be accessed from unprivileged context (not
         /// content-accessible) Will throw a DOM security error if called
-        /// without UniversalXPConnect privileges.
+        /// without chrome privileges.
         ///
         /// @note Event handlers won't get aEvent as parameter, but a similar event.
         /// Also, aEvent should not be reused.
@@ -573,6 +586,16 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool DispatchDOMEventViaPresShell([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTarget, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent, [MarshalAs(UnmanagedType.U1)] bool aTrusted);
+		
+		/// <summary>
+        /// Sets nsEvent::mFlags::mOnlyChromeDispatch to true to ensure that
+        /// the event is propagated only to chrome.
+        /// Event's .target property will be aTarget.
+        /// Returns the same value as what EventTarget.dispatchEvent does.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool DispatchEventToChromeOnly([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aTarget, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
 		
 		/// <summary>
         /// Returns the real classname (possibly of the mostly-transparent security
@@ -586,8 +609,7 @@ namespace Gecko
         /// Generate a content command event.
         ///
         /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
+        /// Will throw a DOM security error if called without chrome privileges.
         ///
         /// @param aType Type of command content event to send.  Can be one of "cut",
         /// "copy", "paste", "delete", "undo", "redo", or "pasteTransferable".
@@ -601,8 +623,7 @@ namespace Gecko
         /// Synthesize a composition event to the window.
         ///
         /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
+        /// Will throw a DOM security error if called without chrome privileges.
         ///
         /// @param aType     The event type: "compositionstart", "compositionend" or
         /// "compositionupdate".
@@ -778,11 +799,19 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetLayerManagerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLayerManagerType);
 		
+		/// <summary>
+        /// Returns a handle which represents current recording start position.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartFrameTimeRecording();
+		uint StartFrameTimeRecording();
 		
+		/// <summary>
+        /// Returns number of recorded frames since startIndex was issued,
+        /// and allocates+populates 2 arraye with the recorded data.
+        /// - Allocation is infallible. Should be released even if size is 0.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StopFrameTimeRecording(ref uint frameCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref float[] frameTime);
+		void StopFrameTimeRecording(uint startIndex, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref float[] paintTimes, ref uint frameCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref float[] frameIntervals);
 		
 		/// <summary>
         /// Signals that we're begining to tab switch. This is used by painting code to
@@ -985,8 +1014,7 @@ namespace Gecko
         /// Returns an array of plugins on the page for opt-in activation.
         ///
         /// Cannot be accessed from unprivileged context (not content-accessible).
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
+        /// Will throw a DOM security error if called without chrome privileges.
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -996,7 +1024,7 @@ namespace Gecko
         /// Set the scrollport size for the purposes of clamping scroll positions for
         /// the root scroll frame of this document to be (aWidth,aHeight) in CSS pixels.
         ///
-        /// The caller of this method must have UniversalXPConnect privileges.
+        /// The caller of this method must have chrome privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetScrollPositionClampingScrollPortSize(float aWidth, float aHeight);
@@ -1043,6 +1071,15 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AllowScriptsToClose();
+		
+		/// <summary>
+        /// In certain cases the event handling of nodes, form controls in practice,
+        /// may be disabled. Such cases are for example the existence of disabled
+        /// attribute or -moz-user-input: none/disabled.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsNodeDisabledForEvents([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 	}
 	
 	/// <summary>nsIDOMWindowUtilsConsts </summary>
@@ -1094,8 +1131,7 @@ namespace Gecko
         // Events are sent in coordinates offset by aX and aY from the window.
         //
         // Cannot be accessed from unprivileged context (not content-accessible)
-        // Will throw a DOM security error if called without UniversalXPConnect
-        // privileges.
+        // Will throw a DOM security error if called without chrome privileges.
         //
         // @param aX                 x offset in CSS pixels
         // @param aY                 y offset in CSS pixels
@@ -1339,5 +1375,8 @@ namespace Gecko
 		
 		// 
 		public const ulong USER_SHEET = 1;
+		
+		// 
+		public const ulong AUTHOR_SHEET = 2;
 	}
 }

@@ -85,8 +85,6 @@ namespace Gecko.IO.Native
 		public bool IsNonBlocking()
 		{
 			return false;
-		}
-
-
+		}		
 	}
 }

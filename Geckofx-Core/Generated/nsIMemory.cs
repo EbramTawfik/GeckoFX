@@ -47,6 +47,11 @@ namespace Gecko
     /// This will be passed as the extra data when the pressure
     /// observer is being asked to flush for low-memory conditions.
     ///
+    /// "low-memory-no-forward"
+    /// This will be passed as the extra data when the pressure observer
+    /// is being asked to flush for low-memory conditions but the resulting
+    /// notification should not be forwarded to the child processes.
+    ///
     /// "heap-minimize"
     /// This will be passed as the extra data when the pressure
     /// observer is being asked to flush because of a heap minimize
@@ -59,7 +64,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("59e7e77a-38e4-11d4-8cf5-0060b0fc14a3")]
+	[Guid("6aef11c4-8615-44a6-9711-98f43805693d")]
 	public interface nsIMemory
 	{
 		
@@ -121,5 +126,15 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsLowMemory();
+		
+		/// <summary>
+        /// This predicate can be used to determine if the platform is a "low-memory"
+        /// platform. Callers may use this to dynamically tune their behaviour
+        /// to favour reduced memory usage at the expense of performance. The value
+        /// returned by this function will not change over the lifetime of the process.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsLowMemoryPlatform();
 	}
 }

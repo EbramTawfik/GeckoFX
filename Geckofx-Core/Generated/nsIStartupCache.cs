@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c1b3796b-33af-4ff0-b83d-8eb0ca2c080f")]
+	[Guid("25957820-90a1-428c-8739-b0845d3cc534")]
 	public interface nsIStartupCache
 	{
 		
@@ -51,6 +51,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InvalidateCache();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void IgnoreDiskCache();
 		
 		/// <summary>
         ///In debug builds, wraps this object output stream with a stream that will

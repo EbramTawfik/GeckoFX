@@ -153,9 +153,8 @@ namespace Gecko
 		
 		/// <summary>
         /// If |eventTarget| is set, copying to sink is done asynchronously using
-        /// the event-target (e.g. a thread). If |eventTarget| is not set, or if
-        /// storage-policy is STORE_ON_DISK_AS_FILE, copying to sink happens
-        /// synchronously while reading from the source.
+        /// the event-target (e.g. a thread). If |eventTarget| is not set, copying
+        /// to sink happens synchronously while reading from the source.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -163,9 +162,8 @@ namespace Gecko
 		
 		/// <summary>
         /// If |eventTarget| is set, copying to sink is done asynchronously using
-        /// the event-target (e.g. a thread). If |eventTarget| is not set, or if
-        /// storage-policy is STORE_ON_DISK_AS_FILE, copying to sink happens
-        /// synchronously while reading from the source.
+        /// the event-target (e.g. a thread). If |eventTarget| is not set, copying
+        /// to sink happens synchronously while reading from the source.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEventTargetAttribute([MarshalAs(UnmanagedType.Interface)] nsIEventTarget aEventTarget);

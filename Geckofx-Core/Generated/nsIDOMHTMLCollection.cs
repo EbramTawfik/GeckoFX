@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("db690d8f-3bca-4198-be64-78adb7f38bf8")]
+	[Guid("bb07f567-5b37-4172-92aa-7d00ceed4809")]
 	public interface nsIDOMHTMLCollection
 	{
 		
@@ -62,18 +62,5 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
-		
-		/// <summary>
-        /// Get the node at the index.  Returns null if the index is out of bounds.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		IntPtr GetElementAt(uint index);
-		
-		/// <summary>
-        /// Get the node for the name.  Returns null if no node exists for the name.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetNamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, ref System.IntPtr cache);
 	}
 }

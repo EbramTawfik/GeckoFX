@@ -33,9 +33,16 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("170c6857-7f71-46ce-bc9b-185723b1c3a8")]
+	[Guid("35235b39-7098-4b3b-8e28-cd004a88b06f")]
 	public interface nsISessionStartup
 	{
+		
+		/// <summary>
+        /// Return a promise that is resolved once initialization
+        /// is complete.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnceInitializedAttribute();
 		
 		/// <summary>
         /// Get session state

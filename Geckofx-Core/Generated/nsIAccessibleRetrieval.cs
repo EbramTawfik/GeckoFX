@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("aed712cb-708b-4caa-981d-767be0fba984")]
+	[Guid("17f86615-1a3d-4021-b227-3a2ef5cbffd8")]
 	public interface nsIAccessibleRetrieval
 	{
 		
@@ -122,5 +122,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetLogging([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aModules);
+		
+		/// <summary>
+        /// Return true if the given module is logged.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsLogged([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aModule);
 	}
 }

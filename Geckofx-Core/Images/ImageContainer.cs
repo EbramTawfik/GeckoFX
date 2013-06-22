@@ -89,12 +89,7 @@ namespace Gecko.Images
 			get { return ( Animation ) _container.Instance.GetAnimationModeAttribute(); }
 			set { _container.Instance.SetAnimationModeAttribute( ( ushort ) value ); }
 		}
-
-		public bool CurrentFrameIsOpaque
-		{
-			get { return _container.Instance.GetCurrentFrameIsOpaqueAttribute(); }
-		}
-
+		
 		public int Height
 		{
 			get { return _container.Instance.GetHeightAttribute(); }

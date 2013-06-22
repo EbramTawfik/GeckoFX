@@ -74,7 +74,7 @@ namespace Gecko
 	/// <summary>nsIContentPrefService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0014e2b4-1bab-4946-9211-7d28fc8df4d7")]
+	[Guid("e3f772f3-023f-4b32-b074-36cf0fd5d414")]
 	public interface nsIContentPrefService
 	{
 		
@@ -94,6 +94,11 @@ namespace Gecko
         /// (typically in the format of a hostname), or null
         /// to get the global pref (applies to all sites)
         /// @param    aName       the name of the pref to get
+        /// @param    aPrivacyContext
+        /// a context from which to determine the privacy status
+        /// of the pref (ie. whether to search in memory or in
+        /// permanent storage for it), obtained from a relevant
+        /// window or channel.
         /// @param    aCallback   an optional nsIContentPrefCallback to receive the
         /// result. If desired, JavaScript callers can instead
         /// provide a function to call upon completion
@@ -104,7 +109,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, System.IntPtr aCallback);
+		nsIVariant GetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aPrivacyContext, System.IntPtr aCallback);
 		
 		/// <summary>
         /// Set a pref.
@@ -118,11 +123,16 @@ namespace Gecko
         /// to set the global pref (applies to all sites)
         /// @param    aName       the name of the pref to set
         /// @param    aValue      the new value of the pref
+        /// @param    aPrivacyContext
+        /// a context from which to determine the privacy status
+        /// of the pref (ie. whether to store it in memory or in
+        /// permanent storage), obtained from a relevant
+        /// window or channel.
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aGroup is not a string, nsIURI, or null
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
+		void SetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aPrivacyContext);
 		
 		/// <summary>
         /// Check whether or not a pref exists.
@@ -132,12 +142,17 @@ namespace Gecko
         /// (typically in the format of a hostname), or null
         /// to check for the global pref (applies to all sites)
         /// @param    aName       the name of the pref to check for
+        /// @param    aPrivacyContext
+        /// a context from which to determine the privacy status
+        /// of the pref (ie. whether to search in memory or in
+        /// permanent storage for it), obtained from a relevant
+        /// window or channel.
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aGroup is not a string, nsIURI, or null
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		bool HasPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
 		
 		/// <summary>
         /// Check whether or not the value of a pref (or its non-existance) is cached.
@@ -147,12 +162,17 @@ namespace Gecko
         /// (typically in the format of a hostname), or null
         /// to check for the global pref (applies to all sites)
         /// @param    aName       the name of the pref to check for
+        /// @param    aPrivacyContext
+        /// a context from which to determine the privacy status
+        /// of the pref (ie. whether to search in memory or in
+        /// permanent storage for it), obtained from a relevant
+        /// window or channel.
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aGroup is not a string, nsIURI, or null
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasCachedPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		bool HasCachedPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
 		
 		/// <summary>
         /// Remove a pref.
@@ -162,27 +182,43 @@ namespace Gecko
         /// (typically in the format of a hostname), or null
         /// to remove the global pref (applies to all sites)
         /// @param    aName       the name of the pref to remove
+        /// @param    aPrivacyContext
+        /// a context from which to determine the privacy status
+        /// of the pref (ie. whether to search in memory or in
+        /// permanent storage for it), obtained from a relevant
+        /// window or channel.
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aGroup is not a string, nsIURI, or null
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void RemovePref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
 		
 		/// <summary>
         /// Remove all grouped prefs.  Useful for removing references to the sites
         /// the user has visited when the user clears their private data.
+        ///
+        /// @param    aPrivacyContext
+        /// a context from which to determine the privacy status
+        /// of the pref (ie. whether to remove prefs in memory or
+        /// in permanent storage), obtained from a relevant
+        /// window or channel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveGroupedPrefs();
+		void RemoveGroupedPrefs([MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
 		
 		/// <summary>
         /// Remove all prefs with the given name.
         ///
         /// @param    aName        the setting name for which to remove prefs
+        /// @param    aPrivacyContext
+        /// a context from which to determine the privacy status
+        /// of the prefs (ie. whether to remove prefs in memory or
+        /// in permanent storage), obtained from a relevant
+        /// window or channel.
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePrefsByName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void RemovePrefsByName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
 		
 		/// <summary>
         /// Get the prefs that apply to the given site.
@@ -191,25 +227,35 @@ namespace Gecko
         /// from which the hostname will be used, a string
         /// (typically in the format of a hostname), or null
         /// to get the global prefs (apply to all sites)
+        /// @param    aPrivacyContext
+        /// a context from which to determine the privacy status
+        /// of the pref (ie. whether to search for prefs in memory
+        /// or in permanent storage), obtained from a relevant
+        /// window or channel.
         ///
         /// @returns  a property bag of prefs
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aGroup is not a string, nsIURI, or null
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPropertyBag2 GetPrefs([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup);
+		nsIPropertyBag2 GetPrefs([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
 		
 		/// <summary>
         /// Get the prefs with the given name.
         ///
         /// @param    aName        the setting name for which to retrieve prefs
+        /// @param    aPrivacyContext
+        /// a context from which to determine the privacy status
+        /// of the pref (ie. whether to search for prefs in memory
+        /// or in permanent storage), obtained from a relevant
+        /// window or channel.
         ///
         /// @returns  a property bag of prefs
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPropertyBag2 GetPrefsByName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		nsIPropertyBag2 GetPrefsByName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
 		
 		/// <summary>
         /// Add an observer.

@@ -32,7 +32,7 @@ namespace Gecko
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("5f409a4d-92f9-4a62-8e8a-cc1c02c32918")]
-	public interface nsIDOMCSSSupportsRule : nsIDOMCSSRule
+	public interface nsIDOMCSSSupportsRule : nsIDOMCSSConditionRule
 	{
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -56,16 +56,30 @@ namespace Gecko
 		new nsIDOMCSSRule GetParentRuleAttribute();
 		
 		/// <summary>
-        /// Interface for @supports rules in the CSS OM.
+        /// Interface for at-rules that have child rules in the CSS OM.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSRuleList GetCssRulesAttribute();
+		new nsIDOMCSSRuleList GetCssRulesAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase rule, uint index);
+		new uint InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase rule, uint index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteRule(uint index);
+		new void DeleteRule(uint index);
+		
+		/// <summary>
+        /// Interface in the CSS OM for at-rules that conditionally apply their
+        /// child rules.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetConditionTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aConditionText);
+		
+		/// <summary>
+        /// Interface in the CSS OM for at-rules that conditionally apply their
+        /// child rules.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetConditionTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aConditionText);
 	}
 }

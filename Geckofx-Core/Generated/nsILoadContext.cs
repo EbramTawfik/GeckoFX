@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("17f6a38a-3f4b-4c94-8252-9d9f7dbf4960")]
+	[Guid("d0029474-0cc4-42fd-bb21-d9ff22f5293c")]
 	public interface nsILoadContext
 	{
 		
@@ -103,6 +103,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetUsePrivateBrowsingAttribute([MarshalAs(UnmanagedType.U1)] bool aUsePrivateBrowsing);
+		
+		/// <summary>
+        /// Set the private browsing state of the load context, meant to be used internally.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPrivateBrowsing([MarshalAs(UnmanagedType.U1)] bool aInPrivateBrowsing);
 		
 		/// <summary>
         /// Returns true iff the load is occurring inside a browser element.

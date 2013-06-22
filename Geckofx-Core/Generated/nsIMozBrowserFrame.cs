@@ -94,6 +94,18 @@ namespace Gecko
 		bool GetReallyIsAppAttribute();
 		
 		/// <summary>
+        /// This corresponds to the expecting-system-message attribute, which tells us
+        /// whether we should expect that this frame will receive a system message once
+        /// it starts up.
+        ///
+        /// It's the embedder's job to set this attribute on a frame.  Its presence
+        /// might cause us to increase the priority of the frame's process.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsExpectingSystemMessageAttribute();
+		
+		/// <summary>
         /// Gets this frame's app manifest URL, if the frame really is an app frame.
         /// Otherwise, returns the empty string.
         ///

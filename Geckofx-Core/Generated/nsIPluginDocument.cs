@@ -32,27 +32,14 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e4be1d0a-9f24-4d69-bec5-245726ab85fb")]
+	[Guid("a93a0f0f-24f0-4206-a21b-56a43dcbdd88")]
 	public interface nsIPluginDocument
 	{
-		
-		/// <summary>
-        /// Sets the stream listener for this plugin document
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStreamListener([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aStreamListener);
 		
 		/// <summary>
         /// Causes the plugin to print in full-page mode
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Print();
-		
-		/// <summary>
-        /// XXXbz once we move plug-in loading to content, this can go away.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetWillHandleInstantiationAttribute();
 	}
 }

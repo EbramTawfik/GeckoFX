@@ -61,7 +61,7 @@ namespace Gecko
 	/// <summary>nsIAnnotationService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ba249b58-346f-42a9-a393-203ae34ec6c4")]
+	[Guid("c7f425cc-a063-49ef-9f4c-b08eb2f1730a")]
 	public interface nsIAnnotationService
 	{
 		
@@ -349,6 +349,17 @@ namespace Gecko
 		void GetItemsWithAnnotation([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase name, ref uint resultCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref int[] results);
 		
 		/// <summary>
+        /// Returns a list of mozIAnnotation(s), having a given annotation name.
+        ///
+        /// @param name
+        /// The annotation to search for.
+        /// @return list of mozIAnnotation objects.
+        /// @note binary annotations are not supported and thus skipped.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		mozIAnnotatedResult GetAnnotationsWithName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase name, ref uint count);
+		
+		/// <summary>
         /// Get the names of all annotations for this URI.
         ///
         /// example JS:
@@ -499,5 +510,56 @@ namespace Gecko
 		
 		// 
 		public const ulong TYPE_INT64 = 5;
+	}
+	
+	/// <summary>
+    /// Represents a place annotated with a given annotation.  If a place has
+    /// multiple annotations, it can be represented by multiple
+    /// mozIAnnotatedResult(s).
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("81fd0188-db6a-492e-80b6-f6414913b396")]
+	public interface mozIAnnotatedResult
+	{
+		
+		/// <summary>
+        /// The globally unique identifier of the place with this annotation.
+        ///
+        /// @note if itemId is valid this is the guid of the bookmark, otherwise
+        /// of the page.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aGuid);
+		
+		/// <summary>
+        /// The URI of the place with this annotation, if available, null otherwise.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIURI GetUriAttribute();
+		
+		/// <summary>
+        /// The bookmark id of the place with this annotation, if available,
+        /// -1 otherwise.
+        ///
+        /// @note if itemId is -1, it doesn't mean the page is not bookmarked, just
+        /// that this annotation is relative to the page, not to the bookmark.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetItemIdAttribute();
+		
+		/// <summary>
+        /// Name of the annotation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAnnotationNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aAnnotationName);
+		
+		/// <summary>
+        /// Value of the annotation.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIVariant GetAnnotationValueAttribute();
 	}
 }

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("12b6d899-2aed-4ea9-8c02-2223ab7ab592")]
+	[Guid("a0a3bc68-eab3-4e66-b5cb-b1d86765119c")]
 	public interface nsIDOMCrypto
 	{
 		
@@ -41,39 +41,6 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVersion);
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetEnableSmartCardEventsAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnableSmartCardEventsAttribute([MarshalAs(UnmanagedType.U1)] bool aEnableSmartCardEvents);
-		
-		/// <summary>
-        ///... </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCRMFObject GenerateCRMFRequest();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportUserCertificates([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase nickname, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase cmmfResponse, [MarshalAs(UnmanagedType.U1)] bool doForcedBackup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PopChallengeResponse([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase challenge, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Random(int numBytes, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
-		
-		/// <summary>
-        ///... </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SignText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase stringToSign, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase caOption, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Logout();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisableRightClick();
+		Gecko.JsVal GetRandomValues(Gecko.JsVal aData, System.IntPtr jsContext);
 	}
 }

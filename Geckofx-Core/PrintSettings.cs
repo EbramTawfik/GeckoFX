@@ -783,5 +783,20 @@ namespace Gecko
 		}
 
 		#endregion
+
+		#region nsIPrintSettings Members
+
+
+		public bool GetPersistMarginBoxSettingsAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetPersistMarginBoxSettingsAttribute(bool aPersistMarginBoxSettings)
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
 	}
 }

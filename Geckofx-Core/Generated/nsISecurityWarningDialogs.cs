@@ -32,76 +32,9 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1c399d06-1dd2-11b2-bc58-c87cbcacdb78")]
+	[Guid("a9561631-5964-4d3f-b372-9f23504054b1")]
 	public interface nsISecurityWarningDialogs
 	{
-		
-		/// <summary>
-        /// Inform the user that a transition
-        /// from an insecure page
-        /// to a secure page
-        /// is happening.
-        ///
-        /// @param ctx A user interface context.
-        ///
-        /// @return true if the user confirms to continue
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmEnteringSecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
-		
-		/// <summary>
-        /// Inform the user that a transition
-        /// from an insecure page
-        /// or from a secure page
-        /// to a weak security page
-        /// is happening.
-        ///
-        /// @param ctx A user interface context.
-        ///
-        /// @return true if the user confirms to continue
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmEnteringWeak([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
-		
-		/// <summary>
-        /// Inform the user that a transition
-        /// from a secure page
-        /// to an insecure page
-        /// is happening.
-        ///
-        /// @param ctx A user interface context.
-        ///
-        /// @return true if the user confirms to continue
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmLeavingSecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
-		
-		/// <summary>
-        /// Inform the user the currently displayed page
-        /// contains some secure and some insecure page components.
-        ///
-        /// @param ctx A user interface context.
-        ///
-        /// @return true if the user decides to show insecure objects.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmMixedMode([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
-		
-		/// <summary>
-        /// Inform the user that information is being submitted
-        /// to an insecure page.
-        ///
-        /// @param ctx A user interface context.
-        ///
-        /// @return true if the user confirms to submit.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmPostToInsecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// Inform the user: Although the currently displayed

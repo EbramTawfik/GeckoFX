@@ -75,7 +75,7 @@ namespace Gecko
 		nsIDOMCSSRuleList GetCssRulesAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase rule);
+		void AppendRule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase rule);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteRule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key);

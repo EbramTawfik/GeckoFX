@@ -528,13 +528,7 @@ namespace GeckofxUnitTests
 		public long GetMozAnimationStartTimeAttribute()
 		{
 			throw new NotImplementedException();
-		}
-
-		public nsIDOMMozURLProperty GetURLAttribute()
-		{
-			throw new NotImplementedException();
-		}
-		
+		}		
 
 		public IntPtr GetOnafterprintAttribute()
 		{
@@ -1060,6 +1054,21 @@ namespace GeckofxUnitTests
 
 
 		public float GetDevicePixelRatioAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
+
+		#region nsIDOMWindow Members
+
+
+		public void PostMessage(JsVal message, nsAStringBase targetOrigin, JsVal transfer, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMCSSStyleDeclaration GetDefaultComputedStyle(nsIDOMElement elt, nsAStringBase pseudoElt)
 		{
 			throw new NotImplementedException();
 		}

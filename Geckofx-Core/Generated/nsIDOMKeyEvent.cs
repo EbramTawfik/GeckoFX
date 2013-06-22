@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5d116380-8432-48cb-a717-200f04c39d2f")]
+	[Guid("ffbe684c-ca90-4b58-aa8c-9727f997f86d")]
 	public interface nsIDOMKeyEvent : nsIDOMUIEvent
 	{
 		
@@ -710,6 +710,23 @@ namespace Gecko
 		// 
 		public const ulong DOM_VK_SCROLL_LOCK = 0x91;
 		
+		// <summary>
+        // for compatibility with the other web browsers on Windows.
+        // </summary>
+		public const ulong DOM_VK_WIN_OEM_FJ_JISHO = 0x92;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_FJ_MASSHOU = 0x93;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_FJ_TOUROKU = 0x94;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_FJ_LOYA = 0x95;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_FJ_ROYA = 0x96;
+		
 		// 
 		public const ulong DOM_VK_CIRCUMFLEX = 0xA0;
 		
@@ -762,6 +779,15 @@ namespace Gecko
 		public const ulong DOM_VK_TILDE = 0xB0;
 		
 		// 
+		public const ulong DOM_VK_VOLUME_MUTE = 0xB5;
+		
+		// 
+		public const ulong DOM_VK_VOLUME_DOWN = 0xB6;
+		
+		// 
+		public const ulong DOM_VK_VOLUME_UP = 0xB7;
+		
+		// 
 		public const ulong DOM_VK_COMMA = 0xBC;
 		
 		// 
@@ -796,6 +822,84 @@ namespace Gecko
 		
 		// 
 		public const ulong DOM_VK_ALTGR = 0xE1;
+		
+		// <summary>
+        // for compatibility with the other web browsers on Windows.
+        // </summary>
+		public const ulong DOM_VK_WIN_ICO_HELP = 0xE3;
+		
+		// 
+		public const ulong DOM_VK_WIN_ICO_00 = 0xE4;
+		
+		// 
+		public const ulong DOM_VK_WIN_ICO_CLEAR = 0xE6;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_RESET = 0xE9;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_JUMP = 0xEA;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_PA1 = 0xEB;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_PA2 = 0xEC;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_PA3 = 0xED;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_WSCTRL = 0xEE;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_CUSEL = 0xEF;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_ATTN = 0xF0;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_FINISH = 0xF1;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_COPY = 0xF2;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_AUTO = 0xF3;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_ENLW = 0xF4;
+		
+		// 
+		public const ulong DOM_VK_WIN_OEM_BACKTAB = 0xF5;
+		
+		// <summary>
+        // with other browsers on Windows, we should define them.
+        // </summary>
+		public const ulong DOM_VK_ATTN = 0xF6;
+		
+		// 
+		public const ulong DOM_VK_CRSEL = 0xF7;
+		
+		// 
+		public const ulong DOM_VK_EXSEL = 0xF8;
+		
+		// 
+		public const ulong DOM_VK_EREOF = 0xF9;
+		
+		// 
+		public const ulong DOM_VK_PLAY = 0xFA;
+		
+		// 
+		public const ulong DOM_VK_ZOOM = 0xFB;
+		
+		// 
+		public const ulong DOM_VK_PA1 = 0xFD;
+		
+		// <summary>
+        // for compatibility with the other web browsers on Windows.
+        // </summary>
+		public const ulong DOM_VK_WIN_OEM_CLEAR = 0xFE;
 		
 		// 
 		public const ulong DOM_KEY_LOCATION_STANDARD = 0x00;

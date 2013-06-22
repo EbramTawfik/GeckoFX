@@ -34,8 +34,8 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a5ae8b05-a76e-408f-b0ba-02a831265749")]
-	public interface nsIRecentBadCertsService
+	[Guid("0fed7784-d152-44d6-95a7-67a59024de0f")]
+	public interface nsIRecentBadCerts
 	{
 		
 		/// <summary>
@@ -60,5 +60,11 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddBadCert([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHostNameWithPort, [MarshalAs(UnmanagedType.Interface)] nsISSLStatus aStatus);
+		
+		/// <summary>
+        /// Clear all stored cert data.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ResetStoredCerts();
 	}
 }

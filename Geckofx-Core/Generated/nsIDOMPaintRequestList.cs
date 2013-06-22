@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("01627136-fdd8-44b4-aac0-7d613608a3d4")]
+	[Guid("1d6a6e10-e9f0-468b-b8e5-da39c945690e")]
 	public interface nsIDOMPaintRequestList
 	{
 		
@@ -46,9 +46,5 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMPaintRequest Item(uint index);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMPaintRequest GetItemAt(uint index);
 	}
 }

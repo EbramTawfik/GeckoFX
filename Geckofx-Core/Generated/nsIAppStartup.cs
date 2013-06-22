@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5016bc45-54d9-4f97-935c-df4cef4b999f")]
+	[Guid("2b51b67f-6f05-4145-b37e-7369bbc92b19")]
 	public interface nsIAppStartup
 	{
 		
@@ -73,13 +73,6 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ExitLastWindowClosingSurvivalArea();
-		
-		/// <summary>
-        /// The amount of time, in milliseconds, that the last session took
-        /// to shutdown.  Reads as 0 to indicate failure.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetLastShutdownDurationAttribute();
 		
 		/// <summary>
         /// Whether automatic safe mode is necessary at this time.  This gets set

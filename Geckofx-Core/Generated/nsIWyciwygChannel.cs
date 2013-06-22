@@ -342,25 +342,21 @@ namespace Gecko
 		
 		/// <summary>
         /// The length of the data associated with the channel if available.  A value
-        /// of -1 indicates that the content length is unknown.
-        ///
-        /// Callers should prefer getting the "content-length" property
-        /// as 64-bit value by QIing the channel to nsIPropertyBag2,
-        /// if that interface is exposed by the channel.
+        /// of -1 indicates that the content length is unknown. Note that this is a
+        /// 64-bit value and obsoletes the "content-length" property used on some
+        /// channels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetContentLengthAttribute();
+		new long GetContentLengthAttribute();
 		
 		/// <summary>
         /// The length of the data associated with the channel if available.  A value
-        /// of -1 indicates that the content length is unknown.
-        ///
-        /// Callers should prefer getting the "content-length" property
-        /// as 64-bit value by QIing the channel to nsIPropertyBag2,
-        /// if that interface is exposed by the channel.
+        /// of -1 indicates that the content length is unknown. Note that this is a
+        /// 64-bit value and obsoletes the "content-length" property used on some
+        /// channels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentLengthAttribute(int aContentLength);
+		new void SetContentLengthAttribute(long aContentLength);
 		
 		/// <summary>
         /// Synchronously open the channel.

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f5eddd39-f8e0-43b7-bc3d-03623f595e52")]
+	[Guid("fadb2bb9-3e2e-4ca0-b0e0-0982b8dda9dc")]
 	public interface nsIAutoCompleteInput
 	{
 		
@@ -280,5 +280,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetConsumeRollupEventAttribute();
+		
+		/// <summary>
+        /// Indicates whether this input is in a "private browsing" context.
+        /// nsIAutoCompleteSearches for these inputs should not persist any data to disk
+        /// (such as a history database).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetInPrivateContextAttribute();
 	}
 }

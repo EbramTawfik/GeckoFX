@@ -109,7 +109,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("91b94446-5d91-4089-bed7-edfab25824a7")]
+	[Guid("a4503a53-6ab8-4b50-b01e-1c4f393fc980")]
 	public interface nsIOfflineCacheUpdate
 	{
 		
@@ -241,6 +241,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIOfflineCacheUpdateObserver aObserver);
+		
+		/// <summary>
+        /// Cancel the update when still in progress. This stops all running resource
+        /// downloads and discards the downloaded cache version. Throws when update
+        /// has already finished and made the new cache version active.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Cancel();
 		
 		/// <summary>
         /// Return the number of bytes downloaded so far

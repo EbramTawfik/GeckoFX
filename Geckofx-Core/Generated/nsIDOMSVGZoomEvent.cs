@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("77a0b46e-54cf-4e6e-a962-a2f52389da34")]
+	[Guid("9cf032c6-8485-4bde-90d4-0c8bbff27a12")]
 	public interface nsIDOMSVGZoomEvent : nsIDOMUIEvent
 	{
 		
@@ -282,25 +282,26 @@ namespace Gecko
 		new bool GetIsCharAttribute();
 		
 		/// <summary>
-        /// For more information on this interface please see
-        /// http://www.w3.org/TR/SVG11/script.html#InterfaceSVGZoomEvent
+        /// readonly attribute nsIDOMSVGRect  zoomRectScreen;
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGRect GetZoomRectScreenAttribute();
-		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		float GetPreviousScaleAttribute();
 		
+		/// <summary>
+        /// SVGPoint
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPoint GetPreviousTranslateAttribute();
+		nsISupports GetPreviousTranslateAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		float GetNewScaleAttribute();
 		
+		/// <summary>
+        /// SVGPoint
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPoint GetNewTranslateAttribute();
+		nsISupports GetNewTranslateAttribute();
 	}
 }

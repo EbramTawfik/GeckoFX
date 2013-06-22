@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("12efa18c-920a-47cd-94a1-4052f245f76c")]
+	[Guid("753b38d1-ee03-4e58-a650-1076ccccdb7f")]
 	public interface nsIEditor
 	{
 		
@@ -602,12 +602,12 @@ namespace Gecko
 		/// <summary>
         ///add an EditorObserver to the editors list of observers. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEditorObserver(IntPtr observer);
+		void AddEditorObserver([MarshalAs(UnmanagedType.Interface)] nsIEditorObserver observer);
 		
 		/// <summary>
         ///Remove an EditorObserver from the editor's list of observers. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveEditorObserver();
+		void RemoveEditorObserver([MarshalAs(UnmanagedType.Interface)] nsIEditorObserver observer);
 		
 		/// <summary>
         ///add an EditActionListener to the editors list of listeners. </summary>

@@ -205,6 +205,25 @@ namespace Gecko
 		void ReceiveContactsList([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase errorMsg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contactType, Gecko.JsVal contacts);
 	}
 	
+	/// <summary>nsIRILContactUpdateCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("ab954d56-12a1-4c6b-8753-14ad5664111d")]
+	public interface nsIRILContactUpdateCallback
+	{
+		
+		/// <summary>
+        /// Called when an ICC contact is updated.
+        ///
+        /// @param errorMsg
+        /// Error message from RIL.
+        /// @param contactType
+        /// Type of the contact, i.e. ADN.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnUpdated([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase errorMsg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contactType);
+	}
+	
 	/// <summary>nsIRILCellBroadcastCallback </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -298,6 +317,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SendStkMenuSelection([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ushort itemIdentifier, [MarshalAs(UnmanagedType.U1)] bool helpRequested);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SendStkTimerExpiration([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal timer);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SendStkEventDownload([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal @event);
@@ -426,60 +448,28 @@ namespace Gecko
 		void GetVoicemailDisplayNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVoicemailDisplayName);
 	}
 	
-	/// <summary>nsIICCRecords </summary>
+	/// <summary>nsIVoicemailInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4efdb1d4-1e49-4f5d-a656-44e6180062a7")]
-	public interface nsIICCRecords
+	[Guid("c0c5cb9f-6372-4b5a-b74c-baacc2da5e4f")]
+	public interface nsIVoicemailInfo
 	{
 		
-		/// <summary>
-        /// Mobile Subscriber ISDN Number
-        /// </summary>
+		/// <summary>Member GetNumberAttribute </summary>
+		/// <param name='aNumber'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMsisdnAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMsisdn);
+		void GetNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNumber);
 		
-		/// <summary>
-        /// Administrative Data
-        /// </summary>
+		/// <summary>Member GetDisplayNameAttribute </summary>
+		/// <param name='aDisplayName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetAdAttribute();
-		
-		/// <summary>
-        /// International Mobile Subscriber Identity
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetImsiAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aImsi);
-		
-		/// <summary>
-        /// Mobile Country Code
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetMccAttribute();
-		
-		/// <summary>
-        /// Mobile Network Code
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetMncAttribute();
-		
-		/// <summary>
-        /// Abbreviated dialling numbers
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetAdnAttribute();
-		
-		/// <summary>
-        /// Fixed Dialling Numbers
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetFdnAttribute();
+		void GetDisplayNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayName);
 	}
 	
 	/// <summary>nsIRilContext </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e6dc89f2-0d4e-46fc-902c-cfeeaee15e40")]
+	[Guid("a09c42c3-1063-42f6-8022-268c6a0fe5e8")]
 	public interface nsIRilContext
 	{
 		
@@ -493,11 +483,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCardStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCardState);
 		
-		/// <summary>Member GetIccAttribute </summary>
-		/// <returns>A nsIICCRecords</returns>
+		/// <summary>Member GetImsiAttribute </summary>
+		/// <param name='aImsi'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetImsiAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aImsi);
+		
+		/// <summary>Member GetIccInfoAttribute </summary>
+		/// <returns>A nsIDOMMozMobileICCInfo</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIICCRecords GetIccAttribute();
+		nsIDOMMozMobileICCInfo GetIccInfoAttribute();
 		
 		/// <summary>Member GetVoiceAttribute </summary>
 		/// <returns>A nsIDOMMozMobileConnectionInfo</returns>
@@ -515,7 +510,7 @@ namespace Gecko
 	/// <summary>nsIRadioInterfaceLayer </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a90fef2c-44aa-4f2b-a0ee-a590e9dd345e")]
+	[Guid("385345ee-f78c-4be4-abd2-07d3dae4e208")]
 	public interface nsIRadioInterfaceLayer
 	{
 		
@@ -530,6 +525,12 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIRilContext GetRilContextAttribute();
+		
+		/// <summary>Member GetVoicemailInfoAttribute </summary>
+		/// <returns>A nsIVoicemailInfo</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIVoicemailInfo GetVoicemailInfoAttribute();
 		
 		/// <summary>
         /// PDP APIs
@@ -578,11 +579,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterDataCallCallback([MarshalAs(UnmanagedType.Interface)] nsIRILDataCallback callback);
 		
+		/// <summary>Member UpdateRILNetworkInterface </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UpdateRILNetworkInterface();
+		
 		/// <summary>
         /// SMS-related functionality.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetNumberOfMessagesForText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
+		nsIDOMMozSmsSegmentInfo GetSegmentInfoForText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
 		
 		/// <summary>Member SendSMS </summary>
 		/// <param name='number'> </param>
@@ -601,6 +607,24 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetICCContacts([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contactType, [MarshalAs(UnmanagedType.Interface)] nsIRILContactCallback callback);
+		
+		/// <summary>
+        /// Update ICC Contact.
+        ///
+        /// This function allows two operations: update the existing contact or
+        /// insert a new contact.
+        /// If the contact has 'recordId' property, the corresponding record will be
+        /// updated. If not, the contact will be inserted.
+        ///
+        /// @param contactType One of the values below.
+        /// "ADN" (Abbreviated Dialling Numbers)
+        /// @param contact     The contact will be updated.
+        /// If has 'recordId' property, updates corresponding record.
+        /// If not, finds a free record and updates it.
+        /// @param callback    A nsIRILContactUpdateCallback object.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UpdateICCContact([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contactType, Gecko.JsVal contact, [MarshalAs(UnmanagedType.Interface)] nsIRILContactUpdateCallback callback);
 	}
 	
 	/// <summary>nsIRadioInterfaceLayerConsts </summary>

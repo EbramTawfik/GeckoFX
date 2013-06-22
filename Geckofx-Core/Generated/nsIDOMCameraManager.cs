@@ -30,7 +30,7 @@ namespace Gecko
     ///Select a camera to use. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("64196840-0d03-4b65-a955-790f43a4b810")]
+	[Guid("177472c9-f83d-48b5-8782-03b43b27f25d")]
 	public interface nsICameraCapabilities
 	{
 		
@@ -238,6 +238,18 @@ namespace Gecko
 		void HandleStateChange([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newState);
 	}
 	
+	/// <summary>nsICameraReleaseCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("f84d607b-554c-413d-8810-cf848642765a")]
+	public interface nsICameraReleaseCallback
+	{
+		
+		/// <summary>Member HandleEvent </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void HandleEvent();
+	}
+	
 	/// <summary>nsICameraErrorCallback </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -256,7 +268,7 @@ namespace Gecko
     ///    any video recorded by the camera. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("70f45209-b69b-4937-bbac-57d82600e2af")]
+	[Guid("c8e7418d-8913-4b66-bd9f-562fba627266")]
 	public interface nsICameraControl
 	{
 		
@@ -526,6 +538,17 @@ namespace Gecko
         ///       resume the camera preview stream. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResumePreview();
+		
+		/// <summary>
+        ///release the camera so that other applications can use it; you should
+        ///       probably call this whenever the camera is not longer in the foreground
+        ///       (depending on your usage model).
+        ///       the callbacks are optional, unless you really need to know when
+        ///       the hardware is ultimately released.
+        ///       once this is called, the camera control object is to be considered
+        ///       defunct; a new instance will need to be created to access the camera. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Release([MarshalAs(UnmanagedType.Interface)] nsICameraReleaseCallback onSuccess, [MarshalAs(UnmanagedType.Interface)] nsICameraErrorCallback onError);
 	}
 	
 	/// <summary>nsICameraGetCameraCallback </summary>

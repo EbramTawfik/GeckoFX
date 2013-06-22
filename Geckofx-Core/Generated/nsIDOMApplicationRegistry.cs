@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("84524e5f-c4ab-4dce-8364-4aac71851ff1")]
+	[Guid("d89870fe-5ba3-11e2-a5d2-cfa1d3f6e5f4")]
 	public interface mozIDOMApplication
 	{
 		
@@ -189,10 +189,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest Launch([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase startPoint);
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest Uninstall();
-		
 		/// <summary>
         ///Clear data that has been collected through mozbrowser elements. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -202,7 +198,7 @@ namespace Gecko
 	/// <summary>mozIDOMApplicationMgmt </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0015d114-70c1-44ae-a8a3-fb6c107fe0e1")]
+	[Guid("cf742022-5ba3-11e2-868f-03310341b006")]
 	public interface mozIDOMApplicationMgmt
 	{
 		
@@ -263,6 +259,17 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ApplyDownload(mozIDOMApplication app);
+		
+		/// <summary>
+        /// Uninstall a web app.
+        ///
+        /// @param app : the app object of the web app to be uninstalled.
+        /// @returns   : A DOMRequest object, returning the app's origin in |result|
+        /// if uninstall succeeds; returning "NOT_INSTALLED" error otherwise.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest Uninstall(mozIDOMApplication app);
 	}
 	
 	/// <summary>mozIDOMApplicationRegistry </summary>

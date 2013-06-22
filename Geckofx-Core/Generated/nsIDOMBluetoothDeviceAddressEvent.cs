@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("afcb832f-bbb5-45fa-b703-f8185bd2d26d")]
+	[Guid("90c55b1c-2da5-4a30-bf09-0c70369a8d89")]
 	public interface nsIDOMBluetoothDeviceAddressEvent : nsIDOMEvent
 	{
 		

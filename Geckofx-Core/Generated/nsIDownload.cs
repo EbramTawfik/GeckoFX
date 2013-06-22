@@ -40,7 +40,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b9879a64-36c3-4b96-baab-dd4b328b5bff")]
+	[Guid("b02be33b-d47c-4bd3-afd9-402a942426b0")]
 	public interface nsIDownload : nsITransfer
 	{
 		
@@ -330,10 +330,23 @@ namespace Gecko
 		nsIMIMEInfo GetMIMEInfoAttribute();
 		
 		/// <summary>
-        /// The id of the download that is stored in the database.
+        /// The id of the download that is stored in the database - not globally unique.
+        /// For example, a private download and a public one might have identical ids.
+        /// Can only be safely used for direct database manipulation in the database that
+        /// contains this download. Use the guid property instead for safe, database-agnostic
+        /// searching and manipulation.
+        ///
+        /// @deprecated
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetIdAttribute();
+		
+		/// <summary>
+        /// The guid of the download that is stored in the database.
+        /// Has the form of twelve alphanumeric characters.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGuid);
 		
 		/// <summary>
         /// The state of the download.
@@ -366,5 +379,48 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsPrivateAttribute();
+		
+		/// <summary>
+        /// Cancel this download if it's currently in progress.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Cancel();
+		
+		/// <summary>
+        /// Pause this download if it is in progress.
+        ///
+        /// @throws NS_ERROR_UNEXPECTED if it cannot be paused.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Pause();
+		
+		/// <summary>
+        /// Resume this download if it is paused.
+        ///
+        /// @throws NS_ERROR_UNEXPECTED if it cannot be resumed or is not paused.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Resume();
+		
+		/// <summary>
+        /// Instruct the download manager to remove this download. Whereas
+        /// cancel simply cancels the transfer, but retains information about it,
+        /// remove removes all knowledge of it.
+        ///
+        /// @see nsIDownloadManager.removeDownload for more detail
+        /// @throws NS_ERROR_FAILURE if the download is active.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Remove();
+		
+		/// <summary>
+        /// Instruct the download manager to retry this failed download
+        /// @throws NS_ERROR_NOT_AVAILABLE if the download is not known.
+        /// @throws NS_ERROR_FAILURE if the download is not in the following states:
+        /// nsIDownloadManager::DOWNLOAD_CANCELED
+        /// nsIDownloadManager::DOWNLOAD_FAILED
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Retry();
 	}
 }

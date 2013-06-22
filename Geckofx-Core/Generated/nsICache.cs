@@ -31,7 +31,7 @@ namespace Gecko
     /// an actual object.
     /// </summary>
 	[ComImport()]
-	[Guid("ec1c0063-197d-44bb-84ba-7525d50fc937")]
+	[Guid("d6c67f38-b39a-4582-8a48-4c4f8a56dfd0")]
 	public interface nsICache
 	{
 	}
@@ -135,8 +135,6 @@ namespace Gecko
         // storage (ie. typically in system RAM).
         // STORE_ON_DISK         - Requires the cache entry to reside in persistent
         // storage (ie. typically on a system's hard disk).
-        // STORE_ON_DISK_AS_FILE - Requires the cache entry to reside in persistent
-        // storage, and in a separate file.
         // STORE_OFFLINE         - Requires the cache entry to reside in persistent,
         // reliable storage for offline use.
         // </summary>
@@ -148,10 +146,9 @@ namespace Gecko
 		// 
 		public const long STORE_ON_DISK = 2;
 		
-		// 
-		public const long STORE_ON_DISK_AS_FILE = 3;
-		
-		// 
+		// <summary>
+        // value 3 was used by STORE_ON_DISK_AS_FILE which was removed
+        // </summary>
 		public const long STORE_OFFLINE = 4;
 		
 		// <summary>
