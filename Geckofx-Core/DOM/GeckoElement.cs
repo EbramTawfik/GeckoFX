@@ -292,11 +292,7 @@ namespace Gecko
 			if (svgElement!=null)
 			{
 				Marshal.ReleaseComObject(svgElement);
-#if false
 				return DOM.Svg.SvgElement.CreateSvgElementWrapper((nsIDOMSVGElement)element);
-#else
-				throw new NotImplementedException("Re implement SvgElement support");
-#endif
 			}
 			var xulElement=Xpcom.QueryInterface<nsIDOMXULElement>( element );
 			if (xulElement!=null)

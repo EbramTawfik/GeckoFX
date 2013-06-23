@@ -117,6 +117,9 @@
     <Compile Include="DOM\Events\DomMouseEventArgs.cs" />
     <Compile Include="DOM\Events\DomSvgEvent.cs" />
     <Compile Include="DOM\Events\DomUIEventArgs.cs" />
+    <Compile Include="DOM\Svg\SvgDocument.cs" />
+    <Compile Include="DOM\Svg\SvgElement.cs" />
+    <Compile Include="DOM\Svg\SvgSvgElement.cs" />
     <Compile Include="FullTrustSecMan.cs" />
     <Compile Include="DOM\Svg\DomSvgAnimatedLength.cs" />
     <Compile Include="DOM\Svg\SvgLength.cs" />
