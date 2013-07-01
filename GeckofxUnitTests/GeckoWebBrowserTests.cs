@@ -83,6 +83,30 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		public void LoadHtmlInUrl_SomeSimpleHtml_HtmlIsLoadedAndAccessableAfterNavigationFinished()
+		{
+			string innerHtml = "<div id=\"_lv5\">old value</div>";
+			string url = "http://mydomain.myzone/";
+
+			browser.LoadHtml("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"
+
+							 + "<html xmlns=\"http://www.w3.org/1999/xhtml\" >"
+
+							 + "<body>" + innerHtml + "</body></html>", url);
+
+			browser.NavigateFinishedNotifier.NavigateFinished += (sender, e) =>
+			{
+				Assert.AreEqual(innerHtml, browser.Document.Body.InnerHtml);
+			};
+
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+			Assert.AreEqual(innerHtml, browser.Document.Body.InnerHtml);
+
+			Assert.AreEqual(url, browser.Url.AbsoluteUri);
+		}
+
+		[Test]
 		public void DomContentChanged_ChangeContentOfTextInputWithKeyPressAndMoveToSecondInput_DomContentChangedShouldFire()
 		{
 			string html = "<input id=\"one\" type=\"text\" value=\"hello\" /><input id=\"two\" type=\"text\"  value=\"world\" />";

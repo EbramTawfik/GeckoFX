@@ -44,7 +44,7 @@ namespace Gecko
 #if DEBUG
 				for ( int i = 0; i < count; ++i )
 				{
-					Console.WriteLine( ( char ) Marshal.ReadByte( aBuf, i ) );
+					//Console.WriteLine( ( char ) Marshal.ReadByte( aBuf, i ) );
 				}
 #endif
 				_position += (int)count;

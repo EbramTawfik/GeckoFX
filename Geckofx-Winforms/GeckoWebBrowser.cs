@@ -439,6 +439,28 @@ namespace Gecko
 			Navigate( string.Concat( "data:", type, ";base64,", Convert.ToBase64String( bytes ) ) );
 		}
 
+		public void LoadHtml(string content, string url, string contentType = "text/html")
+		{			
+			using (var sContentType = new nsACString(contentType))
+			{
+				using (var sUtf8 = new nsACString("UTF8"))
+				{
+					ByteArrayInputStream inputStream = null;
+					try
+					{
+						inputStream = ByteArrayInputStream.Create(System.Text.Encoding.UTF8.GetBytes(content != null ? content : string.Empty));
+
+						nsIDocShell docShell = Xpcom.QueryInterface<nsIDocShell>(this.WebBrowser);
+						docShell.LoadStream(inputStream, IOService.CreateNsIUri(url), sContentType, sUtf8, null);
+						Marshal.ReleaseComObject(docShell);	
+					}
+					finally
+					{
+						if (inputStream != null) inputStream.Close();
+					}
+				}
+			}
+		} 
 
 		[Obsolete]
 		public NavigateFinishedNotifier NavigateFinishedNotifier;
