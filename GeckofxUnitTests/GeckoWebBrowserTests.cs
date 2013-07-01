@@ -286,6 +286,36 @@ namespace GeckofxUnitTests
 				Assert.AreEqual("200", result);
 			}
 		}
+		
+		[Test]
+		public void EvaluateScript_JavascriptIncreasePriviligesCrossFrameAccess_ScriptExecutesAndReturnsExpectedResult()
+		{
+			string result;
+			string aboutBlank;
+			using (var page = new GeckoWebBrowser())
+			{
+				IntPtr unused = page.Handle;			
+				page.CreateWindow += (s, e) => { e.WebBrowser = browser; };				
+				using (AutoJSContext context = new AutoJSContext(page.JSContext))
+				{
+					Assert.IsTrue(context.EvaluateScript("window.open('http://www.google.com'); window.location.href", out aboutBlank));
+				}				
+				browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+				using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+				{
+					Assert.IsTrue(context.EvaluateScript("window.location.href", out result));
+					Assert.AreNotEqual(aboutBlank, result);
+					
+					// cross frame access
+					Assert.IsFalse(context.EvaluateScript("opener.location.href", out result));
+					Assert.IsTrue(context.EvaluateTrustedScript("opener.location.href", out result));
+					Assert.AreEqual(aboutBlank, result);
+				}
+
+				page.Stop();
+			}
+		}
 
 		[Test]
 		public void EvaluateScript_PassBodyasThis_ThisEqualsBodyObject()

@@ -117,6 +117,22 @@ namespace Gecko
 			return JS_SetContextCallback_Win32(rt, cb);
 		}
 
+		public static IntPtr JS_EnterCompartment(IntPtr cx, IntPtr obj)
+		{
+			if (Xpcom.IsLinux)
+				throw new NotImplementedException();
+
+			return JS_EnterCompartment_Win32(cx, obj);
+		}
+
+		public static void JS_LeaveCompartment(IntPtr cx, IntPtr oldCompartment)
+		{
+			if (Xpcom.IsLinux)
+				throw new NotImplementedException();
+
+			JS_LeaveCompartment_Win32(cx, oldCompartment);
+		}
+
 		#endregion
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EncodeString@@YAPADPAUJSContext@@PAVJSString@@@Z")]
@@ -154,6 +170,12 @@ namespace Gecko
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_ContextIterator@@YAPAUJSContext@@PAUJSRuntime@@PAPAU1@@Z")]
 		private static extern IntPtr JS_ContextIterator_Win32(IntPtr rt, ref IntPtr iterp);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EnterCompartment@@YAPAUJSCompartment@@PAUJSContext@@PAVJSObject@@@Z")]
+		private static extern IntPtr JS_EnterCompartment_Win32(IntPtr cx, IntPtr obj);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_LeaveCompartment@@YAXPAUJSContext@@PAUJSCompartment@@@Z")]
+		private static extern void JS_LeaveCompartment_Win32(IntPtr cx, IntPtr oldCompartment);
 
 		[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
 		public delegate JSBool JSContextCallback(IntPtr cx, UInt32 contextOp);

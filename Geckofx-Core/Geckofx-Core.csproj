@@ -120,7 +120,6 @@
     <Compile Include="DOM\Svg\SvgDocument.cs" />
     <Compile Include="DOM\Svg\SvgElement.cs" />
     <Compile Include="DOM\Svg\SvgSvgElement.cs" />
-    <Compile Include="FullTrustSecMan.cs" />
     <Compile Include="DOM\Svg\DomSvgAnimatedLength.cs" />
     <Compile Include="DOM\Svg\SvgLength.cs" />
     <Compile Include="Events\GeckoEventList.cs">

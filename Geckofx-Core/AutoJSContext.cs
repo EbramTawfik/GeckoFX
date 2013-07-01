@@ -50,12 +50,8 @@ namespace Gecko
 		
 		public IntPtr ContextPointer { get { return _cx; } }
 
-		private readonly nsIJSContextStack _contextStack;
-
-		private readonly nsIPrincipal _systemPrincipal;
-		
+		private readonly nsIJSContextStack _contextStack;		
 		static private nsIXPConnect _xpConnect;
-		static private nsIScriptSecurityManager _securityManager;
 
 		/// <summary>
 		/// Create a AutoJSContext using the SafeJSContext.
@@ -79,26 +75,10 @@ namespace Gecko
 			// push the context onto the context stack
 			_contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
 			_contextStack.Push(_cx);
-
-// PushContextPrinciple was removed in firefox 16.
-// TODO: It would be nice to get elevated security when running javascript from geckofx.
-#if false
-			// obtain the system principal (no security checks) (one could get a different principal by calling securityManager.GetObjectPrincipal())
-			if (_securityManager == null)
-			{
-				_securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
-			}
-
-			_systemPrincipal = _securityManager.GetSystemPrincipal();
-
-			_securityManager.PushContextPrincipal(_cx, IntPtr.Zero, _systemPrincipal);
-#endif
 		}
 
 		/// <summary>
 		/// Create a AutoJSContext using the SafeJSContext.
-		/// This AutoJSContext method is no load avaliable due to nsIThreadJSContextStack.GetSafeJSContext being made a virtual method
-		/// which prevents safe COM access.
 		/// </summary>		
 		public AutoJSContext() : this(IntPtr.Zero)
 		{
@@ -159,55 +139,47 @@ namespace Gecko
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine("Execption {0}", e);
+				Console.WriteLine("Exception {0}", e);
 				result = String.Empty;
 				return false;
 			}
 		}
 
 		/// <summary>
-		/// Evaluate javascript in the current context.
+		/// Evaluate javascript in the current context with system privileges.
 		/// </summary>
 		/// <param name="jsScript"></param>
 		/// <param name="jsval"></param>
 		/// <returns></returns>
-		public bool EvaluateFullTrustScriptForCurrentContext(string jsScript, out string result)
+		public bool EvaluateTrustedScript(string jsScript, out string result)
 		{
 			var ptr = new JsVal();
 			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
 			bool ret;
-			using (var security = new FullTrustSecMan(XPConnect, _cx))
+			IntPtr systemGlobalObject = SpiderMonkey.JS_GetGlobalForScopeChain(GlobalJSContextHolder.BackstageJSContext);
+			// Compartments have to be entered and left in LIFO order.
+			bool inSystemCompartment = false;
+			IntPtr oldCompartment = IntPtr.Zero;
+			try
 			{
+				// Allow access to any object on page.
+				oldCompartment = SpiderMonkey.JS_EnterCompartment(_cx, systemGlobalObject);
+				// At any time, a JSContext has a current (possibly-NULL) compartment.
+				inSystemCompartment = true;
 				ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
 				IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
 				result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));
 			}
-			return ret;
-		}
-
-		/// <summary>
-		/// Evaluate javascript in the current context.
-		/// </summary>
-		/// <param name="jsScript"></param>
-		/// <param name="jsval"></param>
-		/// <returns></returns>
-		public bool EvaluateFullTrustScript(string jsScript, out string result)
-		{
-			var ptr = new JsVal();
-			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
-			bool ret;
-			using (var security = new FullTrustSecMan(XPConnect, IntPtr.Zero))
+			finally
 			{
-				ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
-				IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
-				result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));
+				if (inSystemCompartment)
+					SpiderMonkey.JS_LeaveCompartment(_cx, oldCompartment);
 			}
 			return ret;
 		}
 
 		public nsISupports GetGlobalNsObject()
 		{
-			//IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
 			IntPtr globalObject = SpiderMonkey.JS_GetGlobalObject(_cx);
 			if (globalObject != IntPtr.Zero)
 			{
@@ -230,11 +202,6 @@ namespace Gecko
 
 		public void Dispose()
 		{
-// PopContextPrincipal was removed in firefox 16.
-// TODO: delete this block if still exists in geckofx 17+
-#if false
-			_securityManager.PopContextPrincipal(_cx);
-#endif
 			_contextStack.Pop();
 
 			SpiderMonkey.JS_EndRequest(_cx);
