@@ -78,7 +78,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyName>Geckofx-Winforms-18</AssemblyName>
+    <AssemblyName>Geckofx-Winforms-21</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
