@@ -345,8 +345,9 @@ namespace Gecko
         /// Content Viewer that is currently loaded for this DocShell.  This may
         /// change as the underlying content changes.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetContentViewerAttribute();
+		nsIContentViewer GetContentViewerAttribute();
 		
 		/// <summary>
         /// This attribute allows chrome to tie in to handle DOM events that may
@@ -634,7 +635,7 @@ namespace Gecko
         /// complete the simulated load after returning to the event loop.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginRestore(System.IntPtr viewer, [MarshalAs(UnmanagedType.U1)] bool top);
+		void BeginRestore([MarshalAs(UnmanagedType.Interface)] nsIContentViewer viewer, [MarshalAs(UnmanagedType.U1)] bool top);
 		
 		/// <summary>
         /// Finish firing WebProgressListener notifications and DOM events for
