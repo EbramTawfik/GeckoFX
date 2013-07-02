@@ -439,7 +439,12 @@ namespace Gecko
 			Navigate( string.Concat( "data:", type, ";base64,", Convert.ToBase64String( bytes ) ) );
 		}
 
-		public void LoadHtml(string content, string url, string contentType = "text/html")
+        public void LoadHtml(string content, string url)
+        {
+            LoadHtml(content, url, "text/html");
+        }
+
+		public void LoadHtml(string content, string url, string contentType)
 		{			
 			using (var sContentType = new nsACString(contentType))
 			{
