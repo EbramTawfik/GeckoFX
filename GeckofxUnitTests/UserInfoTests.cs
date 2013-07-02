@@ -25,25 +25,28 @@ namespace GeckofxUnitTests
 		[TearDown]
 		public void AfterEachTestTearDown()
 		{
-			Marshal.ReleaseComObject(m_instance);
-		}		
+			// Doing this combined with how the tests are currently set up may cause memory corruption.
+			// Marshal.ReleaseComObject(m_instance);
+		}
 
-		[Test]
-		public void GetFullnameAttribute_ThrowsNotImplementException()
+        [Test]
+        [Ignore("may cause memory coruption")]
+        public void GetFullnameAttribute_ThrowCOMException()
 		{
-			Assert.Throws<NotImplementedException>(() => m_instance.GetFullnameAttribute());
+            Assert.Throws<COMException>(() => m_instance.GetFullnameAttribute());
 		}
 
 		[Test]
-		public void GetEmailAddressAttribute_ThrowsNotImplementException()
+        [Ignore("may cause memory coruption")]
+        public void GetEmailAddressAttribute_ThrowsCOMException()
 		{
-			Assert.Throws<NotImplementedException>(() => m_instance.GetEmailAddressAttribute());
+            Assert.Throws<COMException>(() => m_instance.GetEmailAddressAttribute());
 		}
 
 		[Test]
-		public void GetDomainAttribute_ThrowsNotImplementedException()
+		public void GetDomainAttribute_ReturnsNull()
 		{
-			Assert.Throws<NotImplementedException>(() => m_instance.GetDomainAttribute());			
+			Assert.IsNotNull(m_instance.GetDomainAttribute());
 		}
 	}
 }

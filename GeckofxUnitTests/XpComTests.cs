@@ -48,23 +48,7 @@ namespace GeckofxUnitTests
 			var webBrowser = Xpcom.CreateInstance<nsIWebBrowser>("@mozilla.org/embedding/browser/nsWebBrowser;1");
 			Assert.IsNotNull(webBrowser);
 			Marshal.ReleaseComObject(webBrowser);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingShellService_ReturnsValidInstance()
-		{
-			var instance = Xpcom.CreateInstance<nsIShellService>("@mozilla.org/browser/shell-service;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingDirectoryProvider_ReturnsValidInstance()
-		{
-			var instance = Xpcom.CreateInstance<nsIDirectoryServiceProvider>("@mozilla.org/browser/directory-provider;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
+		}			
 
 		[Test]
 		[Platform(Exclude="Linux")]
@@ -250,15 +234,6 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
-	
-		[Test]
-		public void CreateInstance_CreatingXtfService_ReturnsValidInstance()
-		{
-			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/xtf/xtf-service;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
 
 		[Test]
 		public void CreateInstance_CreatingMork_ThrowsClassNotRegistered()
@@ -382,15 +357,7 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/dom/indexeddb/manager;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingContenetPermissionPrompt_ReturnsValidInstance()
-		{
-			var instance = Xpcom.CreateInstance<nsIContentPermissionPrompt>("@mozilla.org/content-permission/prompt;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
+		}		
 
 		[Test]
 		public void CreateInstance_CreatingContentPrefService_ThrowsFail()
@@ -405,23 +372,7 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/content-pref/hostname-grouper;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingSidebar_ReturnsValidInstance()
-		{
-			var instance = Xpcom.CreateInstance<nsISidebar>("@mozilla.org/sidebar;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingWebContentHandlerRegistrar_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsIWebContentHandlerRegistrar>("@mozilla.org/embeddor.implemented/web-content-handler-registrar;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}		
+		}				
 
 		[Test]
 		public void CreateInstance_CreatingTxtSrvFilter_ReturnsValidInstance()
@@ -1097,15 +1048,7 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/appshell/component/browser-status-filter;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingProfileMigrator_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsIProfileMigrator>("@mozilla.org/toolkit/profile-migrator;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
+		}		
 
 		[Test]
 		public void CreateInstance_CreatingCrashReporter_ReturnsValidInstance()
@@ -1600,15 +1543,6 @@ namespace GeckofxUnitTests
 		public void GetJsSubscriptLoader_CleanXpComInstance_ReturnsValidInstance()
 		{
 			var instance = Xpcom.GetService<mozIJSSubScriptLoader>("@mozilla.org/moz/jssubscript-loader;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-		
-		[Platform("Win")]
-		[Test]
-		public void GetUpdateManager_CleanXpComInstance_ReturnsValidInstance()
-		{
-			var instance = Xpcom.GetService<nsIUpdateManager>("@mozilla.org/updates/update-manager;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
