@@ -2,6 +2,12 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v21.0-0.1 ==
+
+1. Initial version supporting firefox/xulrunner v21.0
+2. GeckoWebBrowser.LoadHtml(string content, string url, string contentType) 
+which provides a new way of loading WebBrowser content via a string.
+
 == v18.0-0.2 ==
 
 1. Small bug fix release.
