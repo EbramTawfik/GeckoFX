@@ -66,38 +66,29 @@ namespace Gecko
 			// Use of the canvas technique was inspired by: the abduction! firefox plugin by Rowan Lewis
 			// https://addons.mozilla.org/en-US/firefox/addon/abduction/
 
-			// Some opertations fail without a proper JSContext.
-			using (AutoJSContext jsContext = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
+			uint flags = (uint)(nsIDOMCanvasRenderingContext2DConsts.DRAWWINDOW_DO_NOT_FLUSH
+							//| nsIDOMCanvasRenderingContext2DConsts.DRAWWINDOW_DRAW_VIEW
+							| nsIDOMCanvasRenderingContext2DConsts.DRAWWINDOW_ASYNC_DECODE_IMAGES
+							| nsIDOMCanvasRenderingContext2DConsts.DRAWWINDOW_USE_WIDGET_LAYERS);
+			string data;
+			using (AutoJSContext context = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
 			{
-				GeckoCanvasElement canvas = (GeckoCanvasElement)m_browser.Document.CreateElement("canvas");
-				canvas.Width = width;
-				canvas.Height = height;
-
-				nsIDOMHTMLCanvasElement canvasPtr = (nsIDOMHTMLCanvasElement)canvas.DomObject;
-				nsIDOMCanvasRenderingContext2D context;
-				using (nsAString str = new nsAString("2d"))
-				{
-					context = (nsIDOMCanvasRenderingContext2D)canvasPtr.MozGetIPCContext(str);
-				}
-
-				using (nsAString color = new nsAString("rgb(255,255,255)"))
-				{
-#if false
-					context.DrawWindow( ( nsIDOMWindow ) m_browser.Window.DomWindow, xOffset, yOffset, width, height, color,
-					                    ( uint ) ( nsIDOMCanvasRenderingContext2DConsts.DRAWWINDOW_DO_NOT_FLUSH |
-					                               nsIDOMCanvasRenderingContext2DConsts.DRAWWINDOW_DRAW_VIEW |
-					                               nsIDOMCanvasRenderingContext2DConsts.DRAWWINDOW_ASYNC_DECODE_IMAGES |
-					                               nsIDOMCanvasRenderingContext2DConsts.DRAWWINDOW_USE_WIDGET_LAYERS ) );
-					;
-#else
-					throw new NotImplementedException("nsIDOMCanvasRenderingContext2D not longer exposes DrawWindow");
-#endif
-				}
-
-				string data = canvas.toDataURL("image/png");
-				byte[] bytes = Convert.FromBase64String(data.Substring("data:image/png;base64,".Length));
-				return bytes;
+				context.EvaluateScript(string.Format(@"(function(canvas, ctx)
+						{{
+							canvas = document.createElement('canvas');
+							canvas.width = {2};
+							canvas.height = {3};
+							ctx = canvas.getContext('2d');
+							ctx.drawWindow(window, {0}, {1}, {2}, {3}, 'rgb(255,255,255)', {4});
+							return canvas.toDataURL('image/png');
+						}}
+						)()", xOffset, yOffset, width, height, flags), (nsISupports)m_browser.Window.DomWindow, out data);
 			}
+			if (!data.StartsWith("data:image/png;base64,"))
+				throw new InvalidOperationException();
+
+			byte[] bytes = Convert.FromBase64String(data.Substring("data:image/png;base64,".Length));
+			return bytes;
 		}
 
 		public byte[] CanvasGetPngImage(uint width, uint height)

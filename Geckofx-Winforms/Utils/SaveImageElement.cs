@@ -9,8 +9,8 @@ namespace Gecko.Utils
     /// </summary> 
     public class SaveImageElement
     {
-		internal static GeckoCanvasElement CreateCanvasOfImageElement(IGeckoWebBrowser browser, GeckoHtmlElement element, float xOffset,
-                                                           float yOffset, float width, float height)
+		private static string CopyImageElementToDataImageString(GeckoHtmlElement element,
+			string imageFormat, float xOffset, float yOffset, float width, float height)
         {
             if (width == 0)
                 throw new ArgumentException("width");
@@ -18,29 +18,22 @@ namespace Gecko.Utils
             if (height == 0)
                 throw new ArgumentException("height");
 
-            // Some opertations fail without a proper JSContext.
-			using(var jsContext = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
-            {
-                GeckoCanvasElement canvas = (GeckoCanvasElement)browser.Document.CreateElement("canvas");
-                canvas.Width = (uint)width;
-                canvas.Height = (uint)height;
-
-                nsIDOMHTMLCanvasElement canvasPtr = (nsIDOMHTMLCanvasElement)canvas.DomObject;
-                nsIDOMCanvasRenderingContext2D context;
-                using (var str = new nsAString("2d"))
-                {
-                    context = (nsIDOMCanvasRenderingContext2D)canvasPtr.MozGetIPCContext(str);
-                }
-
-#if false
-                context.DrawImage((nsIDOMElement)element.DomObject, xOffset, yOffset, width, height, xOffset, yOffset,
-                                  width, height, 6);
-#else
-				throw new NotImplementedException("nsIDOMCanvasRenderingContext2D not longer exposes DrawImage");
-#endif
-
-                return canvas;
-            }
+			string data;
+			using (AutoJSContext context = new AutoJSContext(GlobalJSContextHolder.GetJSContextForDomWindow(element.OwnerDocument.DefaultView.DomWindow)))
+			{
+				context.EvaluateScript("window.__selectedElement = this", (nsISupports)(nsIDOMElement)element.DomObject, out data);
+				context.EvaluateTrustedScript(string.Format(@"(function(canvas, ctx)
+						{{
+							canvas = document.createElement('canvas');
+							canvas.width = {2};
+							canvas.height = {3};
+							ctx = canvas.getContext('2d');
+							ctx.drawImage(window.__selectedElement, -{0}, -{1});
+							return canvas.toDataURL('{4}');
+						}}
+						)()", xOffset, yOffset, width, height, imageFormat), out data);
+			}
+			return data;
         }
 
         /// <summary>
@@ -50,9 +43,11 @@ namespace Gecko.Utils
 		public static byte[] ConvertGeckoImageElementToPng(IGeckoWebBrowser browser, GeckoHtmlElement element, float xOffset,
                                                            float yOffset, float width, float height)
         {
-            GeckoCanvasElement canvas = CreateCanvasOfImageElement(browser, element, xOffset, yOffset, width, height);
 
-            string data = canvas.toDataURL("image/png");
+			string data = CopyImageElementToDataImageString(element, "image/png", xOffset, yOffset, width, height);
+			if (!data.StartsWith("data:image/png;base64,"))
+				throw new InvalidOperationException();
+
             byte[] bytes = Convert.FromBase64String(data.Substring("data:image/png;base64,".Length));
             return bytes;
         }
@@ -64,9 +59,9 @@ namespace Gecko.Utils
 		public bool CopyGeckoImageElementToPng(IGeckoWebBrowser browser, GeckoHtmlElement element, float xOffset,
                                                       float yOffset, float width, float height)
         {
-            GeckoCanvasElement canvas = CreateCanvasOfImageElement(browser, element, xOffset, yOffset, width, height);
+			string data = CopyImageElementToDataImageString(element, "image/png", xOffset, yOffset, width, height);
+			if (!data.StartsWith("data:image/png;base64,"))	return false;
 
-            string data = canvas.toDataURL("image/png");
             byte[] bytes = Convert.FromBase64String(data.Substring("data:image/png;base64,".Length));
             Clipboard.SetImage(System.Drawing.Image.FromStream(new System.IO.MemoryStream(bytes)));
             return Clipboard.ContainsImage();
