@@ -525,27 +525,5 @@ namespace GeckofxUnitTests
             Assert.AreEqual("hello world", browser.Document.Body.InnerHtml);
         }
 
-		// TODO: move unittest into GeckoMarkupDocumentViewerTests
-		[Test]
-		public void SetFullZoomAttribute_SettingToDefault()
-		{
-			browser.TestLoadHtml("hello world.");
-
-			browser.GetMarkupDocumentViewer().SetFullZoomAttribute(1.0F);
-
-			Assert.AreEqual(1.0F, browser.GetMarkupDocumentViewer().GetFullZoomAttribute());
-		}
-
-		// TODO: move unittest into GeckoMarkupDocumentViewerTests
-		[Ignore("SetFullZoomAttribute to anything other than 1.0 causes memory corruption")]
-		[Test]
-		public void SetFullZoomAttribute_ZoomingIn()
-		{
-			browser.TestLoadHtml("hello world.");
-
-			browser.GetMarkupDocumentViewer().SetFullZoomAttribute(2.0F);
-
-			Assert.AreEqual(2.0F, browser.GetMarkupDocumentViewer().GetFullZoomAttribute());
-		}
 	}
 }

@@ -44,6 +44,7 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		[Ignore("may cause memory coruption")]
 		public void GetDomainAttribute_ReturnsNull()
 		{
 			Assert.IsNotNull(m_instance.GetDomainAttribute());

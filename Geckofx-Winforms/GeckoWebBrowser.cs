@@ -394,24 +394,12 @@ namespace Gecko
 			nsIURI referrerUri = null;
 			if (!string.IsNullOrEmpty(referrer))
 			{
-				//referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
 				referrerUri = IOService.CreateNsIUri( referrer );
 			}
-
-			ClearCachedCOMPtrs();
 
 			WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postData != null ? postData.InputStream : null, headers != null ? headers.InputStream : null);
 
 			return true;
-		}
-
-		/// <summary>
-		/// A Naviagation causes cached COM Ptrs to document objects to be invalid.
-		/// This method is called before LoadURI and reset all cached COM Ptrs to null.
-		/// </summary>
-		void ClearCachedCOMPtrs()
-		{
-			_MarkupDocumentViewer = null;
 		}
 
 
@@ -1072,21 +1060,15 @@ namespace Gecko
 
 		public GeckoMarkupDocumentViewer GetMarkupDocumentViewer()
 		{
-			if (_MarkupDocumentViewer != null)
-				return _MarkupDocumentViewer;
-
 			if (WebNav == null)
 				return null;
 
 			nsIDocShell shell = Xpcom.QueryInterface<nsIDocShell>(WebNav);
-		    nsIContentViewer contentViewer = shell.GetContentViewerAttribute();			
-
-			_MarkupDocumentViewer = new GeckoMarkupDocumentViewer((nsIMarkupDocumentViewer)contentViewer);
-
-			return _MarkupDocumentViewer;
+			nsIContentViewer contentViewer = shell.GetContentViewerAttribute();
+			Marshal.ReleaseComObject(shell);
+			
+			return new GeckoMarkupDocumentViewer((nsIMarkupDocumentViewer)contentViewer);
 		}
-
-		GeckoMarkupDocumentViewer _MarkupDocumentViewer;
 		
 		#region nsIWebBrowserChrome Members
 
