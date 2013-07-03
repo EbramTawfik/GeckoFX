@@ -147,17 +147,6 @@ namespace Gecko
 
 			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
 			{
-				// make sure the object is still alive before we call a method on it
-				if (WebNav != null)
-				{
-					var webNav = Xpcom.QueryInterface<nsIWebNavigation>( WebNav );
-					if ( webNav != null )
-					{
-						webNav.Stop((int) nsIWebNavigationConsts.STOP_ALL );
-						Marshal.ReleaseComObject( webNav );
-					}
-					WebNav = null;
-				}
 				Cleanup();
 			}
 
@@ -174,12 +163,20 @@ namespace Gecko
 		{
 			// If control is not shown simply return
 			if (BaseWindow == null) return;
-			var baseWindow = Xpcom.QueryInterface<nsIBaseWindow>(BaseWindow);
-			if (baseWindow != null)
+
+			this.Stop();
+
+			nsIDocShell docShell = Xpcom.QueryInterface<nsIDocShell>(BaseWindow);
+			if (docShell != null)
 			{
-				baseWindow.Destroy();
-				Marshal.ReleaseComObject(baseWindow);
+				nsIContentViewer contentViewer = docShell.GetContentViewerAttribute();
+				contentViewer.PermitUnload(false);
+				contentViewer.Destroy();
+				Marshal.ReleaseComObject(docShell);
 			}
+
+			BaseWindow.Destroy();
+
 			Xpcom.FreeComObject( ref CommandParams );		
 		}
 
