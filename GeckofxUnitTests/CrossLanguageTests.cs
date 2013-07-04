@@ -290,7 +290,7 @@ namespace GeckofxUnitTests
 			// test invoking method of javascript xpcom object.
 			Assert.AreEqual(20, p.GetPriorityAttribute());
 
-			Xpcom.ComponentRegistrar.UnregisterFactory(aClass, factory);			
+			Xpcom.ComponentRegistrar.UnregisterFactory(ref aClass, factory);			
 		}
 				
 		#endregion
