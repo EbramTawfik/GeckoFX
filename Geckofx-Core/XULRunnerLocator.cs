@@ -15,27 +15,37 @@ namespace Gecko
 	/// </summary>
 	public static class XULRunnerLocator
 	{
+		private static string FindSpecialXulRunnerDirectory(string applicationPath)
+		{
+			string rootPath = Path.GetPathRoot(applicationPath);
+			string path = applicationPath;
+
+			while (!rootPath.Equals(path, StringComparison.CurrentCultureIgnoreCase))
+			{
+				if(Directory.GetDirectories(path).FirstOrDefault(x => Path.GetFileName(x) == "PutXulRunnerFolderHere") != null)
+				{
+					// in solition directory
+					if (path != null)
+					{
+						path = Path.GetFullPath(Path.Combine(Path.Combine(path, "PutXulRunnerFolderHere"), "xulrunner"));
+						return Directory.Exists(path) ? path : null;
+					}
+				}
+				path = Path.GetDirectoryName(path);				
+			}
+			return null;
+		}
+
 		private static string GetXULRunnerLocationLinux()
 		{
+			string solutionXulRunnerFolder = FindSpecialXulRunnerDirectory(DirectoryOfTheApplicationExecutable);
+			if (solutionXulRunnerFolder != null)
+				return solutionXulRunnerFolder;
+
 			if (!Directory.Exists("/usr/lib/firefox"))
 				throw new ApplicationException("/usr/lib doesn't exist");
 
 			return "/usr/lib/firefox";
-		}
-
-		private static string PathCombine( params string[] dirs )
-		{
-#if NET4
-			return Path.Combine(dirs);
-#else
-			if ( dirs.Length == 0 ) return string.Empty;
-			string ret = dirs[ 0 ];
-			for ( int i = 1; i < dirs.Length; i++ )
-			{
-				ret = Path.Combine( ret, dirs[ i ] );
-			}
-			return ret;
-#endif
 		}
 
 		private static string GetXULRunnerLocationWindows()
@@ -43,22 +53,16 @@ namespace Gecko
 			//NB for shipping apps, we don't have a way to find their xulrunner, so they won't be running this code 
 			//unless they depend on the customer installing a certain verion of Firefox and keeping it from auto-updating.
 			//So this is more for unit tests and geckofx sample apps.
-			
-			//For unit tests, look for a xulrunner directory placed in the solution/PutXulRunnerFolderHere directory
-			var solutionXulRunnerFolder = PathCombine( DirectoryOfTheApplicationExecutable, "..", "..", "..",
-			                                           "PutXulRunnerFolderHere", "XulRunner" );			
-			if (Directory.Exists(solutionXulRunnerFolder))
-				return solutionXulRunnerFolder;
 
-			 //for test app, we have to go up one more level
-			solutionXulRunnerFolder = PathCombine(DirectoryOfTheApplicationExecutable, "..", "..", "..","..",
-											"PutXulRunnerFolderHere", "XulRunner");	
-			if (Directory.Exists(solutionXulRunnerFolder))
+			string solutionXulRunnerFolder = FindSpecialXulRunnerDirectory(DirectoryOfTheApplicationExecutable);
+			if (solutionXulRunnerFolder != null) 
 				return solutionXulRunnerFolder;
 
 			//look for firefox itself
 
-			string[] folderSearch = new string[] { solutionXulRunnerFolder, "Mozilla Firefox 21.0", "Mozilla Firefox 21", "Mozilla Firefox" };
+			string version = typeof(XULRunnerLocator).Assembly.GetName().Version.Major.ToString();
+
+			string[] folderSearch = new string[] { "Mozilla Firefox " + version + ".0", "Mozilla Firefox " + version, "Mozilla Firefox" };
 
 			var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
 			return folderSearch.Select(t => Path.Combine(programFiles, t)).FirstOrDefault(Directory.Exists);
