@@ -13,7 +13,7 @@ namespace Gecko
 		#region compiler independent wrappers
 		public static IntPtr JS_EncodeString(IntPtr cx, IntPtr jsString)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_EncodeString_Linux32(cx, jsString);
@@ -31,7 +31,7 @@ namespace Gecko
 
 		public static JSType JS_TypeOfValue(IntPtr cx, JsVal jsVal)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_TypeOfValue_Linux32(cx, jsVal);
@@ -49,7 +49,7 @@ namespace Gecko
 
 		public static IntPtr JS_ValueToString(IntPtr cx, JsVal v)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_ValueToString_Linux32(cx, v);
@@ -67,7 +67,7 @@ namespace Gecko
 
 		public static IntPtr JS_NewStringCopyN(IntPtr cx, string str, int length)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_NewStringCopyN_Linux32(cx, str, length);
@@ -85,7 +85,7 @@ namespace Gecko
 
 		public static IntPtr JS_GetGlobalForScopeChain(IntPtr aJSContext)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_GetGlobalForScopeChain_Linux32(aJSContext);
@@ -103,7 +103,7 @@ namespace Gecko
 
 		public static IntPtr JS_GetGlobalObject(IntPtr aJSContext)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_GetGlobalObject_Linux32(aJSContext);
@@ -121,7 +121,7 @@ namespace Gecko
 
 		public static IntPtr JS_BeginRequest(IntPtr cx)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_BeginRequest_Linux32(cx);
@@ -139,7 +139,7 @@ namespace Gecko
 
 		public static IntPtr JS_EndRequest(IntPtr cx)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_EndRequest_Linux32(cx);
@@ -157,7 +157,7 @@ namespace Gecko
 
 		public static bool JS_EvaluateScript(IntPtr cx, IntPtr obj, string src, UInt32 length, string filename, UInt32 lineno, ref JsVal jsval)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_EvaluateScript_Linux32(cx, obj, src, length, filename, lineno, ref jsval);
@@ -175,7 +175,7 @@ namespace Gecko
 
 		public static bool JS_EvaluateScriptForPrincipals(IntPtr cx, IntPtr obj, IntPtr principals, string src, UInt32 length, string filename, UInt32 lineno, ref JsVal jsval)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_EvaluateScriptForPrincipals_Linux32(cx, obj, principals, src, length, filename, lineno, ref jsval);
@@ -194,7 +194,7 @@ namespace Gecko
 
 		public static IntPtr JS_GetClass(IntPtr obj)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_GetClass_Linux32(obj);
@@ -212,7 +212,7 @@ namespace Gecko
 
 		public static IntPtr JS_ContextIterator(IntPtr rt, ref IntPtr iterp)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_ContextIterator_Linux32(rt, ref iterp);
@@ -230,7 +230,7 @@ namespace Gecko
 
 		public static SpiderMonkey.JSContextCallback JS_SetContextCallback(IntPtr rt, JSContextCallback cb)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_SetContextCallback_Linux32(rt, cb);
@@ -248,7 +248,7 @@ namespace Gecko
 
 		public static IntPtr JS_EnterCompartment(IntPtr cx, IntPtr obj)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_EnterCompartment_Linux32(cx, obj);
@@ -264,7 +264,7 @@ namespace Gecko
 
 		public static void JS_LeaveCompartment(IntPtr cx, IntPtr oldCompartment)
 		{
-			if (IntPtr.Size == 4)
+			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					JS_LeaveCompartment_Linux32(cx, oldCompartment);

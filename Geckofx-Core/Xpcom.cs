@@ -144,6 +144,8 @@ namespace Gecko
 
 		#region Fields
 		static readonly bool _isMono;
+		static readonly bool _is64Bit;
+		static readonly bool _is32Bit;
 		static bool _IsInitialized;
 		static string _ProfileDirectory;
 		static int _XpcomThreadId;
@@ -156,6 +158,8 @@ namespace Gecko
 			// get runtime information at first start
 			//http://www.mono-project.com/Guide:_Porting_Winforms_Applications
 			_isMono = Type.GetType( "Mono.Runtime" ) != null;
+			_is64Bit = IntPtr.Size == 8;
+			_is32Bit = IntPtr.Size == 4;
 		}
 
 		#region Events
@@ -204,6 +208,16 @@ namespace Gecko
 		{
 			get { return !_isMono; }
 		}
+
+		public static bool Is32Bit
+		{
+			get { return _is32Bit; }
+		}
+
+		public static bool Is64Bit
+		{
+			get { return _is64Bit; }
+		}        
 		#endregion
 
 		public static bool IsInitialized
