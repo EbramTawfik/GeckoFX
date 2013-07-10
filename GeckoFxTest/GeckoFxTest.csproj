@@ -64,7 +64,8 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <EnvironmentVariables>
       <EnvironmentVariables>
-        <Variable name="LD_LIBRARY_PATH" value="/usr/lib/firefox/" />
+        <Variable name="LD_LIBRARY_PATH" value="$(SolutionDir)/PutXulRunnerFolderHere/xulrunner:/usr/lib/firefox/" />
+        <Variable name="LD_PRELOAD" value="$(SolutionDir)/Geckofx-Core/Linux/geckofix.so" />
         <Variable name="MONO_PATH" value="/usr/lib/cli/gdk-sharp-2.0/" />
       </EnvironmentVariables>
     </EnvironmentVariables>
@@ -106,14 +107,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Geckofx-Core\Geckofx-Core.dll.config">
+      <Link>Geckofx-Core.dll.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="app.manifest" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <None Include="..\Geckofx-Core\geckofx-core-21.dll.config">
-      <Link>geckofx-core-21.dll.config</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
-    </None>
-  </ItemGroup>
 </Project>

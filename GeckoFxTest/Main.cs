@@ -23,15 +23,13 @@ namespace GeckoFxTest
 			// you will need make a class that implements nsIPromptService2 and nsIPrompt interfaces and
 			// set the PromptFactory.PromptServiceCreator delegate. for example:
 			// PromptFactory.PromptServiceCreator = () => new MyPromptService();
-			
+
+			string xulrunnerPath = XULRunnerLocator.GetXULRunnerLocation();
 #if GTK		
-			if (!Environment.GetEnvironmentVariable("LD_LIBRARY_PATH").Contains("/usr/lib/firefox/"))
-				throw new ApplicationException(String.Format("LD_LIBRARY_PATH must contain {0}", "/usr/lib/firefox/"));
-			
-			Xpcom.Initialize("/usr/lib/firefox/");
-#else
-			Xpcom.Initialize(XULRunnerLocator.GetXULRunnerLocation());
+			if (!Environment.GetEnvironmentVariable("LD_LIBRARY_PATH").Contains(xulrunnerPath))
+				throw new ApplicationException(String.Format("LD_LIBRARY_PATH must contain {0}", xulrunnerPath));			
 #endif
+			Xpcom.Initialize(xulrunnerPath);
 			// Uncomment the follow line to enable CustomPrompt's
 			// GeckoPreferences.User["browser.xul.error_pages.enabled"] = false;
 			

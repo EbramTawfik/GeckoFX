@@ -55,8 +55,12 @@ namespace GeckofxUnitTests
 			var nonDisposedBrowser = new TestGeckoWebBrowser();
 
 			nonDisposedBrowser = null;
-			GC.Collect();
-			GC.WaitForPendingFinalizers();
+
+			for (int i = 5; i >= 0; i--)
+			{
+				GC.Collect();
+				GC.WaitForPendingFinalizers();
+			}
 			
 			Assert.IsTrue(errorMessage.Contains("Disposed called by"));
 		}

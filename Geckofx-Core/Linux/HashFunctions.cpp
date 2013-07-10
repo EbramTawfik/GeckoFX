@@ -40,12 +40,12 @@
 
 /* Implementations of hash functions */
 
-#include "mozilla/HashFunctions.h"
+#include "HashFunctions.h"
 #include <string.h>
 
 namespace mozilla {
 
-MFBT_API(uint32_t)
+uint32_t
 HashBytes(const void* bytes, size_t length)
 {
   uint32_t hash = 0;
@@ -70,4 +70,3 @@ HashBytes(const void* bytes, size_t length)
 }
 
 } /* namespace mozilla */
-

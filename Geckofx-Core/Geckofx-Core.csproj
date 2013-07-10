@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gecko</RootNamespace>
-    <AssemblyName>geckofx-core-21</AssemblyName>
+    <AssemblyName>Geckofx-Core</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>GeckoFX.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -33,31 +33,27 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Windows|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Release_Windows\</OutputPath>
     <DebugType>none</DebugType>
-    <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DefineConstants>GECKO_1_9_1;GECKO_1_9</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_Linux|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Debug_Linux\</OutputPath>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DebugType>none</DebugType>
-    <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <DefineConstants>TRACE;DEBUG;GECKO_1_9_1;GECKO_1_9;GTK</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_Windows|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Debug_Windows\</OutputPath>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DebugType>full</DebugType>
-    <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <DefineConstants>TRACE;DEBUG;GECKO_1_9_1;GECKO_1_9</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
@@ -66,22 +62,18 @@
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Release_Linux\</OutputPath>
     <DebugType>none</DebugType>
-    <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DefineConstants>GECKO_1_9_1;GECKO_1_9;GTK</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Windows|AnyCPU'">
     <OutputPath>bin\Release_Windows\</OutputPath>
     <DefineConstants>GECKO_1_9_1;GECKO_1_9</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_Linux|AnyCPU'">
     <OutputPath>bin\Debug_Linux\</OutputPath>
     <DefineConstants>TRACE;DEBUG;GECKO_1_9_1;GECKO_1_9;GTK</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -89,7 +81,6 @@
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug_Windows\</OutputPath>
     <DefineConstants>TRACE;DEBUG;GECKO_1_9_1;GECKO_1_9</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -97,7 +88,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Linux|AnyCPU'">
     <OutputPath>bin\Release_Linux\</OutputPath>
     <DefineConstants>GECKO_1_9_1;GECKO_1_9;GTK</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -1516,7 +1506,7 @@
     <Compile Include="Windows\Taskbar\WinTaskbar.cs" />
     <Compile Include="Xpcom.cs" />
     <Compile Include="XULRunnerLocator.cs" />
-    <None Include="geckofx-core-21.dll.config">
+    <None Include="Geckofx-Core.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Net\Requests.cd" />
