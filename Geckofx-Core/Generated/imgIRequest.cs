@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3ea9fc87-2e97-45bf-b373-d1dd253a0b5e")]
+	[Guid("9c709b50-bd1a-476d-b313-d64db874f80a")]
 	public interface imgIRequest : nsIRequest
 	{
 		
@@ -315,10 +315,13 @@ namespace Gecko
 		public const long STATUS_ERROR = 0x8;
 		
 		// 
-		public const long STATUS_FRAME_COMPLETE = 0x10;
+		public const long STATUS_DECODE_STARTED = 0x10;
 		
 		// 
-		public const long STATUS_DECODE_COMPLETE = 0x20;
+		public const long STATUS_FRAME_COMPLETE = 0x20;
+		
+		// 
+		public const long STATUS_DECODE_COMPLETE = 0x40;
 		
 		// <summary>
         //@{

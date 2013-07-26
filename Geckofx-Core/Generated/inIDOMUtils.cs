@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dd8a9dfd-336f-4cce-8ec1-0365ede9a3a8")]
+	[Guid("1d9c29dc-230a-441e-bba9-49104ffa185e")]
 	public interface inIDOMUtils
 	{
 		
@@ -74,6 +74,18 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsInheritedProperty([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPropertyName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCSSPropertyNames(uint aFlags, ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref System.IntPtr[] aProps);
+		
+		/// <summary>
+        /// Utilities for working with CSS colors
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal ColorNameToRGB([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aColorName, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RgbToColorName(System.IntPtr aR, System.IntPtr aG, System.IntPtr aB, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// DOM Node utilities
@@ -138,5 +150,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ParseStyleSheet([MarshalAs(UnmanagedType.Interface)] nsIDOMCSSStyleSheet aSheet, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInput);
+	}
+	
+	/// <summary>inIDOMUtilsConsts </summary>
+	public class inIDOMUtilsConsts
+	{
+		
+		// <summary>
+        // shorthands can be excluded or property aliases included.
+        // </summary>
+		public const ulong EXCLUDE_SHORTHANDS = (1<<0);
+		
+		// 
+		public const ulong INCLUDE_ALIASES = (1<<1);
 	}
 }

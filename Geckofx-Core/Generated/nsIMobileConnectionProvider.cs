@@ -27,25 +27,64 @@ namespace Gecko
 	
 	
 	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+    /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("2cb8e811-7eaf-4cb9-8aa8-581e7a245edc")]
+	public interface nsIMobileConnectionListener
+	{
+		
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+        /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyVoiceChanged();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyDataChanged();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyCardStateChanged();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyIccInfoChanged();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyUssdReceived([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, [MarshalAs(UnmanagedType.U1)] bool sessionEnded);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyDataError([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyIccCardLockError([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase lockType, uint retryCount);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyCFStateChange([MarshalAs(UnmanagedType.U1)] bool success, ushort action, ushort reason, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, ushort timeSeconds, ushort serviceClass);
+	}
+	
+	/// <summary>
     /// XPCOM component (in the content process) that provides the mobile
     /// network information.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0fb90831-801d-4a84-a56f-7cbc77ba9d61")]
+	[Guid("152da558-c3c0-45ad-9ac5-1adaf7a83c0d")]
 	public interface nsIMobileConnectionProvider
 	{
 		
 		/// <summary>
         /// Called when a content process registers receiving unsolicited messages from
         /// RadioInterfaceLayer in the chrome process. Only a content process that has
-        /// the 'mobileconnection' permission is allowed to register. Note that content
-        /// doesn't need to unregister because the chrome process will remove it from
-        /// the registration list once the chrome receives a 'child-process-shutdown'
-        /// message.
+        /// the 'mobileconnection' permission is allowed to register.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterMobileConnectionMsg();
+		void RegisterMobileConnectionMsg([MarshalAs(UnmanagedType.Interface)] nsIMobileConnectionListener listener);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnregisterMobileConnectionMsg([MarshalAs(UnmanagedType.Interface)] nsIMobileConnectionListener listener);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCardStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCardState);
@@ -96,18 +135,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest CancelMMI([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkResponse([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal command, Gecko.JsVal response);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkMenuSelection([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ushort itemIdentifier, [MarshalAs(UnmanagedType.U1)] bool helpRequested);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkTimerExpiration([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal timer);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkEventDownload([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal @event);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

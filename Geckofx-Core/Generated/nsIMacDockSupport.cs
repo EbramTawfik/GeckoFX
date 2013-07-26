@@ -28,6 +28,9 @@ namespace Gecko
 	
 	/// <summary>
     /// Allow applications to interface with the Mac OS X Dock.
+    ///
+    /// Applications may indicate progress on their Dock icon. Only one such
+    /// progress indicator is available to the entire application.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

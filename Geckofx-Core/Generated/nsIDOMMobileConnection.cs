@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4175a903-61e6-4fa7-af0d-1e41632ee2dd")]
+	[Guid("2065b3c3-e876-4be1-b373-428ee254a63e")]
 	public interface nsIDOMMozMobileConnection : nsIDOMEventTarget
 	{
 		
@@ -145,7 +145,6 @@ namespace Gecko
         /// Usually |this| is returned, but for example global object returns
         /// the outer object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetTargetForDOMEvent();
 		
@@ -155,7 +154,6 @@ namespace Gecko
         /// Usually |this| is returned, but for example global object returns
         /// the inner object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetTargetForEventTargetChain();
 		
@@ -243,7 +241,7 @@ namespace Gecko
         /// Indicates the state of the device's ICC card.
         ///
         /// Possible values: null, 'unknown', 'absent', 'pinRequired', 'pukRequired',
-        /// 'networkLocked', 'ready'.
+        /// 'networkLocked', 'corporateLocked', 'serviceProviderLocked', 'ready'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCardStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCardState);
@@ -333,7 +331,8 @@ namespace Gecko
         /// Find out about the status of an ICC lock (e.g. the PIN lock).
         ///
         /// @param lockType
-        /// Identifies the lock type, e.g. "pin" for the PIN lock.
+        /// Identifies the lock type, e.g. "pin" for the PIN lock, "fdn" for
+        /// the FDN lock.
         ///
         /// @return a DOM Request.
         /// The request's result will be an object containing
@@ -361,16 +360,27 @@ namespace Gecko
         /// unlockCardLock({lockType: "pin",
         /// pin: "..."});
         ///
-        /// (2) Network depersonalization. Unlocking the network control key (NCK).
-        ///
-        /// unlockCardLock({lockType: "nck",
-        /// pin: "..."});
-        ///
-        /// (3) Unlocking the PUK and supplying a new PIN:
+        /// (2) Unlocking the PUK and supplying a new PIN:
         ///
         /// unlockCardLock({lockType: "puk",
         /// puk: "...",
         /// newPin: "..."});
+        ///
+        /// (3) Network depersonalization. Unlocking the network control key (NCK).
+        ///
+        /// unlockCardLock({lockType: "nck",
+        /// pin: "..."});
+        ///
+        /// (4) Corporate depersonalization. Unlocking the corporate control key (CCK).
+        ///
+        /// unlockCardLock({lockType: "cck",
+        /// pin: "..."});
+        ///
+        /// (5) Service Provider depersonalization. Unlocking the service provider
+        /// control key (SPCK).
+        ///
+        /// unlockCardLock({lockType: "spck",
+        /// pin: "..."});
         ///
         /// @return a nsIDOMDOMRequest.
         /// The request's result will be an object containing
@@ -382,7 +392,7 @@ namespace Gecko
         ///
         /// {
         /// lockType:   "pin",
-        /// result:     false,
+        /// success:    false,
         /// retryCount: 2
         /// }
         ///
@@ -390,7 +400,7 @@ namespace Gecko
         ///
         /// {
         /// lockType:  "pin",
-        /// result:    true
+        /// success:   true
         /// }
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -409,10 +419,16 @@ namespace Gecko
         ///
         /// Examples:
         ///
-        /// (1) Disabling the PIN lock:
+        /// (1a) Disabling the PIN lock:
         ///
         /// setCardLock({lockType: "pin",
         /// pin: "...",
+        /// enabled: false});
+        ///
+        /// (1b) Disabling the FDN lock:
+        ///
+        /// setCardLock({lockType: "fdn",
+        /// pin2: "...",
         /// enabled: false});
         ///
         /// (2) Changing the PIN:
@@ -431,7 +447,7 @@ namespace Gecko
         ///
         /// {
         /// lockType: "pin",
-        /// result: false,
+        /// success: false,
         /// retryCount: 2
         /// }
         ///
@@ -439,7 +455,7 @@ namespace Gecko
         ///
         /// {
         /// lockType: "pin",
-        /// result: true
+        /// success: true
         /// }
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -661,7 +677,7 @@ namespace Gecko
 	/// <summary>nsIDOMMozMobileConnectionInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("21a20166-a9b4-4386-b151-49e6cfb9401b")]
+	[Guid("c9d9ff61-a2f0-41cd-b478-9cefa7b31f31")]
 	public interface nsIDOMMozMobileConnectionInfo
 	{
 		
@@ -710,7 +726,7 @@ namespace Gecko
         /// Mobile Country Code (MCC) of last known network operator.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetLastKnownMccAttribute();
+		void GetLastKnownMccAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastKnownMcc);
 		
 		/// <summary>
         /// Type of connection.
@@ -745,7 +761,7 @@ namespace Gecko
 	/// <summary>nsIDOMMozMobileNetworkInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3bd866c7-98a5-4ef4-a464-c22d8cc6b992")]
+	[Guid("40018fc7-4c42-47b6-8de6-3591a9c622bc")]
 	public interface nsIDOMMozMobileNetworkInfo
 	{
 		
@@ -765,13 +781,13 @@ namespace Gecko
         /// Mobile Country Code (MCC) of the network operator
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetMccAttribute();
+		void GetMccAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMcc);
 		
 		/// <summary>
         /// Mobile Network Code (MNC) of the network operator
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetMncAttribute();
+		void GetMncAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMnc);
 		
 		/// <summary>
         /// State of this network operator.
@@ -805,7 +821,7 @@ namespace Gecko
 	/// <summary>nsIDOMMozMobileICCInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b794bfcd-4ba4-46f2-8bf3-b4ed1b8d2b40")]
+	[Guid("10d5c5a2-d43f-4f94-8657-cf7ccabbab6e")]
 	public interface nsIDOMMozMobileICCInfo
 	{
 		
@@ -819,13 +835,13 @@ namespace Gecko
         /// Mobile Country Code (MCC) of the subscriber's home network.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetMccAttribute();
+		void GetMccAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMcc);
 		
 		/// <summary>
         /// Mobile Network Code (MNC) of the subscriber's home network.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetMncAttribute();
+		void GetMncAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMnc);
 		
 		/// <summary>
         /// Service Provider Name (SPN) of the subscriber's home network.

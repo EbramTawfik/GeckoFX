@@ -163,18 +163,5 @@ namespace Gecko
 			
 			return new GeckoElementCollection(_domHtmlDocument.GetElementsByName(new nsAString(name)));
 		}
-		
-
-		
-		public bool IsSupported(string feature, string version)
-		{
-			if (string.IsNullOrEmpty(feature))
-				throw new ArgumentException("feature");
-			if (string.IsNullOrEmpty(version))
-				throw new ArgumentException("version");
-			return nsString.Pass<bool>(_domHtmlDocument.IsSupported, feature, version);
-		}
-				
-	
 	}
 }

@@ -32,22 +32,21 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9cd80750-6a08-11e2-ac93-bf895e53f40e")]
+	[Guid("92986322-8d56-11e2-8816-73a531c493c2")]
 	public interface nsIRilMobileMessageDatabaseCallback
 	{
 		
 		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
-        /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+        /// |aDomMessage|: the nsIDOMMoz{Mms,Sms}Message
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Notify(int aRv, [MarshalAs(UnmanagedType.Interface)] nsIDOMMozSmsMessage aSms);
+		void Notify(int aRv, [MarshalAs(UnmanagedType.Interface)] nsISupports aDomMessage);
 	}
 	
 	/// <summary>nsIRilMobileMessageDatabaseService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("89528354-6a08-11e2-8243-af4cf90404a9")]
+	[Guid("a31b1716-8631-11e2-afaa-2fbd087f426e")]
 	public interface nsIRilMobileMessageDatabaseService : nsIMobileMessageDatabaseService
 	{
 		
@@ -56,26 +55,26 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetMessage(int messageId, [MarshalAs(UnmanagedType.Interface)] nsISmsRequest request);
+		new void GetMessage(int messageId, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 		
 		/// <summary>Member DeleteMessage </summary>
 		/// <param name='messageId'> </param>
 		/// <param name='request'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void DeleteMessage(int messageId, [MarshalAs(UnmanagedType.Interface)] nsISmsRequest request);
+		new void DeleteMessage(int messageId, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 		
 		/// <summary>Member CreateMessageList </summary>
 		/// <param name='filter'> </param>
 		/// <param name='reverse'> </param>
 		/// <param name='request'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void CreateMessageList([MarshalAs(UnmanagedType.Interface)] nsIDOMMozSmsFilter filter, [MarshalAs(UnmanagedType.U1)] bool reverse, [MarshalAs(UnmanagedType.Interface)] nsISmsRequest request);
+		new void CreateMessageList([MarshalAs(UnmanagedType.Interface)] nsIDOMMozSmsFilter filter, [MarshalAs(UnmanagedType.U1)] bool reverse, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 		
 		/// <summary>Member GetNextMessageInList </summary>
 		/// <param name='listId'> </param>
 		/// <param name='request'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNextMessageInList(int listId, [MarshalAs(UnmanagedType.Interface)] nsISmsRequest request);
+		new void GetNextMessageInList(int listId, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 		
 		/// <summary>Member ClearMessageList </summary>
 		/// <param name='listId'> </param>
@@ -87,39 +86,56 @@ namespace Gecko
 		/// <param name='value'> </param>
 		/// <param name='request'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void MarkMessageRead(int messageId, [MarshalAs(UnmanagedType.U1)] bool value, [MarshalAs(UnmanagedType.Interface)] nsISmsRequest request);
+		new void MarkMessageRead(int messageId, [MarshalAs(UnmanagedType.U1)] bool value, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 		
 		/// <summary>Member GetThreadList </summary>
 		/// <param name='request'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetThreadList([MarshalAs(UnmanagedType.Interface)] nsISmsRequest request);
+		new void GetThreadList([MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 		
-		/// <summary>Member SaveReceivedMessage </summary>
-		/// <param name='aSender'> </param>
-		/// <param name='aBody'> </param>
-		/// <param name='aMessageClass'> </param>
-		/// <param name='aDate'> </param>
-		/// <param name='aCallback'> </param>
-		/// <returns>A System.Int32</returns>
+		/// <summary>
+        /// |aMessage| Object: should contain the following properties for internal use:
+        /// - |type| DOMString: "sms" or "mms"
+        /// - |sender| DOMString: the phone number of sender
+        /// - |timestamp| Number: the timestamp of received message
+        ///
+        /// - If |type| == "sms", we also need:
+        /// - |messageClass| DOMString: the message class of received message
+        ///
+        /// - If |type| == "mms", we also need:
+        /// - |delivery| DOMString: the delivery state of received message
+        /// - |deliveryStatus| DOMString Array: the delivery status of received message
+        /// - |receivers| DOMString Array: the phone numbers of receivers
+        ///
+        /// Note: |deliveryStatus| should only contain single string to specify
+        /// the delivery status of MMS message for the phone owner self.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int SaveReceivedMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSender, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBody, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessageClass, ulong aDate, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
+		int SaveReceivedMessage(Gecko.JsVal aMessage, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
 		
-		/// <summary>Member SaveSendingMessage </summary>
-		/// <param name='aReceiver'> </param>
-		/// <param name='aBody'> </param>
-		/// <param name='aDeliveryStatus'> </param>
-		/// <param name='aDate'> </param>
-		/// <param name='aCallback'> </param>
-		/// <returns>A System.Int32</returns>
+		/// <summary>
+        /// |aMessage| Object: should contain the following properties for internal use:
+        /// - |type| DOMString: "sms" or "mms"
+        /// - |timestamp| Number: the timestamp of sending message
+        /// - |deliveryStatusRequested| Bool: true when the delivery report is requested.
+        ///
+        /// - If |type| == "sms", we also need:
+        /// - |receiver| DOMString: the phone number of receiver
+        ///
+        /// - If |type| == "mms", we also need:
+        /// - |receivers| DOMString Array: the phone numbers of receivers
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int SaveSendingMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReceiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBody, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeliveryStatus, ulong aDate, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
+		int SaveSendingMessage(Gecko.JsVal aMessage, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
 		
-		/// <summary>Member SetMessageDelivery </summary>
-		/// <param name='aMessageId'> </param>
-		/// <param name='aDelivery'> </param>
-		/// <param name='aDeliveryStatus'> </param>
-		/// <param name='aCallback'> </param>
+		/// <summary>
+        /// |aMessageId| Number: the message's DB record ID.
+        /// |aReceiver| DOMString: the phone number of receiver (for MMS; can be null).
+        /// |aDelivery| DOMString: the new delivery value to update (can be null).
+        /// |aDeliveryStatus| DOMString: the new delivery status to update (can be null).
+        /// |aCallback| nsIRilMobileMessageDatabaseCallback: an optional callback.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMessageDelivery(int aMessageId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDelivery, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeliveryStatus, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
+		void SetMessageDelivery(int aMessageId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReceiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDelivery, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeliveryStatus, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
 	}
 }

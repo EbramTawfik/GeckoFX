@@ -124,6 +124,9 @@ namespace Gecko
 		/// <summary>
         /// Closes a zip reader. Subsequent attempts to extract files or read from
         /// its input stream will result in an error.
+        ///
+        /// Subsequent attempts to access a nsIZipEntry obtained from this zip
+        /// reader will cause unspecified behavior.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();

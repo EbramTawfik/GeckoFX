@@ -40,5 +40,10 @@ namespace Gecko
 			get { return (string)GetValue(DocumentTitleProperty); }
 			private set { SetValue(DocumentTitlePropertyKey, value); }
 		}
+
+        public GeckoMarkupDocumentViewer GetMarkupDocumentViewer()
+        {
+            throw new NotImplementedException();
+        }
 	}
 }

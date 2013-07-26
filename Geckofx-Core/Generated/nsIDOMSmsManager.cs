@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2bdb02e7-ec3a-47a9-885c-0ab514566801")]
+	[Guid("9bc1d6fc-6b53-48f6-99e8-793e746e5dbb")]
 	public interface nsIDOMMozSmsManager : nsIDOMEventTarget
 	{
 		
@@ -145,7 +145,6 @@ namespace Gecko
         /// Usually |this| is returned, but for example global object returns
         /// the outer object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetTargetForDOMEvent();
 		
@@ -155,7 +154,6 @@ namespace Gecko
         /// Usually |this| is returned, but for example global object returns
         /// the inner object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetTargetForEventTargetChain();
 		

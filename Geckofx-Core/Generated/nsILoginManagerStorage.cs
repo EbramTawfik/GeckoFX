@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("32a4f9f1-60a8-4971-b54e-71ad661483ae")]
+	[Guid("d9fee9e2-c649-4c47-8c85-90fbbb5ccf67")]
 	public interface nsILoginManagerStorage
 	{
 		
@@ -274,5 +274,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUiBusyAttribute();
+		
+		/// <summary>
+        /// True when the master password has already been entered, and so a caller
+        /// can ask for decrypted logins without triggering a prompt.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsLoggedInAttribute();
 	}
 }

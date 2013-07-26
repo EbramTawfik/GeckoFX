@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b2452440-71c6-41a7-8eda-48004d725001")]
+	[Guid("ac813696-3b0a-4259-bce1-1d078021ebbe")]
 	public interface nsIWinMetroUtils
 	{
 		
@@ -58,6 +58,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetHandPreferenceAttribute();
+		
+		/// <summary>
+        /// Determine the activation URI
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetActivationURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aActivationURI);
 		
 		/// <summary>
         /// Attempts to unsnap the application from snapped state to filled state
@@ -109,6 +115,32 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsTilePinned([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTileID);
+		
+		/// <summary>
+        /// Stores the sync info securely
+        ///
+        /// @param aEmail The sync account email
+        /// @param aPassword The sync account password
+        /// @param aKey The sync account key
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void StoreSyncInfo([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEmail, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPassword, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey);
+		
+		/// <summary>
+        /// Loads the sync info
+        ///
+        /// @param aEmail The sync account email
+        /// @param aPassword The sync account password
+        /// @param aKey The sync account key
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void LoadSyncInfo([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEmail, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPassword, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey);
+		
+		/// <summary>
+        /// Clears the stored sync info if any.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ClearSyncInfo();
 		
 		/// <summary>
         /// Soft keyboard attributes. Used in unison with shown/hidden observer

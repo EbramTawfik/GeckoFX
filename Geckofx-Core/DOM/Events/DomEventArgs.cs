@@ -48,7 +48,12 @@ namespace Gecko
 				case "hashchange":
 					return DomHashChangeEventArgs.Create( ( nsIDOMHashChangeEvent ) ev );
 			}
-			// search by type
+            // search by type
+            if (ev is nsIDOMSVGZoomEvent)
+            {
+                return DomSvgZoomEvent.Create((nsIDOMSVGZoomEvent)ev);
+            }
+			
 			if (ev is nsIDOMUIEvent)
 			{
 				return DomUIEventArgs.Create((nsIDOMUIEvent)ev);
@@ -57,10 +62,7 @@ namespace Gecko
 			{
 				return DomMessageEventArgs.Create((nsIDOMMessageEvent)ev);
 			}
-			if ( ev is nsIDOMSVGEvent )
-			{
-				return DomSvgEvent.Create( ( nsIDOMSVGEvent ) ev );
-			}
+			
 			return new DomEventArgs(ev);
 		}
 

@@ -51,7 +51,7 @@ namespace Gecko
 	/// <summary>nsIFilePicker </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("60e2dfb6-3fc7-4A2C-8137-16bef44536fc")]
+	[Guid("a6a24df3-d20a-4b6a-96d4-4736b10a51b7")]
 	public interface nsIFilePicker
 	{
 		
@@ -183,6 +183,25 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetFilesAttribute();
+		
+		/// <summary>
+        /// Get the nsIDOMFile for the file.
+        ///
+        /// @return Returns the file currently selected as DOMFile
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMFile GetDomfileAttribute();
+		
+		/// <summary>
+        /// Get the enumerator for the selected files
+        /// only works in the modeOpenMultiple mode
+        ///
+        /// @return Returns the files currently selected as DOMFiles
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISimpleEnumerator GetDomfilesAttribute();
 		
 		/// <summary>
         /// Controls whether the chosen file(s) should be added to the system's recent

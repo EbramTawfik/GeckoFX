@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("B92319E6-9A84-4ca7-A2CC-EEC22EA9854E")]
+	[Guid("1C195990-FF9E-412B-AFE7-67D1C660BB27")]
 	public interface nsIScreenManager
 	{
 		
@@ -56,6 +56,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetNumberOfScreensAttribute();
+		
+		/// <summary>
+        /// honor these settings. See bug 798362 and bug 712898.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetSystemDefaultScaleAttribute();
 		
 		/// <summary>
         /// and is generally of the same type that NS_NATIVE_WINDOW is.

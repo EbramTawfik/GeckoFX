@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3300693f-ae91-4a3f-b887-bf502c6a97ee")]
+	[Guid("303a262a-1dd1-486d-a108-d8c582e86765")]
 	public interface nsIDOMBluetoothManager : nsIDOMEventTarget
 	{
 		
@@ -145,7 +145,6 @@ namespace Gecko
         /// Usually |this| is returned, but for example global object returns
         /// the outer object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetTargetForDOMEvent();
 		
@@ -155,7 +154,6 @@ namespace Gecko
         /// Usually |this| is returned, but for example global object returns
         /// the inner object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetTargetForEventTargetChain();
 		

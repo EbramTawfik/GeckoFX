@@ -514,23 +514,23 @@ namespace Gecko
 	{
 		protected nsAUTF8StringBase() { }
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringContainerInit(nsAUTF8StringBase container);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringSetData(nsAUTF8StringBase str, byte[] data, int length);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringGetData(nsAUTF8StringBase str, out IntPtr data, IntPtr nullTerm);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringContainerFinish(nsAUTF8StringBase container);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		protected static extern bool NS_CStringGetIsVoid(nsAUTF8StringBase str);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern void NS_CStringSetIsVoid(nsAUTF8StringBase str, [MarshalAs(UnmanagedType.Bool)] bool isVoid);
 
 		#region unused variables used to ensure struct is correct size on different platforms
@@ -615,23 +615,23 @@ namespace Gecko
 	{
 		protected nsACStringBase() { }
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringContainerInit(nsACStringBase container);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringSetData(nsACStringBase str, string data, int length);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected internal static extern int NS_CStringGetData(nsACStringBase str, out IntPtr data, IntPtr nullTerm);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringContainerFinish(nsACStringBase container);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		protected static extern bool NS_CStringGetIsVoid(nsACStringBase str);
 		
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern void NS_CStringSetIsVoid(nsACStringBase str, [MarshalAs(UnmanagedType.Bool)] bool isVoid);
 
 		#region unused variables used to ensure struct is correct size on different platforms
@@ -727,23 +727,23 @@ namespace Gecko
 	{
 		protected nsAStringBase() { }
 
-		[DllImport("xpcom", CharSet = CharSet.Unicode,CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Unicode,CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_StringContainerInit(nsAStringBase container);
 
-		[DllImport("xpcom", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_StringSetData(nsAStringBase str, string data, int length);
 
-		[DllImport("xpcom", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_StringGetData(nsAStringBase str, out IntPtr data, IntPtr nullTerm);
 
-		[DllImport("xpcom", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_StringContainerFinish(nsAStringBase container);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		protected static extern bool NS_StringGetIsVoid(nsAStringBase str);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern void NS_StringSetIsVoid(nsAStringBase str, [MarshalAs(UnmanagedType.Bool)] bool isVoid);
 
 		#region unused variables used to ensure struct is correct size on different platforms

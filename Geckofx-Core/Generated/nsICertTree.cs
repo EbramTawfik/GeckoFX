@@ -79,27 +79,31 @@ namespace Gecko
 		new void SetSelectionAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeSelection aSelection);
 		
 		/// <summary>
-        /// An atomized list of properties for a given row.  Each property, x, that
-        /// the view gives back will cause the pseudoclass :moz-tree-row-x
-        /// to be matched on the pseudoelement ::moz-tree-row.
+        /// A whitespace delimited list of properties.  For each property X the view
+        /// gives back will cause the pseudoclasses  ::-moz-tree-cell(x),
+        /// ::-moz-tree-row(x), ::-moz-tree-twisty(x), ::-moz-tree-image(x),
+        /// ::-moz-tree-cell-text(x).  to be matched on the pseudoelement
+        /// ::moz-tree-row.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetRowProperties(int index, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
+		new void GetRowProperties(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
-        /// An atomized list of properties for a given cell.  Each property, x, that
-        /// the view gives back will cause the pseudoclass :moz-tree-cell-x
-        /// to be matched on the ::moz-tree-cell pseudoelement.
+        /// A whitespace delimited list of properties for a given cell.  Each
+        /// property, x, that the view gives back will cause the pseudoclasses
+        /// ::-moz-tree-cell(x), ::-moz-tree-row(x), ::-moz-tree-twisty(x),
+        /// ::-moz-tree-image(x), ::-moz-tree-cell-text(x). to be matched on the
+        /// cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetCellProperties(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
+		new void GetCellProperties(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Called to get properties to paint a column background.  For shading the sort
         /// column, etc.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetColumnProperties([MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
+		new void GetColumnProperties([MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Methods that can be used to test whether or not a twisty should be drawn,

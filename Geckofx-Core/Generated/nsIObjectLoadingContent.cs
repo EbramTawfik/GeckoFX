@@ -28,10 +28,13 @@ namespace Gecko
 	
 	/// <summary>
     /// This interface represents a content node that loads objects.
+    ///
+    /// Please make sure to update the MozObjectLoadingContent WebIDL
+    /// interface to mirror this interface when changing it.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5804ab94-4fa1-4720-8f3e-655b769ea2df")]
+	[Guid("e2ef99fe-f7d3-422f-a7b4-834e8bdde710")]
 	public interface nsIObjectLoadingContent
 	{
 		
@@ -74,9 +77,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HasNewFrame(System.IntPtr aFrame);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisconnectFrame();
 		
 		/// <summary>
         /// If this object is in going to be printed, this method
@@ -155,6 +155,14 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetPluginFallbackTypeAttribute();
+		
+		/// <summary>
+        /// If this object currently owns a running plugin, regardless of whether or
+        /// not one is pending spawn/despawn.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHasRunningPluginAttribute();
 		
 		/// <summary>
         /// This method will disable the play-preview plugin state.

@@ -87,5 +87,42 @@ namespace Gecko
 		/// <param name='aOnfocuschange'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnfocuschangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnfocuschange);
+		
+		/// <summary>
+        /// composing text length
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOnselectionchangeAttribute();
+		
+		/// <summary>
+        /// composing text length
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnselectionchangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnselectionchange);
+		
+		/// <summary>
+        /// The start position of the selection.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetSelectionStartAttribute();
+		
+		/// <summary>
+        /// The stop position of the selection.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetSelectionEndAttribute();
+		
+		/// <summary>
+        /// Set the selection range of the the editable text.
+        ///
+        /// @param start The beginning of the selected text.
+        /// @param end The end of the selected text.
+        ///
+        /// Note that the start position should be less or equal to the end position.
+        /// To move the cursor, set the start and end position to the same value.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSelectionRange(int start, int end);
 	}
 }

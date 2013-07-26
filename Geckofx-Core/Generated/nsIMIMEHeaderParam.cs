@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ddbbdfb8-a1c0-4dd5-a31b-5d2a7a3bb6ec")]
+	[Guid("9c9252a1-fdaf-40a2-9c2b-a3dc45e28dde")]
 	public interface nsIMIMEHeaderParam
 	{
 		
@@ -40,7 +40,7 @@ namespace Gecko
         /// Given the value of a single header field  (such as
         /// Content-Disposition and Content-Type) and the name of a parameter
         /// (e.g. filename, name, charset), returns the value of the parameter.
-        /// The value is obtained by decoding RFC 2231-style encoding,
+        /// The value is obtained by decoding RFC 2231/5987-style encoding,
         /// RFC 2047-style encoding, and converting to UniChar(UTF-16)
         /// from charset specified in RFC 2231/2047 encoding, UTF-8,
         /// <code>aFallbackCharset</code>, the locale charset as fallback if
@@ -54,14 +54,17 @@ namespace Gecko
         /// with several non-standard-compliant cases mentioned below.
         ///
         /// <p>
-        /// Note that a lot of MUAs and HTTP servers put RFC 2047-encoded parameters
-        /// in mail headers and HTTP headers. Unfortunately, this includes Mozilla
-        /// as of 2003-05-30. Even more standard-ignorant MUAs, web servers and
-        /// application servers put 'raw 8bit characters'. This will try to cope
-        /// with all these cases as gracefully as possible. Additionally, it
-        /// returns the language tag if the parameter is encoded per RFC 2231 and
+        /// Note that a lot of MUAs put RFC 2047-encoded parameters. Unfortunately,
+        /// this includes Mozilla as of 2003-05-30. Even more standard-ignorant MUAs,
+        /// web servers and application servers put 'raw 8bit characters'. This will
+        /// try to cope with all these cases as gracefully as possible. Additionally,
+        /// it returns the language tag if the parameter is encoded per RFC 2231 and
         /// includes lang.
         ///
+        /// <p>
+        /// Note that GetParameterHTTP skips some of the workarounds used for
+        /// mail (MIME) header fields, and thus SHOULD be used from non-mail
+        /// code.
         ///
         ///
         /// @param  aHeaderVal        a header string to get the value of a parameter
@@ -84,11 +87,11 @@ namespace Gecko
 		void GetParameter([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFallbackCharset, [MarshalAs(UnmanagedType.U1)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
-        /// Like getParameter, but using RFC 5987 instead of 2231.  This removes
-        /// support for header parameter continuations (foo*0, foo*1, etc).
+        /// Like getParameter, but disabling encodings and workarounds specific to
+        /// MIME (as opposed to HTTP).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetParameter5987([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFallbackCharset, [MarshalAs(UnmanagedType.U1)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetParameterHTTP([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFallbackCharset, [MarshalAs(UnmanagedType.U1)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Given the value of a header field parameter using the encoding
@@ -102,9 +105,8 @@ namespace Gecko
         /// non-interoperable usage.
         ///
         /// <p>
-        /// This code is currently not used inside nsMIMEHeaderParamImpl, but
-        /// might be in the future. New code that needs RFC2231/5987
-        /// encoding should use this one.
+        /// Code that parses HTTP header fields (as opposed to MIME header fields)
+        /// should use this function.
         ///
         /// @param  aParamVal         a header field parameter to decode.
         /// @param  aLang             will be set to the language part (possibly

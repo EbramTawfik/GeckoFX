@@ -6,6 +6,7 @@ using Gecko.Interop;
 
 namespace Gecko
 {
+#if false
 	/// <summary>
 	/// By default Xulrunner DOES NOT IMPLEMENT PrivateBrowsingService
 	/// YOU MUST REGISTER YOUR OWN IMPLEMENTATION BEFORE USE THIS WRAPPER!!!
@@ -18,4 +19,5 @@ namespace Gecko
 			_privateBrowsingService = new ServiceWrapper<nsIPrivateBrowsingService>(Contracts.PrivateBrowsing);
 		}
 	}
+#endif
 }

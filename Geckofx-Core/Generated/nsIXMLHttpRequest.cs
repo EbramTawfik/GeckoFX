@@ -27,11 +27,12 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// If true, the same origin policy will not be enforced on the request.
-    /// </summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a137d5e6-81e2-4fa3-a791-26459df723ff")]
+	[Guid("5bc978f2-41e5-4349-a12d-b018092271f7")]
 	public interface nsIXMLHttpRequestEventTarget : nsIDOMEventTarget
 	{
 		
@@ -144,7 +145,6 @@ namespace Gecko
         /// Usually |this| is returned, but for example global object returns
         /// the outer object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetTargetForDOMEvent();
 		
@@ -154,7 +154,6 @@ namespace Gecko
         /// Usually |this| is returned, but for example global object returns
         /// the inner object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetTargetForEventTargetChain();
 		
@@ -290,7 +289,7 @@ namespace Gecko
 	/// <summary>nsIXMLHttpRequestUpload </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8dbd2448-740a-412c-b314-434f24a1c510")]
+	[Guid("df3796fa-d98a-4185-9dda-d2f2b56a5d38")]
 	public interface nsIXMLHttpRequestUpload : nsIXMLHttpRequestEventTarget
 	{
 		
@@ -403,7 +402,6 @@ namespace Gecko
         /// Usually |this| is returned, but for example global object returns
         /// the outer object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetTargetForDOMEvent();
 		
@@ -413,7 +411,6 @@ namespace Gecko
         /// Usually |this| is returned, but for example global object returns
         /// the inner object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetTargetForEventTargetChain();
 		
@@ -625,7 +622,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8e9768b4-339c-413c-a210-0c74934eb9e1")]
+	[Guid("cd31a34e-71b5-4bea-8366-c926de9d3d62")]
 	public interface nsIXMLHttpRequest
 	{
 		
@@ -634,9 +631,6 @@ namespace Gecko
         /// request.  This attribute represents the channel used
         /// for the request.  NULL if the channel has not yet been
         /// created.
-        ///
-        /// In a multipart request case, this is the initial channel, not the
-        /// different parts in the multipart request.
         ///
         /// Mozilla only. Requires elevated privileges to access.
         /// </summary>
@@ -711,9 +705,6 @@ namespace Gecko
         /// Returns all of the response headers as a string for HTTP
         /// requests.
         ///
-        /// Note that this will return all the headers from the *current*
-        /// part of a multipart request, not from the original channel.
-        ///
         /// @returns A string containing all of the response headers.
         /// The empty string if the response has not yet been received.
         /// </summary>
@@ -747,9 +738,6 @@ namespace Gecko
         /// sending the request. In the latter case, notification
         /// of completion is sent through the event listeners.
         /// The default value is true.
-        /// This argument must be true if the multipart
-        /// attribute has been set to true, or an exception will
-        /// be thrown.
         /// @param user (optional) A username for authentication if necessary.
         /// The default value is the empty string
         /// @param password (optional) A password for authentication if necessary.
@@ -834,39 +822,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OverrideMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mimetype);
-		
-		/// <summary>
-        /// Set to true if the response is expected to be a stream of
-        /// possibly multiple (XML) documents. If set to true, the content
-        /// type of the initial response must be multipart/x-mixed-replace or
-        /// an error will be triggerd. All requests must be asynchronous.
-        ///
-        /// This enables server push. For each XML document that's written to
-        /// this request, a new XML DOM document is created and the onload
-        /// handler is called inbetween documents. Note that when this is
-        /// set, the onload handler and other event handlers are not reset
-        /// after the first XML document is loaded, and the onload handler
-        /// will be called as each part of the response is received.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetMultipartAttribute();
-		
-		/// <summary>
-        /// Set to true if the response is expected to be a stream of
-        /// possibly multiple (XML) documents. If set to true, the content
-        /// type of the initial response must be multipart/x-mixed-replace or
-        /// an error will be triggerd. All requests must be asynchronous.
-        ///
-        /// This enables server push. For each XML document that's written to
-        /// this request, a new XML DOM document is created and the onload
-        /// handler is called inbetween documents. Note that when this is
-        /// set, the onload handler and other event handlers are not reset
-        /// after the first XML document is loaded, and the onload handler
-        /// will be called as each part of the response is received.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMultipartAttribute([MarshalAs(UnmanagedType.U1)] bool aMultipart);
 		
 		/// <summary>
         /// Set to true if this is a background service request. This will

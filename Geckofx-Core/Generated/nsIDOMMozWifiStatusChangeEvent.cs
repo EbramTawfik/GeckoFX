@@ -231,6 +231,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Deserialize(System.IntPtr aMsg, ref System.IntPtr aIter);
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOwner(nsIDOMEventTarget aOwner);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr InternalDOMEvent();
+		
 		/// <summary>
         /// Network object with a SSID field describing the network affected by
         /// this change. This might be null.

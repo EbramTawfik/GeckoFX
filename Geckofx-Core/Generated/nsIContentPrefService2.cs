@@ -75,12 +75,16 @@ namespace Gecko
     ///
     /// Callbacks
     ///
-    /// The methods of callback objects are always called asynchronously.  See
-    /// nsIContentPrefCallback2 below for more information about callbacks.
+    /// The methods of callback objects are always called asynchronously.
+    ///
+    /// Observers are called after callbacks are called, but they are called in the
+    /// same turn of the event loop as callbacks.
+    ///
+    /// See nsIContentPrefCallback2 below for more information about callbacks.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("51e1d34a-5e9d-4b77-b14c-0f8346e264ca")]
+	[Guid("133608c7-f812-41ca-bc1c-62a4eb95e52a")]
 	public interface nsIContentPrefService2
 	{
 		
@@ -316,6 +320,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveObserverForName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, System.IntPtr observer);
+		
+		/// <summary>
+        /// Extracts and returns the domain from the given string representation of a
+        /// URI.  This is how the API extracts domains from URIs passed to it.
+        ///
+        /// @param str  The string representation of a URI, like
+        /// "http://example.com/foo/bar".
+        /// @return     If the given string is a valid URI, the domain of that URI is
+        /// returned.  Otherwise, the string itself is returned.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ExtractDomain([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 	
 	/// <summary>
@@ -338,7 +354,7 @@ namespace Gecko
 		
 		/// <summary>
         /// Called when an error occurs.  This may be called multiple times before
-        /// onComplete is called.
+        /// handleCompletion is called.
         ///
         /// @param error  A number in Components.results describing the error.
         /// </summary>

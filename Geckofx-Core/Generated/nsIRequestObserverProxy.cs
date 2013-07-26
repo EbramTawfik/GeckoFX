@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7df8845f-938a-4437-9ea4-b11b850048f1")]
+	[Guid("c2b06151-1bf8-4eef-aea9-1532f12f5a10")]
 	public interface nsIRequestObserverProxy : nsIRequestObserver
 	{
 		
@@ -68,10 +68,13 @@ namespace Gecko
 		/// <summary>
         /// Initializes an nsIRequestObserverProxy.
         ///
-        /// @param observer - receives observer notifications on the other thread
-        /// @param target - may be NULL indicating the calling thread's event target
+        /// @param observer - receives observer notifications on the main thread
+        /// @param context  - the context argument that will be passed to OnStopRequest
+        /// and OnStartRequest. This has to be stored permanently on
+        /// initialization because it sometimes can't be
+        /// AddRef/Release'd off-main-thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIRequestObserver observer, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget target);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIRequestObserver observer, [MarshalAs(UnmanagedType.Interface)] nsISupports context);
 	}
 }

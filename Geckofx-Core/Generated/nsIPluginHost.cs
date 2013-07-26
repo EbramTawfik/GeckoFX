@@ -54,19 +54,16 @@ namespace Gecko
 	/// <summary>nsIPluginHost </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("67ebff01-0dce-48f7-b6a5-6235fc78382b")]
+	[Guid("15f97490-7bdf-4947-885c-9258072af878")]
 	public interface nsIPluginHost
 	{
 		
 		/// <summary>
         /// Causes the plugins directory to be searched again for new plugin
         /// libraries.
-        ///
-        /// @param reloadPages - indicates whether currently visible pages should
-        /// also be reloaded
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReloadPlugins([MarshalAs(UnmanagedType.U1)] bool reloadPages);
+		void ReloadPlugins();
 		
 		/// <summary>Member GetPluginTags </summary>
 		/// <param name='aPluginCount'> </param>

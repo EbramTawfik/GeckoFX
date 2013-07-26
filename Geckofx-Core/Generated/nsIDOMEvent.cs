@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c939eab8-1345-4344-875b-e0f2d8d89171")]
+	[Guid("547ec16c-e41d-4df7-9fb6-ad6041f0687a")]
 	public interface nsIDOMEvent
 	{
 		
@@ -234,6 +234,12 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Deserialize(System.IntPtr aMsg, ref System.IntPtr aIter);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOwner(nsIDOMEventTarget aOwner);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr InternalDOMEvent();
 	}
 	
 	/// <summary>nsIDOMEventConsts </summary>

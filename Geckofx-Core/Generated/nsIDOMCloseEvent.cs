@@ -234,6 +234,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Deserialize(System.IntPtr aMsg, ref System.IntPtr aIter);
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOwner(nsIDOMEventTarget aOwner);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr InternalDOMEvent();
+		
 		/// <summary>
         /// The nsIDOMCloseEvent interface is the interface to the event
         /// close on a WebSocket object.

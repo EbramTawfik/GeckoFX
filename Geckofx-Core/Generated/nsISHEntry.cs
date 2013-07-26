@@ -87,13 +87,14 @@ namespace Gecko
 		
 		/// <summary>
         ///Content viewer, for fast restoration of presentation </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetContentViewerAttribute();
+		nsIContentViewer GetContentViewerAttribute();
 		
 		/// <summary>
         ///Content viewer, for fast restoration of presentation </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentViewerAttribute(System.IntPtr aContentViewer);
+		void SetContentViewerAttribute([MarshalAs(UnmanagedType.Interface)] nsIContentViewer aContentViewer);
 		
 		/// <summary>
         ///Whether the content viewer is marked "sticky" </summary>
@@ -334,8 +335,9 @@ namespace Gecko
         ///Return any content viewer present in or below this node in the
         ///        nsSHEntry tree.  This will differ from contentViewer in the case
         ///        where a child nsSHEntry has the content viewer for this tree. </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetAnyContentViewer([MarshalAs(UnmanagedType.Interface)] ref nsISHEntry ownerEntry);
+		nsIContentViewer GetAnyContentViewer([MarshalAs(UnmanagedType.Interface)] ref nsISHEntry ownerEntry);
 		
 		/// <summary>
         /// Get the owner, if any, that was associated with the channel

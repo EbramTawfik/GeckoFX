@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e8f6f3e5-8cee-4be3-8d56-5ed617305bf8")]
+	[Guid("4277354d-5069-4278-935a-5d596ce9bfbf")]
 	public interface nsIDocShell : nsIDocShellTreeItem
 	{
 		
@@ -89,15 +89,14 @@ namespace Gecko
 		/// <summary>
         ///name of the DocShellTreeItem
         ///	 </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetNameAttribute();
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         ///name of the DocShellTreeItem
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aName);
+		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Compares the provided name against the item's name and
@@ -965,6 +964,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCharsetAttribute([MarshalAs(UnmanagedType.LPStr)] string aCharset);
+		
+		/// <summary>
+        /// Called when the user chose an encoding override from the character
+        /// encoding menu. Separate from the setter for the charset property to avoid
+        /// extensions adding noise to the data.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GatherCharsetMenuTelemetry();
 		
 		/// <summary>
         /// The charset forced by the user. When the charset attribute is set this

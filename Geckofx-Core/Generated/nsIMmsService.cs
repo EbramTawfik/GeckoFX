@@ -32,16 +32,13 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("217ddd76-75db-4210-955d-8806cd8d87f9")]
+	[Guid("3ec33286-8559-11e2-9f38-e76b58650568")]
 	public interface nsIMmsService
 	{
 		
 		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
-        /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
+        ///MmsParameters </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasSupport();
+		void Send(Gecko.JsVal parameters, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 	}
 }

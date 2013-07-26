@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("077ee790-3a9d-11e2-81c1-0800200c9a66")]
+	[Guid("37fb32f5-d5ed-45e3-8feb-fa085935e732")]
 	public interface nsITelemetryPing : nsIObserver
 	{
 		
@@ -82,6 +82,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EnableLoadSaveNotifications();
+		
+		/// <summary>
+        /// Cache the profile directory for later use.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CacheProfileDirectory();
 		
 		/// <summary>
         /// Inform the ping which AddOns are installed.

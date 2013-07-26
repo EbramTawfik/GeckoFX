@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0683E9A4-994D-11E1-9478-1E356188709B")]
+	[Guid("9ee5874c-ec39-4bc2-b2d7-194a4c98c9d2")]
 	public interface nsIWebSocketChannel
 	{
 		
@@ -161,6 +161,52 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendBinaryStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, uint length);
+		
+		/// <summary>
+        /// This value determines how often (in milliseconds) websocket keepalive
+        /// pings are sent.  If set to 0 (the default), no pings are ever sent.
+        ///
+        /// This value can currently only be set before asyncOpen is called, else
+        /// NS_ERROR_IN_PROGRESS is thrown.
+        ///
+        /// Be careful using this setting: ping traffic can consume lots of power and
+        /// bandwidth over time.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetPingIntervalAttribute();
+		
+		/// <summary>
+        /// This value determines how often (in milliseconds) websocket keepalive
+        /// pings are sent.  If set to 0 (the default), no pings are ever sent.
+        ///
+        /// This value can currently only be set before asyncOpen is called, else
+        /// NS_ERROR_IN_PROGRESS is thrown.
+        ///
+        /// Be careful using this setting: ping traffic can consume lots of power and
+        /// bandwidth over time.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPingIntervalAttribute(uint aPingInterval);
+		
+		/// <summary>
+        /// This value determines how long (in milliseconds) the websocket waits for
+        /// the server to reply to a ping that has been sent.
+        ///
+        /// This value can currently only be set before asyncOpen is called, else
+        /// NS_ERROR_IN_PROGRESS is thrown.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetPingTimeoutAttribute();
+		
+		/// <summary>
+        /// This value determines how long (in milliseconds) the websocket waits for
+        /// the server to reply to a ping that has been sent.
+        ///
+        /// This value can currently only be set before asyncOpen is called, else
+        /// NS_ERROR_IN_PROGRESS is thrown.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPingTimeoutAttribute(uint aPingTimeout);
 	}
 	
 	/// <summary>nsIWebSocketChannelConsts </summary>

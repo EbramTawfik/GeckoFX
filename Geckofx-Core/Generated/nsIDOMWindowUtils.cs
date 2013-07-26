@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("16b3bdcc-75d4-11e2-8a20-aaff78957a39")]
+	[Guid("ab9e9c45-1910-458c-a043-79cbbfc89f4d")]
 	public interface nsIDOMWindowUtils
 	{
 		
@@ -531,7 +531,7 @@ namespace Gecko
         /// @param aFlushLayout flushes layout if true. Otherwise, no flush occurs.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetScrollbarWidth([MarshalAs(UnmanagedType.U1)] bool aFlushLayout);
+		void GetScrollbarSize([MarshalAs(UnmanagedType.U1)] bool aFlushLayout, ref int aWidth, ref int aHeight);
 		
 		/// <summary>
         /// Returns the bounds of the window's currently loaded document. This will
@@ -865,6 +865,14 @@ namespace Gecko
 		void RestoreNormalRefresh();
 		
 		/// <summary>
+        /// Reports whether the current state is test-controlled refreshes
+        /// (see advanceTimeAndRefresh and restoreNormalRefresh above).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsTestControllingRefreshesAttribute();
+		
+		/// <summary>
         /// Method for testing nsStyleAnimation::ComputeDistance.
         ///
         /// Returns the distance between the two values as reported by
@@ -1030,6 +1038,19 @@ namespace Gecko
 		void SetScrollPositionClampingScrollPortSize(float aWidth, float aHeight);
 		
 		/// <summary>
+        /// Set margins for the layout of fixed position elements in the content
+        /// document. These are used on mobile, where the viewable area can be
+        /// temporarily obscured by the browser chrome. In this situation, we're ok
+        /// with scrollable page content being obscured, but fixed position content
+        /// cannot be revealed without removing the obscuring chrome, so we use these
+        /// margins so that it can remain visible.
+        ///
+        /// The caller of this method must have chrome privileges.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetContentDocumentFixedPositionMargins(float aTop, float aRight, float aBottom, float aLeft);
+		
+		/// <summary>
         /// Prevent this window (and any child windows) from displaying any further
         /// dialogs (e.g. window.alert()).
         /// </summary>
@@ -1080,6 +1101,19 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsNodeDisabledForEvents([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
+		
+		/// <summary>
+        /// Setting paintFlashing to true will flash newly painted area.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetPaintFlashingAttribute();
+		
+		/// <summary>
+        /// Setting paintFlashing to true will flash newly painted area.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPaintFlashingAttribute([MarshalAs(UnmanagedType.U1)] bool aPaintFlashing);
 	}
 	
 	/// <summary>nsIDOMWindowUtilsConsts </summary>

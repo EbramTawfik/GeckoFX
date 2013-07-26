@@ -125,5 +125,8 @@ namespace Gecko
 		
 		// 
 		public const long ACCESS_ALLOW_FIRST_PARTY_ONLY = 9;
+		
+		// 
+		public const long ACCESS_LIMIT_THIRD_PARTY = 10;
 	}
 }

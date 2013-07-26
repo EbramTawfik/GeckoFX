@@ -382,7 +382,7 @@ namespace Gecko
 	/// <summary> </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3e825850-3a5f-11e2-81c1-0800200c9a66")]
+	[Guid("7e7a9a90-4607-4e3a-8ef1-b0f4b8de1c27")]
 	public interface nsIXPConnect
 	{
 		
@@ -408,7 +408,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPConnectJSObjectHolder InitClassesWithNewWrappedGlobal(System.IntPtr aJSContext, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, uint aFlags);
+		nsIXPConnectJSObjectHolder InitClassesWithNewWrappedGlobal(System.IntPtr aJSContext, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, uint aFlags, System.IntPtr aZoneSpec);
 		
 		/// <summary>
         /// wrapNative will create a new JSObject or return an existing one.
@@ -507,9 +507,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetNativeOfWrapper(System.IntPtr aJSContext, System.IntPtr aJSObj);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetJSObjectOfWrapper(System.IntPtr aJSContext, System.IntPtr aJSObj);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSecurityManagerForJSContext(System.IntPtr aJSContext, [MarshalAs(UnmanagedType.Interface)] nsIXPCSecurityManager aManager, ushort flags);
@@ -624,6 +621,7 @@ namespace Gecko
         /// other running scripts.
         ///
         /// @param source The source of the script to evaluate.
+        /// @param filename The filename of the script. May be null.
         /// @param cx The context to use when setting up the evaluation of
         /// the script. The actual evaluation will happen on a new
         /// temporary context.
@@ -638,7 +636,7 @@ namespace Gecko
         /// to this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal EvalInSandboxObject([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source, System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIXPConnectJSObjectHolder sandbox, [MarshalAs(UnmanagedType.U1)] bool returnStringOnly);
+		Gecko.JsVal EvalInSandboxObject([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source, [MarshalAs(UnmanagedType.LPStr)] string filename, System.IntPtr cx, System.IntPtr sandbox, [MarshalAs(UnmanagedType.U1)] bool returnStringOnly);
 		
 		/// <summary>
         /// Root JS objects held by aHolder.

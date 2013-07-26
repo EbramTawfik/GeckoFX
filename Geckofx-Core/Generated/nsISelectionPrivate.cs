@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a6d2cedd-afbc-4d25-bffb-e725b9881e30")]
+	[Guid("3ede44eb-2df8-41de-ab79-6f3dbd10090b")]
 	public interface nsISelectionPrivate : nsISelection
 	{
 		
@@ -269,13 +269,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCachedFrameOffset(System.IntPtr aFrame, int inOffset, System.IntPtr aPoint);
-		
-		/// <summary>
-        ///getFrameSelection
-        /// Returnes a reference to the frame selection associated with this selection
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetFrameSelection();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAncestorLimiter(System.IntPtr aContent);

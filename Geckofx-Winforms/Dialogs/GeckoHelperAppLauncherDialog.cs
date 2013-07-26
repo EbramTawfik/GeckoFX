@@ -62,7 +62,7 @@ namespace Gecko
 	{
 		public static event EventHandler<LauncherDialogEvent> Download;
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		[DllImport("xul", CharSet = CharSet.Ansi)]
 		private static extern int NS_NewNativeLocalFile(nsACString path, bool followLinks, [MarshalAs(UnmanagedType.IUnknown)] out object result);
 		public nsILocalFile PromptForSaveToFile(nsIHelperAppLauncher aLauncher, nsISupports aWindowContext, string aDefaultFileName, string aSuggestedFileExtension, bool aForcePrompt)
 		{

@@ -126,7 +126,7 @@ namespace Gecko
     ///See http://dev.w3.org/2011/webrtc/editor/webrtc.html </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f888648c-5e6b-4af9-91ad-a911e53d7a39")]
+	[Guid("474074ab-11f9-4933-a200-8ea1a5f84e4c")]
 	public interface nsIDOMRTCPeerConnection
 	{
 		
@@ -139,16 +139,16 @@ namespace Gecko
 		void CreateAnswer(RTCPeerConnectionCallback successCallback, RTCPeerConnectionCallback failureCallback, Gecko.JsVal constraints, [MarshalAs(UnmanagedType.U1)] bool createProvisionalAnswer);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLocalDescription([MarshalAs(UnmanagedType.Interface)] nsIDOMRTCSessionDescription desc, RTCPeerConnectionCallback successCallback, RTCPeerConnectionCallback failureCallback);
+		void SetLocalDescription([MarshalAs(UnmanagedType.Interface)] nsIDOMRTCSessionDescription desc, RTCPeerConnectionCallbackVoid successCallback, RTCPeerConnectionCallback failureCallback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRemoteDescription([MarshalAs(UnmanagedType.Interface)] nsIDOMRTCSessionDescription desc, RTCPeerConnectionCallback successCallback, RTCPeerConnectionCallback failureCallback);
+		void SetRemoteDescription([MarshalAs(UnmanagedType.Interface)] nsIDOMRTCSessionDescription desc, RTCPeerConnectionCallbackVoid successCallback, RTCPeerConnectionCallback failureCallback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UpdateIce(Gecko.JsVal configuration, Gecko.JsVal constraints, [MarshalAs(UnmanagedType.U1)] bool restart);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddIceCandidate([MarshalAs(UnmanagedType.Interface)] nsIDOMRTCIceCandidate candidate, RTCPeerConnectionCallback successCallback, RTCPeerConnectionCallback failureCallback);
+		void AddIceCandidate([MarshalAs(UnmanagedType.Interface)] nsIDOMRTCIceCandidate candidate, RTCPeerConnectionCallbackVoid successCallback, RTCPeerConnectionCallback failureCallback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddStream([MarshalAs(UnmanagedType.Interface)] nsIDOMMediaStream stream, Gecko.JsVal constraints);

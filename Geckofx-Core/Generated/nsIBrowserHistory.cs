@@ -31,47 +31,9 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d176f8e8-383f-4109-812d-cce015e2d804")]
-	public interface nsIBrowserHistory : nsIGlobalHistory2
+	[Guid("20d31479-38de-49f4-9300-566d6e834c66")]
+	public interface nsIBrowserHistory
 	{
-		
-		/// <summary>
-        /// Add a URI to global history
-        ///
-        /// @param aURI      the URI of the page
-        /// @param aRedirect whether the URI was redirected to another location;
-        /// this is 'true' for the original URI which is
-        /// redirected.
-        /// @param aToplevel whether the URI is loaded in a top-level window
-        /// @param aReferrer the URI of the referring page
-        ///
-        /// @note  Docshell will not filter out URI schemes like chrome: data:
-        /// about: and view-source:.  Embedders should consider filtering out
-        /// these schemes and others, e.g. mailbox: for the main URI and the
-        /// referrer.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.U1)] bool aRedirect, [MarshalAs(UnmanagedType.U1)] bool aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
-		
-		/// <summary>
-        /// Checks to see whether the given URI is in history.
-        ///
-        /// @param aURI the uri to the page
-        /// @return true if a URI has been visited
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsVisited([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
-		
-		/// <summary>
-        /// Set the page title for the given uri. URIs that are not already in
-        /// global history will not be added.
-        ///
-        /// @param aURI    the URI for which to set to the title
-        /// @param aTitle  the page title
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
 		
 		/// <summary>
         /// Removes a page from global history.
@@ -155,24 +117,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveAllPages();
-		
-		/// <summary>
-        /// Designates the url as having been explicitly typed in by the user.
-        ///
-        /// @param aURI
-        /// URI of the page to be marked.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MarkPageAsTyped([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
-		
-		/// <summary>
-        /// Designates the url as coming from a link explicitly followed by
-        /// the user (for example by clicking on it).
-        ///
-        /// @param aURI
-        /// URI of the page to be marked.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MarkPageAsFollowedLink([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}
 }

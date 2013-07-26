@@ -32,58 +32,9 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("38f15cc7-2df0-4a90-8b7f-1606b2243522")]
-	public interface nsIIndexedDatabaseUsageCallback
-	{
-		
-		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this
-        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnUsageResult([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, ulong aUsage, ulong aFileUsage, uint aAppId, [MarshalAs(UnmanagedType.U1)] bool aInMozBrowserOnly);
-	}
-	
-	/// <summary>nsIIndexedDatabaseManager </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e5168115-baff-4559-887e-7c0405cc9e63")]
+	[Guid("538d1085-517e-405a-a0f0-eb575cb0b8e5")]
 	public interface nsIIndexedDatabaseManager
 	{
-		
-		/// <summary>
-        /// Schedules an asynchronous callback that will return the total amount of
-        /// disk space being used by databases for the given origin.
-        ///
-        /// @param aURI
-        /// The URI whose usage is being queried.
-        /// @param aCallback
-        /// The callback that will be called when the usage is available.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUsageForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIIndexedDatabaseUsageCallback aCallback, uint aAppId, [MarshalAs(UnmanagedType.U1)] bool aInMozBrowserOnly, int argc);
-		
-		/// <summary>
-        /// Cancels an asynchronous usage check initiated by a previous call to
-        /// getUsageForURI().
-        ///
-        /// @param aURI
-        /// The URI whose usage is being queried.
-        /// @param aCallback
-        /// The callback that will be called when the usage is available.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CancelGetUsageForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIIndexedDatabaseUsageCallback aCallback, uint aAppId, [MarshalAs(UnmanagedType.U1)] bool aInMozBrowserOnly, int argc);
-		
-		/// <summary>
-        /// Removes all databases stored for the given URI. The files may not be
-        /// deleted immediately depending on prohibitive concurrent operations.
-        ///
-        /// @param aURI
-        /// The URI whose databases are to be cleared.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearDatabasesForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aAppId, [MarshalAs(UnmanagedType.U1)] bool aInMozBrowserOnly, int argc);
 		
 		/// <summary>
         /// Defines indexedDB and IDBKeyrange with its static functions on

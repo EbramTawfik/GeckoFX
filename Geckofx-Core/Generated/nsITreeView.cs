@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("C06DC4D3-63A2-4422-A0A3-5F2EDDECA8C1")]
+	[Guid("091116f0-0bdc-4b32-b9c8-c8d5a37cb088")]
 	public interface nsITreeView
 	{
 		
@@ -56,27 +56,31 @@ namespace Gecko
 		void SetSelectionAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeSelection aSelection);
 		
 		/// <summary>
-        /// An atomized list of properties for a given row.  Each property, x, that
-        /// the view gives back will cause the pseudoclass :moz-tree-row-x
-        /// to be matched on the pseudoelement ::moz-tree-row.
+        /// A whitespace delimited list of properties.  For each property X the view
+        /// gives back will cause the pseudoclasses  ::-moz-tree-cell(x),
+        /// ::-moz-tree-row(x), ::-moz-tree-twisty(x), ::-moz-tree-image(x),
+        /// ::-moz-tree-cell-text(x).  to be matched on the pseudoelement
+        /// ::moz-tree-row.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRowProperties(int index, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
+		void GetRowProperties(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
-        /// An atomized list of properties for a given cell.  Each property, x, that
-        /// the view gives back will cause the pseudoclass :moz-tree-cell-x
-        /// to be matched on the ::moz-tree-cell pseudoelement.
+        /// A whitespace delimited list of properties for a given cell.  Each
+        /// property, x, that the view gives back will cause the pseudoclasses
+        /// ::-moz-tree-cell(x), ::-moz-tree-row(x), ::-moz-tree-twisty(x),
+        /// ::-moz-tree-image(x), ::-moz-tree-cell-text(x). to be matched on the
+        /// cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCellProperties(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
+		void GetCellProperties(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Called to get properties to paint a column background.  For shading the sort
         /// column, etc.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetColumnProperties([MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
+		void GetColumnProperties([MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Methods that can be used to test whether or not a twisty should be drawn,
@@ -318,27 +322,31 @@ namespace Gecko
 		new void SetSelectionAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeSelection aSelection);
 		
 		/// <summary>
-        /// An atomized list of properties for a given row.  Each property, x, that
-        /// the view gives back will cause the pseudoclass :moz-tree-row-x
-        /// to be matched on the pseudoelement ::moz-tree-row.
+        /// A whitespace delimited list of properties.  For each property X the view
+        /// gives back will cause the pseudoclasses  ::-moz-tree-cell(x),
+        /// ::-moz-tree-row(x), ::-moz-tree-twisty(x), ::-moz-tree-image(x),
+        /// ::-moz-tree-cell-text(x).  to be matched on the pseudoelement
+        /// ::moz-tree-row.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetRowProperties(int index, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
+		new void GetRowProperties(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
-        /// An atomized list of properties for a given cell.  Each property, x, that
-        /// the view gives back will cause the pseudoclass :moz-tree-cell-x
-        /// to be matched on the ::moz-tree-cell pseudoelement.
+        /// A whitespace delimited list of properties for a given cell.  Each
+        /// property, x, that the view gives back will cause the pseudoclasses
+        /// ::-moz-tree-cell(x), ::-moz-tree-row(x), ::-moz-tree-twisty(x),
+        /// ::-moz-tree-image(x), ::-moz-tree-cell-text(x). to be matched on the
+        /// cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetCellProperties(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
+		new void GetCellProperties(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Called to get properties to paint a column background.  For shading the sort
         /// column, etc.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetColumnProperties([MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
+		new void GetColumnProperties([MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Methods that can be used to test whether or not a twisty should be drawn,

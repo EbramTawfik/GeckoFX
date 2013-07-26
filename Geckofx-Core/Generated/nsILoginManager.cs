@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1f02142f-7e3f-4d02-b3e0-495c5f83ad7d")]
+	[Guid("338c8597-1e32-4682-b5c7-cf8142c0bd1d")]
 	public interface nsILoginManager
 	{
 		
@@ -260,5 +260,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUiBusyAttribute();
+		
+		/// <summary>
+        /// True when the master password has already been entered, and so a caller
+        /// can ask for decrypted logins without triggering a prompt.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsLoggedInAttribute();
 	}
 }

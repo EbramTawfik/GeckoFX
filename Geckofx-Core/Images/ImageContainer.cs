@@ -17,16 +17,11 @@ namespace Gecko.Images
 		internal ImgContainer(imgIContainer container)
 		{
 			_container = new InstanceWrapper<imgIContainer>( container, false );
-		}
+		}		
 
-		public IntPtr CopyFrame(uint whichFrame, uint flags)
+		public void Draw(gfxContext context, gfxGraphicsFilter filter, gfxMatrix matrix, gfxRect fill, nsIntRect subImage, uint viewportSize, IntPtr aSVGContext, uint aWhichFrame, uint flags)
 		{
-			return _container.Instance.CopyFrame(whichFrame, flags);
-		}
-
-		public void Draw(gfxContext context, gfxGraphicsFilter filter, gfxMatrix matrix, gfxRect fill, nsIntRect subImage, uint viewportSize, uint flags)
-		{
-			_container.Instance.Draw(context, filter, matrix, fill, subImage, viewportSize, flags);
+			_container.Instance.Draw(context, filter, matrix, fill, subImage, viewportSize, aSVGContext, aWhichFrame, flags);
 		}
 
 		public ImgContainer ExtractFrame(uint whichFrame,nsIntRect rect,uint flags)

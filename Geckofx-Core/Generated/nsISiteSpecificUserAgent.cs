@@ -27,11 +27,11 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// nsISiteSpecificUserAgent provides you with site-specific User Agent strings.
+    /// nsISiteSpecificUserAgent provides you with site/window-specific User Agent strings.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("604a64af-9809-4c2f-a91d-f6ebfa21f6cb")]
+	[Guid("a509469a-ef3d-4ad1-8dba-c92a96b0bc64")]
 	public interface nsISiteSpecificUserAgent
 	{
 		
@@ -40,10 +40,12 @@ namespace Gecko
         ///
         /// @param aURI is the URI of the page the UA string is used for.
         ///
+        /// @param aWindow is the window this UA is being requested for
+        ///
         /// @returns the User Agent string for the given URI. If no override applies,
         /// the default User Agent string is used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUserAgentForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetUserAgentForURIAndWindow([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

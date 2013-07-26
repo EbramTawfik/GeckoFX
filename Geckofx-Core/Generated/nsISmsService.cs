@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4310bdb5-eefa-4f70-965a-74041228ab26")]
+	[Guid("c4b2ed2a-8714-11e2-bd2b-13f1a0759342")]
 	public interface nsISmsService
 	{
 		
@@ -49,14 +49,6 @@ namespace Gecko
 		nsIDOMMozSmsSegmentInfo GetSegmentInfoForText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Send([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, [MarshalAs(UnmanagedType.Interface)] nsISmsRequest request);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozSmsMessage CreateSmsMessage(int id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase delivery, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase deliveryStatus, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sender, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase receiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageClass, Gecko.JsVal timestamp, [MarshalAs(UnmanagedType.U1)] bool read, System.IntPtr jsContext);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozSmsSegmentInfo CreateSmsSegmentInfo(int segments, int charsPerSegment, int charsAvailableInLastSegment);
+		void Send([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 	}
 }

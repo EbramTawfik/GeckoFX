@@ -29,7 +29,7 @@ namespace Gecko
 	/// <summary>nsIDOMDataChannel </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7363aa5c-f4b2-4b86-8d15-e0f714c9216b")]
+	[Guid("ee669438-60ff-425c-91b8-2e29bfa6d4ae")]
 	public interface nsIDOMDataChannel : nsIDOMEventTarget
 	{
 		
@@ -142,7 +142,6 @@ namespace Gecko
         /// Usually |this| is returned, but for example global object returns
         /// the outer object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetTargetForDOMEvent();
 		
@@ -152,7 +151,6 @@ namespace Gecko
         /// Usually |this| is returned, but for example global object returns
         /// the inner object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetTargetForEventTargetChain();
 		
@@ -241,6 +239,11 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetLabelAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLabel);
 		
+		/// <summary>Member GetProtocolAttribute </summary>
+		/// <param name='aProtocol'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aProtocol);
+		
 		/// <summary>Member GetReliableAttribute </summary>
 		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
@@ -263,15 +266,23 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetBufferedAmountAttribute();
 		
-		/// <summary>Member GetOnopenAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
+		/// <summary>Member GetIdAttribute </summary>
+		/// <returns>A System.UInt16</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetIdAttribute();
+		
+		/// <summary>Member GetStreamAttribute </summary>
+		/// <returns>A System.UInt16</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetStreamAttribute();
+		
+		/// <summary>
+        ///deprecated name for 'id' </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetOnopenAttribute(System.IntPtr jsContext);
 		
-		/// <summary>Member SetOnopenAttribute </summary>
-		/// <param name='aOnopen'> </param>
-		/// <param name='jsContext'> </param>
+		/// <summary>
+        ///deprecated name for 'id' </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnopenAttribute(Gecko.JsVal aOnopen, System.IntPtr jsContext);
 		

@@ -16,9 +16,9 @@ namespace Gecko.Plugins
 			_pluginHost = new ServiceWrapper<nsIPluginHost>(Contracts.PluginHost);
 		}
 
-		public static void ReloadPlugins(bool reloadPages)
+		public static void ReloadPlugins()
 		{
-			_pluginHost.Instance.ReloadPlugins( reloadPages );
+			_pluginHost.Instance.ReloadPlugins();
 		}
 
 		public static PluginTag[] GetPluginTags()

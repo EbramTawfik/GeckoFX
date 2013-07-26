@@ -293,6 +293,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Deserialize(System.IntPtr aMsg, ref System.IntPtr aIter);
 		
+		/// <summary>Member SetOwner </summary>
+		/// <param name='aOwner'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOwner(nsIDOMEventTarget aOwner);
+		
+		/// <summary>Member InternalDOMEvent </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr InternalDOMEvent();
+		
 		/// <summary>Member InitDeviceMotionEvent </summary>
 		/// <param name='eventTypeArg'> </param>
 		/// <param name='canBubbleArg'> </param>

@@ -73,7 +73,7 @@ namespace Gecko
 		/// <param name="binDirectory"></param>
 		/// <param name="appFileLocationProvider"></param>
 		/// <returns></returns>
-		[DllImport("xpcom", CharSet = CharSet.Ansi,CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi,CallingConvention = CallingConvention.Cdecl)]
 		static extern int NS_InitXPCOM2([MarshalAs(UnmanagedType.Interface)] out nsIServiceManager serviceManager, [MarshalAs(UnmanagedType.IUnknown)] object binDirectory, nsIDirectoryServiceProvider appFileLocationProvider);
 
 		/// <summary>
@@ -85,7 +85,7 @@ namespace Gecko
 		/// </summary>
 		/// <param name="serviceManager"></param>
 		/// <returns></returns>
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		static extern int NS_ShutdownXPCOM([MarshalAs(UnmanagedType.Interface)] nsIServiceManager serviceManager);
 
 		/// <summary>
@@ -96,7 +96,7 @@ namespace Gecko
 		/// <param name="followLinks"></param>
 		/// <param name="result"></param>
 		/// <returns></returns>
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		static extern int NS_NewNativeLocalFile(nsACString path, bool followLinks, [MarshalAs(UnmanagedType.IUnknown)] out object result);
 
 		/// <summary>
@@ -105,7 +105,7 @@ namespace Gecko
 		/// </summary>
 		/// <param name="componentManager"></param>
 		/// <returns></returns>
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		static extern int NS_GetComponentManager([MarshalAs(UnmanagedType.Interface)]out nsIComponentManager componentManager);
 
 		/// <summary>
@@ -114,7 +114,7 @@ namespace Gecko
 		/// </summary>
 		/// <param name="componentRegistrar"></param>
 		/// <returns></returns>
-		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		static extern int NS_GetComponentRegistrar([MarshalAs(UnmanagedType.Interface)] out nsIComponentRegistrar componentRegistrar);
 
 		/// <summary>
@@ -122,7 +122,7 @@ namespace Gecko
 		/// </summary>
 		/// <param name="size"></param>
 		/// <returns></returns>
-		[DllImport("xpcom", EntryPoint = "NS_Alloc", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", EntryPoint = "NS_Alloc", CallingConvention = CallingConvention.Cdecl)]
 		public static extern IntPtr Alloc(int size);
 
 		/// <summary>
@@ -131,14 +131,14 @@ namespace Gecko
 		/// <param name="ptr"></param>
 		/// <param name="size"></param>
 		/// <returns></returns>
-		[DllImport("xpcom", EntryPoint = "NS_Realloc", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", EntryPoint = "NS_Realloc", CallingConvention = CallingConvention.Cdecl)]
 		public static extern IntPtr Realloc(IntPtr ptr, int size);
 
 		/// <summary>
 		/// XPCOM_API(void) NS_Free(void* ptr)
 		/// </summary>
 		/// <param name="ptr"></param>
-		[DllImport("xpcom", EntryPoint = "NS_Free", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("xul", EntryPoint = "NS_Free", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void Free(IntPtr ptr);
 		#endregion
 

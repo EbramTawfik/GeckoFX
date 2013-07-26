@@ -52,7 +52,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e61821ba-7772-4973-b583-1715e4bbaeed")]
+	[Guid("85ba28da-53d0-401d-afed-9cad69f727ff")]
 	public interface IPeerConnectionObserver
 	{
 		
@@ -62,31 +62,31 @@ namespace Gecko
 		void OnCreateOfferSuccess([MarshalAs(UnmanagedType.LPStr)] string offer);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCreateOfferError(uint code);
+		void OnCreateOfferError(uint name, [MarshalAs(UnmanagedType.LPStr)] string message);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnCreateAnswerSuccess([MarshalAs(UnmanagedType.LPStr)] string answer);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCreateAnswerError(uint code);
+		void OnCreateAnswerError(uint name, [MarshalAs(UnmanagedType.LPStr)] string message);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSetLocalDescriptionSuccess(uint code);
+		void OnSetLocalDescriptionSuccess();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSetRemoteDescriptionSuccess(uint code);
+		void OnSetRemoteDescriptionSuccess();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSetLocalDescriptionError(uint code);
+		void OnSetLocalDescriptionError(uint name, [MarshalAs(UnmanagedType.LPStr)] string message);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSetRemoteDescriptionError(uint code);
+		void OnSetRemoteDescriptionError(uint name, [MarshalAs(UnmanagedType.LPStr)] string message);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAddIceCandidateSuccess(uint code);
+		void OnAddIceCandidateSuccess();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAddIceCandidateError(uint code);
+		void OnAddIceCandidateError(uint name, [MarshalAs(UnmanagedType.LPStr)] string message);
 		
 		/// <summary>
         ///Data channel callbacks </summary>
@@ -149,7 +149,7 @@ namespace Gecko
 	/// <summary>IPeerConnection </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cc8327f5-66f4-42f4-820d-9a9db0474b6e")]
+	[Guid("80b98a4f-c629-4e81-b738-a4608f6a4cd3")]
 	public interface IPeerConnection
 	{
 		
@@ -219,7 +219,7 @@ namespace Gecko
 		/// <summary>
         ///Puts the SIPCC engine back to 'kIdle', shuts down threads, deletes state </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Close([MarshalAs(UnmanagedType.U1)] bool isSynchronous);
+		void Close();
 		
 		/// <summary>
         ///Attributes </summary>
@@ -252,7 +252,7 @@ namespace Gecko
         ///Data channels </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDataChannel CreateDataChannel([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase label, ushort type, [MarshalAs(UnmanagedType.U1)] bool outOfOrderAllowed, ushort maxTime, ushort maxNum);
+		nsIDOMDataChannel CreateDataChannel([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase label, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase protocol, ushort type, [MarshalAs(UnmanagedType.U1)] bool outOfOrderAllowed, ushort maxTime, ushort maxNum, [MarshalAs(UnmanagedType.U1)] bool externalNegotiated, ushort stream);
 		
 		/// <summary>Member ConnectDataConnection </summary>
 		/// <param name='localport'> </param>
@@ -300,6 +300,22 @@ namespace Gecko
 		public const long kIceFailed = 4;
 		
 		// <summary>
+        //for readyState on Peer Connection </summary>
+		public const long kNew = 0;
+		
+		// 
+		public const long kNegotiating = 1;
+		
+		// 
+		public const long kActive = 2;
+		
+		// 
+		public const long kClosing = 3;
+		
+		// 
+		public const long kClosed = 4;
+		
+		// <summary>
         //for 'type' in DataChannelInit dictionary </summary>
 		public const ulong kDataChannelReliable = 0;
 		
@@ -308,5 +324,41 @@ namespace Gecko
 		
 		// 
 		public const ulong kDataChannelPartialReliableTimed = 2;
+		
+		// <summary>
+        //Constants for 'name' in error callbacks </summary>
+		public const ulong kNoError = 0;
+		
+		// <summary>
+        // Test driver only
+        // </summary>
+		public const ulong kInvalidConstraintsType = 1;
+		
+		// 
+		public const ulong kInvalidCandidateType = 2;
+		
+		// 
+		public const ulong kInvalidMediastreamTrack = 3;
+		
+		// 
+		public const ulong kInvalidState = 4;
+		
+		// 
+		public const ulong kInvalidSessionDescription = 5;
+		
+		// 
+		public const ulong kIncompatibleSessionDescription = 6;
+		
+		// 
+		public const ulong kIncompatibleConstraints = 7;
+		
+		// 
+		public const ulong kIncompatibleMediaStreamTrack = 8;
+		
+		// 
+		public const ulong kInternalError = 9;
+		
+		// 
+		public const ulong kMaxErrorType = 9;
 	}
 }

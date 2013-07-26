@@ -172,11 +172,6 @@ namespace Gecko
 			get { return nsString.Get(_domNode.GetLocalNameAttribute); }
 		}
 
-		public GeckoNamedNodeMap Attributes
-		{
-			get { return _domNode.GetAttributesAttribute().Wrap( GeckoNamedNodeMap.Create ); }
-		}
-
 		private NodeType m_cachedType;
 
 		public NodeType NodeType

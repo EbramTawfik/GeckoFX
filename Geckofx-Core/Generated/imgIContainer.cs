@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c7e8eed7-2be9-40b0-be7c-b682097f5b28")]
+	[Guid("01c4f92f-f883-4837-a127-d8f30920e374")]
 	public interface imgIContainer
 	{
 		
@@ -53,6 +53,21 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetHeightAttribute();
+		
+		/// <summary>
+        /// The intrinsic size of this image in appunits. If the image has no intrinsic
+        /// size in a dimension, -1 will be returned for that dimension. In the case of
+        /// any error, an exception will be thrown.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetIntrinsicSizeAttribute();
+		
+		/// <summary>
+        /// The (dimensionless) intrinsic ratio of this image. In the case of any error,
+        /// an exception will be thrown.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetIntrinsicRatioAttribute();
 		
 		/// <summary>
         /// The type of this image (one of the TYPE_* values above).
@@ -78,7 +93,9 @@ namespace Gecko
 		
 		/// <summary>
         /// Get a surface for the given frame. This may be a platform-native,
-        /// optimized surface, so you cannot inspect its pixel data.
+        /// optimized surface, so you cannot inspect its pixel data. If you
+        /// need that, use gfxASurface::GetAsReadableARGB32ImageSurface or
+        /// gfxASurface::CopyToARGB32ImageSurface.
         ///
         /// @param aWhichFrame Frame specifier of the FRAME_* variety.
         /// @param aFlags Flags of the FLAG_* variety
@@ -104,16 +121,6 @@ namespace Gecko
 		System.IntPtr GetImageContainer(System.IntPtr aManager);
 		
 		/// <summary>
-        /// Create and return a new copy of the given frame that you can write to
-        /// and otherwise inspect the pixels of.
-        ///
-        /// @param aWhichFrame Frame specifier of the FRAME_* variety.
-        /// @param aFlags Flags of the FLAG_* variety
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr CopyFrame(uint aWhichFrame, uint aFlags);
-		
-		/// <summary>
         /// Create a new imgContainer that contains only a single frame, which itself
         /// contains a subregion of the given frame.
         ///
@@ -126,7 +133,7 @@ namespace Gecko
 		imgIContainer ExtractFrame(uint aWhichFrame, [MarshalAs(UnmanagedType.Interface)] nsIntRect aRect, uint aFlags);
 		
 		/// <summary>
-        /// Draw the current frame on to the context specified.
+        /// Draw a frame onto the context specified.
         ///
         /// @param aContext The Thebes context to draw the image to.
         /// @param aFilter The filter to be used if we're scaling the image.
@@ -145,21 +152,14 @@ namespace Gecko
         /// might be restricted by aSubimage -- but we still need the full
         /// image's viewport-size in order for SVG images with the "viewBox"
         /// attribute to position their content correctly.)
+        /// @param aSVGContext If non-null, SVG-related rendering context such as
+        /// overridden attributes on the image document's root <svg>
+        /// node. Ignored for raster images.
+        /// @param aWhichFrame Frame specifier of the FRAME_* variety.
         /// @param aFlags Flags of the FLAG_* variety
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Draw(gfxContext aContext, gfxGraphicsFilter aFilter, gfxMatrix aUserSpaceToImageSpace, gfxRect aFill, [MarshalAs(UnmanagedType.Interface)] nsIntRect aSubimage, uint aViewportSize, uint aFlags);
-		
-		/// <summary>
-        /// If this image is TYPE_VECTOR, i.e. is really an embedded SVG document,
-        /// this method returns a pointer to the root nsIFrame of that document. If
-        /// not (or if the root nsIFrame isn't available for some reason), this method
-        /// returns nullptr.
-        ///
-        /// "notxpcom" for convenience, since we have no need for nsresult return-val.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetRootLayoutFrame();
+		void Draw(gfxContext aContext, gfxGraphicsFilter aFilter, gfxMatrix aUserSpaceToImageSpace, gfxRect aFill, [MarshalAs(UnmanagedType.Interface)] nsIntRect aSubimage, uint aViewportSize, System.IntPtr aSVGContext, uint aWhichFrame, uint aFlags);
 		
 		/// <summary>
         /// Ensures that an image is decoding. Calling this function guarantees that

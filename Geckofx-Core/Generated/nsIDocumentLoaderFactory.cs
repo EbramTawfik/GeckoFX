@@ -46,11 +46,13 @@ namespace Gecko
         /// The value of the entry is the contractid of the component.
         /// The component is a service, so use GetService, not CreateInstance to get it.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr CreateInstance([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup, [MarshalAs(UnmanagedType.LPStr)] string aContentType, [MarshalAs(UnmanagedType.Interface)] nsISupports aContainer, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraInfo, [MarshalAs(UnmanagedType.Interface)] ref nsIStreamListener aDocListenerResult);
+		nsIContentViewer CreateInstance([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup, [MarshalAs(UnmanagedType.LPStr)] string aContentType, [MarshalAs(UnmanagedType.Interface)] nsISupports aContainer, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraInfo, [MarshalAs(UnmanagedType.Interface)] ref nsIStreamListener aDocListenerResult);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr CreateInstanceForDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aContainer, System.IntPtr aDocument, [MarshalAs(UnmanagedType.LPStr)] string aCommand);
+		nsIContentViewer CreateInstanceForDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aContainer, System.IntPtr aDocument, [MarshalAs(UnmanagedType.LPStr)] string aCommand);
 		
 		/// <summary>
         /// Create a blank document using the given loadgroup and given

@@ -232,6 +232,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Deserialize(System.IntPtr aMsg, ref System.IntPtr aIter);
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOwner(nsIDOMEventTarget aOwner);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr InternalDOMEvent();
+		
 		/// <summary>
         /// Transition events are defined in:
         /// http://www.w3.org/TR/css3-transitions/#transition-events-

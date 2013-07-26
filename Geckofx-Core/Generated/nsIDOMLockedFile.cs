@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("589e0d26-20b5-4355-ac1e-9c6fd0dd83f2")]
+	[Guid("a09cdc35-6b1e-42ce-95bb-f8f10a354202")]
 	public interface nsIDOMLockedFile
 	{
 		
@@ -64,31 +64,43 @@ namespace Gecko
         ///all </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFileRequest GetMetadata(Gecko.JsVal parameters, System.IntPtr jsContext);
+		nsISupports GetMetadata(Gecko.JsVal parameters, System.IntPtr jsContext);
 		
+		/// <summary>
+        ///FileRequest </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFileRequest ReadAsArrayBuffer(ulong size, System.IntPtr jsContext);
+		nsISupports ReadAsArrayBuffer(ulong size, System.IntPtr jsContext);
 		
+		/// <summary>
+        ///FileRequest </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFileRequest ReadAsText(ulong size, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase encoding);
+		nsISupports ReadAsText(ulong size, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase encoding);
 		
+		/// <summary>
+        ///FileRequest </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFileRequest Write(Gecko.JsVal value, System.IntPtr jsContext);
+		nsISupports Write(Gecko.JsVal value, System.IntPtr jsContext);
 		
+		/// <summary>
+        ///FileRequest </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFileRequest Append(Gecko.JsVal value, System.IntPtr jsContext);
+		nsISupports Append(Gecko.JsVal value, System.IntPtr jsContext);
 		
+		/// <summary>
+        ///FileRequest </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFileRequest Truncate(ulong size, int argc);
+		nsISupports Truncate(ulong size, int argc);
 		
+		/// <summary>
+        ///FileRequest </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFileRequest Flush();
+		nsISupports Flush();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Abort();

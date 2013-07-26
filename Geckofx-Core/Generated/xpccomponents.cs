@@ -160,7 +160,7 @@ namespace Gecko
     /// interface of Components.utils </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5b62c98f-5ff8-41f9-bcb8-a24d1b4255d4")]
+	[Guid("ab50492f-a9de-4a68-9a75-9406f1542a6c")]
 	public interface nsIXPCComponents_Utils
 	{
 		
@@ -450,13 +450,6 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetWerrorAttribute([MarshalAs(UnmanagedType.U1)] bool aWerror, System.IntPtr jsContext);
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAtlineAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAtlineAttribute([MarshalAs(UnmanagedType.U1)] bool aAtline, System.IntPtr jsContext);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1a3b1260-4bdb-45d0-a306-dc377dd9baa4")]
+	[Guid("41e4ccc9-f0c8-4cd7-9753-7a38514b8488")]
 	public interface mozIVisitInfo
 	{
 		
@@ -63,14 +63,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI GetReferrerURIAttribute();
-		
-		/// <summary>
-        /// The sessionId of this visit.
-        ///
-        /// @see nsINavHistory.idl
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		long GetSessionIdAttribute();
 	}
 	
 	/// <summary>mozIPlaceInfo </summary>

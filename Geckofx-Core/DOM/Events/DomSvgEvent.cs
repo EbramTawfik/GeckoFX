@@ -5,20 +5,20 @@ using System.Text;
 
 namespace Gecko.DOM.Events
 {
-	public sealed class DomSvgEvent
+	public sealed class DomSvgZoomEvent
 		:DomEventArgs
 	{
-		private nsIDOMSVGEvent _domSvgEvent;
+		private nsIDOMSVGZoomEvent _domSvgEvent;
 
-		private DomSvgEvent( nsIDOMSVGEvent domSvgEvent )
+        private DomSvgZoomEvent(nsIDOMSVGZoomEvent domSvgEvent)
 			:base(domSvgEvent)
 		{
 			_domSvgEvent = domSvgEvent;
 		}
 
-		public static DomSvgEvent Create( nsIDOMSVGEvent domSvgEvent )
+		public static DomSvgZoomEvent Create( nsIDOMSVGZoomEvent domSvgEvent )
 		{
-			return new DomSvgEvent( domSvgEvent );
+			return new DomSvgZoomEvent( domSvgEvent );
 		}
 	}
 }

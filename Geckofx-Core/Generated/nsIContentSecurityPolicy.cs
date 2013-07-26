@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d1680bb4-1ac0-4772-9437-1188375e44f2")]
+	[Guid("91E1F257-914C-4D4F-902C-F67F772839AB")]
 	public interface nsIContentSecurityPolicy
 	{
 		
@@ -76,18 +76,34 @@ namespace Gecko
 		
 		/// <summary>
         /// Whether this policy allows in-page script.
+        /// @param shouldReportViolation
+        /// Whether or not the use of inline script should be reported.
+        /// This function always returns "true" for report-only policies, but when
+        /// the report-only policy is violated, shouldReportViolation is true as
+        /// well.
+        /// @return
+        /// Whether or not the effects of the inline script should be allowed
+        /// (block the compilation if false).
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAllowsInlineScriptAttribute();
+		bool GetAllowsInlineScript([MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolation);
 		
 		/// <summary>
         /// whether this policy allows eval and eval-like functions
         /// such as setTimeout("code string", time).
+        /// @param shouldReportViolation
+        /// Whether or not the use of eval should be reported.
+        /// This function always returns "true" for report-only policies, but when
+        /// the report-only policy is violated, shouldReportViolation is true as
+        /// well.
+        /// @return
+        /// Whether or not the effects of the eval call should be allowed
+        /// (block the call if false).
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAllowsEvalAttribute();
+		bool GetAllowsEval([MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolation);
 		
 		/// <summary>
         /// Log policy violation on the Error Console and send a report if a report-uri

@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("94ca74e8-9cff-456e-a7a4-a4071a32ff58")]
+	[Guid("f4deeef5-32d3-4048-bb56-883330fd8f35")]
 	public interface nsIDOMStorageIndexedDB
 	{
 		
@@ -44,10 +44,10 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBFactory GetIndexedDBAttribute();
+		nsISupports GetIndexedDBAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBFactory GetMozIndexedDBAttribute();
+		nsISupports GetMozIndexedDBAttribute();
 	}
 }

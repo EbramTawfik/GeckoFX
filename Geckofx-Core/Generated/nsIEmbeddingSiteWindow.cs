@@ -80,7 +80,7 @@ namespace Gecko
         /// @see DIM_FLAGS_SIZE_INNER
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		unsafe void GetDimensions(uint flags, int* x, int* y, int* cx, int* cy);
+        unsafe void GetDimensions(uint flags, int* x, int* y, int* cx, int* cy);
 		
 		/// <summary>
         /// Give the window focus.

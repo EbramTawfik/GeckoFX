@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("90b3d21c-317d-4d96-93c0-12add64a26bf")]
+	[Guid("ac65c702-7771-4f6d-b18b-1c7d806ce3c1")]
 	public interface imgINotificationObserver
 	{
 		
@@ -70,6 +70,9 @@ namespace Gecko
 		public const long DISCARD = 6;
 		
 		// 
-		public const long IS_ANIMATED = 7;
+		public const long UNLOCKED_DRAW = 7;
+		
+		// 
+		public const long IS_ANIMATED = 8;
 	}
 }

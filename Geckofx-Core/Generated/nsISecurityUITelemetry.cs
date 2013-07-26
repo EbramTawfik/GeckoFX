@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d5c7d771-53a7-40e5-8247-fb6a8795cae8")]
+	[Guid("8c1b56c3-b76b-4180-a59a-fb2586db765d")]
 	public interface nsISecurityUITelemetry
 	{
 	}
@@ -73,6 +73,7 @@ namespace Gecko
 		
 		// <summary>
         // Phishing / Malware page warnings
+        // deprecated: we use the _TOP and _FRAME versions below
         // </summary>
 		public const long WARNING_MALWARE_PAGE = 13;
 		
@@ -172,5 +173,53 @@ namespace Gecko
 		
 		// 
 		public const long WARNING_NO_SECURE_UPDATE = 51;
+		
+		// 
+		public const long WARNING_MALWARE_PAGE_TOP = 52;
+		
+		// 
+		public const long WARNING_MALWARE_PAGE_TOP_WHY_BLOCKED = 53;
+		
+		// 
+		public const long WARNING_MALWARE_PAGE_TOP_GET_ME_OUT_OF_HERE = 54;
+		
+		// 
+		public const long WARNING_MALWARE_PAGE_TOP_IGNORE_WARNING = 55;
+		
+		// 
+		public const long WARNING_PHISHING_PAGE_TOP = 56;
+		
+		// 
+		public const long WARNING_PHISHING_PAGE_TOP_WHY_BLOCKED = 57;
+		
+		// 
+		public const long WARNING_PHISHING_PAGE_TOP_GET_ME_OUT_OF_HERE = 58;
+		
+		// 
+		public const long WARNING_PHISHING_PAGE_TOP_IGNORE_WARNING = 59;
+		
+		// 
+		public const long WARNING_MALWARE_PAGE_FRAME = 60;
+		
+		// 
+		public const long WARNING_MALWARE_PAGE_FRAME_WHY_BLOCKED = 61;
+		
+		// 
+		public const long WARNING_MALWARE_PAGE_FRAME_GET_ME_OUT_OF_HERE = 62;
+		
+		// 
+		public const long WARNING_MALWARE_PAGE_FRAME_IGNORE_WARNING = 63;
+		
+		// 
+		public const long WARNING_PHISHING_PAGE_FRAME = 64;
+		
+		// 
+		public const long WARNING_PHISHING_PAGE_FRAME_WHY_BLOCKED = 65;
+		
+		// 
+		public const long WARNING_PHISHING_PAGE_FRAME_GET_ME_OUT_OF_HERE = 66;
+		
+		// 
+		public const long WARNING_PHISHING_PAGE_FRAME_IGNORE_WARNING = 67;
 	}
 }

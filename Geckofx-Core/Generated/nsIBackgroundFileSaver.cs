@@ -51,11 +51,13 @@ namespace Gecko
     ///
     /// @remarks Implementations may require the consumer to always call Finish.  If
     /// the object reference is released without calling Finish, a memory
-    /// leak may occur, and the target file might be kept locked.
+    /// leak may occur, and the target file might be kept locked. All
+    /// public methods of the interface may only be called from the main
+    /// thread.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f2fb4daf-0aba-4b30-9ec0-b7a83ce3b7ab")]
+	[Guid("17a2ff32-918f-11e2-8fc9-f9626188709b")]
 	public interface nsIBackgroundFileSaver
 	{
 		
@@ -81,6 +83,24 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetObserverAttribute([MarshalAs(UnmanagedType.Interface)] nsIBackgroundFileSaverObserver aObserver);
+		
+		/// <summary>
+        /// The SHA256 hash in raw bytes associated with the file that was downloaded.
+        ///
+        /// @remarks Reading this will throw NS_ERROR_NOT_AVAILABLE unless
+        /// sha256enabled is true and onSaveComplete has been called.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSha256HashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aSha256Hash);
+		
+		/// <summary>
+        /// Compute SHA256.
+        ///
+        /// @remarks This must be set on the main thread before the first call to
+        /// setTarget.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void EnableSha256();
 		
 		/// <summary>
         /// Sets the name of the output file to be written.  The output file may

@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9d898c66-3485-4cd5-ab8d-92ef2988887b")]
+	[Guid("9af5378e-03ce-4c5f-8ec1-50ae774b5612")]
 	public interface nsIDOMMozIccManager : nsIDOMEventTarget
 	{
 		
@@ -145,7 +145,6 @@ namespace Gecko
         /// Usually |this| is returned, but for example global object returns
         /// the outer object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetTargetForDOMEvent();
 		
@@ -155,7 +154,6 @@ namespace Gecko
         /// Usually |this| is returned, but for example global object returns
         /// the inner object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetTargetForEventTargetChain();
 		
@@ -317,6 +315,60 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnstksessionendAttribute(Gecko.JsVal aOnstksessionend, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Update ICC Phonebook contact.
+        ///
+        /// @param contactType
+        /// One of type as below,
+        /// - 'adn': Abbreviated Dialling Number
+        /// - 'fdn': Fixed Dialling Number
+        /// @param contact
+        /// The contact will be updated in ICC
+        /// @param [optional] pin2
+        /// PIN2 is only required for 'fdn'.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest UpdateContact([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contactType, [MarshalAs(UnmanagedType.Interface)] nsIDOMContact contact, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pin2);
+		
+		/// <summary>
+        /// Send request to open a logical channel defined by its
+        /// application identifier (AID)
+        ///
+        /// @param aid
+        /// The Application Identifier of the Applet to be selected on this channel
+        /// return value : An instance of Channel (channelID) if available or null.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest IccOpenChannel([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aid);
+		
+		/// <summary>
+        /// Interface, used to communicate with an applet through the
+        /// Application Data Protocol Units (APDUs) and is
+        /// used for all data that is exchanged between the UICC card and the terminal (ME).
+        ///
+        /// @param channel
+        /// The Application Identifier of the Applet to which APDU is directed
+        /// @param apdu
+        /// Application Protocol Data Unit
+        /// return value : Response APDU
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest IccExchangeAPDU(int channel, Gecko.JsVal apdu);
+		
+		/// <summary>
+        /// Send request to close the selected logical channel identified by its
+        /// application identifier (AID)
+        ///
+        /// @param aid
+        /// The Application Identifier of the Applet , to be closed
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest IccCloseChannel(int channel);
 	}
 	
 	/// <summary>nsIDOMMozIccManagerConsts </summary>

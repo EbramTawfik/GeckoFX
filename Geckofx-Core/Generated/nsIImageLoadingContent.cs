@@ -47,12 +47,12 @@ namespace Gecko
     /// this issue.  (It could be that the image status on imgIRequest is
     /// sufficient, when combined with the imageBlockingStatus information.)
     ///
-    /// Please make sure to update the HTMLImageElement and SVGImageElement
-    /// Web IDL interfaces to mirror this interface when changing it.
+    /// Please make sure to update the MozImageLoadingContent WebIDL
+    /// interface to mirror this interface when changing it.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("497bfb9b-d996-4d1e-a647-8137b0cfc876")]
+	[Guid("e3968acd-b796-4ca3-aec0-e7f0880f2219")]
 	public interface nsIImageLoadingContent : imgINotificationObserver
 	{
 		
@@ -189,6 +189,19 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ForceImageState([MarshalAs(UnmanagedType.U1)] bool aForce, ulong aState);
+		
+		/// <summary>
+        /// A visible count is stored, if it is non-zero then this image is considered
+        /// visible. These methods increment, decrement, or return the visible coount.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void IncrementVisibleCount();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DecrementVisibleCount();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetVisibleCount();
 	}
 	
 	/// <summary>nsIImageLoadingContentConsts </summary>

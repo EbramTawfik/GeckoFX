@@ -136,15 +136,16 @@ namespace Gecko
         /// The previous content viewer, which has been |close|d but not
         /// |destroy|ed.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetPreviousViewerAttribute();
+		nsIContentViewer GetPreviousViewerAttribute();
 		
 		/// <summary>
         /// The previous content viewer, which has been |close|d but not
         /// |destroy|ed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPreviousViewerAttribute(System.IntPtr aPreviousViewer);
+		void SetPreviousViewerAttribute([MarshalAs(UnmanagedType.Interface)] nsIContentViewer aPreviousViewer);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Move(int aX, int aY);

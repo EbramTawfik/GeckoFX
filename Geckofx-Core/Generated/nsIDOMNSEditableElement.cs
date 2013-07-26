@@ -28,7 +28,12 @@ namespace Gecko
 	
 	/// <summary>
     /// This interface is implemented by elements which have inner editable content,
-    /// such as HTML input and textarea. </summary>
+    /// such as HTML input and textarea.
+    ///
+    /// Please make sure to update the HTMLTextAreaElement and HTMLInputElement
+    /// Web IDL interfaces to mirror this interface when changing it.
+    ///
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("b33eb56c-3120-418c-892b-774b00c7dde8")]
@@ -37,7 +42,12 @@ namespace Gecko
 		
 		/// <summary>
         /// This interface is implemented by elements which have inner editable content,
-        /// such as HTML input and textarea. </summary>
+        /// such as HTML input and textarea.
+        ///
+        /// Please make sure to update the HTMLTextAreaElement and HTMLInputElement
+        /// Web IDL interfaces to mirror this interface when changing it.
+        ///
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIEditor GetEditorAttribute();
