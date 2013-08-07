@@ -110,10 +110,9 @@ namespace Gecko
 			bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
 			// TODO: maybe getting JS_EvaluateScriptForPrincipals working would increase priviliges of the running script.
 			//bool ret = SpiderMonkey.JS_EvaluateScriptForPrincipals(_cx, globalObject, ..., jsScript, (uint)jsScript.Length,"script", 1, ref ptr);
-			
 
-			IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
-			result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));
+
+			result = ConvertValueToString(ptr);
 			return ret;
 		}
 
@@ -133,8 +132,7 @@ namespace Gecko
 				var ptr = new JsVal();
 				var wrapper = XPConnect.WrapNative(_cx, globalObject, thisObject, ref guid);				
 				bool ret = SpiderMonkey.JS_EvaluateScript(_cx, wrapper.GetJSObjectAttribute(), jsScript, (uint)jsScript.Length, "script", 1, ref ptr);				
-				IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
-				result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));
+				result = ConvertValueToString(ptr);
 				return ret;
 			}
 			catch (Exception e)
@@ -167,8 +165,7 @@ namespace Gecko
 				// At any time, a JSContext has a current (possibly-NULL) compartment.
 				inSystemCompartment = true;
 				ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
-				IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
-				result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));
+				result = ConvertValueToString(ptr);
 			}
 			finally
 			{
@@ -195,6 +192,27 @@ namespace Gecko
 				{
 					if (pUnk != IntPtr.Zero)
 						Marshal.Release(pUnk);
+				}
+			}
+			return null;
+		}
+
+		private string ConvertValueToString(JsVal value)
+		{
+			IntPtr jsp = SpiderMonkey.JS_ValueToString(_cx, value);
+			if (jsp != IntPtr.Zero)
+			{
+				IntPtr sp = SpiderMonkey.JS_EncodeString(_cx, jsp);
+				if (sp != IntPtr.Zero)
+				{
+					try
+					{
+						return Marshal.PtrToStringAnsi(sp);
+					}
+					finally
+					{
+						SpiderMonkey.JS_Free(_cx, sp);
+					}
 				}
 			}
 			return null;

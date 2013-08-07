@@ -280,6 +280,24 @@ namespace Gecko
 			}
 		}
 
+		public static void JS_Free(IntPtr cx, IntPtr p)
+		{
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					JS_Free_Linux32(cx, p);
+				else
+					JS_Free_Win32(cx, p);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					JS_Free_Linux64(cx, p);
+				else
+					JS_Free_Win64(cx, p);
+			}
+		}
+
 		#endregion
 
 		[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
@@ -332,7 +350,8 @@ namespace Gecko
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_LeaveCompartment@@YAXPAUJSContext@@PAUJSCompartment@@@Z")]
 		private static extern void JS_LeaveCompartment_Win32(IntPtr cx, IntPtr oldCompartment);
 
-
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_free@@YAXPAUJSContext@@PAX@Z")]
+		private static extern void JS_Free_Win32(IntPtr cx, IntPtr p);
 		
 		/// <summary>
 		/// declaration in jsapi.h
@@ -390,6 +409,9 @@ namespace Gecko
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_LeaveCompartment@@YAXPEAUJSContext@@PEAUJSCompartment@@@Z")]
 		private static extern void JS_LeaveCompartment_Win64(IntPtr cx, IntPtr oldCompartment);
 
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_free@@YAXPEAUJSContext@@PEAX@Z")]
+		private static extern void JS_Free_Win64(IntPtr cx, IntPtr p);
+
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetContextCallback@@YAP6AHPEAUJSContext@@I@ZPEAUJSRuntime@@P6AH0I@Z@Z")]
 		private static extern SpiderMonkey.JSContextCallback JS_SetContextCallback_Win64(IntPtr rt, JSContextCallback cb);
 
@@ -439,6 +461,9 @@ namespace Gecko
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_LeaveCompartmentP9JSContextP13JSCompartment")]
 		private static extern void JS_LeaveCompartment_Linux32(IntPtr cx, IntPtr oldCompartment);
 
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z7JS_freeP9JSContextPv")]
+		private static extern void JS_Free_Linux32(IntPtr cx, IntPtr p);
+
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z21JS_SetContextCallbackP9JSRuntimePFiP9JSContextjE")]
 		private static extern SpiderMonkey.JSContextCallback JS_SetContextCallback_Linux32(IntPtr rt, JSContextCallback cb);
 
@@ -487,6 +512,9 @@ namespace Gecko
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_LeaveCompartmentP9JSContextP13JSCompartment")]
 		private static extern void JS_LeaveCompartment_Linux64(IntPtr cx, IntPtr oldCompartment);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z7JS_freeP9JSContextPv")]
+		private static extern void JS_Free_Linux64(IntPtr cx, IntPtr p);
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z21JS_SetContextCallbackP9JSRuntimePFiP9JSContextjE")]
 		private static extern SpiderMonkey.JSContextCallback JS_SetContextCallback_Linux64(IntPtr rt, JSContextCallback cb);
