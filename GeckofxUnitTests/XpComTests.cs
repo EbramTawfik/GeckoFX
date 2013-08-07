@@ -26,18 +26,16 @@ namespace GeckofxUnitTests
 		[Test]
 		public void Alloc_XpcomInitialize_ReturnsValidPointer()
 		{			
-			IntPtr memory = Xpcom.Alloc(100);
+			IntPtr memory = Xpcom.Alloc(new IntPtr(100));
 			Assert.IsFalse(memory == IntPtr.Zero);
 			Xpcom.Free(memory);			
 		}
 		
-		// This test seg faults on Linux.
 		[Test]
-		[Platform(Exclude="Linux")]
 		public void Realloc_XpcomInitialize_ReturnsValidPointer()
 		{		
-			IntPtr memory = Xpcom.Alloc(100);			
-			Xpcom.Realloc(memory, 200);
+			IntPtr memory = Xpcom.Alloc(new IntPtr(100));			
+			memory = Xpcom.Realloc(memory, new IntPtr(200));
 			Assert.IsFalse(memory == IntPtr.Zero);
 			Xpcom.Free(memory);
 		}

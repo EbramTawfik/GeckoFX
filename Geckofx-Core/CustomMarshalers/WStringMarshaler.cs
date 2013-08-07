@@ -47,7 +47,7 @@ namespace Gecko.CustomMarshalers
 			// translate string into bytes
 			Encoding.Unicode.GetBytes( str, 0, str.Length, bytes, 0 );
 			// allocate memory by xulrunner runtime
-			IntPtr unmanagedMemory = Xpcom.Alloc( bytes.Length );
+			IntPtr unmanagedMemory = Xpcom.Alloc(new IntPtr(bytes.Length));
 			// copy byte array into unmanaged memory
 			Marshal.Copy( bytes, 0, unmanagedMemory, bytes.Length );
 			return unmanagedMemory;

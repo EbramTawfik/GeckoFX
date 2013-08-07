@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices;
 
 namespace Gecko.IO
@@ -26,7 +27,7 @@ namespace Gecko.IO
 		public void AdoptData(byte[] data,int dataLen)
 		{
 			// DON'T FREE THIS BUFFER
-			var buffer=Xpcom.Alloc( dataLen );
+			var buffer = Xpcom.Alloc(new IntPtr(dataLen));
 			Marshal.Copy( data, 0, buffer, dataLen );
 			// the input stream takes
 			// ownership of the given data buffer and will nsMemory::Free it when

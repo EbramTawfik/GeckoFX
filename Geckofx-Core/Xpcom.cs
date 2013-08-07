@@ -123,7 +123,7 @@ namespace Gecko
 		/// <param name="size"></param>
 		/// <returns></returns>
 		[DllImport("xul", EntryPoint = "NS_Alloc", CallingConvention = CallingConvention.Cdecl)]
-		public static extern IntPtr Alloc(int size);
+		public static extern IntPtr Alloc(IntPtr size);
 
 		/// <summary>
 		/// XPCOM_API(void*) NS_Realloc(void* ptr, PRSize size);
@@ -132,7 +132,7 @@ namespace Gecko
 		/// <param name="size"></param>
 		/// <returns></returns>
 		[DllImport("xul", EntryPoint = "NS_Realloc", CallingConvention = CallingConvention.Cdecl)]
-		public static extern IntPtr Realloc(IntPtr ptr, int size);
+		public static extern IntPtr Realloc(IntPtr ptr, IntPtr size);
 
 		/// <summary>
 		/// XPCOM_API(void) NS_Free(void* ptr)
@@ -249,7 +249,7 @@ namespace Gecko
 		/// <summary>
 		/// Initializes XPCOM using the specified directory.
 		/// </summary>
-		/// <param name="binDirectory">The directory which contains xpcom.dll.</param>
+		/// <param name="binDirectory">The directory which contains xul.dll.</param>
 		public static void Initialize(string binDirectory)
 		{
 			if (_IsInitialized)
@@ -264,7 +264,7 @@ namespace Gecko
 				Kernel32.SetDllDirectory(binDirectory);
 			
 			string folder = binDirectory ?? Environment.CurrentDirectory;
-			string xpcomPath = Path.Combine(folder, IsLinux ? "libxpcom.so" : "xpcom.dll");
+			string xpcomPath = Path.Combine(folder, IsLinux ? "libxul.so" : "xul.dll");
 						
 			try
 			{
