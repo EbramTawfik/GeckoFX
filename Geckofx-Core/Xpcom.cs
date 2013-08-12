@@ -358,7 +358,7 @@ namespace Gecko
 		{
 			if (Thread.CurrentThread.ManagedThreadId != _XpcomThreadId)
 			{
-				throw new InvalidOperationException("Xpcom must run on own thread");
+				throw new InvalidOperationException("GeckoFx can only be called from the same thread on which it was initialized (normally the UI thread).");
 			}
 		}
 		#endregion
