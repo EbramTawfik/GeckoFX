@@ -92,6 +92,7 @@ namespace Gecko
 				{
 					var xpcomPtr = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
 					_xpConnect = (nsIXPConnect)Xpcom.GetObjectForIUnknown(xpcomPtr);
+					Marshal.Release(xpcomPtr);
 				}
 				return _xpConnect;
 			}
