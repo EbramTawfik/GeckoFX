@@ -581,11 +581,20 @@ namespace Gecko
 		/// <summary>
 		/// Cancels any pending navigation and also stops any sound or animation.
 		/// </summary>
-		public void Stop()
-		{
-			if (WebNav != null)
-				WebNav.Stop((int)nsIWebNavigationConsts.STOP_ALL);
-		}
+        public void Stop()
+        {
+            if (WebNav != null)
+                try
+                {
+                    WebNav.Stop((int)nsIWebNavigationConsts.STOP_ALL);
+                }
+                catch (COMException ex)
+                {
+                    if (ex.ErrorCode == GeckoError.NS_ERROR_UNEXPECTED)
+                        return;
+                    throw;
+                }
+        }
 		
 		/// <summary>
 		/// Reloads the current page.
