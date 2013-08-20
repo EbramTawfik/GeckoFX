@@ -162,7 +162,7 @@
     <Compile Include="Cryptography\KeyObject.cs" />
     <Compile Include="Cryptography\KeyObjectFactory.cs" />
     <Compile Include="DOM\DomNavigator.cs" />
-    <Compile Include="DOM\Events\DomEventTarget.cs" />
+    <Compile Include="DOM\Events\DOMEventTarget.cs" />
     <Compile Include="DOM\GeckoAttribute.cs" />
     <Compile Include="DOM\GeckoElement.cs" />
     <Compile Include="DOM\GeckoElementCollection.cs" />
