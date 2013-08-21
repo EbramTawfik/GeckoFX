@@ -145,7 +145,7 @@ namespace Gecko
 			if (NavigateFinishedNotifier != null)
 				NavigateFinishedNotifier.Dispose();
 
-			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
+			if (!HasShutdownStarted())
 			{
 				Cleanup();
 			}
@@ -156,6 +156,11 @@ namespace Gecko
 #endif
 			//count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);            
 			base.Dispose(disposing);
+		}
+
+		protected virtual bool HasShutdownStarted()
+		{
+			return Environment.HasShutdownStarted || AppDomain.CurrentDomain.IsFinalizingForUnload();
 		}
 
 		// This method should only run on the Main Thread.
