@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Diagnostics;
 
 namespace Gecko.Interop
 {
@@ -24,7 +25,7 @@ namespace Gecko.Interop
 
 		~ComPtr()
 		{
-			Free();
+			Debug.Print("Warning Dispose not called on ComPtr");
 		}
 
 		public void Dispose()
