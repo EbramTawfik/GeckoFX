@@ -2,7 +2,11 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
-== v22.0-0.1 ==
+== v22.0-0.3 ==
+
+1. Fix bug where geckofx was releasing COM ptr on the GC thread.
+
+== v22.0-0.2 ==
 
 1. Initial version supporting firefox/xulrunner v22.0
 
