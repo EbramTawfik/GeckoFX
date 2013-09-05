@@ -72,7 +72,7 @@ namespace Gecko.Interop
 			{
 
 				var data = new GCData(Interlocked.Exchange(ref obj, null), finalize);
-				if (data.CanFree != null)
+				if (data.CanFree)
 				{
 					Monitor.Enter(_syncRoot);
 					try
