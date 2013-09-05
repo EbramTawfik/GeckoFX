@@ -150,6 +150,7 @@ namespace Gecko
 		static string _ProfileDirectory;
 		static int _XpcomThreadId;
 		private static string _xulrunnerVersion;
+		private static COMGC _comGC;
 		#endregion
 
 
@@ -322,7 +323,10 @@ namespace Gecko
 			// get some global objects we will need later
 			NS_GetComponentManager(out ComponentManager);
 			NS_GetComponentRegistrar(out ComponentRegistrar);
-			
+
+			_comGC = new COMGC();
+			if (!IsMono) _comGC.Dispose();
+
 			// RegisterProvider is neccessary to get link styles etc.
 			nsIDirectoryService directoryService = GetService<nsIDirectoryService>("@mozilla.org/file/directory_service;1");
 			if (directoryService != null)
@@ -343,6 +347,8 @@ namespace Gecko
 
 		public static void Shutdown()
 		{
+			_comGC.Dispose();
+			
 			if (ComponentRegistrar != null)
 				Marshal.ReleaseComObject(ComponentRegistrar);
 			
@@ -361,6 +367,15 @@ namespace Gecko
 				throw new InvalidOperationException("GeckoFx can only be called from the same thread on which it was initialized (normally the UI thread).");
 			}
 		}
+
+		public static bool InvokeRequired
+		{
+			get
+			{
+				return Thread.CurrentThread.ManagedThreadId != _XpcomThreadId;
+			}
+		}
+
 		#endregion
 
 		/// <summary>
@@ -609,7 +624,14 @@ namespace Gecko
 			var localObj = Interlocked.Exchange(ref obj, null);
 			// if it is already null -> return
 			if (localObj == null) return;
-			Marshal.ReleaseComObject(localObj);
+
+			if (Marshal.IsComObject(localObj)) // Is real COM? Not CLR object?
+			{
+				if (IsMono && Xpcom.InvokeRequired)
+					_comGC.Free(ref localObj);
+				else
+					Marshal.ReleaseComObject(localObj);
+			}
 #endif
 		}
 
@@ -623,7 +645,17 @@ namespace Gecko
 			// if it is already null -> return
 			if (localObj == null) return;
 			// release
-			Marshal.FinalReleaseComObject(localObj);
+			if (Marshal.IsComObject(localObj)) // Is real COM? Not CLR object?
+			{
+				if (IsMono && Xpcom.InvokeRequired)
+				{
+					_comGC.FinalFree(ref localObj);
+				}
+				else
+				{
+					Marshal.FinalReleaseComObject(localObj);
+				}
+			}
 		}
 
 		public static IntPtr WebBrowserGetInterface<T>(T geckoWebBrowser, nsIWebBrowser instance, ref Guid uuid)

@@ -143,6 +143,7 @@
     <Compile Include="Generated\nsIMessageManager.cs" />
     <Compile Include="Generated\nsIMobileMessageCallback.cs" />
     <Compile Include="Generated\nsIMozSAXXMLDeclarationHandler.cs" />
+    <Compile Include="Interop\COMGC.cs" />
     <Compile Include="Interop\ComPtr.cs" />
     <Compile Include="Interop\ExtensionMethods.cs" />
     <Compile Include="Interop\nsWeakReference.cs" />

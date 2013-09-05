@@ -25,7 +25,7 @@ namespace Gecko.Interop
 
 		~ComPtr()
 		{
-			Debug.Print("Warning Dispose not called on ComPtr");
+			Free();
 		}
 
 		public void Dispose()

@@ -40,5 +40,12 @@ namespace Gecko.Interop
 			var obj1 = getter( obj );
 			return obj1 == null ? null : wrapper( obj1 );
 		}
+
+		public static ComPtr<TCOMObject> AsComPtr<TCOMObject>(this TCOMObject obj)
+			where TCOMObject : class
+		{
+			if (obj == null) return null;
+			return new ComPtr<TCOMObject>(obj);
+		}
 	}
 }
