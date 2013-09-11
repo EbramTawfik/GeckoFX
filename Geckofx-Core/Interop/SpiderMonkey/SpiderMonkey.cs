@@ -297,6 +297,28 @@ namespace Gecko
 					JS_Free_Win64(cx, p);
 			}
 		}
+		
+		public static void JS_Shutdown()
+		{			
+			if (Xpcom.IsWindows)
+				throw new NotImplementedException();
+			
+			if (Xpcom.Is32Bit)
+				JS_Shutdown_Linux32();
+			else 
+				JS_Shutdown_Linux64();
+		}	
+		
+		public static void JS_DestroyRuntime(IntPtr rt)
+		{		
+			if (Xpcom.IsWindows)
+				throw new NotImplementedException();
+			
+			if (Xpcom.Is32Bit)
+				JS_DestroyRuntime_Linux32(rt);
+			else 
+				JS_DestroyRuntime_Linux64(rt);
+		}
 
 		#endregion
 
@@ -467,6 +489,12 @@ namespace Gecko
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z21JS_SetContextCallbackP9JSRuntimePFiP9JSContextjE")]
 		private static extern SpiderMonkey.JSContextCallback JS_SetContextCallback_Linux32(IntPtr rt, JSContextCallback cb);
 
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z11JS_ShutDownv")]
+		private static extern void JS_Shutdown_Linux32();
+		
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_DestroyRuntimeP9JSRuntime")]
+		private static extern void JS_DestroyRuntime_Linux32(IntPtr rt);
+
 		#endregion
 
 		#region Linux x64
@@ -518,6 +546,12 @@ namespace Gecko
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z21JS_SetContextCallbackP9JSRuntimePFiP9JSContextjE")]
 		private static extern SpiderMonkey.JSContextCallback JS_SetContextCallback_Linux64(IntPtr rt, JSContextCallback cb);
+		
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z11JS_ShutDownv")]
+		private static extern void JS_Shutdown_Linux64();
+		
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_DestroyRuntimeP9JSRuntime")]
+		private static extern void JS_DestroyRuntime_Linux64(IntPtr rt);
 
 		#endregion
 
