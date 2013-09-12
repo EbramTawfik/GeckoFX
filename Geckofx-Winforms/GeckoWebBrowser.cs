@@ -170,14 +170,10 @@ namespace Gecko
 			if (BaseWindow == null) return;
 
 			this.Stop();
-
-			nsIDocShell docShell = Xpcom.QueryInterface<nsIDocShell>(BaseWindow);
-			if (docShell != null)
+			
+			if(Window != null && !Window.DomWindow.GetClosedAttribute())
 			{
-				nsIContentViewer contentViewer = docShell.GetContentViewerAttribute();
-				contentViewer.PermitUnload(false);
-				contentViewer.Destroy();
-				Marshal.ReleaseComObject(docShell);
+				Window.DomWindow.Close();
 			}
 
 			BaseWindow.Destroy();
