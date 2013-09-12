@@ -246,7 +246,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("");
 
-			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
 			{				
 				string result;
 				Assert.IsTrue(context.EvaluateScript("3 + 2;", out result));
@@ -260,7 +260,7 @@ namespace GeckofxUnitTests
 		[Test]
 		public void EvaluateScript_SimpleJavascriptWithoutNormalDocumentSetup_ScriptExecutesAndReturnsExpectedResult()
 		{		
-			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
 			{
 				string result;
 				Assert.IsTrue(context.EvaluateScript("3 + 2;", out result));
@@ -276,7 +276,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("hello world");
 			
-			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
 			{
 				string result;
 				Assert.IsTrue(context.EvaluateScript("this", out result));
@@ -297,7 +297,7 @@ namespace GeckofxUnitTests
 		[Test]
 		public void EvaluateScript_JavascriptAccessExistingGlobalObjectsWithoutNormalDocumentSetup_ScriptExecutesAndReturnsExpectedResult()
 		{
-			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
 			{
 				string result;
 				Assert.IsTrue(context.EvaluateScript("this", out result));
@@ -324,13 +324,13 @@ namespace GeckofxUnitTests
 			{
 				IntPtr unused = page.Handle;			
 				page.CreateWindow += (s, e) => { e.WebBrowser = browser; };				
-				using (AutoJSContext context = new AutoJSContext(page.JSContext))
+				using (AutoJSContext context = new AutoJSContext(page.Window.JSContext))
 				{
 					Assert.IsTrue(context.EvaluateScript("window.open('http://www.google.com'); window.location.href", out aboutBlank));
 				}				
 				browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 
-				using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+				using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
 				{
 					Assert.IsTrue(context.EvaluateScript("window.location.href", out result));
 					Assert.AreNotEqual(aboutBlank, result);
@@ -350,7 +350,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("hello world");
 
-			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
 			{
 				string result;
 				context.EvaluateScript("this;", (nsISupports)browser.Document.Body.DomObject, out result);
@@ -364,7 +364,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("hello <span>world</span>");
 
-			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
 			{
 				string result;
 				context.EvaluateScript("function dosomthing(node) { return node.textContent; } dosomthing(this);", (nsISupports)browser.Document.Body.FirstChild.DomObject, out result);
@@ -378,7 +378,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("");
 
-			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
 			{
 				for (int i = 0; i < 500; i++)
 				{
@@ -396,7 +396,7 @@ namespace GeckofxUnitTests
 
 			for (int i = 0; i < 500; i++)
 			{
-				using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+				using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
 				{
 					string result;
 					context.EvaluateScript("2+3;", out result);
@@ -426,7 +426,7 @@ namespace GeckofxUnitTests
 			{
 				browser.TestLoadHtml(String.Format("{0}", i));
 
-				using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+				using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
 				{
 					string result;
 					context.EvaluateScript("2+3;", out result);

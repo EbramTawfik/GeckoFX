@@ -47,7 +47,7 @@ namespace Gecko
 			}
 		}
 		
-		internal static GeckoWindow Create(nsIDOMWindow window)
+		public static GeckoWindow Create(nsIDOMWindow window)
 		{
 			return (window == null) ? null : new GeckoWindow(window);
 		}
@@ -137,6 +137,14 @@ namespace Gecko
 		public GeckoWindowCollection Frames
 		{
 			get { return new GeckoWindowCollection(_domWindow.Instance.GetFramesAttribute()); }
+		}
+
+		public IntPtr JSContext
+		{
+			get
+			{
+				return GlobalJSContextHolder.GetJSContextForDomWindow(_domWindow.Instance);
+			}
 		}
 	}
 

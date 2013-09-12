@@ -183,22 +183,6 @@ namespace Gecko
 
 		#endregion
 
-		#region JSContext
-
-		public IntPtr JSContext
-		{
-			get
-			{
-				if (_Window != null)
-					return GlobalJSContextHolder.GetJSContextForDomWindow(_Window.DomWindow);
-				if (Window != null)
-					return GlobalJSContextHolder.GetJSContextForDomWindow(Window.DomWindow);
-				return IntPtr.Zero;
-			}
-		}
-
-		#endregion
-
 		public nsIWebBrowserFocus WebBrowserFocus
 		{
 			get; protected set;
