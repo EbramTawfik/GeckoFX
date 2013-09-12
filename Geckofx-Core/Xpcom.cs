@@ -414,7 +414,36 @@ namespace Gecko
 		}
 
 		#region External Methods
-		
+
+		public static ComPtr<nsIXPConnect> XPConnect
+		{
+			get
+			{
+				ComPtr<nsIXPConnect> rv = null;
+				IntPtr xpc = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
+				if (xpc != IntPtr.Zero)
+				{
+					try
+					{
+						object xpConnect = Xpcom.GetObjectForIUnknown(xpc);
+						try
+						{
+							rv = Xpcom.QueryInterface<nsIXPConnect>(xpConnect).AsComPtr();
+						}
+						finally
+						{
+							Xpcom.FreeComObject(ref xpConnect);
+						}
+					}
+					finally
+					{
+						Marshal.Release(xpc);
+					}
+				}
+				return rv;
+			}
+		}
+
 		public static object NewNativeLocalFile(string filename)
 		{
 			object result;
@@ -615,7 +644,7 @@ namespace Gecko
 			localObj.Dispose();
 		}
 
-		internal static void FreeComObject<T>(ref T obj)
+		public static void FreeComObject<T>(ref T obj)
 			where T : class
 		{
 #if false

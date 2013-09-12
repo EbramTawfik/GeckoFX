@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
+using Gecko.Interop;
 
 namespace Gecko
 {
@@ -23,7 +24,7 @@ namespace Gecko
 			{
 				if (_runtime == IntPtr.Zero)
 				{
-					using (var runtimeService = new Gecko.Interop.ServiceWrapper<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1"))
+					using (var runtimeService = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1").AsComPtr())
 					{
 						_runtime = runtimeService.Instance.GetRuntimeAttribute();
 					}
@@ -93,11 +94,7 @@ namespace Gecko
 			if (!_isInitialized)
 			{
 				_isInitialized = true;
-
-				using (var runtimeService = new Gecko.Interop.ServiceWrapper<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1"))
-				{
-					_originalContextCallback = SpiderMonkey.JS_SetContextCallback(Runtime, _globalContextCallback);
-				}
+				_originalContextCallback = SpiderMonkey.JS_SetContextCallback(Runtime, _globalContextCallback);
 			}
 		}
 
@@ -125,50 +122,57 @@ namespace Gecko
 			return result;
 		}
 
-		public static IntPtr GetJSContextForDomWindow(nsIDOMWindow window)
+		internal static IntPtr GetJSContextForDomWindow(nsIDOMWindow window)
 		{
-			IntPtr context = window.GetWindowRootAttribute().GetJSContextForEventHandlers();
-			if (context == IntPtr.Zero)
+			IntPtr context = IntPtr.Zero;
+			nsIDOMEventTarget eventTarget = window.GetWindowRootAttribute();
+			try
 			{
-				IntPtr pUnk = Marshal.GetIUnknownForObject(window);
-				Marshal.Release(pUnk);
-
-
-				if (!_windowContexts.TryGetValue(pUnk, out context))
+				context = eventTarget.GetJSContextForEventHandlers();
+				if (context == IntPtr.Zero)
 				{
-					context = IntPtr.Zero;
+					IntPtr pUnk = Marshal.GetIUnknownForObject(window);
+					Marshal.Release(pUnk);
 
-					IntPtr cx;
-					IntPtr iterp = IntPtr.Zero;
-					IntPtr rt = Runtime;
-					while ((cx = SpiderMonkey.JS_ContextIterator(rt, ref iterp)) != IntPtr.Zero)
+
+					if (!_windowContexts.TryGetValue(pUnk, out context))
 					{
-						IntPtr pGlobal = SpiderMonkey.JS_GetGlobalObject(cx);
-						if (pGlobal != IntPtr.Zero)
-						{
-							using (var auto = new AutoJSContext(cx))
-							{
-								nsISupports global = auto.GetGlobalNsObject();
-								if (global != null)
-								{
-									var domWindow = Xpcom.QueryInterface<nsIDOMWindow>(global);
-									if (domWindow != null)
-									{
-										try
-										{
-											IntPtr pUnkTest = Marshal.GetIUnknownForObject(domWindow.GetWindowAttribute());
-											Marshal.Release(pUnkTest);
+						context = IntPtr.Zero;
 
-											if (pUnk == pUnkTest)
-											{
-												_windowContexts.Add(pUnk, cx);
-												context = cx;
-												break;
-											}
-										}
-										finally
+						IntPtr cx;
+						IntPtr iterp = IntPtr.Zero;
+						IntPtr rt = Runtime;
+						while ((cx = SpiderMonkey.JS_ContextIterator(rt, ref iterp)) != IntPtr.Zero)
+						{
+							IntPtr pGlobal = SpiderMonkey.JS_GetGlobalObject(cx);
+							if (pGlobal != IntPtr.Zero)
+							{
+								using (var auto = new AutoJSContext(cx))
+								{
+									using (ComPtr<nsISupports> global = auto.GetGlobalNsObject())
+									{
+										if (global != null)
 										{
-											Marshal.ReleaseComObject(domWindow);
+											var domWindow = Xpcom.QueryInterface<nsIDOMWindow>(global.Instance);
+											if (domWindow != null)
+											{
+												try
+												{
+													IntPtr pUnkTest = Marshal.GetIUnknownForObject(domWindow.GetWindowAttribute());
+													Marshal.Release(pUnkTest);
+
+													if (pUnk == pUnkTest)
+													{
+														_windowContexts.Add(pUnk, cx);
+														context = cx;
+														break;
+													}
+												}
+												finally
+												{
+													Xpcom.FreeComObject(ref domWindow);
+												}
+											}
 										}
 									}
 								}
@@ -176,6 +180,11 @@ namespace Gecko
 						}
 					}
 				}
+			}
+			finally
+			{
+				if(eventTarget != null)
+					Xpcom.FreeComObject(ref eventTarget);
 			}
 			return context;
 		}

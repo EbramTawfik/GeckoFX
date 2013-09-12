@@ -37,6 +37,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Gecko.Interop;
 
 namespace Gecko
 {
@@ -50,8 +51,7 @@ namespace Gecko
 		
 		public IntPtr ContextPointer { get { return _cx; } }
 
-		private readonly nsIJSContextStack _contextStack;		
-		static private nsIXPConnect _xpConnect;
+		private readonly ComPtr<nsIJSContextStack> _contextStack;
 
 		/// <summary>
 		/// Create a AutoJSContext using the SafeJSContext.
@@ -73,8 +73,8 @@ namespace Gecko
 
 			// TODO: pushing the context onto the context stack may not be neccessary anymore.
 			// push the context onto the context stack
-			_contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
-			_contextStack.Push(_cx);
+			_contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1").AsComPtr();
+			_contextStack.Instance.Push(_cx);
 		}
 
 		/// <summary>
@@ -83,21 +83,7 @@ namespace Gecko
 		public AutoJSContext() : this(IntPtr.Zero)
 		{
 		}
-
-		private nsIXPConnect XPConnect
-		{
-			get
-			{
-				if (_xpConnect == null)
-				{
-					var xpcomPtr = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
-					_xpConnect = (nsIXPConnect)Xpcom.GetObjectForIUnknown(xpcomPtr);
-					Marshal.Release(xpcomPtr);
-				}
-				return _xpConnect;
-			}
-		}
-
+		
 		/// <summary>
 		/// Evaluate javascript in the current context.
 		/// </summary>
@@ -131,7 +117,7 @@ namespace Gecko
 				Guid guid = typeof(nsISupports).GUID;
 				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
 				var ptr = new JsVal();
-				var wrapper = XPConnect.WrapNative(_cx, globalObject, thisObject, ref guid);				
+				var wrapper = Xpcom.XPConnect.Instance.WrapNative(_cx, globalObject, thisObject, ref guid);				
 				bool ret = SpiderMonkey.JS_EvaluateScript(_cx, wrapper.GetJSObjectAttribute(), jsScript, (uint)jsScript.Length, "script", 1, ref ptr);				
 				result = ConvertValueToString(ptr);
 				return ret;
@@ -176,7 +162,7 @@ namespace Gecko
 			return ret;
 		}
 
-		public nsISupports GetGlobalNsObject()
+		public ComPtr<nsISupports> GetGlobalNsObject()
 		{
 			IntPtr globalObject = SpiderMonkey.JS_GetGlobalObject(_cx);
 			if (globalObject != IntPtr.Zero)
@@ -186,8 +172,16 @@ namespace Gecko
 				IntPtr pUnk = IntPtr.Zero;
 				try
 				{
-					pUnk = XPConnect.WrapJS(_cx, globalObject, ref guid);
-					return (nsISupports)Xpcom.GetObjectForIUnknown(pUnk);
+					pUnk = Xpcom.XPConnect.Instance.WrapJS(_cx, globalObject, ref guid);
+					object comObj = Xpcom.GetObjectForIUnknown(pUnk);
+					try
+					{
+						return Xpcom.QueryInterface<nsISupports>(comObj).AsComPtr();
+					}
+					finally
+					{
+						Xpcom.FreeComObject(ref comObj);
+					}
 				}
 				finally
 				{
@@ -221,7 +215,8 @@ namespace Gecko
 
 		public void Dispose()
 		{
-			_contextStack.Pop();
+			_contextStack.Instance.Pop();
+			_contextStack.Dispose();
 
 			SpiderMonkey.JS_EndRequest(_cx);
 		}
