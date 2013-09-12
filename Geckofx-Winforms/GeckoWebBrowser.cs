@@ -411,11 +411,14 @@ namespace Gecko
 
         public void LoadHtml(string content, string url)
         {
-            LoadHtml(content, url, "text/html");
+			LoadContent(content, url, "text/html");
         }
 
-		public void LoadHtml(string content, string url, string contentType)
-		{			
+		public void LoadContent(string content, string url, string contentType)
+		{
+			if (url == null)
+				throw new ArgumentNullException("url");
+
 			using (var sContentType = new nsACString(contentType))
 			{
 				using (var sUtf8 = new nsACString("UTF8"))
