@@ -187,14 +187,6 @@ namespace Gecko
 					Xpcom.FreeComObject(ref eventTarget);
 			}
 			return context;
-		}
-
-		public static void Dispose()
-		{
-			// Destroy the runtime which causes JS threads to exit to 
-			// prevent hanging on exit. (TODO: implement on other platforms)
-			if (_runtime != IntPtr.Zero && Xpcom.IsLinux && Xpcom.Is32Bit)
-				SpiderMonkey.JS_DestroyRuntime(_runtime);
-		}
+		}		
 	}
 }

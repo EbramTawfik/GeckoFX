@@ -346,9 +346,7 @@ namespace Gecko
 		}
 
 		public static void Shutdown()
-		{
-			GlobalJSContextHolder.Dispose();
-						
+		{						
 			_comGC.Dispose();
 			
 			if (ComponentRegistrar != null)
