@@ -387,10 +387,10 @@ namespace Gecko
 		#region Windows x86
 
         [DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_HasProperty@@YAHPAUJSContext@@PAVJSObject@@PBDPAH@Z")]
-        public static extern bool JS_HasProperty_Win32(IntPtr cx, IntPtr jsObject, string name, out bool found);
+        private static extern bool JS_HasProperty_Win32(IntPtr cx, IntPtr jsObject, string name, out bool found);
 
         [DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetProperty@@YAHPAUJSContext@@PAVJSObject@@PBDPAVValue@JS@@@Z")]
-        public static extern bool JS_GetProperty_Win32(IntPtr cx, IntPtr jsObject, string name, out JsVal jsValue);
+        private static extern bool JS_GetProperty_Win32(IntPtr cx, IntPtr jsObject, string name, out JsVal jsValue);
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EncodeString@@YAPADPAUJSContext@@PAVJSString@@@Z")]
 		private static extern IntPtr JS_EncodeString_Win32(IntPtr cx, IntPtr jsString);
