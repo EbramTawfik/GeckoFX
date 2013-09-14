@@ -35,8 +35,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.CompilerServices;
-using System.Text;
 using Gecko.Interop;
 
 namespace Gecko
@@ -117,7 +115,6 @@ namespace Gecko
 
             return jsValue;
         }
-
 
         /// <summary>
         /// Evaluate javascript in the current context.
