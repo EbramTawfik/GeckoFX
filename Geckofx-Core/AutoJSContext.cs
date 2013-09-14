@@ -41,199 +41,200 @@ using Gecko.Interop;
 
 namespace Gecko
 {
-	/// <summary>
-	/// Creates a scoped, fake "system principal" security context.  This class is used primarly to work around bugs in gecko
-	/// which prevent methods on nsIDOMCSSStyleSheet from working outside of javascript.
-	/// </summary>
-	public class AutoJSContext : IDisposable
-	{			
-		IntPtr _cx;
-		
-		public IntPtr ContextPointer { get { return _cx; } }
+    /// <summary>
+    /// Creates a scoped, fake "system principal" security context.  This class is used primarly to work around bugs in gecko
+    /// which prevent methods on nsIDOMCSSStyleSheet from working outside of javascript.
+    /// </summary>
+    public class AutoJSContext : IDisposable
+    {
+        IntPtr _cx;
 
-		private readonly ComPtr<nsIJSContextStack> _contextStack;
+        public IntPtr ContextPointer { get { return _cx; } }
 
-		/// <summary>
-		/// Create a AutoJSContext using the SafeJSContext.
-		/// If context is IntPtr.Zero use the SafeJSContext
-		/// </summary>
-		/// <param name="context"></param>
-		public AutoJSContext(IntPtr context)
-		{
-			if (context == IntPtr.Zero)
-			{
-				context = GlobalJSContextHolder.SafeJSContext;
-			}
-			
-			_cx = context;			
+        private readonly ComPtr<nsIJSContextStack> _contextStack;
 
-			// TODO: calling BeginRequest may not be neccessary anymore.
-			// begin a new request
-			SpiderMonkey.JS_BeginRequest(_cx);
-
-			// TODO: pushing the context onto the context stack may not be neccessary anymore.
-			// push the context onto the context stack
-			_contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1").AsComPtr();
-			_contextStack.Instance.Push(_cx);
-		}
-
-		/// <summary>
-		/// Create a AutoJSContext using the SafeJSContext.
-		/// </summary>		
-		public AutoJSContext() : this(IntPtr.Zero)
-		{
-		}
-		
-		/// <summary>
-		/// Evaluate javascript in the current context.
-		/// </summary>
-		/// <param name="jsScript"></param>
-		/// <param name="jsval"></param>
-		/// <returns></returns>
-		public bool EvaluateScript(string jsScript, out string result)
-		{
-			var ptr = new JsVal();
-			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
-			bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
-			// TODO: maybe getting JS_EvaluateScriptForPrincipals working would increase priviliges of the running script.
-			//bool ret = SpiderMonkey.JS_EvaluateScriptForPrincipals(_cx, globalObject, ..., jsScript, (uint)jsScript.Length,"script", 1, ref ptr);
-
-
-			result = ConvertValueToString(ptr);
-			return ret;
-		}
-
-        public JsVal EvaluateScript(string JavaScript)
+        /// <summary>
+        /// Create a AutoJSContext using the SafeJSContext.
+        /// If context is IntPtr.Zero use the SafeJSContext
+        /// </summary>
+        /// <param name="context"></param>
+        public AutoJSContext(IntPtr context)
         {
-            var JsValue = new JsVal();
+            if (context == IntPtr.Zero)
+            {
+                context = GlobalJSContextHolder.SafeJSContext;
+            }
+
+            _cx = context;
+
+            // TODO: calling BeginRequest may not be neccessary anymore.
+            // begin a new request
+            SpiderMonkey.JS_BeginRequest(_cx);
+
+            // TODO: pushing the context onto the context stack may not be neccessary anymore.
+            // push the context onto the context stack
+            _contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1").AsComPtr();
+            _contextStack.Instance.Push(_cx);
+        }
+
+        /// <summary>
+        /// Create a AutoJSContext using the SafeJSContext.
+        /// </summary>		
+        public AutoJSContext()
+            : this(IntPtr.Zero)
+        {
+        }
+
+        /// <summary>
+        /// Evaluate javascript in the current context.
+        /// </summary>
+        /// <param name="jsScript"></param>
+        /// <param name="jsval"></param>
+        /// <returns></returns>
+        public bool EvaluateScript(string jsScript, out string result)
+        {
+            var ptr = new JsVal();
+            IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
+            bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
+            // TODO: maybe getting JS_EvaluateScriptForPrincipals working would increase priviliges of the running script.
+            //bool ret = SpiderMonkey.JS_EvaluateScriptForPrincipals(_cx, globalObject, ..., jsScript, (uint)jsScript.Length,"script", 1, ref ptr);
+
+
+            result = ConvertValueToString(ptr);
+            return ret;
+        }
+
+        public JsVal EvaluateScript(string javaScript)
+        {
+            var jsValue = new JsVal();
             var globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
-            var ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, JavaScript, (uint)JavaScript.Length, "script", 1, ref JsValue);
+            var ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, javaScript, (uint)javaScript.Length, "script", 1, ref jsValue);
 
             if (!ret)
             {
                 //TODO: Throw a user exception here. How to get out the reason why it failed?
             }
 
-            return JsValue; 
+            return jsValue;
         }
 
 
-		/// <summary>
-		/// Evaluate javascript in the current context.
-		/// </summary>
-		/// <param name="jsScript"></param>
-		/// <param name="thisObject">a nsISupports com object that this is set too.</param>
-		/// <param name="result"></param>
-		/// <returns></returns>
-		public bool EvaluateScript(string jsScript, nsISupports thisObject, out string result)
-		{
-			try
-			{
-				Guid guid = typeof(nsISupports).GUID;
-				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
-				var ptr = new JsVal();
-				var wrapper = Xpcom.XPConnect.Instance.WrapNative(_cx, globalObject, thisObject, ref guid);				
-				bool ret = SpiderMonkey.JS_EvaluateScript(_cx, wrapper.GetJSObjectAttribute(), jsScript, (uint)jsScript.Length, "script", 1, ref ptr);				
-				result = ConvertValueToString(ptr);
-				return ret;
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine("Exception {0}", e);
-				result = String.Empty;
-				return false;
-			}
-		}
+        /// <summary>
+        /// Evaluate javascript in the current context.
+        /// </summary>
+        /// <param name="jsScript"></param>
+        /// <param name="thisObject">a nsISupports com object that this is set too.</param>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        public bool EvaluateScript(string jsScript, nsISupports thisObject, out string result)
+        {
+            try
+            {
+                Guid guid = typeof(nsISupports).GUID;
+                IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
+                var ptr = new JsVal();
+                var wrapper = Xpcom.XPConnect.Instance.WrapNative(_cx, globalObject, thisObject, ref guid);
+                bool ret = SpiderMonkey.JS_EvaluateScript(_cx, wrapper.GetJSObjectAttribute(), jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
+                result = ConvertValueToString(ptr);
+                return ret;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception {0}", e);
+                result = String.Empty;
+                return false;
+            }
+        }
 
-		/// <summary>
-		/// Evaluate javascript in the current context with system privileges.
-		/// </summary>
-		/// <param name="jsScript"></param>
-		/// <param name="jsval"></param>
-		/// <returns></returns>
-		public bool EvaluateTrustedScript(string jsScript, out string result)
-		{
-			var ptr = new JsVal();
-			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
-			bool ret;
-			IntPtr systemGlobalObject = SpiderMonkey.JS_GetGlobalForScopeChain(GlobalJSContextHolder.BackstageJSContext);
-			// Compartments have to be entered and left in LIFO order.
-			bool inSystemCompartment = false;
-			IntPtr oldCompartment = IntPtr.Zero;
-			try
-			{
-				// Allow access to any object on page.
-				oldCompartment = SpiderMonkey.JS_EnterCompartment(_cx, systemGlobalObject);
-				// At any time, a JSContext has a current (possibly-NULL) compartment.
-				inSystemCompartment = true;
-				ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
-				result = ConvertValueToString(ptr);
-			}
-			finally
-			{
-				if (inSystemCompartment)
-					SpiderMonkey.JS_LeaveCompartment(_cx, oldCompartment);
-			}
-			return ret;
-		}
+        /// <summary>
+        /// Evaluate javascript in the current context with system privileges.
+        /// </summary>
+        /// <param name="jsScript"></param>
+        /// <param name="jsval"></param>
+        /// <returns></returns>
+        public bool EvaluateTrustedScript(string jsScript, out string result)
+        {
+            var ptr = new JsVal();
+            IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
+            bool ret;
+            IntPtr systemGlobalObject = SpiderMonkey.JS_GetGlobalForScopeChain(GlobalJSContextHolder.BackstageJSContext);
+            // Compartments have to be entered and left in LIFO order.
+            bool inSystemCompartment = false;
+            IntPtr oldCompartment = IntPtr.Zero;
+            try
+            {
+                // Allow access to any object on page.
+                oldCompartment = SpiderMonkey.JS_EnterCompartment(_cx, systemGlobalObject);
+                // At any time, a JSContext has a current (possibly-NULL) compartment.
+                inSystemCompartment = true;
+                ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
+                result = ConvertValueToString(ptr);
+            }
+            finally
+            {
+                if (inSystemCompartment)
+                    SpiderMonkey.JS_LeaveCompartment(_cx, oldCompartment);
+            }
+            return ret;
+        }
 
-		public ComPtr<nsISupports> GetGlobalNsObject()
-		{
-			IntPtr globalObject = SpiderMonkey.JS_GetGlobalObject(_cx);
-			if (globalObject != IntPtr.Zero)
-			{
-				Guid guid = typeof(nsISupports).GUID;
+        public ComPtr<nsISupports> GetGlobalNsObject()
+        {
+            IntPtr globalObject = SpiderMonkey.JS_GetGlobalObject(_cx);
+            if (globalObject != IntPtr.Zero)
+            {
+                Guid guid = typeof(nsISupports).GUID;
 
-				IntPtr pUnk = IntPtr.Zero;
-				try
-				{
-					pUnk = Xpcom.XPConnect.Instance.WrapJS(_cx, globalObject, ref guid);
-					object comObj = Xpcom.GetObjectForIUnknown(pUnk);
-					try
-					{
-						return Xpcom.QueryInterface<nsISupports>(comObj).AsComPtr();
-					}
-					finally
-					{
-						Xpcom.FreeComObject(ref comObj);
-					}
-				}
-				finally
-				{
-					if (pUnk != IntPtr.Zero)
-						Marshal.Release(pUnk);
-				}
-			}
-			return null;
-		}
+                IntPtr pUnk = IntPtr.Zero;
+                try
+                {
+                    pUnk = Xpcom.XPConnect.Instance.WrapJS(_cx, globalObject, ref guid);
+                    object comObj = Xpcom.GetObjectForIUnknown(pUnk);
+                    try
+                    {
+                        return Xpcom.QueryInterface<nsISupports>(comObj).AsComPtr();
+                    }
+                    finally
+                    {
+                        Xpcom.FreeComObject(ref comObj);
+                    }
+                }
+                finally
+                {
+                    if (pUnk != IntPtr.Zero)
+                        Marshal.Release(pUnk);
+                }
+            }
+            return null;
+        }
 
-		private string ConvertValueToString(JsVal value)
-		{
-			IntPtr jsp = SpiderMonkey.JS_ValueToString(_cx, value);
-			if (jsp != IntPtr.Zero)
-			{
-				IntPtr sp = SpiderMonkey.JS_EncodeString(_cx, jsp);
-				if (sp != IntPtr.Zero)
-				{
-					try
-					{
-						return Marshal.PtrToStringAnsi(sp);
-					}
-					finally
-					{
-						SpiderMonkey.JS_Free(_cx, sp);
-					}
-				}
-			}
-			return null;
-		}
+        private string ConvertValueToString(JsVal value)
+        {
+            IntPtr jsp = SpiderMonkey.JS_ValueToString(_cx, value);
+            if (jsp != IntPtr.Zero)
+            {
+                IntPtr sp = SpiderMonkey.JS_EncodeString(_cx, jsp);
+                if (sp != IntPtr.Zero)
+                {
+                    try
+                    {
+                        return Marshal.PtrToStringAnsi(sp);
+                    }
+                    finally
+                    {
+                        SpiderMonkey.JS_Free(_cx, sp);
+                    }
+                }
+            }
+            return null;
+        }
 
-		public void Dispose()
-		{
-			_contextStack.Instance.Pop();
-			_contextStack.Dispose();
+        public void Dispose()
+        {
+            _contextStack.Instance.Pop();
+            _contextStack.Dispose();
 
-			SpiderMonkey.JS_EndRequest(_cx);
-		}
-	}
+            SpiderMonkey.JS_EndRequest(_cx);
+        }
+    }
 }
