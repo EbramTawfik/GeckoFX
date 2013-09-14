@@ -148,6 +148,7 @@
     <Compile Include="Interop\ExtensionMethods.cs" />
     <Compile Include="Interop\nsWeakReference.cs" />
     <Compile Include="Interop\SpiderMonkey\JSPrincipals.cs" />
+    <Compile Include="JQuery\JQueryExecutor.cs" />
     <Compile Include="Net\AsyncStreamCopier.cs" />
     <Compile Include="Net\ImgRequest.cs" />
     <Compile Include="Net\IncrementalDownload.cs" />
