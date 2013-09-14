@@ -103,6 +103,21 @@ namespace Gecko
 			return ret;
 		}
 
+        public JsVal EvaluateScript(string JavaScript)
+        {
+            var JsValue = new JsVal();
+            var globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
+            var ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, JavaScript, (uint)JavaScript.Length, "script", 1, ref JsValue);
+
+            if (!ret)
+            {
+                //TODO: Throw a user exception here. How to get out the reason why it failed?
+            }
+
+            return JsValue; 
+        }
+
+
 		/// <summary>
 		/// Evaluate javascript in the current context.
 		/// </summary>
