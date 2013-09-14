@@ -65,6 +65,26 @@ namespace Gecko
 			}
 		}
 
+        public static IntPtr JS_ValueToObject(IntPtr cx, JsVal v)
+        {
+            if (Xpcom.Is32Bit)
+            {
+                if (Xpcom.IsLinux)
+                {
+                    throw new NotImplementedException();
+                }
+                    
+                var JSObject = IntPtr.Zero;
+                JS_ValueToObject_Win32(cx, v,ref JSObject);
+                return JSObject;
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+
 		public static IntPtr JS_NewStringCopyN(IntPtr cx, string str, int length)
 		{
 			if (Xpcom.Is32Bit)
@@ -338,6 +358,9 @@ namespace Gecko
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_ValueToString@@YAPAVJSString@@PAUJSContext@@VValue@JS@@@Z")]
 		private static extern IntPtr JS_ValueToString_Win32(IntPtr cx, JsVal v);
+
+        [DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_ValueToObject@@YAHPAUJSContext@@VValue@JS@@PAPAVJSObject@@@Z")]
+        public static extern bool JS_ValueToObject_Win32(IntPtr cx, JsVal v, ref IntPtr JSObject);
 
 		[DllImport("mozjs", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_NewStringCopyN@@YAPAVJSString@@PAUJSContext@@PBDI@Z")]
 		private static extern IntPtr JS_NewStringCopyN_Win32(IntPtr cx, string str, int length);
