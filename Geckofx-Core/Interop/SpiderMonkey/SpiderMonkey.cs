@@ -340,15 +340,57 @@ namespace Gecko
 				JS_DestroyRuntime_Linux64(rt);
 		}
 
+        public static bool JS_HasProperty(IntPtr cx, IntPtr JSObject, string Name)
+        {
+            if (Xpcom.IsLinux)
+                throw new NotImplementedException();
+
+            if (Xpcom.Is32Bit)
+            {
+                var HasProperty = false;
+                
+                JS_HasProperty_Win32(cx, JSObject, Name,out HasProperty);
+
+                return HasProperty;
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public static JsVal JS_GetProperty(IntPtr cx, IntPtr JSObject, string Name)
+        {
+            if (Xpcom.IsLinux)
+                throw new NotImplementedException();
+
+            if (Xpcom.Is32Bit)
+            {
+                JsVal Value;
+
+                JS_GetProperty_Win32(cx, JSObject, Name, out Value);
+
+                return Value;
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
+
 		#endregion
 
 		[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
 		public delegate JSBool JSContextCallback(IntPtr cx, UInt32 contextOp);
 
 
-
-
 		#region Windows x86
+
+        [DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_HasProperty@@YAHPAUJSContext@@PAVJSObject@@PBDPAH@Z")]
+        public static extern bool JS_HasProperty_Win32(IntPtr cx, IntPtr JSObject, string Name, out bool Found);
+
+        [DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetProperty@@YAHPAUJSContext@@PAVJSObject@@PBDPAVValue@JS@@@Z")]
+        public static extern bool JS_GetProperty_Win32(IntPtr cx, IntPtr JSObject, string Name, out JsVal Value);
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EncodeString@@YAPADPAUJSContext@@PAVJSString@@@Z")]
 		private static extern IntPtr JS_EncodeString_Win32(IntPtr cx, IntPtr jsString);
@@ -360,7 +402,7 @@ namespace Gecko
 		private static extern IntPtr JS_ValueToString_Win32(IntPtr cx, JsVal v);
 
         [DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_ValueToObject@@YAHPAUJSContext@@VValue@JS@@PAPAVJSObject@@@Z")]
-        public static extern bool JS_ValueToObject_Win32(IntPtr cx, JsVal v, ref IntPtr JSObject);
+        private static extern bool JS_ValueToObject_Win32(IntPtr cx, JsVal v, ref IntPtr JSObject);
 
 		[DllImport("mozjs", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_NewStringCopyN@@YAPAVJSString@@PAUJSContext@@PBDI@Z")]
 		private static extern IntPtr JS_NewStringCopyN_Win32(IntPtr cx, string str, int length);
