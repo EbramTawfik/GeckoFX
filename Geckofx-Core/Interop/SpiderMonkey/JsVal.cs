@@ -64,12 +64,23 @@ namespace Gecko
 			}
 		}
 
+        /// <summary>
+        /// Return true if JsVal is a object type.
+        /// </summary>
+        public bool IsObject
+        {
+            get
+            {
+                return Type == JSType.JSTYPE_OBJECT;
+            }
+        }
+
 
 		public JSType Type
 		{
 			get
 			{
-				using (AutoJSContext context = new AutoJSContext())
+				using (var context = new AutoJSContext())
 				{
 					return SpiderMonkey.JS_TypeOfValue(context.ContextPointer, this);
 				}
@@ -78,7 +89,7 @@ namespace Gecko
 
 		public override string ToString()
 		{
-			using (AutoJSContext context = new AutoJSContext())
+			using (var context = new AutoJSContext())
 			{
 				IntPtr jsString = SpiderMonkey.JS_ValueToString(context.ContextPointer, this);
 				return Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(context.ContextPointer, jsString));
