@@ -436,6 +436,17 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		public void EvaluateScript_ReturingJsVal_ScriptExecutesAndReturnsJsValOfExpectedTypeAndContainingExpectedResult()
+		{
+			using (var context = new AutoJSContext(browser.Window.JSContext))
+			{				
+				var jsVal = context.EvaluateScript("3 + 2;");
+				Assert.IsTrue(jsVal.IsInt);
+				Assert.AreEqual(5, jsVal.ToInteger());
+			}
+		}
+
+		[Test]
 		public void GetMarkupDocumentViewer_InitalizedDocument_ValidGeckoMarkupDocumentViewerReturned()
 		{
 			browser.TestLoadHtml("hello world.");
