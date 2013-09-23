@@ -574,6 +574,24 @@ namespace Gecko
 			IntPtr ptr = ServiceManager.GetServiceByContractID(contractID, ref iid);
 			return (TInterfaceType)Xpcom.GetObjectForIUnknown(ptr);
 		}
+
+		/// <summary>
+		/// Create service wrapped into ComPtr<T>
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="contractID"></param>
+		/// <returns></returns>
+		public static ComPtr<T> GetService2<T>(string contractID)
+			where T : class
+		{
+			if (!Xpcom.IsInitialized)
+			{
+				throw new GeckoException("Xpcom.Initialize must be called before using of any xulrunner/gecko-fx services");
+			}
+			var service = Xpcom.GetService<T>(contractID);
+			var ret = new ComPtr<T>(service);
+			return ret;
+		}
 		#endregion
 		/// <summary>
 		/// Registers a factory to be used to instantiate a particular class identified by ClassID, and creates an association of class name and ContractID with the class.
@@ -775,6 +793,48 @@ namespace Gecko
 
 		#endregion
 
-	
+		public static Uri ToUri(this nsIURI value)
+		{
+			if (value == null) return null;
+			var spec = nsString.Get(value.GetSpecAttribute);
+			Uri result;
+			return Uri.TryCreate(spec, UriKind.Absolute, out result) ? result : null;
+		}
+
+		public static int StrictHashcode<T>(T obj)
+		{
+			IntPtr pUnk = Marshal.GetIUnknownForObject(obj);
+			int ret = pUnk.ToInt32();
+			Marshal.Release(pUnk);
+			return ret;
+		}
+
+		public static bool StrictEquals<T>(T obj1, T obj2)
+		{
+			IntPtr pUnk1 = Marshal.GetIUnknownForObject(obj1);
+			IntPtr pUnk2 = Marshal.GetIUnknownForObject(obj2);
+			bool ret = pUnk1 == pUnk2;
+			Marshal.Release(pUnk2);
+			Marshal.Release(pUnk1);
+			return ret;
+		}
+
+		/// <summary>
+		/// Get nsIURI from attribute, convert it to Uri, and free nsIURI object
+		/// </summary>
+		/// <param name="uriFunc"></param>
+		/// <returns></returns>
+		public static Uri TranslateUriAttribute( Func<nsIURI> uriFunc )
+		{
+			Uri ret = null;
+			var uri = uriFunc();
+			if ( uri != null )
+			{
+				ret = uri.ToUri();
+				Marshal.ReleaseComObject(uri);
+			}
+			
+			return ret;
+		}
 	}
 }

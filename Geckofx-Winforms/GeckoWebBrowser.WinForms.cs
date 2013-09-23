@@ -107,16 +107,17 @@ namespace Gecko
 				if ( UseHttpActivityObserver )
 				{
 					ObserverService.AddObserver( this, ObserverNotifications.HttpRequests.HttpOnModifyRequest, false );
-
-					nsIHttpActivityDistributor activityDistributor =
-						Xpcom.GetService<nsIHttpActivityDistributor>( "@mozilla.org/network/http-activity-distributor;1" );
-					activityDistributor = Xpcom.QueryInterface<nsIHttpActivityDistributor>( activityDistributor );
-					activityDistributor.AddObserver( this );
+					Net.HttpActivityDistributor.AddObserver(this);
 				}
 
 				// var domEventListener = new GeckoDOMEventListener(this);
 
-				_target = Xpcom.QueryInterface<nsIDOMWindow>( WebBrowser.GetContentDOMWindowAttribute() ).GetWindowRootAttribute();
+				{
+					var domWindow = WebBrowser.GetContentDOMWindowAttribute();
+					_target = domWindow.GetWindowRootAttribute();
+					Marshal.ReleaseComObject(domWindow);
+				}
+
 
 				_target.AddEventListener( new nsAString( "submit" ), this, true, true, 2 );
 				_target.AddEventListener( new nsAString( "keydown" ), this, true, true, 2 );
@@ -201,6 +202,7 @@ namespace Gecko
 				_target.RemoveEventListener( new nsAString( "drag" ), this, true );
 				_target.RemoveEventListener( new nsAString( "drop" ), this, true );
 				_target.RemoveEventListener( new nsAString( "dragend" ), this, true );
+				Xpcom.FreeComObject( ref _target );
 			}
 			base.OnHandleDestroyed( e );
 		}

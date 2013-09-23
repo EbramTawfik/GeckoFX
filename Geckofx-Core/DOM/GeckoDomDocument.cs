@@ -6,6 +6,9 @@ using Gecko.Interop;
 
 namespace Gecko
 {
+	/// <summary>
+	/// Base document class (documents can be HTML,SVG,XUL)
+	/// </summary>
 	public class GeckoDomDocument
 		: GeckoNode
 	{
@@ -15,6 +18,15 @@ namespace Gecko
 		{
 			_domDocument = document;
 		}
+
+		/// <summary>
+		/// for tests
+		/// </summary>
+		public nsIDOMDocument NativeDomDocument
+		{
+			get { return _domDocument; }
+		}
+
 
 		public DOM.DomDocumentType Doctype
 		{
@@ -236,7 +248,7 @@ namespace Gecko
 		/// </summary>
 		public GeckoWindow DefaultView
 		{
-			get { return _domDocument.GetDefaultViewAttribute().Wrap( GeckoWindow.Create ); }
+			get { return _domDocument.GetDefaultViewAttribute().Wrap(x=>new GeckoWindow(x) ); }
 		}
 
 		/// <summary>

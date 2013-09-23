@@ -681,7 +681,7 @@ namespace Gecko.DOM
 		
 		public GeckoWindow EnterModalStateWithWindow()
 		{
-			return _windowUtils.Instance.EnterModalStateWithWindow().Wrap( GeckoWindow.Create );
+			return _windowUtils.Instance.EnterModalStateWithWindow().Wrap( x => new GeckoWindow( x ) );
 		}
 		
 		/// <summary>
@@ -748,7 +748,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public GeckoWindow GetOuterWindowWithId(ulong aOuterWindowID)
 		{
-			return _windowUtils.Instance.GetOuterWindowWithId( aOuterWindowID ).Wrap( GeckoWindow.Create );
+			return _windowUtils.Instance.GetOuterWindowWithId( aOuterWindowID ).Wrap( x => new GeckoWindow( x ) );
 		}
 				
 		public void RenderDocument(nsConstRect aRect, uint aFlags, nscolor aBackgroundColor, gfxContext aThebesContext)

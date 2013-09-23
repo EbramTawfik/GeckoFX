@@ -45,119 +45,119 @@ namespace Gecko
 	// Mono needs a little help to get the size of this struct right.
 	// (I think because it contains a __ComObject ref.)
 	// This should work on .NET as well.
-	[StructLayout(LayoutKind.Explicit, Size=8)]
-	public struct nsURI
-	{
-		internal nsURI(nsIURI instance)
-		{
-			this.Instance = instance;
-		}
+	//[StructLayout(LayoutKind.Explicit, Size=8)]
+	//public struct nsURI
+	//{
+	//    internal nsURI(nsIURI instance)
+	//    {
+	//        this.Instance = instance;
+	//    }
 		
-		/// <summary>
-		/// Initializes a new instance of <see cref="nsURI"/> from the given object, which must implement the unmanaged
-		/// nsIURI interface.
-		/// </summary>
-		/// <param name="instance"></param>
-		public nsURI(object instance)
-		{
-			this.Instance = (nsIURI)instance;
-		}
+	//    /// <summary>
+	//    /// Initializes a new instance of <see cref="nsURI"/> from the given object, which must implement the unmanaged
+	//    /// nsIURI interface.
+	//    /// </summary>
+	//    /// <param name="instance"></param>
+	//    public nsURI(object instance)
+	//    {
+	//        this.Instance = (nsIURI)instance;
+	//    }
 		
-		#region Equality Methods
-		public override bool Equals(object obj)
-		{
-			if (obj == null)
-			{
-				return this.Instance == null;
-			}
-			else if (obj is nsURI)
-			{
-				return this.Instance == ((nsURI)obj).Instance;
-			}
-			else if (obj is nsIURI)
-			{
-				return this.Instance == obj;
-			}
-			return false;
-		}
+	//    #region Equality Methods
+	//    public override bool Equals(object obj)
+	//    {
+	//        if (obj == null)
+	//        {
+	//            return this.Instance == null;
+	//        }
+	//        else if (obj is nsURI)
+	//        {
+	//            return this.Instance == ((nsURI)obj).Instance;
+	//        }
+	//        else if (obj is nsIURI)
+	//        {
+	//            return this.Instance == obj;
+	//        }
+	//        return false;
+	//    }
 
-		public override int GetHashCode()
-		{
-			return Instance.GetHashCode();
-		}
+	//    public override int GetHashCode()
+	//    {
+	//        return Instance.GetHashCode();
+	//    }
 		
-		public static bool operator == (nsURI a, nsURI b)
-		{
-			return a.Instance == b.Instance;
-		}
+	//    public static bool operator == (nsURI a, nsURI b)
+	//    {
+	//        return a.Instance == b.Instance;
+	//    }
 		
-		public static bool operator != (nsURI a, nsURI b)
-		{
-			return a.Instance != b.Instance;
-		}
+	//    public static bool operator != (nsURI a, nsURI b)
+	//    {
+	//        return a.Instance != b.Instance;
+	//    }
 		
-		public bool IsNull { get { return Instance == null; } }
-		#endregion
+	//    public bool IsNull { get { return Instance == null; } }
+	//    #endregion
 		
-		/// <summary>
-		/// Gets the underlying <b>nsIURI</b> object.
-		/// </summary>
-		/// <returns></returns>
-		public nsIURI GetInstance() { return Instance; }
+	//    /// <summary>
+	//    /// Gets the underlying <b>nsIURI</b> object.
+	//    /// </summary>
+	//    /// <returns></returns>
+	//    public nsIURI GetInstance() { return Instance; }
 
-		[FieldOffset(0)]
-		nsIURI Instance;
+	//    [FieldOffset(0)]
+	//    nsIURI Instance;
 
-		public string Spec { get { return nsString.Get(Instance.GetSpecAttribute); } set { nsString.Set(Instance.SetSpecAttribute, value); } }
-		public string PrePath { get { return nsString.Get(Instance.GetPrePathAttribute); } }
-		public string Scheme { get { return nsString.Get(Instance.GetSchemeAttribute); } set { nsString.Set(Instance.SetSchemeAttribute, value); } }
-		public string UserPass { get { return nsString.Get(Instance.GetUserPassAttribute); } set { nsString.Set(Instance.SetUserPassAttribute, value); } }
-		public string Username { get { return nsString.Get(Instance.GetUsernameAttribute); } set { nsString.Set(Instance.SetUsernameAttribute, value); } }
-		public string Password { get { return nsString.Get(Instance.GetPasswordAttribute); } set { nsString.Set(Instance.SetPasswordAttribute, value); } }
-		public string HostPort { get { return nsString.Get(Instance.GetHostPortAttribute); } set { nsString.Set(Instance.SetHostPortAttribute, value); } }
-		public string Host { get { return nsString.Get(Instance.GetHostAttribute); } set { nsString.Set(Instance.SetHostAttribute, value); } }
-		public int Port { get { return Instance.GetPortAttribute(); } set { Instance.SetPortAttribute(value); } }
-		public string Path { get { return nsString.Get(Instance.GetPathAttribute); } set { nsString.Set(Instance.SetPathAttribute, value); } }
-		public bool SchemeIs(string s) { return Instance.SchemeIs(s); }
-		public bool Equals(nsURI uri) { return Instance.Equals(uri); }
-		public nsURI Clone() { return new nsURI(Instance.Clone()); }
-		public string Resolve(string relativePath)
-		{
-			return nsString.Get( Instance.Resolve, relativePath );
-		}
-		public string AsciiSpec { get { return nsString.Get(Instance.GetAsciiSpecAttribute); } }
-		public string AsciiHost { get { return nsString.Get(Instance.GetAsciiHostAttribute); } }
-		public string OriginCharset { get { return nsString.Get(Instance.GetOriginCharsetAttribute); } }
+	//    public string Spec { get { return nsString.Get(Instance.GetSpecAttribute); } set { nsString.Set(Instance.SetSpecAttribute, value); } }
+	//    public string PrePath { get { return nsString.Get(Instance.GetPrePathAttribute); } }
+	//    public string Scheme { get { return nsString.Get(Instance.GetSchemeAttribute); } set { nsString.Set(Instance.SetSchemeAttribute, value); } }
+	//    public string UserPass { get { return nsString.Get(Instance.GetUserPassAttribute); } set { nsString.Set(Instance.SetUserPassAttribute, value); } }
+	//    public string Username { get { return nsString.Get(Instance.GetUsernameAttribute); } set { nsString.Set(Instance.SetUsernameAttribute, value); } }
+	//    public string Password { get { return nsString.Get(Instance.GetPasswordAttribute); } set { nsString.Set(Instance.SetPasswordAttribute, value); } }
+	//    public string HostPort { get { return nsString.Get(Instance.GetHostPortAttribute); } set { nsString.Set(Instance.SetHostPortAttribute, value); } }
+	//    public string Host { get { return nsString.Get(Instance.GetHostAttribute); } set { nsString.Set(Instance.SetHostAttribute, value); } }
+	//    public int Port { get { return Instance.GetPortAttribute(); } set { Instance.SetPortAttribute(value); } }
+	//    public string Path { get { return nsString.Get(Instance.GetPathAttribute); } set { nsString.Set(Instance.SetPathAttribute, value); } }
+	//    public bool SchemeIs(string s) { return Instance.SchemeIs(s); }
+	//    public bool Equals(nsURI uri) { return Instance.Equals(uri); }
+	//    public nsURI Clone() { return new nsURI(Instance.Clone()); }
+	//    public string Resolve(string relativePath)
+	//    {
+	//        return nsString.Get( Instance.Resolve, relativePath );
+	//    }
+	//    public string AsciiSpec { get { return nsString.Get(Instance.GetAsciiSpecAttribute); } }
+	//    public string AsciiHost { get { return nsString.Get(Instance.GetAsciiHostAttribute); } }
+	//    public string OriginCharset { get { return nsString.Get(Instance.GetOriginCharsetAttribute); } }
 
-		public Uri ToUri()
-		{
-			if (!IsNull)
-			{
-				Uri result;
-				return Uri.TryCreate(Spec, UriKind.Absolute, out result) ? result : null;
-			}
+	//    public Uri ToUri()
+	//    {
+	//        if (!IsNull)
+	//        {
+	//            Uri result;
+	//            return Uri.TryCreate(Spec, UriKind.Absolute, out result) ? result : null;
+	//        }
 
-			return null;
-		}
+	//        return null;
+	//    }
 
-		#region Static creation functions
+	//    #region Static creation functions
 		
-		public static nsURI Create(string url)
-		{
-			return IOService.Create( url );
-		}
+	//    public static nsURI Create(string url)
+	//    {
+	//        return IOService.Create( url );
+	//    }
 
 
-		#endregion
+	//    #endregion
 
-		public static Uri ToUri(nsIURI value )
-		{
-			if (value == null) return null;
-			var spec=nsString.Get( value.GetSpecAttribute );
-			Uri result;
-			return Uri.TryCreate(spec, UriKind.Absolute, out result) ? result : null;
-		}
+	//    public static Uri ToUri(nsIURI value )
+	//    {
+	//        if (value == null) return null;
+	//        var spec=nsString.Get( value.GetSpecAttribute );
+	//        Uri result;
+	//        return Uri.TryCreate(spec, UriKind.Absolute, out result) ? result : null;
+	//    }
 
-	}
+	//}
 	
 }

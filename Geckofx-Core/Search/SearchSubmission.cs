@@ -15,7 +15,7 @@ namespace Gecko.Search
 
 		public Uri Uri
 		{
-			get { return nsURI.ToUri( _searchSubmission.GetUriAttribute() ); }
+			get { return Xpcom.TranslateUriAttribute( _searchSubmission.GetUriAttribute ); }
 		}
 
 		public IO.InputStream PostData

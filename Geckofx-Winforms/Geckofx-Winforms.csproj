@@ -23,7 +23,7 @@
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>    
+    <ErrorReport>prompt</ErrorReport>
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -97,8 +97,12 @@
     <Compile Include="GeckoWebBrowser.Events.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Linux\OffScreenGeckoWebBrowser.cs" />
-    <Compile Include="Linux\GeckoWebBrowser.GTK.cs" />
+    <Compile Include="Linux\OffScreenGeckoWebBrowser.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Linux\GeckoWebBrowser.GTK.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GeckoWebBrowser.WinForms.cs">
       <SubType>Component</SubType>
     </Compile>

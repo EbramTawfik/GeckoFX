@@ -9,14 +9,15 @@ namespace Gecko
 	/// Represents a DOM window.
 	/// </summary>
 	public class GeckoWindow
-		:IDisposable 
+		:IEquatable<GeckoWindow>,IDisposable 
 	{
-		private InstanceWrapper<nsIDOMWindow> _domWindow;
+		private ComPtr<nsIDOMWindow> _domWindow;
 
-		private GeckoWindow(nsIDOMWindow window)
+		#region ctor & dtor
+		public GeckoWindow(nsIDOMWindow window)
 		{
 			//Interop.ComDebug.WriteDebugInfo( window );
-			_domWindow = new InstanceWrapper<nsIDOMWindow>( window );
+			_domWindow = new ComPtr<nsIDOMWindow>( window );
 		}
 
 		~GeckoWindow()
@@ -29,7 +30,8 @@ namespace Gecko
 			Xpcom.DisposeObject( ref _domWindow );
 			GC.SuppressFinalize( this );
 		}
-		
+		#endregion
+
 		/// <summary>
 		/// Gets the underlying unmanaged DOM object.
 		/// </summary>
@@ -46,18 +48,18 @@ namespace Gecko
 				return utils.Wrap( WindowUtils.Create );
 			}
 		}
-		
-		public static GeckoWindow Create(nsIDOMWindow window)
-		{
-			return (window == null) ? null : new GeckoWindow(window);
-		}
+
 		
 		/// <summary>
 		/// Gets the document displayed in the window.
 		/// </summary>
-		public GeckoDocument Document
+		public GeckoDomDocument Document
 		{
-			get { return GeckoDocument.Create( ( nsIDOMHTMLDocument ) _domWindow.Instance.GetDocumentAttribute() ); }
+			get
+			{
+				return _domWindow.Instance.GetDocumentAttribute()
+					.Wrap( GeckoDomDocument.CreateDomDocumentWraper );
+			}
 		}
 		
 		/// <summary>
@@ -65,7 +67,7 @@ namespace Gecko
 		/// </summary>
 		public GeckoWindow Parent
 		{
-			get { return _domWindow.Instance.GetParentAttribute().Wrap( Create ); }
+			get { return _domWindow.Instance.GetParentAttribute().Wrap( x => new GeckoWindow( x ) ); }
 		}
 
 		public int ScrollX
@@ -111,7 +113,7 @@ namespace Gecko
 		
 		public GeckoWindow Top
 		{
-			get { return _domWindow.Instance.GetTopAttribute().Wrap( Create ); }
+			get { return _domWindow.Instance.GetTopAttribute().Wrap( x => new GeckoWindow( x ) ); }
 		}
 		
 		public string Name
@@ -146,6 +148,27 @@ namespace Gecko
 				return GlobalJSContextHolder.GetJSContextForDomWindow(_domWindow.Instance);
 			}
 		}
+
+		public bool Equals(GeckoWindow other)
+		{
+			if (ReferenceEquals(this, other)) return true;
+			if (ReferenceEquals(other, null)) return false;
+			return _domWindow.Instance.GetHashCode() == other._domWindow.Instance.GetHashCode();
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(this, obj)) return true;
+			if (ReferenceEquals(obj, null)) return false;
+			return _domWindow.Instance.GetHashCode() == ((GeckoWindow)obj)._domWindow.Instance.GetHashCode();
+		}
+
+		public override int GetHashCode()
+		{
+// ReSharper disable once NonReadonlyFieldInGetHashCode
+			return _domWindow.Instance.GetHashCode();
+		}
+
 	}
 
 

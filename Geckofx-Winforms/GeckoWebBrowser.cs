@@ -895,8 +895,8 @@ namespace Gecko
 					return null;
 
 				nsIURI locationComObject = WebNav.GetCurrentURIAttribute();
-
-				var uri=nsURI.ToUri( locationComObject );
+				var uri=locationComObject.ToUri();
+				Marshal.ReleaseComObject( locationComObject );
 				return uri ?? new Uri( "about:blank" );
 			}
 		}
@@ -913,7 +913,8 @@ namespace Gecko
 					return null;
 			
 				nsIURI location =  WebNav.GetReferringURIAttribute();
-				var uri = nsURI.ToUri(location);
+				var uri = location.ToUri();
+				Marshal.ReleaseComObject( location );
 				return uri ?? new Uri("about:blank");				
 			}
 		}
@@ -929,10 +930,9 @@ namespace Gecko
 				if (WebBrowser == null)
 					return null;
 
-				return _Window ?? ( _Window = WebBrowser.GetContentDOMWindowAttribute().Wrap( GeckoWindow.Create ) );
+				return WebBrowser.GetContentDOMWindowAttribute().Wrap( x=>new GeckoWindow( x ) );
 			}
 		}
-		GeckoWindow _Window;
 		
 		/// <summary>
 		/// Gets the <see cref="GeckoDocument"/> for the page currently loaded in the browser.
@@ -944,9 +944,13 @@ namespace Gecko
 			{
 				if (WebBrowser == null)
 					return null;
+
 				// caching document is bad idea in some situations when ajax is used
 				// dom document wrapper is 1 per page, so it is better to create it when it needed
-				return GeckoDomDocument.CreateDomDocumentWraper( WebBrowser.GetContentDOMWindowAttribute().GetDocumentAttribute() );
+				var domWindow = WebBrowser.GetContentDOMWindowAttribute();
+				var domDocument = domWindow.GetDocumentAttribute();
+				Marshal.ReleaseComObject( domWindow );
+				return GeckoDomDocument.CreateDomDocumentWraper( domDocument );
 			}
 		}
 		//GeckoDomDocument _Document;
@@ -1211,7 +1215,8 @@ namespace Gecko
 			try
 			{
 				src = info.GetBackgroundImageSrcAttribute();
-				backgroundImageSrc = new Uri(new nsURI(src).Spec);
+				backgroundImageSrc = src.ToUri();
+				Marshal.ReleaseComObject( src );
 			}
 			catch (COMException comException)
 			{
@@ -1222,8 +1227,11 @@ namespace Gecko
 			try
 			{
 				src = info.GetImageSrcAttribute();
-				if (src != null)
-					imageSrc = new Uri(new nsURI(src).Spec);
+				if ( src != null )
+				{
+					imageSrc = src.ToUri();
+					Marshal.ReleaseComObject( src );
+				}
 			}
 			catch (COMException comException)
 			{
@@ -1488,7 +1496,7 @@ namespace Gecko
 			#region request parameters
 			Uri destUri = null;
 			Uri.TryCreate( request.Name, UriKind.Absolute, out destUri );
-			var domWindow = aWebProgress.GetDOMWindowAttribute().Wrap( GeckoWindow.Create );
+			var domWindow = aWebProgress.GetDOMWindowAttribute().Wrap( x => new GeckoWindow( x ) );
 
 			/* This flag indicates that the state transition is for a request, which includes but is not limited to document requests.
 			 * Other types of requests, such as requests for inline content (for example images and stylesheets) are considered normal requests.
@@ -1658,7 +1666,7 @@ namespace Gecko
 			if (IsDisposed) return;
 
 			Uri uri = new Uri(nsString.Get(aLocation.GetSpecAttribute));
-			using (var domWindow = aWebProgress.GetDOMWindowAttribute().Wrap(GeckoWindow.Create))
+			using (var domWindow = aWebProgress.GetDOMWindowAttribute().Wrap(x=>new GeckoWindow(x)))
 			{
 
 				bool sameDocument = ( flags & nsIWebProgressListenerConstants.LOCATION_CHANGE_SAME_DOCUMENT ) != 0;
@@ -1768,7 +1776,7 @@ namespace Gecko
 		{
 			Uri destUri = new Uri( nsString.Get( aRefreshURI.GetSpecAttribute ) );
 			bool cancel = false;
-			using (var domWindow = aWebProgress.GetDOMWindowAttribute().Wrap(GeckoWindow.Create))
+			using (var domWindow = aWebProgress.GetDOMWindowAttribute().Wrap(x=>new GeckoWindow(x)))
 			{
 				GeckoNavigatingEventArgs ea = new GeckoNavigatingEventArgs( destUri, domWindow );
 				cancel = ea.Cancel;

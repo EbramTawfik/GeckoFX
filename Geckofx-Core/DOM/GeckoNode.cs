@@ -11,18 +11,30 @@ namespace Gecko
 	/// Provides a base class for DOM nodes.
 	/// </summary>
 	public class GeckoNode
+		:IDisposable
 	{
 		static GeckoWrapperCache<nsIDOMNode, GeckoNode> m_nodeCache = new GeckoWrapperCache<nsIDOMNode, GeckoNode>(DOMSelector.CreateDomNodeWrapper);
 
 		#region fields
-		nsIDOMNode _domNode;
+		ComPtr<nsIDOMNode> _domNode;
 		#endregion
 
 		#region ctor & creation methods
 		internal GeckoNode(nsIDOMNode domObject)
 		{
 			//ComDebug.WriteDebugInfo( domObject );
-			_domNode = domObject;
+			_domNode = new ComPtr<nsIDOMNode>( domObject );
+		}
+
+		~GeckoNode()
+		{
+			Xpcom.DisposeObject( ref _domNode );
+		}
+
+		public void Dispose()
+		{
+			Xpcom.DisposeObject(ref _domNode);
+			GC.SuppressFinalize( this );
 		}
 
 		internal static GeckoNode Create(nsIDOMNode domObject)
@@ -38,7 +50,7 @@ namespace Gecko
 		/// </summary>
 		public nsIDOMNode DomObject
 		{
-			get { return _domNode; }
+			get { return _domNode.Instance; }
 		}
 		#endregion
 
@@ -74,8 +86,8 @@ namespace Gecko
 		/// </summary>
 		public string TextContent
 		{
-			get { return nsString.Get(_domNode.GetTextContentAttribute); }
-			set { nsString.Set(_domNode.SetTextContentAttribute, value); }
+			get { return nsString.Get(_domNode.Instance.GetTextContentAttribute); }
+			set { nsString.Set(_domNode.Instance.SetTextContentAttribute, value); }
 		}
 
 		/// <summary>
@@ -83,13 +95,13 @@ namespace Gecko
 		/// </summary>
 		public string NodeValue
 		{
-			get { return nsString.Get(_domNode.GetNodeValueAttribute); }
-			set { nsString.Set(_domNode.SetNodeValueAttribute, value); }
+			get { return nsString.Get(_domNode.Instance.GetNodeValueAttribute); }
+			set { nsString.Set(_domNode.Instance.SetNodeValueAttribute, value); }
 		}
 
 		public string NodeName
 		{
-			get { return nsString.Get(_domNode.GetNodeNameAttribute); }
+			get { return nsString.Get(_domNode.Instance.GetNodeNameAttribute); }
 		}
 
 		/// <summary>
@@ -97,19 +109,19 @@ namespace Gecko
 		/// </summary>
 		public GeckoNodeCollection ChildNodes
 		{
-			get { return _domNode.GetChildNodesAttribute().Wrap( GeckoNodeCollection.Create ); }
+			get { return _domNode.Instance.GetChildNodesAttribute().Wrap(GeckoNodeCollection.Create); }
 		}
 
-		public GeckoNode FirstChild { get { return _domNode.GetFirstChildAttribute().Wrap(Create); } }
-		public GeckoNode LastChild { get { return _domNode.GetLastChildAttribute().Wrap(Create); } }
-		public GeckoNode NextSibling { get { return _domNode.GetNextSiblingAttribute().Wrap(Create); } }
-		public GeckoNode PreviousSibling { get { return _domNode.GetPreviousSiblingAttribute().Wrap(Create); } }
-		public bool HasChildNodes { get { return _domNode.HasChildNodes(); } }
-		public bool HasAttributes { get { return _domNode.HasAttributes(); } }
+		public GeckoNode FirstChild { get { return _domNode.Instance.GetFirstChildAttribute().Wrap(Create); } }
+		public GeckoNode LastChild { get { return _domNode.Instance.GetLastChildAttribute().Wrap(Create); } }
+		public GeckoNode NextSibling { get { return _domNode.Instance.GetNextSiblingAttribute().Wrap(Create); } }
+		public GeckoNode PreviousSibling { get { return _domNode.Instance.GetPreviousSiblingAttribute().Wrap(Create); } }
+		public bool HasChildNodes { get { return _domNode.Instance.HasChildNodes(); } }
+		public bool HasAttributes { get { return _domNode.Instance.HasAttributes(); } }
 
 		public GeckoDocument OwnerDocument
 		{
-			get { return GeckoDocument.Create(Xpcom.QueryInterface<nsIDOMHTMLDocument>(_domNode.GetOwnerDocumentAttribute())); }
+			get { return GeckoDocument.Create(Xpcom.QueryInterface<nsIDOMHTMLDocument>(_domNode.Instance.GetOwnerDocumentAttribute())); }
 		}
 
 		public GeckoNode AppendChild(GeckoNode node)
@@ -117,13 +129,13 @@ namespace Gecko
 			if (node == null)
 				throw new ArgumentNullException("node");
 
-			_domNode.AppendChild(node._domNode);
+			_domNode.Instance.AppendChild(node._domNode.Instance);
 			return node;
 		}
 
 		public GeckoNode CloneNode(bool deep)
 		{
-			return GeckoNode.Create(_domNode.CloneNode(deep, 1));
+			return GeckoNode.Create(_domNode.Instance.CloneNode(deep, 1));
 		}
 
 		public GeckoNode InsertBefore(GeckoNode newChild, GeckoNode before)
@@ -133,7 +145,7 @@ namespace Gecko
 			if (before == null)
 				throw new ArgumentNullException("before");
 
-			_domNode.InsertBefore(newChild._domNode, before._domNode);
+			_domNode.Instance.InsertBefore(newChild._domNode.Instance, before._domNode.Instance);
 			return newChild;
 		}
 
@@ -142,7 +154,7 @@ namespace Gecko
 			if (node == null)
 				throw new ArgumentNullException("node");
 
-			_domNode.RemoveChild(node._domNode);
+			_domNode.Instance.RemoveChild(node._domNode.Instance);
 			return node;
 		}
 
@@ -153,23 +165,23 @@ namespace Gecko
 			if (oldChild == null)
 				throw new ArgumentNullException("oldChild");
 
-			_domNode.ReplaceChild(newChild._domNode, oldChild._domNode);
+			_domNode.Instance.ReplaceChild(newChild._domNode.Instance, oldChild._domNode.Instance);
 			return newChild;
 		}
 
 		public string NamespaceURI
 		{
-			get { return nsString.Get(_domNode.GetNamespaceURIAttribute); }
+			get { return nsString.Get(_domNode.Instance.GetNamespaceURIAttribute); }
 		}
 
 		public string Prefix
 		{
-			get { return nsString.Get(_domNode.GetPrefixAttribute); }
+			get { return nsString.Get(_domNode.Instance.GetPrefixAttribute); }
 		}
 
 		public string LocalName
 		{
-			get { return nsString.Get(_domNode.GetLocalNameAttribute); }
+			get { return nsString.Get(_domNode.Instance.GetLocalNameAttribute); }
 		}
 
 		private NodeType m_cachedType;
@@ -180,20 +192,20 @@ namespace Gecko
 				if (m_cachedType != 0)
 					return m_cachedType;
 
-				return m_cachedType = (NodeType)_domNode.GetNodeTypeAttribute(); 
+				return m_cachedType = (NodeType)_domNode.Instance.GetNodeTypeAttribute(); 
 			}
 		}
 
 		public GeckoNode ParentNode
 		{
-			get { return _domNode.GetParentNodeAttribute().Wrap( Create ); }
+			get { return _domNode.Instance.GetParentNodeAttribute().Wrap(Create); }
 		}
 
 		public GeckoElement ParentElement
 		{
 			get
 			{
-				nsIDOMNode node = _domNode.GetParentNodeAttribute();
+				nsIDOMNode node = _domNode.Instance.GetParentNodeAttribute();
 				while ( node != null && !( node is nsIDOMElement ) )
 				{
 					node = node.GetParentNodeAttribute();

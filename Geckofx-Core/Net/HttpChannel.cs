@@ -57,7 +57,7 @@ namespace Gecko.Net
 		
 		public Uri Referrer
 		{
-			get { return nsURI.ToUri( _httpChannel.GetReferrerAttribute() ); }
+			get { return Xpcom.TranslateUriAttribute( _httpChannel.GetReferrerAttribute ); }
 			set { _httpChannel.SetReferrerAttribute(IOService.CreateNsIUri(value.ToString())); }
 		}
 

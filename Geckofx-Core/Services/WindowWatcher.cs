@@ -36,7 +36,7 @@ namespace Gecko.Services
 
 		public static GeckoWindow ActiveWindow
 		{
-			get { return _watcher.Instance.GetActiveWindowAttribute().Wrap( GeckoWindow.Create ); }
+			get { return _watcher.Instance.GetActiveWindowAttribute().Wrap(x=>new GeckoWindow(x)); }
 			set { _watcher.Instance.SetActiveWindowAttribute( value.DomWindow ); }
 		}
 
@@ -44,7 +44,7 @@ namespace Gecko.Services
 		{
 			return new Collections.GeckoEnumerator<GeckoWindow, nsIDOMWindow>(
 				_watcher.Instance.GetWindowEnumerator(),
-				GeckoWindow.Create );
+				x => new GeckoWindow( x ) );
 		}
 
 

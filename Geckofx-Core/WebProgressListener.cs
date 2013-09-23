@@ -169,7 +169,7 @@ namespace Gecko
 
 			Uri destUri = new Uri(nsString.Get(aRefreshURI.GetSpecAttribute));
 			bool cancel = false;
-			using (var domWindow = aWebProgress.GetDOMWindowAttribute().Wrap(GeckoWindow.Create))
+			using (var domWindow = aWebProgress.GetDOMWindowAttribute().Wrap(x=>new GeckoWindow(x)))
 			{
 			    GeckoNavigatingEventArgs ea = new GeckoNavigatingEventArgs(destUri, domWindow);
 				evnt( ea );

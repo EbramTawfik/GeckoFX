@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using Gecko.Interop;
 
 namespace Gecko.Net
@@ -25,13 +26,19 @@ namespace Gecko.Net
 
 		public Uri OriginalUri
 		{
-			get { return nsURI.ToUri( _channel.GetOriginalURIAttribute() ); }
+			get
+			{
+				return Xpcom.TranslateUriAttribute( _channel.GetOriginalURIAttribute );
+			}
 			set { _channel.SetOriginalURIAttribute( IOService.CreateNsIUri( value.ToString() ) ); }
 		}
 
 		public Uri Uri
 		{
-			get { return nsURI.ToUri(_channel.GetURIAttribute()); }
+			get
+			{
+				return Xpcom.TranslateUriAttribute(_channel.GetURIAttribute);
+			}
 		}
 
 		public Interop.nsSupports Owner

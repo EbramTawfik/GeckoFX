@@ -1,6 +1,7 @@
 ﻿﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+﻿using Gecko.Interop;
 
 namespace Gecko
 {
@@ -27,7 +28,7 @@ namespace Gecko
 				if (index < 0 || index >= Count)
 					throw new ArgumentOutOfRangeException("index");
 
-				return GeckoWindow.Create(_collection.Instance.Item(index));
+				return _collection.Instance.Item( index ).Wrap( x => new GeckoWindow( x ) );
 			}
 		}
 
@@ -36,7 +37,7 @@ namespace Gecko
 			uint length = Count;
 			for (uint i = 0; i < length; i++)
 			{
-				yield return GeckoWindow.Create(_collection.Instance.Item(i));
+				yield return _collection.Instance.Item(i).Wrap(x => new GeckoWindow(x));
 			}
 		}
 

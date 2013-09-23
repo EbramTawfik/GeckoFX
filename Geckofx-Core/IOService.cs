@@ -39,10 +39,10 @@ namespace Gecko
 			return ret;
 		}
 
-		public static nsURI Create(string url)
-		{
-			return new nsURI(CreateNsIUri(url));
-		}
+		//public static nsURI Create(string url)
+		//{
+		//    return new nsURI(CreateNsIUri(url));
+		//}
 
 		public static nsIChannel NewChannelFromUri(nsIURI uri)
 		{

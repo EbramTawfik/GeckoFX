@@ -4,11 +4,11 @@ namespace Gecko.Cache
 {
 	public sealed class CacheDeviceInfo
 	{
-		private InstanceWrapper<nsICacheDeviceInfo> _cacheDeviceInfo;
+		private ComPtr<nsICacheDeviceInfo> _cacheDeviceInfo;
 
 		internal CacheDeviceInfo(nsICacheDeviceInfo cacheDeviceInfo)
 		{
-			_cacheDeviceInfo = new InstanceWrapper<nsICacheDeviceInfo>( cacheDeviceInfo );
+			_cacheDeviceInfo = new ComPtr<nsICacheDeviceInfo>(cacheDeviceInfo);
 		}
 
 		public string Description

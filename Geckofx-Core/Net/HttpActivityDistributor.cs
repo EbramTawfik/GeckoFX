@@ -16,6 +16,11 @@ namespace Gecko.Net
 			get { return _httpActivityDistributor.Instance.GetIsActiveAttribute(); }
 		}
 
+		public static void AddObserver( nsIHttpActivityObserver observer )
+		{
+			_httpActivityDistributor.Instance.AddObserver(observer);
+		}
+
 		public static void AddObserver(BaseHttpActivityObserver observer)
 		{
 			if (observer._isRegistered) return;

@@ -22,14 +22,6 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
-		public void Create_HttpUrl_ValidnsUriReturned()
-		{
-			nsURI temp = nsURI.Create("http://www.google.com");
-			Assert.AreEqual("http", temp.Scheme);
-			Assert.AreEqual("www.google.com", temp.AsciiHost);			
-		}
-
-		[Test]
 		public void UrlTest()
 		{
 			var service = Xpcom.GetService<nsIIOService>(Contracts.NetworkIOService);
