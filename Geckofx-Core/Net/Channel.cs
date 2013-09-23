@@ -15,14 +15,27 @@ namespace Gecko.Net
 			_channel = channel;
 		}
 
-		public static Channel Create(nsIChannel channel)
+		public static Channel CreateChannel( nsIChannel channel )
 		{
 			if ( channel is nsIHttpChannel )
 			{
-				return HttpChannel.Create( ( nsIHttpChannel ) channel );
+				return new HttpChannel( ( nsIHttpChannel ) channel );
+			}
+			if ( channel is nsIJARChannel )
+			{
+
+			}
+			if ( channel is nsIViewSourceChannel )
+			{
+
+			}
+			if ( channel is nsIWyciwygChannel )
+			{
+
 			}
 			return new Channel( channel );
 		}
+
 
 		public Uri OriginalUri
 		{
@@ -41,10 +54,10 @@ namespace Gecko.Net
 			}
 		}
 
-		public Interop.nsSupports Owner
+		public nsISupports Owner
 		{
-			get{return new nsSupports( _channel.GetOwnerAttribute() );}
-			set{_channel.SetOwnerAttribute( value._nsISupports );}
+			get { return _channel.GetOwnerAttribute(); }
+			set { _channel.SetOwnerAttribute( value ); }
 		}
 
 		public nsIInterfaceRequestor NotificationCallbacks
@@ -53,9 +66,9 @@ namespace Gecko.Net
 			set{_channel.SetNotificationCallbacksAttribute( value );}
 		}
 
-		public nsSupports SecurityInfo
+		public nsISupports SecurityInfo
 		{
-			get{return new nsSupports( _channel.GetSecurityInfoAttribute() );}
+			get { return _channel.GetSecurityInfoAttribute(); }
 		}
 
 		public string ContentType

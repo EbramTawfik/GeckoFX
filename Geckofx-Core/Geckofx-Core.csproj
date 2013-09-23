@@ -100,6 +100,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\DomNodeList.cs" />
+    <Compile Include="Collections\GeckoNodeEnumerator.cs" />
     <Compile Include="DOM\Events\DomHashChangeEventArgs.cs" />
     <Compile Include="DOM\Events\DomMouseScrollEventArgs.cs" />
     <Compile Include="DOM\Events\DomDragEventArgs.cs" />
@@ -107,6 +109,9 @@
     <Compile Include="DOM\Events\DomMouseEventArgs.cs" />
     <Compile Include="DOM\Events\DomSvgEvent.cs" />
     <Compile Include="DOM\Events\DomUIEventArgs.cs" />
+    <Compile Include="DOM\GeckoNamedNodeMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DOM\Svg\SvgDocument.cs" />
     <Compile Include="DOM\Svg\SvgElement.cs" />
     <Compile Include="DOM\Svg\SvgSvgElement.cs" />
@@ -152,6 +157,7 @@
     <Compile Include="Net\AsyncStreamCopier.cs" />
     <Compile Include="Net\ImgRequest.cs" />
     <Compile Include="Net\IncrementalDownload.cs" />
+    <Compile Include="Net\UriChecker.cs" />
     <Compile Include="Services\AppShellService.cs" />
     <Compile Include="AutoJSContext.cs" />
     <Compile Include="BaseTypes\AccessibleTextBoundary.cs" />
@@ -298,8 +304,6 @@
     <Compile Include="DOM\Xul\XulElement.cs" />
     <Compile Include="DOM\GeckoDomDocument.cs" />
     <Compile Include="Interop\MemCopy.cs" />
-    <Compile Include="Interop\nsSupports.cs" />
-    <Compile Include="Interop\WrapperManager.cs" />
     <Compile Include="IO\InputStream.cs" />
     <Compile Include="IO\InputStreamTee.cs" />
     <Compile Include="IO\MimeInputStream.cs" />

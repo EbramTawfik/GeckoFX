@@ -1,17 +1,31 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using Gecko.Interop;
 
 namespace Gecko.Net
 {
 	public class Request
+		:IDisposable
 	{
-		private InstanceWrapper<nsIRequest> _request;
+		private ComPtr<nsIRequest> _request;
 
 		protected Request(nsIRequest request)
 		{
-			_request = new InstanceWrapper<nsIRequest>( request );
+			_request = new ComPtr<nsIRequest>( request );
 		}
+
+		~Request()
+		{
+			Xpcom.DisposeObject( ref _request );
+		}
+
+		public void Dispose()
+		{
+			Xpcom.DisposeObject( ref _request );
+			GC.SuppressFinalize( this );
+		}
+
 
 		public nsIRequest NativeRequest
 		{
@@ -54,7 +68,7 @@ namespace Gecko.Net
 
 		public LoadGroup LoadGroup
 		{
-			get { return LoadGroup.Create( _request.Instance.GetLoadGroupAttribute() ); }
+			get { return  _request.Instance.GetLoadGroupAttribute().Wrap( x=>new LoadGroup(x) ); }
 			set { _request.Instance.SetLoadGroupAttribute( value == null ? null : value._loadGroup ); }
 		}
 
@@ -72,11 +86,36 @@ namespace Gecko.Net
 
 
 
-		public static Request Create( nsIRequest request )
+		public static Request CreateRequest( nsIRequest request )
 		{
 			if ( request is nsIChannel )
 			{
-				return Channel.Create( ( nsIChannel ) request );
+				return Channel.CreateChannel( ( nsIChannel ) request );
+			}
+
+			if ( request is nsIAsyncStreamCopier )
+			{
+				return new AsyncStreamCopier( ( nsIAsyncStreamCopier ) request );
+			}
+			if ( request is nsILoadGroup )
+			{
+				return new LoadGroup( ( nsILoadGroup ) request );
+			}
+			if ( request is nsIIncrementalDownload )
+			{
+				return new IncrementalDownload( ( nsIIncrementalDownload ) request );
+			}
+			if ( request is imgIRequest )
+			{
+				return new ImgRequest( ( imgIRequest ) request );
+			}
+			if ( request is nsIInputStreamPump )
+			{
+
+			}
+			if ( request is nsIURIChecker )
+			{
+				return new UriChecker( ( nsIURIChecker ) request );
 			}
 			return new Request( request );
 		}

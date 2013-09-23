@@ -7,44 +7,25 @@ using Gecko.Interop;
 namespace Gecko.Net
 {
 	public class HttpChannel
-		:Channel,IDisposable
+		: Channel
 	{
 		private nsIHttpChannel _httpChannel;
-		private bool _decrement;
 
-		private HttpChannel(nsIHttpChannel httpChannel)
-			:base(httpChannel)
+		public HttpChannel( nsIHttpChannel httpChannel )
+			: base( httpChannel )
 		{
 			_httpChannel = httpChannel;
 		}
 
-		~HttpChannel()
-		{
-			Release();
-		}
-
-		public static HttpChannel Create(nsIHttpChannel httpChannel)
+		public static HttpChannel Create( nsIHttpChannel httpChannel )
 		{
 			return new HttpChannel( httpChannel );
 		}
 
-		public void Dispose()
+		public nsIHttpChannel Instance
 		{
-			Release();
-			GC.SuppressFinalize( this );
-		}
-
-		private void Release()
-		{
-			if (_decrement)
+			get
 			{
-				_decrement = false;
-				Marshal.ReleaseComObject( _httpChannel );
-			}
-		}
-
-		public nsIHttpChannel Instance {
-			get {
 				return _httpChannel;
 			}
 		}
@@ -52,21 +33,21 @@ namespace Gecko.Net
 		public string RequestMethod
 		{
 			get { return nsString.Get( _httpChannel.GetRequestMethodAttribute ); }
-			set { nsString.Set( _httpChannel.SetRequestMethodAttribute,value ); }
+			set { nsString.Set( _httpChannel.SetRequestMethodAttribute, value ); }
 		}
-		
+
 		public Uri Referrer
 		{
 			get { return Xpcom.TranslateUriAttribute( _httpChannel.GetReferrerAttribute ); }
-			set { _httpChannel.SetReferrerAttribute(IOService.CreateNsIUri(value.ToString())); }
+			set { _httpChannel.SetReferrerAttribute( IOService.CreateNsIUri( value.ToString() ) ); }
 		}
 
-		public string GetRequestHeader(string header)
+		public string GetRequestHeader( string header )
 		{
 			string ret = null;
 			try
 			{
-				ret= nsString.Get( _httpChannel.GetRequestHeader, header );
+				ret = nsString.Get( _httpChannel.GetRequestHeader, header );
 			}
 			catch ( Exception )
 			{
@@ -75,52 +56,66 @@ namespace Gecko.Net
 			return ret;
 		}
 
-		public void SetRequestHeader(string header,string value,bool merge)
+		public void SetRequestHeader( string header, string value, bool merge )
 		{
 			nsString.Set( ( x, y ) => _httpChannel.SetRequestHeader( x, y, merge ), header, value );
 		}
 
+		[Obsolete( "use GetRequestHeaders<T>", false )]
 		public List<KeyValuePair<string, string>> GetRequestHeaders()
 		{
-			HttpHeaderVisitor visitor = new HttpHeaderVisitor();
-			_httpChannel.VisitRequestHeaders(visitor);
-			return visitor.httpHeadersList;
+			var ret = new List<KeyValuePair<string, string>>();
+			var visitor = new HttpHeaderVisitor( ( x, y ) => ret.Add( new KeyValuePair<string, string>( x, y ) ) );
+			_httpChannel.VisitRequestHeaders( visitor );
+			return ret;
+		}
+
+		public void GetRequestHeaders<T>( T accumulator, Action<T, string, string> func )
+		{
+			HttpHeaderVisitor visitor = new HttpHeaderVisitor( ( x, y ) => func( accumulator, x, y ) );
+			_httpChannel.VisitRequestHeaders( visitor );
 		}
 
 		public Dictionary<string, List<string>> GetRequestHeadersDict()
 		{
-			var headersList = GetRequestHeaders();
-			var dictRes = new Dictionary<string, List<string>>();
-			foreach (var header in headersList) {
-				if (dictRes.ContainsKey(header.Key)) {
-					var listVal = dictRes[header.Key];
-					listVal.Add(header.Value);
-					dictRes[header.Key] = listVal;
+			// name -> list of values
+			var ret = new Dictionary<string, List<string>>();
+
+			HttpHeaderVisitor visitor = new HttpHeaderVisitor( ( x, y ) =>
+			{
+				List<string> tmp = null;
+				if ( ret.TryGetValue( x, out tmp ) )
+				{
+					tmp.Add( y );
 				}
-				else {
-					dictRes.Add(header.Key, new List<string> { header.Value });
+				else
+				{
+					ret.Add( x, new List<string>() {y} );
 				}
-			}
-			return dictRes;
+			} );
+			_httpChannel.VisitRequestHeaders( visitor );
+
+			return ret;
 		}
+
 
 		public bool AllowPipelining
 		{
 			get { return _httpChannel.GetAllowPipeliningAttribute(); }
-			set{_httpChannel.SetAllowPipeliningAttribute( value );}
+			set { _httpChannel.SetAllowPipeliningAttribute( value ); }
 		}
 
 		public uint RedirectionLimit
 		{
 			get { return _httpChannel.GetRedirectionLimitAttribute(); }
-			set{_httpChannel.SetRedirectionLimitAttribute( value );}
+			set { _httpChannel.SetRedirectionLimitAttribute( value ); }
 		}
 
 		public uint ResponseStatus
 		{
 			get { return _httpChannel.GetResponseStatusAttribute(); }
 		}
-		
+
 		public string ResponseStatusText
 		{
 			get { return nsString.Get( _httpChannel.GetResponseStatusTextAttribute ); }
@@ -131,38 +126,53 @@ namespace Gecko.Net
 			get { return _httpChannel.GetRequestSucceededAttribute(); }
 		}
 
-		public string GetResponseHeader(string header)
+		public string GetResponseHeader( string header )
 		{
-			return nsString.Get(_httpChannel.GetResponseHeader, header);
+			return nsString.Get( _httpChannel.GetResponseHeader, header );
 		}
 
-		public void SetResponseHeader(string header, string value, bool merge)
+		public void SetResponseHeader( string header, string value, bool merge )
 		{
-			nsString.Set((x, y) => _httpChannel.SetResponseHeader(x, y, merge), header, value);
+			nsString.Set( ( x, y ) => _httpChannel.SetResponseHeader( x, y, merge ), header, value );
 		}
 
-		public List<KeyValuePair<string, string>> GetResponseHeaders() {
-			HttpHeaderVisitor visitor = new HttpHeaderVisitor();
-			_httpChannel.VisitResponseHeaders(visitor);
-			return visitor.httpHeadersList;
+		[Obsolete( "use GetResponseHeaders<T>", false )]
+		public List<KeyValuePair<string, string>> GetResponseHeaders()
+		{
+			var ret = new List<KeyValuePair<string, string>>();
+			var visitor = new HttpHeaderVisitor( ( x, y ) => ret.Add( new KeyValuePair<string, string>( x, y ) ) );
+			_httpChannel.VisitResponseHeaders( visitor );
+			return ret;
+		}
+
+		public void GetResponseHeaders<T>( T accumulator, Action<T, string, string> func )
+		{
+			HttpHeaderVisitor visitor = new HttpHeaderVisitor( ( x, y ) => func( accumulator, x, y ) );
+			_httpChannel.VisitResponseHeaders( visitor );
 		}
 
 		public Dictionary<string, List<string>> GetResponseHeadersDict()
 		{
-			var headersList = GetResponseHeaders();
-			var dictRes = new Dictionary<string, List<string>>();
-			foreach (var header in headersList) {
-				if (dictRes.ContainsKey(header.Key)) {
-					var listVal = dictRes[header.Key];
-					listVal.Add(header.Value);
-					dictRes[header.Key] = listVal;
+			// name -> list of values
+			var ret = new Dictionary<string, List<string>>();
+
+			HttpHeaderVisitor visitor = new HttpHeaderVisitor( ( x, y ) =>
+			{
+				List<string> tmp = null;
+				if ( ret.TryGetValue( x, out tmp ) )
+				{
+					tmp.Add( y );
 				}
-				else {
-					dictRes.Add(header.Key, new List<string> { header.Value });
+				else
+				{
+					ret.Add( x, new List<string>() {y} );
 				}
-			}
-			return dictRes;
+			} );
+			_httpChannel.VisitResponseHeaders( visitor );
+
+			return ret;
 		}
+
 
 		public bool IsNoStoreResponse
 		{
@@ -175,7 +185,9 @@ namespace Gecko.Net
 		}
 
 		#region Casts
+
 		#endregion
+
 		public UploadChannel CastToUploadChannel()
 		{
 			var channel = Xpcom.QueryInterface<nsIUploadChannel>( _httpChannel );
@@ -185,7 +197,7 @@ namespace Gecko.Net
 		public TraceableChannel CastToTraceableChannel()
 		{
 			var channel = Xpcom.QueryInterface<nsITraceableChannel>( _httpChannel );
-			return channel == null ? null : new TraceableChannel(channel);
+			return channel == null ? null : new TraceableChannel( channel );
 		}
 
 		/// <summary>
@@ -193,14 +205,14 @@ namespace Gecko.Net
 		/// </summary>
 		/// <param name="supports"></param>
 		/// <returns></returns>
-		public static HttpChannel Create(nsISupports supports)
+		public static HttpChannel Create( nsISupports supports )
 		{
 			//int count = Interop.ComDebug.GetRcwRefCount(supports);
 
-			var channel = Xpcom.QueryInterface<nsIHttpChannel>(supports);
-			if (channel == null) return null;
-			Marshal.ReleaseComObject(channel);
-			var ret = new HttpChannel((nsIHttpChannel)supports);
+			var channel = Xpcom.QueryInterface<nsIHttpChannel>( supports );
+			if ( channel == null ) return null;
+			Marshal.ReleaseComObject( channel );
+			var ret = new HttpChannel( ( nsIHttpChannel ) supports );
 
 			//var count2=Interop.ComDebug.GetRcwRefCount( supports );
 
@@ -208,27 +220,34 @@ namespace Gecko.Net
 		}
 
 
+		/// <summary>
+		/// Universal visitor
+		/// </summary>
 		private sealed class HttpHeaderVisitor
 			: nsIHttpHeaderVisitor
 		{
-			internal readonly List<KeyValuePair<string, string>> httpHeadersList = new List<KeyValuePair<string, string>>();
+			private Action<string, string> _func;
 
-			public void VisitHeader( nsACStringBase aHeader, nsACStringBase aValue )
+			public HttpHeaderVisitor( Action<string, string> func )
 			{
-				httpHeadersList.Add(new KeyValuePair<string, string>(aHeader.ToString(), aValue.ToString()));
+				_func = func;
+			}
+
+			void nsIHttpHeaderVisitor.VisitHeader( nsACStringBase aHeader, nsACStringBase aValue )
+			{
+				_func( aHeader.ToString(), aValue.ToString() );
 			}
 		}
 
-	
 	}
 
 
 	public sealed class TraceableChannel
 	{
-		private InstanceWrapper<nsITraceableChannel> _traceableChannel;
+		private ComPtr<nsITraceableChannel> _traceableChannel;
 		internal TraceableChannel(nsITraceableChannel traceableChannel)
 		{
-			_traceableChannel = new InstanceWrapper<nsITraceableChannel>(traceableChannel);
+			_traceableChannel = new ComPtr<nsITraceableChannel>(traceableChannel);
 		}
 
 

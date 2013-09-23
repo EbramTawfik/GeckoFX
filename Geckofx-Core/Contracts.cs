@@ -17,6 +17,7 @@ namespace Gecko
 		public static readonly string CacheService = "@mozilla.org/network/cache-service;1";
 		public static readonly string NetworkIOService = "@mozilla.org/network/io-service;1";
 		internal static readonly string HttpActivityDistributor = "@mozilla.org/network/http-activity-distributor;1";
+		internal static readonly string UriChecker = "@mozilla.org/network/urichecker;1";
 		#endregion
 		#region Security
 		public static readonly string X509CertDb = "@mozilla.org/security/x509certdb;1";

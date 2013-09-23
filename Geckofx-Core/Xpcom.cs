@@ -608,6 +608,28 @@ namespace Gecko
 		
 		#endregion
 
+		public static TInterfaceType GetInterface<TInterfaceType>( this nsIInterfaceRequestor requestor )
+		{
+			return ( TInterfaceType ) GetInterface( requestor, typeof( TInterfaceType ).GUID );
+		}
+
+		private static object GetInterface( nsIInterfaceRequestor requestor, Guid iid )
+		{
+			IntPtr ppv = IntPtr.Zero;
+			try
+			{
+				ppv = requestor.GetInterface( ref iid );
+			}
+			catch ( Exception ex )
+			{
+				Debug.WriteLine( "Exception \n" + ex.ToString() );
+			}
+			object result = ( ppv != IntPtr.Zero ) ? GetObjectForIUnknown( ppv ) : null;
+			int count = Marshal.Release( ppv );
+			return result;
+		}
+
+
 		///	<summary>
 		/// Helper method for WeakReference
 		///	</summary>

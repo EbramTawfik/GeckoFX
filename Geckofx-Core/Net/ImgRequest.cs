@@ -5,7 +5,7 @@ namespace Gecko.Net
 	{
 		private imgIRequest _imgRequest;
 
-		protected ImgRequest( imgIRequest request )
+		public ImgRequest( imgIRequest request )
 			: base( request )
 		{
 			_imgRequest = request;

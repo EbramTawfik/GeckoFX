@@ -45,7 +45,7 @@ namespace Gecko.Collections
 	}
 
 	/// <summary>
-	/// External interface to GeckoArray
+	/// Universal external interface to Gecko Array and dom NodeMaps
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	public interface IGeckoArray<T>

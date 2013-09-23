@@ -37,6 +37,9 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using Gecko.Collections;
+using Gecko.DOM;
+using Gecko.Interop;
 
 namespace Gecko
 {
@@ -74,6 +77,11 @@ namespace Gecko
 		}
 
 		#region Attribute
+
+		public GeckoNamedNodeMap Attributes
+		{
+			get { return _domElement.GetAttributesAttribute().Wrap( x => new GeckoNamedNodeMap( x ) ); }
+		}
 		/// <summary>
 		/// Gets the value of an attribute on this element with the specified name.
 		/// </summary>
@@ -257,23 +265,27 @@ namespace Gecko
 		/// </summary>
 		/// <param name="tagName"></param>
 		/// <returns></returns>
-		public GeckoElementCollection GetElementsByTagName(string tagName)
+		public IDomHtmlCollection<GeckoElement> GetElementsByTagName(string tagName)
 		{
-			if (string.IsNullOrEmpty(tagName))
+			if ( string.IsNullOrEmpty( tagName ) )
 				return null;
 
-			return new GeckoHtmlElementCollection(_domElement.GetElementsByTagName(new nsAString(tagName)));
+			//return new GeckoHtmlElementCollection(_domElement.GetElementsByTagName(new nsAString(tagName)));
+			return nsString.Pass<nsIDOMHTMLCollection>( _domElement.GetElementsByTagName, tagName )
+				.Wrap( x => new DomHtmlCollection<GeckoElement, nsIDOMHTMLElement>( x, CreateDomElementWrapper ) );
 		}
 
-		public GeckoElementCollection GetElementsByTagNameNS(string namespaceURI, string localName)
+		public IDomHtmlCollection<GeckoElement> GetElementsByTagNameNS(string namespaceURI, string localName)
 		{
 			if ( string.IsNullOrEmpty( namespaceURI ) ) return GetElementsByTagName( localName );
 
 			if ( string.IsNullOrEmpty( localName ) )
 				return null;
 
-			var ret = nsString.Pass<nsIDOMHTMLCollection>(_domElement.GetElementsByTagNameNS, namespaceURI, localName);
-			return ret == null ? null : new GeckoHtmlElementCollection(ret);
+			//var ret = nsString.Pass<nsIDOMHTMLCollection>(_domElement.GetElementsByTagNameNS, namespaceURI, localName);
+			//return ret == null ? null : new GeckoHtmlElementCollection(ret);
+			return nsString.Pass<nsIDOMHTMLCollection>( _domElement.GetElementsByTagNameNS, namespaceURI, localName )
+						   .Wrap(x => new DomHtmlCollection<GeckoElement, nsIDOMHTMLElement>(x, CreateDomElementWrapper));
 		}
 
 

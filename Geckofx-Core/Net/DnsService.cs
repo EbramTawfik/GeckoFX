@@ -11,11 +11,11 @@ namespace Gecko.Net
 
 	public static class DnsService
 	{
-		private static ServiceWrapper<nsIDNSService> _dnsService;
+		private static ComPtr<nsIDNSService> _dnsService;
 
 		static DnsService()
 		{
-			_dnsService = new ServiceWrapper<nsIDNSService>(Contracts.DnsService);
+			_dnsService = Xpcom.GetService2<nsIDNSService>(Contracts.DnsService);
 		}
 
 		public static string MyHostName
@@ -33,13 +33,13 @@ namespace Gecko.Net
 		/// <returns></returns>
 		public static DnsRecord Resolve(string hostName, ResolveFlags flags)
 		{
-			if (hostName==null)
+			if ( hostName == null )
 			{
 				throw new ArgumentException( "parameter cannot be null", "hostName" );
 			}
-			nsIDNSRecord record=nsString.Pass( _dnsService.Instance.Resolve, hostName, ( uint ) flags );
 
-			return DnsRecord.Create( record );
+			return nsString.Pass( _dnsService.Instance.Resolve, hostName, ( uint ) flags )
+				.Wrap( x => new DnsRecord( x ) );
 		}
 	}
 

@@ -1,22 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Gecko.Interop;
 
 namespace Gecko.Net
 {
 	public sealed class DnsRecord
-		:IEnumerable<string>
 	{
-		private InstanceWrapper<nsIDNSRecord> _record;
+		private ComPtr<nsIDNSRecord> _record;
 
-		private DnsRecord( nsIDNSRecord record )
+		internal DnsRecord( nsIDNSRecord record )
 		{
-			_record = new InstanceWrapper<nsIDNSRecord>( record );
-		}
-
-		public static DnsRecord Create(nsIDNSRecord record)
-		{
-			return record == null ? null : new DnsRecord( record );
+			_record = new ComPtr<nsIDNSRecord>( record );
 		}
 
 		public string CanonicalName
@@ -24,65 +19,20 @@ namespace Gecko.Net
 			get { return nsString.Get( _record.Instance.GetCanonicalNameAttribute ); }
 		}
 
-		public IEnumerator<string> GetEnumerator()
+		public string[] Records
 		{
-			return new DnsRecordEnumerator(_record.Instance);
-		}
-
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return GetEnumerator();
-		}
-
-		private sealed class DnsRecordEnumerator
-			: IEnumerator<string>
-		{
-			private nsIDNSRecord _record;
-			private string _current;
-
-			internal DnsRecordEnumerator(nsIDNSRecord record)
+			get
 			{
-				_record = record;
-			}
-
-			~DnsRecordEnumerator()
-			{
-				_record.Rewind();
-				_record = null;
-			}
-
-			public void Dispose()
-			{
-				_record.Rewind();
-				_record = null;
-				GC.SuppressFinalize(this);
-			}
-
-			public bool MoveNext()
-			{
-				if (_record.HasMore())
+				List<string> ret = new List<string>();
+				while ( _record.Instance.HasMore() )
 				{
-					_current = nsString.Get(_record.GetNextAddrAsString);
-					return true;
+					var curRecord = nsString.Get( _record.Instance.GetNextAddrAsString );
+					ret.Add( curRecord );
 				}
-				return false;
-			}
-
-			public void Reset()
-			{
-				_record.Rewind();
-				_current = null;
-			}
-
-			public string Current
-			{
-				get { return _current; }
-			}
-
-			object IEnumerator.Current
-			{
-				get { return Current; }
+				_record.Instance.Rewind();
+				return ret.ToArray();
 			}
 		}
 	}
+
 }

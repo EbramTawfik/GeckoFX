@@ -37,7 +37,7 @@ namespace GeckofxUnitTests
 			browser.TestLoadHtml("<div name=\"a\" id=\"_lv5\">old value</div>");
 
 			var divElement = browser.Document.GetElementsByName("a");
-			Assert.AreEqual(1, divElement.Count);
+			Assert.AreEqual(1, divElement.Length);
 		}
 
 		[Test]
@@ -46,7 +46,7 @@ namespace GeckofxUnitTests
 			browser.TestLoadHtml("<div name=\"a\" id=\"_lv5\">old value</div>");
 
 			var emptyCollection = browser.Document.GetElementsByName("div");
-			Assert.AreEqual(0, emptyCollection.Count);
+			Assert.AreEqual(0, emptyCollection.Length);
 		}
 
 		[Test]
@@ -128,7 +128,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("<form id=\"a\">hello world</form><form id=\"b\">hi</form>");
 
-			Assert.AreEqual(2, browser.Document.Forms.Count);
+			Assert.AreEqual(2, browser.Document.Forms.Length);
 			Assert.AreEqual("a", browser.Document.Forms[0].Id);
 		}
 	}

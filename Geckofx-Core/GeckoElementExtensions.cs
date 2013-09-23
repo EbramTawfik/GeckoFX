@@ -31,7 +31,7 @@ namespace Gecko
 		public static T FindFirstChildInTree<T>(this GeckoNode element, Predicate<T> predicate)
 			where T:GeckoNode
 		{
-			for (int i = 0; i < element.ChildNodes.Count; i++)
+			for (int i = 0; i < element.ChildNodes.Length; i++)
 			{
 				var node = element.ChildNodes[i];
 				if ( !( node is T ) )

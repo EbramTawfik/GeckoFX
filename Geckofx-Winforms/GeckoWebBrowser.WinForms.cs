@@ -266,10 +266,12 @@ namespace Gecko
 						{
 							m.Result = ( IntPtr ) MA_ACTIVATE;
 							focus = User32.GetFocus();
+							Console.WriteLine( "focus {0:X8}, Handle {1:X8}", focus.ToInt32(), Handle.ToInt32() );
 							if ( !IsSubWindow( Handle, focus ) )
 							{
 							//	var str = string.Format( "+WM_MOUSEACTIVATE {0:X8} lastfocus", focus.ToInt32() );
 							//	System.Diagnostics.Debug.WriteLine( str );
+								Console.WriteLine("Activating");
 								if ( WebBrowserFocus != null )
 								{
 									WebBrowserFocus.Activate();

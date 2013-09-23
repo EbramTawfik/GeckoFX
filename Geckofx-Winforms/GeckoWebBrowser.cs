@@ -171,10 +171,12 @@ namespace Gecko
 
 			this.Stop();
 			
-			if(Window != null && !Window.DomWindow.GetClosedAttribute())
-			{
-				Window.DomWindow.Close();
-			}
+			// Window.DomWindow.GetClosedAttribute() raises exceptions on app shutdown
+			//https://developer.mozilla.org/en-US/docs/Web/API/window.close
+			//if(Window != null && !Window.DomWindow.GetClosedAttribute())
+			//{
+			//	Window.DomWindow.Close();
+			//}
 
 			BaseWindow.Destroy();
 
@@ -1491,7 +1493,7 @@ namespace Gecko
 	
 			#endregion validity checks
 
-			var request=Gecko.Net.Request.Create( aRequest );
+			var request=Gecko.Net.Request.CreateRequest( aRequest );
 			
 			#region request parameters
 			Uri destUri = null;
@@ -1651,7 +1653,7 @@ namespace Gecko
 		void nsIWebProgressListener.OnProgressChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress)
 		{
 			// Note: If any progress value is unknown, then its value is replaced with -1.
-			var request = Gecko.Net.Request.Create( aRequest );
+			var request = Gecko.Net.Request.CreateRequest( aRequest );
 
 
 			if ((aCurSelfProgress != -1) && (aMaxSelfProgress != -1))
@@ -2219,38 +2221,7 @@ namespace Gecko
 	}
 	#endregion
 	
-	#region public enum GeckoWindowFlags
-	[Flags]
-	public enum GeckoWindowFlags
-	{
-		Default = 0x1,
-		WindowBorders = 0x2,
-		WindowClose = 0x4,
-		WindowResize = 0x8,
-		MenuBar = 0x10,
-		ToolBar = 0x20,
-		LocationBar = 0x40,
-		StatusBar = 0x80,
-		PersonalToolbar = 0x100,
-		ScrollBars = 0x200,
-		TitleBar = 0x400,
-		Extra = 0x800,
-		
-		CreateWithSize = 0x1000,
-		CreateWithPosition = 0x2000,
-		
-		WindowMin = 0x00004000,
-		WindowPopup = 0x00008000,
-		WindowRaised = 0x02000000,
-		WindowLowered = 0x04000000,
-		CenterScreen = 0x08000000,
-		Dependent = 0x10000000,
-		Modal = 0x20000000,
-		OpenAsDialog = 0x40000000,
-		OpenAsChrome = unchecked((int)0x80000000),
-		All = 0x00000ffe,
-	}
-	#endregion
+
 
 	#region GeckoJavaScriptHttpChannelWrapper
 	public class GeckoJavaScriptHttpChannelWrapper : nsIDOMEventListener

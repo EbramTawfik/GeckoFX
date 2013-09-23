@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
+using Gecko.Collections;
 
 namespace Gecko
 {
 	/// <summary>
 	/// Represents a collection of <see cref="GeckoHtmlElement"/> objects.
 	/// </summary>
-	public class GeckoElementCollection : IEnumerable<GeckoHtmlElement>
+	public class GeckoElementCollection
+		: IGeckoArray<GeckoHtmlElement>, IEnumerable<GeckoHtmlElement>
 	{
 		nsIDOMNodeList List;		
 
@@ -15,7 +17,7 @@ namespace Gecko
 			this.List = list;
 		}		
 
-		public virtual int Count
+		public virtual int Length
 		{
 			get { return (List == null) ? 0 : (int)List.GetLengthAttribute(); }
 		}
@@ -24,7 +26,7 @@ namespace Gecko
 		{
 			get
 			{
-				if (index < 0 || index >= Count)
+				if (index < 0 || index >= Length)
 					throw new ArgumentOutOfRangeException("index");
 
 				return GeckoHtmlElement.Create((nsIDOMHTMLElement)List.Item((uint)index));
@@ -35,7 +37,7 @@ namespace Gecko
 
 		public virtual IEnumerator<GeckoHtmlElement> GetEnumerator()
 		{
-			int length = Count;
+			int length = Length;
 			for (int i = 0; i < length; i++)
 			{
 				yield return GeckoHtmlElement.Create((nsIDOMHTMLElement)List.Item((uint)i));

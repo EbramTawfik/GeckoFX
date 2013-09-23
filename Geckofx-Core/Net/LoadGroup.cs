@@ -1,21 +1,17 @@
 using System.Collections.Generic;
+using Gecko.Interop;
 
 namespace Gecko.Net
 {
-	public class LoadGroup
+	public sealed class LoadGroup
 		:Request
 	{
 		internal nsILoadGroup _loadGroup;
 
-		protected LoadGroup(nsILoadGroup loadGroup)
+		public LoadGroup(nsILoadGroup loadGroup)
 			:base(loadGroup)
 		{
 			_loadGroup = loadGroup;
-		}
-
-		public static LoadGroup Create(nsILoadGroup loadGroup)
-		{
-			return loadGroup == null ? null : new LoadGroup( loadGroup );
 		}
 
 		public nsIRequestObserver GroupObserver
@@ -26,18 +22,18 @@ namespace Gecko.Net
 
 		public Request DefaultLoadRequest
 		{
-			get{return Create( _loadGroup.GetDefaultLoadRequestAttribute() );}
+			get { return _loadGroup.GetDefaultLoadRequestAttribute().Wrap( CreateRequest ); }
 			set{_loadGroup.SetDefaultLoadRequestAttribute( value.NativeRequest );}
 		}
 
-		public void AddRequest(Request request,Interop.nsSupports aContext)
+		public void AddRequest(Request request,nsISupports aContext)
 		{
-			_loadGroup.AddRequest( request.NativeRequest, aContext._nsISupports );
+			_loadGroup.AddRequest( request.NativeRequest, aContext );
 		}
 
-		public void RemoveRequest(Request request, Interop.nsSupports aContext, int aStatus)
+		public void RemoveRequest( Request request, nsISupports aContext, int aStatus )
 		{
-			_loadGroup.RemoveRequest( request.NativeRequest, aContext._nsISupports, aStatus );
+			_loadGroup.RemoveRequest( request.NativeRequest, aContext, aStatus );
 		}
 
 		public IEnumerable<Request> Requests
@@ -46,7 +42,7 @@ namespace Gecko.Net
 			{
 				return new Collections.GeckoEnumerableCollection<Request, nsIRequest>(
 					_loadGroup.GetRequestsAttribute,
-					Create );
+					CreateRequest );
 			}
 		}
 
