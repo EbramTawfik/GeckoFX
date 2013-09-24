@@ -260,6 +260,8 @@ namespace Gecko
 					case WM_GETDLGCODE:
 						m.Result = ( IntPtr ) DLGC_WANTALLKEYS;
 						return;
+					case WM_SETFOCUS:
+						break;
 					case WM_MOUSEACTIVATE:
 						// TODO FIXME: port for Linux
 						if ( Xpcom.IsWindows )
@@ -275,12 +277,21 @@ namespace Gecko
 								if ( WebBrowserFocus != null )
 								{
 									WebBrowserFocus.Activate();
+									Services.WindowWatcher.ActiveWindow = this.Window;
 								}
 							}
 							else
 							{
 							//	var str = string.Format( "-WM_MOUSEACTIVATE {0:X8} lastfocus", focus.ToInt32() );
 							//	System.Diagnostics.Debug.WriteLine( str );
+							}
+							if ( !this.Window.Equals(Services.WindowWatcher.ActiveWindow) )
+							{
+								if ( WebBrowserFocus != null )
+								{
+									WebBrowserFocus.Activate();
+									Services.WindowWatcher.ActiveWindow = this.Window;
+								}
 							}
 							return;
 						}
@@ -396,21 +407,37 @@ namespace Gecko
 		}
 
 
+		#region UserInterfaceThreadInvoke
 		/// <summary>
 		/// UI platform independent call function from UI thread
 		/// </summary>
 		/// <param name="action"></param>
 		public void UserInterfaceThreadInvoke( Action action )
 		{
-			if ( this.InvokeRequired )
+			if ( InvokeRequired )
 			{
-				Invoke( action );
+				Invoke( new Action( () => SafeAction( action ) ) );
 			}
 			else
 			{
+				SafeAction( action );
+			}
+		}
+
+		/// <summary>
+		/// Exception handler for action
+		/// </summary>
+		/// <param name="action"></param>
+		private void SafeAction( Action action )
+		{
+			try
+			{
 				action();
 			}
-
+			catch ( Exception e )
+			{
+				System.Diagnostics.Debug.WriteLine( string.Format( "Invoking exception" ) );
+			}
 		}
 
 		/// <summary>
@@ -421,14 +448,32 @@ namespace Gecko
 		/// <returns></returns>
 		public T UserInterfaceThreadInvoke<T>( Func<T> func )
 		{
-			if ( this.InvokeRequired )
+			if ( InvokeRequired )
 			{
-				return ( T ) Invoke( func );
+				return ( T ) Invoke( new Func<T>( () => SafeFunc( func ) ) );
 			}
-			else
-			{
-				return func();
-			}
+			return SafeFunc( func );
 		}
+
+		/// <summary>
+		/// exception handler for function
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="func"></param>
+		/// <returns></returns>
+		private T SafeFunc<T>( Func<T> func )
+		{
+			T ret = default( T );
+			try
+			{
+				ret = func();
+			}
+			catch ( Exception e )
+			{
+				System.Diagnostics.Debug.WriteLine( string.Format( "Invoking exception" ) );
+			}
+			return ret;
+		}
+		#endregion
 	}
 }
