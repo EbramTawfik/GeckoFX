@@ -1475,7 +1475,6 @@
     <Compile Include="DOM\NodeType.cs" />
     <Compile Include="nsInterfaces.cs" />
     <Compile Include="nsString.cs" />
-    <Compile Include="nsURI.cs" />
     <Compile Include="ObserverNotifications.cs" />
     <Compile Include="Observers\ObserverService.cs" />
     <Compile Include="Observers\BaseHttpModifyRequestObserver.cs" />
