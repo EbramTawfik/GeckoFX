@@ -2,6 +2,13 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v22.0-0.5 ==
+
+1. ComPtr's, with missing disposed are now released again rather than a warning message being displayed.
+2. New EvaluateScript method that returns a JsVal (thanks SBetzin)
+3. New JQueryExecutor class (thanks SBetzin)
+4. Memory leak fixes.
+
 == v22.0-0.3 ==
 
 1. Fix bug where geckofx was releasing COM ptr on the GC thread.
