@@ -126,7 +126,9 @@
     <Compile Include="Events\GeckoNavigatingEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Events\GeckoNSSErrorEventArgs.cs" />
     <Compile Include="GeckoError.cs" />
+    <Compile Include="NSSErrors.cs" />
     <Compile Include="GeckoWindowCollection.cs" />
     <Compile Include="Generated\imgINotificationObserver.cs" />
     <Compile Include="Generated\imgIScriptedNotificationObserver.cs" />

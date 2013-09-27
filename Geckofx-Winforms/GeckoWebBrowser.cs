@@ -1641,6 +1641,19 @@ namespace Gecko
 					// clear status bar
 					StatusText = "";
 				}
+
+				if (stateIsRequest)
+				{
+					if ((aStatus & 0xff0000) == ((GeckoError.NS_ERROR_MODULE_SECURITY + GeckoError.NS_ERROR_MODULE_BASE_OFFSET) << 16))
+					{
+						var ea = new GeckoNSSErrorEventArgs(destUri, aStatus);
+						OnNSSError(ea);
+						if (ea.Handled)
+						{
+							aRequest.Cancel(GeckoError.NS_BINDING_ABORTED);
+						}
+					}
+				}
 			}
 			#endregion STATE_STOP
 

@@ -81,6 +81,7 @@ namespace Gecko
 
 		public static readonly string NavHistoryService = "@mozilla.org/browser/nav-history-service;1";
 		public static readonly string XPathEvaluator = "@mozilla.org/dom/xpath-evaluator;1";
+		public static readonly string NSSErrorsService = "@mozilla.org/nss_errors_service;1";
 
 		#endregion
 

@@ -49,6 +49,8 @@ namespace Gecko
 		private static readonly object ShowContextMenuEvent = new object();
 		// ObserveHttpModifyRequest
 		private static readonly object ObserveHttpModifyRequestEvent = new object();
+		// Security
+		private static readonly object NSSErrorEvent = new object();		
 		// Dom
 		private static readonly object DomKeyDownEvent = new object();
 		private static readonly object DomKeyUpEvent = new object();
@@ -1203,6 +1205,29 @@ namespace Gecko
 		{
 			if (_ConsoleMessage != null)
 				_ConsoleMessage(this, e);
+		}
+
+		#endregion
+
+		#region public event EventHandler<GeckoNSSErrorEventArgs> NSSError
+
+		/// <summary>
+		/// Occurs when the control has updated progress information.
+		/// </summary>
+		[Category("Security")]
+		public event EventHandler<GeckoNSSErrorEventArgs> NSSError
+		{
+			add { Events.AddHandler(NSSErrorEvent, value); }
+			remove { Events.RemoveHandler(NSSErrorEvent, value); }
+		}
+
+
+		/// <summary>Raises the <see cref="NSSError"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnNSSError(GeckoNSSErrorEventArgs e)
+		{
+			var evnt = (EventHandler<GeckoNSSErrorEventArgs>)Events[NSSErrorEvent];
+			if (evnt != null) evnt(this, e);
 		}
 
 		#endregion
