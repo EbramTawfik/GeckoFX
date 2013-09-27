@@ -236,6 +236,7 @@
     <Compile Include="Interop\SpiderMonkey\JsVal.cs" />
     <Compile Include="Interop\SpiderMonkey\SpiderMonkey.cs" />
     <Compile Include="Net\HttpActivityDistributor.cs" />
+    <Compile Include="Services\CertOverrideService.cs" />
     <Compile Include="Services\RandomGenerator.cs" />
     <Compile Include="Services\ExceptionService.cs" />
     <Compile Include="Services\VersionComparator.cs" />

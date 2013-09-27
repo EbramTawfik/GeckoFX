@@ -20,6 +20,7 @@ namespace Gecko
 		internal static readonly string UriChecker = "@mozilla.org/network/urichecker;1";
 		#endregion
 		#region Security
+		public static readonly string CertOverride = "@mozilla.org/security/certoverride;1";
 		public static readonly string X509CertDb = "@mozilla.org/security/x509certdb;1";
 		public static readonly string RandomGenerator = "@mozilla.org/security/random-generator;1";
 		public static readonly string KeyObjectFactory = "@mozilla.org/security/keyobjectfactory;1";
