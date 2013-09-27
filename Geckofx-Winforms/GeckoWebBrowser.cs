@@ -129,31 +129,10 @@ namespace Gecko
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
 		{
-			// If GC thread is calling Dispose
-			if (!disposing)
-			{				
-				Debug.WriteLine("Warning: GeckoWebBrowser control not disposed.");				
-				if (!IsHandleCreated)
-					return;
-				Invoke(new Action(Cleanup), new object[] { });
-				base.Dispose(disposing);
-				return;
-			}
-
-
 			//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
 			if (NavigateFinishedNotifier != null)
 				NavigateFinishedNotifier.Dispose();
-
-			if (!HasShutdownStarted())
-			{
-				Cleanup();
-			}
-
-#if GTK			
-			if (m_wrapper != null)
-				m_wrapper.Dispose();
-#endif
+			
 			//count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);            
 			base.Dispose(disposing);
 		}
@@ -162,27 +141,7 @@ namespace Gecko
 		{
 			return Environment.HasShutdownStarted || AppDomain.CurrentDomain.IsFinalizingForUnload();
 		}
-
-		// This method should only run on the Main Thread.
-		private void Cleanup()
-		{
-			// If control is not shown simply return
-			if (BaseWindow == null) return;
-
-			this.Stop();
-			
-			// Window.DomWindow.GetClosedAttribute() raises exceptions on app shutdown
-			//https://developer.mozilla.org/en-US/docs/Web/API/window.close
-			//if(Window != null && !Window.DomWindow.GetClosedAttribute())
-			//{
-			//	Window.DomWindow.Close();
-			//}
-
-			BaseWindow.Destroy();
-
-			Xpcom.FreeComObject( ref CommandParams );		
-		}
-
+		
 		#endregion
 
 		public nsIWebBrowserFocus WebBrowserFocus
@@ -1809,113 +1768,113 @@ namespace Gecko
 		{
 			if (e == null) return;
 
-			string type = nsString.Get( e.GetTypeAttribute );
+			OnHandleDomEvent(DomEventArgs.Create(e));
+		}
 
-			DomEventArgs ea = DomEventArgs.Create( e );
-
-			switch ( type )
+		protected virtual void OnHandleDomEvent(DomEventArgs e)
+		{
+			switch (e.Type)
 			{
 				case "keydown":
-					OnDomKeyDown( ( DomKeyEventArgs ) ea );
+					OnDomKeyDown((DomKeyEventArgs)e);
 					break;
 				case "keyup":
-					OnDomKeyUp( ( DomKeyEventArgs ) ea );
+					OnDomKeyUp((DomKeyEventArgs)e);
 					break;
 				case "keypress":
-					OnDomKeyPress( ( DomKeyEventArgs ) ea );
+					OnDomKeyPress((DomKeyEventArgs)e);
 					break;
 				case "mousedown":
-					OnDomMouseDown( ( DomMouseEventArgs ) ea );
+					OnDomMouseDown((DomMouseEventArgs)e);
 					break;
 				case "mouseup":
-					OnDomMouseUp( ( DomMouseEventArgs ) ea );
+					OnDomMouseUp((DomMouseEventArgs)e);
 					break;
 				case "mousemove":
-					OnDomMouseMove( ( DomMouseEventArgs ) ea );
+					OnDomMouseMove((DomMouseEventArgs)e);
 					break;
 				case "mouseover":
-					OnDomMouseOver( ( DomMouseEventArgs ) ea );
+					OnDomMouseOver((DomMouseEventArgs)e);
 					break;
 				case "mouseout":
-					OnDomMouseOut( ( DomMouseEventArgs ) ea );
+					OnDomMouseOut((DomMouseEventArgs)e);
 					break;
 				case "click":
-					OnDomClick( ea );
+					OnDomClick(e);
 					break;
 				case "dblclick":
-					OnDomDoubleClick( ea );
+					OnDomDoubleClick(e);
 					break;
 				case "submit":
-					OnDomSubmit( ea );
+					OnDomSubmit(e);
 					break;
 				case "compositionstart":
-					OnDomCompositionStart( ea );
+					OnDomCompositionStart(e);
 					break;
 				case "compositionend":
-					OnDomCompositionEnd( ea );
+					OnDomCompositionEnd(e);
 					break;
 				case "contextmenu":
-					OnDomContextMenu( ( DomMouseEventArgs ) ea );
+					OnDomContextMenu((DomMouseEventArgs)e);
 					break;
 				case "DOMMouseScroll":
-					OnDomMouseScroll( ( DomMouseEventArgs ) ea );
+					OnDomMouseScroll((DomMouseEventArgs)e);
 					break;
 				case "focus":
-					OnDomFocus( ea );
+					OnDomFocus(e);
 					break;
 				case "blur":
-					OnDomBlur( ea );
+					OnDomBlur(e);
 					break;
 				case "load":
-					OnLoad( ea );
+					OnLoad(e);
 					break;
 				case "DOMContentLoaded":
-					OnDOMContentLoaded( ea );
+					OnDOMContentLoaded(e);
 					break;
 				case "readystatechange":
-					OnReadyStateChange(ea);
+					OnReadyStateChange(e);
 					break;
 				case "change":
-					OnDomContentChanged( ea );
+					OnDomContentChanged(e);
 					break;
 				case "hashchange":
-					OnHashChange( (DomHashChangeEventArgs)ea );
+					OnHashChange((DomHashChangeEventArgs)e);
 					break;
 				case "dragstart":
-					OnDomDragStart( ( DomDragEventArgs ) ea );
+					OnDomDragStart((DomDragEventArgs)e);
 					break;
 				case "dragenter":
-					OnDomDragEnter( ( DomDragEventArgs ) ea );
+					OnDomDragEnter((DomDragEventArgs)e);
 					break;
 				case "dragover":
-					OnDomDragOver( ( DomDragEventArgs ) ea );
+					OnDomDragOver((DomDragEventArgs)e);
 					break;
 				case "dragleave":
-					OnDomDragLeave( ( DomDragEventArgs ) ea );
+					OnDomDragLeave((DomDragEventArgs)e);
 					break;
 				case "drag":
-					OnDomDrag( ( DomDragEventArgs ) ea );
+					OnDomDrag((DomDragEventArgs)e);
 					break;
 				case "drop":
-					OnDomDrop( ( DomDragEventArgs ) ea );
+					OnDomDrop((DomDragEventArgs)e);
 					break;
 				case "dragend":
-					OnDomDragEnd( ( DomDragEventArgs ) ea );
+					OnDomDragEnd((DomDragEventArgs)e);
 					break;
 			}
-			if (ea is DomMessageEventArgs)
+			if (e is DomMessageEventArgs)
 			{
 				Action<string> action;
-				DomMessageEventArgs mea = ( DomMessageEventArgs ) ea;
-				if (_messageEventListeners.TryGetValue(type, out action))
+				DomMessageEventArgs mea = (DomMessageEventArgs)e;
+				if (_messageEventListeners.TryGetValue(e.Type, out action))
 				{
-					action.Invoke( mea.Message );
+					action.Invoke(mea.Message);
 				}
 			}
 
-			if ( ea != null && ea.Cancelable && ea.Handled )
+			if (e != null && e.Cancelable && e.Handled)
 				e.PreventDefault();
-
 		}
 
 		#endregion

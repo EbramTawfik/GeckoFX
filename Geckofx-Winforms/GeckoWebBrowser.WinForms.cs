@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using Gecko.Listeners;
 using Gecko.Windows;
+using Gecko.Interop;
 
 // PLZ keep all Windows Forms related code here
 namespace Gecko
@@ -64,7 +65,44 @@ namespace Gecko
 
 		#region Overriden WinForms functions
 
-		private nsIDOMEventTarget _target;
+		protected virtual IEnumerable<string> DefaultEvents
+		{
+			get
+			{
+				yield return "submit";
+				yield return "keydown";
+				yield return "keyup";
+				yield return "keypress";
+				yield return "mousemove";
+				yield return "mouseover";
+				yield return "mouseout";
+				yield return "mousedown";
+				yield return "mouseup";
+				yield return "click";
+				yield return "dblclick";
+				yield return "compositionstart";
+				yield return "compositionend";
+				yield return "contextmenu";
+				yield return "DOMMouseScroll";
+				yield return "focus";
+				yield return "blur";
+				// Load event added here rather than DOMDocument as DOMDocument recreated when navigating
+				// ths losing attached listener.
+				yield return "load";
+				yield return "DOMContentLoaded";
+				yield return "readystatechange";
+				yield return "change";
+				yield return "hashchange";
+				yield return "dragstart";
+				yield return "dragleave";
+				yield return "drag";
+				yield return "drop";
+				yield return "dragend";
+
+			}
+		}
+
+		protected ComPtr<nsIDOMEventTarget> EventTarget { get; private set; }
 
 		protected override void OnHandleCreated( EventArgs e )
 		{
@@ -114,40 +152,17 @@ namespace Gecko
 
 				{
 					var domWindow = WebBrowser.GetContentDOMWindowAttribute();
-					_target = domWindow.GetWindowRootAttribute();
+					EventTarget = domWindow.GetWindowRootAttribute().AsComPtr();
 					Marshal.ReleaseComObject(domWindow);
 				}
 
-
-				_target.AddEventListener( new nsAString( "submit" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "keydown" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "keyup" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "keypress" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "mousemove" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "mouseover" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "mouseout" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "mousedown" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "mouseup" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "click" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "dblclick" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "compositionstart" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "compositionend" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "contextmenu" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "DOMMouseScroll" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "focus" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "blur" ), this, true, true, 2 );
-				// Load event added here rather than DOMDocument as DOMDocument recreated when navigating
-				// ths losing attached listener.
-				_target.AddEventListener( new nsAString( "load" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "DOMContentLoaded" ), this, true, true, 2 );
-				_target.AddEventListener(new nsAString("readystatechange"), this, true, true, 2);
-				_target.AddEventListener( new nsAString( "change" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "hashchange" ), this, false, true, 2 );
-				_target.AddEventListener( new nsAString( "dragstart" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "dragleave" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "drag" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "drop" ), this, true, true, 2 );
-				_target.AddEventListener( new nsAString( "dragend" ), this, true, true, 2 );
+				foreach (string sEventName in this.DefaultEvents)
+				{
+					using (var eventType = new nsAString(sEventName))
+					{
+						EventTarget.Instance.AddEventListener(eventType, this, true, true, 2);
+					}
+				}
 
 				// history
 				{
@@ -170,40 +185,64 @@ namespace Gecko
 
 		protected override void OnHandleDestroyed( EventArgs e )
 		{
-			if ( _target != null )
+			if (BaseWindow != null)
 			{
-				//Remove Event Listener			
-				_target.RemoveEventListener( new nsAString( "submit" ), this, true );
-				_target.RemoveEventListener( new nsAString( "keydown" ), this, true );
-				_target.RemoveEventListener( new nsAString( "keyup" ), this, true );
-				_target.RemoveEventListener( new nsAString( "keypress" ), this, true );
-				_target.RemoveEventListener( new nsAString( "mousemove" ), this, true );
-				_target.RemoveEventListener( new nsAString( "mouseover" ), this, true );
-				_target.RemoveEventListener( new nsAString( "mouseout" ), this, true );
-				_target.RemoveEventListener( new nsAString( "mousedown" ), this, true );
-				_target.RemoveEventListener( new nsAString( "mouseup" ), this, true );
-				_target.RemoveEventListener( new nsAString( "click" ), this, true );
-				_target.RemoveEventListener( new nsAString( "dblclick" ), this, true );
-				_target.RemoveEventListener( new nsAString( "compositionstart" ), this, true );
-				_target.RemoveEventListener( new nsAString( "compositionend" ), this, true );
-				_target.RemoveEventListener( new nsAString( "contextmenu" ), this, true );
-				_target.RemoveEventListener( new nsAString( "DOMMouseScroll" ), this, true );
-				_target.RemoveEventListener( new nsAString( "focus" ), this, true );
-				_target.RemoveEventListener( new nsAString( "blur" ), this, true );
-				_target.RemoveEventListener( new nsAString( "load" ), this, true );
-				_target.RemoveEventListener( new nsAString( "DOMContentLoaded" ), this, true );
-				_target.RemoveEventListener(new nsAString("readystatechange"), this, true);
-				_target.RemoveEventListener( new nsAString( "change" ), this, true );
-				_target.RemoveEventListener( new nsAString( "hashchange" ), this, false );
-				_target.RemoveEventListener( new nsAString( "dragstart" ), this, true );
-				_target.RemoveEventListener( new nsAString( "dragenter" ), this, true );
-				_target.RemoveEventListener( new nsAString( "dragover" ), this, true );
-				_target.RemoveEventListener( new nsAString( "dragleave" ), this, true );
-				_target.RemoveEventListener( new nsAString( "drag" ), this, true );
-				_target.RemoveEventListener( new nsAString( "drop" ), this, true );
-				_target.RemoveEventListener( new nsAString( "dragend" ), this, true );
-				Xpcom.FreeComObject( ref _target );
+				if (EventTarget != null)
+				{
+					//Remove Event Listener			
+					foreach (string sEventType in this.DefaultEvents)
+					{
+						using (var eventType = new nsAString(sEventType))
+						{
+							EventTarget.Instance.RemoveEventListener(eventType, this, true);
+						}
+					}
+					EventTarget.Dispose();
+					EventTarget = null;
+				}
+
+				this.Stop();
+
+				nsIDocShell docShell = Xpcom.QueryInterface<nsIDocShell>(BaseWindow);
+				if (docShell != null && !docShell.IsBeingDestroyed())
+				{
+					try
+					{
+						var window = Xpcom.QueryInterface<nsIDOMWindow>(docShell);
+						if (window != null)
+						{
+							try
+							{
+								if (window.GetClosedAttribute()) window.Close();
+							}
+							finally
+							{
+								Xpcom.FreeComObject(ref window);
+							}
+						}
+					}
+					finally
+					{
+						Xpcom.FreeComObject(ref docShell);
+					}
+				}
+
+				BaseWindow.Destroy();
+
+				Xpcom.FreeComObject(ref CommandParams);
+
+				var webBrowserFocus = this.WebBrowserFocus;
+				this.WebBrowserFocus = null;
+				Xpcom.FreeComObject(ref webBrowserFocus);
+				Xpcom.FreeComObject(ref WebNav);
+				Xpcom.FreeComObject(ref BaseWindow);
+				Xpcom.FreeComObject(ref WebBrowser);
+#if GTK			
+				if (m_wrapper != null)
+					m_wrapper.Dispose();
+#endif
 			}
+
 			base.OnHandleDestroyed( e );
 		}
 
