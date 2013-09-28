@@ -8,7 +8,7 @@ using Gecko.Net;
 namespace Gecko.Observers
 {
 	public class BaseHttpModifyRequestObserver
-		: nsIObserver, nsISupports
+		: NsSupportsBase, nsIObserver
 	{
 		internal bool _isRegistered;
 
@@ -27,33 +27,5 @@ namespace Gecko.Observers
 			
 		}
 
-		#region nsISupports
-		IntPtr nsISupports.QueryInterface(ref Guid uuid)
-		{
-			var pUnk = Marshal.GetIUnknownForObject(this);
-			IntPtr ppv;
-
-			Marshal.QueryInterface(pUnk, ref uuid, out ppv);
-
-			Marshal.Release(pUnk);
-
-			if (ppv != IntPtr.Zero)
-			{
-				Marshal.Release(ppv);
-			}
-
-			return ppv;
-		}
-
-		int nsISupports.AddRef()
-		{
-			return Marshal.AddRef(Marshal.GetIUnknownForObject(this));
-		}
-
-		int nsISupports.Release()
-		{
-			return Marshal.Release(Marshal.GetIUnknownForObject(this));
-		}
-		#endregion
 	}
 }
