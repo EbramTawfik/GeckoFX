@@ -857,7 +857,7 @@ namespace Gecko
 
 				nsIURI locationComObject = WebNav.GetCurrentURIAttribute();
 				var uri=locationComObject.ToUri();
-				Marshal.ReleaseComObject( locationComObject );
+				Xpcom.FreeComObject(ref locationComObject);
 				return uri ?? new Uri( "about:blank" );
 			}
 		}
@@ -875,7 +875,7 @@ namespace Gecko
 			
 				nsIURI location =  WebNav.GetReferringURIAttribute();
 				var uri = location.ToUri();
-				Marshal.ReleaseComObject( location );
+				Xpcom.FreeComObject(ref location);
 				return uri ?? new Uri("about:blank");				
 			}
 		}
