@@ -1478,6 +1478,13 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		public void GetXULRuntime_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIXULRuntime>("@mozilla.org/xre/runtime;1");
+			Assert.IsNotNull(instance);
+		}
+
+		[Test]
 		public void GetConsoleService_CleanXpComInstance_ReturnsValidInstance()
 		{
 			var instance = Xpcom.GetService<nsIConsoleService>("@mozilla.org/consoleservice;1");
@@ -1549,6 +1556,22 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
+
+		[Test]
+		public void GetThreadManager_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIThreadManager>("@mozilla.org/thread-manager;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void GetThreadPool_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIThreadPool>("@mozilla.org/thread-pool;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);			
+		}		
 #endregion
 	}
 }
