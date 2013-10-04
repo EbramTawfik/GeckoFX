@@ -417,28 +417,7 @@ namespace Gecko
 		{
 			get
 			{
-				ComPtr<nsIXPConnect> rv = null;
-				IntPtr xpc = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
-				if (xpc != IntPtr.Zero)
-				{
-					try
-					{
-						object xpConnect = Xpcom.GetObjectForIUnknown(xpc);
-						try
-						{
-							rv = Xpcom.QueryInterface<nsIXPConnect>(xpConnect).AsComPtr();
-						}
-						finally
-						{
-							Xpcom.FreeComObject(ref xpConnect);
-						}
-					}
-					finally
-					{
-						Marshal.Release(xpc);
-					}
-				}
-				return rv;
+				return Xpcom.GetService<nsIXPConnect>("@mozilla.org/js/xpc/XPConnect;1").AsComPtr();
 			}
 		}
 

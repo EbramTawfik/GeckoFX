@@ -1528,13 +1528,10 @@ namespace GeckofxUnitTests
 
 		[Test]
 		public void GetXPConnect_CleanXpComInstance_ReturnsValidInstance()
-		{
-			// defined in nsIXPConent.idl
-			// CB6593E0-F9B2-11d2-BDD6-000064657374
-			IntPtr instance = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
+		{			
+			var instance = Xpcom.GetService<nsIXPConnect>("@mozilla.org/js/xpc/XPConnect;1");
 			Assert.IsNotNull(instance);
-			var o = (nsIXPConnect)Xpcom.GetObjectForIUnknown(instance);
-			Assert.IsNotNull(o);						
+			Marshal.ReleaseComObject(instance);
 		}
 
 		[Test]
