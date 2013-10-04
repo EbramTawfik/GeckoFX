@@ -1571,7 +1571,15 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.GetService<nsIThreadPool>("@mozilla.org/thread-pool;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);			
-		}		
+		}
+
+		[Test]
+		public void GetMessageLoop_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsISupports>("@mozilla.org/message-loop;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);	
+		}
 #endregion
 	}
 }
