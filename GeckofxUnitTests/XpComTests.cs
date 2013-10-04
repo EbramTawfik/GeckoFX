@@ -1544,6 +1544,14 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
+
+		[Test]
+		public void GetJsLoader_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<xpcIJSModuleLoader>("@mozilla.org/moz/jsloader;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
 #endregion
 	}
 }
