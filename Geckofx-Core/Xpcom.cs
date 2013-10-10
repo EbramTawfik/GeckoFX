@@ -300,7 +300,7 @@ namespace Gecko
 			String oldCurrent = Environment.CurrentDirectory;
 			Environment.CurrentDirectory = folder;
 			
-			nsIServiceManager serviceManagerPtr;
+			nsIServiceManager serviceManager;
 			//int res = NS_InitXPCOM2(out serviceManagerPtr, mreAppDir, new DirectoryServiceProvider());
 
 
@@ -308,7 +308,9 @@ namespace Gecko
 			//REVIEW: how else can we determine what happened and give a more useful answer, to help new GeckoFX users,
 			//Telling them that probably the version of firefox or xulrunner didn't match this library version?
 			
-			int res = NS_InitXPCOM2(out serviceManagerPtr, mreAppDir, null);
+			// calling NS_InitXPCOM2 invokes AddRef to the returned nsIServerManager, but as this gets assigned to the __ComObject serviceManager
+			// Release will be called by the when the GC runs __ComObject finaliser.
+			int res = NS_InitXPCOM2(out serviceManager, mreAppDir, null);
 			
 			// change back
 			Environment.CurrentDirectory = oldCurrent;
@@ -318,7 +320,7 @@ namespace Gecko
 				throw new Exception("Failed on NS_InitXPCOM2");
 			}
 			
-			ServiceManager = (nsIServiceManager)serviceManagerPtr;
+			ServiceManager = (nsIServiceManager)serviceManager;
 			
 			// get some global objects we will need later
 			NS_GetComponentManager(out ComponentManager);
@@ -327,7 +329,7 @@ namespace Gecko
 			_comGC = new COMGC();
 			if (!IsMono) _comGC.Dispose();
 
-			// RegisterProvider is neccessary to get link styles etc.
+			// RegisterProvider is necessary to get link styles etc.
 			nsIDirectoryService directoryService = GetService<nsIDirectoryService>("@mozilla.org/file/directory_service;1");
 			if (directoryService != null)
 				directoryService.RegisterProvider(new ProfileProvider());
@@ -356,7 +358,14 @@ namespace Gecko
 				Marshal.ReleaseComObject(ComponentManager);
 			
 			if (ServiceManager != null)
+			{
+				// NS_ShutdownXPCOM calls Release on the ServiceManager COM objects.
+				// However since the ServiceManager is a __ComObject its finaliser will also call release.
+				var ptr = Marshal.GetIUnknownForObject(ServiceManager);
 				NS_ShutdownXPCOM(ServiceManager);
+				Marshal.ReleaseComObject(ServiceManager);
+			}
+
 			_IsInitialized = false;
 		}
 

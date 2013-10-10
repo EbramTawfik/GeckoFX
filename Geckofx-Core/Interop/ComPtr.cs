@@ -41,8 +41,8 @@ namespace Gecko.Interop
 		#endregion
 
 		/// <summary>
-		/// Finaly releases COM object
-		/// Decrepment COM reference counter into zero
+		/// Finally releases COM object
+		/// Decrement COM reference counter into zero
 		/// </summary>
 		public void FinalRelease()
 		{
