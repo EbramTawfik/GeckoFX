@@ -9,6 +9,14 @@ namespace Gecko
 	public class BaseNsFactory<TFactory>
 		where TFactory:nsIFactory, new()
 	{
+		#region Inner Classes
+		public class FactoryDetails
+		{
+			public Guid classID;
+			public nsIFactory factoryInstance;
+		}
+		#endregion
+
 		// If you are using resharper it will generate warning because
 		// BaseNsFactory<T1>._isRegistered and BaseNsFactory<T2>._isRegistered are different fields
 		// but for us this is good :)
@@ -24,6 +32,21 @@ namespace Gecko
 		}
 
 		/// <summary>
+		/// Helper method that return the value of the ContractID attribute on this class if it exists.
+		/// </summary>
+		/// <returns></returns>
+		protected static string ReadContractIdAttribute()
+		{
+			var factoryType = typeof (TFactory);
+			var attributes = factoryType.GetCustomAttributes( typeof (ContractIDAttribute), true );
+			if (attributes.Length <= 0)
+				return null;
+			
+			var attribute = (ContractIDAttribute) attributes[0];
+			return attribute.ContractID;			
+		}
+
+		/// <summary>
 		/// Registration by default (using ContractIDAttribute)
 		/// </summary>
 		public static void Register()
@@ -31,27 +54,29 @@ namespace Gecko
 			if (_isRegistered) return;
 
 			var factoryType = typeof (TFactory);
-			var attributes = factoryType.GetCustomAttributes( typeof (ContractIDAttribute), true );
-			if (attributes.Length > 0)
-			{
-				ContractIDAttribute attribute = (ContractIDAttribute)attributes[ 0 ];
-				_contractID = attribute.ContractID;
-				_factoryTypeName = factoryType.FullName;
-				try
-				{
-					Xpcom.RegisterFactory(
-						factoryType.GUID,
-						_factoryTypeName,
-						_contractID,
-						new TFactory());
-				}
-				catch ( Exception )
-				{
-					//
-				}
+			_contractID = ReadContractIdAttribute();
+			if (_contractID == null) 
+				return;
 
-				_isRegistered = true;
+			_factoryTypeName = factoryType.FullName;
+			try
+			{
+				Xpcom.RegisterFactory(
+					factoryType.GUID,
+					_factoryTypeName,
+					_contractID,
+					new TFactory());
 			}
+			catch(COMException)
+			{
+				throw;
+			}
+			catch
+			{
+				//
+			}
+
+			_isRegistered = true;
 		}
 
 		/// <summary>
@@ -68,6 +93,49 @@ namespace Gecko
 			_contractID = contractID;
 			_isRegistered = true;
 		}
+
+		/// <summary>
+		/// Registration with given Factory details
+		/// </summary>
+		/// <param name="factory"></param>
+		public static void Register(FactoryDetails factory)
+		{
+			Xpcom.RegisterFactory(
+					factory.classID,
+					String.Empty,
+					String.Empty,
+					factory.factoryInstance);
+		}
+
+
+
+		/// <summary>
+		/// If an existing factory already exists, unregister it and return its details.
+		/// Returns null if 
+		/// </summary>
+		public static FactoryDetails Unregister()
+		{
+			_contractID = ReadContractIdAttribute();
+			if (_contractID == null)
+				throw new InvalidOperationException("Custom Factory missing ContractId attribute.");
+
+			var factoryType = typeof(TFactory);
+
+			var classID = factoryType.GUID;
+			var oldFactoryPtr = Xpcom.ComponentManager.GetClassObject(ref classID, typeof(nsIFactory).GUID);
+
+			if (oldFactoryPtr == IntPtr.Zero)
+				return null;
+
+			var oldFactory = (nsIFactory) Marshal.GetObjectForIUnknown(oldFactoryPtr);
+			Xpcom.ComponentRegistrar.UnregisterFactory(ref classID, oldFactory);			
+			_factoryTypeName = factoryType.FullName;
+
+			_isRegistered = false;
+
+			return new FactoryDetails { classID = classID, factoryInstance = oldFactory };
+		}
+	
 
 		/// <summary>
 		/// Returns ContractID if registered or null if not registered.

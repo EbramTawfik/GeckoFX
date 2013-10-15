@@ -14,15 +14,17 @@ namespace GeckofxUnitTests
 		[STAThread]
 		static void Main(string[] args)
 		{
+			// Needed when single unittests are run
+			// Xpcom.Initialize(XpComTests.XulRunnerLocation);
 			OverrideX11ErrorHandler();
 						
 			string prefix = Xpcom.IsLinux ? "--" : "/";
 			string nothread = prefix + "nothread";
 			string domain = prefix + "domain=None";
 
-			string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain/*, "--run=GeckofxUnitTests.CrossLanguageTests.JavaScriptToCSharpCallBack"*/ };
+			string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain/*, "/fixture=GeckofxUnitTests.ManagedServiceFactoriesTests"*/ };
 
-			int returnCode = NUnit.ConsoleRunner.Runner.Main(my_args);
+			int returnCode = NUnit.ConsoleRunner.Runner.Main(my_args); 
 
 			if (returnCode != 0)
 				Console.Beep();
