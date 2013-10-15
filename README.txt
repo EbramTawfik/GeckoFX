@@ -2,6 +2,12 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v22.0-0.6 ==
+
+1. Fixed reference counting issue which caused crash when calling XpCom.Shutdown.
+2. CertOverrideService was added.
+3. GeckoWebBrowser.NSSError event was added.
+
 == v22.0-0.5 ==
 
 1. ComPtr's, with missing disposed are now released again rather than a warning message being displayed.
