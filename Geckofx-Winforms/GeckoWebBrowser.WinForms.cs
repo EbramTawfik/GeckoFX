@@ -187,20 +187,6 @@ namespace Gecko
 		{
 			if (BaseWindow != null)
 			{
-				if (EventTarget != null)
-				{
-					//Remove Event Listener			
-					foreach (string sEventType in this.DefaultEvents)
-					{
-						using (var eventType = new nsAString(sEventType))
-						{
-							EventTarget.Instance.RemoveEventListener(eventType, this, true);
-						}
-					}
-					EventTarget.Dispose();
-					EventTarget = null;
-				}
-
 				this.Stop();
 
 				nsIDocShell docShell = Xpcom.QueryInterface<nsIDocShell>(BaseWindow);
@@ -213,7 +199,7 @@ namespace Gecko
 						{
 							try
 							{
-								if (window.GetClosedAttribute()) window.Close();
+								if (!window.GetClosedAttribute()) window.Close();
 							}
 							finally
 							{
@@ -225,6 +211,20 @@ namespace Gecko
 					{
 						Xpcom.FreeComObject(ref docShell);
 					}
+				}
+				
+				if (EventTarget != null)
+				{
+					//Remove Event Listener			
+					foreach (string sEventType in this.DefaultEvents)
+					{
+						using (var eventType = new nsAString(sEventType))
+						{
+							EventTarget.Instance.RemoveEventListener(eventType, this, true);
+						}
+					}
+					EventTarget.Dispose();
+					EventTarget = null;
 				}
 
 				BaseWindow.Destroy();
