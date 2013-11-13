@@ -179,8 +179,10 @@ namespace Gecko.DOM
 			switch (nodeType)
 			{
 				case NodeType.Element:
-					nsIDOMHTMLElement element = Xpcom.QueryInterface<nsIDOMHTMLElement>(domObject);
-					if (element != null) return GeckoHtmlElement.Create( element );
+					nsIDOMHTMLElement htmlElement = Xpcom.QueryInterface<nsIDOMHTMLElement>(domObject);
+					if (htmlElement != null) return GeckoHtmlElement.Create(htmlElement);
+					nsIDOMElement element = Xpcom.QueryInterface<nsIDOMElement>(domObject);
+					if (element != null) return GeckoElement.CreateDomElementWrapper(element);
 					break;
 				case NodeType.Attribute:
 					nsIDOMAttr attr = Xpcom.QueryInterface<nsIDOMAttr>(domObject);
