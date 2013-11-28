@@ -2,6 +2,12 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v22.0-0.7 ==
+
+1. Added Unregister method to BaseNsFactory<TFactory>
+2. Allow .NET-event handlers for unload, beforeunload, etc.
+3. Fix: https://bitbucket.org/geckofx/geckofx-22.0/issue/54/casting-geckonode-to-geckoelement-for-svg
+
 == v22.0-0.6 ==
 
 1. Fixed reference counting issue which caused crash when calling XpCom.Shutdown.
