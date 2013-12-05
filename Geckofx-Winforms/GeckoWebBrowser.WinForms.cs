@@ -422,6 +422,17 @@ namespace Gecko
 			base.OnPaint( e );
 		}
 
+        protected override void OnPrint(PaintEventArgs e)
+        {
+            base.OnPrint(e);
+            ImageCreator mCreator = new ImageCreator(this);
+            byte[] mBytes = mCreator.CanvasGetPngImage((uint)0, (uint)0, (uint)this.Width, (uint)this.Height);
+            Image mImage = Image.FromStream(new System.IO.MemoryStream(mBytes));
+
+            e.Graphics.DrawImage(mImage, 0.0f, 0.0f);
+            mImage.Dispose();
+        }
+
 		#endregion
 
 		#region Internal classes
