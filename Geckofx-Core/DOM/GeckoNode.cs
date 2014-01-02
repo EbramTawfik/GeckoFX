@@ -268,7 +268,7 @@ namespace Gecko
 
 		public DomEventTarget GetEventTarget()
 		{
-			var eventTarget = Xpcom.QueryInterface<nsIDOMEventTarget>( _domNode );
+			var eventTarget = Xpcom.QueryInterface<nsIDOMEventTarget>( _domNode.Instance );
 			return eventTarget.Wrap( DomEventTarget.Create );
 		}
 	}
