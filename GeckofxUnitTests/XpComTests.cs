@@ -1581,6 +1581,14 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);	
 		}
+
+		[Test]
+		public void GetInterfaceInfoManager_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIInterfaceInfoManager>("@mozilla.org/xpti/interfaceinfomanager-service;1");
+			Assert.IsNotNull(instance);			
+			Marshal.ReleaseComObject(instance);				
+		}
 #endregion
 	}
 }
