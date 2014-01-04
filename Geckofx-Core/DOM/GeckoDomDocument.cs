@@ -402,9 +402,9 @@ namespace Gecko
 		/// <param name="x"></param>
 		/// <param name="y"></param>
 		/// <returns></returns>
-		public GeckoHtmlElement ElementFromPoint(int x, int y)
+		public GeckoElement ElementFromPoint(int x, int y)
 		{
-			return GeckoHtmlElement.Create((nsIDOMHTMLElement)_domDocument.ElementFromPoint(x, y));
+			return _domDocument.ElementFromPoint(x, y).Wrap(GeckoElement.CreateDomElementWrapper);
 		}
 
 		public string ContentType
