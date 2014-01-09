@@ -511,6 +511,49 @@ namespace GeckofxUnitTests
 			Assert.NotNull(browser.GetMarkupDocumentViewer());
 		}
 
+		[Test]
+		public void Navigating_FrameDocumentLoaded_NavigatigAndFrameNavigatingEventIsCalled()
+		{
+			int navigatingCounter = 0;
+			int frameNavigatingCounter = 0;
+			browser.Navigating += (sender, args) => navigatingCounter++;
+			browser.FrameNavigating += (sender, args) => frameNavigatingCounter++;
+
+			browser.TestLoadHtml(@"<html><body><iframe src='data:text/html,hello world'></iframe></body></html>'");
+
+			Assert.AreEqual(1, navigatingCounter, "Navigating");
+			Assert.AreEqual(1, frameNavigatingCounter, "FrameNavigating");
+		}
+
+		[Test]
+		public void Navigating_JSCreatedFrameDocumentLoaded_NavigatigAndFrameNavigatingEventIsCalled()
+		{
+			int navigatingCounter = 0;
+			int	frameNavigatingCounter = 0;
+			browser.Navigating += (sender, args) => navigatingCounter++;
+			browser.FrameNavigating += (sender, args) => frameNavigatingCounter++;
+			
+			browser.TestLoadHtml(@"
+<html>
+	<body>
+		<script type='text/javascript'>
+setTimeout(function(){
+			var iframe = document.createElement('iframe');
+			iframe.src = 'data:text/html,hello world';
+			document.body.appendChild(iframe);
+}, 1000);
+		</script>
+	</body>
+</html>");
+			DateTime expire = DateTime.Now.AddSeconds(5);
+			while (DateTime.Now < expire)
+				Application.DoEvents();
+
+
+			Assert.AreEqual(1, navigatingCounter, "Navigating");
+			Assert.AreEqual(1, frameNavigatingCounter, "FrameNavigating");
+		}
+
         [Test]
         public void Navigating_IntialDocumentLoad_NavigatigEventIsCalled()
         {

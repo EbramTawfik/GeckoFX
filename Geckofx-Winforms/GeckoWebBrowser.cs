@@ -1499,8 +1499,12 @@ namespace Gecko
 			 * This flag is set when a request is initiated.
 			 * The request is complete when onStateChange() is called for the same request with the STATE_STOP flag set.
 			 */
-			if ((aStateFlags & nsIWebProgressListenerConstants.STATE_START) != 0) {
-				if (stateIsNetwork) {
+			if ((aStateFlags & nsIWebProgressListenerConstants.STATE_START) != 0)
+			{
+
+				// TODO: replace to aWebProgress.GetIsTopLevelAttribute() // Gecko 24+
+				if (stateIsNetwork && domWindow.IsTopWindow())
+				{
 					IsBusy = true;
 
 					GeckoNavigatingEventArgs ea = new GeckoNavigatingEventArgs(destUri, domWindow);
@@ -1518,7 +1522,7 @@ namespace Gecko
 
 						// kill any cached document and raise DocumentCompleted event
 
-						OnDocumentCompleted(EventArgs.Empty);
+						OnDocumentCompleted(new GeckoDocumentCompletedEventArgs(destUri, domWindow));
 
 						// clear progress bar
 						OnProgressChanged(new GeckoProgressEventArgs(100, 100));
@@ -1592,7 +1596,7 @@ namespace Gecko
 					IsBusy = false;
 
 					// kill any cached document and raise DocumentCompleted event
-					OnDocumentCompleted(EventArgs.Empty);
+					OnDocumentCompleted(new GeckoDocumentCompletedEventArgs(destUri, domWindow));
 
 					// clear progress bar
 					OnProgressChanged(new GeckoProgressEventArgs(100, 100));
