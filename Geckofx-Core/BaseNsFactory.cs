@@ -122,7 +122,8 @@ namespace Gecko
 			var factoryType = typeof(TFactory);
 
 			var classID = factoryType.GUID;
-			var oldFactoryPtr = Xpcom.ComponentManager.GetClassObject(ref classID, typeof(nsIFactory).GUID);
+			var g = typeof(nsIFactory).GUID;
+			var oldFactoryPtr = Xpcom.ComponentManager.GetClassObject(ref classID, ref g);
 
 			if (oldFactoryPtr == IntPtr.Zero)
 				return null;
