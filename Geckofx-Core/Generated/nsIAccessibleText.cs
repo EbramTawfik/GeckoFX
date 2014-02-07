@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0f4633b1-550c-4b50-8c04-0eb1005eef2f")]
+	[Guid("1e63dd8b-173d-4a68-8ade-fd671abbe1ee")]
 	public interface nsIAccessibleText
 	{
 		
@@ -231,8 +231,5 @@ namespace Gecko
 		
 		// 
 		public const long BOUNDARY_LINE_END = 6;
-		
-		// 
-		public const long BOUNDARY_ATTRIBUTE_RANGE = 7;
 	}
 }

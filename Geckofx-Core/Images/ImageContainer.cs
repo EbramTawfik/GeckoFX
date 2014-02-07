@@ -24,11 +24,13 @@ namespace Gecko.Images
 			_container.Instance.Draw(context, filter, matrix, fill, subImage, viewportSize, aSVGContext, aWhichFrame, flags);
 		}
 
+#if DELME
 		public ImgContainer ExtractFrame(uint whichFrame,nsIntRect rect,uint flags)
 		{
 			var img=_container.Instance.ExtractFrame( whichFrame, rect, flags );
 			return new ImgContainer(img);
 		}
+#endif
 
 		public IntPtr GetFrame(uint whichFrame, uint flags)
 		{

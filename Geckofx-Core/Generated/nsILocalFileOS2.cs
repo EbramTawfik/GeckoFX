@@ -407,7 +407,7 @@ namespace Gecko
         /// Returns an enumeration of the elements in a directory. Each
         /// element in the enumeration is an nsIFile.
         ///
-        /// @return NS_ERROR_FILE_NOT_DIRECTORY if the current nsIFile does
+        /// @throws NS_ERROR_FILE_NOT_DIRECTORY if the current nsIFile does
         /// not specify a directory.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]

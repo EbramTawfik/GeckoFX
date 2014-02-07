@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9af5378e-03ce-4c5f-8ec1-50ae774b5612")]
+	[Guid("67e40e8e-35ee-40a4-a5b8-414588675133")]
 	public interface nsIDOMMozIccManager : nsIDOMEventTarget
 	{
 		
@@ -197,7 +197,7 @@ namespace Gecko
         /// Dispatch an event.
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
-        /// dispatch nsIDOMEvent, not only nsEvent.
+        /// dispatch nsIDOMEvent, not only WidgetEvent.
         /// @param aPresContext the current presentation context, can be nullptr.
         /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
@@ -212,15 +212,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void DispatchDOMEvent(System.IntPtr aEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aDOMEvent, System.IntPtr aPresContext, System.IntPtr aEventStatus);
-		
-		/// <summary>
-        /// Get the event listener manager, the guy you talk to to register for events
-        /// on this node.
-        /// @param aMayCreate If PR_FALSE, returns a listener manager only if
-        /// one already exists.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.U1)] bool aMayCreate);
 		
 		/// <summary>
         /// Get the script context in which the event handlers should be run.
@@ -238,137 +229,46 @@ namespace Gecko
 		new System.IntPtr GetJSContextForEventHandlers();
 		
 		/// <summary>
-        /// Send the response back to ICC after an attempt to execute STK Proactive
-        /// Command.
+        /// Array of iccIds that are currently detected.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetIccIdsAttribute();
+		
+		/// <summary>
+        /// Get ICC object by iccId.
         ///
-        /// @param command
-        /// Command received from ICC. See MozStkCommand.
-        /// @param response
-        /// The response that will be sent to ICC.
-        /// @see MozStkResponse for the detail of response.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkResponse(Gecko.JsVal command, Gecko.JsVal response);
-		
-		/// <summary>
-        /// Send the "Menu Selection" Envelope command to ICC for menu selection.
+        /// @param iccId
+        /// The identifier of the ICC.
         ///
-        /// @param itemIdentifier
-        /// The identifier of the item selected by user.
-        /// @param helpRequested
-        /// true if user requests to provide help information, false otherwise.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkMenuSelection(ushort itemIdentifier, [MarshalAs(UnmanagedType.U1)] bool helpRequested);
-		
-		/// <summary>
-        /// Send the "Timer Expiration" Envelope command to ICC for TIMER MANAGEMENT.
-        ///  `*
-        /// @param timer
-        /// The identifier and value for a timer.
-        /// timerId: Identifier of the timer that has expired.
-        /// timerValue: Different between the time when this command is issued
-        /// and when the timer was initially started.
-        /// @see MozStkTimer
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkTimerExpiration(Gecko.JsVal timer);
-		
-		/// <summary>
-        /// Send "Event Download" Envelope command to ICC.
-        /// ICC will not respond with any data for this command.
-        ///
-        /// @param event
-        /// one of events below:
-        /// - MozStkLocationEvent
-        /// - MozStkCallEvent
-        /// - MozStkLanguageSelectionEvent
-        /// - MozStkGeneralEvent
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkEventDownload(Gecko.JsVal @event);
-		
-		/// <summary>
-        /// The 'stkcommand' event is notified whenever STK Proactive Command is
-        /// issued from ICC.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOnstkcommandAttribute(System.IntPtr jsContext);
-		
-		/// <summary>
-        /// The 'stkcommand' event is notified whenever STK Proactive Command is
-        /// issued from ICC.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnstkcommandAttribute(Gecko.JsVal aOnstkcommand, System.IntPtr jsContext);
-		
-		/// <summary>
-        /// 'stksessionend' event is notified whenever STK Session is terminated by
-        /// ICC.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOnstksessionendAttribute(System.IntPtr jsContext);
-		
-		/// <summary>
-        /// 'stksessionend' event is notified whenever STK Session is terminated by
-        /// ICC.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnstksessionendAttribute(Gecko.JsVal aOnstksessionend, System.IntPtr jsContext);
-		
-		/// <summary>
-        /// Update ICC Phonebook contact.
-        ///
-        /// @param contactType
-        /// One of type as below,
-        /// - 'adn': Abbreviated Dialling Number
-        /// - 'fdn': Fixed Dialling Number
-        /// @param contact
-        /// The contact will be updated in ICC
-        /// @param [optional] pin2
-        /// PIN2 is only required for 'fdn'.
+        /// @return see MozIcc.webidl for the detail.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest UpdateContact([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contactType, [MarshalAs(UnmanagedType.Interface)] nsIDOMContact contact, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pin2);
+		nsISupports GetIccById([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase iccId);
 		
 		/// <summary>
-        /// Send request to open a logical channel defined by its
-        /// application identifier (AID)
-        ///
-        /// @param aid
-        /// The Application Identifier of the Applet to be selected on this channel
-        /// return value : An instance of Channel (channelID) if available or null.
+        /// 'oniccdetected' event is notified whenever a new ICC is detected.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest IccOpenChannel([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aid);
+		Gecko.JsVal GetOniccdetectedAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
-        /// Interface, used to communicate with an applet through the
-        /// Application Data Protocol Units (APDUs) and is
-        /// used for all data that is exchanged between the UICC card and the terminal (ME).
-        ///
-        /// @param channel
-        /// The Application Identifier of the Applet to which APDU is directed
-        /// @param apdu
-        /// Application Protocol Data Unit
-        /// return value : Response APDU
+        /// 'oniccdetected' event is notified whenever a new ICC is detected.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest IccExchangeAPDU(int channel, Gecko.JsVal apdu);
+		void SetOniccdetectedAttribute(Gecko.JsVal aOniccdetected, System.IntPtr jsContext);
 		
 		/// <summary>
-        /// Send request to close the selected logical channel identified by its
-        /// application identifier (AID)
-        ///
-        /// @param aid
-        /// The Application Identifier of the Applet , to be closed
+        /// 'oniccundetected' event is notified whenever an ICC becomes undetected.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest IccCloseChannel(int channel);
+		Gecko.JsVal GetOniccundetectedAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// 'oniccundetected' event is notified whenever an ICC becomes undetected.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOniccundetectedAttribute(Gecko.JsVal aOniccundetected, System.IntPtr jsContext);
 	}
 	
 	/// <summary>nsIDOMMozIccManagerConsts </summary>
@@ -376,7 +276,7 @@ namespace Gecko
 	{
 		
 		// <summary>
-        // STK Menu Presentation types.
+        // STK menu presentation types.
         // </summary>
 		public const ulong STK_MENU_TYPE_NOT_SPECIFIED = 0x00;
 		
@@ -398,7 +298,7 @@ namespace Gecko
 		public const ulong STK_BROWSER_MODE_USING_NEW_BROWSER = 0x03;
 		
 		// <summary>
-        // STK Proactive commands.
+        // STK proactive commands.
         //
         // @see TS 11.14, clause 13.4
         // </summary>
@@ -457,6 +357,18 @@ namespace Gecko
 		
 		// 
 		public const ulong STK_CMD_SET_UP_IDLE_MODE_TEXT = 0x28;
+		
+		// 
+		public const ulong STK_CMD_OPEN_CHANNEL = 0x40;
+		
+		// 
+		public const ulong STK_CMD_CLOSE_CHANNEL = 0x41;
+		
+		// 
+		public const ulong STK_CMD_RECEIVE_DATA = 0x42;
+		
+		// 
+		public const ulong STK_CMD_SEND_DATA = 0x43;
 		
 		// <summary>
         //Command performed successfully </summary>
@@ -535,7 +447,7 @@ namespace Gecko
 		public const ulong STK_RESULT_CMD_NUM_NOT_KNOWN = 0x33;
 		
 		// <summary>
-        //SS Return Error </summary>
+        //SS return error </summary>
 		public const ulong STK_RESULT_SS_RETURN_ERROR = 0x34;
 		
 		// <summary>
@@ -547,7 +459,7 @@ namespace Gecko
 		public const ulong STK_RESULT_REQUIRED_VALUES_MISSING = 0x36;
 		
 		// <summary>
-        //USSD Return Error </summary>
+        //USSD return error </summary>
 		public const ulong STK_RESULT_USSD_RETURN_ERROR = 0x37;
 		
 		// <summary>
@@ -556,16 +468,16 @@ namespace Gecko
 		
 		// <summary>
         // Interaction with call control by USIM or MO short message control by
-        // USIM, permanent problem
+        // USIM, permanent problem.
         // </summary>
 		public const ulong STK_RESULT_USIM_CALL_CONTROL_PERMANENT = 0x39;
 		
 		// <summary>
-        //Bearer Independent Protocol error </summary>
+        //Bearer independent protocol error </summary>
 		public const ulong STK_RESULT_BIP_ERROR = 0x3a;
 		
 		// <summary>
-        // STK Event List
+        // STK event list.
         // </summary>
 		public const ulong STK_EVENT_TYPE_MT_CALL = 0x00;
 		
@@ -618,7 +530,7 @@ namespace Gecko
 		public const ulong STK_EVENT_TYPE_FRAMES_INFORMATION_CHANGED = 0x10;
 		
 		// <summary>
-        // The service state of STK Location Status.
+        // The service state of STK location status.
         // </summary>
 		public const ulong STK_SERVICE_STATE_NORMAL = 0x00;
 		
@@ -664,7 +576,7 @@ namespace Gecko
 		public const ulong STK_TONE_TYPE_NEGATIVE_ACK_TONE = 0x12;
 		
 		// <summary>
-        // Time unit
+        // Time unit.
         // </summary>
 		public const ulong STK_TIME_UNIT_MINUTE = 0x00;
 		
@@ -675,7 +587,7 @@ namespace Gecko
 		public const ulong STK_TIME_UNIT_TENTH_SECOND = 0x02;
 		
 		// <summary>
-        // Local Information list
+        // Local Information list.
         //
         // @see TS 102.223, clause 8.6
         // </summary>
@@ -691,7 +603,7 @@ namespace Gecko
 		public const ulong STK_LOCAL_INFO_LANGUAGE = 0x04;
 		
 		// <summary>
-        // Timer Management
+        // Timer management.
         // </summary>
 		public const ulong STK_TIMER_START = 0x00;
 		
@@ -700,5 +612,21 @@ namespace Gecko
 		
 		// 
 		public const ulong STK_TIMER_GET_CURRENT_VALUE = 0x02;
+		
+		// <summary>
+        // Browser termination cause.
+        // </summary>
+		public const ulong STK_BROWSER_TERMINATION_CAUSE_USER = 0x00;
+		
+		// 
+		public const ulong STK_BROWSER_TERMINATION_CAUSE_ERROR = 0x01;
+		
+		// <summary>
+        // Next Action Indicator.
+        // </summary>
+		public const ulong STK_NEXT_ACTION_NULL = 0x00;
+		
+		// 
+		public const ulong STK_NEXT_ACTION_END_PROACTIVE_SESSION = 0x81;
 	}
 }

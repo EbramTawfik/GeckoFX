@@ -28,15 +28,14 @@ namespace Gecko
 	
 	/// <summary>
     /// imgIContainer is the interface that represents an image. It allows
-    /// access to frames as Thebes surfaces, and permits users to extract subregions
-    /// as other imgIContainers. It also allows drawing of images on to Thebes
-    /// contexts.
+    /// access to frames as Thebes surfaces. It also allows drawing of images
+    /// onto Thebes contexts.
     ///
     /// Internally, imgIContainer also manages animation of images.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("01c4f92f-f883-4837-a127-d8f30920e374")]
+	[Guid("8b7db7dd-bfe9-40d3-9114-3a79c0658afd")]
 	public interface imgIContainer
 	{
 		
@@ -121,18 +120,6 @@ namespace Gecko
 		System.IntPtr GetImageContainer(System.IntPtr aManager);
 		
 		/// <summary>
-        /// Create a new imgContainer that contains only a single frame, which itself
-        /// contains a subregion of the given frame.
-        ///
-        /// @param aWhichFrame Frame specifier of the FRAME_* variety.
-        /// @param aRect the area of the current frame to be duplicated in the
-        /// returned imgContainer's frame.
-        /// @param aFlags Flags of the FLAG_* variety
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIContainer ExtractFrame(uint aWhichFrame, [MarshalAs(UnmanagedType.Interface)] nsIntRect aRect, uint aFlags);
-		
-		/// <summary>
         /// Draw a frame onto the context specified.
         ///
         /// @param aContext The Thebes context to draw the image to.
@@ -163,11 +150,10 @@ namespace Gecko
 		
 		/// <summary>
         /// Ensures that an image is decoding. Calling this function guarantees that
-        /// the image will at some point fire off decode notifications. Calling draw(),
-        /// getFrame(), copyFrame(), or extractCurrentFrame() triggers the same
-        /// mechanism internally. Thus, if you want to be sure that the image will be
-        /// decoded but don't want to access it until then, you must call
-        /// requestDecode().
+        /// the image will at some point fire off decode notifications. Calling draw()
+        /// or getFrame() triggers the same mechanism internally. Thus, if you want to
+        /// be sure that the image will be decoded but don't want to access it until
+        /// then, you must call requestDecode().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RequestDecode();
@@ -177,6 +163,16 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StartDecoding();
+		
+		/// <summary>
+        /// Returns true if no more decoding can be performed on this image. Images
+        /// with errors return true since they cannot be decoded any further. Note that
+        /// because decoded images may be discarded, isDecoded() may return false even
+        /// if it has returned true in the past.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsDecoded();
 		
 		/// <summary>
         /// Increments the lock count on the image. An image will not be discarded
@@ -225,6 +221,53 @@ namespace Gecko
         ///Methods to control animation </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResetAnimation();
+		
+		/// <summary>
+        /// Returns an index for the requested animation frame (either FRAME_FIRST or
+        /// FRAME_CURRENT).
+        ///
+        /// The units of the index aren't specified, and may vary between different
+        /// types of images. What you can rely on is that on all occasions when
+        /// getFrameIndex(FRAME_CURRENT) returns a certain value,
+        /// draw(..FRAME_CURRENT..) will draw the same frame. The same holds for
+        /// FRAME_FIRST as well.
+        ///
+        /// @param aWhichFrame Frame specifier of the FRAME_* variety.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetFrameIndex(uint aWhichFrame);
+		
+		/// <summary>
+        /// Returns the inherent orientation of the image, as described in the image's
+        /// metadata (e.g. EXIF).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetOrientation();
+		
+		/// <summary>
+        /// Returns the delay, in ms, between the first and second frame. If this
+        /// returns 0, there is no delay between first and second frame (i.e., this
+        /// image could render differently whenever it draws).
+        ///
+        /// If this image is not animated, or not known to be animated (see attribute
+        /// animated), returns -1.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetFirstFrameDelay();
+		
+		/// <summary>
+        /// If this is an animated image that hasn't started animating already, this
+        /// sets the animation's start time to the indicated time.
+        ///
+        /// This has no effect if the image isn't animated or it has started animating
+        /// already; it also has no effect if the image format doesn't care about
+        /// animation start time.
+        ///
+        /// In all cases, animation does not actually begin until startAnimation(),
+        /// resetAnimation(), or requestRefresh() is called for the first time.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAnimationStartTime(ulong aTime);
 	}
 	
 	/// <summary>imgIContainerConsts </summary>
@@ -260,6 +303,10 @@ namespace Gecko
         //
         // FLAG_CLAMP: Extend the image to the fill area by clamping image sample
         // coordinates instead of by tiling. This only affects 'draw'.
+        //
+        // FLAG_HIGH_QUALITY_SCALING: A hint as to whether this image should be
+        // scaled using the high quality scaler. Do not set this if not drawing to
+        // a window or not listening to invalidations.
         // </summary>
 		public const long FLAG_NONE = 0x0;
 		
@@ -274,6 +321,9 @@ namespace Gecko
 		
 		// 
 		public const long FLAG_CLAMP = 0x8;
+		
+		// 
+		public const long FLAG_HIGH_QUALITY_SCALING = 0x10;
 		
 		// <summary>
         // Constants for specifying various "special" frames.

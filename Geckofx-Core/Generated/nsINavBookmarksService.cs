@@ -213,7 +213,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2299598b-8d83-4b67-9b13-b6d4707dcf7b")]
+	[Guid("A78EA368-E28E-462E-897A-26606D4DDCE6")]
 	public interface nsINavBookmarksService
 	{
 		
@@ -258,13 +258,18 @@ namespace Gecko
         /// The index to insert at, or DEFAULT_INDEX to append
         /// @param aTitle
         /// The title for the new bookmark
+        /// @param [optional] aGUID
+        /// The GUID to be set for the new item.  If not set, a new GUID is
+        /// generated.  Unless you've a very sound reason, such as an undo
+        /// manager implementation, do not pass this argument.
         /// @return The ID of the newly-created bookmark.
         ///
         /// @note aTitle will be truncated to TITLE_LENGTH_MAX and
         /// aURI will be truncated to URI_LENGTH_MAX.
+        /// @throws if aGUID is malformed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int InsertBookmark(long aParentId, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle);
+		int InsertBookmark(long aParentId, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
 		
 		/// <summary>
         /// Removes a child item. Used to delete a bookmark or separator.
@@ -282,10 +287,15 @@ namespace Gecko
         /// The name of the new folder
         /// @param aIndex
         /// The index to insert at, or DEFAULT_INDEX to append
+        /// @param [optional] aGUID
+        /// The GUID to be set for the new item.  If not set, a new GUID is
+        /// generated.  Unless you've a very sound reason, such as an undo
+        /// manager implementation, do not pass this argument.
         /// @return The ID of the newly-inserted folder.
+        /// @throws if aGUID is malformed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CreateFolder(long aParentFolder, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase name, int index);
+		int CreateFolder(long aParentFolder, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase name, int index, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
 		
 		/// <summary>
         /// Gets an undo-able transaction for removing a folder from the bookmarks
@@ -339,10 +349,15 @@ namespace Gecko
         /// The id of the parent folder
         /// @param aIndex
         /// The separator's index under folder, or DEFAULT_INDEX to append
+        /// @param [optional] aGUID
+        /// The GUID to be set for the new item.  If not set, a new GUID is
+        /// generated.  Unless you've a very sound reason, such as an undo
+        /// manager implementation, do not pass this argument.
         /// @return The ID of the new separator.
+        /// @throws if aGUID is malformed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int InsertSeparator(long aParentId, int aIndex);
+		int InsertSeparator(long aParentId, int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
 		
 		/// <summary>
         /// Get the itemId given the containing folder and the index.

@@ -75,6 +75,18 @@ namespace Gecko
     /// subject: an nsIURI interface pointer representing the URI that attempted
     /// to set the cookie.
     /// data   : none.
+    ///
+    /// topic  : "third-party-cookie-accepted"
+    /// broadcast whenever a third party cookie was accepted
+    /// subject:  an nsIURI interface pointer representing the URI that attempted
+    /// to set the cookie.
+    /// data   :  the referrer, or "?" if unknown
+    ///
+    /// topic  : "third-party-cookie-rejected"
+    /// broadcast whenever a third party cookie was rejected
+    /// subject:  an nsIURI interface pointer representing the URI that attempted
+    /// to set the cookie.
+    /// data   :  the referrer, or "?" if unknown
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

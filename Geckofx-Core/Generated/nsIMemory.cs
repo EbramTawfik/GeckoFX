@@ -47,9 +47,14 @@ namespace Gecko
     /// This will be passed as the extra data when the pressure
     /// observer is being asked to flush for low-memory conditions.
     ///
-    /// "low-memory-no-forward"
-    /// This will be passed as the extra data when the pressure observer
-    /// is being asked to flush for low-memory conditions but the resulting
+    /// "low-memory-ongoing"
+    /// This will be passed when we continue to be in a low-memory
+    /// condition and we want to flush caches and do other cheap
+    /// forms of memory minimization, but heavy handed approaches like
+    /// a GC are unlikely to succeed.
+    ///
+    /// "-no-forward"
+    /// This is appended to the above two parameters when the resulting
     /// notification should not be forwarded to the child processes.
     ///
     /// "heap-minimize"
@@ -110,7 +115,7 @@ namespace Gecko
         /// immediately if the call was made on the main thread. If
         /// false, the flush will be scheduled to happen when the app is
         /// idle.
-        /// @return NS_ERROR_FAILURE if 'immediate' is set an the call
+        /// @throws NS_ERROR_FAILURE if 'immediate' is set an the call
         /// was not on the application's main thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

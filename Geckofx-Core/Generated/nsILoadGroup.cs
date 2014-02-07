@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("19501006-46e3-4634-b97d-26eff894b4d3")]
+	[Guid("afb57ac2-bce5-4ee3-bb34-385089a9ba5c")]
 	public interface nsILoadGroup : nsIRequest
 	{
 		
@@ -247,6 +247,34 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsILoadGroupConnectionInfo GetConnectionInfoAttribute();
+		
+		/// <summary>
+        /// The set of load flags that will be added to all new requests added to
+        /// this group. Any existing requests in the load group are not modified,
+        /// so it is expected these flags will be added before requests are added
+        /// to the group - typically via nsIDocShell::defaultLoadFlags on a new
+        /// docShell.
+        /// Note that these flags are *not* added to the default request for the
+        /// load group; it is expected the default request will already have these
+        /// flags (again, courtesy of setting nsIDocShell::defaultLoadFlags before
+        /// the docShell has created the default request.)
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetDefaultLoadFlagsAttribute();
+		
+		/// <summary>
+        /// The set of load flags that will be added to all new requests added to
+        /// this group. Any existing requests in the load group are not modified,
+        /// so it is expected these flags will be added before requests are added
+        /// to the group - typically via nsIDocShell::defaultLoadFlags on a new
+        /// docShell.
+        /// Note that these flags are *not* added to the default request for the
+        /// load group; it is expected the default request will already have these
+        /// flags (again, courtesy of setting nsIDocShell::defaultLoadFlags before
+        /// the docShell has created the default request.)
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDefaultLoadFlagsAttribute(uint aDefaultLoadFlags);
 	}
 	
 	/// <summary>
@@ -255,7 +283,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d1f9f18e-3d85-473a-ad58-a2367d7cdb2a")]
+	[Guid("fdc9659c-b597-4ac0-9c9e-14b04dbb682f")]
 	public interface nsILoadGroupConnectionInfo
 	{
 		
@@ -279,5 +307,23 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint RemoveBlockingTransaction();
+		
+		/// <summary>
+        ///reading this attribute gives out weak pointers to the push
+        /// cache. The nsILoadGroupConnectionInfo implemenation owns the cache
+        /// and will destroy it when overwritten or when the load group
+        /// ends.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetSpdyPushCacheAttribute();
+		
+		/// <summary>
+        ///reading this attribute gives out weak pointers to the push
+        /// cache. The nsILoadGroupConnectionInfo implemenation owns the cache
+        /// and will destroy it when overwritten or when the load group
+        /// ends.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSpdyPushCacheAttribute(System.IntPtr aSpdyPushCache);
 	}
 }

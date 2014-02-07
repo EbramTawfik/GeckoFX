@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("81a8d00b-2982-44f6-aecf-faac0d0819d6")]
+	[Guid("39ea2c73-7711-4cea-9f73-3166c24dfa69")]
 	public interface nsIDOMFileReader : nsIDOMEventTarget
 	{
 		
@@ -197,7 +197,7 @@ namespace Gecko
         /// Dispatch an event.
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
-        /// dispatch nsIDOMEvent, not only nsEvent.
+        /// dispatch nsIDOMEvent, not only WidgetEvent.
         /// @param aPresContext the current presentation context, can be nullptr.
         /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
@@ -212,15 +212,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void DispatchDOMEvent(System.IntPtr aEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aDOMEvent, System.IntPtr aPresContext, System.IntPtr aEventStatus);
-		
-		/// <summary>
-        /// Get the event listener manager, the guy you talk to to register for events
-        /// on this node.
-        /// @param aMayCreate If PR_FALSE, returns a listener manager only if
-        /// one already exists.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.U1)] bool aMayCreate);
 		
 		/// <summary>
         /// Get the script context in which the event handlers should be run.
@@ -262,9 +253,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetResultAttribute(System.IntPtr jsContext);
 		
+		/// <summary>
+        /// This is a DOMError
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMError GetErrorAttribute();
+		nsISupports GetErrorAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetOnloadstartAttribute(System.IntPtr jsContext);

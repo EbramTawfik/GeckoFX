@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("39cb59d4-fba9-48a9-b70b-570a7ec2ebfa")]
+	[Guid("97b6784b-ab12-4f79-8422-d7868a4cc7dc")]
 	public interface nsIDOMWindow
 	{
 		
@@ -84,47 +84,43 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMHistory GetHistoryAttribute();
+		nsISupports GetHistoryAttribute();
 		
 		/// <summary>
-        ///[replaceable] locationbar </summary>
+        ///BarProp </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBarProp GetLocationbarAttribute();
+		nsISupports GetLocationbarAttribute();
 		
 		/// <summary>
-        ///[replaceable] menubar </summary>
+        ///BarProp </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBarProp GetMenubarAttribute();
+		nsISupports GetMenubarAttribute();
 		
 		/// <summary>
-        ///[replaceable] personalbar </summary>
+        ///BarProp </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBarProp GetPersonalbarAttribute();
+		nsISupports GetPersonalbarAttribute();
 		
 		/// <summary>
-        /// Accessor for the object that controls whether or not scrollbars
-        /// are shown in this window.
-        ///
-        /// This attribute is "replaceable" in JavaScript
-        /// </summary>
+        ///BarProp </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBarProp GetScrollbarsAttribute();
+		nsISupports GetScrollbarsAttribute();
 		
 		/// <summary>
-        ///[replaceable] statusbar </summary>
+        ///BarProp </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBarProp GetStatusbarAttribute();
+		nsISupports GetStatusbarAttribute();
 		
 		/// <summary>
-        ///[replaceable] toolbar </summary>
+        ///BarProp </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBarProp GetToolbarAttribute();
+		nsISupports GetToolbarAttribute();
 		
 		/// <summary>
         ///[replaceable] </summary>
@@ -264,7 +260,7 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOptions);
+		nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOptions, int argc);
 		
 		/// <summary>
         /// Implements a safe message-passing system which can cross same-origin
@@ -310,6 +306,17 @@ namespace Gecko
 		nsIDOMStorage GetLocalStorageAttribute();
 		
 		/// <summary>
+        /// IDBEnvironment
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports GetIndexedDBAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports GetMozIndexedDBAttribute();
+		
+		/// <summary>
         /// Method for accessing this window's selection object.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -321,7 +328,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMediaQueryList MatchMedia([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase media_query_list);
+		nsISupports MatchMedia([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase media_query_list);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -506,21 +513,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCrypto GetCryptoAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMPkcs11 GetPkcs11Attribute();
-		
 		/// <summary>
-        ///[replaceable] controllers </summary>
+        /// Note: this is [ChromeOnly] scriptable via WebIDL.
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIControllers GetControllersAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultStatus);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultStatus);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		float GetMozInnerScreenXAttribute();
@@ -625,6 +623,12 @@ namespace Gecko
 		int MozRequestAnimationFrame([MarshalAs(UnmanagedType.Interface)] nsIFrameRequestCallback aCallback);
 		
 		/// <summary>
+        /// jsval because we want a WebIDL callback here
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int RequestAnimationFrame(Gecko.JsVal aCallback, System.IntPtr jsContext);
+		
+		/// <summary>
         /// Cancel a refresh callback.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -635,6 +639,9 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MozCancelRequestAnimationFrame(int aHandle);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CancelAnimationFrame(int aHandle);
 		
 		/// <summary>
         /// The current animation start time in milliseconds since the epoch.
@@ -802,7 +809,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a5cd0946-bac1-4606-9aaa-9e68dd0a3279")]
+	[Guid("2ec49e81-b2ba-4633-991a-f48f1e1d8800")]
 	public interface nsIDOMWindowInternal : nsIDOMWindow
 	{
 		
@@ -850,47 +857,43 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMHistory GetHistoryAttribute();
+		new nsISupports GetHistoryAttribute();
 		
 		/// <summary>
-        ///[replaceable] locationbar </summary>
+        ///BarProp </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMBarProp GetLocationbarAttribute();
+		new nsISupports GetLocationbarAttribute();
 		
 		/// <summary>
-        ///[replaceable] menubar </summary>
+        ///BarProp </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMBarProp GetMenubarAttribute();
+		new nsISupports GetMenubarAttribute();
 		
 		/// <summary>
-        ///[replaceable] personalbar </summary>
+        ///BarProp </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMBarProp GetPersonalbarAttribute();
+		new nsISupports GetPersonalbarAttribute();
 		
 		/// <summary>
-        /// Accessor for the object that controls whether or not scrollbars
-        /// are shown in this window.
-        ///
-        /// This attribute is "replaceable" in JavaScript
-        /// </summary>
+        ///BarProp </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMBarProp GetScrollbarsAttribute();
+		new nsISupports GetScrollbarsAttribute();
 		
 		/// <summary>
-        ///[replaceable] statusbar </summary>
+        ///BarProp </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMBarProp GetStatusbarAttribute();
+		new nsISupports GetStatusbarAttribute();
 		
 		/// <summary>
-        ///[replaceable] toolbar </summary>
+        ///BarProp </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMBarProp GetToolbarAttribute();
+		new nsISupports GetToolbarAttribute();
 		
 		/// <summary>
         ///[replaceable] </summary>
@@ -1030,7 +1033,7 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOptions);
+		new nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOptions, int argc);
 		
 		/// <summary>
         /// Implements a safe message-passing system which can cross same-origin
@@ -1076,6 +1079,17 @@ namespace Gecko
 		new nsIDOMStorage GetLocalStorageAttribute();
 		
 		/// <summary>
+        /// IDBEnvironment
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsISupports GetIndexedDBAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsISupports GetMozIndexedDBAttribute();
+		
+		/// <summary>
         /// Method for accessing this window's selection object.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -1087,7 +1101,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMMediaQueryList MatchMedia([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase media_query_list);
+		new nsISupports MatchMedia([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase media_query_list);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1272,21 +1286,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMCrypto GetCryptoAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMPkcs11 GetPkcs11Attribute();
-		
 		/// <summary>
-        ///[replaceable] controllers </summary>
+        /// Note: this is [ChromeOnly] scriptable via WebIDL.
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIControllers GetControllersAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultStatus);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultStatus);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new float GetMozInnerScreenXAttribute();
@@ -1391,6 +1396,12 @@ namespace Gecko
 		new int MozRequestAnimationFrame([MarshalAs(UnmanagedType.Interface)] nsIFrameRequestCallback aCallback);
 		
 		/// <summary>
+        /// jsval because we want a WebIDL callback here
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int RequestAnimationFrame(Gecko.JsVal aCallback, System.IntPtr jsContext);
+		
+		/// <summary>
         /// Cancel a refresh callback.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1401,6 +1412,9 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void MozCancelRequestAnimationFrame(int aHandle);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void CancelAnimationFrame(int aHandle);
 		
 		/// <summary>
         /// The current animation start time in milliseconds since the epoch.

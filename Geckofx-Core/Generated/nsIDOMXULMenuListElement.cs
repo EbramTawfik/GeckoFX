@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("df76f885-717a-484b-81f9-76700a04b51d")]
+	[Guid("36c16a17-c0e9-4b35-951b-81a147314ef1")]
 	public interface nsIDOMXULMenuListElement : nsIDOMXULSelectControlElement
 	{
 		
@@ -331,23 +331,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new uint GetChildElementCountAttribute();
 		
-		/// <summary>
-        /// HTML
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOnmouseenterAttribute(System.IntPtr jsContext);
-		
-		/// <summary>
-        /// HTML
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnmouseenterAttribute(Gecko.JsVal aOnmouseenter, System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOnmouseleaveAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnmouseleaveAttribute(Gecko.JsVal aOnmouseleave, System.IntPtr jsContext);
+		new void Remove();
 		
 		/// <summary>
         /// Retrieve a list of rectangles, one for each CSS border-box associated with
@@ -507,6 +492,19 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void MozRequestPointerLock();
+		
+		/// <summary>
+        /// Return nodes that match a given CSS selector.
+        ///
+        /// @see <http://dev.w3.org/2006/webapi/selectors-api/>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement QuerySelector([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase selectors);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMNodeList QuerySelectorAll([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase selectors);
 		
 		/// <summary>
         ///This Source Code Form is subject to the terms of the Mozilla Public

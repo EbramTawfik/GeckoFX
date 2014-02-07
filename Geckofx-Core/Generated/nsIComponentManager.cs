@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1d940426-5fe5-42c3-84ae-a300f2d9ebd5")]
+	[Guid("d604ffc3-1ba3-4f6c-b65f-1ed4199364c3")]
 	public interface nsIComponentManager
 	{
 		
@@ -103,5 +103,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveBootstrappedManifestLocation([MarshalAs(UnmanagedType.Interface)] nsIFile aLocation);
+		
+		/// <summary>
+        /// getManifestLocations
+        ///
+        /// Get an array of nsIURIs of all registered and builtin manifest locations.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIArray GetManifestLocations();
 	}
 }

@@ -254,6 +254,15 @@ namespace Gecko
 		new void Init([MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayName, [MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo, long startTime, [MarshalAs(UnmanagedType.Interface)] nsIFile aTempFile, [MarshalAs(UnmanagedType.Interface)] nsICancelable aCancelable, [MarshalAs(UnmanagedType.U1)] bool aIsPrivate);
 		
 		/// <summary>
+        /// Used to notify the transfer object of the hash of the downloaded file.
+        /// Must be called on the main thread, only after the download has finished
+        /// successfully.
+        /// @param aHash The SHA-256 hash in raw bytes of the downloaded file.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetSha256Hash([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHash);
+		
+		/// <summary>
         /// The target of a download is always a file on the local file system.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]

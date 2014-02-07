@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("02d37b31-e654-4b74-9bc3-14dfe0020bb3")]
+	[Guid("7aea9561-5346-401c-b40e-418688da2d0d")]
 	public interface nsIMarkupDocumentViewer
 	{
 		
@@ -75,18 +75,6 @@ namespace Gecko
 		void SetAuthorStyleDisabledAttribute([MarshalAs(UnmanagedType.U1)] bool aAuthorStyleDisabled);
 		
 		/// <summary>
-        ///XXX Comment here!
-        ///	 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDefaultCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aDefaultCharacterSet);
-		
-		/// <summary>
-        ///XXX Comment here!
-        ///	 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aDefaultCharacterSet);
-		
-		/// <summary>
         /// XXX comm-central only: bug 829543. Not the Character Encoding menu in
         /// browser!
         ///	 </summary>
@@ -125,110 +113,10 @@ namespace Gecko
 		void SetHintCharacterSetSourceAttribute(int aHintCharacterSetSource);
 		
 		/// <summary>
-        ///character set from prev document
-        ///	 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrevDocCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPrevDocCharacterSet);
-		
-		/// <summary>
-        ///character set from prev document
-        ///	 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrevDocCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPrevDocCharacterSet);
-		
-		/// <summary>
         /// Requests the size of the content to the container.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetContentSize(ref int width, ref int height);
-		
-		/// <summary>
-        /// bidiTextDirection: the default direction for the layout of bidirectional text.
-        /// 1 - left to right
-        /// 2 - right to left
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetBidiTextDirectionAttribute();
-		
-		/// <summary>
-        /// bidiTextDirection: the default direction for the layout of bidirectional text.
-        /// 1 - left to right
-        /// 2 - right to left
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBidiTextDirectionAttribute(System.IntPtr aBidiTextDirection);
-		
-		/// <summary>
-        /// bidiTextType: the ordering of bidirectional text. This may be either "logical"
-        /// or "visual". Logical text will be reordered for presentation using the Unicode
-        /// Bidi Algorithm. Visual text will be displayed without reordering.
-        /// 1 - the default order for the charset
-        /// 2 - logical order
-        /// 3 - visual order
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetBidiTextTypeAttribute();
-		
-		/// <summary>
-        /// bidiTextType: the ordering of bidirectional text. This may be either "logical"
-        /// or "visual". Logical text will be reordered for presentation using the Unicode
-        /// Bidi Algorithm. Visual text will be displayed without reordering.
-        /// 1 - the default order for the charset
-        /// 2 - logical order
-        /// 3 - visual order
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBidiTextTypeAttribute(System.IntPtr aBidiTextType);
-		
-		/// <summary>
-        /// bidiNumeral: the type of numerals to display.
-        /// 1 - depending on context, default is Arabic numerals
-        /// 2 - depending on context, default is Hindi numerals
-        /// 3 - Arabic numerals
-        /// 4 - Hindi numerals
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetBidiNumeralAttribute();
-		
-		/// <summary>
-        /// bidiNumeral: the type of numerals to display.
-        /// 1 - depending on context, default is Arabic numerals
-        /// 2 - depending on context, default is Hindi numerals
-        /// 3 - Arabic numerals
-        /// 4 - Hindi numerals
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBidiNumeralAttribute(System.IntPtr aBidiNumeral);
-		
-		/// <summary>
-        /// bidiSupport: whether to use platform bidi support or Mozilla's bidi support
-        /// 1 - Use Mozilla's bidi support
-        /// 2 - Use the platform bidi support
-        /// 3 - Disable bidi support
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetBidiSupportAttribute();
-		
-		/// <summary>
-        /// bidiSupport: whether to use platform bidi support or Mozilla's bidi support
-        /// 1 - Use Mozilla's bidi support
-        /// 2 - Use the platform bidi support
-        /// 3 - Disable bidi support
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBidiSupportAttribute(System.IntPtr aBidiSupport);
-		
-		/// <summary>
-        /// Use this attribute to access all the Bidi options in one operation
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetBidiOptionsAttribute();
-		
-		/// <summary>
-        /// Use this attribute to access all the Bidi options in one operation
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBidiOptionsAttribute(uint aBidiOptions);
 		
 		/// <summary>
         ///The minimum font size </summary>
@@ -256,5 +144,34 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ChangeMaxLineBoxWidth(int maxLineBoxWidth);
+		
+		/// <summary>
+        /// Instruct the refresh driver to discontinue painting until further
+        /// notice.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void PausePainting();
+		
+		/// <summary>
+        /// Instruct the refresh driver to resume painting after a previous call to
+        /// pausePainting().
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ResumePainting();
+		
+		/// <summary>
+        /// Render the document as if being viewed on a device with the specified
+        /// media type. This will cause a reflow.
+        ///
+        /// @param mediaType The media type to be emulated
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void EmulateMedium([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMediaType);
+		
+		/// <summary>
+        /// Restore the viewer's natural media type
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void StopEmulatingMedium();
 	}
 }

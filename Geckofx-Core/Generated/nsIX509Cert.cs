@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f0980f60-ee3d-11d4-998b-00b0d02354a0")]
+	[Guid("45b24b0a-6189-4b05-af0b-8d4d66d57c59")]
 	public interface nsIX509Cert
 	{
 		
@@ -210,14 +210,6 @@ namespace Gecko
 		void GetUsagesString([MarshalAs(UnmanagedType.U1)] bool localOnly, ref uint verified, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase usages);
 		
 		/// <summary>
-        /// Verify the certificate for a particular usage.
-        ///
-        /// @return The certificate verification result, see constants.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint VerifyForUsage(uint usage);
-		
-		/// <summary>
         /// This is the attribute which describes the ASN1 layout
         /// of the certificate.  This can be used when doing a
         /// "pretty print" of the certificate's ASN1 structure.
@@ -302,6 +294,8 @@ namespace Gecko
 		
 		// <summary>
         // Constants that describe the certified usages of a certificate.
+        //
+        // Deprecated and unused
         // </summary>
 		public const ulong CERT_USAGE_SSLClient = 0;
 		

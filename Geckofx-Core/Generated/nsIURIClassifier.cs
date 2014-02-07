@@ -60,7 +60,7 @@ namespace Gecko
 	{
 		
 		/// <summary>
-        /// Classify a Principal using it's URI, appId and InBrowserElement state.
+        /// Classify a Principal using its URI.
         ///
         /// @param aPrincipal
         /// The principal that should be checked by the URI classifier.

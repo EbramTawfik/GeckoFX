@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ccc2bbbc-5b44-4b01-b718-dd51f339fef8")]
+	[Guid("989422ef-120d-4d29-8a56-6aa2505a8b02")]
 	public interface nsIDOMElement : nsIDOMNode
 	{
 		
@@ -334,23 +334,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetChildElementCountAttribute();
 		
-		/// <summary>
-        /// HTML
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOnmouseenterAttribute(System.IntPtr jsContext);
-		
-		/// <summary>
-        /// HTML
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmouseenterAttribute(Gecko.JsVal aOnmouseenter, System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOnmouseleaveAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmouseleaveAttribute(Gecko.JsVal aOnmouseleave, System.IntPtr jsContext);
+		void Remove();
 		
 		/// <summary>
         /// Retrieve a list of rectangles, one for each CSS border-box associated with
@@ -510,5 +495,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MozRequestPointerLock();
+		
+		/// <summary>
+        /// Return nodes that match a given CSS selector.
+        ///
+        /// @see <http://dev.w3.org/2006/webapi/selectors-api/>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMElement QuerySelector([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase selectors);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMNodeList QuerySelectorAll([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase selectors);
 	}
 }

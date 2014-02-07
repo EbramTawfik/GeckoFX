@@ -66,12 +66,14 @@ namespace Gecko
         /// isServiceInstantiated
         ///
         /// isServiceInstantiated will return a true if the service has already
-        /// been created, otherwise false
+        /// been created, or throw otherwise
         ///
         /// @param aClass or aContractID : aClass or aContractID of object
         /// instance requested
         /// @param aIID : IID of interface requested
-        /// @param aIID : IID of interface requested
+        /// @throws NS_ERROR_SERVICE_NOT_AVAILABLE if the service hasn't been
+        /// instantiated
+        /// @throws NS_NOINTERFACE if the IID given isn't supported by the object
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

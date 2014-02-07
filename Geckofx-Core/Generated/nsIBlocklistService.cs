@@ -32,16 +32,14 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cbba15b8-316d-4ae6-8ed9-fe9cf8386730")]
+	[Guid("d463dfbb-89c4-4553-97af-b4fd8854e161")]
 	public interface nsIBlocklistService
 	{
 		
 		/// <summary>
         /// Determine if an item is blocklisted
-        /// @param   id
-        /// The ID of the item.
-        /// @param   version
-        /// The item's version.
+        /// @param   addon
+        /// The addon item to be checked.
         /// @param   appVersion
         /// The version of the application we are checking in the blocklist.
         /// If this parameter is null, the version of the running application
@@ -55,14 +53,12 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsAddonBlocklisted([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase version, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase toolkitVersion);
+		bool IsAddonBlocklisted(Gecko.JsVal addon, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase toolkitVersion);
 		
 		/// <summary>
         /// Determine the blocklist state of an add-on
         /// @param   id
-        /// The ID of the item.
-        /// @param   version
-        /// The item's version.
+        /// The addon item to be checked.
         /// @param   appVersion
         /// The version of the application we are checking in the blocklist.
         /// If this parameter is null, the version of the running application
@@ -74,7 +70,7 @@ namespace Gecko
         /// @returns The STATE constant.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetAddonBlocklistState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase version, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase toolkitVersion);
+		uint GetAddonBlocklistState(Gecko.JsVal addon, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase toolkitVersion);
 		
 		/// <summary>
         /// Determine the blocklist state of a plugin
@@ -95,12 +91,12 @@ namespace Gecko
 		
 		/// <summary>
         /// Determine the blocklist web page of an add-on.
-        /// @param   id
-        /// The ID of the blocked add-on.
+        /// @param   addon
+        /// The addon item whose url is required.
         /// @returns The URL of the description page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAddonBlocklistURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase version, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase toolkitVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetAddonBlocklistURL(Gecko.JsVal addon, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase toolkitVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Determine the blocklist web page of a plugin.
@@ -154,7 +150,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("36f97f40-b0c9-11df-94e2-0800200c9a66")]
+	[Guid("ba915921-b9c0-400d-8e4f-ca1b80c5699a")]
 	public interface nsIBlocklistPrompt
 	{
 		

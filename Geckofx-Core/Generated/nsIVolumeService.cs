@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("597403c6-5ba4-4e7b-b3f4-ed3f05f775d8")]
+	[Guid("a3b110cd-74f2-43cb-84c6-2a87713f2774")]
 	public interface nsIVolumeService
 	{
 		
@@ -48,11 +48,26 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVolume GetVolumeByPath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase path);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIVolume CreateOrGetVolumeByPath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase path);
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BroadcastVolume([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase volName);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVolumeMountLock CreateMountLock([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase volName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetVolumeNames(System.IntPtr aVolNames);
+		
+		/// <summary>
+        ///for test case only to simulate sdcard insertion/removal </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CreateFakeVolume([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase path);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFakeVolumeState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, int state);
 	}
 }

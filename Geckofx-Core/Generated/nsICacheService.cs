@@ -84,4 +84,64 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIEventTarget GetCacheIOTargetAttribute();
 	}
+	
+	/// <summary>nsICacheServiceInternal </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("d0fc8d38-db80-4928-bf1c-b0085ddfa9dc")]
+	public interface nsICacheServiceInternal : nsICacheService
+	{
+		
+		/// <summary>
+        /// Create a cache session
+        ///
+        /// A cache session represents a client's access into the cache.  The cache
+        /// session is not "owned" by the cache service.  Hence, it is possible to
+        /// create duplicate cache sessions.  Entries created by a cache session
+        /// are invisible to other cache sessions, unless the cache sessions are
+        /// equivalent.
+        ///
+        /// @param clientID - Specifies the name of the client using the cache.
+        /// @param storagePolicy - Limits the storage policy for all entries
+        /// accessed via the returned session.  As a result, devices excluded
+        /// by the storage policy will not be searched when opening entries
+        /// from the returned session.
+        /// @param streamBased - Indicates whether or not the data being cached
+        /// can be represented as a stream.  The storagePolicy must be
+        /// consistent with the value of this field.  For example, a non-stream-
+        /// based cache entry can only have a storage policy of STORE_IN_MEMORY.
+        /// @return new cache session.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsICacheSession CreateSession([MarshalAs(UnmanagedType.LPStr)] string clientID, System.IntPtr storagePolicy, [MarshalAs(UnmanagedType.U1)] bool streamBased);
+		
+		/// <summary>
+        /// Visit entries stored in the cache.  Used to implement about:cache.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void VisitEntries([MarshalAs(UnmanagedType.Interface)] nsICacheVisitor visitor);
+		
+		/// <summary>
+        /// Evicts all entries in all devices implied by the storage policy.
+        ///
+        /// @note This function may evict some items but will throw if it fails to evict
+        /// everything.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void EvictEntries(System.IntPtr storagePolicy);
+		
+		/// <summary>
+        /// Event target which is used for I/O operations
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIEventTarget GetCacheIOTargetAttribute();
+		
+		/// <summary>
+        /// Milliseconds for which the service lock has been held. 0 if unlocked.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		double GetLockHeldTimeAttribute();
+	}
 }

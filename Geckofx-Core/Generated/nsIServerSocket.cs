@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a5b64be0-d563-46bb-ae95-132e46fcd42f")]
+	[Guid("7a9c39cb-a13f-4eef-9bdf-a74301628742")]
 	public interface nsIServerSocket
 	{
 		
@@ -59,6 +59,25 @@ namespace Gecko
 		void Init(int aPort, [MarshalAs(UnmanagedType.U1)] bool aLoopbackOnly, int aBackLog);
 		
 		/// <summary>
+        /// initSpecialConnection
+        ///
+        /// This method initializes a server socket and offers the ability to have
+        /// that socket not get terminated if Gecko is set offline.
+        ///
+        /// @param aPort
+        /// The port of the server socket.  Pass -1 to indicate no preference,
+        /// and a port will be selected automatically.
+        /// @param aFlags
+        /// Flags for the socket.
+        /// @param aBackLog
+        /// The maximum length the queue of pending connections may grow to.
+        /// This parameter may be silently limited by the operating system.
+        /// Pass -1 to use the default value.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitSpecialConnection(int aPort, ulong aFlags, int aBackLog);
+		
+		/// <summary>
         /// initWithAddress
         ///
         /// This method initializes a server socket, and binds it to a particular
@@ -73,6 +92,61 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitWithAddress(System.IntPtr aAddr, int aBackLog);
+		
+		/// <summary>
+        /// initWithFilename
+        ///
+        /// This method initializes a Unix domain or "local" server socket. Such
+        /// a socket has a name in the filesystem, like an ordinary file. To
+        /// connect, a client supplies the socket's filename, and the usual
+        /// permission checks on socket apply.
+        ///
+        /// This makes Unix domain sockets useful for communication between the
+        /// programs being run by a specific user on a single machine: the
+        /// operating system takes care of authentication, and the user's home
+        /// directory or profile directory provide natural per-user rendezvous
+        /// points.
+        ///
+        /// Since Unix domain sockets are always local to the machine, they are
+        /// not affected by the nsIIOService's 'offline' flag.
+        ///
+        /// The system-level socket API may impose restrictions on the length of
+        /// the filename that are stricter than those of the underlying
+        /// filesystem. If the file name is too long, this returns
+        /// NS_ERROR_FILE_NAME_TOO_LONG.
+        ///
+        /// All components of the path prefix of |aPath| must name directories;
+        /// otherwise, this returns NS_ERROR_FILE_NOT_DIRECTORY.
+        ///
+        /// This call requires execute permission on all directories containing
+        /// the one in which the socket is to be created, and write and execute
+        /// permission on the directory itself. Otherwise, this returns
+        /// NS_ERROR_CONNECTION_REFUSED.
+        ///
+        /// This call creates the socket's directory entry. There must not be
+        /// any existing entry with the given name. If there is, this returns
+        /// NS_ERROR_SOCKET_ADDRESS_IN_USE.
+        ///
+        /// On systems that don't support Unix domain sockets at all, this
+        /// returns NS_ERROR_SOCKET_ADDRESS_NOT_SUPPORTED.
+        ///
+        /// @param aPath nsIFile
+        /// The file name at which the socket should be created.
+        ///
+        /// @param aPermissions unsigned long
+        /// Unix-style permission bits to be applied to the new socket.
+        ///
+        /// Note about permissions: Linux's unix(7) man page claims that some
+        /// BSD-derived systems ignore permissions on UNIX-domain sockets;
+        /// NetBSD's bind(2) man page agrees, but says it does check now (dated
+        /// 2005). POSIX has required 'connect' to fail if write permission on
+        /// the socket itself is not granted since 2003 (Issue 6). NetBSD says
+        /// that the permissions on the containing directory (execute) have
+        /// always applied, so creating sockets in appropriately protected
+        /// directories should be secure on both old and new systems.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitWithFilename([MarshalAs(UnmanagedType.Interface)] nsIFile aPath, uint aPermissions, int aBacklog);
 		
 		/// <summary>
         /// close
@@ -120,6 +194,21 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetAddress();
+	}
+	
+	/// <summary>nsIServerSocketConsts </summary>
+	public class nsIServerSocketConsts
+	{
+		
+		// <summary>
+        // use initWithAddress.
+        // </summary>
+		public const long LoopbackOnly = 0x00000001;
+		
+		// <summary>
+        // offline.
+        // </summary>
+		public const long KeepWhenOffline = 0x00000002;
 	}
 	
 	/// <summary>

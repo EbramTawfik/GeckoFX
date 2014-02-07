@@ -39,7 +39,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("451242bd-8a0c-4198-ae88-c053609a4e5d")]
+	[Guid("fe5b3886-2b6a-491a-80cd-a3e6342c451d")]
 	public interface nsIAccessibleDocument
 	{
 		
@@ -106,6 +106,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetChildDocumentCountAttribute();
+		
+		/// <summary>
+        /// The virtual cursor pivot this document manages.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAccessiblePivot GetVirtualCursorAttribute();
 		
 		/// <summary>
         /// Return the child document accessible at the given index.

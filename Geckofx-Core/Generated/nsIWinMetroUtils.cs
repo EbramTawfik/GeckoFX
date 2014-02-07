@@ -35,15 +35,9 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ac813696-3b0a-4259-bce1-1d078021ebbe")]
+	[Guid("b6cbef4a-eec1-470b-8e74-9f4120f678c6")]
 	public interface nsIWinMetroUtils
 	{
-		
-		/// <summary>
-        /// Determines the current snapped state.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetSnappedStateAttribute();
 		
 		/// <summary>
         /// Determine if the current browser is running in the metro immersive
@@ -54,22 +48,35 @@ namespace Gecko
 		bool GetImmersiveAttribute();
 		
 		/// <summary>
-        /// Determine if the user prefers left handed or right handed input.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetHandPreferenceAttribute();
-		
-		/// <summary>
         /// Determine the activation URI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetActivationURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aActivationURI);
 		
 		/// <summary>
-        /// Attempts to unsnap the application from snapped state to filled state
+        /// Determine the previous execution state. The possible values of this
+        /// attribute are exactly those values in the
+        /// Windows::ApplicationModel::Activation enumeration.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Unsnap();
+		int GetPreviousExecutionStateAttribute();
+		
+		/// <summary>
+        /// Helper for our restart logic up in the about flyout. We set this
+        /// right before we restart for an update so that MetroAppShell can
+        /// communicate this to the ceh.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetUpdatePendingAttribute();
+		
+		/// <summary>
+        /// Helper for our restart logic up in the about flyout. We set this
+        /// right before we restart for an update so that MetroAppShell can
+        /// communicate this to the ceh.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetUpdatePendingAttribute([MarshalAs(UnmanagedType.U1)] bool aUpdatePending);
 		
 		/// <summary>
         /// Show the settings flyout
@@ -85,9 +92,16 @@ namespace Gecko
 		void LaunchInDesktop([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aArguments);
 		
 		/// <summary>
+        /// Displays a native Windows 8 toast.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ShowNativeToast([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase anImage, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCookie);
+		
+		/// <summary>
         /// Pins a new tile to the Windows 8 start screen.
         ///
         /// @param aTileID         An ID which can later be used to remove the tile
+        /// ID must only contain valid filesystem characters
         /// @param aShortName      A short name for the tile
         /// @param aDiplayName     The name that will be displayed on the tile
         /// @param aActivationArgs The arguments to pass to the browser upon
@@ -102,6 +116,7 @@ namespace Gecko
         /// Unpins a tile from the Windows 8 start screen.
         ///
         /// @param aTileID An existing ID which was previously pinned
+        /// ID must only contain valid filesystem characters
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnpinTileAsync([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTileID);
@@ -110,37 +125,12 @@ namespace Gecko
         /// Determines if a tile is pinned to the Windows 8 start screen.
         ///
         /// @param aTileID An ID which may have been pinned with pinTileAsync
+        /// ID must only contain valid filesystem characters
         /// @return true if the tile is pinned
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsTilePinned([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTileID);
-		
-		/// <summary>
-        /// Stores the sync info securely
-        ///
-        /// @param aEmail The sync account email
-        /// @param aPassword The sync account password
-        /// @param aKey The sync account key
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StoreSyncInfo([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEmail, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPassword, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey);
-		
-		/// <summary>
-        /// Loads the sync info
-        ///
-        /// @param aEmail The sync account email
-        /// @param aPassword The sync account password
-        /// @param aKey The sync account key
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadSyncInfo([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEmail, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPassword, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey);
-		
-		/// <summary>
-        /// Clears the stored sync info if any.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearSyncInfo();
 		
 		/// <summary>
         /// Soft keyboard attributes. Used in unison with shown/hidden observer
@@ -190,33 +180,5 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SwapMouseButton([MarshalAs(UnmanagedType.U1)] bool aSwap);
-	}
-	
-	/// <summary>nsIWinMetroUtilsConsts </summary>
-	public class nsIWinMetroUtilsConsts
-	{
-		
-		// <summary>
-        //Fullscreen landscape orientation </summary>
-		public const long fullScreenLandscape = 0;
-		
-		// <summary>
-        //Larger snapped state </summary>
-		public const long filled = 1;
-		
-		// <summary>
-        //Smaller snapped state </summary>
-		public const long snapped = 2;
-		
-		// <summary>
-        //Fullscreen portrait orientation </summary>
-		public const long fullScreenPortrait = 3;
-		
-		// <summary>
-        //return constants for the handPreference property </summary>
-		public const long handPreferenceLeft = 0;
-		
-		// 
-		public const long handPreferenceRight = 1;
 	}
 }

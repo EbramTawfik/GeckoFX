@@ -61,6 +61,11 @@ namespace Gecko.IO.Native
 			
 		}
 
+		public uint Write(string aBuf, uint aCount)
+		{
+			throw new NotImplementedException();
+		}
+
 		public unsafe uint Write( IntPtr aBuf, uint aCount )
 		{
 			PreparePointer((int)aCount);

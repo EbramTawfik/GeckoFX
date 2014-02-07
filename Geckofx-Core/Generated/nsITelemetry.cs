@@ -47,7 +47,7 @@ namespace Gecko
 	/// <summary>nsITelemetry </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e70ba4cc-7ccd-41fe-a75c-e4042233a8cb")]
+	[Guid("6c31f68d-4a54-4dca-b6c8-ddb264d5a154")]
 	public interface nsITelemetry
 	{
 		
@@ -112,12 +112,36 @@ namespace Gecko
 		Gecko.JsVal GetDebugSlowSQLAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
+        /// A number representing the highest number of concurrent threads
+        /// reached during this session.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetMaximalNumberOfConcurrentThreadsAttribute();
+		
+		/// <summary>
         /// An array of chrome hang reports. Each element is a hang report represented
         /// as an object containing the hang duration, call stack PCs and information
         /// about modules in memory.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetChromeHangsAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// An array of thread hang stats,
+        /// [<thread>, <thread>, ...]
+        /// <thread> represents a single thread,
+        /// {"name": "<name>",
+        /// "activity": <time>,
+        /// "hangs": [<hang>, <hang>, ...]}
+        /// <time> represents a histogram of time intervals in milliseconds,
+        /// with the same format as histogramSnapshots
+        /// <hang> represents a particular hang,
+        /// {"stack": <stack>, "histogram": <time>}
+        /// <stack> represents the hang's stack,
+        /// ["<frame_0>", "<frame_1>", ...]
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetThreadHangStatsAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// An object with two fields: memoryMap and stacks.
@@ -132,17 +156,17 @@ namespace Gecko
 		Gecko.JsVal GetLateWritesAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
-        /// An object whose properties are the names of histograms defined in
-        /// TelemetryHistograms.h and whose corresponding values are the textual
-        /// comments associated with said histograms.
+        /// Returns an array whose values are the names of histograms defined
+        /// in Histograms.json.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetRegisteredHistogramsAttribute(System.IntPtr jsContext);
+		void RegisteredHistograms(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] histograms);
 		
 		/// <summary>
         /// Create and return a histogram.  Parameters:
         ///
         /// @param name Unique histogram name
+        /// @param expiration Expiration version
         /// @param min - Minimal bucket size
         /// @param max - Maximum bucket size
         /// @param bucket_count - number of buckets in the histogram.
@@ -153,7 +177,7 @@ namespace Gecko
         /// clear() - Zeros out the histogram's buckets and sum
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal NewHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, uint min, uint max, uint bucket_count, uint histogram_type, System.IntPtr jsContext);
+		Gecko.JsVal NewHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase expiration, uint min, uint max, uint bucket_count, uint histogram_type, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Create a histogram using the current state of an existing histogram.  The
@@ -250,6 +274,16 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AsyncFetchTelemetryData([MarshalAs(UnmanagedType.Interface)] nsIFetchTelemetryDataCallback aCallback);
+		
+		/// <summary>
+        /// Get statistics of file IO reports, null, if not recorded.
+        ///
+        /// The statistics are returned as an object whose propoerties are the names
+        /// of the files that have been accessed and whose corresponding values are
+        /// arrays of the form [total_time, #creates, #reads, #writes, #fsyncs, #stats]
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetFileIOReportsAttribute(System.IntPtr jsContext);
 	}
 	
 	/// <summary>nsITelemetryConsts </summary>

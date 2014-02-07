@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b619f83d-8317-473c-b342-67905993fdc7")]
+	[Guid("b81c33a6-1ce8-4695-856b-02b7f15cc114")]
 	public interface nsIToolkitProfileService
 	{
 		
@@ -92,19 +92,18 @@ namespace Gecko
 		/// <summary>
         /// Create a new profile.
         ///
+        /// The profile temporary directory will be chosen based on where the
+        /// profile directory is located.
+        ///
         /// @param aRootDir
         /// The profile directory. May be null, in which case a suitable
         /// default will be chosen based on the profile name.
-        /// @param aTempDir
-        /// The profile temporary directory. May be null, in which case a
-        /// suitable default will be chosen based either on the profile name
-        /// if aRootDir is null or aRootDir itself.
         /// @param aName
         /// The profile name.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIToolkitProfile CreateProfile([MarshalAs(UnmanagedType.Interface)] nsIFile aRootDir, [MarshalAs(UnmanagedType.Interface)] nsIFile aTempDir, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
+		nsIToolkitProfile CreateProfile([MarshalAs(UnmanagedType.Interface)] nsIFile aRootDir, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
         /// Create the default profile for an application.

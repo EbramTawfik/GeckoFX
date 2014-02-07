@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("B89D7227-9F04-4236-A582-25A3F2779D72")]
+	[Guid("643dc5e9-b911-4b2c-8d44-603162696baf")]
 	public interface nsIGeolocationUpdate
 	{
 		
@@ -43,6 +43,27 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Update([MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPosition position);
+		
+		/// <summary>
+        /// Notify the geolocation service that the location has
+        /// potentially changed, and thus a new position is in the
+        /// process of being acquired.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void LocationUpdatePending();
+		
+		/// <summary>
+        /// Notify the geolocation service of an error.
+        /// This must be called on the main thread.
+        /// The parameter refers to one of the constants in the
+        /// nsIDOMGeoPositionError interface.
+        /// Use this to report spurious errors coming from the
+        /// provider; for errors occurring inside the methods in
+        /// the nsIGeolocationProvider interface, just use the return
+        /// value.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyError(ushort error);
 	}
 	
 	/// <summary>
@@ -53,7 +74,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d32b87b3-fe96-4f42-81ab-2f39f7ec43ff")]
+	[Guid("AC4A133B-9F92-4F7C-B369-D40CB6B17650")]
 	public interface nsIGeolocationProvider
 	{
 		
@@ -66,13 +87,10 @@ namespace Gecko
 		
 		/// <summary>
         /// watch
-        /// When a location change is observed, notify the callback. The privacy
-        /// argument informs the provider whether the initiating request came from
-        /// a private context; it is up to the provider to use that information
-        /// in a sensible manner.
+        /// When a location change is observed, notify the callback.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Watch([MarshalAs(UnmanagedType.Interface)] nsIGeolocationUpdate callback, [MarshalAs(UnmanagedType.U1)] bool requestPrivate);
+		void Watch([MarshalAs(UnmanagedType.Interface)] nsIGeolocationUpdate callback);
 		
 		/// <summary>
         /// shutdown

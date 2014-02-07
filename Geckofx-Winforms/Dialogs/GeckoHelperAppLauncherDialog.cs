@@ -70,6 +70,12 @@ namespace Gecko
 			return null;
 		}
 
+		public void PromptForSaveToFileAsync(nsIHelperAppLauncher aLauncher, nsISupports aWindowContext, string aDefaultFileName,
+			string aSuggestedFileExtension, bool aForcePrompt)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void Show(nsIHelperAppLauncher aLauncher, nsISupports aWindowContext, uint aReason)
 		{
 			if (Download != null)

@@ -10,7 +10,6 @@
 		BoundarySentenceStart = (int)nsIAccessibleTextConsts.BOUNDARY_SENTENCE_START,
 		BoundarySentenceEnd = (int)nsIAccessibleTextConsts.BOUNDARY_SENTENCE_END,
 		BoundaryLineStart = (int)nsIAccessibleTextConsts.BOUNDARY_LINE_START,
-		BoundaryLineEnd = (int)nsIAccessibleTextConsts.BOUNDARY_LINE_END,
-		BoundaryAttributeRange = (int)nsIAccessibleTextConsts.BOUNDARY_ATTRIBUTE_RANGE,
+		BoundaryLineEnd = (int)nsIAccessibleTextConsts.BOUNDARY_LINE_END,		
 	}
 }

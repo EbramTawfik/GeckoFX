@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d89870fe-5ba3-11e2-a5d2-cfa1d3f6e5f4")]
+	[Guid("f8cb08ed-588e-465f-b2b3-a4b0afde711a")]
 	public interface mozIDOMApplication
 	{
 		
@@ -132,9 +132,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetDownloadSizeAttribute();
 		
+		/// <summary>
+        /// This is a DOMError
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMError GetDownloadErrorAttribute();
+		nsISupports GetDownloadErrorAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -190,9 +193,42 @@ namespace Gecko
 		nsIDOMDOMRequest Launch([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase startPoint);
 		
 		/// <summary>
-        ///Clear data that has been collected through mozbrowser elements. </summary>
+        /// Clear data that has been collected through mozbrowser elements.
+        /// onsuccess will be called once data is actually cleared.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearBrowserData();
+		nsIDOMDOMRequest ClearBrowserData();
+		
+		/// <summary>
+        /// Inter-App Communication APIs.
+        ///
+        /// https://wiki.mozilla.org/WebAPI/Inter_App_Communication_Alt_proposal
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports Connect([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase keyword, Gecko.JsVal rules);
+		
+		/// <summary>
+        /// nsISupports is a Promise.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports GetConnections();
+		
+		/// <summary>
+        ///Receipts handling functions </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest AddReceipt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase receipt);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest RemoveReceipt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase receipt);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest ReplaceReceipt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase oldReceipt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newReceipt);
 	}
 	
 	/// <summary>mozIDOMApplicationMgmt </summary>
@@ -275,7 +311,7 @@ namespace Gecko
 	/// <summary>mozIDOMApplicationRegistry </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("abfc6c15-8b92-4b9a-b892-52e6ae76f379")]
+	[Guid("52710c5f-b2a2-4b27-b5b9-f679a1bcc79b")]
 	public interface mozIDOMApplicationRegistry
 	{
 		
@@ -314,6 +350,21 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest GetInstalled();
+		
+		/// <summary>
+        /// Install a packaged web app.
+        ///
+        /// @param packageUrl : the URL of the webapps manifest.
+        /// @param parameters : A structure with optional information.
+        /// {
+        /// receipts: ...    Will be used to specify the payment receipts for this installation.
+        /// categories: ...  Will be used to specify the categories of the webapp.
+        /// }
+        /// @returns          : A DOMRequest object, returning the app object in |result| if install succeeds.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest InstallPackage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase packageUrl, Gecko.JsVal parameters);
 		
 		/// <summary>Member GetMgmtAttribute </summary>
 		/// <returns>A mozIDOMApplicationMgmt</returns>

@@ -106,5 +106,8 @@ namespace Gecko
 		
 		// 
 		public const ulong SUPPORTS_RULE = 12;
+		
+		// 
+		public const ulong FONT_FEATURE_VALUES_RULE = 14;
 	}
 }

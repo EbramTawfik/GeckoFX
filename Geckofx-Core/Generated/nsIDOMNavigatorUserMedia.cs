@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6de854f9-acf8-4383-b464-4803631ef309")]
+	[Guid("4af2bdb7-1547-4d10-8886-02a78c3c0b83")]
 	public interface nsIMediaDevice
 	{
 		
@@ -48,6 +48,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFacingModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFacingMode);
 	}
 	
 	/// <summary>nsIGetUserMediaDevicesSuccessCallback </summary>
@@ -89,83 +92,5 @@ namespace Gecko
 		/// <param name='error'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnError([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase error);
-	}
-	
-	/// <summary>nsIMediaStreamOptions </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f34a3616-395a-43cd-b275-bf81750ac8b9")]
-	public interface nsIMediaStreamOptions
-	{
-		
-		/// <summary>Member GetFakeAttribute </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetFakeAttribute();
-		
-		/// <summary>Member GetAudioAttribute </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAudioAttribute();
-		
-		/// <summary>Member GetVideoAttribute </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetVideoAttribute();
-		
-		/// <summary>Member GetPictureAttribute </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetPictureAttribute();
-		
-		/// <summary>Member GetCameraAttribute </summary>
-		/// <param name='aCamera'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCameraAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCamera);
-		
-		/// <summary>Member GetAudioDeviceAttribute </summary>
-		/// <returns>A nsIMediaDevice</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMediaDevice GetAudioDeviceAttribute();
-		
-		/// <summary>Member GetVideoDeviceAttribute </summary>
-		/// <returns>A nsIMediaDevice</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMediaDevice GetVideoDeviceAttribute();
-	}
-	
-	/// <summary>nsIDOMNavigatorUserMedia </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("381e0071-0be5-4f6b-ae21-8e3407a37faa")]
-	public interface nsIDOMNavigatorUserMedia
-	{
-		
-		/// <summary>Member MozGetUserMedia </summary>
-		/// <param name='params'> </param>
-		/// <param name='onsuccess'> </param>
-		/// <param name='onerror'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozGetUserMedia([MarshalAs(UnmanagedType.Interface)] nsIMediaStreamOptions @params, [MarshalAs(UnmanagedType.Interface)] nsIDOMGetUserMediaSuccessCallback onsuccess, [MarshalAs(UnmanagedType.Interface)] nsIDOMGetUserMediaErrorCallback onerror);
-	}
-	
-	/// <summary>nsINavigatorUserMedia </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("20e9c794-fdfe-43f4-a81b-ebd9069e0af1")]
-	public interface nsINavigatorUserMedia
-	{
-		
-		/// <summary>Member MozGetUserMediaDevices </summary>
-		/// <param name='onsuccess'> </param>
-		/// <param name='onerror'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozGetUserMediaDevices([MarshalAs(UnmanagedType.Interface)] nsIGetUserMediaDevicesSuccessCallback onsuccess, [MarshalAs(UnmanagedType.Interface)] nsIDOMGetUserMediaErrorCallback onerror);
 	}
 }

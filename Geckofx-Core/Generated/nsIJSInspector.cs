@@ -32,18 +32,20 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dbf84113-506a-4fd3-9183-a0348c6fa9cc")]
+	[Guid("6758d0d7-e96a-4c5c-bca8-3bcbe5a15943")]
 	public interface nsIJSInspector
 	{
 		
 		/// <summary>
         /// Process the thread's event queue until exit.
         ///
+        /// @param requestor A token the requestor passes to identify the pause.
+        ///
         /// @return depth Returns the number of times the event loop
         /// has been nested using this API.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint EnterNestedEventLoop();
+		uint EnterNestedEventLoop(Gecko.JsVal requestor);
 		
 		/// <summary>
         /// Exits the current nested event loop.
@@ -59,5 +61,11 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetEventLoopNestLevelAttribute();
+		
+		/// <summary>
+        /// The token provided by the actor that last requested a nested event loop.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetLastNestRequestorAttribute();
 	}
 }

@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("15ff23de-879e-47ea-b536-6532466108c5")]
+	[Guid("c2938033-e240-4fe5-9cb6-e7ad649ccd10")]
 	public interface nsIAccessiblePivot
 	{
 		
@@ -57,6 +57,19 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIAccessible GetRootAttribute();
+		
+		/// <summary>
+        /// The temporary modal root to which traversal is limited to.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAccessible GetModalRootAttribute();
+		
+		/// <summary>
+        /// The temporary modal root to which traversal is limited to.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetModalRootAttribute([MarshalAs(UnmanagedType.Interface)] nsIAccessible aModalRoot);
 		
 		/// <summary>
         /// The start offset of the text range the pivot points at, otherwise -1.
@@ -252,7 +265,7 @@ namespace Gecko
 	/// <summary>nsIAccessibleTraversalRule </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("307d98b6-dba9-49cf-ba17-ef8b053044eb")]
+	[Guid("4d9c4352-20f5-4c54-9580-0c77bb6b1115")]
 	public interface nsIAccessibleTraversalRule
 	{
 		
@@ -311,5 +324,11 @@ namespace Gecko
 		
 		// 
 		public const ulong PREFILTER_NOT_FOCUSABLE = 0x00000004;
+		
+		// 
+		public const ulong PREFILTER_ARIA_HIDDEN = 0x00000008;
+		
+		// 
+		public const ulong PREFILTER_TRANSPARENT = 0x00000010;
 	}
 }

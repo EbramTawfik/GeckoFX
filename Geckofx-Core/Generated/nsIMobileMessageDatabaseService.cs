@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4000064a-86d2-11e2-b4a6-ef0f30bd1e59")]
+	[Guid("8439916f-abc1-4c67-aa45-8a276a0a7855")]
 	public interface nsIMobileMessageDatabaseService
 	{
 		
@@ -44,21 +44,17 @@ namespace Gecko
 		void GetMessage(int messageId, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteMessage(int messageId, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
+		void DeleteMessage([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] int[] messageIds, uint count, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsICursorContinueCallback CreateMessageCursor([MarshalAs(UnmanagedType.Interface)] nsIDOMMozSmsFilter filter, [MarshalAs(UnmanagedType.U1)] bool reverse, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCursorCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateMessageList([MarshalAs(UnmanagedType.Interface)] nsIDOMMozSmsFilter filter, [MarshalAs(UnmanagedType.U1)] bool reverse, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
+		void MarkMessageRead(int messageId, [MarshalAs(UnmanagedType.U1)] bool value, [MarshalAs(UnmanagedType.U1)] bool sendReadReport, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNextMessageInList(int listId, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearMessageList(int listId);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MarkMessageRead(int messageId, [MarshalAs(UnmanagedType.U1)] bool value, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetThreadList([MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
+		nsICursorContinueCallback CreateThreadCursor([MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCursorCallback callback);
 	}
 }

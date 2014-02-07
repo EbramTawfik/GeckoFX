@@ -27,11 +27,11 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// Interface to allow the content process socket to reach the IPC bridge.
+    /// Implemented in C++ as TCPSocketChild, referenced as _socketBridge in TCPSocket.js
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a589d96f-7e09-4edf-a01a-eb4951f42f37")]
+	[Guid("292ebb3a-beac-4e06-88b0-b5b4e88ebd1c")]
 	public interface nsITCPSocketChild
 	{
 		
@@ -39,21 +39,43 @@ namespace Gecko
         /// Tell the chrome process to open a corresponding connection with the given parameters
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Open([MarshalAs(UnmanagedType.Interface)] nsITCPSocketInternal socket, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase host, ushort port, [MarshalAs(UnmanagedType.U1)] bool ssl, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase binaryType, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal socketVal, System.IntPtr jsContext);
+		void SendOpen([MarshalAs(UnmanagedType.Interface)] nsITCPSocketInternal socket, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase host, ushort port, [MarshalAs(UnmanagedType.U1)] bool ssl, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase binaryType, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal windowVal, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Tell the chrome process to perform send and update the tracking number.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendSend(Gecko.JsVal data, uint byteOffset, uint byteLength, uint trackingNumber, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Tell the chrome process to perform equivalent operations to all following methods
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Send(Gecko.JsVal data, System.IntPtr jsContext);
+		void SendResume();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Resume();
+		void SendSuspend();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Suspend();
+		void SendClose();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Close();
+		void SendStartTLS();
+		
+		/// <summary>
+        /// Initialize the TCP socket on the child side for IPC. It is called from the child side,
+        /// which is generated in receiving a notification of accepting any open request
+        /// on the parent side. We use single implementation that works on a child process
+        /// as well as in the single process model.
+        ///
+        /// @param socket
+        /// The TCP socket on the child side.
+        /// This instance is connected with the child IPC side of the IPC bridge.
+        /// @param windowVal
+        /// The window object on the child side to create data
+        /// as "jsval" for deserialization.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSocketAndWindow([MarshalAs(UnmanagedType.Interface)] nsITCPSocketInternal socket, Gecko.JsVal windowVal, System.IntPtr jsContext);
 	}
 }

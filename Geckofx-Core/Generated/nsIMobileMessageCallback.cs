@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("edb1de12-8d58-11e2-b382-7bf132b20cb2")]
+	[Guid("0ee2ada1-fa98-40f1-adb3-0d7fd6df3f48")]
 	public interface nsIMobileMessageCallback
 	{
 		
@@ -55,25 +55,10 @@ namespace Gecko
 		void NotifyGetMessageFailed(int error);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyMessageDeleted([MarshalAs(UnmanagedType.U1)] bool deleted);
+		void NotifyMessageDeleted([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] bool[] deleted, uint count);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyDeleteMessageFailed(int error);
-		
-		/// <summary>
-        /// |message| can be nsIDOMMoz{Mms,Sms}Message.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyMessageListCreated(int listId, [MarshalAs(UnmanagedType.Interface)] nsISupports message);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyReadMessageListFailed(int error);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyNextMessageInListGot([MarshalAs(UnmanagedType.Interface)] nsISupports message);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyNoMessageInList();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyMessageMarkedRead([MarshalAs(UnmanagedType.U1)] bool read);
@@ -82,10 +67,19 @@ namespace Gecko
 		void NotifyMarkMessageReadFailed(int error);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyThreadList(Gecko.JsVal threadList, System.IntPtr jsContext);
+		void NotifySegmentInfoForTextGot([MarshalAs(UnmanagedType.Interface)] nsIDOMMozSmsSegmentInfo info);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyThreadListFailed(int error);
+		void NotifyGetSegmentInfoForTextFailed(int error);
+		
+		/// <summary>
+        /// SMSC Address get/set result
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyGetSmscAddress([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSmscAddress);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyGetSmscAddressFailed(int error);
 	}
 	
 	/// <summary>nsIMobileMessageCallbackConsts </summary>
@@ -93,9 +87,9 @@ namespace Gecko
 	{
 		
 		// <summary>
-        // All SMS related errors that could apply to SmsRequest objects.
+        // All SMS related errors.
         // Make sure to keep this list in sync with the list in:
-        // mobile/android/GeckoSmsManager.java
+        // embedding/android/GeckoSmsManager.java
         // </summary>
 		public const ulong SUCCESS_NO_ERROR = 0;
 		
@@ -110,5 +104,20 @@ namespace Gecko
 		
 		// 
 		public const ulong INTERNAL_ERROR = 4;
+		
+		// 
+		public const ulong NO_SIM_CARD_ERROR = 5;
+		
+		// 
+		public const ulong RADIO_DISABLED_ERROR = 6;
+		
+		// 
+		public const ulong INVALID_ADDRESS_ERROR = 7;
+		
+		// 
+		public const ulong FDN_CHECK_ERROR = 8;
+		
+		// 
+		public const ulong NON_ACTIVE_SIM_CARD_ERROR = 9;
 	}
 }

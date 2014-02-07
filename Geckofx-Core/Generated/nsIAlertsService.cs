@@ -40,6 +40,9 @@ namespace Gecko
         /// Displays a sliding notification window.
         ///
         /// @param imageUrl       A URL identifying the image to put in the alert.
+        /// The OS X implemenation limits the amount of time it
+        /// will wait for an icon to load to six seconds. After
+        /// that time the alert will show with no icon.
         /// @param title          The title for the alert.
         /// @param text           The contents of the alert.
         /// @param textClickable  If true, causes the alert text to look like a link
@@ -49,12 +52,10 @@ namespace Gecko
         /// consumer during the alert listener callbacks.
         /// @param alertListener  Used for callbacks. May be null if the caller
         /// doesn't care about callbacks.
-        /// @param name           The name of the notification. This is currently
-        /// only used on OS X with Growl and Android.
-        /// On OS X with Growl, users can disable notifications
-        /// with a given name. On Android the name is hashed
-        /// and used as a notification ID. Notifications will
-        /// replace previous notifications with the same name.
+        /// @param name           The name of the notification. This is currently only
+        /// used on Android and OS X. On Android the name is
+        /// hashed and used as a notification ID. Notifications
+        /// will replace previous notifications with the same name.
         /// @param dir            Bidi override for the title. Valid values are
         /// "auto", "ltr" or "rtl". Only available on supported
         /// platforms.
@@ -76,7 +77,7 @@ namespace Gecko
         /// "alertfinished" notification immediately.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowAlertNotification([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase imageUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text, [MarshalAs(UnmanagedType.U1)] bool textClickable, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase cookie, [MarshalAs(UnmanagedType.Interface)] nsIObserver alertListener, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase dir, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase lang);
+		void ShowAlertNotification([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase imageUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text, [MarshalAs(UnmanagedType.U1)] bool textClickable, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase cookie, [MarshalAs(UnmanagedType.Interface)] nsIObserver alertListener, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase dir, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase lang, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
 		
 		/// <summary>
         /// Close alerts created by the service.
@@ -86,7 +87,7 @@ namespace Gecko
         /// no name (if any) will be closed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CloseAlert([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
+		void CloseAlert([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
 	}
 	
 	/// <summary>nsIAlertsProgressListener </summary>

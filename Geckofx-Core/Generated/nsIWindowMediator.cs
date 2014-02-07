@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("292e17c8-ccc1-42e1-ac8b-af617d5413b1")]
+	[Guid("30cda5a1-a6df-4f32-9a73-0e59a32928c5")]
 	public interface nsIWindowMediator
 	{
 		
@@ -43,7 +43,9 @@ namespace Gecko
         /// windows of this type. ("type" is the
         /// |windowtype| attribute of the XML <window> element.)
         /// If null, all windows will be enumerated.
-        /// @return an enumerator of nsIDOMWindows
+        /// @return an enumerator of nsIDOMWindows.  Note that windows close
+        /// asynchronously in many cases, so windows returned from this
+        /// enumerator can have .closed set to true.  Caveat enumerator!
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -94,6 +96,22 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetMostRecentWindow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aWindowType);
+		
+		/// <summary>
+        /// Return the outer window with the given ID, if any.  Can return null.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow GetOuterWindowWithId(ulong aOuterWindowID);
+		
+		/// <summary>
+        /// Return the outer window with the given current window ID, if any.
+        /// Can return null if no inner window with the ID exists or if it's not
+        /// a current inner anymore.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow GetCurrentInnerWindowWithId(ulong aInnerWindowID);
 		
 		/// <summary>
         ///Add the window to the list of known windows. Listeners (see

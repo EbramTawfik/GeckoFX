@@ -27,11 +27,14 @@ namespace Gecko
 	
 	
 	/// <summary>
+    /// DON'T ADD NEW USES OF THIS INTERFACE TO MOZILLA-CENTRAL. Use
+    /// mozilla::dom::EncodingUtils instead.
     ///
     /// Here Charsets are identified by ASCII strings. Charset alias
     /// resolution is provided by default in most methods. "Raw"
     /// versions that do not need this resolution are also provided.
     ///
+    /// @deprecated Use mozilla::dom::EncodingUtils in mozilla-central instead.
     /// @created         21/Feb/2000
     /// @author  Catalin Rotaru [CATA]
     /// </summary>

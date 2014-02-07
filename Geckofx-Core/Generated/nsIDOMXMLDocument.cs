@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("79547ba5-291e-4775-b71e-2440a4621b54")]
+	[Guid("90903f50-7611-42c1-a13c-dac4e735bee2")]
 	public interface nsIDOMXMLDocument : nsIDOMDocument
 	{
 		
@@ -717,30 +717,6 @@ namespace Gecko
 		new void MozExitPointerLock();
 		
 		/// <summary>
-        /// Inline event handler for readystatechange events.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOnreadystatechangeAttribute(System.IntPtr jsContext);
-		
-		/// <summary>
-        /// Inline event handler for readystatechange events.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnreadystatechangeAttribute(Gecko.JsVal aOnreadystatechange, System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOnmouseenterAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnmouseenterAttribute(Gecko.JsVal aOnmouseenter, System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOnmouseleaveAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnmouseleaveAttribute(Gecko.JsVal aOnmouseleave, System.IntPtr jsContext);
-		
-		/// <summary>
         /// Visibility API implementation.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
@@ -763,6 +739,19 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetCompatModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCompatMode);
+		
+		/// <summary>
+        /// Return nodes that match a given CSS selector.
+        ///
+        /// @see <http://dev.w3.org/2006/webapi/selectors-api/>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement QuerySelector([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase selectors);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMNodeList QuerySelectorAll([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase selectors);
 		
 		/// <summary>
         /// Whether to load synchronously or asynchronously.

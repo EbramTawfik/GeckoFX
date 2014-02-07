@@ -203,6 +203,19 @@ namespace Gecko
 		new void ReadByteArray(uint aLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref byte[] aBytes);
 		
 		/// <summary>
+        /// Read opaque bytes from the stream, storing the results in an ArrayBuffer.
+        ///
+        /// @param aLength the number of bytes that must be read
+        /// @param aArrayBuffer the arraybuffer in which to store the results
+        /// Note: passing view.buffer, where view is an ArrayBufferView of an
+        /// ArrayBuffer, is not valid unless view.byteOffset == 0.
+        ///
+        /// @throws NS_ERROR_FAILURE if it can't read aLength bytes
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ReadArrayBuffer(uint aLength, Gecko.JsVal aArrayBuffer, System.IntPtr jsContext);
+		
+		/// <summary>
         /// Read an object from this stream to satisfy a strong or weak reference
         /// to one of its interfaces.  If the interface was not along the primary
         /// inheritance chain ending in the "root" or XPCOM-identity nsISupports,

@@ -49,7 +49,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("74d13d41-85cd-490f-9942-300d0c01c726")]
+	[Guid("b733194f-6751-4876-a444-bca4ba3f2fcb")]
 	public interface nsIHttpChannelInternal
 	{
 		
@@ -77,6 +77,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetResponseVersion(ref uint major, ref uint minor);
+		
+		/// <summary>
+        /// Retrieves all security messages from the security message queue
+        /// and empties the queue after retrieval
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void TakeAllSecurityMessages(System.IntPtr aMessages);
 		
 		/// <summary>
         /// Helper method to set a cookie with a consumer-provided
@@ -256,5 +263,28 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetLoadUnblockedAttribute([MarshalAs(UnmanagedType.U1)] bool aLoadUnblocked);
+		
+		/// <summary>
+        /// This attribute en/disables the timeout for the first byte of an HTTP
+        /// response. Enabled by default.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetResponseTimeoutEnabledAttribute();
+		
+		/// <summary>
+        /// This attribute en/disables the timeout for the first byte of an HTTP
+        /// response. Enabled by default.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetResponseTimeoutEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aResponseTimeoutEnabled);
+		
+		/// <summary>
+        /// Get value of the URI passed to nsIHttpChannel.redirectTo() if any.
+        /// May return null when redirectTo() has not been called.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIURI GetApiRedirectToURIAttribute();
 	}
 }

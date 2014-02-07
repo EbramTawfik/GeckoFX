@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ffbe684c-ca90-4b58-aa8c-9727f997f86d")]
+	[Guid("2bbf1087-e404-45a5-880a-4f3702aebd4e")]
 	public interface nsIDOMKeyEvent : nsIDOMUIEvent
 	{
 		
@@ -185,18 +185,6 @@ namespace Gecko
 		new nsIDOMEventTarget GetExplicitOriginalTargetAttribute();
 		
 		/// <summary>
-        /// @deprecated Use nsIDOMEvent::stopPropagation.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PreventBubble();
-		
-		/// <summary>
-        /// @deprecated Use nsIDOMEvent::stopPropagation.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PreventCapture();
-		
-		/// <summary>
         /// @deprecated Use nsIDOMEvent::defaultPrevented.
         /// To be removed in bug 691151.
         /// </summary>
@@ -318,6 +306,13 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetLocationAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetRepeatAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey);
 	}
 	
 	/// <summary>nsIDOMKeyEventConsts </summary>

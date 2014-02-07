@@ -46,7 +46,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("002286a8-494b-43b3-8ddd-49e3fc50622b")]
+	[Guid("67bc1691-fbaf-484a-a15b-c96212b45034")]
 	public interface nsIWindowWatcher
 	{
 		
@@ -143,6 +143,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetWindowCreator([MarshalAs(UnmanagedType.Interface)] nsIWindowCreator creator);
+		
+		/// <summary>
+        ///Returns true if a window creator callback has been set, false otherwise.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool HasWindowCreator();
 		
 		/// <summary>
         ///Retrieve the chrome window mapped to the given DOM window. Window

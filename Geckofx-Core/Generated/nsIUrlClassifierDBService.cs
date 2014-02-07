@@ -49,7 +49,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bbb33c65-e783-476c-8db0-6ddb91826c07")]
+	[Guid("9fa11561-5816-4e1b-bcc9-b629ca05cce6")]
 	public interface nsIUrlClassifierUpdateObserver
 	{
 		
@@ -60,18 +60,9 @@ namespace Gecko
         /// @param url The url that was requested.
         /// @param table The table name that this URL's contents will be associated
         /// with.  This should be passed back to beginStream().
-        /// @param serverMAC The server-supplied MAC of the data at this URL.  This
-        /// should be passed back to beginStream().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateUrlRequested([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase url, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase table, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase serverMAC);
-		
-		/// <summary>
-        /// The server has requested that the client get a new client key for
-        /// MAC requests.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RekeyRequested();
+		void UpdateUrlRequested([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase url, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase table);
 		
 		/// <summary>
         /// A stream update has completed.
@@ -105,14 +96,14 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e326ec41-46fd-4127-ad3c-3c58b2cdf196")]
+	[Guid("8a389f21-f821-4e29-9c6b-3de6f33cd7cf")]
 	public interface nsIUrlClassifierDBService
 	{
 		
 		/// <summary>
-        /// Looks up a key in the database.
+        /// Looks up a URI in the database.
         ///
-        /// @param key: The principal containing the information to search.
+        /// @param principal: The principal containing the URI to search.
         /// @param c: The callback will be called with a comma-separated list
         /// of tables to which the key belongs.
         /// </summary>
@@ -146,11 +137,9 @@ namespace Gecko
         ///
         /// @param updater The update observer tied to this update.
         /// @param tables A comma-separated list of tables included in this update.
-        /// @param clientKey The client key for calculating an update's MAC,
-        /// or empty to ignore MAC.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginUpdate([MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierUpdateObserver updater, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tables, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase clientKey);
+		void BeginUpdate([MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierUpdateObserver updater, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tables);
 		
 		/// <summary>
         /// Begin a stream update.  This should be called once per url being
@@ -158,12 +147,9 @@ namespace Gecko
         ///
         /// @param table The table the contents of this stream will be associated
         /// with, or empty for the initial stream.
-        /// @param serverMAC The MAC specified by the update server for this stream.
-        /// If the server has not specified a MAC (which is the case
-        /// for the initial stream), this will be empty.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginStream([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase table, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase serverMAC);
+		void BeginStream([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase table);
 		
 		/// <summary>
         /// Update the table incrementally.
@@ -220,9 +206,9 @@ namespace Gecko
 	{
 		
 		/// <summary>
-        /// Looks up a key in the database.
+        /// Looks up a URI in the database.
         ///
-        /// @param key: The principal containing the information to search.
+        /// @param principal: The principal containing the URI to search.
         /// @param c: The callback will be called with a comma-separated list
         /// of tables to which the key belongs.
         /// </summary>
@@ -256,11 +242,9 @@ namespace Gecko
         ///
         /// @param updater The update observer tied to this update.
         /// @param tables A comma-separated list of tables included in this update.
-        /// @param clientKey The client key for calculating an update's MAC,
-        /// or empty to ignore MAC.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BeginUpdate([MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierUpdateObserver updater, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tables, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase clientKey);
+		new void BeginUpdate([MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierUpdateObserver updater, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tables);
 		
 		/// <summary>
         /// Begin a stream update.  This should be called once per url being
@@ -268,12 +252,9 @@ namespace Gecko
         ///
         /// @param table The table the contents of this stream will be associated
         /// with, or empty for the initial stream.
-        /// @param serverMAC The MAC specified by the update server for this stream.
-        /// If the server has not specified a MAC (which is the case
-        /// for the initial stream), this will be empty.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BeginStream([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase table, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase serverMAC);
+		new void BeginStream([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase table);
 		
 		/// <summary>
         /// Update the table incrementally.

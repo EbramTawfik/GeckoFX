@@ -45,8 +45,7 @@ namespace Gecko
 		/// <summary>
         /// Provides access to string data stored in this property.
         ///
-        /// @return NS_OK The operation succeeded.
-        /// @return Other An error occurred.
+        /// @throws Error An error occurred.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -55,8 +54,7 @@ namespace Gecko
 		/// <summary>
         /// Provides access to string data stored in this property.
         ///
-        /// @return NS_OK The operation succeeded.
-        /// @return Other An error occurred.
+        /// @throws Error An error occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDataAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aData);
@@ -81,8 +79,6 @@ namespace Gecko
         ///
         /// @note
         /// This makes a copy of the string argument passed in.
-        ///
-        /// @return NS_OK The data was successfully stored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDataWithLength(uint length, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=0)] string data);

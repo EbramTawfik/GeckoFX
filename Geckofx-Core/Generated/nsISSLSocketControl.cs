@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bb2bb490-3ba4-4254-b8f5-8b43c7b714ea")]
+	[Guid("4080f700-9c16-4884-8f8d-e28094377084")]
 	public interface nsISSLSocketControl
 	{
 		
@@ -69,7 +69,9 @@ namespace Gecko
         ///       tunnel during the SSL handshake. The NPNList is the list
         ///       of offered client side protocols. setNPNList() needs to
         ///       be called before any data is read or written (including the
-        ///       handshake to be setup correctly. </summary>
+        ///       handshake to be setup correctly. The server determines the
+        ///       priority when multiple matches occur, but if there is no overlap
+        ///       the first protocol in the list is used. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetNPNList(System.IntPtr aNPNList);
 		
@@ -93,9 +95,53 @@ namespace Gecko
 		bool JoinConnection([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase npnProtocol, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase hostname, int port);
 		
 		/// <summary>
+        ///The Key Exchange Algorithm is used when determining whether or
+        ///       not to do false start.
+        ///       After a handshake is complete it can be read from KEAUsed,
+        ///       before a handshake is started it may be set through KEAExpected.
+        ///       The values correspond to the SSLKEAType enum in NSS or the
+        ///       KEY_EXCHANGE_UNKNOWN constant defined below.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		short GetKEAUsedAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		short GetKEAExpectedAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetKEAExpectedAttribute(short aKEAExpected);
+		
+		/// <summary>
         /// The original flags from the socket provider.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetProviderFlagsAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		short GetSSLVersionUsedAttribute();
+	}
+	
+	/// <summary>nsISSLSocketControlConsts </summary>
+	public class nsISSLSocketControlConsts
+	{
+		
+		// 
+		public const int KEY_EXCHANGE_UNKNOWN = -1;
+		
+		// <summary>
+        //These values are defined by TLS. </summary>
+		public const int SSL_VERSION_3 = 0x0300;
+		
+		// 
+		public const int TLS_VERSION_1 = 0x0301;
+		
+		// 
+		public const int TLS_VERSION_1_1 = 0x0302;
+		
+		// 
+		public const int TLS_VERSION_1_2 = 0x0303;
+		
+		// 
+		public const int SSL_VERSION_UNKNOWN = -1;
 	}
 }

@@ -27,41 +27,43 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///The Sidebar API for 3rd parties </summary>
+    ///-*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("41a22fb6-39e2-45e1-95c5-7e8cea36575d")]
+	[Guid("351887ca-56b2-4458-96fc-88baeb57b6e7")]
 	public interface nsISidebar
 	{
 		
 		/// <summary>
-        ///The Sidebar API for 3rd parties </summary>
+        ///-*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+        ///
+        /// This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddPanel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aTitle, [MarshalAs(UnmanagedType.LPStr)] string aContentURL, [MarshalAs(UnmanagedType.LPStr)] string aCustomizeURL);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddPersistentPanel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aTitle, [MarshalAs(UnmanagedType.LPStr)] string aContentURL, [MarshalAs(UnmanagedType.LPStr)] string aCustomizeURL);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddSearchEngine([MarshalAs(UnmanagedType.LPStr)] string engineURL, [MarshalAs(UnmanagedType.LPStr)] string iconURL, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string suggestedTitle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string suggestedCategory);
+		void AddSearchEngine([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase engineURL, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase iconURL, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase suggestedTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase suggestedCategory);
 	}
 	
 	/// <summary>nsISidebarExternal </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4350fb73-9305-41df-a669-11d26222d420")]
+	[Guid("5895076f-e28e-434a-9fdb-a69f94eb323f")]
 	public interface nsISidebarExternal
 	{
 		
 		/// <summary>Member AddSearchProvider </summary>
 		/// <param name='aDescriptionURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddSearchProvider([MarshalAs(UnmanagedType.LPStr)] string aDescriptionURL);
+		void AddSearchProvider([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDescriptionURL);
 		
 		/// <summary>Member IsSearchProviderInstalled </summary>
 		/// <param name='aSearchURL'> </param>
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint IsSearchProviderInstalled([MarshalAs(UnmanagedType.LPStr)] string aSearchURL);
+		uint IsSearchProviderInstalled([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchURL);
 	}
 }

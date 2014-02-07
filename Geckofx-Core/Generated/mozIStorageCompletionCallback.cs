@@ -34,14 +34,23 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0bfee0c4-2c24-400e-b18e-b5bb41a032c8")]
+	[Guid("8cbf2dc2-91e0-44bc-984f-553638412071")]
 	public interface mozIStorageCompletionCallback
 	{
 		
 		/// <summary>
         /// Indicates that the event this callback was passed in for has completed.
+        ///
+        /// @param status
+        /// The status of the call. Generally NS_OK if the operation
+        /// completed successfully.
+        /// @param value
+        /// If the operation produces a result, the result. Otherwise,
+        /// |null|.
+        ///
+        /// @see The calling method for expected values.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Complete();
+		void Complete(int status, [MarshalAs(UnmanagedType.Interface)] nsISupports value);
 	}
 }

@@ -27,10 +27,11 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///Select a camera to use. </summary>
+    ///The position information to record in the image header.
+    ///   'NaN' indicates the information is not available. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("177472c9-f83d-48b5-8782-03b43b27f25d")]
+	[Guid("0711a4af-73c2-481d-85bc-0ba3ec36c004")]
 	public interface nsICameraCapabilities
 	{
 		
@@ -45,6 +46,12 @@ namespace Gecko
         ///       supported for picture taking </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetPictureSizesAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        ///an array of objects with 'height' and 'width' properties
+        ///       supported for thumbnail sizes in taken pictures </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetThumbnailSizesAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         ///an array of strings, e.g. [ "jpeg", "rgb565" ] </summary>
@@ -238,6 +245,19 @@ namespace Gecko
 		void HandleStateChange([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newState);
 	}
 	
+	/// <summary>nsICameraPreviewStateChange </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("d1634592-43fd-4117-a2b2-419aec841cc4")]
+	public interface nsICameraPreviewStateChange
+	{
+		
+		/// <summary>Member HandleStateChange </summary>
+		/// <param name='newState'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void HandleStateChange([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newState);
+	}
+	
 	/// <summary>nsICameraReleaseCallback </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -263,329 +283,16 @@ namespace Gecko
 		void HandleEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase error);
 	}
 	
-	/// <summary>
-    ///attributes here affect the preview, any pictures taken, and/or
-    ///    any video recorded by the camera. </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c8e7418d-8913-4b66-bd9f-562fba627266")]
-	public interface nsICameraControl
-	{
-		
-		/// <summary>
-        ///attributes here affect the preview, any pictures taken, and/or
-        ///    any video recorded by the camera. </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICameraCapabilities GetCapabilitiesAttribute();
-		
-		/// <summary>
-        ///one of the vales chosen from capabilities.effects;
-        ///       default is "none" </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetEffectAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEffect);
-		
-		/// <summary>
-        ///one of the vales chosen from capabilities.effects;
-        ///       default is "none" </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEffectAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEffect);
-		
-		/// <summary>
-        ///one of the values chosen from capabilities.whiteBalanceModes;
-        ///       default is "auto" </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWhiteBalanceModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWhiteBalanceMode);
-		
-		/// <summary>
-        ///one of the values chosen from capabilities.whiteBalanceModes;
-        ///       default is "auto" </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWhiteBalanceModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWhiteBalanceMode);
-		
-		/// <summary>
-        ///one of the valus chosen from capabilities.sceneModes;
-        ///       default is "auto" </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSceneModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSceneMode);
-		
-		/// <summary>
-        ///one of the valus chosen from capabilities.sceneModes;
-        ///       default is "auto" </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSceneModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSceneMode);
-		
-		/// <summary>
-        ///one of the values chosen from capabilities.flashModes;
-        ///       default is "auto" </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFlashModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlashMode);
-		
-		/// <summary>
-        ///one of the values chosen from capabilities.flashModes;
-        ///       default is "auto" </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFlashModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlashMode);
-		
-		/// <summary>
-        ///one of the values chosen from capabilities.focusModes;
-        ///       default is "auto", if supported, or "fixed" </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFocusModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFocusMode);
-		
-		/// <summary>
-        ///one of the values chosen from capabilities.focusModes;
-        ///       default is "auto", if supported, or "fixed" </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFocusModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFocusMode);
-		
-		/// <summary>
-        ///one of the values chosen from capabilities.zoomRatios; other
-        ///       values will be rounded to the nearest supported value;
-        ///       default is 1.0 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetZoomAttribute();
-		
-		/// <summary>
-        ///one of the values chosen from capabilities.zoomRatios; other
-        ///       values will be rounded to the nearest supported value;
-        ///       default is 1.0 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetZoomAttribute(double aZoom);
-		
-		/// <summary>
-        ///an array of one or more objects that define where the
-        ///       camera will perform light metering, each defining the properties:
-        ///        {
-        ///            top: -1000,
-        ///            left: -1000,
-        ///            bottom: 1000,
-        ///            right: 1000,
-        ///            weight: 1000
-        ///        }
-        ///        'top', 'left', 'bottom', and 'right' all range from -1000 at
-        ///        the top-/leftmost of the sensor to 1000 at the bottom-/rightmost
-        ///        of the sensor.
-        ///        objects missing one or more of these properties will be ignored;
-        ///        if the array contains more than capabilities.maxMeteringAreas,
-        ///        extra areas will be ignored.
-        ///        this attribute can be set to null to allow the camera to determine
-        ///        where to perform light metering. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetMeteringAreasAttribute(System.IntPtr jsContext);
-		
-		/// <summary>
-        ///an array of one or more objects that define where the
-        ///       camera will perform light metering, each defining the properties:
-        ///        {
-        ///            top: -1000,
-        ///            left: -1000,
-        ///            bottom: 1000,
-        ///            right: 1000,
-        ///            weight: 1000
-        ///        }
-        ///        'top', 'left', 'bottom', and 'right' all range from -1000 at
-        ///        the top-/leftmost of the sensor to 1000 at the bottom-/rightmost
-        ///        of the sensor.
-        ///        objects missing one or more of these properties will be ignored;
-        ///        if the array contains more than capabilities.maxMeteringAreas,
-        ///        extra areas will be ignored.
-        ///        this attribute can be set to null to allow the camera to determine
-        ///        where to perform light metering. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMeteringAreasAttribute(Gecko.JsVal aMeteringAreas, System.IntPtr jsContext);
-		
-		/// <summary>
-        ///an array of one or more objects that define where the camera will
-        ///       perform auto-focusing, with the same definition as meteringAreas.
-        ///       if the array contains more than capabilities.maxFocusAreas, extra
-        ///       areas will be ignored.
-        ///       this attribute can be set to null to allow the camera to determine
-        ///       where to focus. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetFocusAreasAttribute(System.IntPtr jsContext);
-		
-		/// <summary>
-        ///an array of one or more objects that define where the camera will
-        ///       perform auto-focusing, with the same definition as meteringAreas.
-        ///       if the array contains more than capabilities.maxFocusAreas, extra
-        ///       areas will be ignored.
-        ///       this attribute can be set to null to allow the camera to determine
-        ///       where to focus. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFocusAreasAttribute(Gecko.JsVal aFocusAreas, System.IntPtr jsContext);
-		
-		/// <summary>
-        ///focal length in millimetres </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetFocalLengthAttribute();
-		
-		/// <summary>
-        ///the distances in metres to where the image subject appears to be
-        ///       in focus.  'focusDistanceOptimum' is where the subject will appear
-        ///       sharpest; the difference between 'focusDistanceFar' and
-        ///       'focusDistanceNear' is the image's depth of field.
-        ///       'focusDistanceFar' may be infinity. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetFocusDistanceNearAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetFocusDistanceOptimumAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetFocusDistanceFarAttribute();
-		
-		/// <summary>
-        ///'compensation' is optional, and if missing, will
-        ///       set the camera to use automatic exposure compensation.
-        ///       acceptable values must range from minExposureCompensation
-        ///       to maxExposureCompensation in steps of stepExposureCompensation;
-        ///       invalid values will be rounded to the nearest valid value. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExposureCompensation(Gecko.JsVal compensation, System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetExposureCompensationAttribute();
-		
-		/// <summary>
-        ///the function to call on the camera's shutter event, to trigger
-        ///       a shutter sound and/or a visual shutter indicator. </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICameraShutterCallback GetOnShutterAttribute();
-		
-		/// <summary>
-        ///the function to call on the camera's shutter event, to trigger
-        ///       a shutter sound and/or a visual shutter indicator. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnShutterAttribute([MarshalAs(UnmanagedType.Interface)] nsICameraShutterCallback aOnShutter);
-		
-		/// <summary>
-        ///the function to call when the camera hardware is closed
-        ///       by the underlying framework, e.g. when another app makes a more
-        ///       recent call to get the camera. </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICameraClosedCallback GetOnClosedAttribute();
-		
-		/// <summary>
-        ///the function to call when the camera hardware is closed
-        ///       by the underlying framework, e.g. when another app makes a more
-        ///       recent call to get the camera. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnClosedAttribute([MarshalAs(UnmanagedType.Interface)] nsICameraClosedCallback aOnClosed);
-		
-		/// <summary>
-        ///the function to call when the recorder changes state, either because
-        ///       the recording process encountered an error, or because one of the
-        ///       recording limits (see CameraStartRecordingOptions) was reached. </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICameraRecorderStateChange GetOnRecorderStateChangeAttribute();
-		
-		/// <summary>
-        ///the function to call when the recorder changes state, either because
-        ///       the recording process encountered an error, or because one of the
-        ///       recording limits (see CameraStartRecordingOptions) was reached. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnRecorderStateChangeAttribute([MarshalAs(UnmanagedType.Interface)] nsICameraRecorderStateChange aOnRecorderStateChange);
-		
-		/// <summary>
-        ///tell the camera to attempt to focus the image </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AutoFocus([MarshalAs(UnmanagedType.Interface)] nsICameraAutoFocusCallback onSuccess, [MarshalAs(UnmanagedType.Interface)] nsICameraErrorCallback onError);
-		
-		/// <summary>
-        ///capture an image and return it as a blob to the 'onSuccess' callback;
-        ///       if the camera supports it, this may be invoked while the camera is
-        ///       already recording video.
-        ///       invoking this function will stop the preview stream, which must be
-        ///       manually restarted (e.g. by calling .play() on it). </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TakePicture(Gecko.JsVal aOptions, [MarshalAs(UnmanagedType.Interface)] nsICameraTakePictureCallback onSuccess, [MarshalAs(UnmanagedType.Interface)] nsICameraErrorCallback onError, System.IntPtr jsContext);
-		
-		/// <summary>
-        ///get a media stream to be used as a camera viewfinder in video mode;
-        ///       'aOptions' is an CameraRecorderOptions object. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPreviewStreamVideoMode(Gecko.JsVal aOptions, [MarshalAs(UnmanagedType.Interface)] nsICameraPreviewStreamCallback onSuccess, [MarshalAs(UnmanagedType.Interface)] nsICameraErrorCallback onError, System.IntPtr jsContext);
-		
-		/// <summary>
-        ///start recording video; 'aOptions' is a
-        ///       CameraStartRecordingOptions object. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartRecording(Gecko.JsVal aOptions, [MarshalAs(UnmanagedType.Interface)] nsIDOMDeviceStorage storageArea, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase filename, [MarshalAs(UnmanagedType.Interface)] nsICameraStartRecordingCallback onSuccess, [MarshalAs(UnmanagedType.Interface)] nsICameraErrorCallback onError, System.IntPtr jsContext);
-		
-		/// <summary>
-        ///stop precording video. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StopRecording();
-		
-		/// <summary>
-        ///get a media stream to be used as a camera viewfinder; the options
-        ///       define the desired frame size of the preview, chosen from
-        ///       capabilities.previewSizes, e.g.:
-        ///        {
-        ///            height: 640,
-        ///            width:  480,
-        ///         }
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPreviewStream(Gecko.JsVal aOptions, [MarshalAs(UnmanagedType.Interface)] nsICameraPreviewStreamCallback onSuccess, [MarshalAs(UnmanagedType.Interface)] nsICameraErrorCallback onError, System.IntPtr jsContext);
-		
-		/// <summary>
-        ///call in or after the takePicture() onSuccess callback to
-        ///       resume the camera preview stream. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResumePreview();
-		
-		/// <summary>
-        ///release the camera so that other applications can use it; you should
-        ///       probably call this whenever the camera is not longer in the foreground
-        ///       (depending on your usage model).
-        ///       the callbacks are optional, unless you really need to know when
-        ///       the hardware is ultimately released.
-        ///       once this is called, the camera control object is to be considered
-        ///       defunct; a new instance will need to be created to access the camera. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Release([MarshalAs(UnmanagedType.Interface)] nsICameraReleaseCallback onSuccess, [MarshalAs(UnmanagedType.Interface)] nsICameraErrorCallback onError);
-	}
-	
 	/// <summary>nsICameraGetCameraCallback </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a267afbc-d91c-413a-8de5-0b94aecffa3e")]
+	[Guid("16de7703-dc43-4766-99c5-ff30a9ab92d7")]
 	public interface nsICameraGetCameraCallback
 	{
 		
 		/// <summary>Member HandleEvent </summary>
 		/// <param name='camera'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleEvent([MarshalAs(UnmanagedType.Interface)] nsICameraControl camera);
-	}
-	
-	/// <summary>nsIDOMCameraManager </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("671ee624-0336-441a-a24e-26b5319f14fe")]
-	public interface nsIDOMCameraManager
-	{
-		
-		/// <summary>
-        ///get a camera instance; options will be used to specify which
-        ///       camera to get from the list returned by getListOfCameras(), e.g.:
-        ///        {
-        ///            camera: front
-        ///        }
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCamera(Gecko.JsVal aOptions, [MarshalAs(UnmanagedType.Interface)] nsICameraGetCameraCallback onSuccess, [MarshalAs(UnmanagedType.Interface)] nsICameraErrorCallback onError, System.IntPtr jsContext);
-		
-		/// <summary>
-        ///return a JSON array of camera   identifiers, e.g.
-        ///        [ "front", "back" ]
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetListOfCameras(System.IntPtr jsContext);
+		void HandleEvent([MarshalAs(UnmanagedType.Interface)] nsISupports camera);
 	}
 }

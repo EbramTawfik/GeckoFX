@@ -44,7 +44,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Write(uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] string c);
+		bool Write(uint aCount, char[] c);
 		
 		/// <summary>
         /// Write a string to the stream.

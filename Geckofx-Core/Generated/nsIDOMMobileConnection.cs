@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2065b3c3-e876-4be1-b373-428ee254a63e")]
+	[Guid("389ad352-4e43-4c1a-85e9-bae745554326")]
 	public interface nsIDOMMozMobileConnection : nsIDOMEventTarget
 	{
 		
@@ -197,7 +197,7 @@ namespace Gecko
         /// Dispatch an event.
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
-        /// dispatch nsIDOMEvent, not only nsEvent.
+        /// dispatch nsIDOMEvent, not only WidgetEvent.
         /// @param aPresContext the current presentation context, can be nullptr.
         /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
@@ -212,15 +212,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void DispatchDOMEvent(System.IntPtr aEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aDOMEvent, System.IntPtr aPresContext, System.IntPtr aEventStatus);
-		
-		/// <summary>
-        /// Get the event listener manager, the guy you talk to to register for events
-        /// on this node.
-        /// @param aMayCreate If PR_FALSE, returns a listener manager only if
-        /// one already exists.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.U1)] bool aMayCreate);
 		
 		/// <summary>
         /// Get the script context in which the event handlers should be run.
@@ -238,20 +229,14 @@ namespace Gecko
 		new System.IntPtr GetJSContextForEventHandlers();
 		
 		/// <summary>
-        /// Indicates the state of the device's ICC card.
-        ///
-        /// Possible values: null, 'unknown', 'absent', 'pinRequired', 'pukRequired',
-        /// 'networkLocked', 'corporateLocked', 'serviceProviderLocked', 'ready'.
+        /// These two fields can be accessed by privileged applications with the
+        /// 'mobilenetwork' permission.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCardStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCardState);
+		void GetLastKnownNetworkAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastKnownNetwork);
 		
-		/// <summary>
-        /// Information stored in the device's ICC card.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozMobileICCInfo GetIccInfoAttribute();
+		void GetLastKnownHomeNetworkAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastKnownHomeNetwork);
 		
 		/// <summary>
         /// Information about the voice connection.
@@ -268,6 +253,13 @@ namespace Gecko
 		nsIDOMMozMobileConnectionInfo GetDataAttribute();
 		
 		/// <summary>
+        /// Integrated Circuit Card Identifier of the SIM this
+        /// mobile connection corresponds to.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetIccIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIccId);
+		
+		/// <summary>
         /// The selection mode of the voice and data networks.
         ///
         /// Possible values: null (unknown), 'automatic', 'manual'
@@ -276,11 +268,22 @@ namespace Gecko
 		void GetNetworkSelectionModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNetworkSelectionMode);
 		
 		/// <summary>
-        /// IccManager provides access to ICC related funcionality.
+        /// The current radio state.
+        ///
+        /// Possible values: null (unknown), 'enabling', 'enabled', 'disabling',
+        /// 'disabled'
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetRadioStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRadioState);
+		
+		/// <summary>
+        /// Array of network types that are supported by this radio.
+        ///
+        /// Possible values: 'gsm', 'wcdma', 'cdma', 'evdo', 'lte'
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozIccManager GetIccAttribute();
+		nsIVariant GetSupportedNetworkTypesAttribute();
 		
 		/// <summary>
         /// Search for available networks.
@@ -328,139 +331,109 @@ namespace Gecko
 		nsIDOMDOMRequest SelectNetworkAutomatically();
 		
 		/// <summary>
-        /// Find out about the status of an ICC lock (e.g. the PIN lock).
+        /// Set preferred network type
         ///
-        /// @param lockType
-        /// Identifies the lock type, e.g. "pin" for the PIN lock, "fdn" for
-        /// the FDN lock.
+        /// @param type
+        /// DOMString indicates the desired preferred network type.
+        /// Possible values: 'wcdma/gsm', 'gsm', 'wcdma', 'wcdma/gsm-auto',
+        /// 'cdma/evdo', 'cdma', 'evdo', or
+        /// 'wcdma/gsm/cdma/evdo'.
         ///
-        /// @return a DOM Request.
-        /// The request's result will be an object containing
-        /// information about the specified lock's status,
-        /// e.g. {lockType: "pin", enabled: true}.
+        /// If successful, the request's onsuccess will be called.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// 'InvalidParameter', 'ModeNotSupported' or 'GenericFailure'
+        ///
+        /// TODO: param "type" should be a WebIDL enum when this interface is converted
+        /// to WebIDL
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest GetCardLock([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase lockType);
+		nsIDOMDOMRequest SetPreferredNetworkType([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type);
 		
 		/// <summary>
-        /// Unlock a card lock.
+        /// Query current preferred network type
         ///
-        /// @param info
-        /// An object containing the information necessary to unlock
-        /// the given lock. At a minimum, this object must have a
-        /// "lockType" attribute which specifies the type of lock, e.g.
-        /// "pin" for the PIN lock. Other attributes are dependent on
-        /// the lock type.
+        /// If successful, the request's onsuccess will be called. And the request's
+        /// result will be a string indicating the current preferred network type.
+        /// The value will be either 'wcdma/gsm', 'gsm', 'wcdma', 'wcdma/gsm-auto',
+        /// 'cdma/evdo', 'cdma', 'evdo', or 'wcdma/gsm/cdma/evdo'.
         ///
-        /// Examples:
-        ///
-        /// (1) Unlocking the PIN:
-        ///
-        /// unlockCardLock({lockType: "pin",
-        /// pin: "..."});
-        ///
-        /// (2) Unlocking the PUK and supplying a new PIN:
-        ///
-        /// unlockCardLock({lockType: "puk",
-        /// puk: "...",
-        /// newPin: "..."});
-        ///
-        /// (3) Network depersonalization. Unlocking the network control key (NCK).
-        ///
-        /// unlockCardLock({lockType: "nck",
-        /// pin: "..."});
-        ///
-        /// (4) Corporate depersonalization. Unlocking the corporate control key (CCK).
-        ///
-        /// unlockCardLock({lockType: "cck",
-        /// pin: "..."});
-        ///
-        /// (5) Service Provider depersonalization. Unlocking the service provider
-        /// control key (SPCK).
-        ///
-        /// unlockCardLock({lockType: "spck",
-        /// pin: "..."});
-        ///
-        /// @return a nsIDOMDOMRequest.
-        /// The request's result will be an object containing
-        /// information about the unlock operation.
-        ///
-        /// Examples:
-        ///
-        /// (1) Unlocking failed:
-        ///
-        /// {
-        /// lockType:   "pin",
-        /// success:    false,
-        /// retryCount: 2
-        /// }
-        ///
-        /// (2) Unlocking succeeded:
-        ///
-        /// {
-        /// lockType:  "pin",
-        /// success:   true
-        /// }
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// or 'GenericFailure'
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest UnlockCardLock(Gecko.JsVal info);
+		nsIDOMDOMRequest GetPreferredNetworkType();
 		
 		/// <summary>
-        /// Modify the state of a card lock.
+        /// Set roaming preference
         ///
-        /// @param info
-        /// An object containing information about the lock and
-        /// how to modify its state. At a minimum, this object
-        /// must have a "lockType" attribute which specifies the
-        /// type of lock, e.g. "pin" for the PIN lock. Other
-        /// attributes are dependent on the lock type.
+        /// @param mode
+        /// DOMString indicates the desired roaming preference.
+        /// Possible values: 'home', 'affiliated', or 'any'.
         ///
-        /// Examples:
+        /// If successful, the request's onsuccess will be called.
         ///
-        /// (1a) Disabling the PIN lock:
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// 'IllegalSIMorME', 'InvalidParameter', or 'GenericFailure'
         ///
-        /// setCardLock({lockType: "pin",
-        /// pin: "...",
-        /// enabled: false});
-        ///
-        /// (1b) Disabling the FDN lock:
-        ///
-        /// setCardLock({lockType: "fdn",
-        /// pin2: "...",
-        /// enabled: false});
-        ///
-        /// (2) Changing the PIN:
-        ///
-        /// setCardLock({lockType: "pin",
-        /// pin: "...",
-        /// newPin: "..."});
-        ///
-        /// @return a nsIDOMDOMRequest.
-        /// The request's result will be an object containing
-        /// information about the operation.
-        ///
-        /// Examples:
-        ///
-        /// (1) Enabling/Disabling card lock failed or change card lock failed.
-        ///
-        /// {
-        /// lockType: "pin",
-        /// success: false,
-        /// retryCount: 2
-        /// }
-        ///
-        /// (2) Enabling/Disabling card lock succeed or change card lock succeed.
-        ///
-        /// {
-        /// lockType: "pin",
-        /// success: true
-        /// }
+        /// TODO: param "mode" should be a WebIDL enum when this interface is converted
+        /// to WebIDL
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SetCardLock(Gecko.JsVal info);
+		nsIDOMDOMRequest SetRoamingPreference([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mode);
+		
+		/// <summary>
+        /// Query current roaming preference
+        ///
+        /// If successful, the request's onsuccess will be called. And the request's
+        /// result will be a string indicating the current roaming preference.
+        /// The value will be either 'home', 'affiliated', or 'any'.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// 'IllegalSIMorME', or 'GenericFailure'
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetRoamingPreference();
+		
+		/// <summary>
+        /// Set voice privacy preference.
+        ///
+        /// @param enabled
+        /// Boolean indicates the preferred voice privacy mode used in voice
+        /// scrambling in CDMA networks. 'True' means the enhanced voice security
+        /// is required.
+        ///
+        /// If successful, the request's onsuccess will be called.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// 'IllegalSIMorME', 'InvalidParameter', or 'GenericFailure'
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetVoicePrivacyMode([MarshalAs(UnmanagedType.U1)] bool enabled);
+		
+		/// <summary>
+        /// Query current voice privacy mode.
+        ///
+        /// If successful, the request's onsuccess will be called. And the request's
+        /// result will be a boolean indicating the current voice privacy mode.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// 'IllegalSIMorME', or 'GenericFailure'
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetVoicePrivacyMode();
 		
 		/// <summary>
         /// Send a MMI message.
@@ -501,7 +474,7 @@ namespace Gecko
         ///
         /// Otherwise, the request's onerror will be called, and the request's error
         /// will be either 'RadioNotAvailable', 'RequestNotSupported',
-        /// 'IllegalSIMorME', or 'GenericFailure'
+        /// 'IllegalSIMorME', 'InvalidParameter', or 'GenericFailure'
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -520,39 +493,159 @@ namespace Gecko
         ///
         /// Otherwise, the request's onerror will be called, and the request's error
         /// will be either 'RadioNotAvailable', 'RequestNotSupported',
-        /// or 'GenericFailure'.
+        /// 'InvalidParameter', or 'GenericFailure'.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest GetCallForwardingOption(ushort reason);
 		
 		/// <summary>
-        /// The 'cardstatechange' event is notified when the 'cardState' attribute
-        /// changes value.
+        /// Configures call barring option.
+        ///
+        /// @param option
+        /// An object containing the call barring rule to set.
+        /// @see MozCallBarringOption for the detail of info.
+        ///
+        /// If successful, the request's onsuccess will be called.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// 'IllegalSIMorME', 'InvalidParameter', or 'GenericFailure'
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOncardstatechangeAttribute(System.IntPtr jsContext);
+		nsIDOMDOMRequest SetCallBarringOption(Gecko.JsVal option);
 		
 		/// <summary>
-        /// The 'cardstatechange' event is notified when the 'cardState' attribute
-        /// changes value.
+        /// Queries current call barring status.
+        ///
+        /// @param info
+        /// An object containing the call barring rule to query. No need to
+        /// specify 'enabled' property.
+        /// @see MozCallBarringOption for the detail of info.
+        ///
+        /// If successful, the request's onsuccess will be called, and the request's
+        /// result will be an object of MozCallBarringOption with correct 'enabled'
+        /// property indicating the status of this rule.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// 'InvalidParameter', or 'GenericFailure'.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOncardstatechangeAttribute(Gecko.JsVal aOncardstatechange, System.IntPtr jsContext);
+		nsIDOMDOMRequest GetCallBarringOption(Gecko.JsVal option);
 		
 		/// <summary>
-        /// The 'iccinfochange' event is notified whenever the icc info object
-        /// changes.
+        /// Change call barring facility password.
+        ///
+        /// @param info
+        /// An object containing information about pin and newPin, and,
+        /// this object must have both "pin" and "newPin" attributes
+        /// to change the call barring facility password.
+        ///
+        /// Example:
+        ///
+        /// changeCallBarringPassword({pin: "...",
+        /// newPin: "..."});
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOniccinfochangeAttribute(System.IntPtr jsContext);
+		nsIDOMDOMRequest ChangeCallBarringPassword(Gecko.JsVal info);
 		
 		/// <summary>
-        /// The 'iccinfochange' event is notified whenever the icc info object
-        /// changes.
+        /// Configures call waiting options.
+        ///
+        /// @param enabled
+        /// Value containing the desired call waiting status.
+        ///
+        /// If successful, the request's onsuccess will be called.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// 'IllegalSIMorME', or 'GenericFailure'
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOniccinfochangeAttribute(Gecko.JsVal aOniccinfochange, System.IntPtr jsContext);
+		nsIDOMDOMRequest SetCallWaitingOption([MarshalAs(UnmanagedType.U1)] bool enabled);
+		
+		/// <summary>
+        /// Queries current call waiting options.
+        ///
+        /// If successful, the request's onsuccess will be called, and the request's
+        /// result will be a boolean indicating the call waiting status.
+        ///
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// or 'GenericFailure'.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetCallWaitingOption();
+		
+		/// <summary>
+        /// Enables or disables the presentation of the calling line identity (CLI) to
+        /// the called party when originating a call.
+        ///
+        /// @param clirMode
+        /// Is one of the CLIR_* constants.
+        ///
+        /// If successful, the request's onsuccess will be called.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetCallingLineIdRestriction(ushort clirMode);
+		
+		/// <summary>
+        /// Queries current CLIR status.
+        ///
+        /// If successful, the request's onsuccess will be called, and the request's
+        /// result will be a DOMCLIRStatus dictionary containing CLIR 'n' and 'm'
+        /// parameter.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// or 'GenericFailure'.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetCallingLineIdRestriction();
+		
+		/// <summary>
+        /// Exit emergency callback mode.
+        ///
+        /// If successful, the request's onsuccess will be called.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RequestNotSupported'  or 'GenericFailure'.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest ExitEmergencyCbMode();
+		
+		/// <summary>
+        /// Set radio enabled/disabled.
+        ///
+        /// @param enabled
+        /// True to enable the radio.
+        ///
+        /// If successful, the request's onsuccess will be called.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'InvalidStateError', 'RadioNotAvailable', or
+        /// 'GenericFailure'.
+        ///
+        /// Note: Request is not available when radioState is null, 'enabling', or
+        /// 'disabling'. Calling the function in above conditions will receive
+        /// 'InvalidStateError' error.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetRadioEnabled([MarshalAs(UnmanagedType.U1)] bool enabled);
 		
 		/// <summary>
         /// The 'voicechange' event is notified whenever the voice connection object
@@ -611,20 +704,6 @@ namespace Gecko
 		void SetOndataerrorAttribute(Gecko.JsVal aOndataerror, System.IntPtr jsContext);
 		
 		/// <summary>
-        /// The 'icccardlockerror' event is notified whenever 'unlockCardLock' or
-        /// 'setCardLock' fails.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOnicccardlockerrorAttribute(System.IntPtr jsContext);
-		
-		/// <summary>
-        /// The 'icccardlockerror' event is notified whenever 'unlockCardLock' or
-        /// 'setCardLock' fails.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnicccardlockerrorAttribute(Gecko.JsVal aOnicccardlockerror, System.IntPtr jsContext);
-		
-		/// <summary>
         /// The 'oncfstatechange' event is notified whenever the call forwarding
         /// state changes.
         /// </summary>
@@ -637,6 +716,62 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOncfstatechangeAttribute(Gecko.JsVal aOncfstatechange, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'emergencycbmodechange' event is notified whenever the emergency
+        /// callback mode changes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnemergencycbmodechangeAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'emergencycbmodechange' event is notified whenever the emergency
+        /// callback mode changes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnemergencycbmodechangeAttribute(Gecko.JsVal aOnemergencycbmodechange, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'onotastatuschange' event is notified whenever the ota provision status
+        /// changes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnotastatuschangeAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'onotastatuschange' event is notified whenever the ota provision status
+        /// changes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnotastatuschangeAttribute(Gecko.JsVal aOnotastatuschange, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'oniccchange' event is notified whenever the iccid value
+        /// changes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOniccchangeAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'oniccchange' event is notified whenever the iccid value
+        /// changes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOniccchangeAttribute(Gecko.JsVal aOniccchange, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'onradiostatechange' event is notified whenever the radio state
+        /// changes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnradiostatechangeAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'onradiostatechange' event is notified whenever the radio state
+        /// changes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnradiostatechangeAttribute(Gecko.JsVal aOnradiostatechange, System.IntPtr jsContext);
 	}
 	
 	/// <summary>nsIDOMMozMobileConnectionConsts </summary>
@@ -672,12 +807,52 @@ namespace Gecko
 		
 		// 
 		public const long ICC_SERVICE_CLASS_MAX = (1<<7);
+		
+		// <summary>
+        // Call barring program.
+        //
+        // (0) all outgoing.
+        // (1) outgoing international.
+        // (2) outgoing international except to home country.
+        // (3) all incoming.
+        // (4) incoming when roaming outside the home country.
+        // </summary>
+		public const long CALL_BARRING_PROGRAM_ALL_OUTGOING = 0;
+		
+		// 
+		public const long CALL_BARRING_PROGRAM_OUTGOING_INTERNATIONAL = 1;
+		
+		// 
+		public const long CALL_BARRING_PROGRAM_OUTGOING_INTERNATIONAL_EXCEPT_HOME = 2;
+		
+		// 
+		public const long CALL_BARRING_PROGRAM_ALL_INCOMING = 3;
+		
+		// 
+		public const long CALL_BARRING_PROGRAM_INCOMING_ROAMING = 4;
+		
+		// <summary>
+        // Calling line identification restriction constants.
+        //
+        // @see 3GPP TS 27.007 7.7 Defined values
+        //
+        // (0) Uses subscription default value.
+        // (1) Restricts CLI presentation.
+        // (2) Allows CLI presentation.
+        // </summary>
+		public const long CLIR_DEFAULT = 0;
+		
+		// 
+		public const long CLIR_INVOCATION = 1;
+		
+		// 
+		public const long CLIR_SUPPRESSION = 2;
 	}
 	
 	/// <summary>nsIDOMMozMobileConnectionInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c9d9ff61-a2f0-41cd-b478-9cefa7b31f31")]
+	[Guid("49706beb-a160-40b7-b745-50f62e389a2c")]
 	public interface nsIDOMMozMobileConnectionInfo
 	{
 		
@@ -721,12 +896,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMozMobileNetworkInfo GetNetworkAttribute();
-		
-		/// <summary>
-        /// Mobile Country Code (MCC) of last known network operator.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastKnownMccAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastKnownMcc);
 		
 		/// <summary>
         /// Type of connection.
@@ -801,74 +970,76 @@ namespace Gecko
 	/// <summary>nsIDOMMozMobileCellInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("aa546788-4f34-488b-8c3e-2786e02ab992")]
+	[Guid("9750b3a7-d913-436e-95d4-7ef2973ec6a1")]
 	public interface nsIDOMMozMobileCellInfo
 	{
 		
 		/// <summary>
         /// Mobile Location Area Code (LAC) for GSM/WCDMA networks.
+        ///
+        /// Possible ranges from 0x0000 to 0xffff.
+        /// -1 if the LAC is unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetGsmLocationAreaCodeAttribute();
+		int GetGsmLocationAreaCodeAttribute();
 		
 		/// <summary>
         /// Mobile Cell ID for GSM/WCDMA networks.
+        ///
+        /// Possible ranges from 0x00000000 to 0xffffffff.
+        /// -1 if the cell id is unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetGsmCellIdAttribute();
-	}
-	
-	/// <summary>nsIDOMMozMobileICCInfo </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("10d5c5a2-d43f-4f94-8657-cf7ccabbab6e")]
-	public interface nsIDOMMozMobileICCInfo
-	{
+		long GetGsmCellIdAttribute();
 		
 		/// <summary>
-        /// Integrated Circuit Card Identifier.
+        /// Base Station ID for CDMA networks.
+        ///
+        /// Possible ranges from 0 to 65535
+        /// -1 if the base station id is unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIccidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIccid);
+		int GetCdmaBaseStationIdAttribute();
 		
 		/// <summary>
-        /// Mobile Country Code (MCC) of the subscriber's home network.
+        /// Base Station Latitude for CDMA networks.
+        ///
+        /// Possible ranges from -1296000 to 1296000.
+        /// -2147483648 if the latitude is unknown.
+        ///
+        /// @see 3GPP2 C.S0005-A v6.0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMccAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMcc);
+		int GetCdmaBaseStationLatitudeAttribute();
 		
 		/// <summary>
-        /// Mobile Network Code (MNC) of the subscriber's home network.
+        /// Base Station Longitude for CDMA networks.
+        ///
+        /// Possible ranges from -2592000 to 2592000.
+        /// -2147483648 if the longitude is unknown.
+        ///
+        /// @see 3GPP2 C.S0005-A v6.0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMncAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMnc);
+		int GetCdmaBaseStationLongitudeAttribute();
 		
 		/// <summary>
-        /// Service Provider Name (SPN) of the subscriber's home network.
+        /// System ID for CDMA networks.
+        ///
+        /// Possible ranges from 0 to 32767.
+        /// -1 if the system id is unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSpnAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSpn);
+		int GetCdmaSystemIdAttribute();
 		
 		/// <summary>
-        /// Network name must be a part of displayed carrier name.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetIsDisplayNetworkNameRequiredAttribute();
-		
-		/// <summary>
-        /// Service provider name must be a part of displayed carrier name.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetIsDisplaySpnRequiredAttribute();
-		
-		/// <summary>
-        /// Mobile Station ISDN Number (MSISDN) of the subscriber's, aka
-        /// his phone number.
+        /// Network ID for CDMA networks.
+        ///
+        /// Possible ranges from 0 to 65535.
+        /// -1 if the network id is unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMsisdnAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMsisdn);
+		int GetCdmaNetworkIdAttribute();
 	}
 	
 	/// <summary>nsIDOMMozMobileCFInfo </summary>
@@ -931,7 +1102,7 @@ namespace Gecko
 		
 		/// <summary>
         /// Service for which the call forward is set up. It should be one of the
-        /// nsIDOMMozMobileConnectionInfo.ICC_SERVICE_CLASS_* values.
+        /// nsIDOMMozMobileConnection.ICC_SERVICE_CLASS_* values.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetServiceClassAttribute();

@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cf5493dc-ba25-423a-81e7-b417494f103a")]
+	[Guid("e702a5d2-3aa8-4788-b048-2d3b3e6d16f2")]
 	public interface nsIDOMComment : nsIDOMCharacterData
 	{
 		
@@ -256,5 +256,8 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void ReplaceData(uint offset, uint count, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase arg);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Remove();
 	}
 }

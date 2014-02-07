@@ -107,7 +107,9 @@ namespace Gecko
         // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const ulong ENCTYPE_BASE64 = 0;
 		
-		// 
+		// <summary>
+        // obsolete
+        // </summary>
 		public const ulong ENCTYPE_SDR = 1;
 	}
 }

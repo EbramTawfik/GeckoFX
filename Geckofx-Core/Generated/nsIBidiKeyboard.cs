@@ -34,9 +34,15 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("99957506-f21b-4a61-ad64-5b641cf508e2")]
+	[Guid("0d53579c-8f40-4bcf-9b87-61979c09f924")]
 	public interface nsIBidiKeyboard
 	{
+		
+		/// <summary>
+        /// Inspects the installed keyboards and resets the bidi keyboard state
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Reset();
 		
 		/// <summary>
         /// Determines if the current keyboard language is right-to-left
@@ -45,14 +51,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsLangRTL();
-		
-		/// <summary>
-        /// Sets the keyboard language to left-to-right or right-to-left
-        /// @param aLevel - if odd set the keyboard to RTL, if even set LTR
-        /// @throws NS_ERROR_FAILURE if no right-to-left keyboards are installed
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLangFromBidiLevel(byte aLevel);
 		
 		/// <summary>
         /// Determines whether the system has at least one keyboard of each direction

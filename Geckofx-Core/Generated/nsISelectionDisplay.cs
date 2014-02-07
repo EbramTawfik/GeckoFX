@@ -45,7 +45,6 @@ namespace Gecko
         ///    @param aToggle -either DISPLAY_(TEXT,IMAGES,FRAMES,ALL)
         ///                    This will tell the rendering engine to draw the different
         ///                    selection types.
-        ///    @return NS_OK if successful.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSelectionFlags(short toggle);
@@ -56,7 +55,6 @@ namespace Gecko
         ///
         ///    @param short *aReturn - This will be filled with DISPLAY_(TEXT,IMAGE,FRAMES,ALL)
         ///                            bit flags.
-        ///    @return NS_OK if successful.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short GetSelectionFlags();

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b0ccf251-d793-48a1-94aa-cf840fe6639d")]
+	[Guid("f1101fbb-d119-4cb8-845b-6bbae8a151c7")]
 	public interface nsIDOMNavigator
 	{
 		
@@ -52,10 +52,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetLanguageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLanguage);
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMimeTypeArray GetMimeTypesAttribute();
-		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPlatformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPlatform);
 		
@@ -74,129 +70,13 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetProductSubAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aProductSub);
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMPluginArray GetPluginsAttribute();
-		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetUserAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserAgent);
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetCookieEnabledAttribute();
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetOnLineAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetBuildIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBuildID);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDoNotTrackAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDoNotTrack);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozPowerManager GetMozPowerAttribute();
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool JavaEnabled();
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool TaintEnabled();
-		
-		/// <summary>
-        /// Pulse the device's vibrator, if it has one.  If the device does not have a
-        /// vibrator, this function does nothing.  If the window is hidden, this
-        /// function does nothing.
-        ///
-        /// vibrate takes one argument, which specifies either how long to vibrate for
-        /// or gives a pattern of vibrator-on/vibrator-off timings.
-        ///
-        /// If a vibration pattern is in effect when this function is called, this
-        /// call will overwrite the existing pattern, if this call successfully
-        /// completes.
-        ///
-        /// We handle the argument to vibrate as follows.
-        ///
-        /// - If the argument is undefined or null, we throw
-        /// NS_ERROR_DOM_NOT_SUPPORTED_ERR.
-        ///
-        /// - If the argument is 0, the empty list, or a list containing entirely 0s,
-        /// we cancel any outstanding vibration pattern; that is, we stop the device
-        /// from vibrating.
-        ///
-        /// - Otherwise, if the argument X is not a list, we treat it as though it's
-        /// the singleton list [X] and then proceed as below.
-        ///
-        /// - If the argument is a list (or if we wrapped it as a list above), then we
-        /// try to convert each element in the list to an integer, by first
-        /// converting it to a number and then rounding.  If there is some element
-        /// that we can't convert to an integer, or if any of the integers are
-        /// negative, we throw NS_ERROR_DOM_NOT_SUPPORTED_ERR.
-        ///
-        /// This list of integers specifies a vibration pattern.  Given a list of
-        /// numbers
-        ///
-        /// [a_1, b_1, a_2, b_2, ..., a_n]
-        ///
-        /// the device will vibrate for a_1 milliseconds, then be still for b_1
-        /// milliseconds, then vibrate for a_2 milliseconds, and so on.
-        ///
-        /// The list may contain an even or an odd number of elements, but if you
-        /// pass an even number of elements (that is, if your list ends with b_n
-        /// instead of a_n), the final element doesn't specify anything meaningful.
-        ///
-        /// We may throw NS_ERROR_DOM_NOT_SUPPORTED_ERR if the vibration pattern is
-        /// too long, or if any of its elements is too large.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Vibrate(Gecko.JsVal aPattern, System.IntPtr jsContext);
-		
-		/// <summary>
-        /// Navigator requests to add an idle observer to the existing window.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddIdleObserver([MarshalAs(UnmanagedType.Interface)] nsIIdleObserver aIdleObserver);
-		
-		/// <summary>
-        /// Navigator requests to remove an idle observer from the existing window.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveIdleObserver([MarshalAs(UnmanagedType.Interface)] nsIIdleObserver aIdleObserver);
-		
-		/// <summary>
-        /// Request a wake lock for a resource.
-        ///
-        /// A page holds a wake lock to request that a resource not be turned
-        /// off (or otherwise made unavailable).
-        ///
-        /// The topic is the name of a resource that might be made unavailable for
-        /// various reasons. For example, on a mobile device the power manager might
-        /// decide to turn off the screen after a period of idle time to save power.
-        ///
-        /// The resource manager checks the lock state of a topic before turning off
-        /// the associated resource. For example, a page could hold a lock on the
-        /// "screen" topic to prevent the screensaver from appearing or the screen
-        /// from turning off.
-        ///
-        /// The resource manager defines what each topic means and sets policy.  For
-        /// example, the resource manager might decide to ignore 'screen' wake locks
-        /// held by pages which are not visible.
-        ///
-        /// One topic can be locked multiple times; it is considered released only when
-        /// all locks on the topic have been released.
-        ///
-        /// The returned nsIDOMMozWakeLock object is a token of the lock.  You can
-        /// unlock the lock via the object's |unlock| method.  The lock is released
-        /// automatically when its associated window is unloaded.
-        ///
-        /// @param aTopic resource name
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozWakeLock RequestWakeLock([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTopic);
 	}
 }

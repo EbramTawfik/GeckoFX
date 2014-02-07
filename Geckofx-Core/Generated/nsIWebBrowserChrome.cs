@@ -136,9 +136,6 @@ namespace Gecko
 		public const ulong STATUS_SCRIPT = 0x00000001;
 		
 		// 
-		public const ulong STATUS_SCRIPT_DEFAULT = 0x00000002;
-		
-		// 
 		public const ulong STATUS_LINK = 0x00000003;
 		
 		// <summary>
@@ -196,12 +193,20 @@ namespace Gecko
 		public const ulong CHROME_WINDOW_POPUP = 0x00008000;
 		
 		// <summary>
-        // window will be non-private.
+        // docshells.
         // </summary>
 		public const ulong CHROME_PRIVATE_WINDOW = 0x00010000;
 		
 		// 
 		public const ulong CHROME_NON_PRIVATE_WINDOW = 0x00020000;
+		
+		// 
+		public const ulong CHROME_PRIVATE_LIFETIME = 0x00040000;
+		
+		// <summary>
+        // Whether this was opened by nsGlobalWindow::ShowModalDialog.
+        // </summary>
+		public const ulong CHROME_MODAL_CONTENT_WINDOW = 0x00080000;
 		
 		// <summary>
         // platforms.

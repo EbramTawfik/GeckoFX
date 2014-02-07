@@ -143,7 +143,7 @@ namespace Gecko
 	/// <summary>nsIFrameLoader </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a4db652e-e3b0-4345-8107-cf6a30486759")]
+	[Guid("4c9f91c0-7a5d-11e3-981f-0800200c9a66")]
 	public interface nsIFrameLoader
 	{
 		
@@ -153,6 +153,23 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDocShell GetDocShellAttribute();
+		
+		/// <summary>
+        /// Get this frame loader's TabParent, if it has a remote frame.  Otherwise,
+        /// returns null.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsITabParent GetTabParentAttribute();
+		
+		/// <summary>
+        /// Get an nsILoadContext for the top-level docshell. For remote
+        /// frames, a shim is returned that contains private browsing and app
+        /// information.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsILoadContext GetLoadContextAttribute();
 		
 		/// <summary>
         /// Start loading the frame. This method figures out what to load
@@ -305,6 +322,34 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetOwnerElementAttribute();
+		
+		/// <summary>
+        /// Cached childID of the ContentParent owning the TabParent in this frame
+        /// loader. This can be used to obtain the childID after the TabParent died.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetChildIDAttribute();
+		
+		/// <summary>
+        /// Get or set this frame loader's visibility.
+        ///
+        /// The notion of "visibility" here is separate from the notion of a
+        /// window/docshell's visibility.  This field is mostly here so that we can
+        /// have a notion of visibility in the parent process when frames are OOP.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetVisibleAttribute();
+		
+		/// <summary>
+        /// Get or set this frame loader's visibility.
+        ///
+        /// The notion of "visibility" here is separate from the notion of a
+        /// window/docshell's visibility.  This field is mostly here so that we can
+        /// have a notion of visibility in the parent process when frames are OOP.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetVisibleAttribute([MarshalAs(UnmanagedType.U1)] bool aVisible);
 	}
 	
 	/// <summary>nsIFrameLoaderConsts </summary>

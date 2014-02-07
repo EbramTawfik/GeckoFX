@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("82adaeca-63ee-44eb-830a-e1678bb8745e")]
+	[Guid("3d9371d8-a2ad-403e-8b0e-8885ad3562e3")]
 	public interface nsIDocumentEncoderNodeFixup
 	{
 		
@@ -368,5 +368,16 @@ namespace Gecko
         // pretty-print if this flag is set (bug 599983).
         // </summary>
 		public const ulong OutputIgnoreMozDirty = (1<<22);
+		
+		// <summary>
+        // Output the content of non-text elements as the placehodler character
+        // U+FFFC (OBJECT REPLACEMENT CHARACTER, only for serializing to plaintext).
+        // </summary>
+		public const ulong OutputNonTextContentAsPlaceholder = (1<<23);
+		
+		// <summary>
+        // Don't Strip ending spaces from a line (only for serializing to plaintext).
+        // </summary>
+		public const ulong OutputDontRemoveLineEndingSpaces = (1<<24);
 	}
 }

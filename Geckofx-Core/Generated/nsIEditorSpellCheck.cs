@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("334946c3-0e93-4aac-b662-e1b56f95d68b")]
+	[Guid("dd32ef3b-a7d8-43d1-9617-5f2dddbe29eb")]
 	public interface nsIEditorSpellCheck
 	{
 		
@@ -57,10 +57,11 @@ namespace Gecko
         /// set means that we only want to check the current selection in the editor,
         /// (this controls the behavior of GetNextMisspelledWord). For spellchecking
         /// clients with no modal UI (such as inline spellcheckers), this flag doesn't
-        /// matter
+        /// matter.  Initialization is asynchronous and is not complete until the given
+        /// callback is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitSpellChecker([MarshalAs(UnmanagedType.Interface)] nsIEditor editor, [MarshalAs(UnmanagedType.U1)] bool enableSelectionChecking);
+		void InitSpellChecker([MarshalAs(UnmanagedType.Interface)] nsIEditor editor, [MarshalAs(UnmanagedType.U1)] bool enableSelectionChecking, [MarshalAs(UnmanagedType.Interface)] nsIEditorSpellCheckCallback callback);
 		
 		/// <summary>
         /// When interactively spell checking the document, this will return the
@@ -204,9 +205,22 @@ namespace Gecko
 		
 		/// <summary>
         /// Update the dictionary in use to be sure it corresponds to what the editor
-        /// needs.
+        /// needs.  The update is asynchronous and is not complete until the given
+        /// callback is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateCurrentDictionary();
+		void UpdateCurrentDictionary([MarshalAs(UnmanagedType.Interface)] nsIEditorSpellCheckCallback callback);
+	}
+	
+	/// <summary>nsIEditorSpellCheckCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("5f0a4bab-8538-4074-89d3-2f0e866a1c0b")]
+	public interface nsIEditorSpellCheckCallback
+	{
+		
+		/// <summary>Member EditorSpellCheckDone </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void EditorSpellCheckDone();
 	}
 }

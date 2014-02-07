@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2bbbc38c-cf96-4099-ba6b-f6a44d8b014c")]
+	[Guid("1be89eca-e2f7-453b-8d38-c11ba247f6f3")]
 	public interface nsIThreadManager
 	{
 		
@@ -88,14 +88,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsMainThreadAttribute();
-		
-		/// <summary>
-        /// This attribute is true if the calling thread is the thread on which the
-        /// cycle collector runs.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetIsCycleCollectorThreadAttribute();
 	}
 	
 	/// <summary>nsIThreadManagerConsts </summary>

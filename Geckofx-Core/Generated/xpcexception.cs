@@ -34,16 +34,15 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cac29630-7bf2-4e22-811b-46855a7d5af0")]
+	[Guid("dd250248-2586-4ec1-a68f-8d14ef452517")]
 	public interface nsIXPCException : nsIException
 	{
 		
 		/// <summary>
         /// A custom message set by the thrower.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetMessageAttribute();
+		new void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMessage);
 		
 		/// <summary>
         /// The nsresult associated with this exception.
@@ -54,16 +53,14 @@ namespace Gecko
 		/// <summary>
         /// The name of the error code (ie, a string repr of |result|)
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetNameAttribute();
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
         /// null indicates "no data"
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetFilenameAttribute();
+		new void GetFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFilename);
 		
 		/// <summary>
         /// Valid line numbers begin at '1'. '0' indicates unknown.
@@ -101,20 +98,13 @@ namespace Gecko
 		/// <summary>
         /// A generic formatter - make it suitable to print, etc.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string ToString();
+		new void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// inherits methods from nsIException
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Initialize([MarshalAs(UnmanagedType.LPStr)] string aMessage, int aResult, [MarshalAs(UnmanagedType.LPStr)] string aName, [MarshalAs(UnmanagedType.Interface)] nsIStackFrame aLocation, [MarshalAs(UnmanagedType.Interface)] nsISupports aData, [MarshalAs(UnmanagedType.Interface)] nsIException aInner);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr StealJSVal();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StowJSVal(System.IntPtr cx, System.IntPtr val);
+		void Initialize([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMessage, int aResult, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIStackFrame aLocation, [MarshalAs(UnmanagedType.Interface)] nsISupports aData, [MarshalAs(UnmanagedType.Interface)] nsIException aInner);
 	}
 }

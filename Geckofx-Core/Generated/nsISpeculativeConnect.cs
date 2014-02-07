@@ -53,4 +53,41 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SpeculativeConnect([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aCallbacks);
 	}
+	
+	/// <summary>
+    /// This is used to override the default values for various values (documented
+    /// inline) to determine whether or not to actually make a speculative
+    /// connection.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("2b6d6fb6-ab28-4f4c-af84-bfdbb7866d72")]
+	public interface nsISpeculativeConnectionOverrider
+	{
+		
+		/// <summary>
+        /// Used to determine the maximum number of unused speculative connections
+        /// we will have open for a host at any one time
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetParallelSpeculativeConnectLimitAttribute();
+		
+		/// <summary>
+        /// Used to loosen the restrictions nsHttpConnectionMgr::RestrictConnections
+        /// to allow more speculative connections when we're unsure if a host will
+        /// connect via SPDY or not.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIgnorePossibleSpdyConnectionsAttribute();
+		
+		/// <summary>
+        /// Used to determine if we will ignore the existence of any currently idle
+        /// connections when we decide whether or not to make a speculative
+        /// connection.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIgnoreIdleAttribute();
+	}
 }

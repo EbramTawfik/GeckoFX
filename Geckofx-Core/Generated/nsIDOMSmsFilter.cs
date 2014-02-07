@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ce055c33-553d-4b0e-9bd8-91d93a057c90")]
+	[Guid("17890b60-0367-45c6-9729-62e5bf349b2b")]
 	public interface nsIDOMMozSmsFilter
 	{
 		
@@ -85,15 +85,27 @@ namespace Gecko
 		void SetDeliveryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDelivery);
 		
 		/// <summary>
-        /// A read flag that can be a boolean or undefined.
+        /// A read flag that can return and be set to a boolean or null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetReadAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
-        /// A read flag that can be a boolean or undefined.
+        /// A read flag that can return and be set to a boolean or null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetReadAttribute(Gecko.JsVal aRead, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// A thread id that can return and be set to a numeric value or null.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetThreadIdAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// A thread id that can return and be set to a numeric value or null.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetThreadIdAttribute(Gecko.JsVal aThreadId, System.IntPtr jsContext);
 	}
 }

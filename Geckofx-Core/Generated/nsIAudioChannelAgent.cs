@@ -41,11 +41,12 @@ namespace Gecko
         ///
         /// @param canPlay
         /// Callback from agent to notify component of the playable status
-        /// of the channel. If canPlay is false, component SHOULD stop playing
-        /// media associated with this channel as soon as possible.
+        /// of the channel. If canPlay is muted state, component SHOULD stop
+        /// playing media associated with this channel as soon as possible. if
+        /// it is faded state then the volume of media should be reduced.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CanPlayChanged([MarshalAs(UnmanagedType.U1)] bool canPlay);
+		void CanPlayChanged(int canPlay);
 	}
 	
 	/// <summary>
@@ -62,7 +63,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4d01d4f0-3d16-11e2-a0db-10bf48d64bd4")]
+	[Guid("86ef883d-9cec-4c04-994f-5de198286e7c")]
 	public interface nsIAudioChannelAgent
 	{
 		
@@ -83,9 +84,29 @@ namespace Gecko
         /// Gecko component.
         /// 2. The callback is allowed to be null. Ex: telephony doesn't need to listen change
         /// of the playable status.
+        /// 3. The AudioChannelAgent keeps a strong reference to the callback object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init(int channelType, [MarshalAs(UnmanagedType.Interface)] nsIAudioChannelAgentCallback callback);
+		
+		/// <summary>
+        /// This method is just like init(), except the audio channel agent keeps a
+        /// weak reference to the callback object.
+        ///
+        /// In order for this to work, |callback| must implement
+        /// nsISupportsWeakReference.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitWithWeakCallback(int channelType, [MarshalAs(UnmanagedType.Interface)] nsIAudioChannelAgentCallback callback);
+		
+		/// <summary>
+        /// This method is just like init(), and specify the channel is associated with video.
+        ///
+        /// @param weak
+        /// true if weak reference should be hold.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitWithVideo(int channelType, [MarshalAs(UnmanagedType.Interface)] nsIAudioChannelAgentCallback callback, [MarshalAs(UnmanagedType.U1)] bool weak);
 		
 		/// <summary>
         /// Notify the agent that we want to start playing.
@@ -94,14 +115,15 @@ namespace Gecko
         ///
         ///
         /// @return
-        /// true: the agent has registered with audio channel service and the
-        /// component should start playback.
-        /// false: the agent has registered with audio channel service but the
-        /// component should not start playback.
+        /// normal state: the agent has registered with audio channel service and
+        /// the component should start playback.
+        /// muted state: the agent has registered with audio channel service but
+        /// the component should not start playback.
+        /// faded state: the agent has registered with audio channel service the
+        /// component should start playback as well as reducing the volume.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool StartPlaying();
+		int StartPlaying();
 		
 		/// <summary>
         /// Notify the agent we no longer want to play.
@@ -161,5 +183,14 @@ namespace Gecko
 		
 		// 
 		public const long AUDIO_AGENT_CHANNEL_ERROR = 1000;
+		
+		// 
+		public const long AUDIO_AGENT_STATE_NORMAL = 0;
+		
+		// 
+		public const long AUDIO_AGENT_STATE_MUTED = 1;
+		
+		// 
+		public const long AUDIO_AGENT_STATE_FADED = 2;
 	}
 }

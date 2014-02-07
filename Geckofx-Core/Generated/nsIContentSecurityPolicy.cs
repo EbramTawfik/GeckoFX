@@ -28,13 +28,36 @@ namespace Gecko
 	
 	/// <summary>
     /// nsIContentSecurityPolicy
-    /// Describes an XPCOM component used to model an enforce CSPs.
+    /// Describes an XPCOM component used to model and enforce CSPs.  Instances of
+    /// this class may have multiple policies within them, but there should only be
+    /// one of these per document/principal.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("91E1F257-914C-4D4F-902C-F67F772839AB")]
-	public interface nsIContentSecurityPolicy
+	[Guid("8b91f829-b1bf-4327-8ece-4000aa823394")]
+	public interface nsIContentSecurityPolicy : nsISerializable
 	{
+		
+		/// <summary>
+        /// Initialize the object implementing nsISerializable, which must have
+        /// been freshly constructed via CreateInstance.  All data members that
+        /// can't be set to default values must have been serialized by write,
+        /// and should be read from aInputStream in the same order by this method.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Read([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream aInputStream);
+		
+		/// <summary>
+        /// Serialize the object implementing nsISerializable to aOutputStream, by
+        /// writing each data member that must be recovered later to reconstitute
+        /// a working replica of this object, in a canonical member and byte order,
+        /// to aOutputStream.
+        ///
+        /// NB: a class that implements nsISerializable *must* also implement
+        /// nsIClassInfo, in particular nsIClassInfo::GetClassID.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Write([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aOutputStream);
 		
 		/// <summary>
         /// Set to true when the CSP has been read in and parsed and is ready to
@@ -54,60 +77,140 @@ namespace Gecko
 		void SetIsInitializedAttribute([MarshalAs(UnmanagedType.U1)] bool aIsInitialized);
 		
 		/// <summary>
-        /// When set to true, content load-blocking and fail-closed are disabled: CSP
-        /// will ONLY send reports, and not modify behavior.
+        /// Accessor method for a read-only string version of the policy at a given
+        /// index.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetReportOnlyModeAttribute();
+		void GetPolicy(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
-        /// When set to true, content load-blocking and fail-closed are disabled: CSP
-        /// will ONLY send reports, and not modify behavior.
+        /// Returns the number of policies attached to this CSP instance.  Useful with
+        /// getPolicy().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReportOnlyModeAttribute([MarshalAs(UnmanagedType.U1)] bool aReportOnlyMode);
+		int GetPolicyCountAttribute();
 		
 		/// <summary>
-        /// A read-only string version of the policy for debugging.
+        /// Returns the number of policies attached to this CSP instance.  Useful with
+        /// getPolicy().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPolicyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPolicy);
+		void SetPolicyCountAttribute(int aPolicyCount);
+		
+		/// <summary>
+        /// Remove a policy associated with this CSP context.
+        /// @throws NS_ERROR_FAILURE if the index is out of bounds or invalid.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemovePolicy(uint index);
+		
+		/// <summary>
+        /// Parse and install a CSP policy.
+        /// @param aPolicy
+        /// String representation of the policy (e.g., header value)
+        /// @param selfURI
+        /// the URI of the protected document/principal
+        /// @param reportOnly
+        /// Should this policy affect content, script and style processing or
+        /// just send reports if it is violated?
+        /// @param specCompliant
+        /// Whether or not the policy conforms to the W3C specification.
+        /// If this is false, that indicates this policy is from the older
+        /// implementation with different semantics and directive names.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AppendPolicy([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase policyString, [MarshalAs(UnmanagedType.Interface)] nsIURI selfURI, [MarshalAs(UnmanagedType.U1)] bool reportOnly, [MarshalAs(UnmanagedType.U1)] bool specCompliant);
 		
 		/// <summary>
         /// Whether this policy allows in-page script.
-        /// @param shouldReportViolation
+        /// @param shouldReportViolations
         /// Whether or not the use of inline script should be reported.
         /// This function always returns "true" for report-only policies, but when
-        /// the report-only policy is violated, shouldReportViolation is true as
-        /// well.
+        /// any policy (report-only or otherwise) is violated,
+        /// shouldReportViolations is true as well.
         /// @return
         /// Whether or not the effects of the inline script should be allowed
         /// (block the compilation if false).
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAllowsInlineScript([MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolation);
+		bool GetAllowsInlineScript([MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolations);
 		
 		/// <summary>
         /// whether this policy allows eval and eval-like functions
         /// such as setTimeout("code string", time).
-        /// @param shouldReportViolation
+        /// @param shouldReportViolations
         /// Whether or not the use of eval should be reported.
-        /// This function always returns "true" for report-only policies, but when
-        /// the report-only policy is violated, shouldReportViolation is true as
-        /// well.
+        /// This function returns "true" when violating report-only policies, but
+        /// when any policy (report-only or otherwise) is violated,
+        /// shouldReportViolations is true as well.
         /// @return
         /// Whether or not the effects of the eval call should be allowed
         /// (block the call if false).
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAllowsEval([MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolation);
+		bool GetAllowsEval([MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolations);
 		
 		/// <summary>
-        /// Log policy violation on the Error Console and send a report if a report-uri
-        /// is present in the policy
+        /// Whether this policy allows in-page styles.
+        /// This includes <style> tags with text content and style="" attributes in
+        /// HTML elements.
+        /// @param shouldReportViolations
+        /// Whether or not the use of inline style should be reported.
+        /// If there are report-only policies, this function may return true
+        /// (don't block), but one or more policy may still want to send
+        /// violation reports so shouldReportViolations will be true even if the
+        /// inline style should be permitted.
+        /// @return
+        /// Whether or not the effects of the inline style should be allowed
+        /// (block the rules if false).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAllowsInlineStyle([MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolations);
+		
+		/// <summary>
+        /// Whether this policy accepts the given nonce
+        /// @param aNonce
+        /// The nonce string to check against the policy
+        /// @param aContentType
+        /// The type of element on which we encountered this nonce
+        /// @param shouldReportViolation
+        /// Whether or not the use of an incorrect nonce should be reported.
+        /// This function always returns "true" for report-only policies, but when
+        /// the report-only policy is violated, shouldReportViolation is true as
+        /// well.
+        /// @return
+        /// Whether or not this nonce is valid
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAllowsNonce([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNonce, uint aContentType, [MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolation);
+		
+		/// <summary>
+        /// Whether this policy accepts the given inline resource based on the hash
+        /// of its content.
+        /// @param aContent
+        /// The content of the inline resource to hash (and compare to the
+        /// hashes listed in the policy)
+        /// @param aContentType
+        /// The type of inline element (script or style)
+        /// @param shouldReportViolation
+        /// Whether this inline resource should be reported as a hash-source
+        /// violation. If there are no hash-sources in the policy, this is
+        /// always false.
+        /// @return
+        /// Whether or not this inline resource is whitelisted by a hash-source
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAllowsHash([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContent, ushort aContentType, [MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolation);
+		
+		/// <summary>
+        /// For each violated policy (of type violationType), log policy violation on
+        /// the Error Console and send a report to report-uris present in the violated
+        /// policies.
         ///
         /// @param violationType
         /// one of the VIOLATION_TYPE_* constants, e.g. inline-script or eval
@@ -117,51 +220,43 @@ namespace Gecko
         /// sample of the violating content (to aid debugging)
         /// @param lineNum
         /// source line number of the violation (if available)
+        /// @param aNonce
+        /// (optional) If this is a nonce violation, include the nonce so we can
+        /// recheck to determine which policies were violated and send the
+        /// appropriate reports.
+        /// @param aContent
+        /// (optional) If this is a hash violation, include contents of the inline
+        /// resource in the question so we can recheck the hash in order to
+        /// determine which policies were violated and send the appropriate
+        /// reports.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogViolationDetails(ushort violationType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceFile, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase scriptSample, int lineNum);
+		void LogViolationDetails(ushort violationType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceFile, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase scriptSample, int lineNum, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase nonce, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase content);
 		
 		/// <summary>
-        /// Manually triggers violation report sending given a URI and reason.
-        /// The URI may be null, in which case "self" is sent.
-        /// @param blockedURI
-        /// the URI that violated the policy
-        /// @param violatedDirective
-        /// the directive that was violated.
-        /// @param scriptSample
-        /// a sample of the violating inline script
-        /// @param lineNum
-        /// source line number of the violation (if available)
-        /// @return
-        /// nothing.
+        /// Called after the CSP object is created to fill in appropriate request
+        /// context and give it a reference to its owning principal for violation
+        /// report generation.
+        /// This will use whatever data is available, choosing earlier arguments first
+        /// if multiple are available.  Either way, it will attempt to obtain the URI,
+        /// referrer and the principal from whatever is available.  If the channel is
+        /// available, it'll also store that for processing policy-uri directives.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendReports([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase blockedURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase violatedDirective, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase scriptSample, int lineNum);
-		
-		/// <summary>
-        /// Called after the CSP object is created to fill in the appropriate request
-        /// and request header information needed in case a report needs to be sent.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScanRequestData([MarshalAs(UnmanagedType.Interface)] nsIHttpChannel aChannel);
-		
-		/// <summary>
-        /// Updates the policy currently stored in the CSP to be "refined" or
-        /// tightened by the one specified in the string policyString.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RefinePolicy([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase policyString, [MarshalAs(UnmanagedType.Interface)] nsIURI selfURI, [MarshalAs(UnmanagedType.U1)] bool specCompliant);
+		void SetRequestContext([MarshalAs(UnmanagedType.Interface)] nsIURI selfURI, [MarshalAs(UnmanagedType.Interface)] nsIURI referrer, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal documentPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
 		
 		/// <summary>
         /// Verifies ancestry as permitted by the policy.
         ///
-        /// Calls to this may trigger violation reports when queried, so
-        /// this value should not be cached.
+        /// NOTE: Calls to this may trigger violation reports when queried, so this
+        /// value should not be cached.
         ///
         /// @param docShell
         /// containing the protected resource
         /// @return
-        /// true if the frame's ancestors are all permitted by policy
+        /// true if the frame's ancestors are all allowed by policy (except for
+        /// report-only policies, which will send reports and then return true
+        /// here when violated).
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -196,5 +291,20 @@ namespace Gecko
 		
 		// 
 		public const ulong VIOLATION_TYPE_EVAL = 2;
+		
+		// 
+		public const ulong VIOLATION_TYPE_INLINE_STYLE = 3;
+		
+		// 
+		public const ulong VIOLATION_TYPE_NONCE_SCRIPT = 4;
+		
+		// 
+		public const ulong VIOLATION_TYPE_NONCE_STYLE = 5;
+		
+		// 
+		public const ulong VIOLATION_TYPE_HASH_SCRIPT = 6;
+		
+		// 
+		public const ulong VIOLATION_TYPE_HASH_STYLE = 7;
 	}
 }

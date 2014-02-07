@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using Gecko.DOM.Svg;
 using NUnit.Framework;
 using Gecko;
 
@@ -52,14 +53,30 @@ namespace GeckofxUnitTests
 				Guid guid = typeof(nsISupports).GUID;
 				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(context.ContextPointer);
 				var wrapper = Xpcom.XPConnect.Instance.WrapNative(context.ContextPointer, globalObject, (nsISupports)_browser.Document.DomObject, ref guid);
+#if PORT
 				var a = m_instance.GetWrappedNativeOfJSObject(context.ContextPointer, wrapper.GetJSObjectAttribute());
 				var jsVal = SpiderMonkeyTests.CreateStringJsVal("nodeName");
 				var i = a.FindInterfaceWithMember(jsVal.AsPtr);
 				Assert.NotNull(i);
 				Assert.IsTrue(i.IsScriptable());
 				Assert.AreEqual("nsIDOMHTMLDocument", i.GetNameShared());
+#else
+				throw new NotImplementedException();
+#endif
 			}
 		}
+
+#if DELME
+		[Test]
+		public void __()
+		{
+			_browser.TestLoadSvg("<polygon fill='red' stroke='red' points='571,-828 517,-828 517,-792 571,-792 571,-828'/>");
+
+			var a = ((_browser.DomDocument as SvgDocument).RootElement as GeckoNode).ChildNodes[0];
+			Console.WriteLine(a);
+			Assert.IsTrue(((_browser.DomDocument as SvgDocument).RootElement as GeckoNode).ChildNodes[0] is GeckoElement);
+		}
+#endif
 
 		[Test]
 		public void FindInterfaceWithName_OnADocumentElementLookingDOMHTMLDocumentInterface_ReturnsExpectedInterface()
@@ -70,12 +87,16 @@ namespace GeckofxUnitTests
 				Guid guid = typeof(nsISupports).GUID;
 				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(context.ContextPointer);
 				var wrapper = Xpcom.XPConnect.Instance.WrapNative(context.ContextPointer, globalObject, (nsISupports)_browser.Document.DomObject, ref guid);
+#if PORT
 				var a = m_instance.GetWrappedNativeOfJSObject(context.ContextPointer, wrapper.GetJSObjectAttribute());
 				var jsVal = SpiderMonkeyTests.CreateStringJsVal("nsIDOMHTMLDocument");
 				var i = a.FindInterfaceWithName(jsVal.AsPtr);
 				Assert.NotNull(i);
 				Assert.IsTrue(i.IsScriptable());
 				Assert.AreEqual("nsIDOMHTMLDocument", i.GetNameShared());
+#else
+				throw new NotImplementedException();
+#endif
 			}
 		}
 

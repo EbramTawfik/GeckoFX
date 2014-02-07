@@ -6,6 +6,7 @@ using Gecko.Interop;
 
 namespace Gecko
 {
+#if DELME
 	public static class ExceptionService
 	{
 		private static ServiceWrapper<nsIExceptionService> _exceptionService;
@@ -29,7 +30,9 @@ namespace Gecko
 			return GeckoNativeException.Create( _exceptionService.Instance.GetCurrentException() );
 		}
 	}
+#endif
 
+#if DELME
 	public sealed class ExceptionManager
 	{
 		private nsIExceptionManager _exceptionManager;
@@ -44,5 +47,6 @@ namespace Gecko
 			get { return GeckoNativeException.Create(_exceptionManager.GetCurrentException()); }
 		}
 	}
+#endif
 
 }

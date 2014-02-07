@@ -717,6 +717,26 @@ namespace Gecko
 			m_printPageDelay = aPrintPageDelay;
 		}
 
+		public int GetResolutionAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetResolutionAttribute(int aResolution)
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetDuplexAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetDuplexAttribute(int aDuplex)
+		{
+			throw new NotImplementedException();
+		}
+
 		public bool GetIsInitializedFromPrinterAttribute()
 		{
 			Console.WriteLine("60");

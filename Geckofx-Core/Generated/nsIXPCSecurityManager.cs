@@ -34,66 +34,24 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("31431440-f1ce-11d2-985a-006008962422")]
+	[Guid("d4d21714-116b-4851-a785-098c5dfea523")]
 	public interface nsIXPCSecurityManager
 	{
 		
 		/// <summary>
         /// For each of these hooks returning NS_OK means 'let the action continue'.
         /// Returning an error code means 'veto the action'. XPConnect will return
-        /// JS_FALSE to the js engine if the action is vetoed. The implementor of this
+        /// false to the js engine if the action is vetoed. The implementor of this
         /// interface is responsible for setting a JS exception into the JSContext
         /// if that is appropriate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CanCreateWrapper(System.IntPtr aJSContext, ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, ref System.IntPtr aPolicy);
+		void CanCreateWrapper(System.IntPtr aJSContext, ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CanCreateInstance(System.IntPtr aJSContext, ref System.Guid aCID);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CanGetService(System.IntPtr aJSContext, ref System.Guid aCID);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CanAccess(uint aAction, System.IntPtr aCallContext, System.IntPtr aJSContext, System.IntPtr aJSObject, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, System.IntPtr aName, ref System.IntPtr aPolicy);
-	}
-	
-	/// <summary>nsIXPCSecurityManagerConsts </summary>
-	public class nsIXPCSecurityManagerConsts
-	{
-		
-		// <summary>
-        // These flags are used when calling nsIXPConnect::SetSecurityManager
-        // </summary>
-		public const long HOOK_CREATE_WRAPPER = 1<<0;
-		
-		// 
-		public const long HOOK_CREATE_INSTANCE = 1<<1;
-		
-		// 
-		public const long HOOK_GET_SERVICE = 1<<2;
-		
-		// 
-		public const long HOOK_CALL_METHOD = 1<<3;
-		
-		// 
-		public const long HOOK_GET_PROPERTY = 1<<4;
-		
-		// 
-		public const long HOOK_SET_PROPERTY = 1<<5;
-		
-		// 
-		public const long HOOK_ALL = HOOK_CREATE_WRAPPER|HOOK_CREATE_INSTANCE|HOOK_GET_SERVICE|HOOK_CALL_METHOD|HOOK_GET_PROPERTY|HOOK_SET_PROPERTY;
-		
-		// <summary>
-        // Used for aAction below
-        // </summary>
-		public const long ACCESS_CALL_METHOD = 0;
-		
-		// 
-		public const long ACCESS_GET_PROPERTY = 1;
-		
-		// 
-		public const long ACCESS_SET_PROPERTY = 2;
 	}
 }

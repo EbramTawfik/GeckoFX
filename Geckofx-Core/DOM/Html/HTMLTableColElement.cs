@@ -7,6 +7,7 @@ using System.Text;
 
 namespace Gecko.DOM
 {	
+#if DELME
 	public class GeckoTableColElement : GeckoHtmlElement
 	{
 		nsIDOMHTMLTableColElement DOMHTMLElement;
@@ -49,4 +50,5 @@ namespace Gecko.DOM
 		}
 
 	}
+#endif
 }

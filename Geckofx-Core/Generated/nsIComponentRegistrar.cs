@@ -81,8 +81,7 @@ namespace Gecko
         /// @param aFactory : Factory previously registered to create instances of
         /// CID aClass.
         ///
-        /// @return NS_OK     Unregistration was successful.
-        /// NS_ERROR* Method failure.
+        /// @throws NS_ERROR* Method failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterFactory(ref System.Guid aClass, [MarshalAs(UnmanagedType.Interface)] nsIFactory aFactory);

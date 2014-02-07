@@ -27,17 +27,19 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///This Source Code Form is subject to the terms of the Mozilla Public
-    /// License, v. 2.0. If a copy of the MPL was not distributed with this
-    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+    /// undef the GetMessage macro defined in winuser.h from the MS Platform SDK
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("AD9FA4C8-EC71-4B2D-8294-9ADF06DDEC32")]
+	[Guid("85255CC3-07BA-49FD-BC9B-18D2963DAF7F")]
 	public interface nsIDOMGeoPositionError
 	{
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short GetCodeAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage);
 	}
 	
 	/// <summary>nsIDOMGeoPositionErrorConsts </summary>
@@ -45,9 +47,8 @@ namespace Gecko
 	{
 		
 		// <summary>
-        //This Source Code Form is subject to the terms of the Mozilla Public
-        // License, v. 2.0. If a copy of the MPL was not distributed with this
-        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+        // undef the GetMessage macro defined in winuser.h from the MS Platform SDK
+        // </summary>
 		public const ulong PERMISSION_DENIED = 1;
 		
 		// 

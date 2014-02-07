@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("504e9e1f-70e1-4f33-a785-5840a4680414")]
+	[Guid("b24c5af3-43c2-4d17-be14-94d6648a305f")]
 	public interface nsIThreadInternal : nsIThread
 	{
 		
@@ -166,11 +166,12 @@ namespace Gecko
 		uint GetRecursionDepthAttribute();
 		
 		/// <summary>
-        /// Add an observer that will *only* receive onProcessNextEvent and
-        /// afterProcessNextEvent callbacks. Always called on the target thread, and
-        /// the implementation does not have to be threadsafe. Order of callbacks is
-        /// not guaranteed (i.e. afterProcessNextEvent may be called first depending on
-        /// whether or not the observer is added in a nested loop). Holds a strong ref.
+        /// Add an observer that will *only* receive onProcessNextEvent,
+        /// beforeProcessNextEvent. and afterProcessNextEvent callbacks. Always called
+        /// on the target thread, and the implementation does not have to be
+        /// threadsafe. Order of callbacks is not guaranteed (i.e.
+        /// afterProcessNextEvent may be called first depending on whether or not the
+        /// observer is added in a nested loop). Holds a strong ref.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIThreadObserver observer);
@@ -181,6 +182,31 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIThreadObserver observer);
+		
+		/// <summary>
+        /// This method causes any events currently enqueued on the thread to be
+        /// suppressed until PopEventQueue is called, and any event dispatched to this
+        /// thread's nsIEventTarget will queue as well. Calls to PushEventQueue may be
+        /// nested and must each be paired with a call to PopEventQueue in order to
+        /// restore the original state of the thread. The returned nsIEventTarget may
+        /// be used to push events onto the nested queue. Dispatching will be disabled
+        /// once the event queue is popped. The thread will only ever process pending
+        /// events for the innermost event queue. Must only be called on the target
+        /// thread.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIEventTarget PushEventQueue();
+		
+		/// <summary>
+        /// Revert a call to PushEventQueue. When an event queue is popped, any events
+        /// remaining in the queue are appended to the elder queue. This also causes
+        /// the nsIEventTarget returned from PushEventQueue to stop dispatching events.
+        /// Must only be called on the target thread, and with the innermost event
+        /// queue.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void PopEventQueue([MarshalAs(UnmanagedType.Interface)] nsIEventTarget aInnermostTarget);
 	}
 	
 	/// <summary>
@@ -214,7 +240,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("81D0B509-F198-4417-8020-08EB4271491F")]
+	[Guid("09b424c3-26b0-4128-9039-d66f85b02c63")]
 	public interface nsIThreadObserver
 	{
 		
@@ -229,8 +255,9 @@ namespace Gecko
 		void OnDispatchedEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal thread);
 		
 		/// <summary>
-        /// This method is called (from nsIThread::ProcessNextEvent) before an event
-        /// is processed.  This method is only called on the target thread.
+        /// This method is called when nsIThread::ProcessNextEvent is called.  It does
+        /// not guarantee that an event is actually going to be processed.  This method
+        /// is only called on the target thread.
         ///
         /// @param thread
         /// The thread being asked to process another event.
@@ -246,15 +273,20 @@ namespace Gecko
 		
 		/// <summary>
         /// This method is called (from nsIThread::ProcessNextEvent) after an event
-        /// is processed.  This method is only called on the target thread.
+        /// is processed.  It does not guarantee that an event was actually processed
+        /// (depends on the value of |eventWasProcessed|.  This method is only called
+        /// on the target thread.
         ///
         /// @param thread
         /// The thread that processed another event.
         /// @param recursionDepth
         /// Indicates the number of calls to ProcessNextEvent on the call stack in
         /// addition to the current call.
+        /// @param eventWasProcessed
+        /// Indicates whether an event was actually processed. May be false if the
+        /// |mayWait| flag was false when calling nsIThread::ProcessNextEvent().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AfterProcessNextEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal thread, uint recursionDepth);
+		void AfterProcessNextEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal thread, uint recursionDepth, [MarshalAs(UnmanagedType.U1)] bool eventWasProcessed);
 	}
 }

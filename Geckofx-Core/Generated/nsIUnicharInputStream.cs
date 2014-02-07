@@ -46,7 +46,7 @@ namespace Gecko
         /// @note To read more than 2^32 characters, call this method multiple times.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint Read([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] string aBuf, uint aCount);
+		uint Read(char[] aBuf, uint aCount);
 		
 		/// <summary>
         /// Low-level read method that has access to the stream's underlying buffer.

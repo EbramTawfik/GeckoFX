@@ -48,11 +48,12 @@ namespace Gecko
     /// methods) an existing instance to avoid the overhead of destroying and
     /// creating a timer.  It is not necessary to cancel the timer in that case.
     ///
-    /// It is not currently safe to initialize timers on any thread other than the
-    /// main thread (it will cause races on the timers' delay adjustment mechanism,
-    /// which may mess up timings).   You can, however, cancel() and/or release a
-    /// timer on a non-main thread (provided that its callback object has a
-    /// thread-safe release() function).
+    /// By default a timer will fire on the thread that created it.  Set the .target
+    /// attribute to fire on a different thread.  Once you have set a timer's .target
+    /// and called one of its init functions, any further interactions with the timer
+    /// (calling cancel(), changing member fields, etc) should only be done by the
+    /// target thread, or races may occur with bad results like timers firing after
+    /// they've been canceled, and/or not firing after re-initiatization.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -160,6 +161,8 @@ namespace Gecko
 		/// <summary>
         /// The nsIEventTarget where the callback will be dispatched. Note that this
         /// target may only be set before the call to one of the init methods above.
+        ///
+        /// By default the target is the thread that created the timer.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -168,6 +171,8 @@ namespace Gecko
 		/// <summary>
         /// The nsIEventTarget where the callback will be dispatched. Note that this
         /// target may only be set before the call to one of the init methods above.
+        ///
+        /// By default the target is the thread that created the timer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTargetAttribute([MarshalAs(UnmanagedType.Interface)] nsIEventTarget aTarget);

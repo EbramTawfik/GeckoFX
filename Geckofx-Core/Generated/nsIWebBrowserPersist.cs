@@ -72,9 +72,8 @@ namespace Gecko
         /// Value indicating the success or failure of the persist
         /// operation.
         ///
-        /// @return NS_OK Operation was successful or is still ongoing.
-        /// @return NS_BINDING_ABORTED Operation cancelled.
-        /// @return NS_ERROR_FAILURE Non-specific failure.
+        /// @throws NS_BINDING_ABORTED Operation cancelled.
+        /// @throws NS_ERROR_FAILURE Non-specific failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetResultAttribute();
@@ -133,8 +132,7 @@ namespace Gecko
         /// @see nsIURI
         /// @see nsIInputStream
         ///
-        /// @return NS_OK Operation has been started.
-        /// @return NS_ERROR_INVALID_ARG One or more arguments was invalid.
+        /// @throws NS_ERROR_INVALID_ARG One or more arguments was invalid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SaveURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsISupports aCacheKey, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostData, [MarshalAs(UnmanagedType.LPStr)] string aExtraHeaders, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aPrivacyContext);
@@ -181,8 +179,7 @@ namespace Gecko
         /// @see nsIFile
         /// @see nsIURI
         ///
-        /// @return NS_OK Operation has been started.
-        /// @return NS_ERROR_INVALID_ARG One or more arguments was invalid.
+        /// @throws NS_ERROR_INVALID_ARG One or more arguments was invalid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SaveDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDocument, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile, [MarshalAs(UnmanagedType.Interface)] nsISupports aDataPath, [MarshalAs(UnmanagedType.LPStr)] string aOutputContentType, uint aEncodingFlags, uint aWrapColumn);

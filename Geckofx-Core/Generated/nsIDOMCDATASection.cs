@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cfad94e0-92d6-4b32-ab18-c61f9b8cb313")]
+	[Guid("0f401429-30b3-46de-b1bf-d7d5fa7563f9")]
 	public interface nsIDOMCDATASection : nsIDOMText
 	{
 		
@@ -257,6 +257,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void ReplaceData(uint offset, uint count, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase arg);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Remove();
 		
 		/// <summary>
         /// The nsIDOMText interface inherits from nsIDOMCharacterData and represents

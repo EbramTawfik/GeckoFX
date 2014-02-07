@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ef2c9bcb-96b8-4095-933a-cb1c506f2c58")]
+	[Guid("b4440e2e-0fc2-11e3-971f-59e799890b3c")]
 	public interface nsISHistory
 	{
 		
@@ -98,7 +98,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHistoryEntry GetEntryAtIndex(int index, [MarshalAs(UnmanagedType.U1)] bool modifyIndex);
+		nsISHEntry GetEntryAtIndex(int index, [MarshalAs(UnmanagedType.U1)] bool modifyIndex);
 		
 		/// <summary>
         /// Called to purge older documents from history.
@@ -163,11 +163,11 @@ namespace Gecko
         /// by step #1 to obtain handle to the next object in the list.
         /// The object returned by this step is of type nsISupports.
         /// 3) Perform a QueryInterface on the object returned by step #2
-        /// to nsIHistoryEntry.
-        /// 4) Use nsIHistoryEntry to access properties of each history entry.
+        /// to nsISHEntry.
+        /// 4) Use nsISHEntry to access properties of each history entry.
         ///
         /// @see nsISimpleEnumerator
-        /// @see nsIHistoryEntry
+        /// @see nsISHEntry
         /// @see QueryInterface()
         /// @see do_QueryInterface()
         /// </summary>

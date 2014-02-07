@@ -54,7 +54,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6d4ef074-206c-4649-9884-57bc355864d6")]
+	[Guid("3ca10750-797e-4a22-bcfe-66170b5e96dd")]
 	public interface nsIZipWriter
 	{
 		
@@ -235,6 +235,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();
+		
+		/// <summary>
+        /// Make all stored(uncompressed) files align to given alignment size.
+        ///
+        /// @param aAlignSize is the alignment size, valid values from 2 to 32768, and
+        ///            must be power of 2.
+        ///
+        /// @throws NS_ERROR_INVALID_ARG if aAlignSize is invalid
+        /// @throws <other-error> on failure to update the zip file
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AlignStoredFiles(ushort aAlignSize);
 	}
 	
 	/// <summary>nsIZipWriterConsts </summary>

@@ -33,17 +33,24 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("41bd8784-1dd2-11b2-9553-8606958fffe1")]
+	[Guid("c14c151b-5ea4-47ed-8e85-d392cdd3e154")]
 	public interface nsIConsoleMessage
 	{
 		
 		/// <summary>
-        /// This is intended as a base interface; implementations may want to
-        /// provide an object that can be qi'ed to provide more specific
-        /// message information.
+        /// The time (in milliseconds from the Epoch) that the message instance
+        /// was initialised.
+        /// The timestamp is initialized as JS_now/1000 so that it can be
+        /// compared to Date.now in Javascript.
         /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetTimeStampAttribute();
+		
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetMessageAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
 }

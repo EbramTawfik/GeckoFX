@@ -27,11 +27,11 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///    var s = new MozTCPSocket(host, port);
+    /// Bug 797561 - Expose a server tcp socket API to web applications
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b82e17da-6476-11e1-8813-57a2ffe9e42c")]
+	[Guid("65f6d2c8-4be6-4695-958d-0735e8935289")]
 	public interface nsIDOMTCPSocket
 	{
 		
@@ -44,9 +44,9 @@ namespace Gecko
         /// @param options An object specifying one or more parameters which
         /// determine the details of the socket.
         ///
-        /// useSSL: true to create an SSL socket. Defaults to false.
+        /// useSecureTransport: true to create an SSL socket. Defaults to false.
         ///
-        /// binaryType: "arraybuffer" to use UInt8 array
+        /// binaryType: "arraybuffer" to use ArrayBuffer
         /// instances in the ondata callback and as the argument
         /// to send. Defaults to "string", to use JavaScript strings.
         ///
@@ -55,6 +55,33 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMTCPSocket Open([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase host, ushort port, Gecko.JsVal options);
+		
+		/// <summary>
+        /// Listen on a port
+        ///
+        /// @param localPort The port of the server socket. Pass -1 to indicate no preference,
+        /// and a port will be selected automatically.
+        /// @param options An object specifying one or more parameters which
+        /// determine the details of the socket.
+        ///
+        /// binaryType: "arraybuffer" to use ArrayBuffer
+        /// instances in the ondata callback and as the argument
+        /// to send. Defaults to "string", to use JavaScript strings.
+        /// @param backlog The maximum length the queue of pending connections may grow to.
+        /// This parameter may be silently limited by the operating system.
+        /// Pass -1 to use the default value.
+        ///
+        /// @return The new TCPServerSocket instance.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMTCPServerSocket Listen(ushort localPort, Gecko.JsVal options, ushort backlog);
+		
+		/// <summary>
+        /// Enable secure on channel.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UpgradeToSecure();
 		
 		/// <summary>
         /// The host of this socket object.
@@ -106,10 +133,14 @@ namespace Gecko
         ///
         /// @param data The data to write to the socket. If
         /// binaryType: "arraybuffer" was passed in the options
-        /// object, then this object should be an Uint8Array instance.
+        /// object, then this object should be an ArrayBuffer instance.
         /// If binaryType: "string" was passed, or if no binaryType
         /// option was specified, then this object should be an
         /// ordinary JavaScript string.
+        /// @param byteOffset The offset within the data from which to begin writing.
+        /// Has no effect on non-ArrayBuffer data.
+        /// @param byteLength The number of bytes to write. Has no effect on
+        /// non-ArrayBuffer data.
         ///
         /// @return Send returns true or false as a hint to the caller that
         /// they may either continue sending more data immediately, or
@@ -124,7 +155,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Send(Gecko.JsVal data);
+		bool Send(Gecko.JsVal data, uint byteOffset, uint byteLength);
 		
 		/// <summary>
         /// The readyState attribute indicates which state the socket is currently
@@ -186,7 +217,7 @@ namespace Gecko
         /// The ondata handler will be called repeatedly and asynchronously after
         /// onopen has been called, every time some data was available from the server
         /// and was read. If binaryType: "arraybuffer" was passed to open, the data
-        /// attribute of the event object will be an Uint8Array. If not, it will be a
+        /// attribute of the event object will be an ArrayBuffer. If not, it will be a
         /// normal JavaScript string.
         ///
         /// At any time, the client may choose to pause reading and receiving ondata
@@ -200,7 +231,7 @@ namespace Gecko
         /// The ondata handler will be called repeatedly and asynchronously after
         /// onopen has been called, every time some data was available from the server
         /// and was read. If binaryType: "arraybuffer" was passed to open, the data
-        /// attribute of the event object will be an Uint8Array. If not, it will be a
+        /// attribute of the event object will be an ArrayBuffer. If not, it will be a
         /// normal JavaScript string.
         ///
         /// At any time, the client may choose to pause reading and receiving ondata
@@ -258,21 +289,22 @@ namespace Gecko
 	}
 	
 	/// <summary>
-    /// Internal interfaces for use in cross-process socket implementation.
+    /// This interface is implemented in TCPSocket.js as an internal interfaces
+    /// for use in cross-process socket implementation.
     /// Needed to account for multiple possible types that can be provided to
     /// the socket callbacks as arguments.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fff9ed4a-5e94-4fc0-84e4-7f4d35d0a26c")]
+	[Guid("017f130f-2477-4215-8783-57eada957699")]
 	public interface nsITCPSocketInternal
 	{
 		
 		/// <summary>
-        /// Trigger the callback for |type| and provide an Error() object with the given data
+        /// Trigger the callback for |type| and provide a DOMError() object with the given data
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallListenerError([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase filename, uint lineNumber, uint columnNumber);
+		void CallListenerError([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// Trigger the callback for |type| and provide a string argument
@@ -281,7 +313,7 @@ namespace Gecko
 		void CallListenerData([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
 		
 		/// <summary>
-        /// Trigger the callback for |type| and provide a Uint8Array argument
+        /// Trigger the callback for |type| and provide an ArrayBuffer argument
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CallListenerArrayBuffer([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, Gecko.JsVal data);
@@ -293,10 +325,48 @@ namespace Gecko
 		void CallListenerVoid([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type);
 		
 		/// <summary>
-        /// Update the DOM object's readyState and bufferedAmount values with the provided data
+        ///        new ready state to be set to TCPSocket.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateReadyStateAndBuffered([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase readyState, uint bufferedAmount);
+		void UpdateReadyState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase readyState);
+		
+		/// <summary>
+        ///        from child are sent to parent.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UpdateBufferedAmount(uint bufferedAmount, uint trackingNumber);
+		
+		/// <summary>
+        ///        in the ondata callback and as the argument to send.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMTCPSocket CreateAcceptedParent([MarshalAs(UnmanagedType.Interface)] nsISocketTransport transport, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase binaryType);
+		
+		/// <summary>
+        ///        An object to create ArrayBuffer for this window. See Bug 831107.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMTCPSocket CreateAcceptedChild([MarshalAs(UnmanagedType.Interface)] nsITCPSocketChild socketChild, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase binaryType, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		
+		/// <summary>
+        /// Set App ID.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAppId(uint appId);
+		
+		/// <summary>
+        /// socket parent wants to notify that its bufferedAmount is updated.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnUpdateBufferedAmountHandler(Gecko.JsVal handler);
+		
+		/// <summary>
+        ///        lastest send() invocation from child.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnRecvSendFromChild(Gecko.JsVal data, uint byteOffset, uint byteLength, uint trackingNumber);
 	}
 	
 	/// <summary>
@@ -333,7 +403,7 @@ namespace Gecko
 		/// <summary>
         /// The data related to this event, if any. In the ondata callback,
         /// data will be the bytes read from the network; if the binaryType
-        /// of the socket was "arraybuffer", this value will be of type Uint8Array;
+        /// of the socket was "arraybuffer", this value will be of type ArrayBuffer;
         /// otherwise, it will be a normal JavaScript string.
         ///
         /// In the onerror callback, data will be a string with a description

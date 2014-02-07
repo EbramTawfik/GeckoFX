@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9b5b2cde-d5dd-48d3-87f8-8e8b776952a8")]
+	[Guid("03b41c3d-0816-4134-8b2e-4f5afbdb1f06")]
 	public interface nsIApplicationCacheService
 	{
 		
@@ -41,7 +41,7 @@ namespace Gecko
         /// URL and the given load context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BuildGroupID([MarshalAs(UnmanagedType.Interface)] nsIURI aManifestURL, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aLoadContext, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void BuildGroupID([MarshalAs(UnmanagedType.Interface)] nsIURI aManifestURL, [MarshalAs(UnmanagedType.Interface)] nsILoadContextInfo aLoadContextInfo, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Same as buildGroupID method, just doesn't require load context.
@@ -113,7 +113,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIApplicationCache ChooseApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, [MarshalAs(UnmanagedType.Interface)] nsILoadContext loadContext);
+		nsIApplicationCache ChooseApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, [MarshalAs(UnmanagedType.Interface)] nsILoadContextInfo aLoadContextInfo);
 		
 		/// <summary>
         /// Flags the key as being opportunistically cached.

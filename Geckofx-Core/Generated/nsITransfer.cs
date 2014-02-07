@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("08b0b78c-6d7d-4d97-86c9-be5a695813c9")]
+	[Guid("b1c81100-9d66-11e2-9e96-0800200c9a66")]
 	public interface nsITransfer : nsIWebProgressListener2
 	{
 		
@@ -244,5 +244,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init([MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayName, [MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo, long startTime, [MarshalAs(UnmanagedType.Interface)] nsIFile aTempFile, [MarshalAs(UnmanagedType.Interface)] nsICancelable aCancelable, [MarshalAs(UnmanagedType.U1)] bool aIsPrivate);
+		
+		/// <summary>
+        /// Used to notify the transfer object of the hash of the downloaded file.
+        /// Must be called on the main thread, only after the download has finished
+        /// successfully.
+        /// @param aHash The SHA-256 hash in raw bytes of the downloaded file.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSha256Hash([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHash);
 	}
 }

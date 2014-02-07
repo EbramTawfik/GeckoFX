@@ -163,7 +163,7 @@ namespace Gecko
 		void SendBinaryStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, uint length);
 		
 		/// <summary>
-        /// This value determines how often (in milliseconds) websocket keepalive
+        /// This value determines how often (in seconds) websocket keepalive
         /// pings are sent.  If set to 0 (the default), no pings are ever sent.
         ///
         /// This value can currently only be set before asyncOpen is called, else
@@ -176,7 +176,7 @@ namespace Gecko
 		uint GetPingIntervalAttribute();
 		
 		/// <summary>
-        /// This value determines how often (in milliseconds) websocket keepalive
+        /// This value determines how often (in seconds) websocket keepalive
         /// pings are sent.  If set to 0 (the default), no pings are ever sent.
         ///
         /// This value can currently only be set before asyncOpen is called, else
@@ -189,8 +189,9 @@ namespace Gecko
 		void SetPingIntervalAttribute(uint aPingInterval);
 		
 		/// <summary>
-        /// This value determines how long (in milliseconds) the websocket waits for
-        /// the server to reply to a ping that has been sent.
+        /// This value determines how long (in seconds) the websocket waits for
+        /// the server to reply to a ping that has been sent before considering the
+        /// connection broken.
         ///
         /// This value can currently only be set before asyncOpen is called, else
         /// NS_ERROR_IN_PROGRESS is thrown.
@@ -199,8 +200,9 @@ namespace Gecko
 		uint GetPingTimeoutAttribute();
 		
 		/// <summary>
-        /// This value determines how long (in milliseconds) the websocket waits for
-        /// the server to reply to a ping that has been sent.
+        /// This value determines how long (in seconds) the websocket waits for
+        /// the server to reply to a ping that has been sent before considering the
+        /// connection broken.
         ///
         /// This value can currently only be set before asyncOpen is called, else
         /// NS_ERROR_IN_PROGRESS is thrown.

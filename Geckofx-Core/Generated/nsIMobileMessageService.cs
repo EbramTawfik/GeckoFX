@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4cbc9594-84c3-11e2-a274-ebada93fa6cd")]
+	[Guid("67d038b2-0039-11e3-9fd3-83de190730f7")]
 	public interface nsIMobileMessageService
 	{
 		
@@ -42,14 +42,34 @@ namespace Gecko
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozSmsMessage CreateSmsMessage(int id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase delivery, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase deliveryStatus, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sender, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase receiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageClass, Gecko.JsVal timestamp, [MarshalAs(UnmanagedType.U1)] bool read, System.IntPtr jsContext);
+		nsIDOMMozSmsMessage CreateSmsMessage(int id, ulong threadId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase iccId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase delivery, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase deliveryStatus, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sender, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase receiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageClass, Gecko.JsVal timestamp, Gecko.JsVal sentTimestamp, Gecko.JsVal deliveryTimestamp, [MarshalAs(UnmanagedType.U1)] bool read, System.IntPtr jsContext);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozMmsMessage CreateMmsMessage(int id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase delivery, Gecko.JsVal deliveryStatus, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sender, Gecko.JsVal receivers, Gecko.JsVal timestamp, [MarshalAs(UnmanagedType.U1)] bool read, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase subject, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase smil, Gecko.JsVal attachments, System.IntPtr jsContext);
+		nsIDOMMozMmsMessage CreateMmsMessage(
+					int id, 
+					ulong threadId, 
+					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase iccId, 
+					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase delivery, 
+					Gecko.JsVal deliveryInfo, 
+					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sender, 
+					Gecko.JsVal receivers, 
+					Gecko.JsVal timestamp, 
+					Gecko.JsVal sentTimestamp, 
+					[MarshalAs(UnmanagedType.U1)] bool read, 
+					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase subject, 
+					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase smil, 
+					Gecko.JsVal attachments, 
+					Gecko.JsVal expiryDate, 
+					[MarshalAs(UnmanagedType.U1)] bool readReportRequested, 
+					System.IntPtr jsContext);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMozSmsSegmentInfo CreateSmsSegmentInfo(int segments, int charsPerSegment, int charsAvailableInLastSegment);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMozMobileMessageThread CreateThread(ulong id, Gecko.JsVal participants, Gecko.JsVal timestamp, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase lastMessageSubject, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, ulong unreadCount, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastMessageType, System.IntPtr jsContext);
 	}
 }

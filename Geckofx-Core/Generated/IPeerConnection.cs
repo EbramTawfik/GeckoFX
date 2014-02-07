@@ -52,221 +52,36 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("85ba28da-53d0-401d-afed-9cad69f727ff")]
+	[Guid("d7dfe148-0416-446b-a128-66a7c71ae8d3")]
 	public interface IPeerConnectionObserver
 	{
-		
-		/// <summary>
-        ///JSEP callbacks </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCreateOfferSuccess([MarshalAs(UnmanagedType.LPStr)] string offer);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCreateOfferError(uint name, [MarshalAs(UnmanagedType.LPStr)] string message);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCreateAnswerSuccess([MarshalAs(UnmanagedType.LPStr)] string answer);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCreateAnswerError(uint name, [MarshalAs(UnmanagedType.LPStr)] string message);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSetLocalDescriptionSuccess();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSetRemoteDescriptionSuccess();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSetLocalDescriptionError(uint name, [MarshalAs(UnmanagedType.LPStr)] string message);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSetRemoteDescriptionError(uint name, [MarshalAs(UnmanagedType.LPStr)] string message);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAddIceCandidateSuccess();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAddIceCandidateError(uint name, [MarshalAs(UnmanagedType.LPStr)] string message);
-		
-		/// <summary>
-        ///Data channel callbacks </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyDataChannel([MarshalAs(UnmanagedType.Interface)] nsIDOMDataChannel channel);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyConnection();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyClosedConnection();
-		
-		/// <summary>
-        ///Notification of one of several types of state changed </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStateChange(uint state);
-		
-		/// <summary>
-        ///Changes to MediaStreams </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAddStream([MarshalAs(UnmanagedType.Interface)] nsIDOMMediaStream stream, [MarshalAs(UnmanagedType.LPStr)] string type);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnRemoveStream();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAddTrack();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnRemoveTrack();
-		
-		/// <summary>
-        ///When SDP is parsed and a candidate line is found this method is called.
-        /// It should hook back into the media transport to notify it of ICE candidates
-        /// listed in the SDP PeerConnectionImpl does not parse ICE candidates, just
-        /// pulls them out of the SDP.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FoundIceCandidate([MarshalAs(UnmanagedType.LPStr)] string candidate);
 	}
 	
-	/// <summary>IPeerConnectionObserverConsts </summary>
-	public class IPeerConnectionObserverConsts
-	{
-		
-		// <summary>
-        //Constants </summary>
-		public const long kReadyState = 0x1;
-		
-		// 
-		public const long kIceState = 0x2;
-		
-		// 
-		public const long kSdpState = 0x3;
-		
-		// 
-		public const long kSipccState = 0x4;
-	}
-	
-	/// <summary>IPeerConnection </summary>
+	/// <summary>
+    ///Do not confuse with nsIDOMRTCPeerConnection. This interface is purely for
+    /// communication between the PeerConnection JS DOM binding and the C++
+    /// implementation in SIPCC.
+    ///
+    /// See media/webrtc/signaling/include/PeerConnectionImpl.h
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("80b98a4f-c629-4e81-b738-a4608f6a4cd3")]
+	[Guid("c9c31639-1a49-4533-8429-f6a348c4d8c3")]
 	public interface IPeerConnection
 	{
-		
-		/// <summary>
-        ///Must be called first. Observer events will be dispatched on the thread provided </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Initialize([MarshalAs(UnmanagedType.Interface)] IPeerConnectionObserver observer, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal iceServers, [MarshalAs(UnmanagedType.Interface)] nsIThread thread, System.IntPtr jsContext);
-		
-		/// <summary>
-        ///JSEP calls </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateOffer(Gecko.JsVal constraints, System.IntPtr jsContext);
-		
-		/// <summary>Member CreateAnswer </summary>
-		/// <param name='constraints'> </param>
-		/// <param name='jsContext'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateAnswer(Gecko.JsVal constraints, System.IntPtr jsContext);
-		
-		/// <summary>Member SetLocalDescription </summary>
-		/// <param name='action'> </param>
-		/// <param name='sdp'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLocalDescription(int action, [MarshalAs(UnmanagedType.LPStr)] string sdp);
-		
-		/// <summary>Member SetRemoteDescription </summary>
-		/// <param name='action'> </param>
-		/// <param name='sdp'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRemoteDescription(int action, [MarshalAs(UnmanagedType.LPStr)] string sdp);
-		
-		/// <summary>
-        ///Adds the stream created by GetUserMedia </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddStream([MarshalAs(UnmanagedType.Interface)] nsIDOMMediaStream stream);
-		
-		/// <summary>Member RemoveStream </summary>
-		/// <param name='stream'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveStream([MarshalAs(UnmanagedType.Interface)] nsIDOMMediaStream stream);
-		
-		/// <summary>Member CloseStreams </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CloseStreams();
-		
-		/// <summary>Member GetLocalStreamsAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetLocalStreamsAttribute(System.IntPtr jsContext);
-		
-		/// <summary>
-        /// MediaStream[]
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetRemoteStreamsAttribute(System.IntPtr jsContext);
-		
-		/// <summary>
-        ///As the ICE candidates roll in this one should be called each time
-        /// in order to keep the candidate list up-to-date for the next SDP-related
-        /// call PeerConnectionImpl does not parse ICE candidates, just sticks them
-        /// into the SDP.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddIceCandidate([MarshalAs(UnmanagedType.LPStr)] string candidate, [MarshalAs(UnmanagedType.LPStr)] string mid, ushort level);
-		
-		/// <summary>
-        ///Puts the SIPCC engine back to 'kIdle', shuts down threads, deletes state </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Close();
-		
-		/// <summary>
-        ///Attributes </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetLocalDescriptionAttribute();
-		
-		/// <summary>Member GetRemoteDescriptionAttribute </summary>
-		/// <returns>A System.String</returns>
-		[return: MarshalAs(UnmanagedType.LPStr)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetRemoteDescriptionAttribute();
-		
-		/// <summary>Member GetIceStateAttribute </summary>
-		/// <returns>A System.UInt32</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetIceStateAttribute();
-		
-		/// <summary>Member GetReadyStateAttribute </summary>
-		/// <returns>A System.UInt32</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetReadyStateAttribute();
-		
-		/// <summary>Member GetSipccStateAttribute </summary>
-		/// <returns>A System.UInt32</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetSipccStateAttribute();
-		
-		/// <summary>
-        ///Data channels </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDataChannel CreateDataChannel([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase label, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase protocol, ushort type, [MarshalAs(UnmanagedType.U1)] bool outOfOrderAllowed, ushort maxTime, ushort maxNum, [MarshalAs(UnmanagedType.U1)] bool externalNegotiated, ushort stream);
-		
-		/// <summary>Member ConnectDataConnection </summary>
-		/// <param name='localport'> </param>
-		/// <param name='remoteport'> </param>
-		/// <param name='numstreams'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConnectDataConnection(ushort localport, ushort remoteport, ushort numstreams);
 	}
 	
 	/// <summary>IPeerConnectionConsts </summary>
 	public class IPeerConnectionConsts
 	{
 		
-		// 
+		// <summary>
+        //Do not confuse with nsIDOMRTCPeerConnection. This interface is purely for
+        // communication between the PeerConnection JS DOM binding and the C++
+        // implementation in SIPCC.
+        //
+        // See media/webrtc/signaling/include/PeerConnectionImpl.h
+        // </summary>
 		public const ulong kHintAudio = 0x00000001;
 		
 		// 

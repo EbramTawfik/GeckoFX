@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("31e92e56-4d23-4a4a-9cfe-a6d12cf434bc")]
+	[Guid("b128448c-7b53-4769-92cb-cd6eafee676c")]
 	public interface nsIDOMEventTarget
 	{
 		
@@ -200,7 +200,7 @@ namespace Gecko
         /// Dispatch an event.
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
-        /// dispatch nsIDOMEvent, not only nsEvent.
+        /// dispatch nsIDOMEvent, not only WidgetEvent.
         /// @param aPresContext the current presentation context, can be nullptr.
         /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
@@ -215,15 +215,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DispatchDOMEvent(System.IntPtr aEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aDOMEvent, System.IntPtr aPresContext, System.IntPtr aEventStatus);
-		
-		/// <summary>
-        /// Get the event listener manager, the guy you talk to to register for events
-        /// on this node.
-        /// @param aMayCreate If PR_FALSE, returns a listener manager only if
-        /// one already exists.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.U1)] bool aMayCreate);
 		
 		/// <summary>
         /// Get the script context in which the event handlers should be run.

@@ -35,6 +35,8 @@ namespace Gecko
     /// Note: this interface provides no means to access stored values.
     /// Stored values are used by the FormFillController to generate
     /// autocomplete matches.
+    ///
+    /// @deprecated use FormHistory.jsm instead.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

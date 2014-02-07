@@ -51,7 +51,7 @@ namespace Gecko
         ///Find an RDF resource that points to a given node over the
         /// specified arc & truth value
         ///
-        /// @return NS_RDF_NO_VALUE if there is no source that leads
+        /// @throws NS_RDF_NO_VALUE if there is no source that leads
         /// to the target with the specified property.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -61,10 +61,6 @@ namespace Gecko
 		/// <summary>
         /// Find all RDF resources that point to a given node over the
         /// specified arc & truth value
-        ///
-        /// @return NS_OK unless a catastrophic error occurs. If the
-        /// method returns NS_OK, you may assume that nsISimpleEnumerator points
-        /// to a valid (but possibly empty) cursor.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -74,7 +70,7 @@ namespace Gecko
         /// Find a child of that is related to the source by the given arc
         /// arc and truth value
         ///
-        /// @return NS_RDF_NO_VALUE if there is no target accessible from the
+        /// @throws NS_RDF_NO_VALUE if there is no target accessible from the
         /// source via the specified property.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -84,10 +80,6 @@ namespace Gecko
 		/// <summary>
         /// Find all children of that are related to the source by the given arc
         /// arc and truth value.
-        ///
-        /// @return NS_OK unless a catastrophic error occurs. If the
-        /// method returns NS_OK, you may assume that nsISimpleEnumerator points
-        /// to a valid (but possibly empty) cursor.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -152,10 +144,6 @@ namespace Gecko
 		
 		/// <summary>
         /// Get a cursor to iterate over all the arcs that point into a node.
-        ///
-        /// @return NS_OK unless a catastrophic error occurs. If the method
-        /// returns NS_OK, you may assume that labels points to a valid (but
-        /// possible empty) nsISimpleEnumerator object.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -164,10 +152,6 @@ namespace Gecko
 		/// <summary>
         /// Get a cursor to iterate over all the arcs that originate in
         /// a resource.
-        ///
-        /// @return NS_OK unless a catastrophic error occurs. If the method
-        /// returns NS_OK, you may assume that labels points to a valid (but
-        /// possible empty) nsISimpleEnumerator object.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

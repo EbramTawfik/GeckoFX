@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c4b2ed2a-8714-11e2-bd2b-13f1a0759342")]
+	[Guid("cb7d7b60-01f1-4241-a0ae-2ff035c3fbe5")]
 	public interface nsISmsService
 	{
 		
@@ -40,15 +40,26 @@ namespace Gecko
         ///This Source Code Form is subject to the terms of the Mozilla Public
         /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetSmsDefaultServiceIdAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSegmentInfoForText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Send(uint serviceId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, [MarshalAs(UnmanagedType.U1)] bool silent, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
+		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasSupport();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozSmsSegmentInfo GetSegmentInfoForText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
+		bool IsSilentNumber([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Send([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
+		void AddSilentNumber([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveSilentNumber([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSmscAddress(uint serviceId, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 	}
 }

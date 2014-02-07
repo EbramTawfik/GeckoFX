@@ -32,18 +32,69 @@ namespace Gecko
     /// to either a well-known profile database or to a specific database file.
     ///
     /// This is the only way to open a database connection.
+    ///
+    /// @note The first reference to mozIStorageService must be made on the main
+    /// thread.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("12bfad34-cca3-40fb-8736-d8bf9db61a27")]
+	[Guid("07b6b2f5-6d97-47b4-9584-e65bc467fe9e")]
 	public interface mozIStorageService
 	{
+		
+		/// <summary>
+        /// Open an asynchronous connection to a database.
+        ///
+        /// This method MUST be called from the main thread. The connection object
+        /// returned by this function is not threadsafe. You MUST use it only from
+        /// the main thread.
+        ///
+        /// If you have more than one connection to a file, you MUST use the EXACT
+        /// SAME NAME for the file each time, including case. The sqlite code uses
+        /// a simple string compare to see if there is already a connection. Opening
+        /// a connection to "Foo.sqlite" and "foo.sqlite" will CORRUPT YOUR DATABASE.
+        ///
+        /// @param aDatabaseStore Either a nsIFile representing the file that contains
+        /// the database or a special string to open a special database. The special
+        /// string may be:
+        /// - "memory" to open an in-memory database.
+        ///
+        /// @param aOptions A set of options (may be null). Options may contain:
+        /// - bool shared (defaults to |false|).
+        /// -- If |true|, opens the database with a shared-cache. The
+        /// shared-cache mode is more memory-efficient when many
+        /// connections to the same database are expected, though, the
+        /// connections will contend the cache resource. In any cases
+        /// where performance matter, working without a shared-cache will
+        /// improve concurrency.  @see openUnsharedDatabase
+        ///
+        /// - int growthIncrement (defaults to none).
+        /// -- Set the growth increment for the main database.  This hints SQLite to
+        /// grow the database file by a given chunk size and may reduce
+        /// filesystem fragmentation on large databases.
+        /// @see mozIStorageConnection::setGrowthIncrement
+        ///
+        /// @param aCallback A callback that will receive the result of the operation.
+        /// In case of error, it may receive as status:
+        /// - NS_ERROR_OUT_OF_MEMORY if allocating a new storage object fails.
+        /// - NS_ERROR_FILE_CORRUPTED if the database file is corrupted.
+        /// In case of success, it receives as argument the new database
+        /// connection, as an instance of |mozIStorageAsyncConnection|.
+        ///
+        /// @throws NS_ERROR_INVALID_ARG if |aDatabaseStore| is neither a file nor
+        /// one of the special strings understood by this method, or if one of
+        /// the options passed through |aOptions| does not have the right type.
+        /// @throws NS_ERROR_NOT_SAME_THREAD if called from a thread other than the
+        /// main thread.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OpenAsyncDatabase([MarshalAs(UnmanagedType.Interface)] nsIVariant aDatabaseStore, [MarshalAs(UnmanagedType.Interface)] nsIPropertyBag2 aOptions, mozIStorageCompletionCallback aCallback);
 		
 		/// <summary>
         /// Get a connection to a named special database storage.
         ///
         /// @param aStorageKey a string key identifying the type of storage
-        /// requested.  Valid values include: "profile", "memory".
+        /// requested.  Valid values include: "memory".
         ///
         /// @see openDatabase for restrictions on how database connections may be
         /// used. For the profile database, you should only access it from the main
@@ -77,12 +128,6 @@ namespace Gecko
         /// The connection object returned by this function is not threadsafe. You must
         /// use it only from the thread you created it from.
         ///
-        /// If your database contains virtual tables (f.e. for full-text indexes), you
-        /// must open it with openUnsharedDatabase, as those tables are incompatible
-        /// with a shared cache.  If you attempt to use this method to open a database
-        /// containing virtual tables, it will think the database is corrupted and
-        /// throw NS_ERROR_FILE_CORRUPTED.
-        ///
         /// @param aDatabaseFile
         /// A nsIFile that represents the database that is to be opened..
         ///
@@ -99,12 +144,11 @@ namespace Gecko
 		/// <summary>
         /// Open a connection to the specified file that doesn't share a sqlite cache.
         ///
-        /// Each connection uses its own sqlite cache, which is inefficient, so you
-        /// should use openDatabase instead of this method unless you need a feature
-        /// of SQLite that is incompatible with a shared cache, like virtual table
-        /// and full text indexing support. If cache contention is expected, for
-        /// instance when operating on a database from multiple threads, using
-        /// unshared connections may be a performance win.
+        /// Without a shared-cache, each connection uses its own pages cache, which
+        /// may be memory inefficient with a large number of connections, in such a
+        /// case so you should use openDatabase instead.  On the other side, if cache
+        /// contention may be an issue, for instance when concurrency is important to
+        /// ensure responsiveness, using unshared connections may be a performance win.
         ///
         /// ==========
         /// DANGER

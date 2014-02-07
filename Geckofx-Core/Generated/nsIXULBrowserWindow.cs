@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("67a601df-f091-4894-a2e2-2e6cfebb35ea")]
+	[Guid("e4ee85a0-645d-11e3-949a-0800200c9a66")]
 	public interface nsIXULBrowserWindow
 	{
 		
@@ -42,12 +42,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetJSStatus([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase status);
-		
-		/// <summary>
-        /// Sets the default status according to JS' version of default status.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetJSDefaultStatus([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase status);
 		
 		/// <summary>
         /// Tells the object implementing this function what link we are currently
@@ -61,5 +55,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnBeforeLinkTraversal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase originalTarget, [MarshalAs(UnmanagedType.Interface)] nsIURI linkURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode linkNode, [MarshalAs(UnmanagedType.U1)] bool isAppTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
+		/// <summary>
+        /// Show/hide a tooltip (when the user mouses over a link, say).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ShowTooltip(int x, int y, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase tooltip);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void HideTooltip();
 	}
 }

@@ -96,7 +96,7 @@ namespace Gecko
         ///
         /// OPEN_UNBUFFERED
         /// If specified, the resulting stream may not support WriteSegments and
-        /// WriteFrom.  WriteSegments and WriteFrom are only gauranteed to be
+        /// WriteFrom.  WriteSegments and WriteFrom are only guaranteed to be
         /// implemented when this flag is NOT specified.
         ///
         /// @param aFlags
@@ -135,13 +135,16 @@ namespace Gecko
 		new void SetEventSink([MarshalAs(UnmanagedType.Interface)] nsITransportEventSink aSink, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aEventTarget);
 		
 		/// <summary>
-        /// Get the host for the underlying socket connection.
+        /// Get the peer's host for the underlying socket connection.
+        /// For Unix domain sockets, this is a pathname, or the empty string for
+        /// unnamed and abstract socket addresses.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost);
 		
 		/// <summary>
         /// Get the port for the underlying socket connection.
+        /// For Unix domain sockets, this is zero.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetPortAttribute();
@@ -371,5 +374,11 @@ namespace Gecko
         // connect to IPv6 ones.
         // </summary>
 		public const ulong DISABLE_IPV4 = (1<<4);
+		
+		// <summary>
+        // If set, indicates that the socket should not connect if the hostname
+        // resolves to an RFC1918 address or IPv6 equivalent.
+        // </summary>
+		public const ulong DISABLE_RFC1918 = (1<<5);
 	}
 }

@@ -32,34 +32,25 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ae486501-ec57-4ec8-a565-6880ca4ae6c4")]
+	[Guid("3b6e408b-e774-4612-89e8-3ef303564392")]
 	public interface nsIScriptSecurityManager : nsIXPCSecurityManager
 	{
 		
 		/// <summary>
         /// For each of these hooks returning NS_OK means 'let the action continue'.
         /// Returning an error code means 'veto the action'. XPConnect will return
-        /// JS_FALSE to the js engine if the action is vetoed. The implementor of this
+        /// false to the js engine if the action is vetoed. The implementor of this
         /// interface is responsible for setting a JS exception into the JSContext
         /// if that is appropriate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void CanCreateWrapper(System.IntPtr aJSContext, ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, ref System.IntPtr aPolicy);
+		new void CanCreateWrapper(System.IntPtr aJSContext, ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void CanCreateInstance(System.IntPtr aJSContext, ref System.Guid aCID);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void CanGetService(System.IntPtr aJSContext, ref System.Guid aCID);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void CanAccess(uint aAction, System.IntPtr aCallContext, System.IntPtr aJSContext, System.IntPtr aJSObject, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, System.IntPtr aName, ref System.IntPtr aPolicy);
-		
-		/// <summary>
-        /// Checks whether the running script is allowed to access aProperty.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckPropertyAccess(System.IntPtr aJSContext, System.IntPtr aJSObject, [MarshalAs(UnmanagedType.LPStr)] string aClassName, System.IntPtr aProperty, uint aAction);
 		
 		/// <summary>
         /// Check that the script currently running in context "cx" can load "uri".
@@ -99,25 +90,11 @@ namespace Gecko
 		void CheckLoadURIStrWithPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase uri, uint flags);
 		
 		/// <summary>
-        /// Check that the function 'funObj' is allowed to run on 'targetObj'
-        ///
-        /// Will return error code NS_ERROR_DOM_SECURITY_ERR if the function
-        /// should not run
-        ///
-        /// @param cx The current active JavaScript context.
-        /// @param funObj The function trying to run..
-        /// @param targetObj The object the function will run on.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckFunctionAccess(System.IntPtr cx, System.IntPtr funObj, System.IntPtr targetObj);
-		
-		/// <summary>
-        /// Return true if content from the given principal is allowed to
-        /// execute scripts.
+        /// Return true if scripts may be executed in the scope of the given global.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanExecuteScripts(System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
+		bool ScriptAllowed(System.IntPtr aGlobal);
 		
 		/// <summary>
         /// Return the principal of the innermost frame of the currently
@@ -186,7 +163,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetObjectPrincipal(System.IntPtr cx, System.IntPtr obj);
+		nsIPrincipal GetObjectPrincipal(Gecko.JsVal aObject, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Returns true if the principal of the currently running script is the
@@ -241,13 +218,43 @@ namespace Gecko
 		nsIPrincipal GetCxSubjectPrincipal(System.IntPtr cx);
 		
 		/// <summary>
-        /// Returns the extended origin for the uri.
+        /// Returns the jar prefix for the app.
         /// appId can be NO_APP_ID or a valid app id. appId should not be
         /// UNKNOWN_APP_ID.
-        /// inMozBrowser has to be true if the uri is inside a mozbrowser iframe.
+        /// inMozBrowser has to be true if the app is inside a mozbrowser iframe.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetExtendedOrigin([MarshalAs(UnmanagedType.Interface)] nsIURI uri, uint appId, [MarshalAs(UnmanagedType.U1)] bool inMozBrowser, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		void GetJarPrefix(uint appId, [MarshalAs(UnmanagedType.U1)] bool inMozBrowser, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		
+		/// <summary>
+        /// Per-domain controls to enable and disable script. This system is designed
+        /// to be used by at most one consumer, and enforces this with its semantics.
+        ///
+        /// Initially, domainPolicyActive is false. When activateDomainPolicy() is
+        /// invoked, domainPolicyActive becomes true, and subsequent calls to
+        /// activateDomainPolicy() will fail until deactivate() is invoked on the
+        /// nsIDomainPolicy returned from activateDomainPolicy(). At this point,
+        /// domainPolicyActive becomes false again, and a new consumer may acquire
+        /// control of the system by invoking activateDomainPolicy().
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDomainPolicy ActivateDomainPolicy();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetDomainPolicyActiveAttribute();
+		
+		/// <summary>
+        /// Query mechanism for the above policy.
+        ///
+        /// If domainPolicyEnabled is false, this simply returns the current value
+        /// of javascript.enabled. Otherwise, it returns the same value, but taking
+        /// the various blacklist/whitelist exceptions into account.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool PolicyAllowsScript([MarshalAs(UnmanagedType.Interface)] nsIURI aDomain);
 	}
 	
 	/// <summary>nsIScriptSecurityManagerConsts </summary>
@@ -294,5 +301,10 @@ namespace Gecko
 		
 		// 
 		public const ulong UNKNOWN_APP_ID = 4294967295;
+		
+		// <summary>
+        // UINT32_MAX
+        // </summary>
+		public const ulong SAFEBROWSING_APP_ID = 4294967294;
 	}
 }

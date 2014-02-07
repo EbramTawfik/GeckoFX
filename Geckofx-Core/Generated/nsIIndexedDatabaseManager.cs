@@ -37,13 +37,17 @@ namespace Gecko
 	{
 		
 		/// <summary>
-        /// Defines indexedDB and IDBKeyrange with its static functions on
-        /// aObject and initializes DOM exception providers if needed.
+        /// Defines indexedDB and IDBKeyRange with its static functions on aGlobal.
         ///
-        /// @param aObject
-        /// The object, indexedDB and IDBKeyrange should be defined on.
+        /// This method might go away some time in the future, indexedDB and
+        /// IDBKeyRange should now be defined in all the spots (content windows,
+        /// chrome windows, xpcshell, JS modules, JS components, JS sandboxes,
+        /// ipcshell, bootstrapped extensions and Jetpack)
+        ///
+        /// @param aGlobal
+        /// The global object, indexedDB and IDBKeyRange should be defined on.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWindowless(Gecko.JsVal aObject, System.IntPtr jsContext);
+		void InitWindowless(Gecko.JsVal aGlobal, System.IntPtr jsContext);
 	}
 }

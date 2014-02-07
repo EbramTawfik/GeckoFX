@@ -27,73 +27,18 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///This Source Code Form is subject to the terms of the Mozilla Public
-    /// License, v. 2.0. If a copy of the MPL was not distributed with this
-    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("CCEA6185-0A3D-45AB-9058-1004DD4B8C50")]
-	public interface nsIDOMDesktopNotificationCenter
-	{
-		
-		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this
-        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDesktopNotification CreateNotification([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase description, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase iconURL);
-	}
-	
-	/// <summary>nsIDOMDesktopNotification </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("77bc6adc-77d6-4b29-9844-7eaac25e995d")]
-	public interface nsIDOMDesktopNotification
-	{
-		
-		/// <summary>Member Show </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Show();
-		
-		/// <summary>Member GetOnclickAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOnclickAttribute(System.IntPtr jsContext);
-		
-		/// <summary>Member SetOnclickAttribute </summary>
-		/// <param name='aOnclick'> </param>
-		/// <param name='jsContext'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnclickAttribute(Gecko.JsVal aOnclick, System.IntPtr jsContext);
-		
-		/// <summary>Member GetOncloseAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOncloseAttribute(System.IntPtr jsContext);
-		
-		/// <summary>Member SetOncloseAttribute </summary>
-		/// <param name='aOnclose'> </param>
-		/// <param name='jsContext'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOncloseAttribute(Gecko.JsVal aOnclose, System.IntPtr jsContext);
-	}
-	
-	/// <summary>
     /// Notification service that also provides the manifest URL
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7fb4f0f9-ff5b-4620-8e1b-d82d723605af")]
+	[Guid("50cb17d2-dc8a-4aa6-bcd3-94d76af14e20")]
 	public interface nsIAppNotificationService
 	{
 		
 		/// <summary>
-        /// Notification service that also provides the manifest URL
+        /// AppNotificationServiceOptions Dictionary object
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowAppNotification([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase imageUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text, [MarshalAs(UnmanagedType.U1)] bool textClickable, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURL, [MarshalAs(UnmanagedType.Interface)] nsIObserver alertListener);
+		void ShowAppNotification([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase imageUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text, [MarshalAs(UnmanagedType.Interface)] nsIObserver alertListener, Gecko.JsVal details);
 	}
 }

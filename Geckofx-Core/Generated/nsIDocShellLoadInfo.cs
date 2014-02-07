@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5b041ea4-6655-434c-b3d3-cbbc9441f86a")]
+	[Guid("c6b15de3-2f4f-4e80-bb20-95f43b5598c7")]
 	public interface nsIDocShellLoadInfo
 	{
 		
@@ -166,6 +166,41 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSendReferrerAttribute([MarshalAs(UnmanagedType.U1)] bool aSendReferrer);
+		
+		/// <summary>
+        ///True if the docshell has been created to load an iframe where the
+        /// srcdoc attribute has been set.  Set when srcdocData is specified.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsSrcdocLoadAttribute();
+		
+		/// <summary>
+        ///When set, the load will be interpreted as a srcdoc load, where contents
+        /// of this string will be loaded instead of the URI.  Setting srcdocData
+        /// sets isSrcdocLoad to true
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSrcdocDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrcdocData);
+		
+		/// <summary>
+        ///When set, the load will be interpreted as a srcdoc load, where contents
+        /// of this string will be loaded instead of the URI.  Setting srcdocData
+        /// sets isSrcdocLoad to true
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSrcdocDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrcdocData);
+		
+		/// <summary>
+        ///When set, this is the Source Browsing Context for the navigation. </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDocShell GetSourceDocShellAttribute();
+		
+		/// <summary>
+        ///When set, this is the Source Browsing Context for the navigation. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSourceDocShellAttribute([MarshalAs(UnmanagedType.Interface)] nsIDocShell aSourceDocShell);
 	}
 	
 	/// <summary>nsIDocShellLoadInfoConsts </summary>
@@ -241,6 +276,9 @@ namespace Gecko
 		public const long loadReplaceBypassCache = 18;
 		
 		// 
-		public const long loadMixedContent = 19;
+		public const long loadReloadMixedContent = 19;
+		
+		// 
+		public const long loadNormalAllowMixedContent = 20;
 	}
 }

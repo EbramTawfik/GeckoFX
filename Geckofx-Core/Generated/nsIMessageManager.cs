@@ -173,16 +173,16 @@ namespace Gecko
         /// receiveMessage is called with one parameter, which has the following
         /// properties:
         /// {
-        /// target:  %the target of the message. Either an element owning
+        /// target:    %the target of the message. Either an element owning
         /// the message manager, or message manager itself if no
         /// element owns it%
-        /// name:    %message name%,
-        /// sync:    %true or false%.
-        /// data:    %structured clone of the sent message data%,
-        /// json:    %same as .data, deprecated%,
-        /// objects: %array of handles or null, always null if sync is false%
+        /// name:      %message name%,
+        /// sync:      %true or false%.
+        /// data:      %structured clone of the sent message data%,
+        /// json:      %same as .data, deprecated%,
+        /// objects:   %named table of jsvals/objects, or null%
+        /// principal: %principal for the window app
         /// }
-        /// @note objects property isn't implemented yet.
         ///
         /// Each listener is invoked with its own copy of the message
         /// parameter.
@@ -202,7 +202,7 @@ namespace Gecko
 	/// <summary>nsIMessageListenerManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9c37a142-3de3-4902-a1a4-133f37d5980a")]
+	[Guid("aae827bd-acf1-45fe-a556-ea545d4c0804")]
 	public interface nsIMessageListenerManager
 	{
 		
@@ -220,11 +220,30 @@ namespace Gecko
 		void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
-        /// No longer invoke |listener| when |messageName| is received, after
-        /// the first time removeMessageListener() is called.
+        /// Undo an |addMessageListener| call -- that is, calling this causes us to no
+        /// longer invoke |listener| when |messageName| is received.
+        ///
+        /// removeMessageListener does not remove a message listener added via
+        /// addWeakMessageListener; use removeWeakMessageListener for that.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This is just like addMessageListener, except the message manager holds a
+        /// weak ref to |listener|.
+        ///
+        /// If you have two weak message listeners for the same message, they may be
+        /// called in any order.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This undoes an |addWeakMessageListener| call.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>Member MarkForCC </summary>
 		/// <returns>A System.Boolean</returns>
@@ -241,7 +260,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7f23767d-0f39-40c1-a22d-d3ab8a481f9d")]
+	[Guid("d6b0d851-43e6-426d-9f13-054bc0198175")]
 	public interface nsIMessageSender : nsIMessageListenerManager
 	{
 		
@@ -259,11 +278,30 @@ namespace Gecko
 		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
-        /// No longer invoke |listener| when |messageName| is received, after
-        /// the first time removeMessageListener() is called.
+        /// Undo an |addMessageListener| call -- that is, calling this causes us to no
+        /// longer invoke |listener| when |messageName| is received.
+        ///
+        /// removeMessageListener does not remove a message listener added via
+        /// addWeakMessageListener; use removeWeakMessageListener for that.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This is just like addMessageListener, except the message manager holds a
+        /// weak ref to |listener|.
+        ///
+        /// If you have two weak message listeners for the same message, they may be
+        /// called in any order.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This undoes an |addWeakMessageListener| call.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -285,7 +323,7 @@ namespace Gecko
         /// to a cross-process frame whose process has crashed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
+		void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 	}
 	
 	/// <summary>
@@ -315,11 +353,30 @@ namespace Gecko
 		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
-        /// No longer invoke |listener| when |messageName| is received, after
-        /// the first time removeMessageListener() is called.
+        /// Undo an |addMessageListener| call -- that is, calling this causes us to no
+        /// longer invoke |listener| when |messageName| is received.
+        ///
+        /// removeMessageListener does not remove a message listener added via
+        /// addWeakMessageListener; use removeWeakMessageListener for that.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This is just like addMessageListener, except the message manager holds a
+        /// weak ref to |listener|.
+        ///
+        /// If you have two weak message listeners for the same message, they may be
+        /// called in any order.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This undoes an |addWeakMessageListener| call.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -334,7 +391,7 @@ namespace Gecko
         /// sensitive data.  Use with extreme caution.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BroadcastAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
+		void BroadcastAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Number of subordinate message managers.
@@ -353,7 +410,7 @@ namespace Gecko
 	/// <summary>nsISyncMessageSender </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("83be5862-2996-4685-ae7d-ae25bd795d50")]
+	[Guid("7fda0941-9dcc-448b-bd39-16373c5b4003")]
 	public interface nsISyncMessageSender : nsIMessageSender
 	{
 		
@@ -371,11 +428,30 @@ namespace Gecko
 		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
-        /// No longer invoke |listener| when |messageName| is received, after
-        /// the first time removeMessageListener() is called.
+        /// Undo an |addMessageListener| call -- that is, calling this causes us to no
+        /// longer invoke |listener| when |messageName| is received.
+        ///
+        /// removeMessageListener does not remove a message listener added via
+        /// addWeakMessageListener; use removeWeakMessageListener for that.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This is just like addMessageListener, except the message manager holds a
+        /// weak ref to |listener|.
+        ///
+        /// If you have two weak message listeners for the same message, they may be
+        /// called in any order.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This undoes an |addWeakMessageListener| call.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>Member MarkForCC </summary>
 		/// <returns>A System.Boolean</returns>
@@ -399,7 +475,7 @@ namespace Gecko
         /// to a cross-process frame whose process has crashed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendAsyncMessage()|, except blocks the sender until all
@@ -407,7 +483,19 @@ namespace Gecko
         /// containing return values from each listener invoked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
+		Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		
+		/// <summary>
+        /// Like |sendSyncMessage()|, except re-entrant. New RPC messages may be
+        /// issued even if, earlier on the call stack, we are waiting for a reply
+        /// to an earlier sendRpcMessage() call.
+        ///
+        /// Both sendSyncMessage and sendRpcMessage will block until a reply is
+        /// received, but they may be temporarily interrupted to process an urgent
+        /// incoming message (such as a CPOW request).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 	}
 	
 	/// <summary>nsIContentFrameMessageManager </summary>
@@ -431,11 +519,30 @@ namespace Gecko
 		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
-        /// No longer invoke |listener| when |messageName| is received, after
-        /// the first time removeMessageListener() is called.
+        /// Undo an |addMessageListener| call -- that is, calling this causes us to no
+        /// longer invoke |listener| when |messageName| is received.
+        ///
+        /// removeMessageListener does not remove a message listener added via
+        /// addWeakMessageListener; use removeWeakMessageListener for that.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This is just like addMessageListener, except the message manager holds a
+        /// weak ref to |listener|.
+        ///
+        /// If you have two weak message listeners for the same message, they may be
+        /// called in any order.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This undoes an |addWeakMessageListener| call.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>Member MarkForCC </summary>
 		/// <returns>A System.Boolean</returns>
@@ -459,7 +566,7 @@ namespace Gecko
         /// to a cross-process frame whose process has crashed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendAsyncMessage()|, except blocks the sender until all
@@ -467,7 +574,19 @@ namespace Gecko
         /// containing return values from each listener invoked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
+		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		
+		/// <summary>
+        /// Like |sendSyncMessage()|, except re-entrant. New RPC messages may be
+        /// issued even if, earlier on the call stack, we are waiting for a reply
+        /// to an earlier sendRpcMessage() call.
+        ///
+        /// Both sendSyncMessage and sendRpcMessage will block until a reply is
+        /// received, but they may be temporarily interrupted to process an urgent
+        /// incoming message (such as a CPOW request).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// The current top level window in the frame or null.
@@ -530,11 +649,30 @@ namespace Gecko
 		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
-        /// No longer invoke |listener| when |messageName| is received, after
-        /// the first time removeMessageListener() is called.
+        /// Undo an |addMessageListener| call -- that is, calling this causes us to no
+        /// longer invoke |listener| when |messageName| is received.
+        ///
+        /// removeMessageListener does not remove a message listener added via
+        /// addWeakMessageListener; use removeWeakMessageListener for that.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This is just like addMessageListener, except the message manager holds a
+        /// weak ref to |listener|.
+        ///
+        /// If you have two weak message listeners for the same message, they may be
+        /// called in any order.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This undoes an |addWeakMessageListener| call.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>Member MarkForCC </summary>
 		/// <returns>A System.Boolean</returns>
@@ -558,7 +696,7 @@ namespace Gecko
         /// to a cross-process frame whose process has crashed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendAsyncMessage()|, except blocks the sender until all
@@ -566,7 +704,19 @@ namespace Gecko
         /// containing return values from each listener invoked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
+		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		
+		/// <summary>
+        /// Like |sendSyncMessage()|, except re-entrant. New RPC messages may be
+        /// issued even if, earlier on the call stack, we are waiting for a reply
+        /// to an earlier sendRpcMessage() call.
+        ///
+        /// Both sendSyncMessage and sendRpcMessage will block until a reply is
+        /// received, but they may be temporarily interrupted to process an urgent
+        /// incoming message (such as a CPOW request).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// The current top level window in the frame or null.
@@ -616,7 +766,7 @@ namespace Gecko
 	/// <summary>nsIFrameScriptLoader </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a54acd34-4141-46f5-b71b-e2ca32879b08")]
+	[Guid("6fb78110-45ae-11e3-8f96-0800200c9a66")]
 	public interface nsIFrameScriptLoader
 	{
 		
@@ -628,24 +778,32 @@ namespace Gecko
         /// only if the frame is already available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, [MarshalAs(UnmanagedType.U1)] bool aAllowDelayedLoad);
+		void LoadFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, [MarshalAs(UnmanagedType.U1)] bool aAllowDelayedLoad, [MarshalAs(UnmanagedType.U1)] bool aRunInGlobalScope);
 		
 		/// <summary>
         /// Removes aURL from the list of scripts which support delayed load.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveDelayedFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
+		
+		/// <summary>
+        /// Returns all delayed scripts that will be loaded once a (remote)
+        /// frame becomes available. The return value is a list of pairs
+        /// [<URL>, <WasLoadedInGlobalScope>].
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetDelayedFrameScripts(System.IntPtr jsContext);
 	}
 	
 	/// <summary>nsIProcessChecker </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("134ccbf0-5c08-11e2-bcfd-0800200c9a66")]
+	[Guid("ad57800b-ff21-4e2f-91d3-e68615ae8afe")]
 	public interface nsIProcessChecker
 	{
 		
 		/// <summary>
-        /// Return true iff the "remote" process has |aPermission|.  This is
+        /// Return true if the "remote" process has |aPermission|.  This is
         /// intended to be used by JS implementations of cross-process DOM
         /// APIs, like so
         ///
@@ -668,7 +826,7 @@ namespace Gecko
 		bool AssertPermission([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPermission);
 		
 		/// <summary>
-        /// Return true iff the "remote" process has |aManifestURL|.  This is
+        /// Return true if the "remote" process has |aManifestURL|.  This is
         /// intended to be used by JS implementations of cross-process DOM
         /// APIs, like so
         ///
@@ -696,5 +854,21 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool AssertAppHasPermission([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPermission);
+		
+		/// <summary>
+        /// Return true if the "remote" process' principal has an appStatus equal to
+        /// |aStatus|.
+        ///
+        /// This interface only returns meaningful data when our content is
+        /// in a separate process.  If it shares the same OS process as us,
+        /// then applying this permission check doesn't add any security,
+        /// though it doesn't hurt anything either.
+        ///
+        /// Note: If the remote content process does *not* has the |aStatus|,
+        /// it will be killed as a precaution.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool AssertAppHasStatus(ushort aStatus);
 	}
 }

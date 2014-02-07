@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4f7c40b0-fc7d-42a4-a642-1b2a703c10f6")]
+	[Guid("652B9EC5-D159-45D7-9127-50BB559486CD")]
 	public interface nsINetAddr
 	{
 		
@@ -93,6 +93,12 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsV4MappedAttribute();
+		
+		/// <summary>
+        /// @return the underlying NetAddr struct.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetNetAddr();
 	}
 	
 	/// <summary>nsINetAddrConsts </summary>

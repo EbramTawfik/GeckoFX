@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Gecko.DOM.Events
 {
+#if DELME
 	public sealed class DomSvgZoomEvent
 		:DomEventArgs
 	{
@@ -21,4 +22,5 @@ namespace Gecko.DOM.Events
 			return new DomSvgZoomEvent( domSvgEvent );
 		}
 	}
+#endif
 }

@@ -27,33 +27,45 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// to talk to the parent IPC actor
+    /// is written in C++.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4e7246c6-a8b3-426d-9c17-76dab1e1e14a")]
+	[Guid("868662a4-681c-4b89-9f02-6fe5b7ace265")]
 	public interface nsITCPSocketParent
 	{
 		
 		/// <summary>
-        /// to talk to the parent IPC actor
+        /// is written in C++.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitJS(Gecko.JsVal intermediary, System.IntPtr jsContext);
 		
 		/// <summary>
-        /// with the given values.
+        ///        Current ready state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendCallback([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, Gecko.JsVal data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase readyState, uint bufferedAmount, System.IntPtr jsContext);
+		void SendEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, Gecko.JsVal data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase readyState, System.IntPtr jsContext);
+		
+		/// <summary>
+        ///        Intermediate class object. See nsITCPSocketIntermediary.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSocketAndIntermediary([MarshalAs(UnmanagedType.Interface)] nsIDOMTCPSocket socket, [MarshalAs(UnmanagedType.Interface)] nsITCPSocketIntermediary intermediary, System.IntPtr jsContext);
+		
+		/// <summary>
+        ///        to the latest call of send().
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendUpdateBufferedAmount(uint bufferedAmount, uint trackingNumber);
 	}
 	
 	/// <summary>
-    /// and kicking off the chrome process socket object's connection.
+    /// implements nsITCPSocketIntermediary in Javascript.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("afa42841-a6cb-4a91-912f-93099f6a3d18")]
+	[Guid("c434224a-dbb7-4869-8b2b-e49cee990e85")]
 	public interface nsITCPSocketIntermediary
 	{
 		
@@ -62,18 +74,25 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMTCPSocket Open([MarshalAs(UnmanagedType.Interface)] nsITCPSocketParent parent, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase host, ushort port, [MarshalAs(UnmanagedType.U1)] bool useSSL, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase binaryType);
+		nsIDOMTCPSocket Open([MarshalAs(UnmanagedType.Interface)] nsITCPSocketParent parent, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase host, ushort port, [MarshalAs(UnmanagedType.U1)] bool useSSL, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase binaryType, uint appId);
 		
 		/// <summary>
-        /// Send a basic string along the connection
+        /// Listen on a port
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
+		nsIDOMTCPServerSocket Listen([MarshalAs(UnmanagedType.Interface)] nsITCPServerSocketParent parent, ushort port, ushort backlog, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase binaryType);
 		
 		/// <summary>
-        /// Send a typed array
+        /// Called when received a child request to send a string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendArrayBuffer(Gecko.JsVal data);
+		void OnRecvSendString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data, uint trackingNumber);
+		
+		/// <summary>
+        /// Called when received a child request to send an array buffer.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnRecvSendArrayBuffer(Gecko.JsVal data, uint trackingNumber);
 	}
 }

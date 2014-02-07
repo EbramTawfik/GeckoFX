@@ -18,10 +18,12 @@ namespace Gecko.DOM
 		{
 			this.DOMHTMLElement = element as nsIDOMHTMLAreaElement;
 		}
+#if DELME
 		new public string AccessKey {
 			get { return nsString.Get(DOMHTMLElement.GetAccessKeyAttribute); }
 			set { DOMHTMLElement.SetAccessKeyAttribute(new nsAString(value)); }
 		}
+#endif
 
 		public string Alt {
 			get { return nsString.Get(DOMHTMLElement.GetAltAttribute); }
@@ -48,10 +50,12 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetShapeAttribute(new nsAString(value)); }
 		}
 
+#if DELME
 		public new int TabIndex {
 			get { return DOMHTMLElement.GetTabIndexAttribute(); }
 			set { DOMHTMLElement.SetTabIndexAttribute(value); }
 		}
+#endif
 
 		public string Target {
 			get { return nsString.Get(DOMHTMLElement.GetTargetAttribute); }

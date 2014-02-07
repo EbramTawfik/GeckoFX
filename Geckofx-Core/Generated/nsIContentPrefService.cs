@@ -71,7 +71,9 @@ namespace Gecko
 		void OnResult([MarshalAs(UnmanagedType.Interface)] nsIVariant aResult);
 	}
 	
-	/// <summary>nsIContentPrefService </summary>
+	/// <summary>
+    /// @deprecated Please use nsIContentPrefService2 instead.
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("e3f772f3-023f-4b32-b074-36cf0fd5d414")]

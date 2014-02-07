@@ -49,7 +49,9 @@ namespace Gecko
 
 		public IntPtr ContextPointer { get { return _cx; } }
 
+#if DELME
 		private readonly ComPtr<nsIJSContextStack> _contextStack;
+#endif
 
 		/// <summary>
 		/// Create a AutoJSContext using the SafeJSContext.
@@ -58,6 +60,7 @@ namespace Gecko
 		/// <param name="context"></param>
 		public AutoJSContext(IntPtr context)
 		{
+			// TODO: can we just use nsIXPConnect::GetSafeJSContext(); ???
 			if (context == IntPtr.Zero)
 			{
 				context = GlobalJSContextHolder.SafeJSContext;
@@ -69,10 +72,12 @@ namespace Gecko
 			// begin a new request
 			SpiderMonkey.JS_BeginRequest(_cx);
 
+#if DELME
 			// TODO: pushing the context onto the context stack may not be neccessary anymore.
 			// push the context onto the context stack
 			_contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1").AsComPtr();
 			_contextStack.Instance.Push(_cx);
+#endif
 		}
 
 		/// <summary>
@@ -131,9 +136,13 @@ namespace Gecko
 				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
 				var ptr = new JsVal();
 				var wrapper = Xpcom.XPConnect.Instance.WrapNative(_cx, globalObject, thisObject, ref guid);
+#if PORT
 				bool ret = SpiderMonkey.JS_EvaluateScript(_cx, wrapper.GetJSObjectAttribute(), jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
 				result = ConvertValueToString(ptr);
 				return ret;
+#else
+				throw new NotImplementedException("port");
+#endif
 			}
 			catch (Exception e)
 			{
@@ -228,8 +237,10 @@ namespace Gecko
 
 		public void Dispose()
 		{
+#if DELME
 			_contextStack.Instance.Pop();
 			_contextStack.Dispose();
+#endif
 
 			SpiderMonkey.JS_EndRequest(_cx);
 		}

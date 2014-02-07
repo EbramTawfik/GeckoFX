@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cb210e8b-ad9c-4052-b70c-02ec0c25d669")]
+	[Guid("6abe65de-6729-41f7-906a-3f3a2dbe30ae")]
 	public interface nsIDOMMozCellBroadcastMessage
 	{
 		
@@ -43,7 +43,7 @@ namespace Gecko
         /// Possible values are: "cell-immediate", "plmn", "location-area" and "cell".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetGeographicalScopeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGeographicalScope);
+		void GetGsmGeographicalScopeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGsmGeographicalScope);
 		
 		/// <summary>
         /// The Message Code differentiates between messages from the same source and
@@ -91,6 +91,12 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMozCellBroadcastEtwsInfo GetEtwsAttribute();
+		
+		/// <summary>
+        /// Service Category.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetCdmaServiceCategoryAttribute();
 	}
 	
 	/// <summary>

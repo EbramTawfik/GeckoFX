@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8b77d6e2-2ae9-11d5-be57-000064657374")]
+	[Guid("0d92a16a-8235-4c4c-81c9-a4fa65c65f5c")]
 	public interface nsIViewSourceChannel : nsIChannel
 	{
 		
@@ -514,5 +514,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOriginalContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOriginalContentType);
+		
+		/// <summary>
+        /// Whether the channel was created to view the source of a srcdoc document.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsSrcdocChannelAttribute();
 	}
 }

@@ -46,6 +46,7 @@ namespace Gecko
         /// A buffer that contains random bytes of size aLength.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-        void GenerateRandomBytes(uint aLength, out IntPtr aBuffer);
+		void GenerateRandomBytes(uint aLength, out IntPtr aBuffer);
+
 	}
 }

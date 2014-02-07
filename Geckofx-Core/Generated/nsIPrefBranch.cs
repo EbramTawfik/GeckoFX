@@ -85,8 +85,7 @@ namespace Gecko
         /// @param aPrefName The boolean preference to set the state of.
         /// @param aValue    The boolean value to set the preference to.
         ///
-        /// @return NS_OK The value was successfully set.
-        /// @return Other The value was not set or is the wrong type.
+        /// @throws Error if setting failed or the value is the wrong type.
         ///
         /// @see getBoolPref
         /// </summary>
@@ -126,8 +125,7 @@ namespace Gecko
         /// @param aPrefName The string preference to set.
         /// @param aValue    The string value to set the preference to.
         ///
-        /// @return NS_OK The value was successfully set.
-        /// @return Other The value was not set or is the wrong type.
+        /// @throws Error if setting failed or the value is the wrong type.
         ///
         /// @see getCharPref
         /// </summary>
@@ -152,8 +150,7 @@ namespace Gecko
         /// @param aPrefName The integer preference to set the value of.
         /// @param aValue    The integer value to set the preference to.
         ///
-        /// @return NS_OK The value was successfully set.
-        /// @return Other The value was not set or is the wrong type.
+        /// @throws Error if setting failed or the value is the wrong type.
         ///
         /// @see getIntPref
         /// </summary>
@@ -174,8 +171,7 @@ namespace Gecko
         /// @param aValue    The XPCOM object into which to the complex preference
         /// value should be retrieved.
         ///
-        /// @return NS_OK The value was successfully retrieved.
-        /// @return Other The value does not exist or is the wrong type.
+        /// @throws Error The value does not exist or is the wrong type.
         ///
         /// @see setComplexValue
         /// </summary>
@@ -196,8 +192,7 @@ namespace Gecko
         /// @param aValue    The XPCOM object from which to set the complex preference
         /// value.
         ///
-        /// @return NS_OK The value was successfully set.
-        /// @return Other The value was not set or is the wrong type.
+        /// @throws Error if setting failed or the value is the wrong type.
         ///
         /// @see getComplexValue
         /// </summary>
@@ -213,8 +208,6 @@ namespace Gecko
         ///
         /// @note
         /// This method does nothing if this object is a default branch.
-        ///
-        /// @return NS_OK The user preference was successfully cleared.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearUserPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
@@ -230,8 +223,7 @@ namespace Gecko
         /// This method can be called on either a default or user branch but, in
         /// effect, always operates on the default branch.
         ///
-        /// @return NS_OK The preference was successfully locked.
-        /// @return Other The preference does not exist or an error occurred.
+        /// @throws Error The preference does not exist or an error occurred.
         ///
         /// @see unlockPref
         /// </summary>
@@ -293,8 +285,7 @@ namespace Gecko
         /// This method can be called on either a default or user branch but, in
         /// effect, always operates on the default branch.
         ///
-        /// @return NS_OK The preference was successfully unlocked.
-        /// @return Other The preference does not exist or an error occurred.
+        /// @throws Error The preference does not exist or an error occurred.
         ///
         /// @see lockPref
         /// </summary>
@@ -312,8 +303,7 @@ namespace Gecko
         /// This method can be called on either a default or user branch but, in
         /// effect, always operates on both.
         ///
-        /// @return NS_OK The preference(s) were successfully removed.
-        /// @return Other The preference(s) do not exist or an error occurred.
+        /// @throws Error The preference(s) do not exist or an error occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteBranch([MarshalAs(UnmanagedType.LPStr)] string aStartingAt);
@@ -332,8 +322,7 @@ namespace Gecko
         /// This method can be called on either a default or user branch but, in
         /// effect, always operates on both.
         ///
-        /// @return NS_OK The preference list was successfully retrieved.
-        /// @return Other The preference(s) do not exist or an error occurred.
+        /// @throws Error The preference(s) do not exist or an error occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetChildList([MarshalAs(UnmanagedType.LPStr)] string aStartingAt, ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref string[] aChildArray);
@@ -350,8 +339,7 @@ namespace Gecko
         /// This method can be called on either a default or user branch but, in
         /// effect, always operates on the user branch.
         ///
-        /// @return NS_OK The preference(s) were successfully reset.
-        /// @return Other The preference(s) do not exist or an error occurred.
+        /// @throws Error The preference(s) do not exist or an error occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResetBranch([MarshalAs(UnmanagedType.LPStr)] string aStartingAt);

@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7568365e-240f-4818-b2fc-0680bfb50942")]
+	[Guid("aa7d28b2-7122-422d-8fcf-634771fb9ac1")]
 	public interface nsIDOMDocumentType : nsIDOMNode
 	{
 		
@@ -237,5 +237,8 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetInternalSubsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInternalSubset);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Remove();
 	}
 }

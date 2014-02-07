@@ -45,7 +45,7 @@ namespace Gecko
 	/// <summary>nsIUrlListManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5b4645b6-f9ca-4cb1-a821-2bdb3c3902f8")]
+	[Guid("62484bb5-bf7e-4988-9055-8803b16b48a1")]
 	public interface nsIUrlListManager
 	{
 		
@@ -54,13 +54,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetUpdateUrl([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase url);
-		
-		/// <summary>
-        /// Set the URL we use to get keys used to decrypt URLs in
-        /// enchash tables.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKeyUrl([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase url);
 		
 		/// <summary>
         /// Set the URL that we will query for complete hashes after a partial
@@ -76,7 +69,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool RegisterTable([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tableName, [MarshalAs(UnmanagedType.U1)] bool requireMac);
+		bool RegisterTable([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tableName);
 		
 		/// <summary>
         /// Turn on update checking for a table.  I.e., during the next server

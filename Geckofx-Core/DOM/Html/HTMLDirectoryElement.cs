@@ -18,10 +18,12 @@ namespace Gecko.DOM
 		{
 			this.DOMHTMLElement = element as nsIDOMHTMLDirectoryElement;
 		}
+#if DELME
 		public bool Compact {
 			get { return DOMHTMLElement.GetCompactAttribute(); }
 			set { DOMHTMLElement.SetCompactAttribute(value); }
 		}
+#endif
 
 	}
 }

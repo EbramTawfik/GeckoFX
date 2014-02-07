@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("12cf5a4d-fffb-4f2f-9cec-c65195661d76")]
+	[Guid("e0a4d4b3-f34e-44bd-b1f2-4e3bde9b6915")]
 	public interface nsISelection
 	{
 		
@@ -170,14 +170,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteFromDocument();
-		
-		/// <summary>
-        /// Modifies the cursor Bidi level after a change in keyboard direction
-        /// @param langRTL is PR_TRUE if the new language is right-to-left or
-        /// PR_FALSE if the new language is left-to-right.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectionLanguageChange([MarshalAs(UnmanagedType.U1)] bool langRTL);
 		
 		/// <summary>
         /// Returns the whole selection into a plain text string.

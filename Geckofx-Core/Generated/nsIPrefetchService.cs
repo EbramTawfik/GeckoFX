@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cba513eb-c457-4b93-832c-1a979e66edd1")]
+	[Guid("bc4dbb34-b148-11e2-b82c-08002734a811")]
 	public interface nsIPrefetchService
 	{
 		
@@ -49,25 +49,10 @@ namespace Gecko
 		void PrefetchURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSource, [MarshalAs(UnmanagedType.U1)] bool aExplicit);
 		
 		/// <summary>
-        /// @status DEPRECATED This method is no longer used, and will throw
-        /// NS_ERROR_NOT_IMPLEMENTED.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrefetchURIForOfflineUse([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSource, [MarshalAs(UnmanagedType.U1)] bool aExplicit);
-		
-		/// <summary>
-        /// Enumerate the items in the prefetch queue.  Each element in the
-        /// enumeration is an nsIDOMLoadStatus.
-        ///
-        /// @param aIncludeNormalItems include normal prefetch items in the
-        /// list.  This parameter is deprecated and must be TRUE,
-        /// or NS_ERROR_INT_IMPLEMENTED will be thrown.
-        /// @param aIncludeOfflineItems include items being fetched for offline
-        /// use.  This parameter is deprecated and must be FALSE,
-        /// or NS_ERROR_NOT_IMPLEMENTED will be thrown.
+        /// Enumerate the items in the prefetch queue.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator EnumerateQueue([MarshalAs(UnmanagedType.U1)] bool aIncludeNormalItems, [MarshalAs(UnmanagedType.U1)] bool aIncludeOfflineItems);
+		nsISimpleEnumerator EnumerateQueue();
 	}
 }

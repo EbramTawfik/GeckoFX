@@ -43,7 +43,7 @@ namespace Gecko
 	{
 		
 		/// <summary>
-        /// See documentation in nsIDOMClientInformation.idl
+        /// See documentation in Navigator.webidl
         /// The additional contentWindow param for both methods represents the dom
         /// content window from which the method has been called.
         /// </summary>

@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("eaaf61d6-1dd1-11b2-bc6e-8fc96480f20d")]
+	[Guid("35c400a4-5792-438c-b915-65e30d58d557")]
 	public interface nsIConsoleListener
 	{
 		

@@ -52,9 +52,16 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("37bc0991-21a3-4de9-b888-d667fea6c05d")]
+	[Guid("1bbfff90-88f7-4d73-896e-9620a0000ab0")]
 	public interface nsIVoicemailProvider
 	{
+		
+		/// <summary>
+        /// XPCOM component (in the content process) that provides the voicemail
+        /// information.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetVoicemailDefaultServiceIdAttribute();
 		
 		/// <summary>
         /// Called when a content process registers receiving unsolicited messages from
@@ -68,12 +75,12 @@ namespace Gecko
 		void UnregisterVoicemailMsg([MarshalAs(UnmanagedType.Interface)] nsIVoicemailListener listener);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetVoicemailStatusAttribute();
+		System.IntPtr GetVoicemailStatus(uint clientId);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVoicemailNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVoicemailNumber);
+		void GetVoicemailNumber(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVoicemailDisplayNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVoicemailDisplayName);
+		void GetVoicemailDisplayName(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

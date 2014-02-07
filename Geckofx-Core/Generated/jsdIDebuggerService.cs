@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9be5b327-6818-464d-9695-f33885fd8377")]
+	[Guid("029b8f0a-aa84-47eb-a60f-1a4752b7ad06")]
 	public interface jsdIDebuggerService
 	{
 		
@@ -412,32 +412,6 @@ namespace Gecko
 	{
 		
 		// <summary>
-        // Possible values for jsdIScript::version and jsdIContext::version.
-        // </summary>
-		public const long VERSION_1_0 = 100;
-		
-		// 
-		public const long VERSION_1_1 = 110;
-		
-		// 
-		public const long VERSION_1_2 = 120;
-		
-		// 
-		public const long VERSION_1_3 = 130;
-		
-		// 
-		public const long VERSION_1_4 = 140;
-		
-		// 
-		public const long VERSION_1_5 = 150;
-		
-		// 
-		public const long VERSION_DEFAULT = 0;
-		
-		// 
-		public const long VERSION_UNKNOWN = -1;
-		
-		// <summary>
         // Link native frames in call stacks.
         // </summary>
 		public const ulong ENABLE_NATIVE_FRAMES = 0x01;
@@ -499,7 +473,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0c9189d9-4287-47a4-bca6-6ed65aaf737f")]
+	[Guid("9ae587cd-b78c-47f0-a612-4b3a211a6a71")]
 	public interface jsdIFilter
 	{
 		
@@ -514,29 +488,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFlagsAttribute(uint aFlags);
-		
-		/// <summary>
-        /// An nsISupports version of the global object to be filtered. A null glob
-        /// matches all hooks. This attribute must be QI'able to the
-        /// (non-scriptable) nsIScriptGlobalObject interface.
-        ///
-        /// The jsdIService caches this value internally, so if it changes you must
-        /// swap the filter with itself using jsdIService::swapFilters.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetGlobalObjectAttribute();
-		
-		/// <summary>
-        /// An nsISupports version of the global object to be filtered. A null glob
-        /// matches all hooks. This attribute must be QI'able to the
-        /// (non-scriptable) nsIScriptGlobalObject interface.
-        ///
-        /// The jsdIService caches this value internally, so if it changes you must
-        /// swap the filter with itself using jsdIService::swapFilters.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGlobalObjectAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aGlobalObject);
 		
 		/// <summary>
         /// String representing the url pattern to be filtered. Supports limited
@@ -969,22 +920,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOptionsAttribute(uint aOptions);
-		
-		/// <summary>
-        /// Last version set on this context.
-        /// Scripts typically select this with the "language" attribute.
-        /// See the VERSION_* consts on jsdIDebuggerService.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetVersionAttribute();
-		
-		/// <summary>
-        /// Last version set on this context.
-        /// Scripts typically select this with the "language" attribute.
-        /// See the VERSION_* consts on jsdIDebuggerService.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVersionAttribute(int aVersion);
 		
 		/// <summary>
         /// Unique tag among all valid jsdIContext objects, useful as a hash key.
@@ -1810,7 +1745,7 @@ namespace Gecko
 		public const ulong FLAG_EXCEPTION = 0x40;
 		
 		// <summary>
-        //native getter returned JS_FALSE without throwing an exception </summary>
+        //native getter returned false without throwing an exception </summary>
 		public const ulong FLAG_ERROR = 0x80;
 		
 		// <summary>

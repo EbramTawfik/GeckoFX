@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d70b9d95-87d5-4ce9-aff7-4323dac79b07")]
+	[Guid("e2f5c6e0-4203-11e3-aa6e-0800200c9a66")]
 	public interface nsINetworkInterface
 	{
 		
@@ -55,13 +55,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
-		
-		/// <summary>
-        /// Indicates whether DHCP should be run when the interface connects.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetDhcpAttribute();
 		
 		/// <summary>
         /// IP Address
@@ -134,6 +127,9 @@ namespace Gecko
 		public const long NETWORK_STATE_DISCONNECTED = 3;
 		
 		// 
+		public const long NETWORK_TYPE_UNKNOWN = -1;
+		
+		// 
 		public const long NETWORK_TYPE_WIFI = 0;
 		
 		// 
@@ -144,41 +140,9 @@ namespace Gecko
 		
 		// 
 		public const long NETWORK_TYPE_MOBILE_SUPL = 3;
-	}
-	
-	/// <summary>nsIWifiTetheringCallback </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("91824160-fb25-11e1-a21f-0800200c9a66")]
-	public interface nsIWifiTetheringCallback
-	{
 		
-		/// <summary>
-        /// Callback function used to report status to WifiManager.
-        ///
-        /// @param error
-        /// An error message if the operation wasn't successful,
-        /// or `null` if it was.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WifiTetheringEnabledChange(Gecko.JsVal error);
-	}
-	
-	/// <summary>nsINetworkStatsCallback </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9a887e18-b879-4bb1-8663-238bc4234ba0")]
-	public interface nsINetworkStatsCallback
-	{
-		
-		/// <summary>Member NetworkStatsAvailable </summary>
-		/// <param name='success'> </param>
-		/// <param name='connType'> </param>
-		/// <param name='rxBytes'> </param>
-		/// <param name='txBytes'> </param>
-		/// <param name='date'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NetworkStatsAvailable([MarshalAs(UnmanagedType.U1)] bool success, short connType, uint rxBytes, uint txBytes, Gecko.JsVal date);
+		// 
+		public const long NETWORK_TYPE_WIFI_P2P = 4;
 	}
 	
 	/// <summary>
@@ -186,7 +150,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4bee9633-47ed-47ae-b92b-3e0679087561")]
+	[Guid("3ea50550-4b3c-11e3-8f96-0800200c9a66")]
 	public interface nsINetworkManager
 	{
 		
@@ -274,39 +238,18 @@ namespace Gecko
 		int OverrideActive([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface network);
 		
 		/// <summary>
-        /// Returns whether or not wifi tethering is currently enabled.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetWifiTetheringEnabledAttribute();
-		
-		/// <summary>
         /// Enable or disable Wifi Tethering
         ///
         /// @param enabled
         /// Boolean that indicates whether tethering should be enabled (true) or disabled (false).
         /// @param network
         /// The Wifi network interface with at least name of network interface.
+        /// @param config
+        /// The Wifi Tethering configuration from settings db.
         /// @param callback
         /// Callback function used to report status to WifiManager.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWifiTethering([MarshalAs(UnmanagedType.U1)] bool enabled, [MarshalAs(UnmanagedType.Interface)] nsINetworkInterface networkInterface, [MarshalAs(UnmanagedType.Interface)] nsIWifiTetheringCallback callback);
-		
-		/// <summary>
-        /// Retrieve network interface stats.
-        ///
-        /// @param networkType
-        /// Select the Network interface to request estats.
-        ///
-        /// @param callback
-        /// Callback to notify result and provide stats, connectionType
-        /// and the date when stats are retrieved
-        ///
-        /// @return false if there is no interface registered for the networkType param.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetNetworkInterfaceStats(short networkType, [MarshalAs(UnmanagedType.Interface)] nsINetworkStatsCallback callback);
+		void SetWifiTethering([MarshalAs(UnmanagedType.U1)] bool enabled, [MarshalAs(UnmanagedType.Interface)] nsINetworkInterface networkInterface, Gecko.JsVal config, [MarshalAs(UnmanagedType.Interface)] nsIWifiTetheringCallback callback);
 	}
 }

@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e3560df8-0926-48da-b13a-36d3938c95af")]
+	[Guid("ef68f0d5-5b55-4198-9e59-a5e2c57d3adc")]
 	public interface nsIDOMNotifyPaintEvent : nsIDOMEvent
 	{
 		
@@ -186,18 +186,6 @@ namespace Gecko
 		new nsIDOMEventTarget GetExplicitOriginalTargetAttribute();
 		
 		/// <summary>
-        /// @deprecated Use nsIDOMEvent::stopPropagation.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PreventBubble();
-		
-		/// <summary>
-        /// @deprecated Use nsIDOMEvent::stopPropagation.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PreventCapture();
-		
-		/// <summary>
         /// @deprecated Use nsIDOMEvent::defaultPrevented.
         /// To be removed in bug 691151.
         /// </summary>
@@ -260,8 +248,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMClientRect GetBoundingClientRectAttribute();
 		
+		/// <summary>
+        ///PaintRequestList </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMPaintRequestList GetPaintRequestsAttribute();
+		nsISupports GetPaintRequestsAttribute();
 	}
 }

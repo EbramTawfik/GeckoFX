@@ -22,10 +22,12 @@ namespace Gecko.DOM
 			get { return new GeckoFormElement(DOMHTMLElement.GetFormAttribute()); }
 		}
 
+#if DELME
 		new public string AccessKey {
 			get { return nsString.Get(DOMHTMLElement.GetAccessKeyAttribute); }
 			set { DOMHTMLElement.SetAccessKeyAttribute(new nsAString(value)); }
 		}
+#endif
 
 		public string HtmlFor {
 			get { return nsString.Get(DOMHTMLElement.GetHtmlForAttribute); }

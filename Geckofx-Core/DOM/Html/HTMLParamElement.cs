@@ -7,6 +7,7 @@ using System.Text;
 
 namespace Gecko.DOM
 {	
+#if DELME
 	public class GeckoParamElement : GeckoHtmlElement
 	{
 		nsIDOMHTMLParamElement DOMHTMLElement;
@@ -39,5 +40,6 @@ namespace Gecko.DOM
 		}
 
 	}
+#endif
 }
 

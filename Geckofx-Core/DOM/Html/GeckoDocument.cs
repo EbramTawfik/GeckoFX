@@ -26,7 +26,7 @@ namespace Gecko
 		/// </summary>
 		public GeckoHeadElement Head
 		{
-			get { return (_domHtmlDocument == null) ? null : GeckoHtmlElement.Create<GeckoHeadElement>(_domHtmlDocument.GetHeadAttribute()); }
+			get { return (_domHtmlDocument == null) ? null : GeckoHtmlElement.Create<GeckoHeadElement>((nsIDOMHTMLElement)_domHtmlDocument.GetHeadAttribute()); }
 		}
 
 		/// <summary>

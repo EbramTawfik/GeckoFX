@@ -26,10 +26,13 @@ namespace Gecko
 	using System.Runtime.CompilerServices;
 	
 	
-	/// <summary>nsIDOMDataChannel </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ee669438-60ff-425c-91b8-2e29bfa6d4ae")]
+	[Guid("af7077ac-0f9f-44e1-815f-9b1a94618531")]
 	public interface nsIDOMDataChannel : nsIDOMEventTarget
 	{
 		
@@ -194,7 +197,7 @@ namespace Gecko
         /// Dispatch an event.
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
-        /// dispatch nsIDOMEvent, not only nsEvent.
+        /// dispatch nsIDOMEvent, not only WidgetEvent.
         /// @param aPresContext the current presentation context, can be nullptr.
         /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
@@ -211,15 +214,6 @@ namespace Gecko
 		new void DispatchDOMEvent(System.IntPtr aEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aDOMEvent, System.IntPtr aPresContext, System.IntPtr aEventStatus);
 		
 		/// <summary>
-        /// Get the event listener manager, the guy you talk to to register for events
-        /// on this node.
-        /// @param aMayCreate If PR_FALSE, returns a listener manager only if
-        /// one already exists.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.U1)] bool aMayCreate);
-		
-		/// <summary>
         /// Get the script context in which the event handlers should be run.
         /// May return null.
         /// @note Caller *must* check the value of aRv.
@@ -234,45 +228,33 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetJSContextForEventHandlers();
 		
-		/// <summary>Member GetLabelAttribute </summary>
-		/// <param name='aLabel'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetLabelAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLabel);
 		
-		/// <summary>Member GetProtocolAttribute </summary>
-		/// <param name='aProtocol'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aProtocol);
 		
-		/// <summary>Member GetReliableAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetReliableAttribute();
 		
-		/// <summary>Member GetOrderedAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetOrderedAttribute();
 		
-		/// <summary>Member GetReadyStateAttribute </summary>
-		/// <param name='aReadyState'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetReadyStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReadyState);
 		
-		/// <summary>Member GetBufferedAmountAttribute </summary>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetBufferedAmountAttribute();
 		
-		/// <summary>Member GetIdAttribute </summary>
-		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetIdAttribute();
 		
-		/// <summary>Member GetStreamAttribute </summary>
-		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetStreamAttribute();
 		
@@ -286,65 +268,31 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnopenAttribute(Gecko.JsVal aOnopen, System.IntPtr jsContext);
 		
-		/// <summary>Member GetOnerrorAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetOnerrorAttribute(System.IntPtr jsContext);
 		
-		/// <summary>Member SetOnerrorAttribute </summary>
-		/// <param name='aOnerror'> </param>
-		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnerrorAttribute(Gecko.JsVal aOnerror, System.IntPtr jsContext);
 		
-		/// <summary>Member GetOncloseAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetOncloseAttribute(System.IntPtr jsContext);
 		
-		/// <summary>Member SetOncloseAttribute </summary>
-		/// <param name='aOnclose'> </param>
-		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOncloseAttribute(Gecko.JsVal aOnclose, System.IntPtr jsContext);
 		
-		/// <summary>Member GetOnmessageAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetOnmessageAttribute(System.IntPtr jsContext);
 		
-		/// <summary>Member SetOnmessageAttribute </summary>
-		/// <param name='aOnmessage'> </param>
-		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnmessageAttribute(Gecko.JsVal aOnmessage, System.IntPtr jsContext);
 		
-		/// <summary>Member GetBinaryTypeAttribute </summary>
-		/// <param name='aBinaryType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetBinaryTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBinaryType);
 		
-		/// <summary>Member SetBinaryTypeAttribute </summary>
-		/// <param name='aBinaryType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetBinaryTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBinaryType);
 		
-		/// <summary>Member Close </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();
-		
-		/// <summary>
-        /// Transmits data to other end of the connection.
-        /// @param data The data to be transmitted.  Arraybuffers and Blobs are sent as
-        /// binary data.  Strings are sent as UTF-8 text data.  Other types are
-        /// converted to a String and sent as a String.
-        /// @return if the connection is still established and the data was queued or
-        /// sent successfully.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Send([MarshalAs(UnmanagedType.Interface)] nsIVariant data);
 	}
 }

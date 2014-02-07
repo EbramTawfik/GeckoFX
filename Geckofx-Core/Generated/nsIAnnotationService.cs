@@ -61,7 +61,7 @@ namespace Gecko
 	/// <summary>nsIAnnotationService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c7f425cc-a063-49ef-9f4c-b08eb2f1730a")]
+	[Guid("D4CDAAB1-8EEC-47A8-B420-AD7CB333056A")]
 	public interface nsIAnnotationService
 	{
 		
@@ -94,9 +94,7 @@ namespace Gecko
         /// service, but are special cased in the protocol handler so they look like
         /// annotations. Do not set favicons using this service, it will not work.
         ///
-        /// Binary annotations should be set using
-        /// setItemAnnotationBinary/setPageAnnotationBinary. For other types, only
-        /// C++ consumers may use the type-specific methods.
+        /// Only C++ consumers may use the type-specific methods.
         ///
         /// @throws NS_ERROR_ILLEGAL_VALUE if the page or the bookmark doesn't exist.
         /// </summary>
@@ -182,30 +180,9 @@ namespace Gecko
 		void SetItemAnnotationDouble(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, double aValue, int aFlags, ushort aExpiration);
 		
 		/// <summary>
-        /// Sets an annotation just like setAnnotationString, but takes binary data
-        /// as input. You MUST supply a valid MIME type.
-        ///
-        /// @throws NS_ERROR_ILLEGAL_VALUE if the page or the bookmark doesn't exist.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageAnnotationBinary([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] byte[] aData, uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType, int aFlags, ushort aExpiration);
-		
-		/// <summary>Member SetItemAnnotationBinary </summary>
-		/// <param name='aItemId'> </param>
-		/// <param name='aName'> </param>
-		/// <param name='aData'> </param>
-		/// <param name='aDataLen'> </param>
-		/// <param name='aMimeType'> </param>
-		/// <param name='aFlags'> </param>
-		/// <param name='aExpiration'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemAnnotationBinary(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] byte[] aData, uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType, int aFlags, ushort aExpiration);
-		
-		/// <summary>
         /// Retrieves the value of a given annotation. Throws an error if the
-        /// annotation does not exist. Throws for binary annotations, for which
-        /// getPageAnnotationBinary/getItemAnnotationBinary should be used. C++
-        /// consumers may use the type-specific methods.
+        /// annotation does not exist. C++ consumers may use the type-specific
+        /// methods.
         ///
         /// The type-specific methods throw if the given annotation is set in
         /// a different type.
@@ -275,44 +252,26 @@ namespace Gecko
 		double GetItemAnnotationDouble(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
-        /// @see getPageAnnotation. This also returns the
-        /// MIME type.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPageAnnotationBinary([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] ref byte[] aData, ref uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType);
-		
-		/// <summary>Member GetItemAnnotationBinary </summary>
-		/// <param name='aItemId'> </param>
-		/// <param name='aName'> </param>
-		/// <param name='aData'> </param>
-		/// <param name='aDataLen'> </param>
-		/// <param name='aMimeType'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetItemAnnotationBinary(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] ref byte[] aData, ref uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType);
-		
-		/// <summary>
-        /// Retrieves info about an existing annotation. aMimeType will be empty
-        /// if the value was not binary data.
+        /// Retrieves info about an existing annotation.
         ///
         /// aType will be one of TYPE_* constansts above
         ///
         /// example JS:
-        /// var flags = {}, exp = {}, mimeType = {};
-        /// annotator.getAnnotationInfo(myURI, "foo", flags, exp, mimeType);
+        /// var flags = {}, exp = {}, type = {};
+        /// annotator.getAnnotationInfo(myURI, "foo", flags, exp, type);
         /// // now you can use 'exp.value' and 'flags.value'
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPageAnnotationInfo([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, ref int aFlags, ref ushort aExpiration, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType, ref ushort aType);
+		void GetPageAnnotationInfo([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, ref int aFlags, ref ushort aExpiration, ref ushort aType);
 		
 		/// <summary>Member GetItemAnnotationInfo </summary>
 		/// <param name='aItemId'> </param>
 		/// <param name='aName'> </param>
 		/// <param name='aFlags'> </param>
 		/// <param name='aExpiration'> </param>
-		/// <param name='aMimeType'> </param>
 		/// <param name='aType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetItemAnnotationInfo(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, ref int aFlags, ref ushort aExpiration, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType, ref ushort aType);
+		void GetItemAnnotationInfo(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, ref int aFlags, ref ushort aExpiration, ref ushort aType);
 		
 		/// <summary>
         /// Retrieves the type of an existing annotation
@@ -354,7 +313,6 @@ namespace Gecko
         /// @param name
         /// The annotation to search for.
         /// @return list of mozIAnnotation objects.
-        /// @note binary annotations are not supported and thus skipped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		mozIAnnotatedResult GetAnnotationsWithName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase name, ref uint count);
@@ -447,17 +405,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIAnnotationObserver aObserver);
-		
-		/// <summary>
-        /// Returns a URI that can be used to access the given binary annotation.
-        /// This function does NOT check that the annotation exists. Also, note that
-        /// you can only load URIs for annotations that have have a valid MIME type
-        /// set by setAnnotationBinary. No non-URI valid chars in name, especially
-        /// colon, which will mess up parsing.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetAnnotationURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 	}
 	
 	/// <summary>nsIAnnotationServiceConsts </summary>
@@ -504,9 +451,6 @@ namespace Gecko
 		
 		// 
 		public const ulong TYPE_STRING = 3;
-		
-		// 
-		public const ulong TYPE_BINARY = 4;
 		
 		// 
 		public const ulong TYPE_INT64 = 5;

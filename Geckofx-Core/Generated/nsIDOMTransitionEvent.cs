@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9013310a-e376-40bc-b141-9b9ae3085daa")]
+	[Guid("a37171e0-9f43-41ea-a25c-0b78a3329683")]
 	public interface nsIDOMTransitionEvent : nsIDOMEvent
 	{
 		
@@ -186,18 +186,6 @@ namespace Gecko
 		new nsIDOMEventTarget GetExplicitOriginalTargetAttribute();
 		
 		/// <summary>
-        /// @deprecated Use nsIDOMEvent::stopPropagation.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PreventBubble();
-		
-		/// <summary>
-        /// @deprecated Use nsIDOMEvent::stopPropagation.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PreventCapture();
-		
-		/// <summary>
         /// @deprecated Use nsIDOMEvent::defaultPrevented.
         /// To be removed in bug 691151.
         /// </summary>
@@ -250,6 +238,6 @@ namespace Gecko
 		float GetElapsedTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitTransitionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase propertyNameArg, float elapsedTimeArg);
+		void GetPseudoElementAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPseudoElement);
 	}
 }

@@ -27,11 +27,12 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// MmsAttachment[]
-    /// </summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+    /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("645161ca-b009-461b-bd13-45c3075cdfba")]
+	[Guid("8ec8247d-3f5f-41af-9c72-9dc857e3be81")]
 	public interface nsIDOMMozMobileMessageManager : nsIDOMEventTarget
 	{
 		
@@ -196,7 +197,7 @@ namespace Gecko
         /// Dispatch an event.
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
-        /// dispatch nsIDOMEvent, not only nsEvent.
+        /// dispatch nsIDOMEvent, not only WidgetEvent.
         /// @param aPresContext the current presentation context, can be nullptr.
         /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
@@ -211,15 +212,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void DispatchDOMEvent(System.IntPtr aEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aDOMEvent, System.IntPtr aPresContext, System.IntPtr aEventStatus);
-		
-		/// <summary>
-        /// Get the event listener manager, the guy you talk to to register for events
-        /// on this node.
-        /// @param aMayCreate If PR_FALSE, returns a listener manager only if
-        /// one already exists.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.U1)] bool aMayCreate);
 		
 		/// <summary>
         /// Get the script context in which the event handlers should be run.
@@ -237,23 +229,42 @@ namespace Gecko
 		new System.IntPtr GetJSContextForEventHandlers();
 		
 		/// <summary>
-        /// MmsAttachment[]
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+        /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetSegmentInfoForText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
+		
+		/// <summary>
+        /// Function to send SMS.
+        ///
+        /// @param number
+        /// Either a DOMString (only one number) or an array of numbers.
+        /// @param message
+        /// The text message to be sent.
+        /// @param sendParameters
+        /// An SmsSendParameters object.
+        /// @param return
+        /// A DOMRequest object indicating the sending result if one number
+        /// has been passed; an array of DOMRequest objects otherwise.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal Send(Gecko.JsVal number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, Gecko.JsVal sendParameters, System.IntPtr jsContext, int argc);
+		
+		/// <summary>
+        /// Function to send MMS.
+        ///
+        /// @param parameters
+        /// An MmsParameters object.
+        /// @param sendParameters
+        /// An MmsSendParameters object.
+        /// @param return
+        /// A DOMRequest object indicating the sending result.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozSmsSegmentInfo GetSegmentInfoForText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
-		
-		/// <summary>
-        /// An array of SmsRequest objects otherwise.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal Send(Gecko.JsVal number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message);
-		
-		/// <summary>
-        ///MmsParameters </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SendMMS(Gecko.JsVal parameters);
+		nsIDOMDOMRequest SendMMS(Gecko.JsVal parameters, Gecko.JsVal sendParameters, System.IntPtr jsContext, int argc);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -264,25 +275,45 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest Delete(Gecko.JsVal param);
+		nsIDOMDOMRequest Delete(Gecko.JsVal param, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Iterates through nsIDOMMoz{Mms,Sms}Message.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMCursor GetMessages([MarshalAs(UnmanagedType.Interface)] nsIDOMMozSmsFilter filter, [MarshalAs(UnmanagedType.U1)] bool reverse);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozSmsRequest GetMessages([MarshalAs(UnmanagedType.Interface)] nsIDOMMozSmsFilter filter, [MarshalAs(UnmanagedType.U1)] bool reverse);
+		nsIDOMDOMRequest MarkMessageRead(int id, [MarshalAs(UnmanagedType.U1)] bool value, [MarshalAs(UnmanagedType.U1)] bool aSendReadReport);
+		
+		/// <summary>
+        /// Iterates through nsIDOMMozMobileMessageThread.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMCursor GetThreads();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest MarkMessageRead(int id, [MarshalAs(UnmanagedType.U1)] bool aValue);
+		nsIDOMDOMRequest RetrieveMMS(int id);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozSmsRequest GetThreadList();
+		nsIDOMDOMRequest GetSmscAddress(uint serviceId, int argc);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetOnreceivedAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnreceivedAttribute(Gecko.JsVal aOnreceived, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnretrievingAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnretrievingAttribute(Gecko.JsVal aOnretrieving, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetOnsendingAttribute(System.IntPtr jsContext);
@@ -313,5 +344,17 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOndeliveryerrorAttribute(Gecko.JsVal aOndeliveryerror, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnreadsuccessAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnreadsuccessAttribute(Gecko.JsVal aOnreadsuccess, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnreaderrorAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnreaderrorAttribute(Gecko.JsVal aOnreaderror, System.IntPtr jsContext);
 	}
 }

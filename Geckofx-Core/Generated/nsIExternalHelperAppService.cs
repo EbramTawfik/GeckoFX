@@ -99,7 +99,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d9a19faf-497b-408c-b995-777d956b72c0")]
+	[Guid("acf2a516-7d7f-4771-8b22-6c4a559c088e")]
 	public interface nsIHelperAppLauncher : nsICancelable
 	{
 		
@@ -136,21 +136,31 @@ namespace Gecko
 		void GetSuggestedFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSuggestedFileName);
 		
 		/// <summary>
-        /// Called when we want to just save the content to a particular file.
-        /// NOTE: This will release the reference to the nsIHelperAppLauncherDialog.
-        /// @param aNewFileLocation Location where the content should be saved
+        /// Saves the final destination of the file. Does not actually perform the
+        /// save.
+        /// NOTE: This will release the reference to the
+        /// nsIHelperAppLauncherDialog.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SaveToDisk([MarshalAs(UnmanagedType.Interface)] nsIFile aNewFileLocation, [MarshalAs(UnmanagedType.U1)] bool aRememberThisPreference);
 		
 		/// <summary>
-        /// Use aApplication to launch with this content.
+        /// Remembers that aApplication should be used to launch this content. Does
+        /// not actually launch the application.
         /// NOTE: This will release the reference to the nsIHelperAppLauncherDialog.
         /// @param aApplication nsIFile corresponding to the location of the application to use.
         /// @param aRememberThisPreference TRUE if we should remember this choice.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LaunchWithApplication([MarshalAs(UnmanagedType.Interface)] nsIFile aApplication, [MarshalAs(UnmanagedType.U1)] bool aRememberThisPreference);
+		
+		/// <summary>
+        /// Callback invoked by nsIHelperAppLauncherDialog::promptForSaveToFileAsync
+        /// after the user has chosen a file through the File Picker (or dismissed it).
+        /// @param aFile The file that was chosen by the user (or null if dialog was dismissed).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SaveDestinationAvailable([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// The following methods are used by the progress dialog to get or set
@@ -160,13 +170,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetWebProgressListener([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener2 aWebProgressListener);
-		
-		/// <summary>
-        /// when the stand alone progress window actually closes, it calls this method
-        /// so we can release any local state...
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CloseProgressWindow();
 		
 		/// <summary>
         /// The file we are saving to

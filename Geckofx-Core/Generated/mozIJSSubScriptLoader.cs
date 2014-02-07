@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("837d0211-c448-4bb8-a9bf-922ba33b9d37")]
+	[Guid("b21f1579-d994-4e99-a85d-a685140f3ec1")]
 	public interface mozIJSSubScriptLoader
 	{
 		
@@ -42,7 +42,7 @@ namespace Gecko
         /// This method should only be called from JS!
         /// In JS, the signature looks like:
         /// rv loadSubScript (url [, obj] [, charset]);
-        /// @param url the url if the sub-script, it MUST be either a file:,
+        /// @param url the url of the sub-script, it MUST be either a file:,
         /// resource:, or chrome: url, and MUST be local.
         /// @param obj an optional object to evaluate the script onto, it
         /// defaults to the global object of the caller.
@@ -53,5 +53,20 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal LoadSubScript([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, Gecko.JsVal obj, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase charset, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// This method should only be called from JS!
+        /// In JS, the signature looks like:
+        /// rv = loadSubScript (url, optionsObject)
+        /// @param url the url of the sub-script, it MUST be either a file:,
+        /// resource:, or chrome: url, and MUST be local.
+        /// @param optionsObject an object with parameters. Valid parameters are:
+        /// - charset: specifying the character encoding of the file (default: ASCII)
+        /// - target:  an object to evaluate onto (default: global object of the caller)
+        /// - ignoreCache: if set to true, will bypass the cache for reading the file.
+        /// @retval rv the value returned by the sub-script
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal LoadSubScriptWithOptions([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, Gecko.JsVal options, System.IntPtr jsContext);
 	}
 }

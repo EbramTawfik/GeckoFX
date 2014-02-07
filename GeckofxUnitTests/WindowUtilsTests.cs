@@ -171,6 +171,11 @@ namespace GeckofxUnitTests
 				return false;
 			}
 
+			public void GetCcLogPathAttribute(nsAStringBase aCcLogPath)
+			{
+				throw new NotImplementedException();
+			}
+
 			public void Begin()
 			{
 				_begin++;
@@ -181,6 +186,11 @@ namespace GeckofxUnitTests
 				_noteRefCountedOject++;
 			}
 
+			public void NoteGCedObject(ulong aAddress, bool aMarked, string aObjectDescription, ulong aCompartmentAddress)
+			{
+				throw new NotImplementedException();
+			}
+
 			public void NoteGCedObject(ulong aAddress, bool aMarked, string aObjectDescription)
 			{
 				_noteGCedObject++;
@@ -189,6 +199,11 @@ namespace GeckofxUnitTests
 			public void NoteEdge(ulong aToAddress, string aEdgeName)
 			{
 				_noteEdge++;
+			}
+
+			public void NoteWeakMapEntry(ulong aMap, ulong aKey, ulong aKeyDelegate, ulong aValue)
+			{
+				throw new NotImplementedException();
 			}
 
 			public void BeginResults()
@@ -246,6 +261,11 @@ namespace GeckofxUnitTests
 			}
 
 			public void SetFilenameIdentifierAttribute(nsAStringBase aFilenameIdentifier)
+			{
+				throw new NotImplementedException();
+			}
+
+			public void GetGcLogPathAttribute(nsAStringBase aGcLogPath)
 			{
 				throw new NotImplementedException();
 			}

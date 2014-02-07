@@ -63,12 +63,12 @@ namespace Gecko
 		void GetWakeLockState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTopic, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
-        /// Return a wake lock object of aTopic associated with aWindow.
+        /// Return a wake lock (MozWakeLock) object of aTopic associated with aWindow.
         /// A wake lock without associated window, e.g. used in chrome, is
         /// always considered invisible.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozWakeLock NewWakeLock([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTopic, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
+		nsISupports NewWakeLock([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTopic, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 	}
 }

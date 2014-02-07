@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8d74e6f8-81c3-4045-9bb7-70bdb7b11b25")]
+	[Guid("f19a03ae-e97d-41e9-95dd-681b910c4093")]
 	public interface nsIQuotaManager
 	{
 		
@@ -50,6 +50,17 @@ namespace Gecko
 		nsIQuotaRequest GetUsageForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIUsageCallback aCallback, uint aAppId, [MarshalAs(UnmanagedType.U1)] bool aInMozBrowserOnly, int argc);
 		
 		/// <summary>
+        /// Removes all storages. The files may not be deleted immediately depending
+        /// on prohibitive concurrent operations.
+        /// Be careful, this removes *all* the data that has ever been stored!
+        ///
+        /// If the dom.quotaManager.testing preference is not true the call will be
+        /// a no-op.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Clear();
+		
+		/// <summary>
         /// Removes all storages stored for the given URI. The files may not be
         /// deleted immediately depending on prohibitive concurrent operations.
         ///
@@ -58,5 +69,17 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearStoragesForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aAppId, [MarshalAs(UnmanagedType.U1)] bool aInMozBrowserOnly, int argc);
+		
+		/// <summary>
+        /// Resets quota and storage management. This can be used to force
+        /// reinitialization of the temp storage, for example when the pref for
+        /// overriding the temp storage limit has changed.
+        /// Be carefull, this invalidates all live storages!
+        ///
+        /// If the dom.quotaManager.testing preference is not true the call will be
+        /// a no-op.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Reset();
 	}
 }

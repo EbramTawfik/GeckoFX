@@ -128,5 +128,10 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ShowURIForInput([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase uri);
+		
+		/// <summary>
+        ///Open path in file manager using org.freedesktop.FileManager1 interface </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OrgFreedesktopFileManager1ShowItems([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase path);
 	}
 }

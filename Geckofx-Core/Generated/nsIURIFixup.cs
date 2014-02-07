@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("773081ac-9f81-4bdb-9e7a-5e87b4361f09")]
+	[Guid("731877f8-973b-414c-b772-9ca1f3fffb7e")]
 	public interface nsIURIFixup
 	{
 		
@@ -56,19 +56,28 @@ namespace Gecko
         ///
         /// @param aURIText    Candidate URI.
         /// @param aFixupFlags Flags that govern ways the URI may be fixed up.
+        /// @param aPostData   The POST data to submit with the returned
+        /// URI (see nsISearchSubmission).
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI CreateFixupURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURIText, uint aFixupFlags);
+		nsIURI CreateFixupURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURIText, uint aFixupFlags, [MarshalAs(UnmanagedType.Interface)] ref nsIInputStream aPostData);
 		
 		/// <summary>
         /// Converts the specified keyword string into a URI.  Note that it's the
         /// caller's responsibility to check whether keywords are enabled and
         /// whether aKeyword is a sensible keyword.
+        ///
+        /// @param aKeyword  The keyword string to convert into a URI
+        /// @param aPostData The POST data to submit to the returned URI
+        /// (see nsISearchSubmission).
+        ///
+        /// @throws NS_ERROR_FAILURE if the resulting URI requires submission of POST
+        /// data and aPostData is null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI KeywordToURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aKeyword);
+		nsIURI KeywordToURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aKeyword, [MarshalAs(UnmanagedType.Interface)] ref nsIInputStream aPostData);
 	}
 	
 	/// <summary>nsIURIFixupConsts </summary>
@@ -93,8 +102,8 @@ namespace Gecko
 		public const ulong FIXUP_FLAGS_MAKE_ALTERNATE_URI = 2;
 		
 		// <summary>
-        // Use UTF-8 to encode the URI instead of platform charset.
+        // Fix common scheme typos.
         // </summary>
-		public const ulong FIXUP_FLAG_USE_UTF8 = 4;
+		public const ulong FIXUP_FLAG_FIX_SCHEME_TYPOS = 8;
 	}
 }

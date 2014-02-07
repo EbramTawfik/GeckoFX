@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6ff5df67-22da-4379-bf57-da775dad19f8")]
+	[Guid("0c10226f-8abb-4345-aa6b-2780a6f4687e")]
 	public interface nsIDOMChromeWindow
 	{
 		

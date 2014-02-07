@@ -99,10 +99,6 @@ namespace Gecko
     ///
     /// It can be used to perform partial or complete updates.
     ///
-    /// Each update object maintains a list of nsIDOMLoadStatus items for the
-    /// resources it is updating.  The list of these items will be available
-    /// after the object is scheduled.
-    ///
     /// One update object will be updating at a time.  The active object will
     /// load its items one by one, sending itemCompleted() to any registered
     /// observers.
@@ -260,7 +256,7 @@ namespace Gecko
 	/// <summary>nsIOfflineCacheUpdateService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cf362a31-4166-4994-8443-b68704ecdcc0")]
+	[Guid("6ee353ba-11ea-4008-a78a-55b343fb2a49")]
 	public interface nsIOfflineCacheUpdateService
 	{
 		
@@ -353,6 +349,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OfflineAppAllowedForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIPrefBranch aPrefBranch);
+		
+		/// <summary>
+        /// Sets the "offline-app" permission for the principal.
+        /// In the single process model calls directly on permission manager.
+        /// In the multi process model dispatches to the parent process.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AllowOfflineApp([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal);
 	}
 	
 	/// <summary>nsIOfflineCacheUpdateServiceConsts </summary>

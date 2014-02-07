@@ -27,7 +27,7 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// The nsIDOMCloseEvent interface is the interface to the event
+    /// The CloseEvent interface is the interface to the event
     /// close on a WebSocket object.
     ///
     /// For more information on this interface, please see
@@ -188,18 +188,6 @@ namespace Gecko
 		new nsIDOMEventTarget GetExplicitOriginalTargetAttribute();
 		
 		/// <summary>
-        /// @deprecated Use nsIDOMEvent::stopPropagation.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PreventBubble();
-		
-		/// <summary>
-        /// @deprecated Use nsIDOMEvent::stopPropagation.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PreventCapture();
-		
-		/// <summary>
         /// @deprecated Use nsIDOMEvent::defaultPrevented.
         /// To be removed in bug 691151.
         /// </summary>
@@ -241,7 +229,7 @@ namespace Gecko
 		new System.IntPtr InternalDOMEvent();
 		
 		/// <summary>
-        /// The nsIDOMCloseEvent interface is the interface to the event
+        /// The CloseEvent interface is the interface to the event
         /// close on a WebSocket object.
         ///
         /// For more information on this interface, please see

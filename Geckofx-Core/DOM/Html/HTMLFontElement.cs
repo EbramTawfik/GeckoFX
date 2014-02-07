@@ -7,6 +7,7 @@ using System.Text;
 
 namespace Gecko.DOM
 {	
+#if DELME
 	public class GeckoFontElement : GeckoHtmlElement
 	{
 		nsIDOMHTMLFontElement DOMHTMLElement;
@@ -34,5 +35,6 @@ namespace Gecko.DOM
 		}
 
 	}
+#endif
 }
 

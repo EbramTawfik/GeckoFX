@@ -28,12 +28,12 @@ namespace Gecko
 	
 	/// <summary>
     /// nsISessionStore keeps track of the current browsing state - i.e.
-    /// tab history, cookies, scroll state, form data, POSTDATA and window features
+    /// tab history, cookies, scroll state, form data, and window features
     /// - and allows to restore everything into one window.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("35235b39-7098-4b3b-8e28-cd004a88b06f")]
+	[Guid("934697e4-3807-47f8-b6c9-6caa8d83ccd1")]
 	public interface nsISessionStartup
 	{
 		
@@ -51,14 +51,42 @@ namespace Gecko
 		Gecko.JsVal GetStateAttribute();
 		
 		/// <summary>
-        /// Determine if session should be restored
+        /// Determines whether there is a pending session restore. Should only be
+        /// called after initialization has completed.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool DoRestore();
 		
+		/// <summary>
+        /// Determines whether automatic session restoration is enabled for this
+        /// launch of the browser. This does not include crash restoration, and will
+        /// return false if restoration will only be caused by a crash.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsAutomaticRestoreEnabled();
+		
+		/// <summary>
+        /// Returns whether we will restore a session that ends up replacing the
+        /// homepage. The browser uses this to not start loading the homepage if
+        /// we're going to stop its load anyway shortly after.
+        ///
+        /// This is meant to be an optimization for the average case that loading the
+        /// session file finishes before we may want to start loading the default
+        /// homepage. Should this be called before the session file has been read it
+        /// will just return false.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetWillOverrideHomepageAttribute();
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetSessionTypeAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetPreviousSessionCrashedAttribute();
 	}
 	
 	/// <summary>nsISessionStartupConsts </summary>

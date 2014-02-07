@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("932f9f93-8e21-4728-a527-cafc64b4d831")]
+	[Guid("6cd89e60-1060-491e-8c31-ce969435ec56")]
 	public interface nsIDocShellTreeOwner
 	{
 		
@@ -84,6 +84,9 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDocShellTreeItem GetPrimaryContentShellAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetContentWindowAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         ///Tells the tree owner to size its window or parent window in such a way

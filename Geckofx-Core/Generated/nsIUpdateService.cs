@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1134957d-9449-481b-a515-4d88b9998278")]
+	[Guid("dc8fb8a9-3a53-4031-9469-2a5197ea30e7")]
 	public interface nsIUpdatePatch
 	{
 		
@@ -169,7 +169,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8f7185a7-056a-45a8-985c-1cb39cf7b7a8")]
+	[Guid("6b0b7721-6746-443d-8cb0-c6199d7f28a6")]
 	public interface nsIUpdate
 	{
 		
@@ -378,19 +378,17 @@ namespace Gecko
 		void SetShowNeverForVersionAttribute([MarshalAs(UnmanagedType.U1)] bool aShowNeverForVersion);
 		
 		/// <summary>
-        /// Whether to show the survey link in the update prompt. The url must also be
-        /// present in the app.update.surveyURL preference.
+        /// Whether the update is no longer supported on this system.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetShowSurveyAttribute();
+		bool GetUnsupportedAttribute();
 		
 		/// <summary>
-        /// Whether to show the survey link in the update prompt. The url must also be
-        /// present in the app.update.surveyURL preference.
+        /// Whether the update is no longer supported on this system.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowSurveyAttribute([MarshalAs(UnmanagedType.U1)] bool aShowSurvey);
+		void SetUnsupportedAttribute([MarshalAs(UnmanagedType.U1)] bool aUnsupported);
 		
 		/// <summary>
         /// Allows overriding the default amount of time in seconds before prompting the
@@ -495,6 +493,7 @@ namespace Gecko
         /// "pending-service"    The update is ready to be applied with the service.
         /// "applying"           The update is being applied.
         /// "applied"            The update is ready to be switched to.
+        /// "applied-os"         The update is OS update and to be installed.
         /// "applied-service"    The update is ready to be switched to with the service.
         /// "succeeded"          The update was successfully applied.
         /// "download-failed"    The update failed to be downloaded.
@@ -510,6 +509,7 @@ namespace Gecko
         /// "pending-service"    The update is ready to be applied with the service.
         /// "applying"           The update is being applied.
         /// "applied"            The update is ready to be switched to.
+        /// "applied-os"         The update is OS update and to be installed.
         /// "applied-service"    The update is ready to be switched to with the service.
         /// "succeeded"          The update was successfully applied.
         /// "download-failed"    The update failed to be downloaded.
@@ -667,9 +667,16 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("900b4a18-3bef-4f3e-bcf5-84dce0021c6d")]
+	[Guid("9f9b51f5-340e-47ce-85ae-9eb077c6cd39")]
 	public interface nsIApplicationUpdateService
 	{
+		
+		/// <summary>
+        /// Checks for available updates in the background using the listener provided
+        /// by the application update service for background checks.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CheckForBackgroundUpdates();
 		
 		/// <summary>
         /// The Update Checker used for background update checking.
@@ -717,14 +724,17 @@ namespace Gecko
 		void DownloadUpdate([MarshalAs(UnmanagedType.Interface)] nsIUpdate update, [MarshalAs(UnmanagedType.U1)] bool background, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
-        /// Apply an update in the background.
+        /// Apply the OS update which has been downloaded and staged as applied.
+        /// @param   update
+        /// The update has been downloaded and staged as applied.
+        /// @throws  if the update object is not an OS update.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ApplyUpdateInBackground([MarshalAs(UnmanagedType.Interface)] nsIUpdate update);
+		void ApplyOsUpdate([MarshalAs(UnmanagedType.Interface)] nsIUpdate update);
 		
 		/// <summary>
         /// Get the Active Updates directory
-        /// @returns The active updates directory.
+        /// @returns An nsIFile for the active updates directory.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -754,12 +764,25 @@ namespace Gecko
 		
 		/// <summary>
         /// Whether or not the Update Service can download and install updates.
-        /// This is a function of whether or not the current user has access
-        /// privileges to the install directory.
+        /// On Windows, this is a function of whether or not the maintenance service
+        /// is installed and enabled. On other systems, and as a fallback on Windows,
+        /// this depends on whether the current user has write access to the install
+        /// directory.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanApplyUpdatesAttribute();
+		
+		/// <summary>
+        /// Whether or not a different instance is handling updates of this
+        /// installation.  This currently only ever returns true on Windows
+        /// when 2 instances of an application are open or when both the Metro
+        /// and Desktop browsers are open.  Only one of the instances will actually
+        /// handle updates for the installation.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsOtherInstanceHandlingUpdatesAttribute();
 		
 		/// <summary>
         /// Whether the Update Service is able to stage updates.
@@ -782,6 +805,10 @@ namespace Gecko
 		/// <summary>
         /// Processes the update which has been downloaded.
         /// This happens without restarting the application.
+        /// On Windows, this can also be used for switching to an applied
+        /// update request.
+        /// @param update The update being applied, or null if this is a switch
+        /// to updated application request.  Must be non-null on GONK.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ProcessUpdate([MarshalAs(UnmanagedType.Interface)] nsIUpdate update);

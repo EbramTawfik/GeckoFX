@@ -52,7 +52,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b38c982d-30bc-463f-9afc-0ca339eac03c")]
+	[Guid("c9fec678-f194-43c9-96b0-7bd9dbdd6bb0")]
 	public interface nsIPermissionManager
 	{
 		
@@ -180,6 +180,23 @@ namespace Gecko
 		uint TestExactPermanentPermission([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string type);
 		
 		/// <summary>
+        /// Get the permission object associated with the given principal and action.
+        /// @param principal The principal
+        /// @param type      A case-sensitive ASCII string identifying the consumer
+        /// @param exactHost If true, only the specific host will be matched,
+        /// @see testExactPermission. If false, subdomains will
+        /// also be searched, @see testPermission.
+        /// @returns The matching permission object, or null if no matching object
+        /// was found. No matching object is equivalent to UNKNOWN_ACTION.
+        /// @note Clients in general should prefer the test* methods unless they
+        /// need to know the specific stored details.
+        /// @note This method will always return null for the system principal.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIPermission GetPermissionObject([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string type, [MarshalAs(UnmanagedType.U1)] bool exactHost);
+		
+		/// <summary>
         /// Increment or decrement our "refcount" of an app id.
         ///
         /// We use this refcount to determine an app's lifetime.  When an app's
@@ -209,6 +226,23 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemovePermissionsForApp(uint appId, [MarshalAs(UnmanagedType.U1)] bool browserOnly);
+		
+		/// <summary>
+        /// If the current permission is set to expire, reset the expiration time. If
+        /// there is no permission or the current permission does not expire, this
+        /// method will silently return.
+        ///
+        /// @param sessionExpiretime  an integer representation of when this permission
+        /// should be forgotten (milliseconds since
+        /// Jan 1 1970 0:00:00), if it is currently
+        /// EXPIRE_SESSION.
+        /// @param sessionExpiretime  an integer representation of when this permission
+        /// should be forgotten (milliseconds since
+        /// Jan 1 1970 0:00:00), if it is currently
+        /// EXPIRE_TIME.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UpdateExpireTime([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string type, [MarshalAs(UnmanagedType.U1)] bool exactHost, ulong sessionExpireTime, ulong persistentExpireTime);
 	}
 	
 	/// <summary>nsIPermissionManagerConsts </summary>
@@ -236,7 +270,8 @@ namespace Gecko
 		// <summary>
         // Predefined expiration types for permissions.  Permissions can be permanent
         // (never expire), expire at the end of the session, or expire at a specified
-        // time.
+        // time. Permissions that expire at the end of a session may also have a
+        // specified expiration time.
         // </summary>
 		public const long EXPIRE_NEVER = 0;
 		

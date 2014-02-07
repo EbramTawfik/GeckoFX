@@ -160,7 +160,7 @@ namespace Gecko
     /// interface of Components.utils </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ab50492f-a9de-4a68-9a75-9406f1542a6c")]
+	[Guid("cd4bccf4-3433-492e-8dfd-dfdb3fe9efa1")]
 	public interface nsIXPCComponents_Utils
 	{
 		
@@ -177,23 +177,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReportError(Gecko.JsVal error, System.IntPtr jsContext);
-		
-		/// <summary>
-        ///lookupMethod is designed to be called from JavaScript only.
-        ///
-        /// It returns a method looking only at the idl interfaces and
-        /// ignores any overrides or resolvers that might be in place for
-        /// a given scriptable wrapped native.
-        /// It must be called with two params: an object and a method name.
-        /// It returns a function object or throws an exception on error.
-        /// This method exists only to solve mozilla browser problems
-        /// when chrome attempts to lookup and call methods in content
-        /// and *must* not get confused by method properties that have been
-        /// replaced in the content JS code. This method is not recommended for
-        /// any other use.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal LookupMethod(Gecko.JsVal obj, Gecko.JsVal name, System.IntPtr jsContext);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -212,7 +195,34 @@ namespace Gecko
         /// var thirtyFive = C.u.evalInSandbox("five * seven", s);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal EvalInSandbox([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source, Gecko.JsVal sandbox, Gecko.JsVal version, Gecko.JsVal filename, int lineNo, System.IntPtr jsContext, int argc);
+		Gecko.JsVal EvalInSandbox([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source, Gecko.JsVal sandbox, Gecko.JsVal version, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase filename, int lineNo, System.IntPtr jsContext, int argc);
+		
+		/// <summary>
+        /// getSandboxMetadata is designed to be called from JavaScript only.
+        ///
+        /// getSandboxMetadata retrieves the metadata associated with
+        /// a sandbox object. It will return undefined if there
+        /// is no metadata attached to the sandbox.
+        ///
+        /// var s = C.u.Sandbox(..., { metadata: "metadata" });
+        /// var metadata = C.u.getSandboxMetadata(s);
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetSandboxMetadata(Gecko.JsVal sandbox, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// setSandboxMetadata is designed to be called from JavaScript only.
+        ///
+        /// setSandboxMetadata sets the metadata associated with
+        /// a sandbox object.
+        ///
+        /// Note that the metadata object will be copied before being used.
+        /// The copy will be performed using the structured clone algorithm.
+        /// Note that this algorithm does not support reflectors and
+        /// it will throw if it encounters them.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSandboxMetadata(Gecko.JsVal sandbox, Gecko.JsVal metadata, System.IntPtr jsContext);
 		
 		/// <summary>
         /// import is designed to be called from JavaScript only.
@@ -257,6 +267,17 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Unload([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase registryLocation);
+		
+		/// <summary>
+        /// Imports global properties (like DOM constructors) into the scope, defining
+        /// them on the caller's global. aPropertyList should be an array of property
+        /// names.
+        ///
+        /// See xpc::GlobalProperties::Parse for the current list of supported
+        /// properties.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ImportGlobalProperties(Gecko.JsVal aPropertyList, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -336,10 +357,53 @@ namespace Gecko
 		/// <summary>
         /// To be called from JS only.
         ///
-        /// Returns an object created in |vobj|'s compartment.
+        /// Returns the true if the object is a (scripted) proxy.
+        /// NOTE: Security wrappers are unwrapped first before the check.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsProxy(Gecko.JsVal vobject, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Similar to evalInSandbox except this one is used to eval a script in the
+        /// scope of a window. Also note, that the return value and the possible exceptions
+        /// in the script are structured cloned, unless they are natives (then they are just
+        /// wrapped).
+        /// Principal of the caller must subsume the target's.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal CreateObjectIn(Gecko.JsVal vobj, System.IntPtr jsContext);
+		Gecko.JsVal EvalInWindow([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source, Gecko.JsVal window, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// To be called from JS only.
+        ///
+        /// Instead of simply wrapping a function into another compartment,
+        /// this helper function creates a native function in the target
+        /// compartment and forwards the call to the original function.
+        /// That call will be different than a regular JS function call in
+        /// that, the |this| is left unbound, and all the non-native JS
+        /// object arguments will be cloned using the structured clone
+        /// algorithm.
+        /// The return value is the new forwarder function, wrapped into
+        /// the caller's compartment.
+        /// The 3rd argument is an optional options object:
+        /// - defineAs: the name of the property that will
+        /// be set on the target scope, with
+        /// the forwarder function as the value.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal ExportFunction(Gecko.JsVal vfunction, Gecko.JsVal vscope, Gecko.JsVal voptions, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// To be called from JS only.
+        ///
+        /// Returns an object created in |vobj|'s compartment.
+        /// If defineAs property on the options object is a non-null ID,
+        /// the new object will be added to vobj as a property. Also, the
+        /// returned new object is always automatically waived (see waiveXrays).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal CreateObjectIn(Gecko.JsVal vobj, Gecko.JsVal voptions, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -399,6 +463,13 @@ namespace Gecko
 		void SetWantXrays(Gecko.JsVal vscope, System.IntPtr jsContext);
 		
 		/// <summary>
+        /// Forces the usage of a privileged |Components| object for a potentially-
+        /// unprivileged scope. This will crash if used outside of automation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ForcePrivilegedComponentsForScope(Gecko.JsVal vscope, System.IntPtr jsContext);
+		
+		/// <summary>
         /// This seemingly-paradoxical API allows privileged code to explicitly give
         /// unprivileged code a reference to its own Components object (whereas it's
         /// normally hidden away on a scope chain visible only to XBL methods). See
@@ -453,20 +524,6 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetMethodjitAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMethodjitAttribute([MarshalAs(UnmanagedType.U1)] bool aMethodjit, System.IntPtr jsContext);
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetMethodjit_alwaysAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMethodjit_alwaysAttribute([MarshalAs(UnmanagedType.U1)] bool aMethodjit_always, System.IntPtr jsContext);
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetStrict_modeAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -486,11 +543,50 @@ namespace Gecko
 		void NukeSandbox(Gecko.JsVal obj, System.IntPtr jsContext);
 		
 		/// <summary>
+        /// API to dynamically block script for a given global. This takes effect
+        /// immediately, unlike other APIs that only affect newly-created globals.
+        ///
+        /// The machinery here maintains a counter, and allows script only if each
+        /// call to blockScriptForGlobal() has been matched with a call to
+        /// unblockScriptForGlobal(). The caller _must_ make sure never to call
+        /// unblock() more times than it calls block(), since that could potentially
+        /// interfere with another consumer's script blocking.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void BlockScriptForGlobal(Gecko.JsVal global, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnblockScriptForGlobal(Gecko.JsVal global, System.IntPtr jsContext);
+		
+		/// <summary>
         /// Check whether the given object is an XrayWrapper.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsXrayWrapper(Gecko.JsVal obj);
+		
+		/// <summary>
+        /// Waive Xray on a given value. Identity op for primitives.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal WaiveXrays(Gecko.JsVal aVal, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Strip off Xray waivers on a given value. Identity op for primitives.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal UnwaiveXrays(Gecko.JsVal aVal, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Gets the name of the JSClass of the object.
+        ///
+        /// if |aUnwrap| is true, all wrappers are unwrapped first. Unless you're
+        /// specifically trying to detect whether the object is a proxy, this is
+        /// probably what you want.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		string GetClassName(Gecko.JsVal aObj, [MarshalAs(UnmanagedType.U1)] bool aUnwrap, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Get a DOM classinfo for the given classname.  Only some class
@@ -499,18 +595,75 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIClassInfo GetDOMClassInfo([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClassName);
+		
+		/// <summary>
+        /// Gets the incument global for the execution of this function. For internal
+        /// and testing use only.
+        ///
+        /// If |callback| is passed, it is invoked with the incumbent global as its
+        /// sole argument. This allows the incumbent global to be measured in callback
+        /// environments with no scripted frames on the stack.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetIncumbentGlobal(Gecko.JsVal callback, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Forces the generation of an XPCWrappedJS for a given object. For internal
+        /// and testing use only. This is only useful to set up wrapper map conditions
+        /// for a testcase. The return value is not an XPCWrappedJS itself, but an
+        /// opaque nsISupports holder that keeps the underlying XPCWrappedJS alive.
+        ///
+        /// if |scope| is passed, the XPCWrappedJS is generated in the scope of that object.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports GenerateXPCWrappedJS(Gecko.JsVal obj, Gecko.JsVal scope, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Retrieve the last time, in microseconds since epoch, that a given
+        /// watchdog-related event occured.
+        ///
+        /// Valid categories:
+        /// "RuntimeStateChange"      - Runtime switching between active and inactive states
+        /// "WatchdogWakeup"          - Watchdog waking up from sleeping
+        /// "WatchdogHibernateStart"  - Watchdog begins hibernating
+        /// "WatchdogHibernateStop"   - Watchdog stops hibernating
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetWatchdogTimestamp([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCategory);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetJSEngineTelemetryValue(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Clone an object into a scope.
+        /// The 3rd argument is an optional options object:
+        /// - cloneFunction: boolean. If true, any function in the value is are
+        /// wrapped in a function forwarder that appears to be a native function in
+        /// the content scope.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal CloneInto(Gecko.JsVal value, Gecko.JsVal scope, Gecko.JsVal options, System.IntPtr jsContext);
 	}
 	
 	/// <summary>
-    /// interface of JavaScript's 'Components' object </summary>
+    /// Interface for the 'Components' object.
+    ///
+    /// The first interface contains things that are available to non-chrome XBL code
+    /// that runs in a scope with an nsExpandedPrincipal. The second interface
+    /// includes members that are only exposed to chrome. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8406dedb-23cc-42db-9f69-1f18785091b5")]
-	public interface nsIXPCComponents
+	[Guid("eeeada2f-86c0-4609-b2bf-4bf2351b1ce6")]
+	public interface nsIXPCComponentsBase
 	{
 		
 		/// <summary>
-        /// interface of JavaScript's 'Components' object </summary>
+        /// Interface for the 'Components' object.
+        ///
+        /// The first interface contains things that are available to non-chrome XBL code
+        /// that runs in a scope with an nsExpandedPrincipal. The second interface
+        /// includes members that are only exposed to chrome. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIXPCComponents_Interfaces GetInterfacesAttribute();
@@ -520,46 +673,108 @@ namespace Gecko
 		nsIXPCComponents_InterfacesByID GetInterfacesByIDAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetClassesAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetClassesByIDAttribute();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStackFrame GetStackAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetResultsAttribute();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIComponentManager GetManagerAttribute();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPCComponents_Utils GetUtilsAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetIDAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetExceptionAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetConstructorAttribute();
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsSuccessCode(int result);
+	}
+	
+	/// <summary>nsIXPCComponents </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("aa28aaf6-70ce-4b03-9514-afe43c7dfda8")]
+	public interface nsIXPCComponents : nsIXPCComponentsBase
+	{
 		
 		/// <summary>
-        ///@deprecated Use Components.utils.lookupMethod instead.
-        /// (But are you sure you really want this method any more?
-        /// See http://developer-test.mozilla.org/en/docs/XPCNativeWrapper )
-        /// </summary>
+        /// Interface for the 'Components' object.
+        ///
+        /// The first interface contains things that are available to non-chrome XBL code
+        /// that runs in a scope with an nsExpandedPrincipal. The second interface
+        /// includes members that are only exposed to chrome. </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal LookupMethod(Gecko.JsVal obj, Gecko.JsVal name, System.IntPtr jsContext);
+		new nsIXPCComponents_Interfaces GetInterfacesAttribute();
+		
+		/// <summary>Member GetInterfacesByIDAttribute </summary>
+		/// <returns>A nsIXPCComponents_InterfacesByID</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIXPCComponents_InterfacesByID GetInterfacesByIDAttribute();
+		
+		/// <summary>Member GetResultsAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetResultsAttribute();
+		
+		/// <summary>Member IsSuccessCode </summary>
+		/// <param name='result'> </param>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool IsSuccessCode(int result);
+		
+		/// <summary>Member GetClassesAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetClassesAttribute();
+		
+		/// <summary>Member GetClassesByIDAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetClassesByIDAttribute();
+		
+		/// <summary>Member GetStackAttribute </summary>
+		/// <returns>A nsIStackFrame</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIStackFrame GetStackAttribute();
+		
+		/// <summary>Member GetManagerAttribute </summary>
+		/// <returns>A nsIComponentManager</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIComponentManager GetManagerAttribute();
+		
+		/// <summary>Member GetUtilsAttribute </summary>
+		/// <returns>A nsIXPCComponents_Utils</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIXPCComponents_Utils GetUtilsAttribute();
+		
+		/// <summary>Member GetIDAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetIDAttribute();
+		
+		/// <summary>Member GetExceptionAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetExceptionAttribute();
+		
+		/// <summary>Member GetConstructorAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetConstructorAttribute();
+		
+		/// <summary>Member GetLastResultAttribute </summary>
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetLastResultAttribute(System.IntPtr jsContext);
+		
+		/// <summary>Member GetReturnCodeAttribute </summary>
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetReturnCodeAttribute(System.IntPtr jsContext);
+		
+		/// <summary>Member SetReturnCodeAttribute </summary>
+		/// <param name='aReturnCode'> </param>
+		/// <param name='jsContext'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetReturnCodeAttribute(Gecko.JsVal aReturnCode, System.IntPtr jsContext);
 		
 		/// <summary>
         ///@deprecated Use Components.utils.reportError instead. </summary>

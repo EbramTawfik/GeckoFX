@@ -22,7 +22,7 @@ namespace GeckofxUnitTests
 			string nothread = prefix + "nothread";
 			string domain = prefix + "domain=None";
 
-			string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain/*, "/fixture=GeckofxUnitTests.ManagedServiceFactoriesTests"*/ };
+			string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain, "/fixture=GeckofxUnitTests.XPConnectTests" };
 
 			int returnCode = NUnit.ConsoleRunner.Runner.Main(my_args); 
 

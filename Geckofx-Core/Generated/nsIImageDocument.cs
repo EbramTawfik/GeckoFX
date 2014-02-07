@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7b80eebc-c98e-4461-8bdb-6e3b6e828890")]
+	[Guid("87c27f98-37dc-4b64-a8cd-92003624bcee")]
 	public interface nsIImageDocument
 	{
 		

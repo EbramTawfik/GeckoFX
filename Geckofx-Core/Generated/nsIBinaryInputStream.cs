@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7b456cb0-8772-11d3-90cf-0040056a906e")]
+	[Guid("42084755-fedc-4310-831c-4f43e7b42e20")]
 	public interface nsIBinaryInputStream : nsIInputStream
 	{
 		
@@ -207,5 +207,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReadByteArray(uint aLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref byte[] aBytes);
+		
+		/// <summary>
+        /// Read opaque bytes from the stream, storing the results in an ArrayBuffer.
+        ///
+        /// @param aLength the number of bytes that must be read
+        /// @param aArrayBuffer the arraybuffer in which to store the results
+        /// Note: passing view.buffer, where view is an ArrayBufferView of an
+        /// ArrayBuffer, is not valid unless view.byteOffset == 0.
+        ///
+        /// @throws NS_ERROR_FAILURE if it can't read aLength bytes
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ReadArrayBuffer(uint aLength, Gecko.JsVal aArrayBuffer, System.IntPtr jsContext);
 	}
 }

@@ -28,7 +28,7 @@ namespace Gecko
 	
 	/// <summary>
     /// nsISessionStore keeps track of the current browsing state - i.e.
-    /// tab history, cookies, scroll state, form data, POSTDATA and window features
+    /// tab history, cookies, scroll state, form data, and window features
     /// - and allows to restore everything into one browser window.
     ///
     /// The nsISessionStore API operates mostly on browser windows and the tabbrowser
@@ -45,15 +45,9 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("59bfaf00-e3d8-4728-b4f0-cc0b9dfb4806")]
+	[Guid("0c99811f-6c5f-4a78-9c31-2d266d714175")]
 	public interface nsISessionStore
 	{
-		
-		/// <summary>
-        /// Initialize the service
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Is it possible to restore the previous session. Will always be false when
@@ -255,6 +249,28 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey);
+		
+		/// <summary>
+        /// @param aKey is the value's name.
+        ///
+        /// @returns A string value or an empty string if none is set.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetGlobalValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
+		/// <summary>
+        /// @param aKey         is the value's name.
+        /// @param aStringValue is the value itself (use JSON.stringify/parse before setting JS objects).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetGlobalValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStringValue);
+		
+		/// <summary>
+        /// @param aTab is the browser tab to get the value for.
+        /// @param aKey is the value's name.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DeleteGlobalValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey);
 		
 		/// <summary>
         /// @param aName is the name of the attribute to save/restore for all tabbrowser tabs.

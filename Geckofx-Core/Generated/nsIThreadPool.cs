@@ -99,6 +99,8 @@ namespace Gecko
         /// thread (usually the thread that created this thread pool).  When this
         /// function returns, the thread pool and all of its threads will be shutdown,
         /// and it will no longer be possible to dispatch tasks to the thread pool.
+        ///
+        /// As a side effect, events on the current thread will be processed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Shutdown();

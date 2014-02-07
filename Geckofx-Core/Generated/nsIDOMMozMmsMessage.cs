@@ -27,12 +27,11 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///This Source Code Form is subject to the terms of the Mozilla Public
-    /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
-    /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+    /// |delivery| = "received" or not yet read).
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c9683d00-88a6-11e2-85cc-57a33dfbea3b")]
+	[Guid("f41d7400-0026-11e3-829d-eb7459c03810")]
 	public interface nsIDOMMozMmsMessage
 	{
 		
@@ -45,6 +44,17 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetIdAttribute();
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetThreadIdAttribute();
+		
+		/// <summary>
+        /// Integrated Circuit Card Identifier.
+        ///
+        /// Will be null if ICC is not available.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetIccIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIccId);
+		
 		/// <summary>
         /// Should be "not-downloaded", "received", "sending", "sent" or "error".
         /// </summary>
@@ -52,10 +62,10 @@ namespace Gecko
 		void GetDeliveryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDelivery);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetDeliveryStatusAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetDeliveryInfoAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
-        /// DOMString[]
+        /// MmsDeliveryInfo[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSenderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSender);
@@ -67,10 +77,13 @@ namespace Gecko
         /// DOMString[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetTimestampAttribute(System.IntPtr jsContext);
+		long GetTimestampAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetSentTimestampAttribute();
 		
 		/// <summary>
-        /// Date
+        /// "sending").
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -84,5 +97,18 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetAttachmentsAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// MmsAttachment[]
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetExpiryDateAttribute();
+		
+		/// <summary>
+        /// Request read report from sender or not.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetReadReportRequestedAttribute();
 	}
 }

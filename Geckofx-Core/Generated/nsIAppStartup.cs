@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2b51b67f-6f05-4145-b37e-7369bbc92b19")]
+	[Guid("bc0cb41f-4924-4c69-a65b-e35225a8650f")]
 	public interface nsIAppStartup
 	{
 		
@@ -58,6 +58,10 @@ namespace Gecko
         /// @returnCode NS_SUCCESS_RESTART_APP
         /// This return code indicates that the application should be
         /// restarted because quit was called with the eRestart flag.
+        /// @returnCode NS_SUCCESS_RESTART_METRO_APP
+        /// This return code indicates that the application should be
+        /// restarted in metro because quit was called with the
+        /// eRestartTouchEnviroment flag.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Run();
@@ -128,6 +132,46 @@ namespace Gecko
 		bool GetShuttingDownAttribute();
 		
 		/// <summary>
+        /// True if the application is in the process of starting up.
+        ///
+        /// Startup is complete once all observers of final-ui-startup have returned.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetStartingUpAttribute();
+		
+		/// <summary>
+        /// Mark the startup as completed.
+        ///
+        /// Called at the end of startup by nsAppRunner.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DoneStartingUp();
+		
+		/// <summary>
+        /// True if the application is being restarted
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetRestartingAttribute();
+		
+		/// <summary>
+        /// True if this is the startup following restart, i.e. if the application
+        /// was restarted using quit(eRestart*).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetWasRestartedAttribute();
+		
+		/// <summary>
+        /// True if the application is being restarted in a touch-optimized
+        /// environment (such as Metro).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetRestartingTouchEnvironmentAttribute();
+		
+		/// <summary>
         /// Returns an object with main, process, firstPaint, sessionRestored properties.
         /// Properties may not be available depending on platform or application
         /// </summary>
@@ -184,5 +228,12 @@ namespace Gecko
         // supported on OSX.
         // </summary>
 		public const long eRestartx86_64 = 0x40;
+		
+		// <summary>
+        // Restart the application in a touch-optimized environment (such as Metro)
+        // after quitting. The application will be restarted with the same profile
+        // and an empty command line.
+        // </summary>
+		public const long eRestartTouchEnvironment = 0x80;
 	}
 }

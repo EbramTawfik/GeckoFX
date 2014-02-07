@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cb0b8eda-4c83-4d0e-a63c-d3b65714bc85")]
+	[Guid("33bd1630-611e-11e3-949a-0800200c9a66")]
 	public interface nsIXULRuntime
 	{
 		
@@ -98,6 +98,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetProcessTypeAttribute();
+		
+		/// <summary>
+        /// If true, browser tabs may be opened in a different process from the main
+        /// browser UI.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetBrowserTabsRemoteAttribute();
 		
 		/// <summary>
         /// Signal the apprunner to invalidate caches on the next restart.

@@ -45,10 +45,8 @@ namespace Gecko
         /// @param iid    The IID of the interface being requested in
         /// the component which is being currently created.
         /// @param result [out] Pointer to the newly created instance, if successful.
-        /// @return NS_OK - Component successfully created and the interface
-        /// being requested was successfully returned in result.
-        /// NS_NOINTERFACE - Interface not accessible.
-        /// NS_ERROR_NO_AGGREGATION - if an 'outer' object is supplied, but the
+        /// @throws NS_NOINTERFACE - Interface not accessible.
+        /// @throws NS_ERROR_NO_AGGREGATION - if an 'outer' object is supplied, but the
         /// component is not aggregatable.
         /// NS_ERROR* - Method failure.
         /// </summary>
@@ -62,8 +60,7 @@ namespace Gecko
         /// to release the factory.	
         ///
         /// @param lock - Must be PR_TRUE or PR_FALSE
-        /// @return NS_OK - If the lock operation was successful.
-        /// NS_ERROR* - Method failure.
+        /// @throws NS_ERROR* - Method failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LockFactory([MarshalAs(UnmanagedType.U1)] bool @lock);

@@ -22,10 +22,12 @@ namespace Gecko.DOM
 			get { return new GeckoFormElement(DOMHTMLElement.GetFormAttribute()); }
 		}
 
+#if DELME
 		new public string AccessKey {
 			get { return nsString.Get(DOMHTMLElement.GetAccessKeyAttribute); }
 			set { DOMHTMLElement.SetAccessKeyAttribute(new nsAString(value)); }
 		}
+#endif
 
 		public bool Disabled {
 			get { return DOMHTMLElement.GetDisabledAttribute(); }
@@ -37,10 +39,12 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetNameAttribute(new nsAString(value)); }
 		}
 
+#if DELME
 		public new int TabIndex {
 			get { return DOMHTMLElement.GetTabIndexAttribute(); }
 			set { DOMHTMLElement.SetTabIndexAttribute(value); }
 		}
+#endif
 
 		public string Type {
 			get { return nsString.Get(DOMHTMLElement.GetTypeAttribute); }

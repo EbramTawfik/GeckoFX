@@ -27,18 +27,23 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// Sole purpose is to be able to identify the concrete class nsTabChild
-    /// </summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bf1eddf9-731b-4a4b-bd65-9a712a892832")]
+	[Guid("60146bc6-31d8-450b-a9eb-4000b6403d5c")]
 	public interface nsITabChild
 	{
 		
 		/// <summary>
-        /// Sole purpose is to be able to identify the concrete class nsTabChild
-        /// </summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetMessageManagerAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendRequestFocus([MarshalAs(UnmanagedType.U1)] bool canFocus);
 	}
 }

@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1dbf174c-696e-4d9b-af0f-350da50d2249")]
+	[Guid("5B48E5A2-F07A-4E64-A935-C722A3D60B65")]
 	public interface mozIAsyncLivemarks
 	{
 		
@@ -45,12 +45,12 @@ namespace Gecko
         /// @param [optional] aCallback
         /// Invoked when the creation process is done.  In case of failure will
         /// receive an error code.
-        ///
+        /// @return {Promise}
         /// @throws NS_ERROR_INVALID_ARG if the supplied information is insufficient
         /// for the creation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddLivemark(Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
+		Gecko.JsVal AddLivemark(Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
 		
 		/// <summary>
         /// Removes an existing livemark.
@@ -62,10 +62,11 @@ namespace Gecko
         /// Invoked when the removal process is done.  In case of failure will
         /// receive an error code.
         ///
+        /// @return {Promise}
         /// @throws NS_ERROR_INVALID_ARG if the id/guid is invalid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveLivemark(Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
+		Gecko.JsVal RemoveLivemark(Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
 		
 		/// <summary>
         /// Gets an existing livemark.
@@ -73,15 +74,16 @@ namespace Gecko
         /// @param aLivemarkInfo
         /// mozILivemarkInfo object containing either an id or a guid of the
         /// livemark to retrieve.
-        /// @param aCallback
+        /// @param [optional] aCallback
         /// Invoked when the fetching process is done.  In case of failure will
         /// receive an error code.
         ///
+        /// @return {Promise}
         /// @throws NS_ERROR_INVALID_ARG if the id/guid is invalid or an invalid
         /// callback is provided.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLivemark(Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
+		Gecko.JsVal GetLivemark(Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
 		
 		/// <summary>
         /// Reloads all livemarks if they are expired or if forced to do so.

@@ -59,9 +59,9 @@ namespace Gecko
 		void Write([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase str);
 		
 		/// <summary>
-        /// Close this nsIGZFileWriter.  This method is run when the underlying object
-        /// is destroyed, so it's not strictly necessary to explicitly call it from
-        /// your code.
+        /// Close this nsIGZFileWriter.  Classes implementing nsIGZFileWriter will run
+        /// this method when the underlying object is destroyed, so it's not strictly
+        /// necessary to explicitly call it from your code.
         ///
         /// It's an error to call this method twice, and it's an error to call write()
         /// after finish() has been called.

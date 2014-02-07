@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e1c028bc-c478-11da-95a8-00e08161165f")]
+	[Guid("fad6f72f-13d8-4e26-9173-53007a4afe71")]
 	public interface nsIZipEntry
 	{
 		
@@ -90,6 +90,12 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSyntheticAttribute();
+		
+		/// <summary>
+        /// The UNIX style file permissions of this item.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetPermissionsAttribute();
 	}
 	
 	/// <summary>nsIZipReader </summary>

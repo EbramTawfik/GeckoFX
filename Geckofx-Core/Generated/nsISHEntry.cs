@@ -34,8 +34,8 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6443FD72-A50F-4B8B-BB82-BB1FA04CB15D")]
-	public interface nsISHEntry : nsIHistoryEntry
+	[Guid("c2a5827e-0fc0-11e3-bb95-59e799890b3c")]
+	public interface nsISHEntry
 	{
 		
 		/// <summary>
@@ -45,7 +45,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI GetURIAttribute();
+		nsIURI GetURIAttribute();
 		
 		/// <summary>
         /// A readonly property that returns the title
@@ -54,7 +54,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetTitleAttribute();
+		string GetTitleAttribute();
 		
 		/// <summary>
         /// A readonly property that returns a boolean
@@ -67,7 +67,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetIsSubFrameAttribute();
+		bool GetIsSubFrameAttribute();
 		
 		/// <summary>
         ///URI for the document </summary>
@@ -457,6 +457,32 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SharesDocumentWith([MarshalAs(UnmanagedType.Interface)] nsISHEntry aEntry);
+		
+		/// <summary>
+        /// True if this SHEntry corresponds to a document created by a srcdoc iframe.
+        /// Set when a value is assigned to  srcdocData.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsSrcdocEntryAttribute();
+		
+		/// <summary>
+        /// Contents of the srcdoc attribute in a srcdoc iframe to be loaded instead
+        /// of the URI.  Similar to a Data URI, this information is needed to
+        /// recreate the document at a later stage.
+        /// Setting this sets isSrcdocEntry to true
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSrcdocDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrcdocData);
+		
+		/// <summary>
+        /// Contents of the srcdoc attribute in a srcdoc iframe to be loaded instead
+        /// of the URI.  Similar to a Data URI, this information is needed to
+        /// recreate the document at a later stage.
+        /// Setting this sets isSrcdocEntry to true
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSrcdocDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrcdocData);
 	}
 	
 	/// <summary>nsISHEntryInternal </summary>

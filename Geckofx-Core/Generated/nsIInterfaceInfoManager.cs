@@ -30,7 +30,7 @@ namespace Gecko
     ///this is NOT intended to be scriptable </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8B161900-BE2B-11d2-9831-006008962422")]
+	[Guid("1d53d8d9-1d92-428f-b5cc-198b55e897d7")]
 	public interface nsIInterfaceInfoManager
 	{
 		
@@ -50,87 +50,11 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetNameForIID(System.Guid iid);
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIEnumerator EnumerateInterfaces();
-		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AutoRegisterInterfaces();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIEnumerator EnumerateInterfacesWhoseNamesStartWith([MarshalAs(UnmanagedType.LPStr)] string prefix);
-	}
-	
-	/// <summary>nsIInterfaceInfoSuperManager </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0ee22850-bc6a-11d5-9134-0010a4e73d9a")]
-	public interface nsIInterfaceInfoSuperManager : nsIInterfaceInfoManager
-	{
-		
-		/// <summary>
-        ///this is NOT intended to be scriptable </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIInterfaceInfo GetInfoForIID(System.Guid iid);
-		
-		/// <summary>Member GetInfoForName </summary>
-		/// <param name='name'> </param>
-		/// <returns>A nsIInterfaceInfo</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIInterfaceInfo GetInfoForName([MarshalAs(UnmanagedType.LPStr)] string name);
-		
-		/// <summary>Member GetIIDForName </summary>
-		/// <param name='name'> </param>
-		/// <returns>A System.Guid</returns>
-		new System.Guid GetIIDForName([MarshalAs(UnmanagedType.LPStr)] string name);
-		
-		/// <summary>Member GetNameForIID </summary>
-		/// <param name='iid'> </param>
-		/// <returns>A System.String</returns>
-		[return: MarshalAs(UnmanagedType.LPStr)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetNameForIID(System.Guid iid);
-		
-		/// <summary>Member EnumerateInterfaces </summary>
-		/// <returns>A nsIEnumerator</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIEnumerator EnumerateInterfaces();
-		
-		/// <summary>Member AutoRegisterInterfaces </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AutoRegisterInterfaces();
-		
-		/// <summary>Member EnumerateInterfacesWhoseNamesStartWith </summary>
-		/// <param name='prefix'> </param>
-		/// <returns>A nsIEnumerator</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIEnumerator EnumerateInterfacesWhoseNamesStartWith([MarshalAs(UnmanagedType.LPStr)] string prefix);
-		
-		/// <summary>Member AddAdditionalManager </summary>
-		/// <param name='manager'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddAdditionalManager([MarshalAs(UnmanagedType.Interface)] nsIInterfaceInfoManager manager);
-		
-		/// <summary>Member RemoveAdditionalManager </summary>
-		/// <param name='manager'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveAdditionalManager([MarshalAs(UnmanagedType.Interface)] nsIInterfaceInfoManager manager);
-		
-		/// <summary>Member HasAdditionalManagers </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasAdditionalManagers();
-		
-		/// <summary>Member EnumerateAdditionalManagers </summary>
-		/// <returns>A nsISimpleEnumerator</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator EnumerateAdditionalManagers();
 	}
 }

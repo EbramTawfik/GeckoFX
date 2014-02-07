@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("58e4f602-a7c8-4cd1-9dca-716705e826ef")]
+	[Guid("5799251f-5b55-4df7-a9e7-0c27812c469a")]
 	public interface nsISearchSubmission
 	{
 		
@@ -55,7 +55,7 @@ namespace Gecko
 	/// <summary>nsISearchEngine </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ccf6aa20-10a9-4a0c-a81d-31b10ea846de")]
+	[Guid("7914c4b8-f05b-40c9-a982-38a058cd1769")]
 	public interface nsISearchEngine
 	{
 		
@@ -119,6 +119,27 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SupportsResponseType([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase responseType);
+		
+		/// <summary>
+        /// Returns a string with the URL to an engine's icon matching both width and
+        /// height. Returns null if icon with specified dimensions is not found.
+        ///
+        /// @param width
+        /// Width of the requested icon.
+        /// @param height
+        /// Height of the requested icon.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetIconURLBySize(int width, int height, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
+		/// <summary>
+        /// Gets an array of all available icons. Each entry is an object with
+        /// width, height and url properties. width and height are numeric and
+        /// represent the icon's dimensions. url is a string with the URL for
+        /// the icon.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetIcons();
 		
 		/// <summary>
         /// An optional shortcut alias for the engine.
@@ -210,6 +231,44 @@ namespace Gecko
 		public const ulong DATA_TEXT = 2;
 	}
 	
+	/// <summary>nsISearchInstallCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("9fc39136-f08b-46d3-b232-96f4b7b0e235")]
+	public interface nsISearchInstallCallback
+	{
+		
+		/// <summary>
+        /// Called to indicate that the engine addition process succeeded.
+        ///
+        /// @param engine
+        /// The nsISearchEngine object that was added (will not be null).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnSuccess([MarshalAs(UnmanagedType.Interface)] nsISearchEngine engine);
+		
+		/// <summary>
+        /// Called to indicate that the engine addition process failed.
+        ///
+        /// @param errorCode
+        /// One of the ERROR_* values described above indicating the cause of
+        /// the failure.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnError(uint errorCode);
+	}
+	
+	/// <summary>nsISearchInstallCallbackConsts </summary>
+	public class nsISearchInstallCallbackConsts
+	{
+		
+		// 
+		public const ulong ERROR_UNKNOWN_FAILURE = 0x1;
+		
+		// 
+		public const ulong ERROR_DUPLICATE_ENGINE = 0x2;
+	}
+	
 	/// <summary>
     /// Callback for asynchronous initialization of nsIBrowserSearchService
     /// </summary>
@@ -231,7 +290,7 @@ namespace Gecko
 	/// <summary>nsIBrowserSearchService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a676eb70-6987-4429-a668-3e253b6f7c7c")]
+	[Guid("939d74a4-5b01-463c-80c7-4301f0c0f9ef")]
 	public interface nsIBrowserSearchService
 	{
 		
@@ -267,8 +326,7 @@ namespace Gecko
         /// Adds a new search engine from the file at the supplied URI, optionally
         /// asking the user for confirmation first.  If a confirmation dialog is
         /// shown, it will offer the option to begin using the newly added engine
-        /// right away; if no confirmation dialog is shown, the new engine will be
-        /// used right away automatically.
+        /// right away.
         ///
         /// @param engineURL
         /// The URL to the search engine's description file.
@@ -288,11 +346,16 @@ namespace Gecko
         /// value is false, the engine will be added to the list upon successful
         /// load, but it will not be selected as the current engine.
         ///
+        /// @param callback
+        /// A nsISearchInstallCallback that will be notified when the
+        /// addition is complete, or if the addition fails. It will not be
+        /// called if addEngine throws an exception.
+        ///
         /// @throws NS_ERROR_FAILURE if the type is invalid, or if the description
         /// file cannot be successfully loaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEngine([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase engineURL, int dataType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase iconURL, [MarshalAs(UnmanagedType.U1)] bool confirm);
+		void AddEngine([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase engineURL, int dataType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase iconURL, [MarshalAs(UnmanagedType.U1)] bool confirm, [MarshalAs(UnmanagedType.Interface)] nsISearchInstallCallback callback);
 		
 		/// <summary>
         /// Adds a new search engine, without asking the user for confirmation and
@@ -416,6 +479,13 @@ namespace Gecko
 		nsISearchEngine GetDefaultEngineAttribute();
 		
 		/// <summary>
+        /// The default search engine. Returns the first visible engine if the default
+        /// engine is hidden. May be null if there are no visible search engines.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDefaultEngineAttribute([MarshalAs(UnmanagedType.Interface)] nsISearchEngine aDefaultEngine);
+		
+		/// <summary>
         /// The currently active search engine. May be null if there are no visible
         /// search engines.
         /// </summary>
@@ -429,14 +499,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCurrentEngineAttribute([MarshalAs(UnmanagedType.Interface)] nsISearchEngine aCurrentEngine);
-		
-		/// <summary>
-        /// The original default engine. This differs from the "defaultEngine"
-        /// attribute in that it always returns a given build's default engine,
-        /// regardless of whether it is hidden.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISearchEngine GetOriginalDefaultEngineAttribute();
 	}
 }

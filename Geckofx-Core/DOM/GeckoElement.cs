@@ -56,6 +56,15 @@ namespace Gecko
 			_domElement = domElement;
 		}
 
+		internal GeckoElement(object domElement)
+			: base(domElement)
+		{
+			if (domElement is nsIDOMElement)
+				_domElement = (nsIDOMElement)domElement;
+			else
+				throw new ArgumentException("domDlement is not a nsIDOMElement");
+		}
+
 		public nsIDOMElement DOMElement
 		{
 			get { return _domElement; }

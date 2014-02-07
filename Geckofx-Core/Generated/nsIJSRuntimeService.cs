@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("364bcec3-7034-4a4e-bff5-b3f796ca9771")]
+	[Guid("2ac111f2-e492-488e-85df-353c453e98f3")]
 	public interface nsIJSRuntimeService
 	{
 		
@@ -47,10 +47,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetRuntimeAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPCScriptable GetBackstagePassAttribute();
-		
 		/// <summary>
         /// Register additional GC callback which will run after the
         /// standard XPConnect callback.
@@ -60,5 +56,15 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterGCCallback(System.IntPtr func);
+		
+		/// <summary>
+        /// Register additional context callback which will run after the
+        /// standard XPConnect callback.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterContextCallback(System.IntPtr func);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnregisterContextCallback(System.IntPtr func);
 	}
 }

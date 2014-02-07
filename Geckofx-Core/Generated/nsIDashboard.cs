@@ -78,6 +78,15 @@ namespace Gecko
 		void RequestDNSInfo(NetDashboardCallback cb);
 		
 		/// <summary>
+        ///aProtocol: a transport layer protocol:
+        /// ex: "ssl", "tcp", default is "tcp".
+        /// aHost: the host's name
+        /// aPort: the port which the connection will open on
+        /// aTimeout: the timespan before the connection will be timed out </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RequestConnection([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHost, uint aPort, [MarshalAs(UnmanagedType.LPStr)] string aProtocol, uint aTimeout, NetDashboardCallback cb);
+		
+		/// <summary>
         ///When true, the service will log websocket events </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -87,5 +96,11 @@ namespace Gecko
         ///When true, the service will log websocket events </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEnableLoggingAttribute([MarshalAs(UnmanagedType.U1)] bool aEnableLogging);
+		
+		/// <summary>
+        ///DNS resolver for host name
+        /// aHost: host name </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RequestDNSLookup([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHost, NetDashboardCallback cb);
 	}
 }

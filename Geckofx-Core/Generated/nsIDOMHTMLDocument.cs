@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fd76e045-8d97-4a97-ad75-eac5ae2f3ea4")]
+	[Guid("a3efb7eb-ae02-447b-99a5-bebca100afbd")]
 	public interface nsIDOMHTMLDocument : nsIDOMDocument
 	{
 		
@@ -719,30 +719,6 @@ namespace Gecko
 		new void MozExitPointerLock();
 		
 		/// <summary>
-        /// Inline event handler for readystatechange events.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOnreadystatechangeAttribute(System.IntPtr jsContext);
-		
-		/// <summary>
-        /// Inline event handler for readystatechange events.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnreadystatechangeAttribute(Gecko.JsVal aOnreadystatechange, System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOnmouseenterAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnmouseenterAttribute(Gecko.JsVal aOnmouseenter, System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOnmouseleaveAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnmouseleaveAttribute(Gecko.JsVal aOnmouseleave, System.IntPtr jsContext);
-		
-		/// <summary>
         /// Visibility API implementation.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
@@ -765,6 +741,19 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetCompatModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCompatMode);
+		
+		/// <summary>
+        /// Return nodes that match a given CSS selector.
+        ///
+        /// @see <http://dev.w3.org/2006/webapi/selectors-api/>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement QuerySelector([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase selectors);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMNodeList QuerySelectorAll([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase selectors);
 		
 		/// <summary>
         /// The nsIDOMHTMLDocument interface is the interface to a [X]HTML
@@ -965,8 +954,5 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReleaseEvents(int eventFlags);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RouteEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 	}
 }

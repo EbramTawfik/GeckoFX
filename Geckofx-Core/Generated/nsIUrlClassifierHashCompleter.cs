@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bbd6c954-7cb4-4447-bc55-8cefd1ceed89")]
+	[Guid("da16de40-df26-414d-bde7-c4faf4504868")]
 	public interface nsIUrlClassifierHashCompleterCallback
 	{
 		
@@ -46,11 +46,9 @@ namespace Gecko
         /// The name of the table that this hash belongs to.
         /// @param chunkId
         /// The database chunk that this hash belongs to.
-        /// @param trusted
-        /// The completion was verified with a MAC and can be cached.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Completion([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase hash, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase table, uint chunkId, [MarshalAs(UnmanagedType.U1)] bool trusted);
+		void Completion([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase hash, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase table, uint chunkId);
 		
 		/// <summary>
         /// The completion is complete.  This method is called once per
@@ -67,9 +65,11 @@ namespace Gecko
 	/// <summary>
     /// Clients updating the url-classifier database have the option of sending
     /// partial (32-bit) hashes of URL fragments to be blacklisted.  If the
-    /// url-classifier encounters one of these truncated hashes, it will ask
-    /// an nsIUrlClassifierCompleter instance to asynchronously provide the
-    /// complete hash, along with some associated metadata.
+    /// url-classifier encounters one of these truncated hashes, it will ask an
+    /// nsIUrlClassifierCompleter instance to asynchronously provide the complete
+    /// hash, along with some associated metadata.
+    /// This is only ever used for testing and should absolutely be deleted (I
+    /// think).
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -87,12 +87,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Complete([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase partialHash, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierHashCompleterCallback callback);
-		
-		/// <summary>
-        /// Set the client and wrapped key for verified updates.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKeys([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase clientKey, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase wrappedKey);
 		
 		/// <summary>
         /// The URL for the gethash request

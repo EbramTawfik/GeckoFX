@@ -2,10 +2,11 @@
 
 namespace Gecko.DOM.Svg
 {
+
+#if DELME
 	public class DomSvgAnimatedLength
 	{
 		private InstanceWrapper<nsIDOMSVGAnimatedLength> _domSvgAnimatedLength;
-
 
 		private DomSvgAnimatedLength( nsIDOMSVGAnimatedLength domSvgAnimatedLength )
 		{
@@ -22,4 +23,5 @@ namespace Gecko.DOM.Svg
 			get { return _domSvgAnimatedLength.Instance.GetBaseValAttribute().Wrap(DomSvgLength.Create); }
 		}
 	}
+#endif
 }

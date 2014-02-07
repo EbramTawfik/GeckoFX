@@ -32,13 +32,23 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5c19ab54-67bf-46d0-ac5b-21abd9050c3b")]
+	[Guid("3927a495-575a-4a12-b9ab-6b948f76ec1f")]
 	public interface nsIAppShellService
 	{
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIXULWindow CreateTopLevelWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aParent, [MarshalAs(UnmanagedType.Interface)] nsIURI aUrl, uint aChromeMask, int aInitialWidth, int aInitialHeight);
+		
+		/// <summary>
+        /// This is the constructor for creating an invisible DocShell.
+        /// It is used to simulate DOM windows without an actual physical
+        /// representation.
+        /// @param aIsChrome Set true if you want to use it for chrome content.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIWebNavigation CreateWindowlessBrowser([MarshalAs(UnmanagedType.U1)] bool aIsChrome);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CreateHiddenWindow();

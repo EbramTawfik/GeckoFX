@@ -28,17 +28,23 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetHeightAttribute(value); }
 		}
 
+#if DELME
 		public nsISupports getContext(string contextId)
 		{
 			return DOMHTMLElement.GetContext(new nsAString(contextId), default(JsVal));
 		}
+#endif
 
 		public string toDataURL(string type)
 		{
 			using (nsAString retval = new nsAString(), param = new nsAString(type))
 			{
 				var instance = Xpcom.CreateInstance<nsIVariant>(Contracts.Variant);
+#if PORT
 				DOMHTMLElement.ToDataURL(param, instance, 2, retval);
+#else
+				throw new NotImplementedException("ToDataURL api changed");
+#endif
 				Marshal.ReleaseComObject(instance);
 				return retval.ToString();
 			}

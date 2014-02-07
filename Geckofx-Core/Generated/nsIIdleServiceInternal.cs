@@ -58,8 +58,8 @@ namespace Gecko
         /// @note
         /// The subject of the notification the observer will get is always the
         /// nsIIdleService itself.
-        /// When the user goes idle, the observer topic is "idle" and when they get
-        /// back, the observer topic is "back".
+        /// When the user goes idle, the observer topic is "idle" and when he gets
+        /// back, the observer topic is "active".
         /// The data param for the notification contains the current user idle time.
         ///
         /// @note

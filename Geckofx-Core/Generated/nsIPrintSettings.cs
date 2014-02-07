@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a65cfa37-b381-4fe9-81b7-db08853f54ad")]
+	[Guid("1bcfc611-8941-4c39-9e06-7116e564a1ce")]
 	public interface nsIPrintSettings
 	{
 		
@@ -569,6 +569,26 @@ namespace Gecko
 		void SetPrintPageDelayAttribute(int aPrintPageDelay);
 		
 		/// <summary>
+        ///in milliseconds </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetResolutionAttribute();
+		
+		/// <summary>
+        ///in milliseconds </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetResolutionAttribute(int aResolution);
+		
+		/// <summary>
+        ///print resolution (dpi) </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetDuplexAttribute();
+		
+		/// <summary>
+        ///print resolution (dpi) </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDuplexAttribute(int aDuplex);
+		
+		/// <summary>
         /// This attribute tracks whether the PS has been initialized
         /// from a printer specified by the "printerName" attr.
         /// If a different name is set into the "printerName"
@@ -713,6 +733,12 @@ namespace Gecko
 		
 		// 
 		public const ulong kInitSavePaperSize = 0x00000200;
+		
+		// 
+		public const ulong kInitSaveResolution = 0x00000400;
+		
+		// 
+		public const ulong kInitSaveDuplex = 0x00000800;
 		
 		// <summary>
         //Flag 0x00001000 is unused </summary>

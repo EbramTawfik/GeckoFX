@@ -44,7 +44,7 @@ namespace Gecko.Search
 		{
 			using (nsAString native1=new nsAString(engineUrl),native2=new nsAString(iconUrl))
 			{
-				_browserSearchService.Instance.AddEngine( native1, dataType, native2, confirm );
+				_browserSearchService.Instance.AddEngine( native1, dataType, native2, confirm, null);
 			}
 		}
 
@@ -193,6 +193,7 @@ namespace Gecko.Search
 			set { _browserSearchService.Instance.SetCurrentEngineAttribute(value._searchEngine); }
 		}
 
+#if DELME
 		/// <summary>
 		/// The original default engine. This differs from the "defaultEngine"
 		/// attribute in that it always returns a given build's default engine,
@@ -202,5 +203,6 @@ namespace Gecko.Search
 		{
 			get { return SearchEngine.Create(_browserSearchService.Instance.GetOriginalDefaultEngineAttribute()); }
 		}
+#endif
 	}
 }

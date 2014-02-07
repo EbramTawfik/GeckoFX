@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("28404f7e-0f17-4dc3-a21a-2074d8659b02")]
+	[Guid("dbd6241d-c76e-42c0-9410-930589d803a2")]
 	public interface nsIWebNavigation
 	{
 		
@@ -301,16 +301,16 @@ namespace Gecko
 		public const ulong LOAD_FLAGS_DISALLOW_INHERIT_OWNER = 0x40000;
 		
 		// <summary>
-        // Assume the URI is encoded in UTF-8.
-        // </summary>
-		public const ulong LOAD_FLAGS_URI_IS_UTF8 = 0x80000;
-		
-		// <summary>
         // This flag specifies that the URI may be submitted to a third-party
         // server for correction. This should only be applied to non-sensitive
         // URIs entered by users.  This flag must not be passed to Reload.
         // </summary>
 		public const ulong LOAD_FLAGS_ALLOW_THIRD_PARTY_FIXUP = 0x100000;
+		
+		// <summary>
+        // This flag specifies that common scheme typos should be corrected.
+        // </summary>
+		public const ulong LOAD_FLAGS_FIXUP_SCHEME_TYPOS = 0x200000;
 		
 		// <summary>
         // This flag specifies that all network activity should be stopped.  This

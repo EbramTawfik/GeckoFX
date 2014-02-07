@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("38c60bfa-6040-4bfe-93f2-acd6a909bb60")]
+	[Guid("883643d4-93a5-4f32-922c-6f06e01363c1")]
 	public interface nsIAccessibleHyperLink
 	{
 		
@@ -61,18 +61,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetValidAttribute();
-		
-		/// <summary>
-        /// Determines whether the element currently has the focus, e. g. after
-        /// returning from the destination page.
-        ///
-        /// @note  ARIA links can only be focused if they have the tabindex
-        /// attribute set.  Also, state_focused should then be set on the accessible
-        /// for this link.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetSelectedAttribute();
 		
 		/// <summary>
         /// The numbber of anchors within this Hyperlink. Is normally 1 for anchors.

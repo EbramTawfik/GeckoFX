@@ -31,18 +31,25 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ec640482-be5f-49a0-a9cb-c87eacce9291")]
+	[Guid("cac9d8e8-0d53-4fa8-9903-bb367e4fa1fe")]
 	public interface nsIScriptError : nsIConsoleMessage
 	{
 		
 		/// <summary>
-        /// This is intended as a base interface; implementations may want to
-        /// provide an object that can be qi'ed to provide more specific
-        /// message information.
+        /// The time (in milliseconds from the Epoch) that the message instance
+        /// was initialised.
+        /// The timestamp is initialized as JS_now/1000 so that it can be
+        /// compared to Date.now in Javascript.
         /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new long GetTimeStampAttribute();
+		
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string GetMessageAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// The error message without any context/line number information.
@@ -72,21 +79,11 @@ namespace Gecko
         /// Categories I know about -
         /// XUL javascript
         /// content javascript (both of these from nsDocShell, currently)
-        /// component javascript (errors in JS components)
+        /// system javascript (errors in JS components and other system JS)
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetCategoryAttribute();
-		
-		/// <summary>
-        ///The time (in milliseconds from the Epoch) that the script error instance
-        ///       was initialised, and thus the time when the error occurred.
-        ///       Currently used to display date and time of the message in Error console.
-        ///       The timestamp is initialized as JS_now/1000 so that it can be
-        ///       compared to Date.now in Javascript.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		long GetTimeStampAttribute();
 		
 		/// <summary>
         ///Get the window id this was initialized with.  Zero will be
@@ -112,10 +109,7 @@ namespace Gecko
         ///       initialize with a window id.  The window id should be for the
         ///       inner window associated with this error. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithWindowID([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceLine, uint lineNumber, uint columnNumber, uint flags, [MarshalAs(UnmanagedType.LPStr)] string category, ulong innerWindowID);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		void InitWithWindowID([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceLine, uint lineNumber, uint columnNumber, uint flags, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase category, ulong innerWindowID);
 	}
 	
 	/// <summary>nsIScriptErrorConsts </summary>

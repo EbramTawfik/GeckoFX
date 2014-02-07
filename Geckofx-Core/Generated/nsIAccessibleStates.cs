@@ -33,7 +33,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7fe1ee90-edaa-43f1-9f3b-071099b51f08")]
+	[Guid("f1e0fbb7-fde4-4519-9383-2bcbee428513")]
 	public interface nsIAccessibleStates
 	{
 	}
@@ -257,5 +257,10 @@ namespace Gecko
         // Same as ENABLED for now
         // </summary>
 		public const ulong EXT_STATE_EXPANDABLE = 0x00008000;
+		
+		// <summary>
+        // If COLLAPSED or EXPANDED
+        // </summary>
+		public const ulong EXT_STATE_PINNED = 0x00010000;
 	}
 }

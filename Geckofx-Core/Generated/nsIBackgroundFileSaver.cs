@@ -57,7 +57,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("17a2ff32-918f-11e2-8fc9-f9626188709b")]
+	[Guid("581a99ca-dc8d-4cee-ac95-99156e7517ed")]
 	public interface nsIBackgroundFileSaver
 	{
 		
@@ -85,16 +85,8 @@ namespace Gecko
 		void SetObserverAttribute([MarshalAs(UnmanagedType.Interface)] nsIBackgroundFileSaverObserver aObserver);
 		
 		/// <summary>
-        /// The SHA256 hash in raw bytes associated with the file that was downloaded.
-        ///
-        /// @remarks Reading this will throw NS_ERROR_NOT_AVAILABLE unless
-        /// sha256enabled is true and onSaveComplete has been called.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSha256HashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aSha256Hash);
-		
-		/// <summary>
-        /// Compute SHA256.
+        /// Instructs the component to compute the SHA-256 hash of the target file, and
+        /// make it available in the sha256Hash property.
         ///
         /// @remarks This must be set on the main thread before the first call to
         /// setTarget.
@@ -103,10 +95,40 @@ namespace Gecko
 		void EnableSha256();
 		
 		/// <summary>
-        /// Sets the name of the output file to be written.  The output file may
-        /// already exist, in which case it will be overwritten.  The target can be
-        /// changed after data has already been fed, in which case the existing file
-        /// will be moved to the new destination.
+        /// The SHA-256 hash, in raw bytes, associated with the data that was saved.
+        ///
+        /// In case the enableAppend method has been called, the hash computation
+        /// includes the contents of the existing file, if any.
+        ///
+        /// @throws NS_ERROR_NOT_AVAILABLE
+        /// In case the enableSha256 method has not been called, or before the
+        /// onSaveComplete method has been called to notify success.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSha256HashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aSha256Hash);
+		
+		/// <summary>
+        /// Instructs the component to append data to the initial target file, that
+        /// will be specified by the first call to the setTarget method, instead of
+        /// overwriting the file.
+        ///
+        /// If the initial target file does not exist, this method has no effect.
+        ///
+        /// @remarks This must be set on the main thread before the first call to
+        /// setTarget.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void EnableAppend();
+		
+		/// <summary>
+        /// Sets the name of the output file to be written.  The target can be changed
+        /// after data has already been fed, in which case the existing file will be
+        /// moved to the new destination.
+        ///
+        /// In case the specified file already exists, and this method is called for
+        /// the first time, the file may be either overwritten or appended to, based on
+        /// whether the enableAppend method was called.  Subsequent calls always
+        /// overwrite the specified target file with the previously saved data.
         ///
         /// No file will be written until this function is called at least once.  It's
         /// recommended not to feed any data until the output file is set.
@@ -174,7 +196,7 @@ namespace Gecko
         /// @param aSaver
         /// Reference to the object that raised the notification.
         /// @param aStatus
-        /// Result code that determines whether the operation succeded or
+        /// Result code that determines whether the operation succeeded or
         /// failed, as well as the failure reason.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

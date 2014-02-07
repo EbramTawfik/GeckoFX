@@ -139,5 +139,36 @@ namespace Gecko
         // effect.
         // </summary>
 		public const ulong REQ_DELEGATE = (1<<1);
+		
+		// <summary>
+        // The authentication is required for a proxy connection.
+        // </summary>
+		public const ulong REQ_PROXY_AUTH = (1<<2);
+		
+		// <summary>
+        // Flags used for telemetry.
+        // </summary>
+		public const ulong NTLM_MODULE_SAMBA_AUTH_PROXY = 0;
+		
+		// 
+		public const ulong NTLM_MODULE_SAMBA_AUTH_DIRECT = 1;
+		
+		// 
+		public const ulong NTLM_MODULE_WIN_API_PROXY = 2;
+		
+		// 
+		public const ulong NTLM_MODULE_WIN_API_DIRECT = 3;
+		
+		// 
+		public const ulong NTLM_MODULE_GENERIC_PROXY = 4;
+		
+		// 
+		public const ulong NTLM_MODULE_GENERIC_DIRECT = 5;
+		
+		// 
+		public const ulong NTLM_MODULE_KERBEROS_PROXY = 6;
+		
+		// 
+		public const ulong NTLM_MODULE_KERBEROS_DIRECT = 7;
 	}
 }

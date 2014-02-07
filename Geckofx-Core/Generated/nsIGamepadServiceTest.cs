@@ -31,15 +31,12 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7edf77a2-6b3e-4bbb-9100-4452d425feaa")]
+	[Guid("b6ed093c-6ea0-4141-a8eb-f99645162651")]
 	public interface nsIGamepadServiceTest
 	{
 		
-		/// <summary>
-        /// This interface is intended only for use in tests.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint AddGamepad([MarshalAs(UnmanagedType.LPStr)] string id, uint numButtons, uint numAxes);
+		uint AddGamepad([MarshalAs(UnmanagedType.LPStr)] string id, uint mapping, uint numButtons, uint numAxes);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveGamepad(uint index);
@@ -49,5 +46,18 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NewAxisMoveEvent(uint index, uint axis, double value);
+	}
+	
+	/// <summary>nsIGamepadServiceTestConsts </summary>
+	public class nsIGamepadServiceTestConsts
+	{
+		
+		// <summary>
+        // This interface is intended only for use in tests.
+        // </summary>
+		public const ulong NO_MAPPING = 0;
+		
+		// 
+		public const ulong STANDARD_MAPPING = 1;
 	}
 }

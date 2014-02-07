@@ -52,8 +52,7 @@ namespace Gecko
         /// Evict images from the cache.
         ///
         /// @param uri The URI to remove.
-        /// @return NS_OK if \a uri was removed from the cache.
-        /// NS_ERROR_NOT_AVAILABLE if \a uri was unable to be removed from the cache.
+        /// @throws NS_ERROR_NOT_AVAILABLE if \a uri was unable to be removed from the cache.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveEntry([MarshalAs(UnmanagedType.Interface)] nsIURI uri);

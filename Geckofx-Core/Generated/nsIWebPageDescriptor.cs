@@ -40,8 +40,7 @@ namespace Gecko
 		/// <summary>
         /// Tells the object to load the page specified by the page descriptor
         ///
-        /// @return NS_OK            -
-        /// NS_ERROR_FAILURE -
+        /// @throws NS_ERROR_FAILURE -
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LoadPage([MarshalAs(UnmanagedType.Interface)] nsISupports aPageDescriptor, uint aDisplayType);

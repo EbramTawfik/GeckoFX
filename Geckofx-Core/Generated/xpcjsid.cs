@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("baedc96a-9cee-4b6b-9160-90d257b3c8ef")]
+	[Guid("62883d14-4146-4039-94f5-a5e1e1a51a15")]
 	public interface nsIJSID
 	{
 		
@@ -56,12 +56,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJSID other);
 		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Initialize([MarshalAs(UnmanagedType.LPStr)] string idString);
-		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Initialize([MarshalAs(UnmanagedType.LPStr)] string idString);
 		
 		/// <summary>
         /// while the nsIJSID object remains alive!
@@ -104,16 +104,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJSID other);
 		
-		/// <summary>Member Initialize </summary>
-		/// <param name='idString'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Initialize([MarshalAs(UnmanagedType.LPStr)] string idString);
-		
 		/// <summary>Member ToString </summary>
 		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string ToString();
+		
+		/// <summary>Member Initialize </summary>
+		/// <param name='idString'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Initialize([MarshalAs(UnmanagedType.LPStr)] string idString);
 		
 		/// <summary>
         /// while the nsIJSID object remains alive!
@@ -156,16 +156,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJSID other);
 		
-		/// <summary>Member Initialize </summary>
-		/// <param name='idString'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Initialize([MarshalAs(UnmanagedType.LPStr)] string idString);
-		
 		/// <summary>Member ToString </summary>
 		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string ToString();
+		
+		/// <summary>Member Initialize </summary>
+		/// <param name='idString'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Initialize([MarshalAs(UnmanagedType.LPStr)] string idString);
 		
 		/// <summary>
         /// while the nsIJSID object remains alive!

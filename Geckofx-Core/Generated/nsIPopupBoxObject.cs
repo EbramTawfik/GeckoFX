@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ACCEA57B-C3D8-4B6E-9101-90F04EE9DEA0")]
+	[Guid("b1192cac-467b-42ca-88d6-fcdec5bb4ef7")]
 	public interface nsIPopupBoxObject
 	{
 		
@@ -194,6 +194,16 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MoveToAnchor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement anchorElement, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase position, int x, int y, [MarshalAs(UnmanagedType.U1)] bool attributesOverride);
+		
+		/// <summary>
+        ///Returns the alignment position where the popup has appeared relative to its
+        /// anchor node or point, accounting for any flipping that occurred.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAlignmentPositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAlignmentPosition);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetAlignmentOffsetAttribute();
 	}
 	
 	/// <summary>nsIPopupBoxObjectConsts </summary>

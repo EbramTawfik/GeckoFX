@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3ab89888-eb41-4dc8-b347-115555f47c80")]
+	[Guid("e420bd32-b8c4-4b47-8cca-09e0bddbb0c3")]
 	public interface nsIBrowserDOMWindow
 	{
 		
@@ -70,6 +70,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsTabContentWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
+		
+		/// <summary>
+        /// The contentWindow property of the currently selected browser.
+        /// This is used to implement .content in remote-Firefox.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetContentWindowAttribute();
 	}
 	
 	/// <summary>nsIBrowserDOMWindowConsts </summary>

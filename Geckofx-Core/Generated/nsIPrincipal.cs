@@ -30,7 +30,7 @@ namespace Gecko
     ///Defines the abstract interface for a principal. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dbda8bb0-3023-4aec-ad98-8e9931a29d70")]
+	[Guid("f09d8a53-a6c8-4f68-b329-9a76a709d24e")]
 	public interface nsIPrincipal : nsISerializable
 	{
 		
@@ -76,18 +76,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetHashValueAttribute();
-		
-		/// <summary>
-        /// method.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetSecurityPolicyAttribute();
-		
-		/// <summary>
-        /// method.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSecurityPolicyAttribute(System.IntPtr aSecurityPolicy);
 		
 		/// <summary>
         /// The codebase URI to which this principal pertains.  This is
@@ -193,20 +181,20 @@ namespace Gecko
 		void SetCspAttribute(System.IntPtr aCsp);
 		
 		/// <summary>
-        /// Returns the extended origin of the principal.
-        /// The extended origin is a string that has more information than the origin
-        /// and can be used to isolate data or permissions between different
-        /// principals while taking into account parameters like the app id or the
-        /// fact that the principal is embedded in a mozbrowser.
-        /// Some principals will return the origin for extendedOrigin.
-        /// Some principals will assert if you try to access the extendedOrigin.
+        /// Returns the jar prefix of the principal.
+        /// The jar prefix is a string that can be used to isolate data or
+        /// permissions between different principals while taking into account
+        /// parameters like the app id or the fact that the principal is embedded in
+        /// a mozbrowser.
+        /// Some principals will return an empty string.
+        /// Some principals will assert if you try to access the jarPrefix.
         ///
-        /// The extendedOrigin is intended to be an opaque identifier. It is
-        /// currently "human-readable" but no callers should assume it will stay
-        /// as is and it might be crypto-hashed at some point.
+        /// The jarPrefix is intended to be an opaque identifier. It is currently
+        /// "human-readable" but no callers should assume it will stay as is and
+        /// it might be crypto-hashed at some point.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetExtendedOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aExtendedOrigin);
+		void GetJarPrefixAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aJarPrefix);
 		
 		/// <summary>
         /// The base domain of the codebase URI to which this principal pertains

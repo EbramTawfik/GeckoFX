@@ -12,7 +12,9 @@ namespace Gecko.Plugins
 		public bool Blocklisted
 		{
 			get { return _pluginTag.GetBlocklistedAttribute(); }
+#if DELME
 			set{_pluginTag.SetBlocklistedAttribute( value );}
+#endif
 		}
 
 		public string Description
@@ -23,7 +25,9 @@ namespace Gecko.Plugins
 		public bool Disabled
 		{
 			get { return _pluginTag.GetDisabledAttribute(); }
+#if DELME
 			set { _pluginTag.SetDisabledAttribute(value); }
+#endif
 		}
 
 		public string FileName

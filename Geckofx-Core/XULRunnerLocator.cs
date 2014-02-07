@@ -62,7 +62,7 @@ namespace Gecko
 
 			string version = typeof(XULRunnerLocator).Assembly.GetName().Version.Major.ToString();
 
-			string[] folderSearch = new string[] { "Mozilla Firefox " + version + ".0", "Mozilla Firefox " + version, "Mozilla Firefox" };
+			string[] folderSearch = new string[] { "Mozilla Firefox " + version + ".0", "Mozilla Firefox " + version + ".0a", "Mozilla Firefox " + version, "Mozilla Firefox" };
 
 			var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
 			return folderSearch.Select(t => Path.Combine(programFiles, t)).FirstOrDefault(Directory.Exists);

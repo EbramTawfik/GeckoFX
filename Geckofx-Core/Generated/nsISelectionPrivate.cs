@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3ede44eb-2df8-41de-ab79-6f3dbd10090b")]
+	[Guid("52629837-7b3f-4434-940d-a14de7ef9b7a")]
 	public interface nsISelectionPrivate : nsISelection
 	{
 		
@@ -168,14 +168,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void DeleteFromDocument();
-		
-		/// <summary>
-        /// Modifies the cursor Bidi level after a change in keyboard direction
-        /// @param langRTL is PR_TRUE if the new language is right-to-left or
-        /// PR_FALSE if the new language is left-to-right.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SelectionLanguageChange([MarshalAs(UnmanagedType.U1)] bool langRTL);
 		
 		/// <summary>
         /// Returns the whole selection into a plain text string.
@@ -339,6 +331,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ScrollIntoViewInternal(short aRegion, [MarshalAs(UnmanagedType.U1)] bool aIsSynchronous, ScrollAxis aVertical, ScrollAxis aHorizontal);
+		
+		/// <summary>
+        /// Modifies the cursor Bidi level after a change in keyboard direction
+        /// @param langRTL is PR_TRUE if the new language is right-to-left or
+        /// PR_FALSE if the new language is left-to-right.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SelectionLanguageChange([MarshalAs(UnmanagedType.U1)] bool langRTL);
 	}
 	
 	/// <summary>nsISelectionPrivateConsts </summary>

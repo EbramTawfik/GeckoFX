@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c94651cf-082f-45e2-9481-33a1a700b46a")]
+	[Guid("ea89f3b3-804f-40e0-8f40-a1b13cde2b9b")]
 	public interface nsIProfiler
 	{
 		
@@ -41,7 +41,7 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartProfiler(uint aEntries, uint aInterval, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] string[] aFeatures, uint aFeatureCount);
+		void StartProfiler(uint aEntries, double aInterval, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] string[] aFeatures, uint aFeatureCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] string[] aThreadNameFilters, uint aFilterCount);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StopProfiler();

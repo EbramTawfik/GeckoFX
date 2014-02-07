@@ -29,68 +29,18 @@ namespace Gecko
 	/// <summary>
     /// The nsIScrollable is an interface that can be implemented by a control that
     /// supports scrolling.  This is a generic interface without concern for the
-    /// type of content that may be inside.  It simply deals blindly with scroll
-    /// position as a composite of the lowest possible scroll position, the highest
-    /// possible position and the current position lying somewhere between the
-    /// min and the max.
-    ///
-    /// XXXroc in our tree, only get/setDefaultScrollbarPreferences and
-    /// getScrollbarVisibility are actually used externally. We should gut
-    /// the rest. nsDocShell is using twips for all these coordinates
-    /// which is going to confuse people anyway...
+    /// type of content that may be inside.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("919e792a-6490-40b8-bba5-f9e9ad5640c8")]
+	[Guid("3507fc93-313e-4a4c-8ca8-4d0ea0f97315")]
 	public interface nsIScrollable
 	{
 		
 		/// <summary>
-        ///Retrieves or Sets the current thumb position to the curPos passed in for the
-        ///	scrolling orientation passed in.  curPos should be between minPos and maxPos.
-        ///	@return	NS_OK - Setting or Getting completed successfully.
-        ///				NS_ERROR_INVALID_ARG - returned when curPos is not within the
-        ///					minPos and maxPos.
-        ///	 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetCurScrollPos(int scrollOrientation);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurScrollPos(int scrollOrientation, int curPos);
-		
-		/// <summary>
-        ///This function atomizes the ability to scroll in two dimensions at the same
-        ///	time.
-        ///	 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurScrollPosEx(int curHorizontalPos, int curVerticalPos);
-		
-		/// <summary>
-        ///Retrieves or Sets the valid ranges for the thumb.  When maxPos is set to
-        ///	something less than the current thumb position, curPos is set = to maxPos.
-        ///	@return	NS_OK - Setting or Getting completed successfully.
-        ///				NS_ERROR_INVALID_ARG - returned when curPos is not within the
-        ///					minPos and maxPos.
-        ///	 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetScrollRange(int scrollOrientation, ref int minPos, ref int maxPos);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScrollRange(int scrollOrientation, int minPos, int maxPos);
-		
-		/// <summary>
-        ///This function atomizes the ability to set the ranges in two dimensions at
-        ///	the same time.
-        ///	 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScrollRangeEx(int minHorizontalPos, int maxHorizontalPos, int minVerticalPos, int maxVerticalPos);
-		
-		/// <summary>
-        ///Retrieves or Set the preferences for the scroll bar.
-        ///	current is 'scrolling preference for this document'
-        ///	default is 'scrolling preference for all documents in this shell'
-        ///	resetScrollbarPreferences resets current to default
-        ///	 </summary>
+        /// Get or set the default scrollbar state for all documents in
+        /// this shell.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetDefaultScrollbarPreferences(int scrollOrientation);
 		
@@ -98,11 +48,10 @@ namespace Gecko
 		void SetDefaultScrollbarPreferences(int scrollOrientation, int scrollbarPref);
 		
 		/// <summary>
-        ///Get information about whether the vertical and horizontal scrollbars are
-        ///	currently visible.  nullptr is a valid argument.  If you are only interested
-        ///	in one of the visibility settings pass nullptr in for the one you aren't
-        ///	interested in.
-        ///	 </summary>
+        /// Get information about whether the vertical and horizontal scrollbars are
+        /// currently visible.  If you are only interested in one of the visibility
+        /// settings pass nullptr in for the one you aren't interested in.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetScrollbarVisibility([MarshalAs(UnmanagedType.U1)] ref bool verticalVisible, [MarshalAs(UnmanagedType.U1)] ref bool horizontalVisible);
 	}
@@ -112,25 +61,25 @@ namespace Gecko
 	{
 		
 		// <summary>
-        //Constants declaring the two scroll orientations a scroll bar can be in.
-        //        ScrollOrientation_X - Horizontal scrolling.  When passing this
-        //                in to a scroll position method you are requesting or
-        //                setting the positions for the horizontal scroll bar.
-        //        ScrollOrientation_Y - Vertical scrolling.  When passing this
-        //                in to a scroll position you are requesting or setting
-        //                the positions for the vertical scroll bar.
-        //	 </summary>
+        // Constants declaring the two scroll orientations a scrollbar can be in.
+        // ScrollOrientation_X - Horizontal scrolling.  When passing this
+        // in to a method you are requesting or setting data for the
+        // horizontal scrollbar.
+        // ScrollOrientation_Y - Vertical scrolling.  When passing this
+        // in to a method you are requesting or setting data for the
+        // vertical scrollbar.
+        // </summary>
 		public const long ScrollOrientation_X = 1;
 		
 		// 
 		public const long ScrollOrientation_Y = 2;
 		
 		// <summary>
-        //Constants declaring the states of the scroll bars.
-        //	ScrollPref_Auto - bars visible only when needed.
-        //	ScrollPref_Never - bars never visible, even when scrolling still possible.
-        //	ScrollPref_Always - bars always visible, even when scrolling is not possible
-        //	 </summary>
+        // Constants declaring the states of the scrollbars.
+        // ScrollPref_Auto - bars visible only when needed.
+        // ScrollPref_Never - bars never visible, even when scrolling still possible.
+        // ScrollPref_Always - bars always visible, even when scrolling is not possible
+        // </summary>
 		public const long Scrollbar_Auto = 1;
 		
 		// 

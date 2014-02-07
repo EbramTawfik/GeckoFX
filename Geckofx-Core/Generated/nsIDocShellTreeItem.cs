@@ -33,60 +33,9 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e35bbb39-985b-4d62-81da-73c330222e5f")]
-	public interface nsIDocShellTreeItem : nsIDocShellTreeNode
+	[Guid("f897f4af-f67e-4115-9d37-ce09f71122e2")]
+	public interface nsIDocShellTreeItem
 	{
-		
-		/// <summary>
-        ///The current number of DocShells which are immediate children of the
-        ///	this object.
-        ///	 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetChildCountAttribute();
-		
-		/// <summary>
-        ///Add a new child DocShellTreeItem.  Adds to the end of the list.
-        ///	Note that this does NOT take a reference to the child.  The child stays
-        ///	alive only as long as it's referenced from outside the docshell tree.
-        ///	@throws NS_ERROR_ILLEGAL_VALUE if child corresponds to the same
-        ///	        object as this treenode or an ancestor of this treenode
-        ///	@throws NS_ERROR_UNEXPECTED if this node is a leaf in the tree.
-        ///	 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem child);
-		
-		/// <summary>
-        ///Removes a child DocShellTreeItem.
-        ///	@throws NS_ERROR_UNEXPECTED if this node is a leaf in the tree.
-        ///	 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem child);
-		
-		/// <summary>
-        /// Return the child at the index requested.  This is 0-based.
-        ///
-        /// @throws NS_ERROR_UNEXPECTED if the index is out of range
-        ///	 </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDocShellTreeItem GetChildAt(int index);
-		
-		/// <summary>
-        ///Return the child DocShellTreeItem with the specified name.
-        ///	aName - This is the name of the item that is trying to be found.
-        ///	aRecurse - Is used to tell the function to recurse through children.
-        ///		Note, recursion will only happen through items of the same type.
-        ///	aSameType - If this is set only children of the same type will be returned.
-        ///	aRequestor - This is the docshellTreeItem that is requesting the find.  This
-        ///		parameter is used when recursion is being used to avoid searching the same
-        ///		tree again when a child has asked a parent to search for children.
-        ///	aOriginalRequestor - The original treeitem that made the request, if any.
-        ///    	This is used to ensure that we don't run into cross-site issues.
-        ///	Note the search is depth first when recursing.
-        ///	 </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDocShellTreeItem FindChildWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.U1)] bool aRecurse, [MarshalAs(UnmanagedType.U1)] bool aSameType, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aOriginalRequestor);
 		
 		/// <summary>
         ///name of the DocShellTreeItem
@@ -122,6 +71,9 @@ namespace Gecko
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetItemTypeAttribute(int aItemType);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int ItemType();
 		
 		/// <summary>
         ///Parent DocShell.
@@ -212,6 +164,57 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTreeOwner([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeOwner treeOwner);
+		
+		/// <summary>
+        ///The current number of DocShells which are immediate children of the
+        ///	this object.
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetChildCountAttribute();
+		
+		/// <summary>
+        ///Add a new child DocShellTreeItem.  Adds to the end of the list.
+        ///	Note that this does NOT take a reference to the child.  The child stays
+        ///	alive only as long as it's referenced from outside the docshell tree.
+        ///	@throws NS_ERROR_ILLEGAL_VALUE if child corresponds to the same
+        ///	        object as this treenode or an ancestor of this treenode
+        ///	@throws NS_ERROR_UNEXPECTED if this node is a leaf in the tree.
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem child);
+		
+		/// <summary>
+        ///Removes a child DocShellTreeItem.
+        ///	@throws NS_ERROR_UNEXPECTED if this node is a leaf in the tree.
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem child);
+		
+		/// <summary>
+        /// Return the child at the index requested.  This is 0-based.
+        ///
+        /// @throws NS_ERROR_UNEXPECTED if the index is out of range
+        ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDocShellTreeItem GetChildAt(int index);
+		
+		/// <summary>
+        ///Return the child DocShellTreeItem with the specified name.
+        ///	aName - This is the name of the item that is trying to be found.
+        ///	aRecurse - Is used to tell the function to recurse through children.
+        ///		Note, recursion will only happen through items of the same type.
+        ///	aSameType - If this is set only children of the same type will be returned.
+        ///	aRequestor - This is the docshellTreeItem that is requesting the find.  This
+        ///		parameter is used when recursion is being used to avoid searching the same
+        ///		tree again when a child has asked a parent to search for children.
+        ///	aOriginalRequestor - The original treeitem that made the request, if any.
+        ///    	This is used to ensure that we don't run into cross-site issues.
+        ///	Note the search is depth first when recursing.
+        ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDocShellTreeItem FindChildWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.U1)] bool aRecurse, [MarshalAs(UnmanagedType.U1)] bool aSameType, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aOriginalRequestor);
 	}
 	
 	/// <summary>nsIDocShellTreeItemConsts </summary>

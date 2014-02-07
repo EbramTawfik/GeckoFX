@@ -32,8 +32,38 @@ namespace Gecko
     ///
     /// The following events are generated:
     ///
-    /// MozSwipeGesture - Generated when the user completes a swipe across
-    /// across the input device.
+    /// MozSwipeGestureStart - Generated when the user starts a horizontal
+    /// swipe across the input device.  This event not only acts as a signal,
+    /// but also asks two questions:  Should a swipe really be started, and
+    /// in which directions should the user be able to swipe?  The first
+    /// question is answered by event listeners by calling or not calling
+    /// preventDefault() on the event.  Since a swipe swallows all scroll
+    /// events, the default action of the swipe start event is *not* to
+    /// start a swipe. Call preventDefault() if you want a swipe to be
+    /// started.
+    /// The second question (swipe-able directions) is answered in the
+    /// allowedDirections field.
+    /// If this event has preventDefault() called on it (and thus starts
+    /// a swipe), it guarantees a future MozSwipeGestureEnd event that
+    /// will signal the end of a swipe animation.
+    ///
+    /// MozSwipeGestureUpdate - Generated periodically while the user is
+    /// continuing a horizontal swipe gesture.  The "delta" value represents
+    /// the current absolute gesture amount.  This event may even be sent
+    /// after a MozSwipeGesture event fired in order to allow for fluid
+    /// completion of a swipe animation.  The direction value is meaningless
+    /// on swipe update events.
+    ///
+    /// MozSwipeGestureEnd - Generated when the swipe animation is completed.
+    ///
+    /// MozSwipeGesture - Generated when the user releases a swipe across
+    /// across the input device.  This event signals that the actual swipe
+    /// operation is complete, even though the animation might not be finished
+    /// yet.  This event can be sent without accompanying start / update / end
+    /// events, and it can also be handled on its own if the consumer doesn't
+    /// want to handle swipe animation events.
+    /// Only the direction value has any significance, the delta value is
+    /// meaningless.
     ///
     /// MozMagnifyGestureStart - Generated when the user begins the magnify
     /// ("pinch") gesture.  The "delta" value represents the initial
@@ -69,7 +99,7 @@ namespace Gecko
     /// MozTapGesture - Generated when the user executes a two finger
     /// tap gesture on the input device. Client coordinates contain the
     /// center point of the tap.
-    /// (XXX Not implemented on Mac)
+    /// (XXX On OS X, only Lion (10.7) and up)
     ///
     /// MozPressTapGesture - Generated when the user executes a press
     /// and tap two finger gesture (first finger down, second finger down,
@@ -90,7 +120,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0cd3fde1-0c99-49cc-a74e-9a9348864307")]
+	[Guid("d78656ab-9d68-4f03-83f9-7c7bee071aa7")]
 	public interface nsIDOMSimpleGestureEvent : nsIDOMMouseEvent
 	{
 		
@@ -241,18 +271,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetExplicitOriginalTargetAttribute();
-		
-		/// <summary>
-        /// @deprecated Use nsIDOMEvent::stopPropagation.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PreventBubble();
-		
-		/// <summary>
-        /// @deprecated Use nsIDOMEvent::stopPropagation.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PreventCapture();
 		
 		/// <summary>
         /// @deprecated Use nsIDOMEvent::defaultPrevented.
@@ -433,6 +451,44 @@ namespace Gecko
 		new bool GetModifierState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase keyArg);
 		
 		/// <summary>
+        ///Read-write value for swipe events.
+        ///
+        /// Reports the directions that can be swiped to; multiple directions
+        /// should be OR'ed together.
+        ///
+        /// The allowedDirections field is designed to be set on SwipeGestureStart
+        /// events by event listeners.  Its value after event dispatch determines
+        /// the behavior of the swipe animation that is about to begin.
+        /// Specifically, if the user swipes in a direction that can't be swiped
+        /// to, the animation will have a bounce effect.
+        /// Future SwipeGestureUpdate, SwipeGesture and SwipeGestureEnd events
+        /// will carry the allowDirections value that was set on the SwipeStart
+        /// event.  Changing this field on non-SwipeGestureStart events doesn't
+        /// have any effect.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetAllowedDirectionsAttribute();
+		
+		/// <summary>
+        ///Read-write value for swipe events.
+        ///
+        /// Reports the directions that can be swiped to; multiple directions
+        /// should be OR'ed together.
+        ///
+        /// The allowedDirections field is designed to be set on SwipeGestureStart
+        /// events by event listeners.  Its value after event dispatch determines
+        /// the behavior of the swipe animation that is about to begin.
+        /// Specifically, if the user swipes in a direction that can't be swiped
+        /// to, the animation will have a bounce effect.
+        /// Future SwipeGestureUpdate, SwipeGesture and SwipeGestureEnd events
+        /// will carry the allowDirections value that was set on the SwipeStart
+        /// event.  Changing this field on non-SwipeGestureStart events doesn't
+        /// have any effect.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAllowedDirectionsAttribute(uint aAllowedDirections);
+		
+		/// <summary>
         ///Direction of a gesture. Diagonals are indicated by OR'ing the
         /// applicable constants together.
         ///
@@ -447,7 +503,7 @@ namespace Gecko
 		uint GetDirectionAttribute();
 		
 		/// <summary>
-        ///Delta value for magnify and rotate gestures.
+        ///Delta value for magnify, rotate and swipe gestures.
         ///
         /// For rotation, the value is in degrees and is positive for
         /// clockwise rotation and negative for counterclockwise
@@ -463,6 +519,14 @@ namespace Gecko
         /// undocumented.  The values are typically in the range of 0.0 to
         /// 100.0, but it is only safe currently to rely on the delta being
         /// positive or negative.
+        ///
+        /// For swipe start, update and end events, the value is a fraction
+        /// of one "page".  If the resulting swipe will have DIRECTION_LEFT, the
+        /// delta value will be positive; for DIRECTION_RIGHT, delta is negative.
+        /// If this seems backwards to you, look at it this way:  If the current
+        /// page is pushed to the right during the animation (positive delta),
+        /// the page left to the current page will be visible after the swipe
+        /// (DIRECTION_LEFT).
         ///
         /// Units on Windows represent the difference between the initial
         /// and current/final width between the two touch points on the input
@@ -493,6 +557,7 @@ namespace Gecko
 					[MarshalAs(UnmanagedType.U1)] bool metaKeyArg, 
 					ushort buttonArg, 
 					[MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg, 
+					uint allowedDirectionsArg, 
 					uint directionArg, 
 					double deltaArg, 
 					uint clickCount);

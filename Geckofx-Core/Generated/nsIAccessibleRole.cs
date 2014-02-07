@@ -802,5 +802,10 @@ namespace Gecko
         // An HTML definition <dd>
         // </summary>
 		public const ulong ROLE_DEFINITION = 128;
+		
+		// <summary>
+        // A keyboard or keypad key.
+        // </summary>
+		public const ulong ROLE_KEY = 129;
 	}
 }

@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f383a42b-0961-4bb0-b45e-dbc345d59237")]
+	[Guid("7c0ada3d-d8d4-493e-9243-fa3df39855e4")]
 	public interface nsIIccListener
 	{
 		
@@ -45,6 +45,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyStkSessionEnd();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyCardStateChanged();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyIccInfoChanged();
 	}
 	
 	/// <summary>
@@ -52,7 +58,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c74b434a-fb2a-4e22-a6cd-1ac353e3f4ce")]
+	[Guid("7c67ab92-52a3-4e11-995c-c0ad2f66c4cb")]
 	public interface nsIIccProvider
 	{
 		
@@ -62,40 +68,89 @@ namespace Gecko
         /// the 'mobileconnection' permission is allowed to register.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterIccMsg([MarshalAs(UnmanagedType.Interface)] nsIIccListener listener);
+		void RegisterIccMsg(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIIccListener listener);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterIccMsg([MarshalAs(UnmanagedType.Interface)] nsIIccListener listener);
+		void UnregisterIccMsg(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIIccListener listener);
+		
+		/// <summary>
+        /// UICC Information
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMozIccInfo GetIccInfo(uint clientId);
+		
+		/// <summary>
+        /// Card State
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCardState(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
+		/// <summary>
+        /// STK interfaces.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendStkResponse(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal command, Gecko.JsVal response);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkResponse([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal command, Gecko.JsVal response);
+		void SendStkMenuSelection(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ushort itemIdentifier, [MarshalAs(UnmanagedType.U1)] bool helpRequested);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkMenuSelection([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ushort itemIdentifier, [MarshalAs(UnmanagedType.U1)] bool helpRequested);
+		void SendStkTimerExpiration(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal timer);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkTimerExpiration([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal timer);
+		void SendStkEventDownload(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal @event);
 		
+		/// <summary>
+        /// Card lock interfaces.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkEventDownload([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal @event);
+		nsIDOMDOMRequest GetCardLockState(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase lockType);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest UpdateContact([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contactType, [MarshalAs(UnmanagedType.Interface)] nsIDOMContact contact, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pin2);
+		nsIDOMDOMRequest UnlockCardLock(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal info);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetCardLock(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal info);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetCardLockRetryCount(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase lockType);
+		
+		/// <summary>
+        /// Phonebook interfaces.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest ReadContacts(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contactType);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest UpdateContact(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contactType, Gecko.JsVal contact, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pin2);
 		
 		/// <summary>
         /// Secure Card Icc communication channel
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest IccOpenChannel([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aid);
+		nsIDOMDOMRequest IccOpenChannel(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aid);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest IccExchangeAPDU([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, int channel, Gecko.JsVal apdu);
+		nsIDOMDOMRequest IccExchangeAPDU(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, int channel, Gecko.JsVal apdu);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest IccCloseChannel([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, int channel);
+		nsIDOMDOMRequest IccCloseChannel(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, int channel);
+		
+		/// <summary>
+        /// Helpers
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest MatchMvno(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mvnoType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mvnoData);
 	}
 }

@@ -84,7 +84,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("133608c7-f812-41ca-bc1c-62a4eb95e52a")]
+	[Guid("86279644-6b86-4875-a228-2d2ff2f3e33b")]
 	public interface nsIContentPrefService2
 	{
 		
@@ -298,8 +298,9 @@ namespace Gecko
         /// Registers an observer that will be notified whenever a preference with the
         /// given name is set or removed.
         ///
-        /// When a set or remove method is called, observers are notified after the set
-        /// or removal completes but before method's callback is called.
+        /// When a set or remove method is called, observers are called after the set
+        /// or removal completes and after the method's callback is called, and they
+        /// are called in the same turn of the event loop as the callback.
         ///
         /// The service holds a strong reference to the observer, so the observer must
         /// be removed later to avoid leaking it.

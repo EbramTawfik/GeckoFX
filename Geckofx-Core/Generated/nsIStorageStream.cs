@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("604ad9d0-753e-11d3-90ca-34278643278f")]
+	[Guid("44a200fe-6c2b-4b41-b4e3-63e8c14e7c0d")]
 	public interface nsIStorageStream
 	{
 		
@@ -47,12 +47,9 @@ namespace Gecko
         /// @param maxSize
         /// Maximum total size of this stream. length will always be less
         /// than or equal to this value. Passing UINT32_MAX is safe.
-        /// @param segmentAllocator
-        /// Which allocator to use for the segments. May be null, in which
-        /// case a default allocator will be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(uint segmentSize, uint maxSize, [MarshalAs(UnmanagedType.Interface)] nsIMemory segmentAllocator);
+		void Init(uint segmentSize, uint maxSize);
 		
 		/// <summary>
         /// Get a reference to the one and only output stream for this instance.

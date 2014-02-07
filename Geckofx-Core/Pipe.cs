@@ -17,7 +17,7 @@ namespace Gecko
 		public Pipe()
 		{
 			_pipe = new InstanceWrapper<nsIPipe>( Contracts.Pipe );
-			_pipe.Instance.Init(true, true,0, 0, null);
+			_pipe.Instance.Init(true, true,0, 0);
 		}
 
 		~Pipe()

@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d4d848c4-88a6-11e2-b6da-6f252cbfa716")]
+	[Guid("fc8153d2-0026-11e3-bf31-8b0c1d5e7638")]
 	public interface nsIDOMMozSmsMessage
 	{
 		
@@ -44,6 +44,17 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetIdAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetThreadIdAttribute();
+		
+		/// <summary>
+        /// Integrated Circuit Card Identifier.
+        ///
+        /// Will be null if ICC is not available.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetIccIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIccId);
 		
 		/// <summary>
         /// Should be "received", "sending", "sent" or "error".
@@ -80,10 +91,19 @@ namespace Gecko
 		void GetMessageClassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessageClass);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetTimestampAttribute(System.IntPtr jsContext);
+		long GetTimestampAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetSentTimestampAttribute();
 		
 		/// <summary>
-        /// jsval is for Date.
+        /// "sending").
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetDeliveryTimestampAttribute();
+		
+		/// <summary>
+        /// "received" or not yet delivered).
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

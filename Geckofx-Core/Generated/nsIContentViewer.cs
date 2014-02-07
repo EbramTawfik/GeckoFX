@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b9d92b8b-5623-4079-ae11-36bb341f322e")]
+	[Guid("a73d693a-6260-468a-ae64-d64237f0858c")]
 	public interface nsIContentViewer
 	{
 		
@@ -45,10 +45,10 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetContainerAttribute();
+		nsIDocShell GetContainerAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContainerAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aContainer);
+		void SetContainerAttribute([MarshalAs(UnmanagedType.Interface)] nsIDocShell aContainer);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LoadStart([MarshalAs(UnmanagedType.Interface)] nsISupports aDoc);
@@ -67,6 +67,23 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool PermitUnload([MarshalAs(UnmanagedType.U1)] bool aCallerClosesWindow);
+		
+		/// <summary>
+        /// As above, but this passes around the aShouldPrompt argument to keep
+        /// track of whether the user has responded to a prompt.
+        /// Used internally by the scriptable version to ensure we only prompt once.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool PermitUnloadInternal([MarshalAs(UnmanagedType.U1)] bool aCallerClosesWindow, [MarshalAs(UnmanagedType.U1)] ref bool aShouldPrompt);
+		
+		/// <summary>
+        /// Exposes whether we're in the process of firing the beforeunload event.
+        /// In this case, the corresponding docshell will not allow navigation.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetBeforeUnloadFiringAttribute();
 		
 		/// <summary>
         /// Works in tandem with permitUnload, if the caller decides not to close the

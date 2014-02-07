@@ -86,7 +86,7 @@ namespace Gecko
 	/// <summary>nsIDOMFile </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6928584d-7d87-4d56-9ce1-1c89c24f2c6a")]
+	[Guid("0acb4135-9f79-4516-ba92-b5fba5203620")]
 	public interface nsIDOMFile : nsIDOMBlob
 	{
 		
@@ -157,6 +157,11 @@ namespace Gecko
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		
+		/// <summary>Member GetPathAttribute </summary>
+		/// <param name='aPath'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPath);
 		
 		/// <summary>Member GetLastModifiedDateAttribute </summary>
 		/// <param name='jsContext'> </param>

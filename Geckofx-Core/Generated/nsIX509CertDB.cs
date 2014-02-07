@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("48411e2d-85a9-4b16-bec8-e30cde801f9e")]
+	[Guid("25a048e8-bb1c-4c33-ad3a-eacf2ad9e9ee")]
 	public interface nsIOpenSignedJARFileCallback
 	{
 		
@@ -54,7 +54,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ab0a1c52-f7fd-4fe7-9e65-7d3705a8580e")]
+	[Guid("38463592-8527-11e3-b240-180373d97f23")]
 	public interface nsIX509CertDB
 	{
 		
@@ -277,6 +277,18 @@ namespace Gecko
 		nsIX509Cert ConstructX509FromBase64([MarshalAs(UnmanagedType.LPStr)] string base64);
 		
 		/// <summary>
+        /// Decode a raw data presentation and instantiate an object in memory.
+        ///
+        /// @param certDER The raw representation of a certificate,
+        /// encoded as raw DER.
+        /// @param length  The length of the DER string.
+        /// @return The new certificate object.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIX509Cert ConstructX509([MarshalAs(UnmanagedType.LPStr)] string certDER, uint length);
+		
+		/// <summary>
         /// Obtain a reference to the appropriate service for recent
         /// bad certificates. May only be called on the main thread.
         ///
@@ -317,6 +329,11 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddCert([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase certDER, [MarshalAs(UnmanagedType.LPStr)] string aTrust, [MarshalAs(UnmanagedType.LPStr)] string aName);
+		
+		/// <summary>
+        ///SECCertificateUsage </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int VerifyCertNow([MarshalAs(UnmanagedType.Interface)] nsIX509Cert aCert, long aUsage, uint aFlags, [MarshalAs(UnmanagedType.Interface)] ref nsIX509CertList verifiedChain, [MarshalAs(UnmanagedType.U1)] ref bool aHasEVPolicy);
 	}
 	
 	/// <summary>nsIX509CertDBConsts </summary>
@@ -337,5 +354,15 @@ namespace Gecko
 		
 		// 
 		public const ulong TRUSTED_OBJSIGN = 1<<2;
+		
+		// <summary>
+        // Prevent network traffic. Doesn't work with classic verification.
+        // </summary>
+		public const long FLAG_LOCAL_ONLY = 1<<0;
+		
+		// <summary>
+        // certificate to not be considered valid.
+        // </summary>
+		public const long FLAG_MUST_BE_EV = 1<<1;
 	}
 }

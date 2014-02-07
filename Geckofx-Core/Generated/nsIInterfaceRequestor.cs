@@ -49,9 +49,8 @@ namespace Gecko
         /// @param uuid The IID of the interface being requested.
         /// @param result [out] The interface pointer to be filled in if
         /// the interface is accessible.
-        /// @return NS_OK - interface was successfully returned.
-        /// NS_NOINTERFACE - interface not accessible.
-        /// NS_ERROR* - method failure.
+        /// @throws NS_NOINTERFACE - interface not accessible.
+        /// @throws NS_ERROR* - method failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetInterface(ref System.Guid uuid);

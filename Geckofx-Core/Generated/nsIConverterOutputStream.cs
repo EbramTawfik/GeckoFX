@@ -45,7 +45,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Write(uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] string c);
+		new bool Write(uint aCount, char[] c);
 		
 		/// <summary>
         /// Write a string to the stream.
@@ -100,6 +100,6 @@ namespace Gecko
         /// attempts to write unsupported characters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aOutStream, [MarshalAs(UnmanagedType.LPStr)] string aCharset, uint aBufferSize, [MarshalAs(UnmanagedType.LPWStr)] string aReplacementCharacter);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aOutStream, [MarshalAs(UnmanagedType.LPStr)] string aCharset, uint aBufferSize, char aReplacementCharacter);
 	}
 }

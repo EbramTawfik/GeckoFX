@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9f85fc0d-2969-48e6-b822-68140f7e5770")]
+	[Guid("55b308c4-2ae4-46bc-b4cd-4d4370e0a660")]
 	public interface nsIAccessibleRelation
 	{
 		
@@ -161,5 +161,20 @@ namespace Gecko
         // MSAA/XPCOM, it isn't for IA2 or ATK.
         // </summary>
 		public const ulong RELATION_DEFAULT_BUTTON = 0x10;
+		
+		// <summary>
+        // The target object is the containing document object.
+        // </summary>
+		public const ulong RELATION_CONTAINING_DOCUMENT = 0x11;
+		
+		// <summary>
+        // The target object is the topmost containing document object in the tab pane.
+        // </summary>
+		public const ulong RELATION_CONTAINING_TAB_PANE = 0x12;
+		
+		// <summary>
+        // The target object is the containing application object.
+        // </summary>
+		public const ulong RELATION_CONTAINING_APPLICATION = 0x14;
 	}
 }

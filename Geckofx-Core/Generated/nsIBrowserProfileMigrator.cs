@@ -109,5 +109,8 @@ namespace Gecko
 		
 		// 
 		public const ulong OTHERDATA = 0x0040;
+		
+		// 
+		public const ulong SESSION = 0x0080;
 	}
 }

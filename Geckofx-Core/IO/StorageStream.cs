@@ -12,7 +12,7 @@ namespace Gecko.IO
 		{
 			_storageStream = new InstanceWrapper<nsIStorageStream>(Contracts.StorageStream);
 
-			_storageStream.Instance.Init( 1024 * 32, 1024 * 1024 * 16, null );
+			_storageStream.Instance.Init( 1024 * 32, 1024 * 1024 * 16);
 
 		}
 

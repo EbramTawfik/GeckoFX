@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("081452e5-be5c-4038-a5ea-f1f34cb6fd81")]
+	[Guid("91d104bb-17ef-404b-9f9a-d9ed8de6824c")]
 	public interface nsINavHistoryResultNode
 	{
 		
@@ -162,6 +162,21 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTags);
+		
+		/// <summary>
+        /// The unique ID associated with the page. It my return an empty string
+        /// if the result node is a non-URI node.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPageGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPageGuid);
+		
+		/// <summary>
+        /// The unique ID associated with the bookmark. It returns an empty string
+        /// if the result node is not associated with a bookmark, a folder or a
+        /// separator.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBookmarkGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aBookmarkGuid);
 	}
 	
 	/// <summary>nsINavHistoryResultNodeConsts </summary>
@@ -202,7 +217,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("62534d3c-1b3f-401e-b3ba-b911f57f8a29")]
+	[Guid("5bac9734-c0ff-44eb-8d19-da88462ff6da")]
 	public interface nsINavHistoryContainerResultNode : nsINavHistoryResultNode
 	{
 		
@@ -331,6 +346,21 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTags);
+		
+		/// <summary>
+        /// The unique ID associated with the page. It my return an empty string
+        /// if the result node is a non-URI node.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetPageGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPageGuid);
+		
+		/// <summary>
+        /// The unique ID associated with the bookmark. It returns an empty string
+        /// if the result node is not associated with a bookmark, a folder or a
+        /// separator.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetBookmarkGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aBookmarkGuid);
 		
 		/// <summary>
         /// Set this to allow descent into the container. When closed, attempting
@@ -464,7 +494,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ea17745a-1852-4155-a98f-d1dd1763b3df")]
+	[Guid("a4144c3e-8125-46d5-a719-831bec8095f4")]
 	public interface nsINavHistoryQueryResultNode : nsINavHistoryContainerResultNode
 	{
 		
@@ -593,6 +623,21 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTags);
+		
+		/// <summary>
+        /// The unique ID associated with the page. It my return an empty string
+        /// if the result node is a non-URI node.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetPageGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPageGuid);
+		
+		/// <summary>
+        /// The unique ID associated with the bookmark. It returns an empty string
+        /// if the result node is not associated with a bookmark, a folder or a
+        /// separator.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetBookmarkGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aBookmarkGuid);
 		
 		/// <summary>
         /// Set this to allow descent into the container. When closed, attempting
@@ -2209,6 +2254,7 @@ namespace Gecko
 		
 		/// <summary>
         /// Gets the original title of the page.
+        /// @deprecated use mozIAsyncHistory.getPlacesInfo instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);

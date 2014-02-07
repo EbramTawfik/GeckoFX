@@ -50,6 +50,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetEnumerator();
 		
+		/// <summary>
+        ///getRawCertList MUST be called only from functions where
+        /// the nssShutdownPreventionLock has been adquired.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetRawCertList();
 	}

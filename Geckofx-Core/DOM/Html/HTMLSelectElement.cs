@@ -71,10 +71,12 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetSizeAttribute(value); }
 		}
 
+#if DELME
 		public int TabIndex {
 			get { return DOMHTMLElement.GetTabIndexAttribute(); }
 			set { DOMHTMLElement.SetTabIndexAttribute(value); }
 		}
+#endif
 
         public void add(GeckoHtmlElement element, GeckoHtmlElement before)
 		{
@@ -86,6 +88,7 @@ namespace Gecko.DOM
 			DOMHTMLElement.Remove(index);
 		}
 
+#if DELME
 		public void blur()
 		{
 			DOMHTMLElement.Blur();
@@ -95,6 +98,7 @@ namespace Gecko.DOM
 		{
 			DOMHTMLElement.Focus();
 		}
+#endif
 
 	}
 }

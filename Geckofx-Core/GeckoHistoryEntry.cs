@@ -108,18 +108,23 @@ namespace Gecko
 		
 		class HistoryEntry : GeckoHistoryEntry
 		{
-			internal HistoryEntry(nsIHistoryEntry entry)
+			internal HistoryEntry(nsISHEntry entry)
 			{
 				this.Entry = entry;
 			}
-			nsIHistoryEntry Entry;
+			nsISHEntry Entry;
 			
 			public override Uri Url
 			{
 				get
 				{
+#if PORT
 					nsIURI uri = Entry.GetURIAttribute();
 					return (uri == null) ? null : new Uri(nsString.Get(uri.GetSpecAttribute));
+#else
+					//TODO: maybe use mozIPlaceInfo?
+					throw new NotImplementedException();
+#endif
 				}
 			}
 			
@@ -127,13 +132,26 @@ namespace Gecko
 			{
 				get
 				{
-					return Entry.GetTitleAttribute();					
+#if PORT
+					return Entry.GetTitleAttribute();
+#else
+					//TODO: maybe use mozIPlaceInfo?
+					throw new NotImplementedException();
+#endif
 				}
 			}
 			
 			public override bool IsSubFrame
 			{
-				get { return Entry.GetIsSubFrameAttribute(); }
+				get
+				{
+#if PORT
+					return Entry.GetIsSubFrameAttribute();
+#else
+					//TODO: maybe use mozIPlaceInfo?
+					throw new NotImplementedException();
+#endif
+				}
 			}
 		}
 		
@@ -183,7 +201,7 @@ namespace Gecko
 		{
 			get
 			{
-				return new HistoryEntry((nsIHistoryEntry)History.GetEntryAtIndex(index, false));
+				return new HistoryEntry((nsISHEntry)History.GetEntryAtIndex(index, false));
 			}
 			set
 			{

@@ -26,6 +26,14 @@ namespace Gecko
 			_domNode = new ComPtr<nsIDOMNode>( domObject );
 		}
 
+		internal GeckoNode(object domObject)
+		{
+			if (domObject is nsIDOMNode)
+				_domNode = new ComPtr<nsIDOMNode>((nsIDOMNode)domObject);
+			else
+				throw new ArgumentException("domObject is not a nsIDOMNode");
+		}
+
 		~GeckoNode()
 		{
 			Xpcom.DisposeObject( ref _domNode );

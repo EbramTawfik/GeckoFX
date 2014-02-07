@@ -61,19 +61,33 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("037435a6-f563-48f3-99b3-a0106d8ba5bd")]
+	[Guid("f1996e44-1057-4d4b-8ff8-919e76c4cfa9")]
 	public interface nsIDOMMozNetworkStats
 	{
 		
 		/// <summary>
-        /// Can be 'mobile', 'wifi' or null.
-        /// If null, stats for both mobile and wifi are returned.
+        /// App manifest URL of an application for specifying the per-app stats of the
+        /// specified app.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetConnectionTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aConnectionType);
+		void GetAppManifestURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppManifestURL);
 		
 		/// <summary>
-        /// Stats for connectionType
+        /// Service type is used to retrieve the corresponding "system-only" stats.
+        /// E.g., "Tethering", "OTA", etc.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetServiceTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aServiceType);
+		
+		/// <summary>
+        /// Network the returned data belongs to.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMozNetworkStatsInterface GetNetworkAttribute();
+		
+		/// <summary>
+        /// Stats for a network.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetDataAttribute();

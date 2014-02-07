@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1134f267-7b81-42f2-b64a-6edb91286576")]
+	[Guid("8c163fe4-5577-11e3-b3d0-10bf48d707fb")]
 	public interface nsIVolume
 	{
 		
@@ -66,9 +66,50 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMountLockNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMountLockName);
 		
+		/// <summary>
+        /// Determines if a mountlock is currently being held against this volume.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsMountLockedAttribute();
+		
+		/// <summary>
+        /// current state isn't STATE_NOMEDIA.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsMediaPresentAttribute();
+		
+		/// <summary>
+        /// transitioning from mounted to sharing and back again.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsSharingAttribute();
+		
+		/// <summary>
+        /// once the volume has been formatted and mounted again.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsFormattingAttribute();
+		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVolumeStat GetStats();
+		
+		/// <summary>
+        /// Automounter will unmount it, format it and then mount it again.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Format();
+		
+		/// <summary>
+        /// Whether this is a fake volume.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsFakeAttribute();
 	}
 	
 	/// <summary>nsIVolumeConsts </summary>

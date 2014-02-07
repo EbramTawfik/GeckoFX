@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("D51F7867-42F3-4029-8C4E-C00676253A8E")]
+	[Guid("713ee3ca-95e0-4085-8616-f6d64a9508ad")]
 	public interface nsIVisualEventTracer
 	{
 		
@@ -71,7 +71,7 @@ namespace Gecko
 	/// <summary>nsIVisualEventTracerLog </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("52EC8962-F67C-4f49-A9D6-89B8EBDA2649")]
+	[Guid("8ec6e36d-6cba-400b-bcd6-454679f5f75a")]
 	public interface nsIVisualEventTracerLog
 	{
 		
@@ -80,5 +80,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetJSONStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aJSONString);
+		
+		/// <summary>
+        /// Write the JSON string returned by JSONString to the log defined by
+        /// the environment variable MOZ_PROFILING_FILE.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void WriteToProfilingFile();
 	}
 }

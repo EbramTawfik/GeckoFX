@@ -48,10 +48,39 @@ namespace Gecko
 		float GetScaleAttribute();
 	}
 	
+	/// <summary>nsIUITelemetryObserver </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("08426a73-e70b-4680-9282-630932e2b2bb")]
+	public interface nsIUITelemetryObserver
+	{
+		
+		/// <summary>Member StartSession </summary>
+		/// <param name='name'> </param>
+		/// <param name='timestamp'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void StartSession([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string name, uint timestamp);
+		
+		/// <summary>Member StopSession </summary>
+		/// <param name='name'> </param>
+		/// <param name='reason'> </param>
+		/// <param name='timestamp'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void StopSession([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string reason, uint timestamp);
+		
+		/// <summary>Member AddEvent </summary>
+		/// <param name='action'> </param>
+		/// <param name='method'> </param>
+		/// <param name='timestamp'> </param>
+		/// <param name='extras'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string action, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string method, uint timestamp, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string extras);
+	}
+	
 	/// <summary>nsIAndroidBrowserApp </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d10377b4-1c90-493a-a532-63cb3f16ee2b")]
+	[Guid("c31331d2-afad-460f-9c66-728b8c838cec")]
 	public interface nsIAndroidBrowserApp
 	{
 		
@@ -61,6 +90,31 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIBrowserTab GetBrowserTab(int tabId);
+		
+		/// <summary>Member GetPreferences </summary>
+		/// <param name='requestId'> </param>
+		/// <param name='prefNames'> </param>
+		/// <param name='count'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPreferences(int requestId, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] prefNames, uint count);
+		
+		/// <summary>Member ObservePreferences </summary>
+		/// <param name='requestId'> </param>
+		/// <param name='prefNames'> </param>
+		/// <param name='count'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ObservePreferences(int requestId, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] prefNames, uint count);
+		
+		/// <summary>Member RemovePreferenceObservers </summary>
+		/// <param name='requestId'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemovePreferenceObservers(int requestId);
+		
+		/// <summary>Member GetUITelemetryObserver </summary>
+		/// <returns>A nsIUITelemetryObserver</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIUITelemetryObserver GetUITelemetryObserver();
 	}
 	
 	/// <summary>nsIAndroidViewport </summary>
@@ -197,7 +251,7 @@ namespace Gecko
 	/// <summary>nsIAndroidBridge </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bbb8e0d7-5cca-4ad0-88be-538ce6d04f63")]
+	[Guid("5aa0cfa5-377c-4f5e-8dcf-59ebd9482d65")]
 	public interface nsIAndroidBridge
 	{
 		
@@ -227,5 +281,15 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIAndroidDisplayport GetDisplayPort([MarshalAs(UnmanagedType.U1)] bool aPageSizeUpdate, [MarshalAs(UnmanagedType.U1)] bool isBrowserContentDisplayed, int tabId, [MarshalAs(UnmanagedType.Interface)] nsIAndroidViewport metrics);
+		
+		/// <summary>Member ContentDocumentChanged </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ContentDocumentChanged();
+		
+		/// <summary>Member IsContentDocumentDisplayed </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsContentDocumentDisplayed();
 	}
 }

@@ -27,9 +27,9 @@ namespace Gecko
 		/// <summary>
 		/// Gets the <see cref="GeckoHtmlElement"/> which contains this attribute.
 		/// </summary>
-		public GeckoHtmlElement OwnerElement
+		public GeckoNode OwnerDocument
 		{
-			get { return GeckoHtmlElement.Create((nsIDOMHTMLElement)DomAttr.GetOwnerElementAttribute()); }
+			get { return GeckoNode.Create((nsIDOMHTMLElement)DomAttr.GetOwnerDocumentAttribute()); }
 		}
 		
 		/// <summary>

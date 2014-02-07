@@ -18,10 +18,12 @@ namespace Gecko.DOM
 		{
 			this.DOMHTMLElement = element as nsIDOMHTMLAnchorElement;
 		}
+#if DELME
 		new public string AccessKey {
 			get { return nsString.Get(DOMHTMLElement.GetAccessKeyAttribute); }
 			set { DOMHTMLElement.SetAccessKeyAttribute(new nsAString(value)); }
 		}
+#endif
 
 		public string Charset {
 			get { return nsString.Get(DOMHTMLElement.GetCharsetAttribute); }
@@ -63,10 +65,12 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetShapeAttribute(new nsAString(value)); }
 		}
 
+#if DELEME
 		public new int TabIndex {
 			get { return DOMHTMLElement.GetTabIndexAttribute(); }
 			set { DOMHTMLElement.SetTabIndexAttribute(value); }
 		}
+#endif
 
 		public string Target {
 			get { return nsString.Get(DOMHTMLElement.GetTargetAttribute); }
@@ -78,6 +82,7 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetTypeAttribute(new nsAString(value)); }
 		}
 
+#if DELME
 		public void blur()
 		{
 			DOMHTMLElement.Blur();
@@ -87,6 +92,7 @@ namespace Gecko.DOM
 		{
 			DOMHTMLElement.Focus();
 		}
+#endif
 
 	}
 }

@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e97e5688-add2-4a1d-acae-396d7702e382")]
+	[Guid("62f6c5be-ea8c-4fab-8e5c-d1580b50ec3f")]
 	public interface nsISecureBrowserUI
 	{
 		
@@ -52,8 +52,5 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetStateAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTooltipTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTooltipText);
 	}
 }

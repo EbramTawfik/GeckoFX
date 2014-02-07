@@ -32,15 +32,47 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("997c0c05-5d1d-47e5-9cbc-765c0b8ec699")]
+	[Guid("c079f18f-40ab-409d-800e-878889b83b58")]
 	public interface nsIFormAutoComplete
 	{
 		
 		/// <summary>
-        /// Generate results for a form input autocomplete menu.
+        /// Generate results for a form input autocomplete menu synchronously.
+        /// This method is deprecated in favour of autoCompleteSearchAsync.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIAutoCompleteResult AutoCompleteSearch([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInputName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement aField, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult aPreviousResult);
+		
+		/// <summary>
+        /// Generate results for a form input autocomplete menu asynchronously.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AutoCompleteSearchAsync([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInputName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement aField, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult aPreviousResult, [MarshalAs(UnmanagedType.Interface)] nsIFormAutoCompleteObserver aListener);
+		
+		/// <summary>
+        /// If a search is in progress, stop it. Otherwise, do nothing. This is used
+        /// to cancel an existing search, for example, in preparation for a new search.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void StopAutoCompleteSearch();
+	}
+	
+	/// <summary>nsIFormAutoCompleteObserver </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("604419ab-55a0-4831-9eca-1b9e67cc4751")]
+	public interface nsIFormAutoCompleteObserver
+	{
+		
+		/// <summary>
+        /// Called when a search is complete and the results are ready even if the
+        /// result set is empty. If the search is cancelled or a new search is
+        /// started, this is not called.
+        ///
+        /// @param result - The search result object
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnSearchCompletion([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult result);
 	}
 }

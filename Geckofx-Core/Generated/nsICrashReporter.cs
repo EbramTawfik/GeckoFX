@@ -34,22 +34,23 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("56761088-57ad-4f5c-bd61-f678c2807fe0")]
+	[Guid("4b525eab-d4b8-4f71-bf43-b698e306631b")]
 	public interface nsICrashReporter
 	{
 		
 		/// <summary>
-        /// Enable or disable the crashreporter at runtime.
+        /// Get the enabled status of the crash reporter.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnabledAttribute();
 		
 		/// <summary>
-        /// Enable or disable the crashreporter at runtime.
+        /// Enable or disable crash reporting at runtime. Not available to script
+        /// because the JS engine relies on proper exception handler chaining.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aEnabled);
+		void SetEnabled([MarshalAs(UnmanagedType.U1)] bool enabled);
 		
 		/// <summary>
         /// Get or set the URL to which crash reports will be submitted.

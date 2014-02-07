@@ -32,167 +32,9 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cfa75628-4d31-481f-b51e-fe0ce18fa98f")]
-	public interface mozIApplication : mozIDOMApplication
+	[Guid("7bd62430-c374-49eb-be1b-ce821a180360")]
+	public interface mozIApplication
 	{
-		
-		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this
-        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetManifestAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetUpdateManifestAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetManifestURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aManifestURL);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetReceiptsAttribute();
-		
-		/// <summary>
-        ///an array of strings </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrigin);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetInstallOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInstallOrigin);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new ulong GetInstallTimeAttribute();
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetRemovableAttribute();
-		
-		/// <summary>
-        /// The current progress when downloading an offline cache.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new double GetProgressAttribute();
-		
-		/// <summary>
-        /// The application installation state :
-        /// "pending"   : The application is being installed (eg, we're downloading the
-        /// offline cache or the package).
-        /// "installed" : The application is installed and ready to be launched.
-        /// "updating"  : We are updating the offline-cache or the package.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetInstallStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInstallState);
-		
-		/// <summary>
-        /// fires a nsIDOMApplicationEvent when a change in appcache download or
-        /// package download happens.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener GetOnprogressAttribute();
-		
-		/// <summary>
-        /// fires a nsIDOMApplicationEvent when a change in appcache download or
-        /// package download happens.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnprogress);
-		
-		/// <summary>
-        /// The date of the last update check.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new ulong GetLastUpdateCheckAttribute();
-		
-		/// <summary>
-        /// The date of the last updated manifest.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new ulong GetUpdateTimeAttribute();
-		
-		/// <summary>
-        /// Starts the process of looking for an update.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMDOMRequest CheckForUpdate();
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetDownloadAvailableAttribute();
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetDownloadingAttribute();
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetReadyToApplyDownloadAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetDownloadSizeAttribute();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMDOMError GetDownloadErrorAttribute();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener GetOndownloadsuccessAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOndownloadsuccessAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndownloadsuccess);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener GetOndownloaderrorAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOndownloaderrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndownloaderror);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener GetOndownloadavailableAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOndownloadavailableAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndownloadavailable);
-		
-		/// <summary>
-        /// Will fire once the mgmt.applyDownload() call succeeds.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener GetOndownloadappliedAttribute();
-		
-		/// <summary>
-        /// Will fire once the mgmt.applyDownload() call succeeds.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOndownloadappliedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndownloadapplied);
-		
-		/// <summary>
-        /// Starts to download an update. If |downloading| is true, this
-        /// is a no-op.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Download();
-		
-		/// <summary>
-        /// Cancels an ongoing update download.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void CancelDownload();
-		
-		/// <summary>
-        ///startPoint will be used when several launch_path exists for an app </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMDOMRequest Launch([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase startPoint);
-		
-		/// <summary>
-        ///Clear data that has been collected through mozbrowser elements. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ClearBrowserData();
 		
 		/// <summary>
         ///Return true if this app has |permission|. </summary>
@@ -209,6 +51,16 @@ namespace Gecko
         ///Returns the uuid of the app. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
+		
+		/// <summary>
+        ///Returns the origin of the app. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrigin);
+		
+		/// <summary>
+        ///Returns the manifest url of the app. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetManifestURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aManifestURL);
 		
 		/// <summary>
         ///Returns the local id of the app. </summary>
@@ -229,5 +81,20 @@ namespace Gecko
         ///CSP copied from the manifest </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCspAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCsp);
+		
+		/// <summary>
+        ///Store ID if the app is installed from a store </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetStoreIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStoreID);
+		
+		/// <summary>
+        ///Store version if the app is installed from a store </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetStoreVersionAttribute();
+		
+		/// <summary>
+        ///role copied from the manifest </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetRoleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRole);
 	}
 }

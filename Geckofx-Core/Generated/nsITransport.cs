@@ -101,7 +101,7 @@ namespace Gecko
         ///
         /// OPEN_UNBUFFERED
         /// If specified, the resulting stream may not support WriteSegments and
-        /// WriteFrom.  WriteSegments and WriteFrom are only gauranteed to be
+        /// WriteFrom.  WriteSegments and WriteFrom are only guaranteed to be
         /// implemented when this flag is NOT specified.
         ///
         /// @param aFlags

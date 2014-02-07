@@ -27,11 +27,11 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///       so may as well use AStrings...
+    /// Interfaces for representing cross-language exceptions and stack traces.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("91d82105-7c62-4f8b-9779-154277c0ee90")]
+	[Guid("60abee59-717e-477d-8bbb-a1c3e7067126")]
 	public interface nsIStackFrame
 	{
 		
@@ -41,17 +41,14 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetLanguageAttribute();
 		
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetLanguageNameAttribute();
+		void GetLanguageNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aLanguageName);
 		
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetFilenameAttribute();
+		void GetFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFilename);
 		
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetNameAttribute();
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
         /// Valid line numbers begin at '1'. '0' indicates unknown.
@@ -59,32 +56,29 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetLineNumberAttribute();
 		
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetSourceLineAttribute();
+		void GetSourceLineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSourceLine);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIStackFrame GetCallerAttribute();
 		
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string ToString();
+		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
 	
 	/// <summary>nsIException </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("F3A8D3B4-C424-4edc-8BF6-8974C983BA78")]
+	[Guid("6738090a-ba6f-4f3f-8aa0-b9f6311262a5")]
 	public interface nsIException
 	{
 		
 		/// <summary>
         /// A custom message set by the thrower.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetMessageAttribute();
+		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMessage);
 		
 		/// <summary>
         /// The nsresult associated with this exception.
@@ -95,16 +89,14 @@ namespace Gecko
 		/// <summary>
         /// The name of the error code (ie, a string repr of |result|)
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetNameAttribute();
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
         /// null indicates "no data"
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetFilenameAttribute();
+		void GetFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFilename);
 		
 		/// <summary>
         /// Valid line numbers begin at '1'. '0' indicates unknown.
@@ -142,8 +134,7 @@ namespace Gecko
 		/// <summary>
         /// A generic formatter - make it suitable to print, etc.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string ToString();
+		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
 }

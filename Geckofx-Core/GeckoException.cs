@@ -40,7 +40,7 @@ namespace Gecko
 		private nsIException _exception;
 
 		private GeckoNativeException(nsIException exception)
-			:base(exception.GetMessageAttribute())
+			:base(nsString.Get(exception.GetMessageAttribute))
 		{
 			_exception = exception;
 
@@ -49,7 +49,7 @@ namespace Gecko
 
 		public string Name
 		{
-			get { return _exception.GetNameAttribute(); }
+			get { return nsString.Get(_exception.GetNameAttribute); }
 		}
 
 

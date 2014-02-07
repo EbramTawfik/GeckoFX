@@ -32,19 +32,25 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1d9c29dc-230a-441e-bba9-49104ffa185e")]
+	[Guid("ceae6c68-f5d4-4597-a3d9-ca5646c25f1a")]
 	public interface inIDOMUtils
 	{
 		
 		/// <summary>
         /// CSS utilities
         /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAllStyleSheets([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDoc, ref uint aLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref nsISupports[] aSheets);
+		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupportsArray GetCSSStyleRules([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPseudo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetRuleLine([MarshalAs(UnmanagedType.Interface)] nsIDOMCSSStyleRule aRule);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetRuleColumn([MarshalAs(UnmanagedType.Interface)] nsIDOMCSSStyleRule aRule);
 		
 		/// <summary>
         /// should consider using [ChromeOnly] APIs on that.
@@ -77,6 +83,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCSSPropertyNames(uint aFlags, ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref System.IntPtr[] aProps);
+		
+		/// <summary>
+        /// Get a list of all valid keywords and colors for aProperty.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCSSValuesForProperty([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aProperty, ref uint aLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref System.IntPtr[] aValues);
 		
 		/// <summary>
         /// Utilities for working with CSS colors

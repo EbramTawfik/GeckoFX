@@ -39,9 +39,8 @@ namespace Gecko
 		/// <summary>
         /// A custom message set by the thrower.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetMessageAttribute();
+		new void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMessage);
 		
 		/// <summary>
         /// The nsresult associated with this exception.
@@ -52,16 +51,14 @@ namespace Gecko
 		/// <summary>
         /// The name of the error code (ie, a string repr of |result|)
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetNameAttribute();
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
         /// null indicates "no data"
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetFilenameAttribute();
+		new void GetFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFilename);
 		
 		/// <summary>
         /// Valid line numbers begin at '1'. '0' indicates unknown.
@@ -99,9 +96,8 @@ namespace Gecko
 		/// <summary>
         /// A generic formatter - make it suitable to print, etc.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string ToString();
+		new void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// The node in the stylesheet that triggered the exception.

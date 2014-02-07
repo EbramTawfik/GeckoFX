@@ -51,7 +51,7 @@ namespace Gecko
 	/// <summary>nsIFilePicker </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a6a24df3-d20a-4b6a-96d4-4736b10a51b7")]
+	[Guid("f93509a0-0434-11e3-8ffd-0800200c9a66")]
 	public interface nsIFilePicker
 	{
 		
@@ -237,6 +237,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Open([MarshalAs(UnmanagedType.Interface)] nsIFilePickerShownCallback aFilePickerShownCallback);
+		
+		/// <summary>
+        /// The picker's mode, as set by the 'mode' argument passed to init()
+        /// (one of the modeOpen et. al. constants specified above).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		short GetModeAttribute();
 	}
 	
 	/// <summary>nsIFilePickerConsts </summary>

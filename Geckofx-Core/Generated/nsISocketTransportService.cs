@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("185B3A5D-8729-436D-9693-7BDCCB9C2216")]
+	[Guid("ad56b25f-e6bb-4db3-9f7b-5b7db33fd2b1")]
 	public interface nsISocketTransportService
 	{
 		
@@ -61,6 +61,42 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISocketTransport CreateTransport([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] string[] aSocketTypes, uint aTypeCount, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aProxyInfo);
+		
+		/// <summary>
+        /// Create a transport built on a Unix domain socket, connecting to the
+        /// given filename.
+        ///
+        /// Since Unix domain sockets are always local to the machine, they are
+        /// not affected by the nsIIOService's 'offline' flag.
+        ///
+        /// On systems that don't support Unix domain sockets at all, this
+        /// returns NS_ERROR_SOCKET_ADDRESS_NOT_SUPPORTED.
+        ///
+        /// The system-level socket API may impose restrictions on the length of
+        /// the filename that are stricter than those of the underlying
+        /// filesystem. If the file name is too long, this returns
+        /// NS_ERROR_FILE_NAME_TOO_LONG.
+        ///
+        /// The |aPath| parameter must specify an existing directory entry.
+        /// Otherwise, this returns NS_ERROR_FILE_NOT_FOUND.
+        ///
+        /// The program must have search permission on all components of the
+        /// path prefix of |aPath|, and read and write permission on |aPath|
+        /// itself. Without such permission, this returns
+        /// NS_ERROR_CONNECTION_REFUSED.
+        ///
+        /// The |aPath| parameter must refer to a unix-domain socket. Otherwise,
+        /// this returns NS_ERROR_CONNECTION_REFUSED. (POSIX specifies
+        /// ECONNREFUSED when "the target address was not listening for
+        /// connections", and this is what Linux returns.)
+        ///
+        /// @param aPath
+        /// The file name of the Unix domain socket to which we should
+        /// connect.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISocketTransport CreateUnixDomainTransport([MarshalAs(UnmanagedType.Interface)] nsIFile aPath);
 		
 		/// <summary>
         /// Adds a new socket to the list of controlled sockets.

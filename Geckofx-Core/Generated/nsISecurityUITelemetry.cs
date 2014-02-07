@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8c1b56c3-b76b-4180-a59a-fb2586db765d")]
+	[Guid("f7259bf4-1f2b-4e9e-8983-1978cc076fa1")]
 	public interface nsISecurityUITelemetry
 	{
 	}
@@ -100,6 +100,7 @@ namespace Gecko
 		
 		// <summary>
         // SSL Error dialogs
+        // deprecated: we use the _TOP versions below
         // </summary>
 		public const long WARNING_BAD_CERT = 21;
 		
@@ -221,5 +222,53 @@ namespace Gecko
 		
 		// 
 		public const long WARNING_PHISHING_PAGE_FRAME_IGNORE_WARNING = 67;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP = 68;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_STS = 69;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_CLICK_ADD_EXCEPTION = 70;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_CLICK_VIEW_CERT = 71;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_DONT_REMEMBER_EXCEPTION = 72;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_GET_ME_OUT_OF_HERE = 73;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_UNDERSTAND_RISKS = 74;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_TECHNICAL_DETAILS = 75;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_ADD_EXCEPTION_BASE = 76;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_ADD_EXCEPTION_FLAG_UNTRUSTED = 1;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_ADD_EXCEPTION_FLAG_DOMAIN = 2;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_ADD_EXCEPTION_FLAG_TIME = 4;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_CONFIRM_ADD_EXCEPTION_BASE = 84;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_CONFIRM_ADD_EXCEPTION_FLAG_UNTRUSTED = 1;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_CONFIRM_ADD_EXCEPTION_FLAG_DOMAIN = 2;
+		
+		// 
+		public const long WARNING_BAD_CERT_TOP_CONFIRM_ADD_EXCEPTION_FLAG_TIME = 4;
 	}
 }

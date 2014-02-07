@@ -54,7 +54,7 @@ namespace Gecko
 	/// <summary>nsIPluginHost </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("15f97490-7bdf-4947-885c-9258072af878")]
+	[Guid("e8fe94f0-b877-46d0-931a-090967fb1e83")]
 	public interface nsIPluginHost
 	{
 		
@@ -138,12 +138,29 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPermissionStringForType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
-		/// <summary>Member IsPluginClickToPlayForType </summary>
-		/// <param name='mimeType'> </param>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
+		/// <summary>
+        /// Get the nsIPluginTag for this MIME type. This method works with both
+        /// enabled and disabled/blocklisted plugins, but an enabled plugin will
+        /// always be returned if available.
+        ///
+        /// @throws NS_ERROR_NOT_AVAILABLE if no plugin is available for this MIME
+        /// type.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsPluginClickToPlayForType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
+		nsIPluginTag GetPluginTagForType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
+		
+		/// <summary>
+        /// Get the nsIPluginTag state for this MIME type.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetStateForType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
+		
+		/// <summary>
+        /// Get the blocklist state for a MIME type.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetBlocklistStateForType([MarshalAs(UnmanagedType.LPStr)] string aMimeType);
 	}
 	
 	/// <summary>nsIPluginHostConsts </summary>

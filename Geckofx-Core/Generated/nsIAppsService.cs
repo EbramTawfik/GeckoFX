@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4ac27836-4d79-4d35-b105-d6fb7f4f8e41")]
+	[Guid("93cde78d-56f6-4322-b707-9b23eb80d90d")]
 	public interface nsIAppsService
 	{
 		
@@ -41,7 +41,7 @@ namespace Gecko
         /// non-javascript code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIDOMApplication GetAppByManifestURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURL);
+		mozIApplication GetAppByManifestURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURL);
 		
 		/// <summary>
         /// Returns the |localId| of the app associated with the |manifestURL| passed
@@ -56,21 +56,13 @@ namespace Gecko
         /// Returns the application associated to this localId.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIDOMApplication GetAppByLocalId(uint localId);
+		mozIApplication GetAppByLocalId(uint localId);
 		
 		/// <summary>
         /// Returns the manifest URL associated to this localId.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetManifestURLByLocalId(uint localId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
-		
-		/// <summary>
-        /// Returns the app that is related to the message.
-        /// This is a helper to not have to worry about what is the actual structure
-        /// of the message when listening to one.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIApplication GetAppFromObserverMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message);
 		
 		/// <summary>
         /// Returns the CSP associated to this localId.
@@ -92,5 +84,19 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetAppInfo([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase appId);
+		
+		/// <summary>
+        /// Returns a URI to redirect to when we get a redirection to 'uri'.
+        /// Returns null if no redirection is declared for this uri.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIURI GetRedirect(uint localId, [MarshalAs(UnmanagedType.Interface)] nsIURI uri);
+		
+		/// <summary>
+        /// Returns the localId if the app was installed from a store
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAppLocalIdByStoreId([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase storeID, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

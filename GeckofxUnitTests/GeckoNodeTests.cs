@@ -32,6 +32,7 @@ namespace GeckofxUnitTests
 			browser.Dispose();
 		}
 
+#if DELME
 		[Test]
 		public void ChildNodes_OnSvgDocument_ChildElementsAreTypedCorrectly()
 		{
@@ -40,5 +41,6 @@ namespace GeckofxUnitTests
 
 			Assert.IsTrue(((browser.DomDocument as SvgDocument).RootElement as GeckoNode).ChildNodes[0] is GeckoElement);
 		}
+#endif
 	}
 }

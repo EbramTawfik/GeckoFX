@@ -27,95 +27,67 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// An interface for the accessibility module and in-process accessibility clients
-    /// for dealing with getting and changing the selection of accessible nodes.
+    /// An accessibility interface for selectable widgets.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("34d268d6-1dd2-11b2-9d63-83a5e0ada290")]
+	[Guid("3e507fc4-4fcc-4223-a674-a095f591eba1")]
 	public interface nsIAccessibleSelectable
 	{
 		
 		/// <summary>
-        /// Return an nsIArray of selected nsIAccessible children
+        /// Return an nsIArray of selected items within the widget.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray GetSelectedChildren();
+		nsIArray GetSelectedItemsAttribute();
 		
 		/// <summary>
-        /// Returns the number of accessible children currently selected.
+        /// Return the number of currently selected items.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetSelectionCountAttribute();
+		uint GetSelectedItemCountAttribute();
 		
 		/// <summary>
-        /// Adds the specified accessible child of the object to the
-        /// object's selection.
-        /// If the specified object is already selected, then it does nothing.
-        /// @throws NS_ERROR_FAILURE if the specified object is not selectable.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddChildToSelection(int index);
-		
-		/// <summary>
-        /// Removes the specified child of the object from the object's selection.
-        /// If the specified object was not selected, then it does nothing.
-        /// @throws NS_ERROR_FAILURE if the specified object is not selectable.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveChildFromSelection(int index);
-		
-		/// <summary>
-        /// Clears the selection in the object so that no children in the object
-        /// are selected.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearSelection();
-		
-		/// <summary>
-        /// Returns a reference to the accessible object representing the specified
-        /// selected child of the object.
-        /// @param index Zero-based selected accessible child index
-        /// @return The nth selected accessible child
+        /// Return a nth selected item within the widget.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible RefSelection(int index);
+		nsIAccessible GetSelectedItemAt(uint index);
 		
 		/// <summary>
-        /// Determines if the current child of this object is selected
-        /// @param The zero-based accessible child index
-        /// @return Returns true if the child is selected, false if not.
+        /// Return true if the given item is selected.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsChildSelected(int index);
+		bool IsItemSelected(uint index);
 		
 		/// <summary>
-        /// Select all children
-        /// @return If the object does not accept multiple selection, return false.
-        /// Otherwise, returns true.
+        /// Adds the specified item to the widget's selection.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddItemToSelection(uint index);
+		
+		/// <summary>
+        /// Removes the specified item from the widget's selection.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveItemFromSelection(uint index);
+		
+		/// <summary>
+        /// Select all items.
+        ///
+        /// @return false if the object does not accept multiple selection,
+        /// otherwise true.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SelectAllSelection();
-	}
-	
-	/// <summary>nsIAccessibleSelectableConsts </summary>
-	public class nsIAccessibleSelectableConsts
-	{
+		bool SelectAll();
 		
-		// <summary>
-        // An interface for the accessibility module and in-process accessibility clients
-        // for dealing with getting and changing the selection of accessible nodes.
-        // </summary>
-		public const ulong eSelection_Add = 0;
-		
-		// 
-		public const ulong eSelection_Remove = 1;
-		
-		// 
-		public const ulong eSelection_GetState = 2;
+		/// <summary>
+        /// Unselect all items.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnselectAll();
 	}
 }

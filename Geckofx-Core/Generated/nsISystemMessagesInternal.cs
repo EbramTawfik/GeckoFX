@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d8de761a-94fe-44d5-80eb-3c8bd8cd7d0b")]
+	[Guid("6296a314-2abf-4cd0-9097-5e81ee6832e2")]
 	public interface nsISystemMessagesInternal
 	{
 		
@@ -41,18 +41,22 @@ namespace Gecko
         /// @param message     The message payload.
         /// @param pageURI     The URI of the page that will be opened.
         /// @param manifestURI The webapp's manifest URI.
+        /// @param extra       Extra opaque information that will be passed around in the observer
+        /// notification to open the page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, Gecko.JsVal message, [MarshalAs(UnmanagedType.Interface)] nsIURI pageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI manifestURI);
+		void SendMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, Gecko.JsVal message, [MarshalAs(UnmanagedType.Interface)] nsIURI pageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI manifestURI, Gecko.JsVal extra);
 		
 		/// <summary>
         /// Allow any internal user to broadcast a message of a given type.
         /// The application that registers the message will be launched.
         /// @param type        The type of the message to be sent.
         /// @param message     The message payload.
+        /// @param extra       Extra opaque information that will be passed around in the observer
+        /// notification to open the page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BroadcastMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, Gecko.JsVal message);
+		void BroadcastMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, Gecko.JsVal message, Gecko.JsVal extra);
 		
 		/// <summary>
         /// Registration of a page that wants to be notified of a message type.
@@ -77,5 +81,24 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal WrapMessage(Gecko.JsVal message, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+	}
+	
+	/// <summary>
+    /// Implements an interface to allow specific message types to
+    /// configure some behaviors
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("a0e970f6-faa9-4605-89d6-fafae8b10a80")]
+	public interface nsISystemMessagesConfigurator
+	{
+		
+		/// <summary>
+        /// Will be true if this type of system messages assumes/requires
+        /// that the app will be brought to the front always.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetMustShowRunningAppAttribute();
 	}
 }

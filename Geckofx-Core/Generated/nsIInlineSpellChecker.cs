@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("df635540-d073-47b8-8678-18776130691d")]
+	[Guid("b7b7a77c-40c4-4196-b0b7-b0338243b3fe")]
 	public interface nsIInlineSpellChecker
 	{
 		
@@ -84,5 +84,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UpdateCurrentDictionary();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetSpellCheckPendingAttribute();
 	}
 }

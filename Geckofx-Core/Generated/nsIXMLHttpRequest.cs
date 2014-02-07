@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5bc978f2-41e5-4349-a12d-b018092271f7")]
+	[Guid("5ced7e7a-e2c3-4563-a57d-31b97ce64dc5")]
 	public interface nsIXMLHttpRequestEventTarget : nsIDOMEventTarget
 	{
 		
@@ -197,7 +197,7 @@ namespace Gecko
         /// Dispatch an event.
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
-        /// dispatch nsIDOMEvent, not only nsEvent.
+        /// dispatch nsIDOMEvent, not only WidgetEvent.
         /// @param aPresContext the current presentation context, can be nullptr.
         /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
@@ -214,15 +214,6 @@ namespace Gecko
 		new void DispatchDOMEvent(System.IntPtr aEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aDOMEvent, System.IntPtr aPresContext, System.IntPtr aEventStatus);
 		
 		/// <summary>
-        /// Get the event listener manager, the guy you talk to to register for events
-        /// on this node.
-        /// @param aMayCreate If PR_FALSE, returns a listener manager only if
-        /// one already exists.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.U1)] bool aMayCreate);
-		
-		/// <summary>
         /// Get the script context in which the event handlers should be run.
         /// May return null.
         /// @note Caller *must* check the value of aRv.
@@ -236,57 +227,11 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetJSContextForEventHandlers();
-		
-		/// <summary>
-        /// event handler attributes
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOnabortAttribute(System.IntPtr jsContext);
-		
-		/// <summary>
-        /// event handler attributes
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnabortAttribute(Gecko.JsVal aOnabort, System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOnerrorAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnerrorAttribute(Gecko.JsVal aOnerror, System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOnloadAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnloadAttribute(Gecko.JsVal aOnload, System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOnloadstartAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnloadstartAttribute(Gecko.JsVal aOnloadstart, System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOnprogressAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnprogressAttribute(Gecko.JsVal aOnprogress, System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOntimeoutAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOntimeoutAttribute(Gecko.JsVal aOntimeout, System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetOnloadendAttribute(System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnloadendAttribute(Gecko.JsVal aOnloadend, System.IntPtr jsContext);
 	}
 	
-	/// <summary>nsIXMLHttpRequestUpload </summary>
+	/// <summary>
+    /// event handler attributes
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("df3796fa-d98a-4185-9dda-d2f2b56a5d38")]
@@ -454,7 +399,7 @@ namespace Gecko
         /// Dispatch an event.
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
-        /// dispatch nsIDOMEvent, not only nsEvent.
+        /// dispatch nsIDOMEvent, not only WidgetEvent.
         /// @param aPresContext the current presentation context, can be nullptr.
         /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
@@ -471,15 +416,6 @@ namespace Gecko
 		new void DispatchDOMEvent(System.IntPtr aEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aDOMEvent, System.IntPtr aPresContext, System.IntPtr aEventStatus);
 		
 		/// <summary>
-        /// Get the event listener manager, the guy you talk to to register for events
-        /// on this node.
-        /// @param aMayCreate If PR_FALSE, returns a listener manager only if
-        /// one already exists.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.U1)] bool aMayCreate);
-		
-		/// <summary>
         /// Get the script context in which the event handlers should be run.
         /// May return null.
         /// @note Caller *must* check the value of aRv.
@@ -493,90 +429,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetJSContextForEventHandlers();
-		
-		/// <summary>
-        /// event handler attributes
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOnabortAttribute(System.IntPtr jsContext);
-		
-		/// <summary>
-        /// event handler attributes
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnabortAttribute(Gecko.JsVal aOnabort, System.IntPtr jsContext);
-		
-		/// <summary>Member GetOnerrorAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOnerrorAttribute(System.IntPtr jsContext);
-		
-		/// <summary>Member SetOnerrorAttribute </summary>
-		/// <param name='aOnerror'> </param>
-		/// <param name='jsContext'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnerrorAttribute(Gecko.JsVal aOnerror, System.IntPtr jsContext);
-		
-		/// <summary>Member GetOnloadAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOnloadAttribute(System.IntPtr jsContext);
-		
-		/// <summary>Member SetOnloadAttribute </summary>
-		/// <param name='aOnload'> </param>
-		/// <param name='jsContext'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnloadAttribute(Gecko.JsVal aOnload, System.IntPtr jsContext);
-		
-		/// <summary>Member GetOnloadstartAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOnloadstartAttribute(System.IntPtr jsContext);
-		
-		/// <summary>Member SetOnloadstartAttribute </summary>
-		/// <param name='aOnloadstart'> </param>
-		/// <param name='jsContext'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnloadstartAttribute(Gecko.JsVal aOnloadstart, System.IntPtr jsContext);
-		
-		/// <summary>Member GetOnprogressAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOnprogressAttribute(System.IntPtr jsContext);
-		
-		/// <summary>Member SetOnprogressAttribute </summary>
-		/// <param name='aOnprogress'> </param>
-		/// <param name='jsContext'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnprogressAttribute(Gecko.JsVal aOnprogress, System.IntPtr jsContext);
-		
-		/// <summary>Member GetOntimeoutAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOntimeoutAttribute(System.IntPtr jsContext);
-		
-		/// <summary>Member SetOntimeoutAttribute </summary>
-		/// <param name='aOntimeout'> </param>
-		/// <param name='jsContext'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOntimeoutAttribute(Gecko.JsVal aOntimeout, System.IntPtr jsContext);
-		
-		/// <summary>Member GetOnloadendAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetOnloadendAttribute(System.IntPtr jsContext);
-		
-		/// <summary>Member SetOnloadendAttribute </summary>
-		/// <param name='aOnloadend'> </param>
-		/// <param name='jsContext'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnloadendAttribute(Gecko.JsVal aOnloadend, System.IntPtr jsContext);
 	}
 	
 	/// <summary>
@@ -622,7 +474,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cd31a34e-71b5-4bea-8366-c926de9d3d62")]
+	[Guid("2e91e088-e9fa-4ba4-9887-2a0b7cf27a3e")]
 	public interface nsIXMLHttpRequest
 	{
 		
@@ -692,7 +544,7 @@ namespace Gecko
         /// HTTP requests.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatusText);
+		void GetStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aStatusText);
 		
 		/// <summary>
         /// If the request has been sent already, this method will
@@ -709,7 +561,7 @@ namespace Gecko
         /// The empty string if the response has not yet been received.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAllResponseHeaders([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetAllResponseHeaders([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Returns the text of the header with the specified name for
@@ -721,7 +573,7 @@ namespace Gecko
         /// header does not exist in the response.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase header, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase header, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Meant to be a script-only method for initializing a request.
@@ -744,7 +596,7 @@ namespace Gecko
         /// The default value is the empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Open([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase method, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase url, [MarshalAs(UnmanagedType.U1)] bool async, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase user, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase password, int argc);
+		void Open([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase method, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase url, [MarshalAs(UnmanagedType.U1)] bool async, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase user, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase password, int argc);
 		
 		/// <summary>
         /// Sends the request. If the request is asynchronous, returns
@@ -792,7 +644,7 @@ namespace Gecko
         /// @param value The body of the header.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase header, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase value);
+		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase header, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase value);
 		
 		/// <summary>
         /// The amount of milliseconds a request can take before being terminated.
@@ -875,12 +727,15 @@ namespace Gecko
         /// null.
         /// @param scriptContext The script context to use for the request. May be
         /// null.
-        /// @param ownerWindow The associated window for the request. May be null.
+        /// @param globalObject The associated global for the request. Can be the
+        /// outer window, a sandbox, or a backstage pass.
+        /// May be null, but then the request cannot create a
+        /// document.
         /// @param baseURI The base URI to use when resolving relative URIs. May be
         /// null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr scriptContext, System.IntPtr ownerWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr scriptContext, System.IntPtr globalObject, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI);
 		
 		/// <summary>
         /// Upload process can be tracked by adding event listener to |upload|.

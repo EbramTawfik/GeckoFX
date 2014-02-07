@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6652c4d2-6b49-424b-aaf9-91f91006fab7")]
+	[Guid("5a9689e8-5822-4dd5-b231-609b8d0260ab")]
 	public interface nsIDOMJSWindow
 	{
 		
@@ -83,15 +83,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReleaseEvents(int eventFlags);
 		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RouteEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableExternalCapture();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisableExternalCapture();
-		
 		/// <summary>
         /// This is the scriptable version of nsIDOMWindow::open()
         /// that takes 3 optional arguments. Its binary name is OpenJS to
@@ -127,5 +118,8 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetFramesAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetContentAttribute(System.IntPtr jsContext);
 	}
 }

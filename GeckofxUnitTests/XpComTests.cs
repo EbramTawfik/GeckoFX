@@ -278,6 +278,7 @@ namespace GeckofxUnitTests
 		}
 
 
+#if DELME
 		[Test]
 		public void CreateInstance_CreatingHistoryEntry_ReturnsValidInstance()
 		{
@@ -293,6 +294,7 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
+#endif
 
 		[Test]
 		public void CreateInstance_CreatingSHistory_ReturnsValidInstance()
@@ -785,6 +787,7 @@ namespace GeckofxUnitTests
 			Marshal.ReleaseComObject(instance);
 		}
 
+#if DELME
 		[Test]
 		public void CreateInstance_CreatingContextStackIterator_ReturnsValidInstance()
 		{			
@@ -792,6 +795,7 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
+#endif
 
 		[Test]
 		public void CreateInstance_CreatingStyleSheetService_ReturnsValidInstance()
@@ -881,6 +885,7 @@ namespace GeckofxUnitTests
 			Marshal.ReleaseComObject(instance);
 		}
 
+#if DELME
 		[Test]
 		public void CreateInstance_CreatingStrictTransportService_ReturnsValidInstance()
 		{			
@@ -888,6 +893,7 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
+#endif
 
 		[Test]
 		public void CreateInstance_CreatingMimeInpurtStream_ReturnsValidInstance()
@@ -1115,6 +1121,7 @@ namespace GeckofxUnitTests
 			Marshal.ReleaseComObject(instance);
 		}
 
+#if DELME
 		[Test]
 		public void CreateInstance_CreatingExceptionService_ReturnsValidInstance()
 		{			
@@ -1122,6 +1129,7 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
+#endif
 
 		[Test]
 		public void CreateInstance_CreatingUuidGenerator_ReturnsValidInstance()
@@ -1428,12 +1436,14 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 		}
 
+#if DELME
 		[Test]
 		public void GetJsContextStack_CleanXpComInstance_ReturnsValidInstance()
 		{			
 			var instance = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
 			Assert.IsNotNull(instance);
 		}
+#endif
 
 		[Test]
 		public void GetScriptSecurityManager_CleanXpComInstance_ReturnsValidInstance()

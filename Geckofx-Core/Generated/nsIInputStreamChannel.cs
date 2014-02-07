@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("274c4d7a-2447-4ceb-a6de-80db1b83f5d2")]
+	[Guid("A30E916F-B1DE-452A-BDD0-C59BB516D427")]
 	public interface nsIInputStreamChannel
 	{
 		
@@ -79,5 +79,40 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetContentStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIInputStream aContentStream);
+		
+		/// <summary>
+        /// Get/set the srcdoc data string.  When the input stream channel is
+        /// created to load a srcdoc iframe, this is set to hold the value of the
+        /// srcdoc attribute.
+        ///
+        /// This should be the same value used to create contentStream, but this is
+        /// not checked.
+        ///
+        /// Changing the value of this attribute will not otherwise affect the
+        /// functionality of the channel or input stream.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSrcdocDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrcdocData);
+		
+		/// <summary>
+        /// Get/set the srcdoc data string.  When the input stream channel is
+        /// created to load a srcdoc iframe, this is set to hold the value of the
+        /// srcdoc attribute.
+        ///
+        /// This should be the same value used to create contentStream, but this is
+        /// not checked.
+        ///
+        /// Changing the value of this attribute will not otherwise affect the
+        /// functionality of the channel or input stream.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSrcdocDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrcdocData);
+		
+		/// <summary>
+        /// Returns true if srcdocData has been set within the channel.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsSrcdocChannelAttribute();
 	}
 }

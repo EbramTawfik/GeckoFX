@@ -27,52 +27,148 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// date
+    /// Represents a data interface for which the manager is recording statistics.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("87529a6c-aef6-11e1-a595-4f034275cfa6")]
+	[Guid("f540615b-d803-43ff-8200-2a9d145a5645")]
+	public interface nsIDOMMozNetworkStatsInterface
+	{
+		
+		/// <summary>
+        /// Represents a data interface for which the manager is recording statistics.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetTypeAttribute();
+		
+		/// <summary>
+        /// Id value is '0' for wifi or the iccid for mobile (SIM).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
+	}
+	
+	/// <summary>
+    /// Date object
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("063ebeb2-5c6e-47ae-bdcd-5e6ebdc7a68c")]
+	public interface nsIDOMMozNetworkStatsAlarm
+	{
+		
+		/// <summary>
+        /// Date object
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetAlarmIdAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMozNetworkStatsInterface GetNetworkAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetThresholdAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetDataAttribute();
+	}
+	
+	/// <summary>nsIDOMMozNetworkStatsManager </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("8a66f4c1-0c25-4a66-9fc5-0106947b91f9")]
 	public interface nsIDOMMozNetworkStatsManager
 	{
 		
 		/// <summary>
-        /// Query network interface statistics.
+        ///NetworkStatsGetOptions </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetSamples([MarshalAs(UnmanagedType.Interface)] nsIDOMMozNetworkStatsInterface network, Gecko.JsVal start, Gecko.JsVal end, Gecko.JsVal options);
+		
+		/// <summary>
+        ///NetworkStatsAlarmOptions </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest AddAlarm([MarshalAs(UnmanagedType.Interface)] nsIDOMMozNetworkStatsInterface network, int threshold, Gecko.JsVal options);
+		
+		/// <summary>
+        /// Obtain all alarms for those networks returned by getAvailableNetworks().
+        /// If a network is provided, only retrieves the alarms for that network.
+        /// The network must be one of those returned by getAvailebleNetworks() or an
+        /// "InvalidNetwork" exception will be raised.
         ///
-        /// If options.connectionType is not provided, return statistics for all known
-        /// network interfaces.
-        ///
-        /// If successful, the request result will be an nsIDOMMozNetworkStats object.
-        ///
-        /// If network stats are not available for some dates, then rxBytes &
-        /// txBytes are undefined for those dates.
+        /// Each alarm object has the same fields as that in the system message:
+        /// - alarmId
+        /// - network
+        /// - threshold
+        /// - data
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest GetNetworkStats(Gecko.JsVal options);
+		nsIDOMDOMRequest GetAllAlarms([MarshalAs(UnmanagedType.Interface)] nsIDOMMozNetworkStatsInterface network);
 		
 		/// <summary>
-        /// Return available connection types.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetConnectionTypesAttribute();
-		
-		/// <summary>
-        /// Clear all stats from DB.
+        /// Remove all network alarms. If an |alarmId| is provided, then only that
+        /// alarm is removed.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest ClearAllData();
+		nsIDOMDOMRequest RemoveAlarms(int alarmId);
 		
 		/// <summary>
-        /// Time in seconds between samples stored in database.
+        /// Remove all stats related with the provided network from DB.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest ClearStats([MarshalAs(UnmanagedType.Interface)] nsIDOMMozNetworkStatsInterface network);
+		
+		/// <summary>
+        /// Remove all stats in the database.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest ClearAllStats();
+		
+		/// <summary>
+        /// Return available networks that used to be saved in the database.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetAvailableNetworks();
+		
+		/// <summary>
+        /// Return available service types that used to be saved in the database.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetAvailableServiceTypes();
+		
+		/// <summary>
+        /// Minimum time in milliseconds between samples stored in the database.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetSampleRateAttribute();
 		
 		/// <summary>
-        /// Maximum number of samples stored in the database per connection type.
+        /// Time in milliseconds recorded by the API until present time. All samples
+        /// older than maxStorageAge from now are deleted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetMaxStorageSamplesAttribute();
+		long GetMaxStorageAgeAttribute();
+	}
+	
+	/// <summary>nsIDOMMozNetworkStatsManagerConsts </summary>
+	public class nsIDOMMozNetworkStatsManagerConsts
+	{
+		
+		// <summary>
+        // Constants for known interface types.
+        // </summary>
+		public const long WIFI = 0;
+		
+		// 
+		public const long MOBILE = 1;
 	}
 }

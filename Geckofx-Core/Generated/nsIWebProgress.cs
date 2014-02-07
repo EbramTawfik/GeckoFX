@@ -45,7 +45,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("570F39D0-EFD0-11d3-B093-00A024FFC08C")]
+	[Guid("bd0efb3b-1c81-4fb0-b16d-576a2be48a95")]
 	public interface nsIWebProgress
 	{
 		
@@ -90,6 +90,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetDOMWindowAttribute();
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetDOMWindowIDAttribute();
+		
+		/// <summary>
+        /// Indicates whether DOMWindow.top == DOMWindow.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsTopLevelAttribute();
+		
 		/// <summary>
         /// Indicates whether or not a document is currently being loaded
         /// in the context of this nsIWebProgress instance.
@@ -97,6 +107,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsLoadingDocumentAttribute();
+		
+		/// <summary>
+        /// Contains a load type as specified by the load* constants in
+        /// nsIDocShellLoadInfo.idl.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetLoadTypeAttribute();
 	}
 	
 	/// <summary>nsIWebProgressConsts </summary>

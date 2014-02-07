@@ -27,12 +27,11 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///This Source Code Form is subject to the terms of the Mozilla Public
-    /// License, v. 2.0. If a copy of the MPL was not distributed with this
-    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+    /// This interface is still here for backwards compatibility.
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("34498a66-3aee-4b80-8b8b-a9c5d5ba32b6")]
+	[Guid("5bd838b2-cf3d-406e-bbef-f633cf9e68de")]
 	public interface mozIDOMApplicationRegistry2 : mozIDOMApplicationRegistry
 	{
 		
@@ -72,11 +71,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMDOMRequest GetInstalled();
 		
-		/// <summary>Member GetMgmtAttribute </summary>
-		/// <returns>A mozIDOMApplicationMgmt</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new mozIDOMApplicationMgmt GetMgmtAttribute();
-		
 		/// <summary>
         /// Install a packaged web app.
         ///
@@ -90,6 +84,11 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest InstallPackage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase packageUrl, Gecko.JsVal parameters);
+		new nsIDOMDOMRequest InstallPackage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase packageUrl, Gecko.JsVal parameters);
+		
+		/// <summary>Member GetMgmtAttribute </summary>
+		/// <returns>A mozIDOMApplicationMgmt</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new mozIDOMApplicationMgmt GetMgmtAttribute();
 	}
 }

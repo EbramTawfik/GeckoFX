@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9ee8b1c3-2b0d-49e2-b2d6-f6bb8bf21b9e")]
+	[Guid("91f2e856-5596-44d6-b396-0a02d8ec28c6")]
 	public interface nsIDOMProcessingInstruction : nsIDOMCharacterData
 	{
 		
@@ -257,6 +257,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void ReplaceData(uint offset, uint count, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase arg);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Remove();
 		
 		/// <summary>
         /// The nsIDOMProcessingInstruction interface represents a

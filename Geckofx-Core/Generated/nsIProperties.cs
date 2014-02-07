@@ -38,8 +38,8 @@ namespace Gecko
 		/// <summary>
         /// Gets a property with a given name.
         ///
-        /// @return NS_ERROR_FAILURE if a property with that name doesn't exist.
-        /// @return NS_ERROR_NO_INTERFACE if the found property fails to QI to the
+        /// @throws NS_ERROR_FAILURE if a property with that name doesn't exist.
+        /// @throws NS_ERROR_NO_INTERFACE if the found property fails to QI to the
         /// given iid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -60,7 +60,7 @@ namespace Gecko
 		
 		/// <summary>
         /// Undefines a property.
-        /// @return NS_ERROR_FAILURE if a property with that name doesn't
+        /// @throws NS_ERROR_FAILURE if a property with that name doesn't
         /// already exist.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

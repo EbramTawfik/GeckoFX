@@ -32,13 +32,15 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2ab9abfe-09fb-4fea-985f-acf29fc7376a")]
+	[Guid("6385282b-4413-4cd6-b60a-de43e0b5c307")]
 	public interface nsITelephonyListener
 	{
 		
 		/// <summary>
         /// Notified when a telephony call changes state.
         ///
+        /// @param clientId
+        ///            Indicate the RIL client, 0 ~ (number of client - 1).
         /// @param callIndex
         /// Call identifier assigned by the RIL.
         /// @param callState
@@ -47,15 +49,42 @@ namespace Gecko
         /// Number of the other party.
         /// @param isActive
         /// Indicates whether this call is the currently active one.
+        /// @param isOutgoing
+        /// Indicates whether this call is outgoing or incoming.
+        /// @param isEmergency
+        /// Indicates whether this call is an emergency call.
+        /// @param isConference
+        /// Indicates whether this call is a conference call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallStateChanged(uint callIndex, ushort callState, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.U1)] bool isActive);
+		void CallStateChanged(uint clientId, uint callIndex, ushort callState, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.U1)] bool isActive, [MarshalAs(UnmanagedType.U1)] bool isOutgoing, [MarshalAs(UnmanagedType.U1)] bool isEmergency, [MarshalAs(UnmanagedType.U1)] bool isConference);
+		
+		/// <summary>
+        /// Called when participants of a conference call have been updated, and the
+        /// conference call state changes.
+        ///
+        /// @param callState
+        /// Possible values are: nsITelephonyProvider::CALL_STATE_UNKNOWN,
+        /// nsITelephonyProvider::CALL_STATE_HELD,
+        /// nsITelephonyProvider::CALL_STATE_CONNECTED.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ConferenceCallStateChanged(ushort callState);
+		
+		/// <summary>
+        /// Called when enumeration asked by nsITelephonyProvider::enumerateCalls
+        /// is completed.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void EnumerateCallStateComplete();
 		
 		/// <summary>
         /// Called when nsITelephonyProvider is asked to enumerate the current
         /// telephony call state (nsITelephonyProvider::enumerateCalls). This is
         /// called once per call that is currently managed by the RIL.
         ///
+        /// @param clientId
+        ///            Indicate the RIL client, 0 ~ (number of client - 1).
         /// @param callIndex
         /// Call identifier assigned by the RIL.
         /// @param callState
@@ -64,23 +93,61 @@ namespace Gecko
         /// Number of the other party.
         /// @param isActive
         /// Indicates whether this call is the active one.
-        ///
-        /// @return true to continue enumeration or false to cancel.
+        /// @param isOutgoing
+        /// Indicates whether this call is outgoing or incoming.
+        /// @param isConference
+        /// Indicates whether this call is a conference call.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool EnumerateCallState(uint callIndex, ushort callState, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.U1)] bool isActive);
+		void EnumerateCallState(uint clientId, uint callIndex, ushort callState, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.U1)] bool isActive, [MarshalAs(UnmanagedType.U1)] bool isOutgoing, [MarshalAs(UnmanagedType.U1)] bool isEmergency, [MarshalAs(UnmanagedType.U1)] bool isConference);
+		
+		/// <summary>
+        /// Notify when RIL receives supplementary service notification.
+        ///
+        /// @param clientId
+        ///            Indicate the RIL client, 0 ~ (number of client - 1).
+        /// @param callIndex
+        /// Call identifier assigned by the RIL. -1 if not specified
+        /// @param notification
+        /// One of the nsITelephonyProvider::NOTIFICATION_* values.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SupplementaryServiceNotification(uint clientId, int callIndex, ushort notification);
 		
 		/// <summary>
         /// Called when RIL error occurs.
         ///
+        /// @param clientId
+        ///            Indicate the RIL client, 0 ~ (number of client - 1).
         /// @param callIndex
         /// Call identifier assigned by the RIL. -1 if no connection
         /// @param error
         /// Error from RIL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyError(int callIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase error);
+		void NotifyError(uint clientId, int callIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase error);
+		
+		/// <summary>
+        /// Called when a waiting call comes in CDMA networks.
+        ///
+        /// @param clientId
+        ///            Indicate the RIL client, 0 ~ (number of client - 1).
+        /// @param number
+        /// Number of the other party.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyCdmaCallWaiting(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number);
+		
+		/// <summary>
+        /// Called when RIL error occurs to creating or separating a conference call.
+        ///
+        /// @param name
+        /// Error name. Possible values are addError and removeError.
+        /// @param message
+        /// Detailed error message from RIL.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyConferenceError([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message);
 	}
 	
 	/// <summary>
@@ -89,9 +156,12 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("099e1d81-f247-4ebb-89d8-cd89dd5f6ed4")]
+	[Guid("4ff3ecb7-b024-4752-9dd6-c3623c6e6b8a")]
 	public interface nsITelephonyProvider
 	{
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetDefaultServiceIdAttribute();
 		
 		/// <summary>
         /// Called when a content process registers receiving unsolicited messages from
@@ -99,10 +169,10 @@ namespace Gecko
         /// the 'telephony' permission is allowed to register.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterTelephonyMsg([MarshalAs(UnmanagedType.Interface)] nsITelephonyListener listener);
+		void RegisterListener([MarshalAs(UnmanagedType.Interface)] nsITelephonyListener listener);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterTelephonyMsg([MarshalAs(UnmanagedType.Interface)] nsITelephonyListener listener);
+		void UnregisterListener([MarshalAs(UnmanagedType.Interface)] nsITelephonyListener listener);
 		
 		/// <summary>
         /// Will continue calling listener.enumerateCallState until the listener
@@ -115,31 +185,40 @@ namespace Gecko
         /// Functionality for making and managing phone calls.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Dial([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number);
+		void Dial(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.U1)] bool isEmergency);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DialEmergency([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number);
+		void HangUp(uint clientId, uint callIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HangUp(uint callIndex);
+		void StartTone(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase dtmfChar);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartTone([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase dtmfChar);
+		void StopTone(uint clientId);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StopTone();
+		void AnswerCall(uint clientId, uint callIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AnswerCall(uint callIndex);
+		void RejectCall(uint clientId, uint callIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RejectCall(uint callIndex);
+		void HoldCall(uint clientId, uint callIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HoldCall(uint callIndex);
+		void ResumeCall(uint clientId, uint callIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResumeCall(uint callIndex);
+		void ConferenceCall(uint clientId);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SeparateCall(uint clientId, uint callIndex);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void HoldConference(uint clientId);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ResumeConference(uint clientId);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -173,30 +252,33 @@ namespace Gecko
 		public const ulong CALL_STATE_ALERTING = 2;
 		
 		// 
-		public const ulong CALL_STATE_BUSY = 3;
+		public const ulong CALL_STATE_CONNECTING = 3;
 		
 		// 
-		public const ulong CALL_STATE_CONNECTING = 4;
+		public const ulong CALL_STATE_CONNECTED = 4;
 		
 		// 
-		public const ulong CALL_STATE_CONNECTED = 5;
+		public const ulong CALL_STATE_HOLDING = 5;
 		
 		// 
-		public const ulong CALL_STATE_HOLDING = 6;
+		public const ulong CALL_STATE_HELD = 6;
 		
 		// 
-		public const ulong CALL_STATE_HELD = 7;
+		public const ulong CALL_STATE_RESUMING = 7;
 		
 		// 
-		public const ulong CALL_STATE_RESUMING = 8;
+		public const ulong CALL_STATE_DISCONNECTING = 8;
 		
 		// 
-		public const ulong CALL_STATE_DISCONNECTING = 9;
+		public const ulong CALL_STATE_DISCONNECTED = 9;
 		
 		// 
-		public const ulong CALL_STATE_DISCONNECTED = 10;
+		public const ulong CALL_STATE_INCOMING = 10;
 		
 		// 
-		public const ulong CALL_STATE_INCOMING = 11;
+		public const ulong NOTIFICATION_REMOTE_HELD = 0;
+		
+		// 
+		public const ulong NOTIFICATION_REMOTE_RESUMED = 1;
 	}
 }

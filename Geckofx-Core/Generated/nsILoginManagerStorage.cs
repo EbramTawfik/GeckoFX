@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d9fee9e2-c649-4c47-8c85-90fbbb5ccf67")]
+	[Guid("fe0a4e80-d36f-43cc-a37b-4e1906e77257")]
 	public interface nsILoginManagerStorage
 	{
 		
@@ -50,14 +50,12 @@ namespace Gecko
         /// locations. This is primarily used to the unit tests and profile
         /// migration.
         ///
-        /// @param aInputFile
-        /// File to read for stored logins.
-        /// @param aOutputFile
-        /// If non-null, file to output logins to.
+        /// @param aFile
+        /// If non-null, file to use for login storage.
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithFile([MarshalAs(UnmanagedType.Interface)] nsIFile aInputFile, [MarshalAs(UnmanagedType.Interface)] nsIFile aOutputFile);
+		void InitWithFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// Store a new login in the storage module.

@@ -27,11 +27,11 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// Encode and decode JSON text.
+    /// Don't use this!  Use JSON.parse and JSON.stringify directly.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("43845d58-1054-47fb-8be3-970b3f7bd7ea")]
+	[Guid("083aebb0-7790-43b2-ae81-9e404e626236")]
 	public interface nsIJSON
 	{
 		
@@ -71,31 +71,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal DecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, System.IntPtr cx);
-		
-		/// <summary>
-        /// Decode a JSON string, but also accept some strings in non-JSON format, as
-        /// the decoding methods here did previously before tightening.
-        ///
-        /// This method is provided only as a temporary transition path for users of
-        /// the old code who depended on the ability to decode leniently; new users
-        /// should use JSON.parse.
-        ///
-        /// This method must only be called from script.
-        ///
-        /// @param str the string to parse
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal LegacyDecode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, System.IntPtr jsContext);
-		
-		/// <summary>
-        ///Identical to legacyDecode, but decode the contents of stream. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal LegacyDecodeFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, int contentLength, System.IntPtr jsContext);
-		
-		/// <summary>
-        /// Make sure you GCroot the result of this function before using it.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal LegacyDecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, System.IntPtr cx);
 	}
 }

@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1b373597-6132-49f7-940e-6ff62fca5d35")]
+	[Guid("564a3276-6228-401e-9b5c-d82cb382a60f")]
 	public interface nsIContentViewerFile
 	{
 		
@@ -44,8 +44,5 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Print([MarshalAs(UnmanagedType.U1)] bool aSilent, System.IntPtr aDebugFile, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrintWithParent([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParentWin, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aThePrintSettings, [MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener aWPListener);
 	}
 }

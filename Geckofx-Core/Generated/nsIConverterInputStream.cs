@@ -47,7 +47,7 @@ namespace Gecko
         /// @note To read more than 2^32 characters, call this method multiple times.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint Read([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] string aBuf, uint aCount);
+		new uint Read(char[] aBuf, uint aCount);
 		
 		/// <summary>
         /// Low-level read method that has access to the stream's underlying buffer.
@@ -104,7 +104,7 @@ namespace Gecko
         /// byte sequences are encountered in the stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStr)] string aCharset, int aBufferSize, [MarshalAs(UnmanagedType.LPWStr)] string aReplacementChar);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStr)] string aCharset, int aBufferSize, char aReplacementChar);
 	}
 	
 	/// <summary>nsIConverterInputStreamConsts </summary>

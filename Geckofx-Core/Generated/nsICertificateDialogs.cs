@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a03ca940-09be-11d5-ac5d-000064657374")]
+	[Guid("da871dab-f69e-4173-ab26-99fcd47b0e85")]
 	public interface nsICertificateDialogs
 	{
 		
@@ -104,15 +104,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ViewCert([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert cert);
-		
-		/// <summary>
-        /// UI shown after a Certificate Revocation List (CRL) has been
-        /// successfully imported.
-        ///
-        /// @param ctx A user interface context.
-        /// @param crl Information describing the CRL that was imported.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CrlImportStatusDialog([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.Interface)] nsICRLInfo crl);
 	}
 }

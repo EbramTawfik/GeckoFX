@@ -41,7 +41,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f3704fdc-8ae6-4eba-a3c3-f02958ac0649")]
+	[Guid("3ae4dca8-ac91-4891-adcf-3fbebed6170e")]
 	public interface nsIHelperAppLauncherDialog
 	{
 		
@@ -77,10 +77,35 @@ namespace Gecko
         /// Set to true to force prompting the user for thet file
         /// name/location, otherwise perferences may control if the user is
         /// prompted.
+        ///
+        /// @throws NS_ERROR_NOT_AVAILABLE if the async version of this function
+        /// should be used.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIFile PromptForSaveToFile([MarshalAs(UnmanagedType.Interface)] nsIHelperAppLauncher aLauncher, [MarshalAs(UnmanagedType.Interface)] nsISupports aWindowContext, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aDefaultFileName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aSuggestedFileExtension, [MarshalAs(UnmanagedType.U1)] bool aForcePrompt);
+		
+		/// <summary>
+        /// Async invoke a save-to-file dialog instead of the full fledged helper app
+        /// dialog. When the file is chosen (or the dialog is closed), the callback
+        /// in aLauncher (aLauncher.saveDestinationAvailable) is called with the
+        /// selected file.
+        ///
+        /// @param aLauncher
+        /// A nsIHelperAppLauncher to be invoked when a file is selected.
+        /// @param aWindowContext
+        /// Window associated with action.
+        /// @param aDefaultFileName
+        /// Default file name to provide (can be null)
+        /// @param aSuggestedFileExtension
+        /// Sugested file extension
+        /// @param aForcePrompt
+        /// Set to true to force prompting the user for thet file
+        /// name/location, otherwise perferences may control if the user is
+        /// prompted.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void PromptForSaveToFileAsync([MarshalAs(UnmanagedType.Interface)] nsIHelperAppLauncher aLauncher, [MarshalAs(UnmanagedType.Interface)] nsISupports aWindowContext, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aDefaultFileName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aSuggestedFileExtension, [MarshalAs(UnmanagedType.U1)] bool aForcePrompt);
 	}
 	
 	/// <summary>nsIHelperAppLauncherDialogConsts </summary>

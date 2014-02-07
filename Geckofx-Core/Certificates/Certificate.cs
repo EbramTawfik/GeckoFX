@@ -140,10 +140,12 @@ namespace Gecko.Certificates
 			return ret;
 		}
 
+#if DELME
 		public uint VerifyForUsage(uint usage)
 		{
 			return _cert1.VerifyForUsage( usage );
 		}
+#endif
 
 		public ASN1Object ASN1Structure
 		{

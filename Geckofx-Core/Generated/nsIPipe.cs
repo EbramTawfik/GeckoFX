@@ -56,7 +56,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f4211abc-61b3-11d4-9877-00c04fa0cf4a")]
+	[Guid("25d0de93-685e-4ea4-95d3-d884e31df63c")]
 	public interface nsIPipe
 	{
 		
@@ -75,12 +75,9 @@ namespace Gecko
         /// "infinite" space.  This mode can be useful in some cases, but
         /// should always be used with caution.  The default value for this
         /// parameter is a finite value.
-        /// @param segmentAllocator
-        /// pass reference to nsIMemory to have all pipe allocations use this
-        /// allocator (pass null to use the default allocator)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.U1)] bool nonBlockingInput, [MarshalAs(UnmanagedType.U1)] bool nonBlockingOutput, uint segmentSize, uint segmentCount, [MarshalAs(UnmanagedType.Interface)] nsIMemory segmentAllocator);
+		void Init([MarshalAs(UnmanagedType.U1)] bool nonBlockingInput, [MarshalAs(UnmanagedType.U1)] bool nonBlockingOutput, uint segmentSize, uint segmentCount);
 		
 		/// <summary>
         /// The pipe's input end, which also implements nsISearchableInputStream.

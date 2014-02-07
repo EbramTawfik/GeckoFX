@@ -2,6 +2,7 @@ using Gecko.Interop;
 
 namespace Gecko.DOM.Svg
 {
+#if DELME
 	public class SvgDocument
 		:GeckoDomDocument
 	{
@@ -29,4 +30,5 @@ namespace Gecko.DOM.Svg
 		}
 
 	}
+#endif
 }

@@ -48,7 +48,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2f7e8051-f1c9-4bcc-8584-9cfd5849e343")]
+	[Guid("8762c4e7-be35-4958-9b81-a05685bb516d")]
 	public interface nsIURILoader
 	{
 		
@@ -78,9 +78,9 @@ namespace Gecko
         /// The channel that should be opened. This must not be asyncOpen'd yet!
         /// If a loadgroup is set on the channel, it will get replaced with a
         /// different one.
-        /// @param aIsContentPreferred
-        /// Should the content be displayed in a container that prefers the
-        /// content-type, or will any container do.
+        /// @param aFlags
+        /// Combination (bitwise OR) of the flags specified above. 0 indicates
+        /// default handling.
         /// @param aWindowContext
         /// If you are running the url from a doc shell or a web shell, this is
         /// your window context. If you have a content listener you want to
@@ -90,7 +90,7 @@ namespace Gecko
         /// <b>Must not be null!</b>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenURI([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.U1)] bool aIsContentPreferred, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
+		void OpenURI([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, uint aFlags, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>
         /// Loads data from a channel. This differs from openURI in that the channel

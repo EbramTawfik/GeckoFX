@@ -22,6 +22,16 @@ namespace Gecko
 			_domHtmlElement = element;
 			//this.DomNSElement = (nsIDOMElement)element;
 		}
+
+		internal GeckoHtmlElement(object element)
+			: base(element)
+		{
+			if (element is nsIDOMHTMLElement)
+				_domHtmlElement = (nsIDOMHTMLElement)element;
+			else
+				throw new ArgumentException("element is not a nsIDOMHTMLElement");
+			
+		}
 		
 		internal static GeckoHtmlElement Create(nsIDOMHTMLElement element)
 		{

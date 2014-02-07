@@ -50,8 +50,7 @@ namespace Gecko
         /// If nullptr is passed in for the aFile parameter the default preferences
         /// file(s) [prefs.js, user.js] will be read and processed.
         ///
-        /// @return NS_OK File was read and processed.
-        /// @return Other File failed to read or contained invalid data.
+        /// @throws Error File failed to read or contained invalid data.
         ///
         /// @see savePrefFile
         /// @see nsIFile
@@ -62,8 +61,7 @@ namespace Gecko
 		/// <summary>
         /// Called to completely flush and re-initialize the preferences system.
         ///
-        /// @return NS_OK The preference service was re-initialized correctly.
-        /// @return Other The preference service failed to restart correctly.
+        /// @throws Error The preference service failed to restart correctly.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResetPrefs();
@@ -71,8 +69,6 @@ namespace Gecko
 		/// <summary>
         /// Called to reset all preferences with user set values back to the
         /// application default values.
-        ///
-        /// @return NS_OK Always.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResetUserPrefs();
@@ -86,8 +82,7 @@ namespace Gecko
         /// If nullptr is passed in for the aFile parameter the preference data is
         /// written out to the current preferences file (usually prefs.js.)
         ///
-        /// @return NS_OK File was written.
-        /// @return Other File failed to write.
+        /// @throws Error File failed to write.
         ///
         /// @see readUserPrefs
         /// @see nsIFile

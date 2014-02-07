@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bed3702d-9374-4804-a20f-32baed8e2954")]
+	[Guid("bb52e571-4a0e-4363-83d0-52034910dd14")]
 	public interface nsIProtocolProxyService2 : nsIProtocolProxyService
 	{
 		
@@ -196,5 +196,15 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIProxyInfo DeprecatedBlockingResolve([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlags);
+		
+		/// <summary>
+        /// This method is identical to asyncResolve() except it may execute the
+        /// callback function immediately (i.e from the stack of asyncResolve2()) if
+        /// it is immediately ready to run. The nsICancelable return value will be
+        /// null in that case.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsICancelable AsyncResolve2([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlags, [MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyCallback aCallback);
 	}
 }

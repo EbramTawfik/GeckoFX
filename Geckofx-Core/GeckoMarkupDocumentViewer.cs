@@ -68,6 +68,7 @@ namespace Gecko
 			m_markupDocumentViewer.SetAuthorStyleDisabledAttribute(aAuthorStyleDisabled);
 		}
 
+#if DELME
 		public string GetDefaultCharacterSetAttribute()
 		{
 			return nsString.Get(m_markupDocumentViewer.GetDefaultCharacterSetAttribute);
@@ -78,6 +79,7 @@ namespace Gecko
 		{
 			nsString.Set(m_markupDocumentViewer.SetDefaultCharacterSetAttribute, aDefaultCharacterSet);			
 		}
+#endif
 
 		public string GetForceCharacterSetAttribute()
 		{
@@ -110,12 +112,15 @@ namespace Gecko
 			m_markupDocumentViewer.SetHintCharacterSetSourceAttribute(aHintCharacterSetSource);
 		}
 		
+#if DELME
 		public string GetPrevDocCharacterSetAttribute()
 		{
 			return nsString.Get(m_markupDocumentViewer.GetPrevDocCharacterSetAttribute);
 		}
+#endif
 
 		
+#if DELME
 		public void SetPrevDocCharacterSetAttribute(string aPrevDocCharacterSet)
 		{
 			nsString.Set(m_markupDocumentViewer.SetPrevDocCharacterSetAttribute, aPrevDocCharacterSet);
@@ -129,6 +134,7 @@ namespace Gecko
 			return m_markupDocumentViewer.GetBidiOptionsAttribute();
 		}
 
+
 		/// <summary>
 		/// Use this attribute to access all the Bidi options in one operation
 		/// </summary>
@@ -136,6 +142,7 @@ namespace Gecko
 		{
 			m_markupDocumentViewer.SetBidiOptionsAttribute(aBidiOptions);
 		}
+#endif
 
 		/// <summary>
 		///The minimum font size 

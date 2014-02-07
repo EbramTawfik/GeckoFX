@@ -61,8 +61,11 @@ namespace Gecko
 		// <summary>
         // A flag that indicates whether a URI is safe for untrusted
         // content.  If it is, web pages and so forth will be allowed to
-        // link to this about: URI.  Otherwise, only chrome will be able
-        // to link to it.
+        // link to this about: URI, and the about: protocol handler will
+        // enforce that the principal of channels created for it be based
+        // on their originalURI or URI (depending on the channel flags),
+        // by setting their "owner" to null.
+        // Otherwise, only chrome will be able to link to it.
         // </summary>
 		public const ulong URI_SAFE_FOR_UNTRUSTED_CONTENT = (1<<0);
 		

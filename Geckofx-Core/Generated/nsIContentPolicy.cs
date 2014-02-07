@@ -257,6 +257,11 @@ namespace Gecko
 		public const long TYPE_CSP_REPORT = 17;
 		
 		// <summary>
+        // Indicates a style sheet transformation.
+        // </summary>
+		public const long TYPE_XSLT = 18;
+		
+		// <summary>
         // Returned from shouldLoad or shouldProcess if the load or process request
         // is rejected based on details of the request.
         // </summary>

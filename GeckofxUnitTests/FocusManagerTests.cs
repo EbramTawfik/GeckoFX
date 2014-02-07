@@ -60,7 +60,7 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public nsIDOMBarProp GetScrollbarsAttribute()
+		public nsISupports GetScrollbarsAttribute()
 		{
 			throw new NotImplementedException();
 		}
@@ -106,6 +106,11 @@ namespace GeckofxUnitTests
 		}
 
 		public void ScrollBy(int xScrollDif, int yScrollDif)
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsISupports GetMozIndexedDBAttribute()
 		{
 			throw new NotImplementedException();
 		}
@@ -160,32 +165,37 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
+		nsISupports nsIDOMWindow.GetHistoryAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
 		public nsIDOMHistory GetHistoryAttribute()
 		{
 			throw new NotImplementedException();
 		}
 
-		public nsIDOMBarProp GetLocationbarAttribute()
+		public nsISupports GetLocationbarAttribute()
 		{
 			throw new NotImplementedException();
 		}
 
-		public nsIDOMBarProp GetMenubarAttribute()
+		public nsISupports GetMenubarAttribute()
 		{
 			throw new NotImplementedException();
 		}
 
-		public nsIDOMBarProp GetPersonalbarAttribute()
+		public nsISupports GetPersonalbarAttribute()
 		{
 			throw new NotImplementedException();
 		}
 
-		public nsIDOMBarProp GetStatusbarAttribute()
+		public nsISupports GetStatusbarAttribute()
 		{
 			throw new NotImplementedException();
 		}
 
-		public nsIDOMBarProp GetToolbarAttribute()
+		public nsISupports GetToolbarAttribute()
 		{
 			throw new NotImplementedException();
 		}
@@ -265,6 +275,11 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
+		public nsIVariant ShowModalDialog(nsAStringBase aURI, nsIVariant aArgs, nsAStringBase aOptions, int argc)
+		{
+			throw new NotImplementedException();
+		}
+
 		public nsIVariant ShowModalDialog(nsAStringBase aURI, nsIVariant aArgs, nsAStringBase aOptions)
 		{
 			throw new NotImplementedException();
@@ -295,7 +310,12 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public nsIDOMMediaQueryList MatchMedia(nsAStringBase media_query_list)
+		public nsISupports GetIndexedDBAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsISupports MatchMedia(nsAStringBase media_query_list)
 		{
 			throw new NotImplementedException();
 		}
@@ -400,7 +420,7 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public nsIDOMPkcs11 GetPkcs11Attribute()
+		public nsISupports GetPkcs11Attribute()
 		{
 			throw new NotImplementedException();
 		}
@@ -515,7 +535,17 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
+		public int RequestAnimationFrame(JsVal aCallback, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void MozCancelRequestAnimationFrame(int frame)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void CancelAnimationFrame(int aHandle)
 		{
 			throw new NotImplementedException();
 		}

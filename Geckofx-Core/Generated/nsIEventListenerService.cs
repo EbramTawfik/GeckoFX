@@ -32,12 +32,13 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cbc2ea6e-4043-4435-ba8f-64cbf6638622")]
+	[Guid("c4776eb7-05bc-49ce-a0ca-6213a346d53a")]
 	public interface nsIEventListenerInfo
 	{
 		
 		/// <summary>
         /// The type of the event for which the listener was added.
+        /// Null if the listener is for all the events.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
@@ -53,6 +54,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInSystemEventGroupAttribute();
+		
+		/// <summary>
+        /// The underlying JS object of the event listener, if this listener
+        /// has one.  Null otherwise.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetListenerObjectAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Tries to serialize event listener to a string.

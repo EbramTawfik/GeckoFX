@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e2ef99fe-f7d3-422f-a7b4-834e8bdde710")]
+	[Guid("16c14177-52eb-49d3-9842-a1a0b92be11a")]
 	public interface nsIObjectLoadingContent
 	{
 		
@@ -59,6 +59,15 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetContentTypeForMIMEType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType);
+		
+		/// <summary>
+        /// Returns the base URI of the object as seen by plugins. This differs from
+        /// the normal codebase in that it takes <param> tags and plugin-specific
+        /// quirks into account.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIURI GetBaseURIAttribute();
 		
 		/// <summary>
         /// Returns the plugin instance if it has already been instantiated. This
@@ -104,6 +113,15 @@ namespace Gecko
 		void PlayPlugin();
 		
 		/// <summary>
+        /// Forces a re-evaluation and reload of the tag, optionally invalidating its
+        /// click-to-play state.  This can be used when the MIME type that provides a
+        /// type has changed, for instance, to force the tag to re-evalulate the
+        /// handler to use.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Reload([MarshalAs(UnmanagedType.U1)] bool aClearActivation);
+		
+		/// <summary>
         /// This attribute will return true if the current content type has been
         /// activated, either explicitly or by passing checks that would have it be
         /// click-to-play or play-preview.
@@ -136,16 +154,6 @@ namespace Gecko
 		void InitializeFromChannel([MarshalAs(UnmanagedType.Interface)] nsIRequest request);
 		
 		/// <summary>
-        /// Requests the plugin instance for scripting, attempting to spawn it if
-        /// appropriate.
-        ///
-        /// The first time content js tries to access a pre-empted plugin
-        /// (click-to-play or play preview), an event is dispatched.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr ScriptRequestPluginInstance([MarshalAs(UnmanagedType.U1)] bool callerIsContentJS);
-		
-		/// <summary>
         /// The URL of the data/src loaded in the object. This may be null (i.e.
         /// an <embed> with no src).
         /// </summary>
@@ -153,6 +161,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI GetSrcURIAttribute();
 		
+		/// <summary>
+        /// The plugin's current state of fallback content. This property
+        /// only makes sense if the plugin is not activated.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetPluginFallbackTypeAttribute();
 		
@@ -191,6 +203,9 @@ namespace Gecko
 		
 		// 
 		public const ulong TYPE_NULL = 4;
+		
+		// 
+		public const ulong PLUGIN_ACTIVE = 0xFF;
 		
 		// <summary>
         // The content type is not supported (e.g. plugin not installed)

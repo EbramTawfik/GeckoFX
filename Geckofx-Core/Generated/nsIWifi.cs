@@ -124,7 +124,7 @@ namespace Gecko
 	/// <summary>nsIDOMWifiManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("caa76ee3-8ffe-4ea5-bc59-3b53a9df0d07")]
+	[Guid("e5a72295-1c5f-4848-9cbb-f1d3785c16c1")]
 	public interface nsIDOMWifiManager
 	{
 		
@@ -187,6 +187,8 @@ namespace Gecko
         /// - cancel: Request to cancel WPS in progress.
         /// If method field is 'pin', 'pin' field can exist and has
         /// a PIN number.
+        /// If method field is 'pin', 'bssid' field can exist and has
+        /// a opposite BSSID.
         /// onsuccess: We have successfully started/canceled wps.
         /// onerror: We have failed to start/cancel wps.
         /// </summary>
@@ -203,6 +205,38 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest SetPowerSavingMode([MarshalAs(UnmanagedType.U1)] bool enabled);
+		
+		/// <summary>
+        /// Given a network, configure using static IP instead of running DHCP
+        /// @param network A network object with the SSID of the network to set static ip.
+        /// @param info info should have following field:
+        /// - enabled True to enable static IP, false to use DHCP
+        /// - ipaddr configured static IP address
+        /// - proxy configured proxy server address
+        /// - maskLength configured mask length
+        /// - gateway configured gateway address
+        /// - dns1 configured first DNS server address
+        /// - dns2 configured seconf DNS server address
+        /// onsuccess: We have successfully configure the static ip mode.
+        /// onerror: We have failed to configure the static ip mode.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetStaticIpMode(Gecko.JsVal network, Gecko.JsVal info);
+		
+		/// <summary>
+        /// Given a network, configure http proxy when using wifi.
+        /// @param network A network object with the SSID of the network to set http proxy.
+        /// @param info info should have following field:
+        /// - httpProxyHost ip address of http proxy.
+        /// - httpProxyPort port of http proxy, set 0 to use default port 8080.
+        /// set info to null to clear http proxy.
+        /// onsuccess: We have successfully configure http proxy.
+        /// onerror: We have failed to configure http proxy.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetHttpProxy(Gecko.JsVal network, Gecko.JsVal info);
 		
 		/// <summary>
         /// Returns whether or not wifi is currently enabled.

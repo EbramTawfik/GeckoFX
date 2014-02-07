@@ -27,45 +27,6 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///This Source Code Form is subject to the terms of the Mozilla Public
-    /// License, v. 2.0. If a copy of the MPL was not distributed with this
-    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bbb20a59-524e-4662-981e-5e142814b20c")]
-	public interface nsIDOMCanvasGradient
-	{
-		
-		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this
-        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddColorStop(float offset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase color);
-	}
-	
-	/// <summary>nsIDOMCanvasPattern </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("21dea65c-5c08-4eb1-ac82-81fe95be77b8")]
-	public interface nsIDOMCanvasPattern
-	{
-	}
-	
-	/// <summary>nsIDOMTextMetrics </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2d01715c-ec7d-424a-ab85-e0fd70c8665c")]
-	public interface nsIDOMTextMetrics
-	{
-		
-		/// <summary>Member GetWidthAttribute </summary>
-		/// <returns>A System.Single</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		float GetWidthAttribute();
-	}
-	
-	/// <summary>
     /// This interface remains only for the constants, for a context, use the
     /// WebIDL/Paris bindings instead (CanvasRenderingContext2D.webidl).
     /// The constants are used by CanvasRenderingContext2D::DrawWindow and are

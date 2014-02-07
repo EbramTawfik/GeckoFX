@@ -32,17 +32,18 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("51aebd45-b979-4ec6-9d11-3a3fd3d5d59e")]
+	[Guid("3f4cb2d0-5f7e-44a9-9f4f-370945f8db08")]
 	public interface nsIDOMModalContentWindow
 	{
 		
 		/// <summary>
-        /// Readonly attribute containing an array of arguments that was
-        /// passed to the code that opened this modal content window.
+        /// Readonly attribute containing an arbitrary JS value passed by the
+        /// code that opened the modal content window. A security check is
+        /// performed at access time, per spec.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray GetDialogArgumentsAttribute();
+		nsIVariant GetDialogArgumentsAttribute();
 		
 		/// <summary>
         /// The return value that will be returned to the function that

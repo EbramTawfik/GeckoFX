@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2cb8e811-7eaf-4cb9-8aa8-581e7a245edc")]
+	[Guid("5013f5cc-24f9-45dc-ba03-f5dc031a3a6b")]
 	public interface nsIMobileConnectionListener
 	{
 		
@@ -47,22 +47,25 @@ namespace Gecko
 		void NotifyDataChanged();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyCardStateChanged();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyIccInfoChanged();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyUssdReceived([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, [MarshalAs(UnmanagedType.U1)] bool sessionEnded);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyDataError([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyIccCardLockError([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase lockType, uint retryCount);
+		void NotifyCFStateChange([MarshalAs(UnmanagedType.U1)] bool success, ushort action, ushort reason, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, ushort timeSeconds, ushort serviceClass);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyCFStateChange([MarshalAs(UnmanagedType.U1)] bool success, ushort action, ushort reason, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, ushort timeSeconds, ushort serviceClass);
+		void NotifyEmergencyCbModeChanged([MarshalAs(UnmanagedType.U1)] bool active, uint timeoutMs);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyOtaStatusChanged([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase status);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyIccChanged();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyRadioStateChanged();
 	}
 	
 	/// <summary>
@@ -71,7 +74,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("152da558-c3c0-45ad-9ac5-1adaf7a83c0d")]
+	[Guid("987fc93a-e538-4fd3-9e4d-0e0f0934f019")]
 	public interface nsIMobileConnectionProvider
 	{
 		
@@ -81,67 +84,130 @@ namespace Gecko
         /// the 'mobileconnection' permission is allowed to register.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterMobileConnectionMsg([MarshalAs(UnmanagedType.Interface)] nsIMobileConnectionListener listener);
+		void RegisterMobileConnectionMsg(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIMobileConnectionListener listener);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterMobileConnectionMsg([MarshalAs(UnmanagedType.Interface)] nsIMobileConnectionListener listener);
+		void UnregisterMobileConnectionMsg(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIMobileConnectionListener listener);
+		
+		/// <summary>
+        /// These two fields require the 'mobilenetwork' permission.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetLastKnownNetwork(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCardStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCardState);
+		void GetLastKnownHomeNetwork(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
+		/// <summary>
+        /// All fields below require the 'mobileconnection' permission.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMozMobileConnectionInfo GetVoiceConnectionInfo(uint clientId);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozMobileICCInfo GetIccInfoAttribute();
+		nsIDOMMozMobileConnectionInfo GetDataConnectionInfo(uint clientId);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetIccId(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetNetworkSelectionMode(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetRadioState(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozMobileConnectionInfo GetVoiceConnectionInfoAttribute();
+		nsIVariant GetSupportedNetworkTypes(uint clientId);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozMobileConnectionInfo GetDataConnectionInfoAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNetworkSelectionModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNetworkSelectionMode);
+		nsIDOMDOMRequest GetNetworks(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest GetNetworks([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		nsIDOMDOMRequest SelectNetwork(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.Interface)] nsIDOMMozMobileNetworkInfo network);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SelectNetwork([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.Interface)] nsIDOMMozMobileNetworkInfo network);
+		nsIDOMDOMRequest SelectNetworkAutomatically(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SelectNetworkAutomatically([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		nsIDOMDOMRequest SetPreferredNetworkType(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest GetCardLock([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase lockType);
+		nsIDOMDOMRequest GetPreferredNetworkType(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest UnlockCardLock([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal info);
+		nsIDOMDOMRequest SetRoamingPreference(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mode);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SetCardLock([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal info);
+		nsIDOMDOMRequest GetRoamingPreference(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SendMMI([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mmi);
+		nsIDOMDOMRequest SetVoicePrivacyMode(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.U1)] bool enabled);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest CancelMMI([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		nsIDOMDOMRequest GetVoicePrivacyMode(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest GetCallForwardingOption([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ushort reason);
+		nsIDOMDOMRequest SendMMI(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mmi);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SetCallForwardingOption([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.Interface)] nsIDOMMozMobileCFInfo CFInfo);
+		nsIDOMDOMRequest CancelMMI(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetCallForwardingOption(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ushort reason);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetCallForwardingOption(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.Interface)] nsIDOMMozMobileCFInfo CFInfo);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetCallBarringOption(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal option);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetCallBarringOption(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal option);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest ChangeCallBarringPassword(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal info);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetCallWaitingOption(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.U1)] bool enabled);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetCallWaitingOption(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetCallingLineIdRestriction(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ushort clirMode);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetCallingLineIdRestriction(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest ExitEmergencyCbMode(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetRadioEnabled(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.U1)] bool enabled);
 	}
 }

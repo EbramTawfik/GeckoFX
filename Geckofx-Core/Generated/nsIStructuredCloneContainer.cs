@@ -41,16 +41,16 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("400a282d-7157-4ed0-85b4-8bdc2fa634cd")]
+	[Guid("c8852f01-4c05-47c3-acca-253a958f39f6")]
 	public interface nsIStructuredCloneContainer
 	{
 		
 		/// <summary>
         /// Initialize this structured clone container so it contains a clone of the
-        /// given variant. aData must be backed by a jsval.
+        /// given jsval.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitFromVariant([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, System.IntPtr jsContext);
+		void InitFromJSVal(Gecko.JsVal aData, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Initialize this structured clone container from a base-64-encoded byte

@@ -210,14 +210,6 @@ namespace Gecko
 		new void GetUsagesString([MarshalAs(UnmanagedType.U1)] bool localOnly, ref uint verified, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase usages);
 		
 		/// <summary>
-        /// Verify the certificate for a particular usage.
-        ///
-        /// @return The certificate verification result, see constants.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint VerifyForUsage(uint usage);
-		
-		/// <summary>
         /// This is the attribute which describes the ASN1 layout
         /// of the certificate.  This can be used when doing a
         /// "pretty print" of the certificate's ASN1 structure.

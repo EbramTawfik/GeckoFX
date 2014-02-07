@@ -32,9 +32,16 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8c58859a-e006-466a-ad76-b188ba0918ab")]
+	[Guid("efd352af-9eee-48dc-8e92-4d4fdbc89ecb")]
 	public interface nsIDOMMozVoicemailStatus
 	{
+		
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+        /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetServiceIdAttribute();
 		
 		/// <summary>
         /// Whether or not there are messages waiting in the voicemail box
@@ -46,7 +53,7 @@ namespace Gecko
 		/// <summary>
         /// The total message count. Some voicemail indicators will only specify that
         /// messages are waiting, but not the actual number. In that case, the value
-        /// of messageCount will be MESSAGE_COUNT_UNKNOWN (-1).
+        /// of messageCount will be -1, indicating the unknown message count.
         ///
         /// Logic for a voicemail notification might look something like:
         /// if (status.hasMessages) {
@@ -74,15 +81,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetReturnMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReturnMessage);
-	}
-	
-	/// <summary>nsIDOMMozVoicemailStatusConsts </summary>
-	public class nsIDOMMozVoicemailStatusConsts
-	{
-		
-		// <summary>
-        // There are voicemail messages waiting, but the count is unknown.
-        // </summary>
-		public const long MESSAGE_COUNT_UNKNOWN = -1;
 	}
 }

@@ -201,7 +201,7 @@ namespace Gecko.DOM
 		{
 			using (nsAString type = new nsAString(aType))
 			{
-				_windowUtils.Instance.SendMouseEvent( type, aX, aY, (int)aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame, aPressure, aInputSourceArg);
+				_windowUtils.Instance.SendMouseEvent( type, aX, aY, (int)aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame, aPressure, aInputSourceArg, false, 10);
 			}
 		}
 		
@@ -214,7 +214,7 @@ namespace Gecko.DOM
 		{
 			using (nsAString type = new nsAString(aType))
 			{
-				_windowUtils.Instance.SendMouseEventToWindow( type, aX, aY, (int)aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame, aPressure, aInputSourceArg );
+				_windowUtils.Instance.SendMouseEventToWindow( type, aX, aY, (int)aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame, aPressure, aInputSourceArg, false, 10 );
 			}
 		}		
 
@@ -674,11 +674,11 @@ namespace Gecko.DOM
 			_windowUtils.Instance.LeaveModalState();
 		}
 		
+#if DELME
 		/// <summary>
         /// Same as enterModalState, but returns the window associated with the
         /// current JS context.
-        /// </summary>
-		
+        /// </summary>		
 		public GeckoWindow EnterModalStateWithWindow()
 		{
 			return _windowUtils.Instance.EnterModalStateWithWindow().Wrap( x => new GeckoWindow( x ) );
@@ -693,6 +693,7 @@ namespace Gecko.DOM
 		{
 			_windowUtils.Instance.LeaveModalStateWithWindow( aWindow.DomWindow );
 		}
+#endif
 		
 		/// <summary>
         /// Is the window is in a modal state? [See enterModalState()]

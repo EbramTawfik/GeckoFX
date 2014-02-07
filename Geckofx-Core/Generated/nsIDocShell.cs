@@ -31,60 +31,9 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4277354d-5069-4278-935a-5d596ce9bfbf")]
+	[Guid("af035c67-1690-431b-9c4d-d38e3cc3137a")]
 	public interface nsIDocShell : nsIDocShellTreeItem
 	{
-		
-		/// <summary>
-        ///The current number of DocShells which are immediate children of the
-        ///	this object.
-        ///	 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetChildCountAttribute();
-		
-		/// <summary>
-        ///Add a new child DocShellTreeItem.  Adds to the end of the list.
-        ///	Note that this does NOT take a reference to the child.  The child stays
-        ///	alive only as long as it's referenced from outside the docshell tree.
-        ///	@throws NS_ERROR_ILLEGAL_VALUE if child corresponds to the same
-        ///	        object as this treenode or an ancestor of this treenode
-        ///	@throws NS_ERROR_UNEXPECTED if this node is a leaf in the tree.
-        ///	 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem child);
-		
-		/// <summary>
-        ///Removes a child DocShellTreeItem.
-        ///	@throws NS_ERROR_UNEXPECTED if this node is a leaf in the tree.
-        ///	 </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem child);
-		
-		/// <summary>
-        /// Return the child at the index requested.  This is 0-based.
-        ///
-        /// @throws NS_ERROR_UNEXPECTED if the index is out of range
-        ///	 </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDocShellTreeItem GetChildAt(int index);
-		
-		/// <summary>
-        ///Return the child DocShellTreeItem with the specified name.
-        ///	aName - This is the name of the item that is trying to be found.
-        ///	aRecurse - Is used to tell the function to recurse through children.
-        ///		Note, recursion will only happen through items of the same type.
-        ///	aSameType - If this is set only children of the same type will be returned.
-        ///	aRequestor - This is the docshellTreeItem that is requesting the find.  This
-        ///		parameter is used when recursion is being used to avoid searching the same
-        ///		tree again when a child has asked a parent to search for children.
-        ///	aOriginalRequestor - The original treeitem that made the request, if any.
-        ///    	This is used to ensure that we don't run into cross-site issues.
-        ///	Note the search is depth first when recursing.
-        ///	 </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDocShellTreeItem FindChildWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.U1)] bool aRecurse, [MarshalAs(UnmanagedType.U1)] bool aSameType, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aOriginalRequestor);
 		
 		/// <summary>
         ///name of the DocShellTreeItem
@@ -120,6 +69,9 @@ namespace Gecko
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetItemTypeAttribute(int aItemType);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int ItemType();
 		
 		/// <summary>
         ///Parent DocShell.
@@ -212,6 +164,57 @@ namespace Gecko
 		new void SetTreeOwner([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeOwner treeOwner);
 		
 		/// <summary>
+        ///The current number of DocShells which are immediate children of the
+        ///	this object.
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetChildCountAttribute();
+		
+		/// <summary>
+        ///Add a new child DocShellTreeItem.  Adds to the end of the list.
+        ///	Note that this does NOT take a reference to the child.  The child stays
+        ///	alive only as long as it's referenced from outside the docshell tree.
+        ///	@throws NS_ERROR_ILLEGAL_VALUE if child corresponds to the same
+        ///	        object as this treenode or an ancestor of this treenode
+        ///	@throws NS_ERROR_UNEXPECTED if this node is a leaf in the tree.
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem child);
+		
+		/// <summary>
+        ///Removes a child DocShellTreeItem.
+        ///	@throws NS_ERROR_UNEXPECTED if this node is a leaf in the tree.
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem child);
+		
+		/// <summary>
+        /// Return the child at the index requested.  This is 0-based.
+        ///
+        /// @throws NS_ERROR_UNEXPECTED if the index is out of range
+        ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDocShellTreeItem GetChildAt(int index);
+		
+		/// <summary>
+        ///Return the child DocShellTreeItem with the specified name.
+        ///	aName - This is the name of the item that is trying to be found.
+        ///	aRecurse - Is used to tell the function to recurse through children.
+        ///		Note, recursion will only happen through items of the same type.
+        ///	aSameType - If this is set only children of the same type will be returned.
+        ///	aRequestor - This is the docshellTreeItem that is requesting the find.  This
+        ///		parameter is used when recursion is being used to avoid searching the same
+        ///		tree again when a child has asked a parent to search for children.
+        ///	aOriginalRequestor - The original treeitem that made the request, if any.
+        ///    	This is used to ensure that we don't run into cross-site issues.
+        ///	Note the search is depth first when recursing.
+        ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDocShellTreeItem FindChildWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.U1)] bool aRecurse, [MarshalAs(UnmanagedType.U1)] bool aSameType, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aOriginalRequestor);
+		
+		/// <summary>
         /// Loads a given URI.  This will give priority to loading the requested URI
         /// in the object implementing	this interface.  If it can't be loaded here
         /// however, the URL dispatcher will go through its normal process of content
@@ -277,16 +280,36 @@ namespace Gecko
         /// @param aLoadFlags      - Flags to modify load behaviour. Flags are defined
         /// in nsIWebNavigation.
         /// @param aSHEntry        - Active Session History entry (if loading from SH)
+        /// @param aSrcdoc           When INTERNAL_LOAD_FLAGS_IS_SRCDOC is set, the
+        /// contents of this parameter will be loaded instead
+        /// of aURI.
+        /// @param aSourceDocShell - The source browsing context for the navigation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InternalLoad([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsISupports aOwner, uint aFlags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aWindowTarget, [MarshalAs(UnmanagedType.LPStr)] string aTypeHint, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFileName, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostDataStream, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aHeadersStream, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISHEntry aSHEntry, [MarshalAs(UnmanagedType.U1)] bool firstParty, [MarshalAs(UnmanagedType.Interface)] ref nsIDocShell aDocShell, [MarshalAs(UnmanagedType.Interface)] ref nsIRequest aRequest);
+		void InternalLoad(
+					[MarshalAs(UnmanagedType.Interface)] nsIURI aURI, 
+					[MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, 
+					[MarshalAs(UnmanagedType.Interface)] nsISupports aOwner, 
+					uint aFlags, 
+					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aWindowTarget, 
+					[MarshalAs(UnmanagedType.LPStr)] string aTypeHint, 
+					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFileName, 
+					[MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostDataStream, 
+					[MarshalAs(UnmanagedType.Interface)] nsIInputStream aHeadersStream, 
+					uint aLoadFlags, 
+					[MarshalAs(UnmanagedType.Interface)] nsISHEntry aSHEntry, 
+					[MarshalAs(UnmanagedType.U1)] bool firstParty, 
+					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrcdoc, 
+					[MarshalAs(UnmanagedType.Interface)] nsIDocShell aSourceDocShell, 
+					[MarshalAs(UnmanagedType.Interface)] ref nsIDocShell aDocShell, 
+					[MarshalAs(UnmanagedType.Interface)] ref nsIRequest aRequest);
 		
 		/// <summary>
         /// Do either a history.pushState() or history.replaceState() operation,
         /// depending on the value of aReplace.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, [MarshalAs(UnmanagedType.U1)] bool aReplace, System.IntPtr jsContext);
+		void AddState(Gecko.JsVal aData, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, [MarshalAs(UnmanagedType.U1)] bool aReplace, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Creates a DocShellLoadInfo object that you can manipulate and then pass
@@ -429,6 +452,19 @@ namespace Gecko
 		void SetAllowImagesAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowImages);
 		
 		/// <summary>
+        /// Attribute stating whether or not media (audio/video) should be loaded.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAllowMediaAttribute();
+		
+		/// <summary>
+        /// Attribute stating whether or not media (audio/video) should be loaded.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAllowMediaAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowMedia);
+		
+		/// <summary>
         /// Attribute that determines whether DNS prefetch is allowed for this subtree
         /// of the docshell tree.  Defaults to true.  Setting this will make it take
         /// effect starting with the next document loaded in the docshell.
@@ -457,6 +493,23 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAllowWindowControlAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowWindowControl);
+		
+		/// <summary>
+        /// True if the docshell allows its content to be handled by a content listener
+        /// other than the docshell itself, including the external helper app service,
+        /// and false otherwise.  Defaults to true.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAllowContentRetargetingAttribute();
+		
+		/// <summary>
+        /// True if the docshell allows its content to be handled by a content listener
+        /// other than the docshell itself, including the external helper app service,
+        /// and false otherwise.  Defaults to true.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAllowContentRetargetingAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowContentRetargeting);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -569,6 +622,28 @@ namespace Gecko
 		void SetLoadTypeAttribute(uint aLoadType);
 		
 		/// <summary>
+        /// Default load flags (as defined in nsIRequest) that will be set on all
+        /// requests made by this docShell and propagated to all child docShells and
+        /// to nsILoadGroup::defaultLoadFlags for the docShell's loadGroup.
+        /// Default is no flags.  Once set, only future requests initiated by the
+        /// docShell are affected, so in general, these flags should be set before
+        /// the docShell loads any content.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetDefaultLoadFlagsAttribute();
+		
+		/// <summary>
+        /// Default load flags (as defined in nsIRequest) that will be set on all
+        /// requests made by this docShell and propagated to all child docShells and
+        /// to nsILoadGroup::defaultLoadFlags for the docShell's loadGroup.
+        /// Default is no flags.  Once set, only future requests initiated by the
+        /// docShell are affected, so in general, these flags should be set before
+        /// the docShell loads any content.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDefaultLoadFlagsAttribute(uint aDefaultLoadFlags);
+		
+		/// <summary>
         /// returns true if the docshell is being destroyed, false otherwise
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
@@ -662,6 +737,19 @@ namespace Gecko
 		void SetUseErrorPagesAttribute([MarshalAs(UnmanagedType.U1)] bool aUseErrorPages);
 		
 		/// <summary>
+        /// Display a load error in a frame while keeping that frame's currentURI
+        /// pointing correctly to the page where the error ocurred, rather than to
+        /// the error document page. You must provide either the aURI or aURL parameter.
+        ///
+        /// @param  aError         The error code to be displayed
+        /// @param  aURI           nsIURI of the page where the error happened
+        /// @param  aURL           wstring of the page where the error happened
+        /// @param  aFailedChannel The channel related to this error
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DisplayLoadError(int aError, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aURL, [MarshalAs(UnmanagedType.Interface)] nsIChannel aFailedChannel);
+		
+		/// <summary>
         /// Keeps track of the previous SHTransaction index and the current
         /// SHTransaction index at the time that the doc shell begins to load.
         /// Used for ContentViewer eviction.
@@ -682,6 +770,8 @@ namespace Gecko
 		void HistoryPurged(int numEntries);
 		
 		/// <summary>
+        /// @deprecated, use nsIDocShell.QueryInterface(nsIDOMStorageManager) instead.
+        ///
         /// Retrieves the WebApps session storage object for the supplied principal.
         ///
         /// @param principal returns a storage for this principal
@@ -695,6 +785,8 @@ namespace Gecko
 		nsIDOMStorage GetSessionStorageForPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase documentURI, [MarshalAs(UnmanagedType.U1)] bool create);
 		
 		/// <summary>
+        /// @deprecated, use nsIDocShell.QueryInterface(nsIDOMStorageManager) instead.
+        ///
         /// Add a WebApps session storage object to the docshell.
         ///
         /// @param principal the principal the storage object is associated with
@@ -702,21 +794,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddSessionStorage([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.Interface)] nsIDOMStorage storage);
-		
-		/// <summary>
-        /// Clones all session storage objects and attaches them to the given docshell.
-        /// Useful when duplicating tabs and their states.
-        ///
-        /// @param docShell the docshell to clone the sessionstorage objects to
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CloneSessionStoragesTo([MarshalAs(UnmanagedType.Interface)] nsIDocShell docShell);
-		
-		/// <summary>
-        /// Removes all WebApps session storage objects attached to the docshell.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearSessionStorages();
 		
 		/// <summary>
         /// Gets the channel for the currently loaded document, if any.
@@ -834,10 +911,7 @@ namespace Gecko
 		/// <summary>
         /// Whether this docshell can execute scripts based on its hierarchy.
         /// The rule of thumb here is that we disable js if this docshell or any
-        /// of its parents disallow scripting, unless the only reason for js being
-        /// disabled in this docshell is a parent docshell having a document that
-        /// is in design mode.  In that case, we explicitly allow scripting on the
-        /// current docshell.
+        /// of its parents disallow scripting.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -891,79 +965,22 @@ namespace Gecko
 		void CreateAboutBlankContentViewer([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal);
 		
 		/// <summary>
-        /// The charset attribute allows the user to view, hint, and set which
-        /// converter is used to read the document's data.
+        /// Upon getting, returns the canonical encoding label of the document
+        /// currently loaded into this docshell.
         ///
-        /// <P>Inside Mozilla all text is encoded as Unicode. By standardizing
-        /// on Unicode every piece of code that handles characters no longer
-        /// needs to:
-        ///
-        /// Have access to a character encoding parameter.
-        /// Ask is the data stateful?
-        /// Ask is the data single byte?
-        /// Ask is the data multi-byte?
-        /// If multi-byte: have access to a routine that can
-        /// determine how many bytes in the current character.
-        ///
-        /// When the document is read in a converter is used to convert
-        /// the document's data to Unicode.
-        ///
-        /// The charset attribute provides the ability to:
-        ///
-        /// See what converter was used when inputting the documents
-        /// data.
-        ///
-        /// Override the character set for documents where the specified
-        /// fallback, or auto-detected character set is incorrect
-        ///
-        /// Get/sets the encoding (converter) used to read the
-        /// document. Get returns the encoding used. Set forces
-        /// (overrides) the encoding. After forcing the charset the
-        /// embedding application will need to cause the data to be
-        /// reparsed in order to update the DOM / display.
-        ///
-        /// A force also sets the fallback encoding for this frame.
+        /// Upon setting, sets forcedCharset for compatibility with legacy callers.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetCharsetAttribute();
+		void GetCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCharset);
 		
 		/// <summary>
-        /// The charset attribute allows the user to view, hint, and set which
-        /// converter is used to read the document's data.
+        /// Upon getting, returns the canonical encoding label of the document
+        /// currently loaded into this docshell.
         ///
-        /// <P>Inside Mozilla all text is encoded as Unicode. By standardizing
-        /// on Unicode every piece of code that handles characters no longer
-        /// needs to:
-        ///
-        /// Have access to a character encoding parameter.
-        /// Ask is the data stateful?
-        /// Ask is the data single byte?
-        /// Ask is the data multi-byte?
-        /// If multi-byte: have access to a routine that can
-        /// determine how many bytes in the current character.
-        ///
-        /// When the document is read in a converter is used to convert
-        /// the document's data to Unicode.
-        ///
-        /// The charset attribute provides the ability to:
-        ///
-        /// See what converter was used when inputting the documents
-        /// data.
-        ///
-        /// Override the character set for documents where the specified
-        /// fallback, or auto-detected character set is incorrect
-        ///
-        /// Get/sets the encoding (converter) used to read the
-        /// document. Get returns the encoding used. Set forces
-        /// (overrides) the encoding. After forcing the charset the
-        /// embedding application will need to cause the data to be
-        /// reparsed in order to update the DOM / display.
-        ///
-        /// A force also sets the fallback encoding for this frame.
+        /// Upon setting, sets forcedCharset for compatibility with legacy callers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCharsetAttribute([MarshalAs(UnmanagedType.LPStr)] string aCharset);
+		void SetCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCharset);
 		
 		/// <summary>
         /// Called when the user chose an encoding override from the character
@@ -974,50 +991,25 @@ namespace Gecko
 		void GatherCharsetMenuTelemetry();
 		
 		/// <summary>
-        /// The charset forced by the user. When the charset attribute is set this
-        /// attribute is set to the same value.
-        ///
-        /// XXX Could this be replaced by a boolean?
+        /// The charset forced by the user.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAtom GetForcedCharsetAttribute();
+		void GetForcedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aForcedCharset);
 		
 		/// <summary>
-        /// The charset forced by the user. When the charset attribute is set this
-        /// attribute is set to the same value.
-        ///
-        /// XXX Could this be replaced by a boolean?
+        /// The charset forced by the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetForcedCharsetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom aForcedCharset);
-		
-		/// <summary>
-        /// In a child docshell, this is the charset of the parent docshell
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAtom GetParentCharsetAttribute();
+		void SetForcedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aForcedCharset);
 		
 		/// <summary>
         /// In a child docshell, this is the charset of the parent docshell
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParentCharsetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom aParentCharset);
+		void SetParentCharset([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase parentCharset, int parentCharsetSource, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal parentCharsetPrincipal);
 		
-		/// <summary>
-        /// In a child docshell, this is the source of parentCharset
-        /// @see nsCharsetSource.h
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetParentCharsetSourceAttribute();
-		
-		/// <summary>
-        /// In a child docshell, this is the source of parentCharset
-        /// @see nsCharsetSource.h
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParentCharsetSourceAttribute(int aParentCharsetSource);
+		void GetParentCharset([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase parentCharset, ref int parentCharsetSource, [MarshalAs(UnmanagedType.Interface)] ref nsIPrincipal parentCharsetPrincipal);
 		
 		/// <summary>
         /// Add an observer to the list of parties to be notified when this docshell's
@@ -1025,6 +1017,31 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddWeakPrivacyTransitionObserver([MarshalAs(UnmanagedType.Interface)] nsIPrivacyTransitionObserver obs);
+		
+		/// <summary>
+        /// Add an observer to the list of parties to be notified when reflows are
+        /// occurring. |obs| must support weak references.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddWeakReflowObserver([MarshalAs(UnmanagedType.Interface)] nsIReflowObserver obs);
+		
+		/// <summary>
+        /// Remove an observer from the list of parties to be notified about reflows.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveWeakReflowObserver([MarshalAs(UnmanagedType.Interface)] nsIReflowObserver obs);
+		
+		/// <summary>
+        /// Notify all attached observers that a reflow has just occurred.
+        ///
+        /// @param interruptible if true, the reflow was interruptible.
+        /// @param start         timestamp when reflow started, in milliseconds since
+        /// navigationStart (accurate to 1/1000 of a ms)
+        /// @param end           timestamp when reflow ended, in milliseconds since
+        /// navigationStart (accurate to 1/1000 of a ms)
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyReflowObservers([MarshalAs(UnmanagedType.U1)] bool interruptible, DOMHighResTimeStamp start, DOMHighResTimeStamp end);
 		
 		/// <summary>
         /// Returns true if this docshell corresponds to an <iframe mozbrowser>.
@@ -1124,6 +1141,14 @@ namespace Gecko
 		uint GetAppIdAttribute();
 		
 		/// <summary>
+        /// Return the manifest URL of the app associated with this docshell.
+        ///
+        /// If there is no associated app in our hierarchy, we return empty string.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAppManifestURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppManifestURL);
+		
+		/// <summary>
         /// Like nsIDocShellTreeItem::GetSameTypeParent, except this ignores <iframe
         /// mozbrowser> and <iframe mozapp> boundaries.
         /// </summary>
@@ -1168,6 +1193,31 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSandboxFlagsAttribute(uint aSandboxFlags);
+		
+		/// <summary>
+        /// When a new browsing context is opened by a sandboxed document, it needs to
+        /// keep track of the browsing context that opened it, so that it can be
+        /// navigated by it.  This is the "one permitted sandboxed navigator".
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDocShell GetOnePermittedSandboxedNavigatorAttribute();
+		
+		/// <summary>
+        /// When a new browsing context is opened by a sandboxed document, it needs to
+        /// keep track of the browsing context that opened it, so that it can be
+        /// navigated by it.  This is the "one permitted sandboxed navigator".
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnePermittedSandboxedNavigatorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDocShell aOnePermittedSandboxedNavigator);
+		
+		/// <summary>
+        /// Returns true if we are sandboxed from aTargetDocShell.
+        /// aTargetDocShell - the browsing context we are attempting to navigate.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsSandboxedFrom([MarshalAs(UnmanagedType.Interface)] nsIDocShell aTargetDocShell);
 		
 		/// <summary>
         /// This member variable determines whether a document has Mixed Active Content that
@@ -1288,6 +1338,117 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MakeEditable([MarshalAs(UnmanagedType.U1)] bool inWaitForUriLoad);
+		
+		/// <summary>
+        /// Get the SHEntry associated with a child docshell
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISHEntry GetChildSHEntry(int aChildOffset);
+		
+		/// <summary>
+        /// Add a Child SHEntry for a frameset page, given the child's loadtype.
+        /// If aCloneChildren is true, then aCloneReference's children will be
+        /// cloned onto aHistoryEntry.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddChildSHEntry([MarshalAs(UnmanagedType.Interface)] nsISHEntry aCloneReference, [MarshalAs(UnmanagedType.Interface)] nsISHEntry aHistoryEntry, int aChildOffset, uint aLoadType, [MarshalAs(UnmanagedType.U1)] bool aCloneChilden);
+		
+		/// <summary>
+        /// Whether this docshell should save entries in global history.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetUseGlobalHistoryAttribute();
+		
+		/// <summary>
+        /// Whether this docshell should save entries in global history.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetUseGlobalHistoryAttribute([MarshalAs(UnmanagedType.U1)] bool aUseGlobalHistory);
+		
+		/// <summary>
+        /// Removes nsISHEntry objects related to this docshell from session history.
+        /// Use this only with subdocuments, like iframes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveFromSessionHistory();
+		
+		/// <summary>
+        /// Set when an iframe/frame is added dynamically.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetCreatedDynamicallyAttribute();
+		
+		/// <summary>
+        /// Set when an iframe/frame is added dynamically.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCreatedDynamicallyAttribute([MarshalAs(UnmanagedType.U1)] bool aCreatedDynamically);
+		
+		/// <summary>
+        /// Returns false for mLSHE, true for mOSHE
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetCurrentSHEntry([MarshalAs(UnmanagedType.Interface)] ref nsISHEntry aEntry);
+		
+		/// <summary>
+        /// Cherry picked parts of nsIController.
+        /// They are here, because we want to call these functions
+        /// from JS.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsCommandEnabled([MarshalAs(UnmanagedType.LPStr)] string command);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DoCommand([MarshalAs(UnmanagedType.LPStr)] string command);
+		
+		/// <summary>
+        /// Invisible DocShell are dummy construct to simulate DOM windows
+        /// without any actual visual representation. They have to be marked
+        /// at construction time, to avoid any painting activity.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsInvisible();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetInvisible([MarshalAs(UnmanagedType.U1)] bool aIsInvisibleDochsell);
+		
+		/// <summary>
+        /// Get the script global for the document in this docshell. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetScriptGlobalObject();
+		
+		/// <summary>
+        /// If deviceSizeIsPageSize is set to true, device-width/height media queries
+        /// will be calculated from the page size, not the device size.
+        ///
+        /// Used by the Responsive Design View and B2G Simulator.
+        ///
+        /// Default is False.
+        /// Default value can be overriden with
+        /// docshell.device_size_is_page_size pref.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetDeviceSizeIsPageSizeAttribute();
+		
+		/// <summary>
+        /// If deviceSizeIsPageSize is set to true, device-width/height media queries
+        /// will be calculated from the page size, not the device size.
+        ///
+        /// Used by the Responsive Design View and B2G Simulator.
+        ///
+        /// Default is False.
+        /// Default value can be overriden with
+        /// docshell.device_size_is_page_size pref.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDeviceSizeIsPageSizeAttribute([MarshalAs(UnmanagedType.U1)] bool aDeviceSizeIsPageSize);
 	}
 	
 	/// <summary>nsIDocShellConsts </summary>
@@ -1316,6 +1477,14 @@ namespace Gecko
 		
 		// 
 		public const long INTERNAL_LOAD_FLAGS_FORCE_ALLOW_COOKIES = 0x20;
+		
+		// <summary>
+        // Whether the load should be treated as srcdoc load, rather than a URI one.
+        // </summary>
+		public const long INTERNAL_LOAD_FLAGS_IS_SRCDOC = 0x40;
+		
+		// 
+		public const long INTERNAL_LOAD_FLAGS_FIXUP_SCHEME_TYPOS = 0x80;
 		
 		// <summary>
         // Get an enumerator over this docShell and its children.

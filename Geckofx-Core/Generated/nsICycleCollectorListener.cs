@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0ef15f15-7783-4991-af68-4976d7ec2267")]
+	[Guid("39a8f80e-7eee-4141-b9ef-6e2a7d6e466d")]
 	public interface nsICycleCollectorHandler
 	{
 		
@@ -44,7 +44,7 @@ namespace Gecko
 		void NoteRefCountedObject([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAddress, uint aRefCount, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aObjectDescription);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteGCedObject([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAddress, [MarshalAs(UnmanagedType.U1)] bool aMarked, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aObjectDescription);
+		void NoteGCedObject([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAddress, [MarshalAs(UnmanagedType.U1)] bool aMarked, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aObjectDescription, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCompartmentAddress);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NoteEdge([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFromAddress, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aToAddress, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aEdgeName);
@@ -72,7 +72,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4282249c-7f80-4093-b620-96c573ad683e")]
+	[Guid("786215b7-1e4b-433b-b617-96b176273601")]
 	public interface nsICycleCollectorListener
 	{
 		
@@ -133,6 +133,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFilenameIdentifierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFilenameIdentifier);
 		
+		/// <summary>
+        /// This string will indicate the full path of the GC log if enabled.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetGcLogPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGcLogPath);
+		
+		/// <summary>
+        /// This string will indicate the full path of the CC log if enabled.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCcLogPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCcLogPath);
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Begin();
 		
@@ -140,10 +152,13 @@ namespace Gecko
 		void NoteRefCountedObject(ulong aAddress, uint aRefCount, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteGCedObject(ulong aAddress, [MarshalAs(UnmanagedType.U1)] bool aMarked, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription);
+		void NoteGCedObject(ulong aAddress, [MarshalAs(UnmanagedType.U1)] bool aMarked, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription, ulong aCompartmentAddress);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NoteEdge(ulong aToAddress, [MarshalAs(UnmanagedType.LPStr)] string aEdgeName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NoteWeakMapEntry(ulong aMap, ulong aKey, ulong aKeyDelegate, ulong aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BeginResults();
