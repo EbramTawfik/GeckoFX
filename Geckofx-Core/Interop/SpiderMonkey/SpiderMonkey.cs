@@ -255,7 +255,8 @@ namespace Gecko
 				if (Xpcom.IsLinux)
 					return JS_SetContextCallback_Linux32(rt, cb);
 
-				return JS_SetContextCallback_Win32(rt, cb);
+				JS_SetContextCallback_Win32(rt, cb, IntPtr.Zero);
+				return null;
 			}
 			else
 			{
@@ -447,8 +448,8 @@ namespace Gecko
 		/// <param name="rt"></param>
 		/// <param name="cb"></param>
 		/// <returns></returns>
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetContextCallback@@YAP6AHPAUJSContext@@I@ZPAUJSRuntime@@P6AH0I@Z@Z")]
-		private static extern SpiderMonkey.JSContextCallback JS_SetContextCallback_Win32(IntPtr rt, JSContextCallback cb);
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetContextCallback@@YAXPAUJSRuntime@@P6A_NPAUJSContext@@IPAX@Z2@Z")]
+		private static extern void JS_SetContextCallback_Win32(IntPtr rt, JSContextCallback cb, IntPtr data);
 
 		#endregion
 

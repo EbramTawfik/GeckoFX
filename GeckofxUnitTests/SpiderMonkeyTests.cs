@@ -135,5 +135,19 @@ namespace GeckofxUnitTests
 				Assert.AreEqual("hello world", result);
 			}
 		}
+
+		[Test]
+		public void JS_SetContextCallback_CheckingEntryPointIsCorrect_DoesNotThrowEntryPointNoFoundExecption()
+		{
+			try
+			{
+				SpiderMonkey.JS_SetContextCallback(IntPtr.Zero, null);
+			}
+			catch (Exception e)
+			{
+				if (e is EntryPointNotFoundException)
+					Assert.Fail(String.Format("JS_SetContextCallback EntryPoint is wrong: {0}", e.Message));
+			}
+		}
 	}
 }

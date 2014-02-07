@@ -94,7 +94,9 @@ namespace Gecko
 			if (!_isInitialized)
 			{
 				_isInitialized = true;
+#if DELME
 				_originalContextCallback = SpiderMonkey.JS_SetContextCallback(Runtime, _globalContextCallback);
+#endif
 			}
 		}
 
