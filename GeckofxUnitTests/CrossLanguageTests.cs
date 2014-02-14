@@ -278,7 +278,7 @@ namespace GeckofxUnitTests
 			{
 				string result = String.Empty;				
 				var success = context.EvaluateScript(initialjavascript, out result);				
-				Console.WriteLine("sucess = {0} result = {1}", success, result);				
+				Console.WriteLine("success = {0} result = {1}", success, result);				
 			}		
 
 			File.Delete(tempfilename);

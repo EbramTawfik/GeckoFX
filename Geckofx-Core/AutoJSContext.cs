@@ -98,7 +98,9 @@ namespace Gecko
 		public bool EvaluateScript(string jsScript, out string result)
 		{
 			var ptr = new JsVal();
-			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
+			IntPtr globalObject = SpiderMonkey.DefaultObjectForContextOrNull(_cx);
+			SpiderMonkey.JS_EnterCompartment(_cx, globalObject);
+
 			bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
 			// TODO: maybe getting JS_EvaluateScriptForPrincipals working would increase priviliges of the running script.
 			//bool ret = SpiderMonkey.JS_EvaluateScriptForPrincipals(_cx, globalObject, ..., jsScript, (uint)jsScript.Length,"script", 1, ref ptr);
@@ -120,7 +122,7 @@ namespace Gecko
 			}
 
 			return jsValue;
-		}
+		}		
 
 		/// <summary>
 		/// Evaluate javascript in the current context.
@@ -134,16 +136,12 @@ namespace Gecko
 			try
 			{
 				Guid guid = typeof(nsISupports).GUID;
-				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
+				IntPtr globalObject = SpiderMonkey.DefaultObjectForContextOrNull(_cx);
 				var ptr = new JsVal();
-				var wrapper = Xpcom.XPConnect.Instance.WrapNative(_cx, globalObject, thisObject, ref guid);
-#if PORT
-				bool ret = SpiderMonkey.JS_EvaluateScript(_cx, wrapper.GetJSObjectAttribute(), jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
+				var jsVal = ConvertCOMObjectToJSVal(globalObject, thisObject);
+				bool ret = SpiderMonkey.JS_EvaluateScript(_cx, jsVal.AsPtr, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
 				result = ConvertValueToString(ptr);
 				return ret;
-#else
-				throw new NotImplementedException("port");
-#endif
 			}
 			catch (Exception e)
 			{
@@ -234,6 +232,13 @@ namespace Gecko
 				}
 			}
 			return null;
+		}
+		
+		internal JsVal ConvertCOMObjectToJSVal(IntPtr globalObject, nsISupports thisObject)
+		{
+			var writableVariant = new InstanceWrapper<nsIWritableVariant>(Contracts.WritableVariant);
+			writableVariant.Instance.SetAsISupports(thisObject);
+			return Xpcom.XPConnect.Instance.VariantToJS(_cx, globalObject, writableVariant.Instance);
 		}
 
 		public void Dispose()
