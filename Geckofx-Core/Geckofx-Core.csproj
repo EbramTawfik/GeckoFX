@@ -136,6 +136,7 @@
     <Compile Include="Generated\nsILoadContextInfo.cs" />
     <Compile Include="Generated\nsINetworkService.cs" />
     <Compile Include="Generated\nsIReflowObserver.cs" />
+    <Compile Include="Interop\SpiderMonkey\MutableHandle.cs" />
     <Compile Include="NSSErrors.cs" />
     <Compile Include="GeckoWindowCollection.cs" />
     <Compile Include="Generated\imgINotificationObserver.cs" />

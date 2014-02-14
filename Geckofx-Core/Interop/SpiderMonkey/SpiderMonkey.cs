@@ -29,6 +29,7 @@ namespace Gecko
 			}
 		}
 
+		// TODO: add entry point unittest.
 		public static JSType JS_TypeOfValue(IntPtr cx, JsVal jsVal)
 		{
 			if (Xpcom.Is32Bit)
@@ -36,7 +37,7 @@ namespace Gecko
 				if (Xpcom.IsLinux)
 					return JS_TypeOfValue_Linux32(cx, jsVal);
 
-				return JS_TypeOfValue_Win32(cx, jsVal);
+				return JS_TypeOfValue_Win32(cx, ref jsVal);
 			}
 			else
 			{
@@ -45,16 +46,17 @@ namespace Gecko
 
 				return JS_TypeOfValue_Win64(cx, jsVal);
 			}
-		}
+		}		
 
+		// TODO: add entry point unittest.
 		public static IntPtr JS_ValueToString(IntPtr cx, JsVal v)
 		{
 			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
 					return JS_ValueToString_Linux32(cx, v);
-
-				return JS_ValueToString_Win32(cx, v);
+				
+				return JS_ValueToString_Win32(cx, ref v);
 			}
 			else
 			{
@@ -65,6 +67,7 @@ namespace Gecko
 			}
 		}
 
+		// TODO: add unittest to test the entry point.
 		public static IntPtr JS_ValueToObject(IntPtr cx, JsVal v)
 		{
 			if (Xpcom.Is32Bit)
@@ -103,41 +106,138 @@ namespace Gecko
 			}
 		}
 
+		/// <summary>
+		/// This is just a wrapper for DefaultObjectForContextOrNull.
+		/// The JS_GetGlobalForScopeChain has been removed from spidermonkey.
+		/// Its possible options for replacements were DefaultObjectForContextOrNull or
+		/// CurrentGlobalOrNull. 
+		/// </summary>
+		/// <param name="aJSContext"></param>
+		/// <returns></returns>
 		public static IntPtr JS_GetGlobalForScopeChain(IntPtr aJSContext)
 		{
-			if (Xpcom.Is32Bit)
-			{
-				if (Xpcom.IsLinux)
-					return JS_GetGlobalForScopeChain_Linux32(aJSContext);
-
-				return JS_GetGlobalForScopeChain_Win32(aJSContext);
-			}
-			else
-			{
-				if (Xpcom.IsLinux)
-					return JS_GetGlobalForScopeChain_Linux64(aJSContext);
-
-				return JS_GetGlobalForScopeChain_Win64(aJSContext);
-			}
+			return DefaultObjectForContextOrNull(aJSContext);	
 		}
 
-		public static IntPtr JS_GetGlobalObject(IntPtr aJSContext)
+		// TODO: add unittest to check entry point.
+		public static IntPtr JS_GetGlobalForObject(IntPtr jsContext, IntPtr jsObject)
+		{
+			return JS_GetGlobalForObject_Win32(jsContext, jsObject);
+		}
+
+		// TODO: add unittest to check entry point
+		public static IntPtr GetGlobalForObjectCrossCompartment(IntPtr jsObject)
+		{
+			return GetGlobalForObjectCrossCompartment_Win32(jsObject);
+		}
+
+		// TODO: add unittest to check entry point
+		public static bool JS_SaveFrameChain(IntPtr jsContext)
+		{
+			return JS_SaveFrameChain_Win32(jsContext);
+		}
+
+		// TODO: add unittest to check entry point
+		public static IntPtr JS_NewObject(IntPtr context, IntPtr globalClass, IntPtr proto, IntPtr parent)
+		{
+			return JS_NewObject_Win32(context, globalClass, proto, parent);
+		}
+		
+		// TODO: add unittest to check entry point
+		public static IntPtr JS_GetParent(IntPtr jsObject)
+		{
+			return JS_GetParent_Win32(jsObject);
+		}
+
+		/// <summary>
+		/// Calling this method when the context doesn't have a compartment will causes an AccessVioloation because
+		/// implementation doesn't check for null compartments.
+		/// </summary>
+		/// <param name="aJSContext"></param>
+		/// <returns></returns>
+		public static IntPtr JS_GetScriptedGlobal(IntPtr aJSContext)
 		{
 			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
-					return JS_GetGlobalObject_Linux32(aJSContext);
+					if (Xpcom.IsLinux)
+						throw new NotImplementedException();
 
-				return JS_GetGlobalObject_Win32(aJSContext);
+				return JS_GetScriptedGlobal_Win32(aJSContext);
+			}
+			else
+			{				
+				throw new NotImplementedException();
+			}
+		}
+
+		// TODO: add unitest to check entrypoint in SpiderMonkeyTests.
+		public static IntPtr CurrentGlobalOrNull(IntPtr aJSContext)
+		{
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					if (Xpcom.IsLinux)
+						throw new NotImplementedException();
+
+				return CurrentGlobalOrNull_Win32(aJSContext);
 			}
 			else
 			{
-				if (Xpcom.IsLinux)
-					return JS_GetGlobalObject_Linux64(aJSContext);
-
-				return JS_GetGlobalObject_Win64(aJSContext);
+				throw new NotImplementedException();
 			}
 		}
+
+		// TODO: add unittest to check entrypoint in SpiderMonkeyTests
+		public static IntPtr JS_NewContext(IntPtr runtime, int stackChunkSize)
+		{
+			if (!Xpcom.Is32Bit || !Xpcom.IsWindows)
+				throw new NotImplementedException();
+
+			return JS_NewContext_Win32(runtime, stackChunkSize);
+		}
+
+		// TODO: add unittest to check entry point
+		public static IntPtr JS_GetRuntime(IntPtr jsContext)
+		{
+			if (!Xpcom.Is32Bit || !Xpcom.IsWindows)
+				throw new NotImplementedException();
+
+			return JS_GetRuntime_Win32(jsContext);
+		}
+
+		// TODO: add unittest to check entry point
+		/// <summary>
+		/// This should return an nsISupport object if a option JSOPTION_PRIVATE_IS_NSISUPPORTS is set on the runtime.
+		/// </summary>
+		/// <param name="jsContext"></param>
+		/// <returns></returns>
+		public static IntPtr JS_GetContextPrivate(IntPtr jsContext)
+		{
+			if (!Xpcom.Is32Bit || !Xpcom.IsWindows)
+				throw new NotImplementedException();
+
+			return JS_GetContextPrivate_Win32(jsContext);
+		}
+
+		// TODO: add entry point unittest
+		public static void JS_SetContextPrivate(IntPtr jsContext, IntPtr data)
+		{
+			if (!Xpcom.Is32Bit || !Xpcom.IsWindows)
+				throw new NotImplementedException();
+
+			JS_SetContextPrivate_Win32(jsContext, data);
+		}
+
+		// TODO: add entry point unittest
+		public static IntPtr DefaultObjectForContextOrNull(IntPtr jsContext)
+		{
+			if (!Xpcom.Is32Bit || !Xpcom.IsWindows)
+				throw new NotImplementedException();
+
+			return DefaultObjectForContextOrNull_Win32(jsContext);
+		}
+		
 
 		public static IntPtr JS_BeginRequest(IntPtr cx)
 		{
@@ -175,8 +275,15 @@ namespace Gecko
 			}
 		}
 
+		// TODO: add unittest to check entry point
 		public static bool JS_EvaluateScript(IntPtr cx, IntPtr obj, string src, UInt32 length, string filename, UInt32 lineno, ref JsVal jsval)
 		{
+			if (cx == IntPtr.Zero)
+				throw new ArgumentNullException("cx");
+
+			if (obj == IntPtr.Zero)
+				throw new ArgumentNullException("obj");
+
 			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
@@ -211,7 +318,19 @@ namespace Gecko
 			}
 		}
 
+		// TODO: add entry point unittest
+		public static IntPtr JS_GetClassObject(IntPtr context, IntPtr proto)
+		{
+			if (!Xpcom.Is32Bit || Xpcom.IsLinux)
+				return IntPtr.Zero;
+			
+			var m = new MutableHandle();
+			JS_GetClassObject_Win32(context, proto, ref m);
+			return m.Handle;
+		}
+		
 
+		// TODO: add entry point unittest
 		public static IntPtr JS_GetClass(IntPtr obj)
 		{
 			if (Xpcom.Is32Bit)
@@ -396,23 +515,57 @@ namespace Gecko
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EncodeString@@YAPADPAUJSContext@@PAVJSString@@@Z")]
 		private static extern IntPtr JS_EncodeString_Win32(IntPtr cx, IntPtr jsString);
 
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_TypeOfValue@@YA?AW4JSType@@PAUJSContext@@VValue@JS@@@Z")]
-		private static extern JSType JS_TypeOfValue_Win32(IntPtr cx, JsVal jsVal);
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_TypeOfValue@@YA?AW4JSType@@PAUJSContext@@V?$Handle@VValue@JS@@@JS@@@Z")]
+		private static extern JSType JS_TypeOfValue_Win32(IntPtr cx, ref JsVal jsVal);
+		
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?ToStringSlow@js@@YAPAVJSString@@PAUJSContext@@V?$Handle@VValue@JS@@@JS@@@Z")]
+		private static extern IntPtr JS_ValueToString_Win32(IntPtr cx, ref JsVal v);
 
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_ValueToString@@YAPAVJSString@@PAUJSContext@@VValue@JS@@@Z")]
-		private static extern IntPtr JS_ValueToString_Win32(IntPtr cx, JsVal v);
-
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_ValueToObject@@YAHPAUJSContext@@VValue@JS@@PAPAVJSObject@@@Z")]
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_ValueToObject@@YA_NPAUJSContext@@V?$Handle@VValue@JS@@@JS@@V?$MutableHandle@PAVJSObject@@@3@@Z")]
+		[return: MarshalAs(UnmanagedType.U1)]
+		// JS_ValueToObject(JSContext *cx, JS::HandleValue v, JS::MutableHandleObject objp);
 		private static extern bool JS_ValueToObject_Win32(IntPtr cx, JsVal jsValue, ref IntPtr jsObject);
 
 		[DllImport("mozjs", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_NewStringCopyN@@YAPAVJSString@@PAUJSContext@@PBDI@Z")]
 		private static extern IntPtr JS_NewStringCopyN_Win32(IntPtr cx, string str, int length);
+		
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetScriptedGlobal@@YAPAVJSObject@@PAUJSContext@@@Z")]
+		private static extern IntPtr JS_GetScriptedGlobal_Win32(IntPtr aJSContext);
+		
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?CurrentGlobalOrNull@JS@@YAPAVJSObject@@PAUJSContext@@@Z")]
+		private static extern IntPtr CurrentGlobalOrNull_Win32(IntPtr aJSContext);
 
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetGlobalForScopeChain@@YAPAVJSObject@@PAUJSContext@@@Z")]
-		private static extern IntPtr JS_GetGlobalForScopeChain_Win32(IntPtr aJSContext);
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetGlobalForObject@@YAPAVJSObject@@PAUJSContext@@PAV1@@Z")]
+		private static extern IntPtr JS_GetGlobalForObject_Win32(IntPtr aJSContext, IntPtr jsObject);
 
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetGlobalObject@@YAPAVJSObject@@PAUJSContext@@@Z")]
-		private static extern IntPtr JS_GetGlobalObject_Win32(IntPtr aJSContext);
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?GetGlobalForObjectCrossCompartment@js@@YAPAVJSObject@@PAV2@@Z")]
+		private static extern IntPtr GetGlobalForObjectCrossCompartment_Win32(IntPtr jsObject);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SaveFrameChain@@YA_NPAUJSContext@@@Z")]
+		[return: MarshalAs(UnmanagedType.U1)]
+		private static extern bool JS_SaveFrameChain_Win32(IntPtr jsContext);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_NewObject@@YAPAVJSObject@@PAUJSContext@@PBUJSClass@@V?$Handle@PAVJSObject@@@JS@@2@Z")]		
+		private static extern IntPtr JS_NewObject_Win32(IntPtr jsContext, IntPtr classp, IntPtr proto, IntPtr parent);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetParent@@YAPAVJSObject@@PAV1@@Z")]
+		private static extern IntPtr JS_GetParent_Win32(IntPtr jsObject);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_NewContext@@YAPAUJSContext@@PAUJSRuntime@@I@Z")]
+		private static extern IntPtr JS_NewContext_Win32(IntPtr runtime, int stacksize);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetRuntime@@YAPAUJSRuntime@@PAUJSContext@@@Z")]
+		private static extern IntPtr JS_GetRuntime_Win32(IntPtr context);
+
+		// if JSOPTION_PRIVATE_IS_NSISUPPORTS is set on the runtime then ContextPrivate should contain the nsISupports object.
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetContextPrivate@@YAPAXPAUJSContext@@@Z")]
+		private static extern IntPtr JS_GetContextPrivate_Win32(IntPtr context);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetContextPrivate@@YAXPAUJSContext@@PAX@Z")]
+		private static extern void JS_SetContextPrivate_Win32(IntPtr context, IntPtr data);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?DefaultObjectForContextOrNull@js@@YAPAVJSObject@@PAUJSContext@@@Z")]
+		private static extern IntPtr DefaultObjectForContextOrNull_Win32(IntPtr aJSContext);
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_BeginRequest@@YAXPAUJSContext@@@Z")]
 		private static extern IntPtr JS_BeginRequest_Win32(IntPtr cx);
@@ -420,14 +573,19 @@ namespace Gecko
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EndRequest@@YAXPAUJSContext@@@Z")]
 		private static extern IntPtr JS_EndRequest_Win32(IntPtr cx);
 
-		[DllImport("mozjs", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EvaluateScript@@YAHPAUJSContext@@PAVJSObject@@PBDI2IPAVValue@JS@@@Z")]
+		[DllImport("mozjs", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EvaluateScript@@YA_NPAUJSContext@@PAVJSObject@@PBDI2IPAVValue@JS@@@Z")]
+		[return: MarshalAs(UnmanagedType.U1)]
 		private static extern bool JS_EvaluateScript_Win32(IntPtr cx, IntPtr obj, string src, UInt32 length, string filename, UInt32 lineno, ref JsVal jsval);
 
-		[DllImport("mozjs", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EvaluateScriptForPrincipals@@YAHPAUJSContext@@PAVJSObject@@PAUJSPrincipals@@PBDI3IPAVValue@JS@@@Z")]
+		[DllImport("mozjs", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EvaluateScriptForPrincipals@@YA_NPAUJSContext@@PAVJSObject@@PAUJSPrincipals@@PBDI3IPAVValue@JS@@@Z")]
+		[return:MarshalAs(UnmanagedType.U1)]
 		private static extern bool JS_EvaluateScriptForPrincipals_Win32(IntPtr cx, IntPtr obj, IntPtr principals, string src, UInt32 length, string filename, UInt32 lineno, ref JsVal jsval);
 
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetClass@@YAPAUJSClass@@PAVJSObject@@@Z")]
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetClass@@YAPBUJSClass@@PAVJSObject@@@Z")]
 		private static extern IntPtr JS_GetClass_Win32(IntPtr obj);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetClassObject@@YA_NPAUJSContext@@W4JSProtoKey@@V?$MutableHandle@PAVJSObject@@@JS@@@Z")]
+		private static extern IntPtr JS_GetClassObject_Win32(IntPtr context, IntPtr proto, ref MutableHandle jsObject);		
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_ContextIterator@@YAPAUJSContext@@PAUJSRuntime@@PAPAU1@@Z")]
 		private static extern IntPtr JS_ContextIterator_Win32(IntPtr rt, ref IntPtr iterp);
@@ -466,12 +624,6 @@ namespace Gecko
 
 		[DllImport("mozjs", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_NewStringCopyN@@YAPEAVJSString@@PEAUJSContext@@PEBD_K@Z")]
 		private static extern IntPtr JS_NewStringCopyN_Win64(IntPtr cx, string str, int length);
-
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetGlobalForScopeChain@@YAPEAVJSObject@@PEAUJSContext@@@Z")]
-		private static extern IntPtr JS_GetGlobalForScopeChain_Win64(IntPtr aJSContext);
-
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetGlobalObject@@YAPEAVJSObject@@PEAUJSContext@@@Z")]
-		private static extern IntPtr JS_GetGlobalObject_Win64(IntPtr aJSContext);
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_BeginRequest@@YAXPEAUJSContext@@@Z")]
 		private static extern IntPtr JS_BeginRequest_Win64(IntPtr cx);
@@ -518,12 +670,6 @@ namespace Gecko
 
 		[DllImport("mozjs", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_NewStringCopyNP9JSContextPKcj")]
 		private static extern IntPtr JS_NewStringCopyN_Linux32(IntPtr cx, string str, int length);
-
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z25JS_GetGlobalForScopeChainP9JSContext")]
-		private static extern IntPtr JS_GetGlobalForScopeChain_Linux32(IntPtr aJSContext);
-
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z18JS_GetGlobalObjectP9JSContext")]
-		private static extern IntPtr JS_GetGlobalObject_Linux32(IntPtr aJSContext);
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z15JS_BeginRequestP9JSContext")]
 		private static extern IntPtr JS_BeginRequest_Linux32(IntPtr cx);
@@ -576,12 +722,6 @@ namespace Gecko
 
 		[DllImport("mozjs", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_NewStringCopyNP9JSContextPKcm")]
 		private static extern IntPtr JS_NewStringCopyN_Linux64(IntPtr cx, string str, int length);
-
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z25JS_GetGlobalForScopeChainP9JSContext")]
-		private static extern IntPtr JS_GetGlobalForScopeChain_Linux64(IntPtr aJSContext);
-
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z18JS_GetGlobalObjectP9JSContext")]
-		private static extern IntPtr JS_GetGlobalObject_Linux64(IntPtr aJSContext);
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z15JS_BeginRequestP9JSContext")]
 		private static extern IntPtr JS_BeginRequest_Linux64(IntPtr cx);

@@ -187,7 +187,7 @@ namespace Gecko
 
 		public ComPtr<nsISupports> GetGlobalNsObject()
 		{
-			IntPtr globalObject = SpiderMonkey.JS_GetGlobalObject(_cx);
+			IntPtr globalObject = SpiderMonkey.DefaultObjectForContextOrNull(_cx);
 			if (globalObject != IntPtr.Zero)
 			{
 				Guid guid = typeof(nsISupports).GUID;
@@ -215,7 +215,7 @@ namespace Gecko
 			return null;
 		}
 
-		private string ConvertValueToString(JsVal value)
+		internal string ConvertValueToString(JsVal value)
 		{
 			IntPtr jsp = SpiderMonkey.JS_ValueToString(_cx, value);
 			if (jsp != IntPtr.Zero)

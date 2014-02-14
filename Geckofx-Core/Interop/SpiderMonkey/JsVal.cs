@@ -112,11 +112,10 @@ namespace Gecko
 		{
 			using (var context = new AutoJSContext())
 			{
-				var stringPointer = SpiderMonkey.JS_ValueToString(context.ContextPointer, this);
-				var encodedStringPointer = SpiderMonkey.JS_EncodeString(context.ContextPointer, stringPointer);
-				var text = Marshal.PtrToStringAnsi(encodedStringPointer);
+				if (this.AsPtr == IntPtr.Zero)
+					return String.Empty;
 
-				return text ?? "";
+				return context.ConvertValueToString(this);
 			}
 		}
 

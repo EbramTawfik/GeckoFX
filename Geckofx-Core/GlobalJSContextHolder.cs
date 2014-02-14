@@ -66,7 +66,7 @@ namespace Gecko
 			IntPtr cx;
 			while ((cx = SpiderMonkey.JS_ContextIterator(rt, ref iterp)) != IntPtr.Zero)
 			{
-				IntPtr global = SpiderMonkey.JS_GetGlobalObject(cx);
+				IntPtr global = SpiderMonkey.DefaultObjectForContextOrNull(cx);
 				if (global != IntPtr.Zero)
 				{
 					IntPtr classp = SpiderMonkey.JS_GetClass(global);
@@ -146,7 +146,7 @@ namespace Gecko
 						IntPtr rt = Runtime;
 						while ((cx = SpiderMonkey.JS_ContextIterator(rt, ref iterp)) != IntPtr.Zero)
 						{
-							IntPtr pGlobal = SpiderMonkey.JS_GetGlobalObject(cx);
+							IntPtr pGlobal = SpiderMonkey.DefaultObjectForContextOrNull(cx);
 							if (pGlobal != IntPtr.Zero)
 							{
 								using (var auto = new AutoJSContext(cx))

@@ -137,7 +137,7 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
-		public void JS_SetContextCallback_CheckingEntryPointIsCorrect_DoesNotThrowEntryPointNoFoundExecption()
+		public void JS_SetContextCallback_CheckingEntryPointIsCorrect_DoesNotThrowEntryPointNotFoundExecption()
 		{
 			try
 			{
@@ -147,6 +147,26 @@ namespace GeckofxUnitTests
 			{
 				if (e is EntryPointNotFoundException)
 					Assert.Fail(String.Format("JS_SetContextCallback EntryPoint is wrong: {0}", e.Message));
+			}
+		}
+
+		[Test]
+		public void JS_GetScriptedGlobal_CheckingEntryPointIsCorrect_DoesNotThrowEntryPointNotFoundExecption()
+		{
+			try
+			{
+				var dummy = new GeckoWebBrowser();
+				dummy.CreateControl();
+				var dummyHandle = dummy.Handle;
+				using (var cx = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
+				{
+					SpiderMonkey.JS_GetScriptedGlobal(cx.ContextPointer);
+				}
+			}
+			catch (Exception e)
+			{
+				if (e is EntryPointNotFoundException)
+					Assert.Fail(String.Format("JS_GetScriptedGlobal EntryPoint is wrong: {0}", e.Message));
 			}
 		}
 	}
