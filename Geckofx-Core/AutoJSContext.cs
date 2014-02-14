@@ -60,7 +60,8 @@ namespace Gecko
 		/// <param name="context"></param>
 		public AutoJSContext(IntPtr context)
 		{
-			// TODO: can we just use nsIXPConnect::GetSafeJSContext(); ???
+			// We can't just use nsIXPConnect::GetSafeJSContext(); because its marked as [noxpcom, nostdcall]
+			// TODO: Enhance IDL compiler to not generate methods for noxpcom, nostdcall tagged methods.
 			if (context == IntPtr.Zero)
 			{
 				context = GlobalJSContextHolder.SafeJSContext;
