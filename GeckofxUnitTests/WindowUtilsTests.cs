@@ -188,7 +188,7 @@ namespace GeckofxUnitTests
 
 			public void NoteGCedObject(ulong aAddress, bool aMarked, string aObjectDescription, ulong aCompartmentAddress)
 			{
-				throw new NotImplementedException();
+				
 			}
 
 			public void NoteGCedObject(ulong aAddress, bool aMarked, string aObjectDescription)
@@ -203,7 +203,7 @@ namespace GeckofxUnitTests
 
 			public void NoteWeakMapEntry(ulong aMap, ulong aKey, ulong aKeyDelegate, ulong aValue)
 			{
-				throw new NotImplementedException();
+				
 			}
 
 			public void BeginResults()

@@ -234,7 +234,7 @@ namespace Gecko
 			return null;
 		}
 		
-		internal JsVal ConvertCOMObjectToJSVal(IntPtr globalObject, nsISupports thisObject)
+		public JsVal ConvertCOMObjectToJSVal(IntPtr globalObject, nsISupports thisObject)
 		{
 			var writableVariant = new InstanceWrapper<nsIWritableVariant>(Contracts.WritableVariant);
 			writableVariant.Instance.SetAsISupports(thisObject);

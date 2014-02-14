@@ -76,10 +76,10 @@ namespace Gecko
 				{
 					throw new NotImplementedException();
 				}
-
-				var JSObject = IntPtr.Zero;
-				JS_ValueToObject_Win32(cx, v, ref JSObject);
-				return JSObject;
+				
+				MutableHandle mutableHandle = new MutableHandle();
+				JS_ValueToObject_Win32(cx, ref v, ref mutableHandle);
+				return mutableHandle.Handle;
 			}
 			else
 			{
@@ -524,7 +524,7 @@ namespace Gecko
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_ValueToObject@@YA_NPAUJSContext@@V?$Handle@VValue@JS@@@JS@@V?$MutableHandle@PAVJSObject@@@3@@Z")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		// JS_ValueToObject(JSContext *cx, JS::HandleValue v, JS::MutableHandleObject objp);
-		private static extern bool JS_ValueToObject_Win32(IntPtr cx, JsVal jsValue, ref IntPtr jsObject);
+		private static extern bool JS_ValueToObject_Win32(IntPtr cx, ref JsVal jsValue, ref MutableHandle jsObject);
 
 		[DllImport("mozjs", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_NewStringCopyN@@YAPAVJSString@@PAUJSContext@@PBDI@Z")]
 		private static extern IntPtr JS_NewStringCopyN_Win32(IntPtr cx, string str, int length);

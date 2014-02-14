@@ -85,10 +85,16 @@ namespace GeckofxUnitTests
 			using (AutoJSContext context = new AutoJSContext(_browser.Window.JSContext))
 			{
 				Guid guid = typeof(nsISupports).GUID;
-				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(context.ContextPointer);
-				var wrapper = Xpcom.XPConnect.Instance.WrapNative(context.ContextPointer, globalObject, (nsISupports)_browser.Document.DomObject, ref guid);
+				IntPtr globalObject = SpiderMonkey.DefaultObjectForContextOrNull(context.ContextPointer);
+				SpiderMonkey.JS_EnterCompartment(context.ContextPointer, globalObject);
+				var jsVal = context.ConvertCOMObjectToJSVal(globalObject, (nsISupports)_browser.Document.DomObject);
+				var type = SpiderMonkey.JS_TypeOfValue(context.ContextPointer, jsVal);
+				Console.WriteLine("Type is {0}", type);
+				var jsObject = SpiderMonkey.JS_ValueToObject(context.ContextPointer, jsVal);				
 #if PORT
-				var a = m_instance.GetWrappedNativeOfJSObject(context.ContextPointer, wrapper.GetJSObjectAttribute());
+				var a = m_instance.GetWrappedNativeOfJSObject(context.ContextPointer, jsObject);
+				var wrapper = Xpcom.XPConnect.Instance.WrapNative(context.ContextPointer, globalObject, (nsISupports)_browser.Document.DomObject, ref guid);
+				
 				var jsVal = SpiderMonkeyTests.CreateStringJsVal("nsIDOMHTMLDocument");
 				var i = a.FindInterfaceWithName(jsVal.AsPtr);
 				Assert.NotNull(i);
