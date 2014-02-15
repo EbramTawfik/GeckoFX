@@ -19,19 +19,18 @@ namespace Gecko.Utils
                 throw new ArgumentException("height");
 
 			string data;
-			using (AutoJSContext context = new AutoJSContext(GlobalJSContextHolder.GetJSContextForDomWindow(element.OwnerDocument.DefaultView.DomWindow)))
+			using (var context = new AutoJSContext())
 			{
-				context.EvaluateScript("window.__selectedElement = this", (nsISupports)(nsIDOMElement)element.DomObject, out data);
-				context.EvaluateTrustedScript(string.Format(@"(function(canvas, ctx)
+				context.EvaluateScript(string.Format(@"(function(element, canvas, ctx)
 						{{
-							canvas = document.createElement('canvas');
+							canvas = element.ownerDocument.createElement('canvas');
 							canvas.width = {2};
 							canvas.height = {3};
 							ctx = canvas.getContext('2d');
-							ctx.drawImage(window.__selectedElement, -{0}, -{1});
+							ctx.drawImage(element, -{0}, -{1});
 							return canvas.toDataURL('{4}');
 						}}
-						)()", xOffset, yOffset, width, height, imageFormat), out data);
+						)(this)", xOffset, yOffset, width, height, imageFormat), (nsISupports)(nsIDOMElement)element.DomObject, out data);
 			}
 			return data;
         }
@@ -45,7 +44,7 @@ namespace Gecko.Utils
         {
 
 			string data = CopyImageElementToDataImageString(element, "image/png", xOffset, yOffset, width, height);
-			if (!data.StartsWith("data:image/png;base64,"))
+			if (data == null || !data.StartsWith("data:image/png;base64,"))
 				throw new InvalidOperationException();
 
             byte[] bytes = Convert.FromBase64String(data.Substring("data:image/png;base64,".Length));
@@ -60,7 +59,7 @@ namespace Gecko.Utils
                                                       float yOffset, float width, float height)
         {
 			string data = CopyImageElementToDataImageString(element, "image/png", xOffset, yOffset, width, height);
-			if (!data.StartsWith("data:image/png;base64,"))	return false;
+			if (data == null || !data.StartsWith("data:image/png;base64,"))	return false;
 
             byte[] bytes = Convert.FromBase64String(data.Substring("data:image/png;base64,".Length));
             Clipboard.SetImage(System.Drawing.Image.FromStream(new System.IO.MemoryStream(bytes)));
