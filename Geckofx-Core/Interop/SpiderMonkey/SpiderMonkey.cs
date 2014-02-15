@@ -469,7 +469,7 @@ namespace Gecko
 			{
 				var hasProperty = false;
 
-				JS_HasProperty_Win32(cx, jsObject, name, out hasProperty);
+				JS_HasProperty_Win32(cx, ref jsObject, name, out hasProperty);
 
 				return hasProperty;
 			}
@@ -486,9 +486,9 @@ namespace Gecko
 
 			if (Xpcom.Is32Bit)
 			{
-				JsVal Value;
+				JsVal Value = new JsVal();
 
-				JS_GetProperty_Win32(cx, jsObject, name, out Value);
+				JS_GetProperty_Win32(cx, ref jsObject, name, ref Value);
 
 				return Value;
 			}
@@ -506,11 +506,13 @@ namespace Gecko
 
 		#region Windows x86
 
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_HasProperty@@YAHPAUJSContext@@PAVJSObject@@PBDPAH@Z")]
-		private static extern bool JS_HasProperty_Win32(IntPtr cx, IntPtr jsObject, string name, out bool found);
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_HasProperty@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDPA_N@Z")]
+		[return: MarshalAs(UnmanagedType.U1)]
+		private static extern bool JS_HasProperty_Win32(IntPtr cx, ref IntPtr jsObject, string name, [MarshalAs(UnmanagedType.U1)] out bool found);
 
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetProperty@@YAHPAUJSContext@@PAVJSObject@@PBDPAVValue@JS@@@Z")]
-		private static extern bool JS_GetProperty_Win32(IntPtr cx, IntPtr jsObject, string name, out JsVal jsValue);
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetProperty@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDV?$MutableHandle@VValue@JS@@@3@@Z")]
+		[return: MarshalAs(UnmanagedType.U1)]
+		private static extern bool JS_GetProperty_Win32(IntPtr cx, ref IntPtr jsObject, string name, ref JsVal jsValue);
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EncodeString@@YAPADPAUJSContext@@PAVJSString@@@Z")]
 		private static extern IntPtr JS_EncodeString_Win32(IntPtr cx, IntPtr jsString);

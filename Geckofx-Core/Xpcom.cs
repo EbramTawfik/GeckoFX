@@ -422,6 +422,8 @@ namespace Gecko
 
 		#region External Methods
 
+		#region XPConnect
+
 		public static ComPtr<nsIXPConnect> XPConnect
 		{
 			get
@@ -429,6 +431,14 @@ namespace Gecko
 				return Xpcom.GetService<nsIXPConnect>("@mozilla.org/js/xpc/XPConnect;1").AsComPtr();
 			}
 		}
+
+		[UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.ThisCall)]
+		internal delegate IntPtr GetJSObjectFromHolderDelegate([MarshalAs(UnmanagedType.Interface)] nsIXPConnectJSObjectHolder @this);
+
+		[UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.ThisCall)]
+		internal delegate IntPtr GetSafeJSContextDelegate([MarshalAs(UnmanagedType.Interface)] nsIXPConnect @this);
+
+		#endregion
 
 		public static object NewNativeLocalFile(string filename)
 		{

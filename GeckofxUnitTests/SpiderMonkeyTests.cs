@@ -61,17 +61,12 @@ namespace GeckofxUnitTests
 		/// <returns></returns>
 		private static JsVal CreateJsVal(string jscript)
 		{
-			using (AutoJSContext cx = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
+			using (AutoJSContext cx = new AutoJSContext())
 			{				
 				var ptr = new JsVal();
-				var _securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
-				var _systemPrincipal = _securityManager.GetSystemPrincipal();
-
 				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(cx.ContextPointer);
 				bool ret = SpiderMonkey.JS_EvaluateScript(cx.ContextPointer, globalObject, jscript, (uint)jscript.Length, "script", 1, ref ptr);
 				Assert.IsTrue(ret);
-				Marshal.ReleaseComObject(_securityManager);
-
 				return ptr;
 			}
 		}

@@ -51,7 +51,12 @@ namespace Gecko
 			{
 				if (_safeContext == IntPtr.Zero)
 				{
-					_safeContext = GetContextByName("global_for_XPCJSContextStack_SafeJSContext");
+					//_safeContext = GetContextByName("global_for_XPCJSContextStack_SafeJSContext");
+
+					ComPtr<nsIXPConnect> xpc = Xpcom.XPConnect;
+					int slot = xpc.GetSlotOfComMethod(new Func<IntPtr>(xpc.Instance.GetSafeJSContext));
+					var getSafeJSContext = xpc.GetComMethod<Xpcom.GetSafeJSContextDelegate>(slot);
+					_safeContext = getSafeJSContext(xpc.Instance);
 				}
 				return _safeContext;
 			}

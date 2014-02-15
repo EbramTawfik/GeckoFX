@@ -112,9 +112,6 @@ namespace Gecko
 		{
 			using (var context = new AutoJSContext())
 			{
-				if (this.AsPtr == IntPtr.Zero)
-					return String.Empty;
-
 				return context.ConvertValueToString(this);
 			}
 		}
@@ -152,15 +149,15 @@ namespace Gecko
 
 			if (IsObject)
 			{
-				return ToComObject();
+				return ToComObject(IntPtr.Zero);
 			}
 
 			return null;
 		}
 
-		private Object ToComObject()
+		internal object ToComObject(IntPtr cx)
 		{
-			using (var context = new AutoJSContext())
+			using (var context = new AutoJSContext(cx))
 			{
 				var jsObject = SpiderMonkey.JS_ValueToObject(context.ContextPointer, this);
 

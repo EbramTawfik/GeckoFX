@@ -116,5 +116,20 @@ namespace Gecko.Interop
 			return flag;
 		}
 
+		public int GetSlotOfComMethod(Delegate method)
+		{
+			if (method.Method.DeclaringType != typeof(T))
+				throw new ArgumentOutOfRangeException("method");
+			return Marshal.GetComSlotForMethodInfo(method.Method);
+		}
+
+		public T GetComMethod<T>(int slot)
+			where T : class
+		{
+			Delegate method;
+			if (!this.GetComMethod<T>(slot, out method))
+				throw new MethodAccessException();
+			return (T)(object)method;
+		}
 	}
 }

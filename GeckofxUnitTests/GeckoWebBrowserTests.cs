@@ -316,6 +316,7 @@ namespace GeckofxUnitTests
 		}
 		
 		[Test]
+		[Ignore("Disabled in Gecko for security")]
 		public void EvaluateScript_JavascriptIncreasePriviligesCrossFrameAccess_ScriptExecutesAndReturnsExpectedResult()
 		{
 			string result;

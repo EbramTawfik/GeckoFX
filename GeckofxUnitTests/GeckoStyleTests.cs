@@ -1,6 +1,7 @@
 ﻿using System;
 using Gecko;
 using NUnit.Framework;
+using System.Linq;
 
 namespace GeckofxUnitTests
 {
@@ -18,7 +19,7 @@ namespace GeckofxUnitTests
 			var unused = _browser.Handle;
 			Assert.IsNotNull(_browser);
 
-			_browser.TestLoadHtml("some random html");
+			_browser.TestLoadHtml("<html><head><style type='text/css'>body { color: red }</style></head><body>some random html</body></html>");
 			_style = _browser.Document.Body.Style;
 		}
 
@@ -84,6 +85,17 @@ namespace GeckofxUnitTests
 			_style.SetPropertyValue("white-space", "pre-wrap", "important");
 
 			Assert.AreEqual("pre-wrap", _style.GetPropertyValue("white-space"));			
+		}
+
+		[Test]
+		public void GetCssRules_DoesNotThrowException()
+		{
+			GeckoStyleSheet styleSheet = _browser.Document.StyleSheets.First();
+			GeckoStyleSheet.StyleRuleCollection cssRules = null;
+			Assert.DoesNotThrow(() => { cssRules = styleSheet.CssRules; });
+			Assert.DoesNotThrow(() => { cssRules.Insert(0, "#blanc { color: white }"); });
+			Assert.DoesNotThrow(() => { cssRules.RemoveAt(0); });
+			Assert.DoesNotThrow(() => { cssRules.Clear(); });
 		}
 	}
 }

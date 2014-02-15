@@ -16,9 +16,9 @@ namespace Gecko.JQuery
 		{
 			JsVal jsValue;
 
-			using (var autoContext = new AutoJSContext(m_Window.JSContext))
+			using (var autoContext = new AutoJSContext())
 			{
-				jsValue = autoContext.EvaluateScript(jQuery);
+				jsValue = autoContext.EvaluateScript((nsISupports)m_Window.DomWindow, jQuery);
 			}
 
 			return jsValue;
@@ -28,41 +28,38 @@ namespace Gecko.JQuery
 		{
 			JsVal jsValue;
 
-			using (var autoContext = new AutoJSContext(m_Window.JSContext))
+			using (var autoContext = new AutoJSContext())
 			{
-				jsValue = autoContext.EvaluateScript(jQuery);
-			}
+				jsValue = autoContext.EvaluateScript((nsISupports)m_Window.DomWindow, jQuery);
+				if (jsValue.IsObject)
+				{
+					var nativeComObject = jsValue.ToComObject(autoContext.ContextPointer);
+					var element = Xpcom.QueryInterface<nsIDOMHTMLElement>(nativeComObject);
+					if (element != null)
+					{
+						return GeckoHtmlElement.Create(element);
+					}
 
-			if (!jsValue.IsObject)
-			{
-				return null;
-			}
+					if (!SpiderMonkey.JS_HasProperty(autoContext.ContextPointer, jsValue.AsPtr, "length"))
+					{
+						return null;
+					}
 
-			var nativeComObject = jsValue.ToObject();
-			var element = Xpcom.QueryInterface<nsIDOMHTMLElement>(nativeComObject);
-			if (element != null)
-			{
-				return GeckoHtmlElement.Create(element);
-			}
+					var length = SpiderMonkey.JS_GetProperty(autoContext.ContextPointer, jsValue.AsPtr, "length").ToInteger();
+					if (length == 0)
+					{
+						return null;
+					}
 
-			if (!SpiderMonkey.JS_HasProperty(m_Window.JSContext, jsValue.AsPtr, "length"))
-			{
-				return null;
-			}
+					var firstNativeDom = SpiderMonkey.JS_GetProperty(autoContext.ContextPointer, jsValue.AsPtr, "0").ToComObject(autoContext.ContextPointer);
+					element = Xpcom.QueryInterface<nsIDOMHTMLElement>(firstNativeDom);
+					if (element != null)
+					{
+						return GeckoHtmlElement.Create(element);
+					}
+				}
 
-			var length = SpiderMonkey.JS_GetProperty(m_Window.JSContext, jsValue.AsPtr, "length").ToInteger();
-			if (length == 0)
-			{
-				return null;
 			}
-
-			var firstNativeDom = SpiderMonkey.JS_GetProperty(m_Window.JSContext, jsValue.AsPtr, "0").ToObject();
-			element = Xpcom.QueryInterface<nsIDOMHTMLElement>(firstNativeDom);
-			if (element != null)
-			{
-				return GeckoHtmlElement.Create(element);
-			}
-
 			return null;
 		}
 
@@ -71,37 +68,33 @@ namespace Gecko.JQuery
 			JsVal jsValue;
 			var elements = new List<GeckoElement>();
 
-			using (var autoContext = new AutoJSContext(m_Window.JSContext))
+			using (var autoContext = new AutoJSContext())
 			{
-				jsValue = autoContext.EvaluateScript(jQuery);
-			}
-
-			if (!jsValue.IsObject)
-			{
-				return null;
-			}
-
-			if (!SpiderMonkey.JS_HasProperty(m_Window.JSContext, jsValue.AsPtr, "length"))
-			{
-				return null;
-			}
-
-			var length = SpiderMonkey.JS_GetProperty(m_Window.JSContext, jsValue.AsPtr, "length").ToInteger();
-			if (length == 0)
-			{
-				return null;
-			}
-
-			for (var elementIndex = 0; elementIndex < length; elementIndex++)
-			{
-				var firstNativeDom = SpiderMonkey.JS_GetProperty(m_Window.JSContext, jsValue.AsPtr, elementIndex.ToString(CultureInfo.InvariantCulture)).ToObject();
-				var element = Xpcom.QueryInterface<nsIDOMHTMLElement>(firstNativeDom);
-				if (element != null)
+				jsValue = autoContext.EvaluateScript((nsISupports)m_Window.DomWindow, jQuery);
+				if (jsValue.IsObject)
 				{
-					elements.Add(GeckoHtmlElement.Create(element));
+					if (!SpiderMonkey.JS_HasProperty(autoContext.ContextPointer, jsValue.AsPtr, "length"))
+					{
+						return null;
+					}
+
+					var length = SpiderMonkey.JS_GetProperty(autoContext.ContextPointer, jsValue.AsPtr, "length").ToInteger();
+					if (length == 0)
+					{
+						return null;
+					}
+
+					for (var elementIndex = 0; elementIndex < length; elementIndex++)
+					{
+						var firstNativeDom = SpiderMonkey.JS_GetProperty(autoContext.ContextPointer, jsValue.AsPtr, elementIndex.ToString(CultureInfo.InvariantCulture)).ToComObject(autoContext.ContextPointer);
+						var element = Xpcom.QueryInterface<nsIDOMHTMLElement>(firstNativeDom);
+						if (element != null)
+						{
+							elements.Add(GeckoHtmlElement.Create(element));
+						}
+					}
 				}
 			}
-
 			return elements;
 		}
 

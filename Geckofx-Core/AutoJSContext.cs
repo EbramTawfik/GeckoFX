@@ -45,13 +45,10 @@ namespace Gecko
 	/// </summary>
 	public class AutoJSContext : IDisposable
 	{
-		IntPtr _cx;
+		private IntPtr _cx;
+		private JSAutoCompartment _defaultCompartment;
 
 		public IntPtr ContextPointer { get { return _cx; } }
-
-#if DELME
-		private readonly ComPtr<nsIJSContextStack> _contextStack;
-#endif
 
 		/// <summary>
 		/// Create a AutoJSContext using the SafeJSContext.
@@ -67,18 +64,16 @@ namespace Gecko
 				context = GlobalJSContextHolder.SafeJSContext;
 			}
 
+			IntPtr globalObject = SpiderMonkey.CurrentGlobalOrNull(context);
+			if (globalObject == IntPtr.Zero)
+			{
+				globalObject = SpiderMonkey.DefaultObjectForContextOrNull(context);
+				if (globalObject == IntPtr.Zero)
+					throw new InvalidOperationException("JSContext don't store their default compartment object on the cx.");
+				_defaultCompartment = new JSAutoCompartment(context, globalObject);
+			}
+
 			_cx = context;
-
-			// TODO: calling BeginRequest may not be neccessary anymore.
-			// begin a new request
-			SpiderMonkey.JS_BeginRequest(_cx);
-
-#if DELME
-			// TODO: pushing the context onto the context stack may not be neccessary anymore.
-			// push the context onto the context stack
-			_contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1").AsComPtr();
-			_contextStack.Instance.Push(_cx);
-#endif
 		}
 
 		/// <summary>
@@ -89,6 +84,8 @@ namespace Gecko
 		{
 		}
 
+
+
 		/// <summary>
 		/// Evaluate javascript in the current context.
 		/// </summary>
@@ -98,23 +95,19 @@ namespace Gecko
 		public bool EvaluateScript(string jsScript, out string result)
 		{
 			var ptr = new JsVal();
-			IntPtr globalObject = SpiderMonkey.DefaultObjectForContextOrNull(_cx);
-			SpiderMonkey.JS_EnterCompartment(_cx, globalObject);
-
-			bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
+			bool ret = SpiderMonkey.JS_EvaluateScript(_cx, GetGlobalObject(), jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
 			// TODO: maybe getting JS_EvaluateScriptForPrincipals working would increase priviliges of the running script.
 			//bool ret = SpiderMonkey.JS_EvaluateScriptForPrincipals(_cx, globalObject, ..., jsScript, (uint)jsScript.Length,"script", 1, ref ptr);
 
 
-			result = ConvertValueToString(ptr);
+			result = ret ? ConvertValueToString(ptr) : null;
 			return ret;
 		}
 
 		public JsVal EvaluateScript(string javaScript)
 		{
 			var jsValue = new JsVal();
-			var globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
-			var ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, javaScript, (uint)javaScript.Length, "script", 1, ref jsValue);
+			var ret = SpiderMonkey.JS_EvaluateScript(_cx, GetGlobalObject(), javaScript, (uint)javaScript.Length, "script", 1, ref jsValue);
 
 			if (!ret)
 			{
@@ -122,7 +115,19 @@ namespace Gecko
 			}
 
 			return jsValue;
-		}		
+		}
+
+		internal JsVal EvaluateScript(nsISupports thisObj, string script)
+		{
+			var value = new JsVal();
+			IntPtr globalObject = ConvertCOMObjectToJSObject(thisObj);
+			using (new JSAutoCompartment(_cx, globalObject))
+			{
+				if (SpiderMonkey.JS_EvaluateScript(_cx, globalObject, script, (uint)script.Length, "script", 1, ref value))
+					return value;
+			}
+			return JsVal.FromPtr(0);
+		}
 
 		/// <summary>
 		/// Evaluate javascript in the current context.
@@ -136,12 +141,14 @@ namespace Gecko
 			try
 			{
 				Guid guid = typeof(nsISupports).GUID;
-				IntPtr globalObject = SpiderMonkey.DefaultObjectForContextOrNull(_cx);
 				var ptr = new JsVal();
-				var jsVal = ConvertCOMObjectToJSVal(globalObject, thisObject);
-				bool ret = SpiderMonkey.JS_EvaluateScript(_cx, jsVal.AsPtr, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
-				result = ConvertValueToString(ptr);
-				return ret;
+				IntPtr globalObject = ConvertCOMObjectToJSObject(thisObject);
+				using (new JSAutoCompartment(_cx, globalObject))
+				{
+					bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
+					result = ret ? ConvertValueToString(ptr) : null;
+					return ret;
+				}
 			}
 			catch (Exception e)
 			{
@@ -157,8 +164,11 @@ namespace Gecko
 		/// <param name="jsScript"></param>
 		/// <param name="jsval"></param>
 		/// <returns></returns>
+		[Obsolete]
 		public bool EvaluateTrustedScript(string jsScript, out string result)
 		{
+			throw new NotImplementedException();
+
 			var ptr = new JsVal();
 			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
 			bool ret;
@@ -183,9 +193,17 @@ namespace Gecko
 			return ret;
 		}
 
+		private IntPtr GetGlobalObject()
+		{
+			IntPtr globalObject = SpiderMonkey.CurrentGlobalOrNull(_cx);
+			if (globalObject == IntPtr.Zero)
+				throw new ObjectDisposedException(this.GetType().Name);
+			return globalObject;
+		}
+
 		public ComPtr<nsISupports> GetGlobalNsObject()
 		{
-			IntPtr globalObject = SpiderMonkey.DefaultObjectForContextOrNull(_cx);
+			IntPtr globalObject = SpiderMonkey.CurrentGlobalOrNull(_cx);
 			if (globalObject != IntPtr.Zero)
 			{
 				Guid guid = typeof(nsISupports).GUID;
@@ -233,7 +251,22 @@ namespace Gecko
 			}
 			return null;
 		}
-		
+
+		private IntPtr ConvertCOMObjectToJSObject(nsISupports obj)
+		{
+			Guid guid = typeof(nsISupports).GUID;
+
+			IntPtr globalObject = GetGlobalObject();
+
+			using (var holder = new ComPtr<nsIXPConnectJSObjectHolder>(Xpcom.XPConnect.Instance.WrapNative(_cx, globalObject, (nsISupports)obj, ref guid)))
+			{
+				int slot = holder.GetSlotOfComMethod(new Func<IntPtr>(holder.Instance.GetJSObject));
+				var getJSObject = holder.GetComMethod<Xpcom.GetJSObjectFromHolderDelegate>(slot);
+				return getJSObject(holder.Instance);
+			}
+
+		}
+
 		public JsVal ConvertCOMObjectToJSVal(IntPtr globalObject, nsISupports thisObject)
 		{
 			var writableVariant = new InstanceWrapper<nsIWritableVariant>(Contracts.WritableVariant);
@@ -243,12 +276,8 @@ namespace Gecko
 
 		public void Dispose()
 		{
-#if DELME
-			_contextStack.Instance.Pop();
-			_contextStack.Dispose();
-#endif
-
-			SpiderMonkey.JS_EndRequest(_cx);
+			if (_defaultCompartment != null)
+				_defaultCompartment.Dispose();
 		}
 	}
 }
