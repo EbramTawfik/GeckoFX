@@ -164,5 +164,22 @@ namespace GeckofxUnitTests
 					Assert.Fail(String.Format("JS_GetScriptedGlobal EntryPoint is wrong: {0}", e.Message));
 			}
 		}
+
+		[Test]
+		public void JS_GetContextPrivate_CheckingEntryPointIsCorrect_DoesNotThrowEntryPointNotFoundException()
+		{
+			try
+			{				
+				using (var cx = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
+				{
+					SpiderMonkey.JS_GetContextPrivate(cx.ContextPointer);
+				}
+			}
+			catch (Exception e)
+			{
+				if (e is EntryPointNotFoundException)
+					Assert.Fail(String.Format("JS_GetContextPrivate EntryPoint is wrong: {0}", e.Message));
+			}
+		}
 	}
 }
