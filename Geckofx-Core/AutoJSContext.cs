@@ -84,8 +84,6 @@ namespace Gecko
 		{
 		}
 
-
-
 		/// <summary>
 		/// Evaluate javascript in the current context.
 		/// </summary>
@@ -252,7 +250,7 @@ namespace Gecko
 			return null;
 		}
 
-		private IntPtr ConvertCOMObjectToJSObject(nsISupports obj)
+		public IntPtr ConvertCOMObjectToJSObject(nsISupports obj)
 		{
 			Guid guid = typeof(nsISupports).GUID;
 

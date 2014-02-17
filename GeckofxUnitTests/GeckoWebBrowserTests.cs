@@ -279,20 +279,26 @@ namespace GeckofxUnitTests
 			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
 			{
 				string result;
-				Assert.IsTrue(context.EvaluateScript("this", out result));
+				Assert.IsTrue(context.EvaluateScript("this", (nsISupports)browser.Window.DomWindow, out result));
 				Assert.AreEqual("[object Window]", result);
 
-				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", out result));
+				Assert.IsTrue(context.EvaluateScript("this", (nsISupports)browser.Document.DomObject, out result));
+				Assert.AreEqual("[object HTMLDocument]", result);
+
+				Assert.IsTrue(context.EvaluateScript("this.defaultView", (nsISupports)browser.Document.DomObject, out result));
+				Assert.AreEqual("[object Window]", result);
+
+				Assert.IsTrue(context.EvaluateScript("this.body.innerHTML;", (nsISupports)browser.Document.DomObject, out result));
 				Assert.AreEqual("hello world", result);
 
-				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML = 'hi';", out result));
-				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", out result));
+				Assert.IsTrue(context.EvaluateScript("body.innerHTML = 'hi';", (nsISupports)browser.Document.DomObject, out result));
+				Assert.IsTrue(context.EvaluateScript("body.innerHTML;", (nsISupports)browser.Document.DomObject, out result));
 				Assert.AreEqual("hi", result);
 
 				Assert.IsTrue(context.EvaluateScript("x=10;y=20;x*y;", out result));
 				Assert.AreEqual("200", result);
 			}
-		}
+		} 
 
 		[Test]
 		public void EvaluateScript_JavascriptAccessExistingGlobalObjectsWithoutNormalDocumentSetup_ScriptExecutesAndReturnsExpectedResult()
@@ -300,14 +306,14 @@ namespace GeckofxUnitTests
 			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
 			{
 				string result;
-				Assert.IsTrue(context.EvaluateScript("this", out result));
+				Assert.IsTrue(context.EvaluateScript("this", (nsISupports)browser.Window.DomWindow, out result));
 				Assert.AreEqual("[object Window]", result);
 
-				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", out result));
+				Assert.IsTrue(context.EvaluateScript("body.innerHTML;", (nsISupports)browser.Document.DomObject, out result));
 				Assert.AreEqual(String.Empty, result);
 
-				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML = 'hi';", out result));
-				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", out result));
+				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML = 'hi';", (nsISupports)browser.Window.DomWindow, out result));
+				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", (nsISupports)browser.Window.DomWindow, out result));
 				Assert.AreEqual("hi", result);
 
 				Assert.IsTrue(context.EvaluateScript("x=10;y=20;x*y;", out result));

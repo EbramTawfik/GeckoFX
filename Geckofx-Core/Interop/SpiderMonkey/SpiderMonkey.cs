@@ -205,8 +205,7 @@ namespace Gecko
 
 			return JS_GetRuntime_Win32(jsContext);
 		}
-
-		// TODO: add unittest to check entry point
+		
 		/// <summary>
 		/// This should return an nsISupport object if a option JSOPTION_PRIVATE_IS_NSISUPPORTS is set on the runtime.
 		/// </summary>
@@ -438,6 +437,30 @@ namespace Gecko
 			}
 		}
 
+		public static IntPtr JS_WrapObject(IntPtr cx, IntPtr jsObject)
+		{
+			if (Xpcom.Is32Bit && Xpcom.IsWindows)
+			{
+				MutableHandle mh = new MutableHandle(jsObject);
+				if (JS_WrapObject_Win32(cx, ref mh))
+					return mh.Handle;
+
+				return IntPtr.Zero;
+			}
+
+			throw new NotImplementedException();
+		}
+
+		public static bool IsObjectInContextCompartment(IntPtr jsObject, IntPtr cx)
+		{
+			if (Xpcom.Is32Bit && Xpcom.IsWindows)
+			{
+				return IsObjectInContextCompartment_Win32(jsObject, cx);
+			}
+
+			throw new NotImplementedException();
+		}
+
 		public static void JS_Shutdown()
 		{
 			if (Xpcom.IsWindows)
@@ -600,6 +623,14 @@ namespace Gecko
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_free@@YAXPAUJSContext@@PAX@Z")]
 		private static extern void JS_Free_Win32(IntPtr cx, IntPtr p);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_WrapObject@@YA_NPAUJSContext@@V?$MutableHandle@PAVJSObject@@@JS@@@Z")]
+		[return: MarshalAs(UnmanagedType.U1)]
+		private static extern bool JS_WrapObject_Win32(IntPtr cx, ref MutableHandle p);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?IsObjectInContextCompartment@js@@YA_NPAVJSObject@@PBUJSContext@@@Z")]
+		[return: MarshalAs(UnmanagedType.U1)]
+		private static extern bool IsObjectInContextCompartment_Win32(IntPtr jsObject, IntPtr context);
 
 		/// <summary>
 		/// declaration in jsapi.h
