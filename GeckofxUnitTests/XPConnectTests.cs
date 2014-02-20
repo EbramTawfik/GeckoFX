@@ -45,42 +45,41 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
-		public void FindInterfaceWithMember_OnADocumentElementLookingForNodeNameMethod_ReturnsInterfaceThatContainsMethodNode()
+		public void FindInterfaceWithMember_OnAWindowElementLookingForNameMethod_ReturnsInterfaceThatContainsMethodNode()
 		{
 			_browser.TestLoadHtml("hello world");
-			using (AutoJSContext context = new AutoJSContext(_browser.Window.JSContext))
+			using (var context = new AutoJSContext(_browser.Window.JSContext))
 			{
-				Guid guid = typeof(nsISupports).GUID;
-				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(context.ContextPointer);
-				var wrapper = Xpcom.XPConnect.Instance.WrapNative(context.ContextPointer, globalObject, (nsISupports)_browser.Document.DomObject, ref guid);
-#if PORT
-				var a = m_instance.GetWrappedNativeOfJSObject(context.ContextPointer, wrapper.GetJSObjectAttribute());
-				var jsVal = SpiderMonkeyTests.CreateStringJsVal("nodeName");
+				context.PushCompartmentScope((nsISupports)_browser.Window.DomWindow);				
+				var jsValWindow = context.EvaluateScript("this");
+				var jsVal = SpiderMonkeyTests.CreateStringJsVal(context, "name");				
+				var jsObject = SpiderMonkey.JS_ValueToObject(context.ContextPointer, jsValWindow);
+				var a = m_instance.GetWrappedNativeOfJSObject(context.ContextPointer, jsObject);
+
+				// Perform the test.
 				var i = a.FindInterfaceWithMember(jsVal.AsPtr);
+
 				Assert.NotNull(i);
 				Assert.IsTrue(i.IsScriptable());
-				Assert.AreEqual("nsIDOMHTMLDocument", i.GetNameShared());
-#else
-				throw new NotImplementedException();
-#endif
+				Assert.AreEqual("nsIDOMWindow", i.GetNameShared());
 			}
 		}
 
 		[Test]
-		public void FindInterfaceWithName_OnADocumentElementLookingDOMHTMLDocumentInterface_ReturnsExpectedInterface()
+		public void FindInterfaceWithName_OnAWindowElementLookingForADOMWindowInterface_ReturnsExpectedInterface()
 		{
 			_browser.TestLoadHtml("hello world");
-			using (AutoJSContext context = new AutoJSContext(_browser.Window.JSContext))
+			using (var context = new AutoJSContext(_browser.Window.JSContext))
 			{
-				context.PushCompartmentScope((nsISupports)_browser.Window.DomWindow);
-				Guid guid = typeof(nsISupports).GUID;
-				var jsValWindow = context.EvaluateScript("this");				
+				context.PushCompartmentScope((nsISupports)_browser.Window.DomWindow);				
+				var jsValWindow = context.EvaluateScript("this");			
 				var jsVal = SpiderMonkeyTests.CreateStringJsVal(context, "nsIDOMWindow");
 				var jsObject = SpiderMonkey.JS_ValueToObject(context.ContextPointer, jsValWindow);
-				var a = m_instance.GetWrappedNativeOfJSObject(context.ContextPointer, jsObject);
-				context.PushCompartmentScope((nsISupports)_browser.Window.DomWindow);
-				
+				var a = m_instance.GetWrappedNativeOfJSObject(context.ContextPointer, jsObject);				
+
+				// Perform the test
 				var i = a.FindInterfaceWithName(jsVal.AsPtr);
+
 				Assert.NotNull(i);
 				Assert.IsTrue(i.IsScriptable());
 				Assert.AreEqual("nsIDOMWindow", i.GetNameShared());
