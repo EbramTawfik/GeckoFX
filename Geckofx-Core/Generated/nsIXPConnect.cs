@@ -65,21 +65,21 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInterfaceInfo FindInterfaceWithMember(System.IntPtr nameID);
+		nsIInterfaceInfo FindInterfaceWithMember(ref System.IntPtr nameID);
 		
 		/// <summary>Member FindInterfaceWithName </summary>
 		/// <param name='nameID'> </param>
 		/// <returns>A nsIInterfaceInfo</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInterfaceInfo FindInterfaceWithName(System.IntPtr nameID);
+		nsIInterfaceInfo FindInterfaceWithName(ref System.IntPtr nameID);
 		
 		/// <summary>Member HasNativeMember </summary>
 		/// <param name='name'> </param>
 		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasNativeMember(System.IntPtr name);
+		bool HasNativeMember(ref System.IntPtr name);
 		
 		/// <summary>Member DebugDump </summary>
 		/// <param name='depth'> </param>
