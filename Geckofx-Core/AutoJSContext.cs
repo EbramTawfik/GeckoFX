@@ -149,19 +149,7 @@ namespace Gecko
 
 			return jsValue;
 		}
-
-		internal JsVal EvaluateScript(nsISupports thisObj, string script)
-		{
-			var value = new JsVal();
-			IntPtr globalObject = ConvertCOMObjectToJSObject(thisObj);
-			using (new JSAutoCompartment(_cx, globalObject))
-			{
-				if (SpiderMonkey.JS_EvaluateScript(_cx, globalObject, script, (uint)script.Length, "script", 1, ref value))
-					return value;
-			}
-			return JsVal.FromPtr(0);
-		}
-
+		
 		/// <summary>
 		/// Evaluate javascript in the current context.
 		/// </summary>
