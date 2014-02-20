@@ -34,8 +34,10 @@
 #endregion END LICENSE BLOCK
 
 using System;
+using System.Collections;
 using System.Runtime.InteropServices;
 using Gecko.Interop;
+using System.Collections.Generic;
 
 namespace Gecko
 {
@@ -49,6 +51,39 @@ namespace Gecko
 		private JSAutoCompartment _defaultCompartment;
 
 		public IntPtr ContextPointer { get { return _cx; } }
+
+		Stack<JSAutoCompartment> _compartmentStack = new Stack<JSAutoCompartment>();
+
+		public void PushCompartmentScope(nsISupports obj)
+		{
+			_compartmentStack.Push(new JSAutoCompartment(this, obj));
+		}
+
+		public IntPtr PopCompartmentScope()
+		{
+			if (_compartmentStack.Count <= 0)
+				throw new InvalidOperationException("The Compartment stack is empty.");
+
+
+			var autoCompartment = _compartmentStack.Pop();
+			IntPtr ret = autoCompartment.ScopeObject;
+			autoCompartment.Dispose();
+
+			return ret;
+		}
+
+		public void PushCompartmentScope(IntPtr jsObject)
+		{
+			_compartmentStack.Push(new JSAutoCompartment(ContextPointer, jsObject));
+		}
+
+		public IntPtr PeekCompartmentScope()
+		{
+			if (_compartmentStack.Count > 0)
+				return _compartmentStack.Peek().ScopeObject;
+
+			return _defaultCompartment.ScopeObject;
+		}
 
 		/// <summary>
 		/// Create a AutoJSContext using the SafeJSContext.
@@ -105,7 +140,7 @@ namespace Gecko
 		public JsVal EvaluateScript(string javaScript)
 		{
 			var jsValue = new JsVal();
-			var ret = SpiderMonkey.JS_EvaluateScript(_cx, GetGlobalObject(), javaScript, (uint)javaScript.Length, "script", 1, ref jsValue);
+			var ret = SpiderMonkey.JS_EvaluateScript(_cx, PeekCompartmentScope(), javaScript, (uint)javaScript.Length, "script", 1, ref jsValue);
 
 			if (!ret)
 			{
@@ -274,6 +309,9 @@ namespace Gecko
 
 		public void Dispose()
 		{
+			while (_compartmentStack.Count > 0)
+				_compartmentStack.Pop().Dispose();
+
 			if (_defaultCompartment != null)
 				_defaultCompartment.Dispose();
 		}

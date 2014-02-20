@@ -79,6 +79,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoJSContextTests.cs" />
     <Compile Include="ByteArrayInputStreamTests.cs" />
     <Compile Include="ControllersTests.cs" />
     <Compile Include="CrossLanguageTests.cs" />
