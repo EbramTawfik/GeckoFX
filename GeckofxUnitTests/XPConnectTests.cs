@@ -66,43 +66,24 @@ namespace GeckofxUnitTests
 			}
 		}
 
-#if DELME
-		[Test]
-		public void __()
-		{
-			_browser.TestLoadSvg("<polygon fill='red' stroke='red' points='571,-828 517,-828 517,-792 571,-792 571,-828'/>");
-
-			var a = ((_browser.DomDocument as SvgDocument).RootElement as GeckoNode).ChildNodes[0];
-			Console.WriteLine(a);
-			Assert.IsTrue(((_browser.DomDocument as SvgDocument).RootElement as GeckoNode).ChildNodes[0] is GeckoElement);
-		}
-#endif
-
 		[Test]
 		public void FindInterfaceWithName_OnADocumentElementLookingDOMHTMLDocumentInterface_ReturnsExpectedInterface()
 		{
 			_browser.TestLoadHtml("hello world");
 			using (AutoJSContext context = new AutoJSContext(_browser.Window.JSContext))
 			{
+				context.PushCompartmentScope((nsISupports)_browser.Window.DomWindow);
 				Guid guid = typeof(nsISupports).GUID;
-				IntPtr globalObject = SpiderMonkey.DefaultObjectForContextOrNull(context.ContextPointer);
-				SpiderMonkey.JS_EnterCompartment(context.ContextPointer, globalObject);
-				var jsVal = context.ConvertCOMObjectToJSVal(globalObject, (nsISupports)_browser.Document.DomObject);
-				var type = SpiderMonkey.JS_TypeOfValue(context.ContextPointer, jsVal);
-				Console.WriteLine("Type is {0}", type);
-				var jsObject = SpiderMonkey.JS_ValueToObject(context.ContextPointer, jsVal);				
-#if PORT
+				var jsValWindow = context.EvaluateScript("this");				
+				var jsVal = SpiderMonkeyTests.CreateStringJsVal(context, "nsIDOMWindow");
+				var jsObject = SpiderMonkey.JS_ValueToObject(context.ContextPointer, jsValWindow);
 				var a = m_instance.GetWrappedNativeOfJSObject(context.ContextPointer, jsObject);
-				var wrapper = Xpcom.XPConnect.Instance.WrapNative(context.ContextPointer, globalObject, (nsISupports)_browser.Document.DomObject, ref guid);
+				context.PushCompartmentScope((nsISupports)_browser.Window.DomWindow);
 				
-				var jsVal = SpiderMonkeyTests.CreateStringJsVal("nsIDOMHTMLDocument");
 				var i = a.FindInterfaceWithName(jsVal.AsPtr);
 				Assert.NotNull(i);
 				Assert.IsTrue(i.IsScriptable());
-				Assert.AreEqual("nsIDOMHTMLDocument", i.GetNameShared());
-#else
-				throw new NotImplementedException();
-#endif
+				Assert.AreEqual("nsIDOMWindow", i.GetNameShared());
 			}
 		}
 

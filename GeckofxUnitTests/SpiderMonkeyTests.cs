@@ -32,6 +32,12 @@ namespace GeckofxUnitTests
 			return CreateJsVal(jscript);	
 		}
 
+		internal static JsVal CreateStringJsVal(AutoJSContext context, string value)
+		{
+			string jscript = String.Format("'{0}';", value);
+			return CreateJsVal(context, jscript);
+		}
+
 		/// <summary>
 		/// Unittest helper method to create a Number JsVal
 		/// </summary>
@@ -63,13 +69,21 @@ namespace GeckofxUnitTests
 		{
 			using (AutoJSContext cx = new AutoJSContext())
 			{				
+				return CreateJsVal(cx, jscript);
+			}
+		}
+
+		private static JsVal CreateJsVal(AutoJSContext cx, string jscript)
+		{
+			if (cx == null)
+				return CreateJsVal(jscript);
+
 				var ptr = new JsVal();
-				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(cx.ContextPointer);
-				bool ret = SpiderMonkey.JS_EvaluateScript(cx.ContextPointer, globalObject, jscript, (uint)jscript.Length, "script", 1, ref ptr);
+				IntPtr scope = cx.PeekCompartmentScope();
+				bool ret = SpiderMonkey.JS_EvaluateScript(cx.ContextPointer, scope, jscript, (uint)jscript.Length, "script", 1, ref ptr);
 				Assert.IsTrue(ret);
 				return ptr;
 			}
-		}
 
 		[Test]
 		public void JS_TypeOfValue()
