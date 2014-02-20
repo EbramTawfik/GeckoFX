@@ -28,8 +28,7 @@ namespace Gecko
 				return JS_EncodeString_Win64(cx, jsString);
 			}
 		}
-
-		// TODO: add entry point unittest.
+		
 		public static JSType JS_TypeOfValue(IntPtr cx, JsVal jsVal)
 		{
 			if (Xpcom.Is32Bit)
@@ -47,8 +46,7 @@ namespace Gecko
 				return JS_TypeOfValue_Win64(cx, jsVal);
 			}
 		}		
-
-		// TODO: add entry point unittest.
+		
 		public static IntPtr JS_ValueToString(IntPtr cx, JsVal v)
 		{
 			if (Xpcom.Is32Bit)
@@ -66,8 +64,7 @@ namespace Gecko
 				return JS_ValueToString_Win64(cx, v);
 			}
 		}
-
-		// TODO: add unittest to test the entry point.
+		
 		public static IntPtr JS_ValueToObject(IntPtr cx, JsVal v)
 		{
 			if (Xpcom.Is32Bit)
@@ -86,7 +83,6 @@ namespace Gecko
 				throw new NotImplementedException();
 			}
 		}
-
 
 		public static IntPtr JS_NewStringCopyN(IntPtr cx, string str, int length)
 		{
@@ -114,36 +110,33 @@ namespace Gecko
 		/// </summary>
 		/// <param name="aJSContext"></param>
 		/// <returns></returns>
+		[Obsolete]
 		public static IntPtr JS_GetGlobalForScopeChain(IntPtr aJSContext)
 		{
 			return DefaultObjectForContextOrNull(aJSContext);	
 		}
-
-		// TODO: add unittest to check entry point.
+		
 		public static IntPtr JS_GetGlobalForObject(IntPtr jsContext, IntPtr jsObject)
 		{
 			return JS_GetGlobalForObject_Win32(jsContext, jsObject);
 		}
-
-		// TODO: add unittest to check entry point
+		
 		public static IntPtr GetGlobalForObjectCrossCompartment(IntPtr jsObject)
 		{
 			return GetGlobalForObjectCrossCompartment_Win32(jsObject);
 		}
-
-		// TODO: add unittest to check entry point
+		
 		public static bool JS_SaveFrameChain(IntPtr jsContext)
 		{
 			return JS_SaveFrameChain_Win32(jsContext);
 		}
 
-		// TODO: add unittest to check entry point
 		public static IntPtr JS_NewObject(IntPtr context, IntPtr globalClass, IntPtr proto, IntPtr parent)
 		{
 			return JS_NewObject_Win32(context, globalClass, proto, parent);
 		}
 		
-		// TODO: add unittest to check entry point
+
 		public static IntPtr JS_GetParent(IntPtr jsObject)
 		{
 			return JS_GetParent_Win32(jsObject);
@@ -171,7 +164,6 @@ namespace Gecko
 			}
 		}
 
-		// TODO: add unitest to check entrypoint in SpiderMonkeyTests.
 		public static IntPtr CurrentGlobalOrNull(IntPtr aJSContext)
 		{
 			if (Xpcom.Is32Bit)
@@ -188,7 +180,6 @@ namespace Gecko
 			}
 		}
 
-		// TODO: add unittest to check entrypoint in SpiderMonkeyTests
 		public static IntPtr JS_NewContext(IntPtr runtime, int stackChunkSize)
 		{
 			if (!Xpcom.Is32Bit || !Xpcom.IsWindows)
@@ -197,7 +188,6 @@ namespace Gecko
 			return JS_NewContext_Win32(runtime, stackChunkSize);
 		}
 
-		// TODO: add unittest to check entry point
 		public static IntPtr JS_GetRuntime(IntPtr jsContext)
 		{
 			if (!Xpcom.Is32Bit || !Xpcom.IsWindows)
@@ -219,7 +209,6 @@ namespace Gecko
 			return JS_GetContextPrivate_Win32(jsContext);
 		}
 
-		// TODO: add entry point unittest
 		public static void JS_SetContextPrivate(IntPtr jsContext, IntPtr data)
 		{
 			if (!Xpcom.Is32Bit || !Xpcom.IsWindows)
@@ -228,7 +217,6 @@ namespace Gecko
 			JS_SetContextPrivate_Win32(jsContext, data);
 		}
 
-		// TODO: add entry point unittest
 		public static IntPtr DefaultObjectForContextOrNull(IntPtr jsContext)
 		{
 			if (!Xpcom.Is32Bit || !Xpcom.IsWindows)
@@ -273,8 +261,7 @@ namespace Gecko
 				return JS_EndRequest_Win64(cx);
 			}
 		}
-
-		// TODO: add unittest to check entry point
+		
 		public static bool JS_EvaluateScript(IntPtr cx, IntPtr obj, string src, UInt32 length, string filename, UInt32 lineno, ref JsVal jsval)
 		{
 			if (cx == IntPtr.Zero)
@@ -316,8 +303,7 @@ namespace Gecko
 				return JS_EvaluateScriptForPrincipals_Win64(cx, obj, principals, src, length, filename, lineno, ref jsval);
 			}
 		}
-
-		// TODO: add entry point unittest
+	
 		public static IntPtr JS_GetClassObject(IntPtr context, IntPtr proto)
 		{
 			if (!Xpcom.Is32Bit || Xpcom.IsLinux)
@@ -327,9 +313,7 @@ namespace Gecko
 			JS_GetClassObject_Win32(context, proto, ref m);
 			return m.Handle;
 		}
-		
-
-		// TODO: add entry point unittest
+				
 		public static IntPtr JS_GetClass(IntPtr obj)
 		{
 			if (Xpcom.Is32Bit)

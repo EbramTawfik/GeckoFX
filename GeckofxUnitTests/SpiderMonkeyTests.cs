@@ -131,55 +131,81 @@ namespace GeckofxUnitTests
 			}
 		}
 
-		[Test]
-		public void JS_SetContextCallback_CheckingEntryPointIsCorrect_DoesNotThrowEntryPointNotFoundExecption()
+		public IEnumerable<KeyValuePair<string, Action<IntPtr>>> EntryPoints()
 		{
-			try
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_EncodeString", (c) => SpiderMonkey.JS_EncodeString(IntPtr.Zero, IntPtr.Zero));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_TypeOfValue", (c) => SpiderMonkey.JS_TypeOfValue(IntPtr.Zero, default(JsVal)));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_ValueToString", (c) => SpiderMonkey.JS_ValueToString(IntPtr.Zero, default(JsVal)));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_ValueToObject", (c) => SpiderMonkey.JS_ValueToObject(IntPtr.Zero, default(JsVal)));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_NewStringCopyN", (c) => SpiderMonkey.JS_NewStringCopyN(c, "", 0));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetGlobalForObject", (c) => SpiderMonkey.JS_GetGlobalForObject(c, IntPtr.Zero));
+			yield return new KeyValuePair<string, Action<IntPtr>>("GetGlobalForObjectCrossCompartment", (c) => SpiderMonkey.GetGlobalForObjectCrossCompartment(IntPtr.Zero));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_SaveFrameChain", (c) => SpiderMonkey.JS_SaveFrameChain(c));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_NewObject", (c) => SpiderMonkey.JS_NewObject(c, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetParent", (c) => SpiderMonkey.JS_GetParent(IntPtr.Zero));						
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetScriptedGlobal", (c) => SpiderMonkey.JS_GetScriptedGlobal(c));
+			yield return new KeyValuePair<string, Action<IntPtr>>("CurrentGlobalOrNull", (c) => SpiderMonkey.CurrentGlobalOrNull(c));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_NewContext", (c) => SpiderMonkey.JS_NewContext(IntPtr.Zero, 0));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetRuntime", (c) => SpiderMonkey.JS_GetRuntime(c));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetContextPrivate", (c) => SpiderMonkey.JS_GetContextPrivate(c));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_SetContextPrivate", (c) => SpiderMonkey.JS_SetContextPrivate(c, IntPtr.Zero));
+			yield return new KeyValuePair<string, Action<IntPtr>>("DefaultObjectForContextOrNull", (c) => SpiderMonkey.DefaultObjectForContextOrNull(c));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_BeginRequest", (c) => SpiderMonkey.JS_BeginRequest(c));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_EndRequest", (c) => SpiderMonkey.JS_EndRequest(c));			
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_EvaluateScript", (c) =>
 			{
-				SpiderMonkey.JS_SetContextCallback(IntPtr.Zero, null);
-			}
-			catch (Exception e)
+				var jsVal = new JsVal();
+				SpiderMonkey.JS_EvaluateScript(c, IntPtr.Zero, "", 0, "", 0, ref jsVal);
+			});
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_EvaluateScriptForPrincipals", (c) =>
 			{
-				if (e is EntryPointNotFoundException)
-					Assert.Fail(String.Format("JS_SetContextCallback EntryPoint is wrong: {0}", e.Message));
-			}
+				var jsVal = new JsVal();
+				SpiderMonkey.JS_EvaluateScriptForPrincipals(c, IntPtr.Zero, IntPtr.Zero, "", 0, "", 0, ref jsVal);
+			});
+			
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetClassObject", (c) => SpiderMonkey.JS_GetClassObject(c, IntPtr.Zero));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetClass", (c) => SpiderMonkey.JS_GetClass(IntPtr.Zero));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_ContextIterator", (c) =>
+			{
+				var pt = IntPtr.Zero;
+				SpiderMonkey.JS_ContextIterator(IntPtr.Zero, ref pt);
+			});
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_SetContextCallback", (c) => SpiderMonkey.JS_SetContextCallback(IntPtr.Zero, null));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_EnterCompartment", (c) => SpiderMonkey.JS_EnterCompartment(c, IntPtr.Zero));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_LeaveCompartment", (c) => SpiderMonkey.JS_LeaveCompartment(c, IntPtr.Zero));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_Free", (c) => SpiderMonkey.JS_Free(c, IntPtr.Zero));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_WrapObject", (c) => SpiderMonkey.JS_WrapObject(c, IntPtr.Zero));
+			yield return new KeyValuePair<string, Action<IntPtr>>("IsObjectInContextCompartment", (c) => SpiderMonkey.IsObjectInContextCompartment(IntPtr.Zero, c));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_Shutdown", (c) => SpiderMonkey.JS_Shutdown());
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_DestroyRuntime", (c) => SpiderMonkey.JS_DestroyRuntime(IntPtr.Zero));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_HasProperty", (c) => SpiderMonkey.JS_HasProperty(c, IntPtr.Zero, ""));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetProperty", (c) => SpiderMonkey.JS_GetProperty(c, IntPtr.Zero, ""));
 		}
 
 		[Test]
-		public void JS_GetScriptedGlobal_CheckingEntryPointIsCorrect_DoesNotThrowEntryPointNotFoundExecption()
+		public void SpiderMonkeyEntryPointTests()
 		{
-			try
+			foreach (var entryPoint in EntryPoints())
 			{
 				var dummy = new GeckoWebBrowser();
 				dummy.CreateControl();
 				var dummyHandle = dummy.Handle;
-				using (var cx = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
+
+				// Try us around the using because, AutoJSContext can throw exception caused by the junk arguments we pass to EntryPoints.
+				try
 				{
-					SpiderMonkey.JS_GetScriptedGlobal(cx.ContextPointer);
+					using (var cx = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
+					{					
+							entryPoint.Value(IntPtr.Zero);
+					}
 				}
-			}
-			catch (Exception e)
-			{
-				if (e is EntryPointNotFoundException)
-					Assert.Fail(String.Format("JS_GetScriptedGlobal EntryPoint is wrong: {0}", e.Message));
+				catch (Exception e)
+				{
+					if (e is EntryPointNotFoundException)
+						Assert.Fail(String.Format("{0} EntryPoint is wrong: {1}", entryPoint.Value, e.Message));
+				}
 			}
 		}
 
-		[Test]
-		public void JS_GetContextPrivate_CheckingEntryPointIsCorrect_DoesNotThrowEntryPointNotFoundException()
-		{
-			try
-			{				
-				using (var cx = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
-				{
-					SpiderMonkey.JS_GetContextPrivate(cx.ContextPointer);
-				}
-			}
-			catch (Exception e)
-			{
-				if (e is EntryPointNotFoundException)
-					Assert.Fail(String.Format("JS_GetContextPrivate EntryPoint is wrong: {0}", e.Message));
-			}
-		}
 	}
 }
