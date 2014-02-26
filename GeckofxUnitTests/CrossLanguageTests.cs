@@ -82,6 +82,7 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		[Ignore("Disable test when upgrading to firefox 29")]
 		public void JavaScriptToCSharpCallBack()
 		{						
 			// Note: Firefox 17 removed enablePrivilege #546848 - refactored test so that javascript to create "@mozillazine.org/example/priority;1" is now executated by AutoJsContext 
@@ -170,6 +171,7 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]		
+		[Ignore("Disable test when upgrading to firefox 29")]
 		public void CSharpInvokingJavascriptComObjects()
 		{
 			// Note: Firefox 17 removed enablePrivilege #546848 - refactored test so that javascript to create "@mozillazine.org/example/priority;1" is now executated by AutoJsContext 
