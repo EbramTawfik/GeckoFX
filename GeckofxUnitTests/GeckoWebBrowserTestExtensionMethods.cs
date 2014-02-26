@@ -45,7 +45,7 @@ namespace GeckofxUnitTests
 
 							 + "<html xmlns=\"http://www.w3.org/1999/xhtml\" >"
 
-							 + "<body " + contenteditable + ">" + innerHtml + "</body></html>");
+							 + "<body " + contenteditable + ">" + innerHtml + "</body></html>", "http://www.test.com");
 
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 		}
