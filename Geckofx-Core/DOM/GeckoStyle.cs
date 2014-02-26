@@ -216,9 +216,9 @@ namespace Gecko
 			{
 				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
 				{
-					nsIDOMCSSRuleList ret;
-					ret = StyleSheet._DomStyleSheet.GetCssRulesAttribute();					
-					return ret;
+					context.PushCompartmentScope((nsISupports)StyleSheet._DomStyleSheet);
+					var val = context.EvaluateScriptBypassingSomeSecurityRestrictions("this.cssRules;");					
+					return (nsIDOMCSSRuleList)val.ToObject();
 				}
 			}
 
@@ -300,7 +300,9 @@ namespace Gecko
 
 				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
 				{
-					index = (int)StyleSheet._DomStyleSheet.InsertRule(new nsAString(rule), (uint)index);										
+					context.PushCompartmentScope((nsISupports)StyleSheet._DomStyleSheet);
+					var val = context.EvaluateScriptBypassingSomeSecurityRestrictions(String.Format("this.insertRule('{0}',{1});", rule, index));
+					return val.ToInteger();
 				}
 				
 				return index;
@@ -319,7 +321,8 @@ namespace Gecko
 
 				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
 				{
-					StyleSheet._DomStyleSheet.DeleteRule((uint)index);
+					context.PushCompartmentScope((nsISupports)StyleSheet._DomStyleSheet);
+					var val = context.EvaluateScriptBypassingSomeSecurityRestrictions(String.Format("DeleteRule({0});", index));
 				}
 			}
 			
@@ -333,8 +336,9 @@ namespace Gecko
 
 				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
 				{
+					context.PushCompartmentScope((nsISupports)StyleSheet._DomStyleSheet);
 					for (int i = Count - 1; i >= 0; i--)
-						StyleSheet._DomStyleSheet.DeleteRule((uint)i);
+						context.EvaluateScriptBypassingSomeSecurityRestrictions(String.Format("deleteRule({0});", i));
 				}
 			}
 			
