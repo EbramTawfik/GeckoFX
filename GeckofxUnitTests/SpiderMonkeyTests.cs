@@ -194,6 +194,11 @@ namespace GeckofxUnitTests
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_DestroyRuntime", (c) => SpiderMonkey.JS_DestroyRuntime(IntPtr.Zero));
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_HasProperty", (c) => SpiderMonkey.JS_HasProperty(c, IntPtr.Zero, ""));
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetProperty", (c) => SpiderMonkey.JS_GetProperty(c, IntPtr.Zero, ""));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_SetCompartmentPrincipals", (c) => SpiderMonkey.JS_SetCompartmentPrincipals(c, IntPtr.Zero));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetCompartmentPrincipals", (c) => SpiderMonkey.JS_GetCompartmentPrincipals(c));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_SetTrustedPrincipals", (c) => SpiderMonkey.JS_SetTrustedPrincipals(IntPtr.Zero, IntPtr.Zero));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetPendingException", (c) => SpiderMonkey.JS_GetPendingException(c));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_SetErrorReporter", (c) => SpiderMonkey.JS_SetErrorReporter(c, (cx, message, report) => {}));
 		}
 
 		[Test]

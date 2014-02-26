@@ -505,11 +505,74 @@ namespace Gecko
 			}
 		}
 
+		public static void JS_SetCompartmentPrincipals(IntPtr jsCompartment, IntPtr principals)
+		{
+			if (Xpcom.IsLinux)
+				throw new NotImplementedException();
+
+			if (Xpcom.Is64Bit)
+				throw new NotImplementedException();
+
+			JS_SetCompartmentPrincipals_Win32(jsCompartment, principals);
+		}
+
+		public static IntPtr JS_GetCompartmentPrincipals(IntPtr jsCompartment)
+		{
+			if (Xpcom.IsLinux)
+				throw new NotImplementedException();
+
+			if (Xpcom.Is64Bit)
+				throw new NotImplementedException();
+
+			return JS_GetCompartmentPrincipals_Win32(jsCompartment);
+		}
+
+		public static void JS_SetTrustedPrincipals(IntPtr runtime, IntPtr principals)
+		{
+			if (Xpcom.IsLinux)
+				throw new NotImplementedException();
+
+			if (Xpcom.Is64Bit)
+				throw new NotImplementedException();
+
+			JS_SetCompartmentPrincipals_Win32(runtime, principals);
+		}
+
+		public static IntPtr JS_GetPendingException(IntPtr cx)
+		{
+			if (Xpcom.IsLinux)
+				throw new NotImplementedException();
+
+			if (Xpcom.Is64Bit)
+				throw new NotImplementedException();
+
+			MutableHandle mutableHandle = new MutableHandle();
+			bool success = JS_GetPendingException_Win32(cx, ref mutableHandle);
+			if (!success)
+				return IntPtr.Zero;
+
+			return mutableHandle.Handle;
+		}
+
+		public static JSErrorReportCallback JS_SetErrorReporter(IntPtr cx, JSErrorReportCallback callback)
+		{
+			if (Xpcom.IsLinux)
+				throw new NotImplementedException();
+
+			if (Xpcom.Is64Bit)
+				throw new NotImplementedException();
+
+			return JS_SetErrorReporter_Win32(cx, callback);
+		}
+
+
 		#endregion
 
 		[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
 		public delegate JSBool JSContextCallback(IntPtr cx, UInt32 contextOp);
 
+		[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+		public delegate void JSErrorReportCallback(IntPtr cx, string message, IntPtr report);
 
 		#region Windows x86
 
@@ -520,6 +583,15 @@ namespace Gecko
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetProperty@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDV?$MutableHandle@VValue@JS@@@3@@Z")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		private static extern bool JS_GetProperty_Win32(IntPtr cx, ref IntPtr jsObject, string name, ref JsVal jsValue);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetCompartmentPrincipals@@YAXPAUJSCompartment@@PAUJSPrincipals@@@Z")]
+		private static extern void JS_SetCompartmentPrincipals_Win32(IntPtr jsCompartment, IntPtr principals);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetCompartmentPrincipals@@YAPAUJSPrincipals@@PAUJSCompartment@@@Z")]
+		private static extern IntPtr JS_GetCompartmentPrincipals_Win32(IntPtr jsCompartment);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetTrustedPrincipals@@YAXPAUJSRuntime@@PBUJSPrincipals@@@Z")]
+		private static extern void JS_SetTrustedPrincipals_Win32(IntPtr runtime, IntPtr principals);
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EncodeString@@YAPADPAUJSContext@@PAVJSString@@@Z")]
 		private static extern IntPtr JS_EncodeString_Win32(IntPtr cx, IntPtr jsString);
@@ -625,6 +697,13 @@ namespace Gecko
 		/// <returns></returns>
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetContextCallback@@YAXPAUJSRuntime@@P6A_NPAUJSContext@@IPAX@Z2@Z")]
 		private static extern void JS_SetContextCallback_Win32(IntPtr rt, JSContextCallback cb, IntPtr data);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetPendingException@@YA_NPAUJSContext@@V?$MutableHandle@VValue@JS@@@JS@@@Z")]
+		[return: MarshalAs(UnmanagedType.U1)]
+		private static extern bool JS_GetPendingException_Win32(IntPtr cx, ref MutableHandle handle);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetErrorReporter@@YAP6AXPAUJSContext@@PBDPAUJSErrorReport@@@Z0P6AX012@Z@Z")]		
+		private static extern JSErrorReportCallback JS_SetErrorReporter_Win32(IntPtr cx, JSErrorReportCallback callback);		
 
 		#endregion
 
