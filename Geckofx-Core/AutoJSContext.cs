@@ -139,16 +139,43 @@ namespace Gecko
 
 		public JsVal EvaluateScript(string javaScript)
 		{
+
+			string msg = String.Empty;
+			var old = SpiderMonkey.JS_SetErrorReporter(_cx, (cx, message, report) => { msg = message; });
+			try
+			{
 			var jsValue = new JsVal();
-			var ret = SpiderMonkey.JS_EvaluateScript(_cx, PeekCompartmentScope(), javaScript, (uint)javaScript.Length, "script", 1, ref jsValue);
+				var ret = SpiderMonkey.JS_EvaluateScript(_cx, PeekCompartmentScope(), javaScript, (uint) javaScript.Length, "script",
+					1, ref jsValue);
 
 			if (!ret)
 			{
-				//TODO: Throw a user exception here. How to get out the reason why it failed?
+					throw new GeckoJavaScriptException(String.Format("JSError : {0}", msg));
 			}
 
 			return jsValue;
 		}
+			finally
+			{
+				SpiderMonkey.JS_SetErrorReporter(_cx, old);
+			}
+		}
+
+		/// <summary>
+		/// EvaluateScript Bypassing some Security Restrictions. 
+		/// This comes at a performance and complexity cost, so only use if really neccessary.
+		/// </summary>
+		/// <param name="javaScript"></param>
+		/// <returns></returns>
+		public JsVal EvaluateScriptBypassingSomeSecurityRestrictions(string javaScript)
+		{
+			EvaluateScript(String.Format("parentthis = this; GeckoFxHandler = function GeckoFxHandler() {{ function geckofxInner() {{ GeckofxEvalScriptEventResult = {0}; }}; geckofxInner.call(parentthis); }}", javaScript));
+			EvaluateScript("document.addEventListener('geckofxEvalScriptEvent', GeckoFxHandler, false);");
+			EvaluateScript("var evt = document.createEvent('Event'); evt.initEvent('geckofxEvalScriptEvent',true,true); document.dispatchEvent(evt);");
+			var result = EvaluateScript("GeckofxEvalScriptEventResult;");
+			EvaluateScript("document.removeEventListener('geckofxEvalScriptEvent', GeckoFxHandler, false);");
+			return result;
+		}		
 		
 		/// <summary>
 		/// Evaluate javascript in the current context.
