@@ -229,9 +229,7 @@ namespace GeckofxUnitTests
 			                 <html><head>
 			                 <script type='text/javascript'>
 								window.onload= function() {
-									event = document.createEvent('MessageEvent');
-									var origin = window.location.protocol + '//' + window.location.host;
-									event.initMessageEvent ('callMe', true, true, 'some data', origin, 1234, window, null);
+									var event = new MessageEvent('callMe',  { 'view' : window, 'bubbles' : true, 'cancelable' : false, 'data' : 'some data'}); document.dispatchEvent (event);
 									document.dispatchEvent (event);
 								}
 							</script>
