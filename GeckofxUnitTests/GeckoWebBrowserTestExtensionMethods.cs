@@ -14,7 +14,7 @@ namespace GeckofxUnitTests
 	public static class GeckoWebBrowserTextExtensionMethods
 	{
 		/// <summary>
-		/// Helper method to initalize a document with html and wait until document is ready.
+		/// Helper method to initialize a document with html and wait until document is ready.
 		/// </summary>
 		/// <param name="innerHtml"></param>
 		internal static void TestLoadHtml(this GeckoWebBrowser browser, string innerHtml)
@@ -23,7 +23,7 @@ namespace GeckofxUnitTests
 		}
 
 		/// <summary>
-		/// Helper method to initalize a content editable document with html and wait until document is ready.
+		/// Helper method to initialize a content editable document with html and wait until document is ready.
 		/// </summary>
 		/// <param name="innerHtml"></param>
 		internal static void TestLoadEditableHtml(this GeckoWebBrowser browser, string innerHtml)
@@ -32,22 +32,38 @@ namespace GeckofxUnitTests
 		}
 
 		/// <summary>
-		/// Helper method to initalize a content editable document with html and wait until document is ready.
+		/// Helper method to initialize a content editable document with html and wait until document is ready.
+		/// </summary>
+		/// <param name="innerHtml"></param>
+		internal static void TestLoadEditableHtmlViaStream(this GeckoWebBrowser browser, string innerHtml)
+		{
+			LoadHtml(browser, innerHtml, true, "http://example.com");
+		}
+
+		private static void LoadHtml(this GeckoWebBrowser browser, string innerHtml, bool editable, string urlForStreamLoad)
+		{
+			string contenteditable = editable ? "contenteditable=\"true\"" : string.Empty;
+			browser.LoadHtml("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"
+
+							+ "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"
+
+							 + "<html xmlns=\"http://www.w3.org/1999/xhtml\" >"
+
+							 + "<body " + contenteditable + ">" + innerHtml + "</body></html>", urlForStreamLoad);
+
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+			
+		}
+
+		/// <summary>
+		/// Helper method to initialize a content editable document with html and wait until document is ready.
 		/// </summary>
 		/// <param name="innerHtml"></param>
 		/// <param name="editable"></param>
 		private static void LoadHtml(this GeckoWebBrowser browser, string innerHtml, bool editable)
 		{
-			string contenteditable = editable ? "contenteditable=\"true\"" : string.Empty;
-			browser.LoadHtml("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"
-								
-							+ "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"
-
-							 + "<html xmlns=\"http://www.w3.org/1999/xhtml\" >"
-
-							 + "<body " + contenteditable + ">" + innerHtml + "</body></html>", "http://www.test.com");
-
-			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			LoadHtml(browser, innerHtml, editable, null);
 		}
 
 		/// <summary>

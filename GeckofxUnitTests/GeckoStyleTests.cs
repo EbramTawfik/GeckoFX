@@ -19,7 +19,7 @@ namespace GeckofxUnitTests
 			var unused = _browser.Handle;
 			Assert.IsNotNull(_browser);
 
-			_browser.TestLoadHtml("<html><head><style type='text/css'>body { color: red }</style></head><body>some random html</body></html>");
+			_browser.TestLoadEditableHtmlViaStream("<html><head><style type='text/css'>body { color: red }</style></head><body>some random html</body></html>");
 			_style = _browser.Document.Body.Style;
 		}
 

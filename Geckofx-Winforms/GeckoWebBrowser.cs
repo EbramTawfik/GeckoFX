@@ -372,7 +372,10 @@ namespace Gecko
 
         public void LoadHtml(string content, string url)
         {
-			LoadContent(content, url, "text/html");
+	        if (url != null)
+		        LoadContent(content, url, "text/html");
+	        else
+		        LoadHtml(content);
         }
 
 		public void LoadContent(string content, string url, string contentType)
@@ -381,22 +384,21 @@ namespace Gecko
 				throw new ArgumentNullException("url");
 
 			using (var sContentType = new nsACString(contentType))
+			using (var sUtf8 = new nsACString("UTF8"))
 			{
-				using (var sUtf8 = new nsACString("UTF8"))
+				ByteArrayInputStream inputStream = null;
+				try
 				{
-					ByteArrayInputStream inputStream = null;
-					try
-					{
-						inputStream = ByteArrayInputStream.Create(System.Text.Encoding.UTF8.GetBytes(content != null ? content : string.Empty));
+					inputStream = ByteArrayInputStream.Create(System.Text.Encoding.UTF8.GetBytes(content != null ? content : string.Empty));
 
-						nsIDocShell docShell = Xpcom.QueryInterface<nsIDocShell>(this.WebBrowser);
-						docShell.LoadStream(inputStream, IOService.CreateNsIUri(url), sContentType, sUtf8, null);
-						Marshal.ReleaseComObject(docShell);	
-					}
-					finally
-					{
-						if (inputStream != null) inputStream.Close();
-					}
+					nsIDocShell docShell = Xpcom.QueryInterface<nsIDocShell>(this.WebBrowser);
+					docShell.LoadStream(inputStream, IOService.CreateNsIUri(url), sContentType, sUtf8, null);					
+					Marshal.ReleaseComObject(docShell);
+				}
+				finally
+				{
+					if (inputStream != null)
+						inputStream.Close();
 				}
 			}
 		} 
