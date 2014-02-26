@@ -1241,15 +1241,7 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.CreateInstance<nsIAtomService>("@mozilla.org/atom-service;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingByteBuffer_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/byte-buffer;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
+		}		
 
 		[Test]
 		public void CreateInstance_CreatingIniParserFactory_ReturnsValidInstance()
