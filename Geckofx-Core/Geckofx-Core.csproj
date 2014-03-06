@@ -107,15 +107,12 @@
     <Compile Include="DOM\Events\DomDragEventArgs.cs" />
     <Compile Include="DOM\Events\DomEventArgs.cs" />
     <Compile Include="DOM\Events\DomMouseEventArgs.cs" />
-    <Compile Include="DOM\Events\DomSvgEvent.cs" />
     <Compile Include="DOM\Events\DomUIEventArgs.cs" />
     <Compile Include="DOM\GeckoNamedNodeMap.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DOM\Svg\SvgDocument.cs" />
     <Compile Include="DOM\Svg\SvgElement.cs" />
     <Compile Include="DOM\Svg\SvgSvgElement.cs" />
-    <Compile Include="DOM\Svg\DomSvgAnimatedLength.cs" />
     <Compile Include="DOM\Svg\SvgLength.cs" />
     <Compile Include="Events\GeckoDocumentCompletedEventArgs.cs" />
     <Compile Include="Events\GeckoEventList.cs">
@@ -228,7 +225,6 @@
     <Compile Include="Net\HttpActivityDistributor.cs" />
     <Compile Include="Services\CertOverrideService.cs" />
     <Compile Include="Services\RandomGenerator.cs" />
-    <Compile Include="Services\ExceptionService.cs" />
     <Compile Include="Services\VersionComparator.cs" />
     <Compile Include="Services\WindowWatcher.cs" />
     <Compile Include="Variant.cs" />
@@ -334,10 +330,8 @@
     <Compile Include="DOM\Html\HTMLCanvasElement.cs" />
     <Compile Include="DOM\Html\HTMLDirectoryElement.cs" />
     <Compile Include="DOM\Html\HTMLDivElement.cs" />
-    <Compile Include="DOM\Html\HTMLDListElement.cs" />
     <Compile Include="DOM\Html\HTMLEmbedElement.cs" />
     <Compile Include="DOM\Html\HTMLFieldSetElement.cs" />
-    <Compile Include="DOM\Html\HTMLFontElement.cs" />
     <Compile Include="DOM\Html\HTMLFormElement.cs" />
     <Compile Include="DOM\Html\HTMLFrameElement.cs" />
     <Compile Include="DOM\Html\HTMLFrameSetElement.cs" />
@@ -349,20 +343,17 @@
     <Compile Include="DOM\Html\HTMLImageElement.cs" />
     <Compile Include="DOM\Html\HTMLInputElement.cs" />
     <Compile Include="DOM\Html\HTMLLabelElement.cs" />
-    <Compile Include="DOM\Html\HTMLLegendElement.cs" />
     <Compile Include="DOM\Html\HTMLLIElement.cs" />
     <Compile Include="DOM\Html\HTMLLinkElement.cs" />
     <Compile Include="DOM\Html\HTMLMapElement.cs" />
     <Compile Include="DOM\Html\HTMLMenuElement.cs" />
     <Compile Include="DOM\Html\HTMLMetaElement.cs" />
-    <Compile Include="DOM\Html\HTMLModElement.cs" />
     <Compile Include="DOM\Html\HTMLObjectElement.cs" />
     <Compile Include="DOM\Html\HTMLOListElement.cs" />
     <Compile Include="DOM\Html\HTMLOptGroupElement.cs" />
     <Compile Include="DOM\Html\HTMLOptionElement.cs" />
     <Compile Include="DOM\Html\HTMLOptionsCollection.cs" />
     <Compile Include="DOM\Html\HTMLParagraphElement.cs" />
-    <Compile Include="DOM\Html\HTMLParamElement.cs" />
     <Compile Include="DOM\Html\HTMLPreElement.cs" />
     <Compile Include="DOM\Html\HTMLQuoteElement.cs" />
     <Compile Include="DOM\Html\HTMLScriptElement.cs" />
@@ -370,10 +361,6 @@
     <Compile Include="DOM\Html\HTMLStyleElement.cs" />
     <Compile Include="DOM\Html\HTMLTableCaptionElem.cs" />
     <Compile Include="DOM\Html\HTMLTableCellElement.cs" />
-    <Compile Include="DOM\Html\HTMLTableColElement.cs" />
-    <Compile Include="DOM\Html\HTMLTableElement.cs" />
-    <Compile Include="DOM\Html\HTMLTableRowElement.cs" />
-    <Compile Include="DOM\Html\HTMLTableSectionElem.cs" />
     <Compile Include="DOM\Html\HTMLTextAreaElement.cs" />
     <Compile Include="DOM\Html\HTMLTitleElement.cs" />
     <Compile Include="DOM\Html\HTMLUListElement.cs" />

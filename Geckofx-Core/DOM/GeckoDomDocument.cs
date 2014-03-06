@@ -563,14 +563,6 @@ namespace Gecko
 				Marshal.ReleaseComObject( htmlDocument );
 				return new GeckoDocument((nsIDOMHTMLDocument)domDocument);
 			}
-#if DELME
-			var svgDocument = Xpcom.QueryInterface<nsIDOMSVGDocument>( domDocument );
-			if (svgDocument != null)
-			{
-				Marshal.ReleaseComObject(svgDocument);
-				return new SvgDocument((nsIDOMSVGDocument)domDocument);
-			}
-#endif
 			return new GeckoDomDocument( domDocument );
 		}
 	}

@@ -11,9 +11,7 @@ namespace Gecko
 
 		static WindowMediator()
 		{
-			_windowMediator = new ServiceWrapper<nsIWindowMediator>( Contracts.WindowMediator );
-
-			
+			_windowMediator = new ServiceWrapper<nsIWindowMediator>( Contracts.WindowMediator );			
 		}
 
 		public static void RegisterWindow(nsIXULWindow window)

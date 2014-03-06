@@ -34,13 +34,6 @@ namespace Gecko.DOM
 			get { return nsString.Get(_navigator.GetBuildIDAttribute); }
 		}
 
-#if DELME
-		public bool CookieEnabled
-		{
-			get { return _navigator.GetCookieEnabledAttribute(); }
-		}
-#endif
-
 		public string DoNotTrack
 		{
 			get { return nsString.Get(_navigator.GetDoNotTrackAttribute); }
@@ -50,18 +43,6 @@ namespace Gecko.DOM
 		{
 			get { return nsString.Get(_navigator.GetLanguageAttribute); }
 		}
-
-#if DELME
-		public object MimeTypes
-		{
-			get { return _navigator.GetMimeTypesAttribute(); }
-		}
-
-		public bool OnLine
-		{
-			get { return _navigator.GetOnLineAttribute(); }
-		}
-#endif
 
 		public string Oscpu
 		{
@@ -99,19 +80,5 @@ namespace Gecko.DOM
 		{
 			get { return nsString.Get(_navigator.GetVendorSubAttribute); }
 		}
-
-#if DELME
-		public bool JavaEnabled
-		{
-			get { return _navigator.JavaEnabled(); }
-		}
-
-		// Vibrate
-
-		public bool TaintEnabled
-		{
-			get { return _navigator.TaintEnabled(); }
-		}
-#endif
 	}
 }

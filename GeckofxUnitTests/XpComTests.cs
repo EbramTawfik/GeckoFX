@@ -277,25 +277,6 @@ namespace GeckofxUnitTests
 			Marshal.ReleaseComObject(instance);
 		}
 
-
-#if DELME
-		[Test]
-		public void CreateInstance_CreatingHistoryEntry_ReturnsValidInstance()
-		{
-			var instance = Xpcom.CreateInstance<nsIHistoryEntry>("@mozilla.org/browser/history-entry;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingSessionHistroyEntry_ReturnsValidInstance()
-		{
-			var instance = Xpcom.CreateInstance<nsIHistoryEntry>("@mozilla.org/browser/session-history-entry;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-#endif
-
 		[Test]
 		public void CreateInstance_CreatingSHistory_ReturnsValidInstance()
 		{
@@ -787,16 +768,6 @@ namespace GeckofxUnitTests
 			Marshal.ReleaseComObject(instance);
 		}
 
-#if DELME
-		[Test]
-		public void CreateInstance_CreatingContextStackIterator_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsIJSContextStackIterator>("@mozilla.org/js/xpc/ContextStackIterator;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-#endif
-
 		[Test]
 		public void CreateInstance_CreatingStyleSheetService_ReturnsValidInstance()
 		{			
@@ -884,16 +855,6 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
-
-#if DELME
-		[Test]
-		public void CreateInstance_CreatingStrictTransportService_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsIStrictTransportSecurityService>("@mozilla.org/stsservice;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-#endif
 
 		[Test]
 		public void CreateInstance_CreatingMimeInpurtStream_ReturnsValidInstance()
@@ -1120,16 +1081,6 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
-
-#if DELME
-		[Test]
-		public void CreateInstance_CreatingExceptionService_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsIExceptionService>("@mozilla.org/exceptionservice;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-#endif
 
 		[Test]
 		public void CreateInstance_CreatingUuidGenerator_ReturnsValidInstance()
@@ -1427,15 +1378,6 @@ namespace GeckofxUnitTests
 			nsIJSRuntimeService instance = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
 			Assert.IsNotNull(instance);
 		}
-
-#if DELME
-		[Test]
-		public void GetJsContextStack_CleanXpComInstance_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
-			Assert.IsNotNull(instance);
-		}
-#endif
 
 		[Test]
 		public void GetScriptSecurityManager_CleanXpComInstance_ReturnsValidInstance()

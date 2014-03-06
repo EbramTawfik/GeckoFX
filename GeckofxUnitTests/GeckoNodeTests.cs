@@ -31,16 +31,5 @@ namespace GeckofxUnitTests
 		{
 			browser.Dispose();
 		}
-
-#if DELME
-		[Test]
-		public void ChildNodes_OnSvgDocument_ChildElementsAreTypedCorrectly()
-		{
-			string divString = "<div name=\"a\" id=\"_lv5\" class=\"none\">old value</div>";
-			browser.TestLoadSvg("<polygon fill='red' stroke='red' points='571,-828 517,-828 517,-792 571,-792 571,-828'/>");
-
-			Assert.IsTrue(((browser.DomDocument as SvgDocument).RootElement as GeckoNode).ChildNodes[0] is GeckoElement);
-		}
-#endif
 	}
 }

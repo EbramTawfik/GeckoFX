@@ -673,28 +673,7 @@ namespace Gecko.DOM
 		{
 			_windowUtils.Instance.LeaveModalState();
 		}
-		
-#if DELME
-		/// <summary>
-        /// Same as enterModalState, but returns the window associated with the
-        /// current JS context.
-        /// </summary>		
-		public GeckoWindow EnterModalStateWithWindow()
-		{
-			return _windowUtils.Instance.EnterModalStateWithWindow().Wrap( x => new GeckoWindow( x ) );
-		}
-		
-		/// <summary>
-        /// Same as leaveModalState, but takes a window associated with the active
-        /// context when enterModalStateWithWindow was called. The currently context
-        /// might be different at the moment (see bug 621764).
-        /// </summary>		
-		public void LeaveModalStateWithWindow(GeckoWindow aWindow)
-		{
-			_windowUtils.Instance.LeaveModalStateWithWindow( aWindow.DomWindow );
-		}
-#endif
-		
+				
 		/// <summary>
         /// Is the window is in a modal state? [See enterModalState()]
         /// </summary>		

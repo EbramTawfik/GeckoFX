@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -22,13 +20,6 @@ namespace Gecko.DOM
 			get { return new GeckoFormElement(DOMHTMLElement.GetFormAttribute()); }
 		}
 
-#if DELME
-		new public string AccessKey {
-			get { return nsString.Get(DOMHTMLElement.GetAccessKeyAttribute); }
-			set { DOMHTMLElement.SetAccessKeyAttribute(new nsAString(value)); }
-		}
-#endif
-
 		public bool Disabled {
 			get { return DOMHTMLElement.GetDisabledAttribute(); }
 			set { DOMHTMLElement.SetDisabledAttribute(value); }
@@ -38,13 +29,6 @@ namespace Gecko.DOM
 			get { return nsString.Get(DOMHTMLElement.GetNameAttribute); }
 			set { DOMHTMLElement.SetNameAttribute(new nsAString(value)); }
 		}
-
-#if DELME
-		public new int TabIndex {
-			get { return DOMHTMLElement.GetTabIndexAttribute(); }
-			set { DOMHTMLElement.SetTabIndexAttribute(value); }
-		}
-#endif
 
 		public string Type {
 			get { return nsString.Get(DOMHTMLElement.GetTypeAttribute); }

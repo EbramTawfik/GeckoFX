@@ -97,12 +97,7 @@ namespace Gecko
 			Xpcom.AssertCorrectThread();
 
 			if (!_isInitialized)
-			{
-				_isInitialized = true;
-#if DELME
-				_originalContextCallback = SpiderMonkey.JS_SetContextCallback(Runtime, _globalContextCallback);
-#endif
-			}
+				_isInitialized = true;			
 		}
 
 		private static JSBool GlobalContextCallback(IntPtr cx, uint contextOp)

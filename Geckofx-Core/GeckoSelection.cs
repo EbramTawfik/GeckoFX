@@ -211,18 +211,7 @@ namespace Gecko
 		public void DeleteFromDocument()
 		{
 			Selection.DeleteFromDocument();
-		}
-		
-#if DELME
-		/// <summary>
-		/// Modifies the cursor BIDI level after a change in keyboard direction.
-		/// </summary>
-		/// <param name="langRtl"></param>
-		public void SelectionLanguageChange(bool langRtl)
-		{
-			Selection.SelectionLanguageChange(langRtl);
-		}
-#endif
+		}	
 
 		/// <summary>
 		/// Match this up with EndbatchChanges. Will stop ui updates while multiple selection methods are called.

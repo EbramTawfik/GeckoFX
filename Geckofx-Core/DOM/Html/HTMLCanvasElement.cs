@@ -28,13 +28,6 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetHeightAttribute(value); }
 		}
 
-#if DELME
-		public nsISupports getContext(string contextId)
-		{
-			return DOMHTMLElement.GetContext(new nsAString(contextId), default(JsVal));
-		}
-#endif
-
 		public string toDataURL(string type)
 		{
 			using (nsAString retval = new nsAString(), param = new nsAString(type))

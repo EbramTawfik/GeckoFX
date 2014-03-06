@@ -1,5 +1,4 @@
 using System;
-using Gecko.DOM.Events;
 using Gecko.Interop;
 
 namespace Gecko
@@ -48,13 +47,6 @@ namespace Gecko
 				case "hashchange":
 					return DomHashChangeEventArgs.Create( ( nsIDOMHashChangeEvent ) ev );
 			}
-#if DELME
-            // search by type
-            if (ev is nsIDOMSVGZoomEvent)
-            {
-                return DomSvgZoomEvent.Create((nsIDOMSVGZoomEvent)ev);
-            }
-#endif
 			
 			if (ev is nsIDOMUIEvent)
 			{

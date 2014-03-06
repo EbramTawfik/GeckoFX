@@ -71,13 +71,6 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetSizeAttribute(value); }
 		}
 
-#if DELME
-		public int TabIndex {
-			get { return DOMHTMLElement.GetTabIndexAttribute(); }
-			set { DOMHTMLElement.SetTabIndexAttribute(value); }
-		}
-#endif
-
         public void add(GeckoHtmlElement element, GeckoHtmlElement before)
 		{
             DOMHTMLElement.Add(element.DomObject as nsIDOMHTMLElement, before.DomObject as nsIVariant);
@@ -87,18 +80,5 @@ namespace Gecko.DOM
 		{
 			DOMHTMLElement.Remove(index);
 		}
-
-#if DELME
-		public void blur()
-		{
-			DOMHTMLElement.Blur();
-		}
-
-		public void focus()
-		{
-			DOMHTMLElement.Focus();
-		}
-#endif
-
 	}
 }

@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -48,18 +46,10 @@ namespace Gecko.DOM
 				CreationMethod = (x) => new GeckoDirectoryElement((nsIDOMHTMLDirectoryElement)x) });
 			Add(new GeckoClassDesc() { TagName = "div", InterfaceType = typeof(nsIDOMHTMLDivElement), GeckoElement = typeof(GeckoDivElement), 
 				CreationMethod = (x) => new GeckoDivElement((nsIDOMHTMLDivElement)x) });
-#if DELME
-			Add(new GeckoClassDesc() { TagName = "dl", InterfaceType = typeof(nsIDOMHTMLDListElement), GeckoElement = typeof(GeckoDListElement), 
-				CreationMethod = (x) => new GeckoDListElement((nsIDOMHTMLDListElement)x) });
-#endif
 			Add(new GeckoClassDesc() { TagName = "embed", InterfaceType = typeof(nsIDOMHTMLEmbedElement), GeckoElement = typeof(GeckoEmbedElement), 
 				CreationMethod = (x) => new GeckoEmbedElement((nsIDOMHTMLEmbedElement)x) });
 			Add(new GeckoClassDesc() { TagName = "fieldset", InterfaceType = typeof(nsIDOMHTMLFieldSetElement), GeckoElement = typeof(GeckoFieldSetElement), 
 				CreationMethod = (x) => new GeckoFieldSetElement((nsIDOMHTMLFieldSetElement)x) });
-#if DELME
-			Add(new GeckoClassDesc() { TagName = "font", InterfaceType = typeof(nsIDOMHTMLFontElement), GeckoElement = typeof(GeckoFontElement), 
-				CreationMethod = (x) => new GeckoFontElement((nsIDOMHTMLFontElement)x) });
-#endif
 			Add(new GeckoClassDesc() { TagName = "form", InterfaceType = typeof(nsIDOMHTMLFormElement), GeckoElement = typeof(GeckoFormElement), 
 				CreationMethod = (x) => new GeckoFormElement((nsIDOMHTMLFormElement)x) });
 			Add(new GeckoClassDesc() { TagName = "frame", InterfaceType = typeof(nsIDOMHTMLFrameElement), GeckoElement = typeof(GeckoFrameElement), 
@@ -92,10 +82,6 @@ namespace Gecko.DOM
 				CreationMethod = (x) => new GeckoInputElement((nsIDOMHTMLInputElement)x) });			
 			Add(new GeckoClassDesc() { TagName = "label", InterfaceType = typeof(nsIDOMHTMLLabelElement), GeckoElement = typeof(GeckoLabelElement), 
 				CreationMethod = (x) => new GeckoLabelElement((nsIDOMHTMLLabelElement)x) });
-#if DELME
-			Add(new GeckoClassDesc() { TagName = "legend", InterfaceType = typeof(nsIDOMHTMLLegendElement), GeckoElement = typeof(GeckoLegendElement), 
-				CreationMethod = (x) => new GeckoLegendElement((nsIDOMHTMLLegendElement)x) });
-#endif
 			Add(new GeckoClassDesc() { TagName = "li", InterfaceType = typeof(nsIDOMHTMLLIElement), GeckoElement = typeof(GeckoLIElement), 
 				CreationMethod = (x) => new GeckoLIElement((nsIDOMHTMLLIElement)x) });
 			Add(new GeckoClassDesc() { TagName = "link", InterfaceType = typeof(nsIDOMHTMLLinkElement), GeckoElement = typeof(GeckoLinkElement), 
@@ -106,12 +92,6 @@ namespace Gecko.DOM
 				CreationMethod = (x) => new GeckoMenuElement((nsIDOMHTMLMenuElement)x) });
 			Add(new GeckoClassDesc() { TagName = "meta", InterfaceType = typeof(nsIDOMHTMLMetaElement), GeckoElement = typeof(GeckoMetaElement), 
 				CreationMethod = (x) => new GeckoMetaElement((nsIDOMHTMLMetaElement)x) });
-#if DELME
-			Add(new GeckoClassDesc() { TagName = "ins", InterfaceType = typeof(nsIDOMHTMLModElement), GeckoElement = typeof(GeckoModElement),
-				CreationMethod = (x) => new GeckoModElement((nsIDOMHTMLModElement)x) });
-			Add(new GeckoClassDesc() { TagName = "del", InterfaceType = typeof(nsIDOMHTMLModElement), GeckoElement = typeof(GeckoModElement), 
-				CreationMethod = (x) => new GeckoModElement((nsIDOMHTMLModElement)x) });
-#endif
 			Add(new GeckoClassDesc() { TagName = "object", InterfaceType = typeof(nsIDOMHTMLObjectElement), GeckoElement = typeof(GeckoObjectElement), 
 				CreationMethod = (x) => new GeckoObjectElement((nsIDOMHTMLObjectElement)x) });
 			Add(new GeckoClassDesc() { TagName = "ol", InterfaceType = typeof(nsIDOMHTMLOListElement), GeckoElement = typeof(GeckoOListElement), 
@@ -122,10 +102,6 @@ namespace Gecko.DOM
 				CreationMethod = (x) => new GeckoOptionElement((nsIDOMHTMLOptionElement)x) });
 			Add(new GeckoClassDesc() { TagName = "p", InterfaceType = typeof(nsIDOMHTMLParagraphElement), GeckoElement = typeof(GeckoParagraphElement), 
 				CreationMethod = (x) => new GeckoParagraphElement((nsIDOMHTMLParagraphElement)x) });
-#if DELME
-			Add(new GeckoClassDesc() { TagName = "param", InterfaceType = typeof(nsIDOMHTMLParamElement), GeckoElement = typeof(GeckoParamElement),
-				CreationMethod = (x) => new GeckoParamElement((nsIDOMHTMLParamElement)x) });
-#endif
 			Add(new GeckoClassDesc() { TagName = "pre", InterfaceType = typeof(nsIDOMHTMLPreElement), GeckoElement = typeof(GeckoPreElement), 
 				CreationMethod = (x) => new GeckoPreElement((nsIDOMHTMLPreElement)x) });
 			Add(new GeckoClassDesc() { TagName = "q", InterfaceType = typeof(nsIDOMHTMLQuoteElement), GeckoElement = typeof(GeckoQuoteElement), 

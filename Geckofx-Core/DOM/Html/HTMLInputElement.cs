@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -36,13 +34,6 @@ namespace Gecko.DOM
 			get { return nsString.Get(DOMHTMLElement.GetAcceptAttribute); }
 			set { DOMHTMLElement.SetAcceptAttribute(new nsAString(value)); }
 		}
-
-#if DELME
-		new public string AccessKey {
-			get { return nsString.Get(DOMHTMLElement.GetAccessKeyAttribute); }
-			set { DOMHTMLElement.SetAccessKeyAttribute(new nsAString(value)); }
-		}
-#endif
 
 		public string Align {
 			get { return nsString.Get(DOMHTMLElement.GetAlignAttribute); }
@@ -89,13 +80,6 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetSrcAttribute(new nsAString(value)); }
 		}
 
-#if DELME
-		public new int TabIndex {
-			get { return DOMHTMLElement.GetTabIndexAttribute(); }
-			set { DOMHTMLElement.SetTabIndexAttribute(value); }
-		}
-#endif
-
 		public string Type {
 			get { return nsString.Get(DOMHTMLElement.GetTypeAttribute); }
 			set { DOMHTMLElement.SetTypeAttribute(new nsAString(value)); }
@@ -123,29 +107,10 @@ namespace Gecko.DOM
 			set	{ DOMHTMLElement.SetSelectionEndAttribute(value); }
 		}	
 
-#if DELME
-		public void blur()
-		{
-			DOMHTMLElement.Blur();
-		}
-
-		public void focus()
-		{
-			DOMHTMLElement.Focus();
-		}
-#endif
-
 		public void select()
 		{
 			DOMHTMLElement.Select();
 		}
-
-#if DELME
-		public void click()
-		{
-			DOMHTMLElement.Click();
-		}
-#endif	
 	}
 }
 

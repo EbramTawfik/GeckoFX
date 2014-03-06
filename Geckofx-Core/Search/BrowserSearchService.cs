@@ -192,17 +192,5 @@ namespace Gecko.Search
 			get { return SearchEngine.Create(_browserSearchService.Instance.GetCurrentEngineAttribute()); }
 			set { _browserSearchService.Instance.SetCurrentEngineAttribute(value._searchEngine); }
 		}
-
-#if DELME
-		/// <summary>
-		/// The original default engine. This differs from the "defaultEngine"
-		/// attribute in that it always returns a given build's default engine,
-		/// regardless of whether it is hidden.
-		/// </summary>
-		public static SearchEngine OriginalDefaultEngine
-		{
-			get { return SearchEngine.Create(_browserSearchService.Instance.GetOriginalDefaultEngineAttribute()); }
-		}
-#endif
 	}
 }

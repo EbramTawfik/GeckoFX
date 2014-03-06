@@ -82,13 +82,6 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetStandbyAttribute(new nsAString(value)); }
 		}
 
-#if DELME
-		public new int TabIndex {
-			get { return DOMHTMLElement.GetTabIndexAttribute(); }
-			set { DOMHTMLElement.SetTabIndexAttribute(value); }
-		}
-#endif
-
 		public string Type {
 			get { return nsString.Get(DOMHTMLElement.GetTypeAttribute); }
 			set { DOMHTMLElement.SetTypeAttribute(new nsAString(value)); }
