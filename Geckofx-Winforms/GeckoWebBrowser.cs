@@ -1804,10 +1804,10 @@ namespace Gecko
 					OnDomMouseOut((DomMouseEventArgs)e);
 					break;
 				case "click":
-					OnDomClick(e);
+					OnDomClick((DomMouseEventArgs)e);
 					break;
 				case "dblclick":
-					OnDomDoubleClick(e);
+					OnDomDoubleClick((DomMouseEventArgs)e);
 					break;
 				case "submit":
 					OnDomSubmit(e);

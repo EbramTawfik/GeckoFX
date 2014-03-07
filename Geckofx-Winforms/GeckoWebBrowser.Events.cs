@@ -1063,7 +1063,7 @@ namespace Gecko
 
 		#region public event GeckoDomEventHandler DomClick
 		[Category("DOM Events")]
-		public event EventHandler<DomEventArgs> DomClick
+		public event EventHandler<DomMouseEventArgs> DomClick
 		{
 			add { Events.AddHandler(DomClickEvent, value); }
 			remove { Events.RemoveHandler(DomClickEvent, value); }
@@ -1071,9 +1071,9 @@ namespace Gecko
 		
 		/// <summary>Raises the <see cref="DomClick"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomClick(DomEventArgs e)
+		protected virtual void OnDomClick(DomMouseEventArgs e)
 		{
-			var evnt = (EventHandler<DomEventArgs>)Events[DomClickEvent];
+			var evnt = (EventHandler<DomMouseEventArgs>)Events[DomClickEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
@@ -1081,7 +1081,7 @@ namespace Gecko
 		#region public event GeckoDomEventHandler DomDoubleClick
 
 		[Category("DOM Events")]
-		public event EventHandler<DomEventArgs> DomDoubleClick
+		public event EventHandler<DomMouseEventArgs> DomDoubleClick
 		{
 			add { Events.AddHandler(DomDoubleClickEvent, value); }
 			remove { Events.RemoveHandler(DomDoubleClickEvent, value); }
@@ -1089,9 +1089,9 @@ namespace Gecko
 		
 		/// <summary>Raises the <see cref="DomDoubleClick"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomDoubleClick(DomEventArgs e)
+		protected virtual void OnDomDoubleClick(DomMouseEventArgs e)
 		{
-			var evnt = (EventHandler<DomEventArgs>)Events[DomDoubleClickEvent];
+			var evnt = (EventHandler<DomMouseEventArgs>)Events[DomDoubleClickEvent];
 			if (evnt != null) evnt(this, e);
 		}
 
