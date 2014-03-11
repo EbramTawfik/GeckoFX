@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="Collections\DomNodeList.cs" />
     <Compile Include="Collections\GeckoNodeEnumerator.cs" />
+    <Compile Include="DOM\DomParser.cs" />
     <Compile Include="DOM\Events\DomHashChangeEventArgs.cs" />
     <Compile Include="DOM\Events\DomMouseScrollEventArgs.cs" />
     <Compile Include="DOM\Events\DomDragEventArgs.cs" />

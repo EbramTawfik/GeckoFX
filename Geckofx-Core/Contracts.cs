@@ -37,8 +37,11 @@ namespace Gecko
 		#region IO
 		public static readonly string StringInputStream = "@mozilla.org/io/string-input-stream;1";
 		#endregion
-
+		#region xml
+		public static readonly string DomParser = "@mozilla.org/xmlextras/domparser;1";
+		#endregion
 		public static readonly string Array = "@mozilla.org/array;1";
+		public static readonly string BinaryOutputStream = "@mozilla.org/binaryoutputstream;1";
 		public static readonly string WindowWatcher = "@mozilla.org/embedcomp/window-watcher;1";
 		public static readonly string WritableVariant = "@mozilla.org/variant;1";
 		public static readonly string ZipReader = "@mozilla.org/libjar/zip-reader;1";
@@ -83,7 +86,8 @@ namespace Gecko
 		public static readonly string NavHistoryService = "@mozilla.org/browser/nav-history-service;1";
 		public static readonly string XPathEvaluator = "@mozilla.org/dom/xpath-evaluator;1";
 		public static readonly string NSSErrorsService = "@mozilla.org/nss_errors_service;1";
-
+		public static readonly string DebuggerService = "@mozilla.org/js/jsd/debugger-service;1";
+		public static readonly string RuntimeService = "@mozilla.org/js/xpc/RuntimeService;1";
 		#endregion
 
 		#region External components (XULRunner components)
