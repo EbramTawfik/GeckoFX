@@ -190,6 +190,7 @@ namespace Gecko
 		T UserInterfaceThreadInvoke<T>( Func<T> func );
 
 		#region Events
+		event EventHandler<DomEventArgs> Load; 
 
 		event EventHandler DocumentCompleted;
 
