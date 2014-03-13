@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Interop;
+using Gecko.Interop;
 
 namespace Gecko
 {
@@ -12,7 +13,7 @@ namespace Gecko
 		/// <summary>
 		/// nsIWebBrowser instance
 		/// </summary>
-		private InstanceWrapper<nsIWebBrowser> _webBrowser;
+		private ComPtr<nsIWebBrowser> _webBrowser;
 
 		/// <summary>
 		/// nsIWebBrowser casted to nsIBaseWindow

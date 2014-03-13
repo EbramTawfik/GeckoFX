@@ -40,8 +40,7 @@ namespace Gecko
 		void GeckoWebBrowser_Loaded(object sender, System.Windows.RoutedEventArgs e)
 		{
 			Xpcom.Initialize();
-			_webBrowser = new InstanceWrapper<nsIWebBrowser>(Contracts.WebBrowser);
-
+			_webBrowser = Xpcom.CreateInstance2<nsIWebBrowser>(Contracts.WebBrowser);
 			_webBrowserFocus = (nsIWebBrowserFocus)_webBrowser.Instance;
 			_baseWindow = (nsIBaseWindow)_webBrowser.Instance;
 			_webNav = (nsIWebNavigation)_webBrowser.Instance;
@@ -251,6 +250,8 @@ namespace Gecko
 			}
 			return (T)Dispatcher.Invoke(func);
 		}
+
+		
 
 		#endregion
 

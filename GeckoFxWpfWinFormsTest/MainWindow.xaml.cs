@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GeckoFxWpfTest
+namespace GeckoFxWpfWinFormsTest
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -24,10 +25,9 @@ namespace GeckoFxWpfTest
 			InitializeComponent();
 		}
 
-		private void Btn_OnClick( object sender, RoutedEventArgs e )
+		private void Btn_OnClick(object sender, RoutedEventArgs e)
 		{
 			browser.Navigate("https://www.adobe.com/software/flash/about/");
 		}
-
 	}
 }
