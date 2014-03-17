@@ -19,7 +19,7 @@ namespace GeckofxUnitTests
 		{
 			var parser = new DomParser();
 
-			GeckoDomDocument doc = parser.ParseFromString("<html><body><span id='myspan'>hello world</span></body></html");
+			GeckoDomDocument doc = parser.ParseFromString("<html><body><span id='myspan'>hello world</span></body></html>");
 
 			var span = doc.GetElementById("myspan");
 			Assert.NotNull(span);
