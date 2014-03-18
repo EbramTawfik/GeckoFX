@@ -350,7 +350,7 @@ namespace Gecko
 						//	System.Diagnostics.Debug.WriteLine( str );
 
 
-							var param = m.LParam.ToInt32();
+							var param = m.LParam.ToInt64();
 							if ( ( param & ISC_SHOWUICOMPOSITIONWINDOW ) != 0 )
 							{
 
