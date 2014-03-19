@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v29.0-0.1 ==
+
+1. Initial version supporting firefox/xulrunner v29.0
+
 == v22.0-0.7 ==
 
 1. Added Unregister method to BaseNsFactory<TFactory>
