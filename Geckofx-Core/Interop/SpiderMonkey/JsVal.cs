@@ -39,9 +39,21 @@ namespace Gecko
 		[FieldOffset(0)]
 		public ulong Ptr;
 		[FieldOffset(4)]
-		public ValueTag Tag;
+		public uint Tag;
+		
+		public enum ValueTag64Bit : uint
+		{			
+			Clear = 0x1FFF0,
+			Int32 = (Clear | 1) << 47,
+			Undefined = (Clear | 2) << 47,
+			String = (Clear | 5) << 47,
+			Boolean = (Clear | 3) << 47,
+			Magic = (Clear | 4) << 47,
+			Null = (Clear | 6) << 47,
+			Object = (Clear | 7) << 47
+		}
 
-		public enum ValueTag : uint
+		public enum ValueTag32Bit : uint
 		{
 			Clear = 0xFFFFFF80,
 			Int32 = Clear | 1,
@@ -55,42 +67,42 @@ namespace Gecko
 
 		public bool IsNull
 		{
-			get { return Tag == ValueTag.Null; }
+			get { return Tag == (Xpcom.Is32Bit ? (uint)ValueTag32Bit.Null : (uint)ValueTag64Bit.Null); }
 		}
 
 		public bool IsUndefined
 		{
-			get { return Tag == ValueTag.Undefined; }
+			get { return Tag == (Xpcom.Is32Bit ? (uint)ValueTag32Bit.Undefined : (uint)ValueTag64Bit.Undefined); }
 		}
 
 		public bool IsBoolean
 		{
-			get { return Tag == ValueTag.Boolean; }
+			get { return Tag == (Xpcom.Is32Bit ? (uint)ValueTag32Bit.Boolean : (uint)ValueTag64Bit.Boolean);}
 		}
 
 		public bool IsNumber
 		{
-			get { return Tag <= ValueTag.Int32; }
+			get { return Tag <= (Xpcom.Is32Bit ? (uint)ValueTag32Bit.Int32 : (uint)ValueTag64Bit.Int32); }
 		}
 
 		public bool IsInt
 		{
-			get { return Tag == ValueTag.Int32; }
+			get { return Tag <= (Xpcom.Is32Bit ? (uint)ValueTag32Bit.Int32 : (uint)ValueTag64Bit.Int32); }
 		}
 
 		public bool IsDouble
 		{
-			get { return Tag <= ValueTag.Clear; }
+			get { return Tag <= (Xpcom.Is32Bit ? (uint)ValueTag32Bit.Clear : (uint)ValueTag64Bit.Clear); }
 		}
 
 		public bool IsString
 		{
-			get { return Tag == ValueTag.String; }
+			get { return Tag == (Xpcom.Is32Bit ? (uint)ValueTag32Bit.String : (uint)ValueTag64Bit.String); }
 		}
 
 		public bool IsObject
 		{
-			get { return Tag == ValueTag.Object; }
+			get	{ return Tag <= (Xpcom.Is32Bit ? (uint)ValueTag32Bit.Object : (uint)ValueTag64Bit.Object); }
 		}
 
 		public bool ToBoolean()
