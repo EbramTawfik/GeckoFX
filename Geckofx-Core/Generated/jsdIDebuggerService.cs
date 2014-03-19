@@ -29,10 +29,14 @@ namespace Gecko
 	/// <summary>
     /// Debugger service. It is not a good idea to have more than one active client
     /// of the debugger service.
+    ///
+    /// Note that all the APIs in this file are deprecated. All consumers of
+    /// these interfaces should switch to using the new Debugger API, documented
+    /// here: https://wiki.mozilla.org/Debugger
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("029b8f0a-aa84-47eb-a60f-1a4752b7ad06")]
+	[Guid("39609752-2d73-4019-a324-a374dee16d3c")]
 	public interface jsdIDebuggerService
 	{
 		
@@ -405,6 +409,17 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DumpHeap([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase fileName);
+		
+		/// <summary>
+        /// Suppress console warnings about using JSD, which is a deprecated API.
+        ///
+        /// This applies only to the next call to asyncOn; any subsequent calls
+        /// will elicit the warning, unless you call 'acknowledgeDeprecation'
+        /// before each of them, too. This arrangement ensures that one add-on's
+        /// acknowledgement doesn't suppress warnings for other add-ons.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AcknowledgeDeprecation();
 	}
 	
 	/// <summary>jsdIDebuggerServiceConsts </summary>
