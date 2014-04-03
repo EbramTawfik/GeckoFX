@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices.ComTypes;
 using System.IO;
+using Gecko.Interop;
 
 namespace Gecko
 {
@@ -11,34 +12,44 @@ namespace Gecko
 	/// </summary>
 	public class GeckoPreferences
 	{
+		const int PREF_INVALID = 0;
+		const int PREF_STRING = 32;
+		const int PREF_INT = 64;
+		const int PREF_BOOL = 128;
+
+		#region Static part
+		private static ComPtr<nsIPrefService> _prefService;
+		private static GeckoPreferences _default;
+		private static GeckoPreferences _user;
+
 		static GeckoPreferences()
 		{
 			// ensure we're initialized
 			Xpcom.Initialize();
-			
-			PrefService = Xpcom.GetService<nsIPrefService>("@mozilla.org/preferences-service;1");
+			_prefService = Xpcom.GetService2<nsIPrefService>( Contracts.PreferenceService );
 		}
-		
-		static nsIPrefService PrefService;
-		
+
+
+		#region Properties
 		/// <summary>
 		/// Gets the preferences defined for the current user.
 		/// </summary>
 		static public GeckoPreferences User
 		{
-			get { return _User ?? (_User = new GeckoPreferences(false)); }
+			get { return _user ?? (_user = new GeckoPreferences(false)); }
 		}
-		static GeckoPreferences _User;
+		
 		
 		/// <summary>
 		/// Gets the set of preferences used as defaults when no user preference is set.
 		/// </summary>
 		static public GeckoPreferences Default
 		{
-			get { return _Default ?? (_Default = new GeckoPreferences(true)); }
+			get { return _default ?? (_default = new GeckoPreferences(true)); }
 		}
-		static GeckoPreferences _Default;
-		
+		#endregion
+
+		#region Load & Save
 		/// <summary>
 		/// Reads all User preferences from the specified file.
 		/// </summary>
@@ -50,7 +61,7 @@ namespace Gecko
 			else if (!File.Exists(filename))
 				throw new FileNotFoundException();
 			
-			PrefService.ReadUserPrefs((nsIFile)Xpcom.NewNativeLocalFile(filename));
+			_prefService.Instance.ReadUserPrefs((nsIFile)Xpcom.NewNativeLocalFile(filename));
 		}
 		
 		/// <summary>
@@ -61,37 +72,61 @@ namespace Gecko
 		{
 			if (string.IsNullOrEmpty(filename))
 				throw new ArgumentNullException("filename");
-			
-			PrefService.SavePrefFile((nsIFile)Xpcom.NewNativeLocalFile(filename));
+
+			_prefService.Instance.SavePrefFile((nsIFile)Xpcom.NewNativeLocalFile(filename));
 		}
-		
+		#endregion
+
+		/// <summary>
+		/// returns type constant
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		private static int GetValueType(object value)
+		{
+			if (value is int) return PREF_INT;
+			if (value is string) return PREF_STRING;
+			if (value is bool) return PREF_BOOL;
+			if (value is float) return PREF_STRING;
+
+			throw new ArgumentException("Gecko preferences must be either a String, Int32, or Boolean value.", "prefName");
+		}
+
+		#endregion
+
+		private ComPtr<nsIPrefBranch> _branch;
+		private readonly bool _isDefaultBranch;
+
+
 		private GeckoPreferences(bool defaultBranch)
 		{
-			IsDefaultBranch = defaultBranch;
+			_isDefaultBranch = defaultBranch;
 			if (defaultBranch)
-				Branch = PrefService.GetDefaultBranch("");
+			{
+				_branch = new ComPtr<nsIPrefBranch>( _prefService.Instance.GetDefaultBranch( "" ) );
+			}
 			else
-				Branch = PrefService.GetBranch("");
+			{
+				_branch = new ComPtr<nsIPrefBranch>( _prefService.Instance.GetBranch( "" ) );
+			}
 		}
-		
-		nsIPrefBranch Branch;
-		bool IsDefaultBranch;
-		
+	
 		/// <summary>
 		/// Resets all preferences to their default values.
 		/// </summary>
 		public void Reset()
 		{
-			if (IsDefaultBranch)
-				PrefService.ResetPrefs();
+			if (_isDefaultBranch)
+			{
+				_prefService.Instance.ResetPrefs();
+			}
 			else
-				PrefService.ResetUserPrefs();
+			{
+				_prefService.Instance.ResetUserPrefs();
+			}			
 		}
 		
-		const int PREF_INVALID = 0;
-		const int PREF_STRING = 32;
-		const int PREF_INT = 64;
-		const int PREF_BOOL = 128;
+
 		
 		/// <summary>
 		/// Gets or sets the preference with the given name.
@@ -102,13 +137,13 @@ namespace Gecko
 		{
 			get
 			{
-				int type = Branch.GetPrefType(prefName);
+				int type = _branch.Instance.GetPrefType(prefName);
 				switch (type)
 				{
 					case PREF_INVALID: return null;
-					case PREF_STRING: return Branch.GetCharPref(prefName);
-					case PREF_INT: return Branch.GetIntPref(prefName);
-					case PREF_BOOL: return Branch.GetBoolPref(prefName);
+					case PREF_STRING: return _branch.Instance.GetCharPref(prefName);
+					case PREF_INT: return _branch.Instance.GetIntPref(prefName);
+					case PREF_BOOL: return _branch.Instance.GetBoolPref(prefName);
 				}
 				throw new ArgumentException("prefName");
 			}
@@ -118,34 +153,236 @@ namespace Gecko
 					throw new ArgumentException("prefName");
 				else if (value == null)
 					throw new ArgumentNullException("value");
-				
-				int existingType = Branch.GetPrefType(prefName);
+
+				int existingType = _branch.Instance.GetPrefType(prefName);
 				int assignedType = GetValueType(value);
-				
-				if (existingType != 0 && existingType != assignedType)
+
+				if ((existingType != PREF_INVALID) && (existingType != assignedType))
 					throw new InvalidCastException("A " + value.GetType().Name + " value may not be assigned to '" + prefName + "' because it is already defined as " + GetPreferenceType(prefName).Name + ".");
-				
-				switch (assignedType)
+
+				if (value is string)
 				{
-					case PREF_STRING: Branch.SetCharPref(prefName, (string)value); break;
-					case PREF_INT: Branch.SetIntPref(prefName, (int)value); break;
-					case PREF_BOOL: Branch.SetBoolPref(prefName, (bool)value); break;
+					_branch.Instance.SetCharPref( prefName, (string) value );
+					return;
+				}
+				if (value is int)
+				{
+					_branch.Instance.SetIntPref(prefName, (int)value);
+					return;
+				}
+				if (value is bool)
+				{
+					_branch.Instance.SetBoolPref( prefName, (bool) value );
+				}
+				if (value is float)
+				{
+					_branch.Instance.SetCharPref( prefName, ( (float) value ).ToString() );
 				}
 			}
 		}
-		
-		int GetValueType(object value)
+
+		#region Typed properties
+		#region int pref
+		public bool GetIntPref( string prefName,out int? value )
 		{
-			if (value is int)
-				return PREF_INT;
-			else if (value is string)
-				return PREF_STRING;
-			else if (value is bool)
-				return PREF_BOOL;
-			
-			throw new ArgumentException("Gecko preferences must be either a String, Int32, or Boolean value.", "prefName");
+			if (string.IsNullOrEmpty(prefName)) throw new ArgumentException("prefName");
+
+			int existingType = _branch.Instance.GetPrefType( prefName );
+			switch (existingType)
+			{
+				case PREF_INVALID:
+					value = null;
+					return true;
+				case PREF_INT:
+					value= _branch.Instance.GetIntPref( prefName );
+					return true;
+				default:
+					value = null;
+					return false;
+			}
 		}
-		
+
+		public bool SetIntPref( string prefName, int? value )
+		{
+			if (string.IsNullOrEmpty(prefName)) throw new ArgumentException("prefName");
+
+			int existingType = _branch.Instance.GetPrefType(prefName);
+			switch (existingType)
+			{
+				case PREF_INVALID:
+					if (value != null)
+					{
+						_branch.Instance.SetIntPref( prefName, value.Value );
+					}
+					return true;
+				case PREF_INT:
+					if (value != null)
+					{
+						_branch.Instance.SetIntPref(prefName, value.Value);
+					}
+					else
+					{
+						_branch.Instance.ClearUserPref( prefName );
+					}
+					return true;
+				default:
+					return false;
+			}
+		}
+
+		#endregion
+
+		#region bool pref
+		public bool GetBoolPref( string prefName, out bool? value )
+		{
+			if (string.IsNullOrEmpty(prefName)) throw new ArgumentException("prefName");
+
+			int existingType = _branch.Instance.GetPrefType(prefName);
+			switch (existingType)
+			{
+				case PREF_INVALID:
+					value = null;
+					return true;
+				case PREF_BOOL:
+					value = _branch.Instance.GetBoolPref(prefName);
+					return true;
+				default:
+					value = null;
+					return false;
+			}
+		}
+
+		public bool SetBoolPref(string prefName, bool? value)
+		{
+			if (string.IsNullOrEmpty(prefName)) throw new ArgumentException("prefName");
+
+			int existingType = _branch.Instance.GetPrefType(prefName);
+			switch (existingType)
+			{
+				case PREF_INVALID:
+					if (value != null)
+					{
+						_branch.Instance.SetBoolPref(prefName, value.Value);
+					}
+					return true;
+				case PREF_BOOL:
+					if (value != null)
+					{
+						_branch.Instance.SetBoolPref(prefName, value.Value);
+					}
+					else
+					{
+						_branch.Instance.ClearUserPref(prefName);
+					}
+					return true;
+				default:
+					return false;
+			}
+		}
+
+		#endregion
+
+		#region string pref
+		public bool GetCharPref(string prefName, out string value)
+		{
+			if (string.IsNullOrEmpty(prefName)) throw new ArgumentException("prefName");
+
+			int existingType = _branch.Instance.GetPrefType(prefName);
+			switch (existingType)
+			{
+				case PREF_INVALID:
+					value = null;
+					return true;
+				case PREF_STRING:
+					value = _branch.Instance.GetCharPref(prefName);
+					return true;
+				default:
+					value = null;
+					return false;
+			}
+		}
+
+		public bool SetCharPref(string prefName, string value)
+		{
+			if (string.IsNullOrEmpty(prefName)) throw new ArgumentException("prefName");
+
+			int existingType = _branch.Instance.GetPrefType(prefName);
+			switch (existingType)
+			{
+				case PREF_INVALID:
+					if (value != null)
+					{
+						_branch.Instance.SetCharPref(prefName, value);
+					}
+					return true;
+				case PREF_STRING:
+					if (value != null)
+					{
+						_branch.Instance.SetCharPref(prefName, value);
+					}
+					else
+					{
+						_branch.Instance.ClearUserPref(prefName);
+					}
+					return true;
+				default:
+					return false;
+			}
+		}
+		#endregion
+
+		#region float pref
+		public bool GetFloatPref( string prefName,float? value )
+		{
+			if (string.IsNullOrEmpty(prefName)) throw new ArgumentException("prefName");
+
+			int existingType = _branch.Instance.GetPrefType( prefName );
+			switch (existingType)
+			{
+				// not exist
+				case PREF_INVALID:
+					value = null;
+					return true;
+				// float is stored as string
+				case PREF_STRING:
+					value=_branch.Instance.GetFloatPref( prefName );
+					return true;
+				default:
+					value = null;
+					return false;
+			}
+		}
+
+		public bool SetFloatPref(string prefName, float? value)
+		{
+			if (string.IsNullOrEmpty(prefName)) throw new ArgumentException("prefName");
+
+			int existingType = _branch.Instance.GetPrefType(prefName);
+			switch (existingType)
+			{
+				case PREF_INVALID:
+					if (value != null)
+					{
+						_branch.Instance.SetCharPref( prefName, value.Value.ToString() );
+					}
+					return true;
+				case PREF_STRING:
+					if (value != null)
+					{
+						_branch.Instance.SetCharPref(prefName, value.Value.ToString());
+					}
+					else
+					{
+						_branch.Instance.ClearUserPref(prefName);
+					}
+					return true;
+				default:
+					return false;
+			}
+		}
+		#endregion
+		#endregion
+
 		/// <summary>
 		/// Gets the <see cref="Type"/> of the specified preference.
 		/// </summary>
@@ -156,7 +393,7 @@ namespace Gecko
 			if (string.IsNullOrEmpty(name))
 				throw new ArgumentException("name");
 			
-			switch (Branch.GetPrefType(name))
+			switch (_branch.Instance.GetPrefType(name))
 			{
 				case PREF_STRING: return typeof(string);
 				case PREF_INT: return typeof(int);
@@ -176,9 +413,9 @@ namespace Gecko
 				throw new ArgumentException("name");
 			
 			if (locked)
-				Branch.LockPref(name);
+				_branch.Instance.LockPref(name);
 			else
-				Branch.UnlockPref(name);
+				_branch.Instance.UnlockPref(name);
 		}
 		
 		/// <summary>
@@ -190,8 +427,8 @@ namespace Gecko
 		{
 			if (string.IsNullOrEmpty(name))
 				throw new ArgumentException("name");
-			
-			return Branch.PrefIsLocked(name);
+
+			return _branch.Instance.PrefIsLocked(name);
 		}
 
 		/// <summary>
@@ -202,7 +439,7 @@ namespace Gecko
 			if (string.IsNullOrEmpty(name))
 				throw new ArgumentException("name");
 
-			Branch.ClearUserPref(name);
+			_branch.Instance.ClearUserPref(name);
 		}
 	}
 }

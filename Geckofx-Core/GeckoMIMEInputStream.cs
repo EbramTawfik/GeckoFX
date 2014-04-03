@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace Gecko
 {
+	[Obsolete("Use Gecko.IO.MimeInputStream",true)]
 	public class GeckoMIMEInputStream
 		:IDisposable
 	{
@@ -46,8 +47,7 @@ namespace Gecko
 				stringInputStream.Instance.SetData(data, data.Length);
 				_inputStream.Instance.SetData(stringInputStream.Instance);
 			}
-			
-			
+
 		}
 	}
 }
