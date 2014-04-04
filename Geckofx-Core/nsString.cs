@@ -646,7 +646,7 @@ namespace Gecko
 		{
 			if (value != null)
 			{
-				byte[] bytes = Encoding.Default.GetBytes(value);
+				byte[] bytes = Encoding.UTF8.GetBytes(value);
 				NS_CStringSetData(this, bytes, bytes.Length);
 			}
 			else
@@ -685,7 +685,7 @@ namespace Gecko
 			{
 				byte[] result = new byte[length];
 				Marshal.Copy(data, result, 0, length);
-				return Encoding.Default.GetString(result);
+				return Encoding.UTF8.GetString(result);
 			}
 			if (NS_CStringGetIsVoid(this))
 			{

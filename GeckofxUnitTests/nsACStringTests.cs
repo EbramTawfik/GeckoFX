@@ -69,10 +69,11 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
-		public void ConstructorWithString_ToTestValue_ToStringReturnsTestValue_Unicode()
-		{
-			var objectUnderTest = new nsACString("Hello 中文 world");
-			Assert.AreEqual("Hello 中文 world", objectUnderTest.ToString());
+		public void ConstructorWithString_UnicodeValueLargerThanWillFitInSingleByte_ToStringReturnsExpectedTestValue()
+		{			
+			string testValue = "Hello 中文 world";
+			var objectUnderTest = new nsACString(testValue);
+			Assert.AreEqual(testValue, objectUnderTest.ToString());
 		}
 	}
 }
