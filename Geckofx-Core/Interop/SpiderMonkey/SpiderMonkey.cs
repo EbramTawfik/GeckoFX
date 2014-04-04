@@ -28,6 +28,27 @@ namespace Gecko
 				return JS_EncodeString_Win64(cx, jsString);
 			}
 		}
+
+		public static IntPtr JS_GetStringCharsAndLength(IntPtr cx, IntPtr jsString, out uint length)
+		{
+			//TODO other version
+			if (Xpcom.Is32Bit)
+			{
+				//if (Xpcom.IsLinux)
+				//return JS_GetStringCharsAndLength_Linux32(cx, jsString, out length);
+
+				return JS_GetStringCharsAndLength_Win32(cx, jsString, out length);
+			}
+			else
+			{
+				//if (Xpcom.IsLinux)
+				//return JS_GetStringCharsAndLength_Linux64(cx, jsString, out length);
+
+				//return JS_GetStringCharsAndLength_Win64(cx, jsString, out length);
+
+				throw new Exception ();
+			}
+		}
 		
 		public static JSType JS_TypeOfValue(IntPtr cx, JsVal jsVal)
 		{
@@ -266,9 +287,34 @@ namespace Gecko
 				return JS_EndRequest_Win64(cx);
 			}
 		}
+
+		private static string EncodeUnicodeScript(string script)
+		{
+			int i;
+			for (i = 0; i < script.Length && script [i] < 128; i++);
+			if (i == script.Length)
+				return script;
+			var sb = new System.Text.StringBuilder();
+			if (i > 0)
+				sb.Append (script.Substring(0, i));
+			for (; i < script.Length; i++)
+			{
+				char c = script [i];
+				if (c < 128)
+					sb.Append(c);
+				else
+				{
+					sb.Append("\\u");
+					sb.Append(((int)c).ToString("X4"));
+				}
+			}
+			return sb.ToString();
+		}
 		
 		public static bool JS_EvaluateScript(IntPtr cx, IntPtr obj, string src, UInt32 length, string filename, UInt32 lineno, ref JsVal jsval)
 		{
+			src = EncodeUnicodeScript(src);
+			length = (uint)src.Length;
 			if (cx == IntPtr.Zero)
 				throw new ArgumentNullException("cx");
 
@@ -293,6 +339,8 @@ namespace Gecko
 
 		public static bool JS_EvaluateScriptForPrincipals(IntPtr cx, IntPtr obj, IntPtr principals, string src, UInt32 length, string filename, UInt32 lineno, ref JsVal jsval)
 		{
+			src = EncodeUnicodeScript(src);
+			length = (uint)src.Length;
 			if (Xpcom.Is32Bit)
 			{
 				if (Xpcom.IsLinux)
@@ -600,6 +648,9 @@ namespace Gecko
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EncodeString@@YAPADPAUJSContext@@PAVJSString@@@Z")]
 		private static extern IntPtr JS_EncodeString_Win32(IntPtr cx, IntPtr jsString);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetStringCharsAndLength@@YAPB_WPAUJSContext@@PAVJSString@@PAI@Z")]
+		private static extern IntPtr JS_GetStringCharsAndLength_Win32(IntPtr cx, IntPtr jsString, out uint length);
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_TypeOfValue@@YA?AW4JSType@@PAUJSContext@@V?$Handle@VValue@JS@@@JS@@@Z")]
 		private static extern JSType JS_TypeOfValue_Win32(IntPtr cx, ref JsVal jsVal);

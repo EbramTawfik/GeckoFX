@@ -256,6 +256,19 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		public void EvaluateScript_UnicodeJavascript_ScriptExecutesAndReturnsExpectedResult()
+		{
+			browser.TestLoadHtml("");
+
+			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
+			{
+				string result;
+				Assert.IsTrue(context.EvaluateScript("'hello' + ' ' + '中\0文';", out result));
+				Assert.AreEqual("hello 中\0文", result);
+			}
+		}
+
+		[Test]
 		public void EvaluateScript_SimpleJavascriptWithoutNormalDocumentSetup_ScriptExecutesAndReturnsExpectedResult()
 		{		
 			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
