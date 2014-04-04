@@ -619,7 +619,7 @@ namespace Gecko
 		protected static extern int NS_CStringContainerInit(nsACStringBase container);
 
 		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
-		protected static extern int NS_CStringSetData(nsACStringBase str, string data, int length);
+		protected static extern int NS_CStringSetData(nsACStringBase str, byte[] data, int length);
 
 		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected internal static extern int NS_CStringGetData(nsACStringBase str, out IntPtr data, IntPtr nullTerm);
@@ -646,7 +646,8 @@ namespace Gecko
 		{
 			if (value != null)
 			{
-				NS_CStringSetData(this, value, value.Length);
+				byte[] bytes = Encoding.Default.GetBytes(value);
+				NS_CStringSetData(this, bytes, bytes.Length);
 			}
 			else
 			{
@@ -682,7 +683,9 @@ namespace Gecko
 
 			if (length > 0)
 			{
-				return Marshal.PtrToStringAnsi(data, length);
+				byte[] result = new byte[length];
+				Marshal.Copy(data, result, 0, length);
+				return Encoding.Default.GetString(result);
 			}
 			if (NS_CStringGetIsVoid(this))
 			{

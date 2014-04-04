@@ -139,7 +139,6 @@ namespace Gecko
 
 		public JsVal EvaluateScript(string javaScript)
 		{
-
 			string msg = String.Empty;
 			var old = SpiderMonkey.JS_SetErrorReporter(_cx, (cx, message, report) => { msg = message; });
 			try
@@ -284,18 +283,10 @@ namespace Gecko
 			IntPtr jsp = SpiderMonkey.JS_ValueToString(_cx, value);
 			if (jsp != IntPtr.Zero)
 			{
-				IntPtr sp = SpiderMonkey.JS_EncodeString(_cx, jsp);
-				if (sp != IntPtr.Zero)
-				{
-					try
-					{
-						return Marshal.PtrToStringAnsi(sp);
-					}
-					finally
-					{
-						SpiderMonkey.JS_Free(_cx, sp);
-					}
-				}
+				uint length;
+				var chars = SpiderMonkey.JS_GetStringCharsAndLength(_cx, jsp, out length);
+				if (chars != IntPtr.Zero)
+					return Marshal.PtrToStringUni(chars, (int)length);
 			}
 			return null;
 		}
