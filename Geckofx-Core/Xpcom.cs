@@ -90,14 +90,14 @@ namespace Gecko
 
 		/// <summary>
 		/// Declaration in nsXPCOM.h
-		/// XPCOM_API(nsresult) NS_NewNativeLocalFile(const nsACString &path, bool followLinks, nsILocalFile* *result);
+		/// XPCOM_API(nsresult) NS_NewLocalFile(const nsAString &path, bool followLinks, nsIFile* *result);
 		/// </summary>
 		/// <param name="path"></param>
 		/// <param name="followLinks"></param>
 		/// <param name="result"></param>
 		/// <returns></returns>
 		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
-		static extern int NS_NewNativeLocalFile(nsACString path, bool followLinks, [MarshalAs(UnmanagedType.IUnknown)] out object result);
+		static extern int NS_NewLocalFile(nsAString path, bool followLinks, [MarshalAs(UnmanagedType.IUnknown)] out object result);
 
 		/// <summary>
 		/// Declaration in nsXPCOM.h
@@ -289,10 +289,10 @@ namespace Gecko
 			
 			if (binDirectory != null)
 			{
-				using (nsACString str = new nsACString(Path.GetFullPath(binDirectory)))
-					if (NS_NewNativeLocalFile(str, true, out mreAppDir) != 0)
+				using (nsAString str = new nsAString(Path.GetFullPath(binDirectory)))
+					if (NS_NewLocalFile(str, true, out mreAppDir) != 0)
 					{
-						throw new Exception("Failed on NS_NewNativeLocalFile");
+						throw new Exception("Failed on NS_NewLocalFile");
 					}
 			}
 			
@@ -444,8 +444,8 @@ namespace Gecko
 		{
 			object result;
 			
-			using (nsACString str = new nsACString(filename))
-				if (NS_NewNativeLocalFile(str, true, out result) == 0)
+			using (nsAString str = new nsAString(filename))
+				if (NS_NewLocalFile(str, true, out result) == 0)
 					return result;
 			
 			return null;
