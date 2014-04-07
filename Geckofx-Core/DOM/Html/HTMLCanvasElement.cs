@@ -34,7 +34,7 @@ namespace Gecko.DOM
 			using (nsAString retval = new nsAString(), param = new nsAString(type))
 			{
 				JsVal js = default(JsVal);
-				DOMHTMLElement.ToDataURL(param, js, context.ContextPointer, retval);
+				DOMHTMLElement.ToDataURL(param, ref js, context.ContextPointer, retval);
 				return retval.ToString();
 			}
 		}
