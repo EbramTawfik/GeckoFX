@@ -2,6 +2,16 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v29.0-0.2 ==
+
+1. Fix https://bitbucket.org/geckofx/geckofx-29.0/issue/8/geckowebbrowsernavigate-dont-have-to :
+  GeckoWebBrowser.Navigate() don't have to return early for non-existing local file.
+2. Fix https://bitbucket.org/geckofx/geckofx-29.0/issue/28/autojscontextevaluatescript-does-not
+   AutoJSContext.EvaluateScript does not accept unicode charactars (non-ISO-8859-1)
+3. Fix https://bitbucket.org/geckofx/geckofx-29.0/issue/30/unicode-path
+   nsACString with unicode chars (Thanks Duan Yao)
+4. Fix Fixed problem with unicode symbols in path to XULRunner (Thanks vmas)
+
 == v29.0-0.1 ==
 
 1. Initial version supporting firefox/xulrunner v29.0
