@@ -1,23 +1,13 @@
 syntax: glob
-Geckofx-Core/bin/
-Geckofx-Core/obj/
-Geckofx-Winforms/bin/
-Geckofx-Winforms/obj/
 _ReSharper.Geckofx/
 PutXulRunnerFolderHere/
 *.iip
-Skybound.Gecko/obj/
-Skybound.Gecko/bin/
 Skybound.Gecko/_ReSharper.Skybound.Gecko
 *.orig
-GeckofxUnitTests/bin
-GeckofxUnitTests/obj/x86
-GeckofxUnitTests/obj
-GeckoWebBrowser/obj
-GeckoFxTest/bin
-GeckoFxTest/obj
 *.suo
-GeckoWebBrowser/bin
 *.dll
 *.pdb
 *.user
+bin/
+obj/
+*.swp
