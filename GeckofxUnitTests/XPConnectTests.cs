@@ -57,7 +57,7 @@ namespace GeckofxUnitTests
 				var a = m_instance.GetWrappedNativeOfJSObject(context.ContextPointer, jsObject);
 
 				// Perform the test.
-				var i = a.FindInterfaceWithMember(jsVal.AsPtr);
+				var i = a.FindInterfaceWithMember(ref jsVal.AsPtr);
 
 				Assert.NotNull(i);
 				Assert.IsTrue(i.IsScriptable());
@@ -78,7 +78,7 @@ namespace GeckofxUnitTests
 				var a = m_instance.GetWrappedNativeOfJSObject(context.ContextPointer, jsObject);				
 
 				// Perform the test
-				var i = a.FindInterfaceWithName(jsVal.AsPtr);
+				var i = a.FindInterfaceWithName(ref jsVal.AsPtr);
 
 				Assert.NotNull(i);
 				Assert.IsTrue(i.IsScriptable());
