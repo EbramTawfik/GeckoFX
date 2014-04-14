@@ -185,14 +185,14 @@ namespace Gecko
 		#endregion
 
 
-		#region public event EventHandler DocumentCompleted
+		#region public event EventHandler DocumentCompleted<GeckoDocumentCompletedEventArgs>
 
 		/// <summary>
 		/// Occurs after the browser has finished parsing a new page and updated the <see cref="Document"/> property.
 		/// </summary>
 		[Category( "Navigation" )]
 		[Description( "Occurs after the browser has finished parsing a new page and updated the Document property." )]
-		public event EventHandler DocumentCompleted
+		public event EventHandler<GeckoDocumentCompletedEventArgs> DocumentCompleted
 		{
 			add { Events.AddHandler( DocumentCompletedEvent, value ); }
 			remove { Events.RemoveHandler( DocumentCompletedEvent, value ); }
@@ -200,9 +200,9 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DocumentCompleted"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDocumentCompleted( EventArgs e )
+		protected virtual void OnDocumentCompleted(GeckoDocumentCompletedEventArgs e)
 		{
-			var evnt = ( EventHandler ) Events[ DocumentCompletedEvent ];
+			var evnt = (EventHandler<GeckoDocumentCompletedEventArgs>)Events[DocumentCompletedEvent];
 			if ( evnt != null ) evnt( this, e );
 		}
 
