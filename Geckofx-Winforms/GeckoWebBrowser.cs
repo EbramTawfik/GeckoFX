@@ -331,11 +331,27 @@ namespace Gecko
 				referrerUri = IOService.CreateNsIUri( referrer );
 			}
 
-			WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postData != null ? postData.InputStream : null, headers != null ? headers.InputStream : null);
+			// We want Navigate() to return immediately and to fire events asynchronously. Howerver,
+			// WebNav.LoadURI() may fire 'Navigating' event synchronously, so we call it asynchronously.
+			// WebNav.LoadURI may throw exceptions for some inaccessable urls
+			// (see https://bugzilla.mozilla.org/show_bug.cgi?id=995298), 
+			// so we convert them into NavigationError events.
+			BeginInvoke(new Action(() =>
+			{
+				try
+				{
+					WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postData != null ? postData.InputStream : null, headers != null ? headers.InputStream : null);
+				}
+				catch (Exception e)
+				{
+					var ce = e as COMException;
+					var code = ce != null ? ce.ErrorCode : GeckoError.NS_ERROR_UNEXPECTED;
+					OnNavigationError(new GeckoNavigationErrorEventArgs(url, Window, code));
+				}
+			}));
 
 			return true;
 		}
-
 
 		#endregion
 
@@ -523,21 +539,27 @@ namespace Gecko
 		/// <summary>
 		/// Cancels any pending navigation and also stops any sound or animation.
 		/// </summary>
-        public void Stop()
-        {
-            if (WebNav != null)
-                try
-                {
-                    WebNav.Stop((int)nsIWebNavigationConsts.STOP_ALL);
-                }
-                catch (COMException ex)
-                {
-                    if (ex.ErrorCode == GeckoError.NS_ERROR_UNEXPECTED)
-                        return;
-                    throw;
-                }
-        }
-		
+		public void Stop()
+		{
+			// We want Stop() to return immediately and to fire events asynchronously. Howerver,
+			// WebNav.Stop() may fire 'NavigationError' event synchronously, so we call it asynchronously.
+			BeginInvoke(new Action(() =>
+			{
+				if (WebNav == null)
+					return;
+				try
+				{
+					WebNav.Stop((int)nsIWebNavigationConsts.STOP_ALL);
+				}
+				catch (COMException ex)
+				{
+					if (ex.ErrorCode == GeckoError.NS_ERROR_UNEXPECTED)
+						return;
+					throw;
+				}
+			}));
+		}
+
 		/// <summary>
 		/// Reloads the current page.
 		/// </summary>
@@ -1511,10 +1533,6 @@ namespace Gecko
 						// clear busy state
 						IsBusy = false;
 
-						// kill any cached document and raise DocumentCompleted event
-
-						OnDocumentCompleted(new GeckoDocumentCompletedEventArgs(destUri, domWindow));
-
 						// clear progress bar
 						OnProgressChanged(new GeckoProgressEventArgs(100, 100));
 
@@ -1585,13 +1603,18 @@ namespace Gecko
 				{
 					// clear busy state
 					IsBusy = false;
+					if (aStatus == 0)
+					{
+						// kill any cached document and raise DocumentCompleted event
+						OnDocumentCompleted(new GeckoDocumentCompletedEventArgs(destUri, domWindow));
 
-					// kill any cached document and raise DocumentCompleted event
-					OnDocumentCompleted(new GeckoDocumentCompletedEventArgs(destUri, domWindow));
-
-					// clear progress bar
-					OnProgressChanged(new GeckoProgressEventArgs(100, 100));
-
+						// clear progress bar
+						OnProgressChanged(new GeckoProgressEventArgs(100, 100));
+					}
+					else
+					{
+						OnNavigationError(new GeckoNavigationErrorEventArgs(request.Name, domWindow, aStatus));
+					}
 					// clear status bar
 					StatusText = "";
 				}

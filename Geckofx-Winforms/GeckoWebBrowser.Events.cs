@@ -21,6 +21,7 @@ namespace Gecko
 		// Navigation
 		private static readonly object NavigatingEvent = new object();
 		private static readonly object NavigatedEvent = new object();
+		private static readonly object NavigationErrorEvent = new object();
 		private static readonly object FrameNavigatingEvent = new object();
 		private static readonly object DocumentCompletedEvent = new object();
 		private static readonly object RedirectingEvent = new object();
@@ -126,6 +127,29 @@ namespace Gecko
 		protected virtual void OnNavigated( GeckoNavigatedEventArgs e )
 		{
 			var evnt = ( EventHandler<GeckoNavigatedEventArgs> ) Events[ NavigatedEvent ];
+			if ( evnt != null ) evnt( this, e );
+		}
+
+		#endregion
+
+		#region public event EventHandler<GeckoNavigationErrorEventArgs> NavigationError
+
+		/// <summary>
+		/// Occurs when navigation to a new page has failed or has been aborted by user.
+		/// </summary>
+		[Category( "Navigation" )]
+		[Description( "Occurs when navigation to a new page has failed or has been aborted by user." )]
+		public event EventHandler<GeckoNavigationErrorEventArgs> NavigationError
+		{
+			add { Events.AddHandler( NavigationErrorEvent, value ); }
+			remove { Events.RemoveHandler( NavigationErrorEvent, value ); }
+		}
+
+		/// <summary>Raises the <see cref="NavigationError"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnNavigationError( GeckoNavigationErrorEventArgs e )
+		{
+			var evnt = ( ( EventHandler<GeckoNavigationErrorEventArgs> ) Events[ NavigationErrorEvent ] );
 			if ( evnt != null ) evnt( this, e );
 		}
 

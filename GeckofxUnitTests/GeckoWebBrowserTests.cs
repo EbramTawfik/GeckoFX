@@ -660,5 +660,57 @@ setTimeout(function(){
             Assert.AreEqual("hello world", browser.Document.Body.InnerHtml);
         }
 
+		[Test]
+		public void Navigating_NavigationError_Http()
+		{
+			int errorCount = 0, completeCount = 0;
+			browser.DocumentCompleted += (sender, e) => ++ completeCount;
+			browser.NavigationError += (sender, e) => ++ errorCount;
+
+			browser.Navigate("http://localhost:63333");
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0);
+			errorCount = completeCount = 0;
+
+			browser.Navigate("http://localhost:25");
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0);
+			errorCount = completeCount = 0;
+		}
+
+		[Test]
+		public void Navigating_NavigationError_Chrome()
+		{
+			int errorCount = 0, completeCount = 0;
+			browser.DocumentCompleted += (sender, e) => ++ completeCount;
+			browser.NavigationError += (sender, e) => ++ errorCount;
+
+			browser.Navigate("chrome://global/content/bindings/general.xml"); //good url
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 0 && completeCount == 1);
+			errorCount = completeCount = 0;
+
+			browser.Navigate("chrome://global/content/aaaa"); //not found
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0);
+			errorCount = completeCount = 0;
+
+			browser.Navigate("chrome://global/bindings/general.xml"); //missing 'content' part
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0);
+			errorCount = completeCount = 0;
+
+			browser.Navigate("chrome://global/content/bindings/general.xml");
+			browser.Stop();
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0);
+			errorCount = completeCount = 0;
+
+			browser.Navigate("chrome://global/content/bindings/general.xml");
+			browser.Navigating += (sender, e) => e.Cancel = true;
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0);
+			errorCount = completeCount = 0;
+		}
 	}
 }

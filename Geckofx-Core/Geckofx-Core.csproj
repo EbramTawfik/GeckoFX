@@ -125,6 +125,7 @@
     <Compile Include="Events\GeckoNavigatingEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Events\GeckoNavigationErrorEventArgs.cs" />
     <Compile Include="Events\GeckoNSSErrorEventArgs.cs" />
     <Compile Include="GeckoError.cs" />
     <Compile Include="Generated\mozIStorageAsyncConnection.cs" />

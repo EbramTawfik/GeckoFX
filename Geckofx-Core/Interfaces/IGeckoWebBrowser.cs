@@ -194,6 +194,8 @@ namespace Gecko
 
 		event EventHandler<Gecko.Events.GeckoDocumentCompletedEventArgs> DocumentCompleted;
 
+		event EventHandler<Gecko.Events.GeckoNavigationErrorEventArgs> NavigationError;
+
 		#endregion
 	}
 

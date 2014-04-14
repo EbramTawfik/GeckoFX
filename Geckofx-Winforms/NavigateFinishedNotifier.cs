@@ -28,6 +28,7 @@ namespace Gecko
 		{
 			bool done = false;
 			m_browser.DocumentCompleted += (sender, e) => done = true;
+			m_browser.NavigationError += (sender, e) => done = true;
 			while (!done)
 			{
 				Application.DoEvents();
