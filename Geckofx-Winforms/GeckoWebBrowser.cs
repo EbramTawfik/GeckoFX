@@ -524,8 +524,9 @@ namespace Gecko
 				}
 				catch (COMException ex)
 				{
-					//TODO get backward url
-					this.OnNavigationError(new GeckoNavigationErrorEventArgs(Url.ToString(), Window, ex.ErrorCode)); 
+					int i = History.Index;
+					string url = i > 0 ? History[i - 1].Url.ToString() : "";
+					this.OnNavigationError(new GeckoNavigationErrorEventArgs(url, Window, ex.ErrorCode)); 
 				}
 			}));
 			return true;
@@ -547,8 +548,9 @@ namespace Gecko
 				}
 				catch (COMException ex)
 				{
-					//TODO get forward url
-					this.OnNavigationError(new GeckoNavigationErrorEventArgs(Url.ToString(), Window, ex.ErrorCode));
+					int i = History.Index;
+					string url = i < History.Count - 1 ? History[i + 1].Url.ToString() : "";
+					this.OnNavigationError(new GeckoNavigationErrorEventArgs(url, Window, ex.ErrorCode));
 				}
 			}));
 			return true;

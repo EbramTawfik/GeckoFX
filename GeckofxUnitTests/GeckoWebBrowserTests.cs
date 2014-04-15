@@ -731,5 +731,52 @@ setTimeout(function(){
 			Assert.True(errorCount == 1 && completeCount == 0);
 			errorCount = completeCount = 0;
 		}
+
+		[Test]
+		public void Navigating_NavigationError_History()
+		{
+			string errorUrl = null;
+			browser.NavigationError += (sender, e) => errorUrl = e.Uri;
+
+			browser.Navigate("chrome://global/content/bindings/general.xml"); //good url
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+			browser.Navigate("chrome://global/content/aaaa"); //not found
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+			Assert.True(browser.CanGoBack);
+			browser.GoBack();
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+			Assert.True(browser.CanGoForward);
+			browser.GoForward();
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.AreEqual(errorUrl, "chrome://global/content/aaaa");
+
+			browser.Navigate("chrome://global/bindings/general.xml"); //missing 'content' part
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.AreEqual(errorUrl, "chrome://global/bindings/general.xml");
+		}
+
+		[Test]
+		public void Navigating_NavigationError_History2()
+		{
+			string errorUrl = null;
+			browser.NavigationError += (sender, e) => errorUrl = e.Uri;
+
+			browser.Navigate("chrome://global/content/bindings/general.xml"); //good url
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+			browser.Navigate("chrome://global/bindings/general.xml"); //missing 'content' part
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+			// TODO Navigate("chrome://global/bindings/general.xml") failed and the url was not pushed into history stack,
+			// so the assertion failed. may be a mozilla's bug
+			Assert.True(browser.GoBack());
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(browser.GoForward());
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.AreEqual(errorUrl, "chrome://global/bindings/general.xml");
+		}
 	}
 }
