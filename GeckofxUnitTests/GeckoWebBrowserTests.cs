@@ -20,6 +20,8 @@ namespace GeckofxUnitTests
 		public void BeforeEachTestSetup()
 		{
 			Xpcom.Initialize(XpComTests.XulRunnerLocation);
+			//affecting browser.Realod()/GoForward()/GoBackward() of error page
+			GeckoPreferences.User["browser.xul.error_pages.enabled"] = true;
 			browser = new GeckoWebBrowser();
 			var unused = browser.Handle;
 			Assert.IsNotNull(browser);
@@ -676,6 +678,11 @@ setTimeout(function(){
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 			Assert.True(errorCount == 1 && completeCount == 0);
 			errorCount = completeCount = 0;
+
+			browser.Reload();
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0);
+			errorCount = completeCount = 0;
 		}
 
 		[Test]
@@ -691,6 +698,18 @@ setTimeout(function(){
 			errorCount = completeCount = 0;
 
 			browser.Navigate("chrome://global/content/aaaa"); //not found
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0);
+			errorCount = completeCount = 0;
+
+			Assert.True(browser.CanGoBack);
+			browser.GoBack();
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 0 && completeCount == 1);
+			errorCount = completeCount = 0;
+
+			Assert.True(browser.CanGoForward);
+			browser.GoForward();
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 			Assert.True(errorCount == 1 && completeCount == 0);
 			errorCount = completeCount = 0;

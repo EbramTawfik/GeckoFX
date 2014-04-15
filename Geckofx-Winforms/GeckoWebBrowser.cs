@@ -514,12 +514,21 @@ namespace Gecko
 		/// <returns></returns>
 		public bool GoBack()
 		{
-			if (CanGoBack)
+			if (!CanGoBack)
+				return false;
+			BeginInvoke(new Action(() =>
 			{
-				WebNav.GoBack();
-				return true;
-			}
-			return false;
+				try
+				{
+					WebNav.GoBack();
+				}
+				catch (COMException ex)
+				{
+					//TODO get backward url
+					this.OnNavigationError(new GeckoNavigationErrorEventArgs(Url.ToString(), Window, ex.ErrorCode)); 
+				}
+			}));
+			return true;
 		}
 		
 		/// <summary>
@@ -528,12 +537,21 @@ namespace Gecko
 		/// <returns></returns>
 		public bool GoForward()
 		{
-			if (CanGoForward)
+			if (!CanGoForward)
+				return false;
+			BeginInvoke(new Action(() =>
 			{
-				WebNav.GoForward();
-				return true;
-			}
-			return false;
+				try
+				{
+					WebNav.GoForward();
+				}
+				catch (COMException ex)
+				{
+					//TODO get forward url
+					this.OnNavigationError(new GeckoNavigationErrorEventArgs(Url.ToString(), Window, ex.ErrorCode));
+				}
+			}));
+			return true;
 		}
 		
 		/// <summary>
@@ -576,15 +594,18 @@ namespace Gecko
 		/// <returns></returns>
 		public bool Reload(GeckoLoadFlags flags)
 		{
-			Uri url = this.Url;
-			if (url != null && url.IsFile && !File.Exists(url.LocalPath))
+			// We want Reload() to return immediately and to fire events asynchronously.
+			BeginInvoke(new Action(() =>
 			{
-				// can't reload a file which no longer exists--a COM exception will be thrown
-				return false;
-			}
-			
-			if (WebNav != null)
-				WebNav.Reload((uint)flags); 
+				try
+				{
+					WebNav.Reload((uint)flags);
+				}
+				catch (COMException e)
+				{
+					OnNavigationError(new GeckoNavigationErrorEventArgs(Url.ToString(), Window, e.ErrorCode));
+				}
+			}));
 			
 			return true;
 		}
