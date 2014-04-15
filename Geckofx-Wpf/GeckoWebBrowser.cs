@@ -218,7 +218,9 @@ namespace Gecko
 			return ok;
 		}
 
-		public event EventHandler DocumentCompleted;		
+		public event EventHandler<Events.GeckoDocumentCompletedEventArgs> DocumentCompleted;
+
+		public event EventHandler<Events.GeckoNavigationErrorEventArgs> NavigationError;
 
 		/// <summary>
 		/// UI platform independent call function from UI thread
@@ -270,6 +272,5 @@ namespace Gecko
 			
 			base.OnRenderSizeChanged(sizeInfo);
 		}
-
 	}
 }
