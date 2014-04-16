@@ -34,19 +34,14 @@ namespace Gecko
 			//TODO other version
 			if (Xpcom.Is32Bit)
 			{
-				//if (Xpcom.IsLinux)
-				//return JS_GetStringCharsAndLength_Linux32(cx, jsString, out length);
+				if (Xpcom.IsLinux)
+					return JS_GetStringCharsAndLength_Linux32(cx, jsString, out length);
 
 				return JS_GetStringCharsAndLength_Win32(cx, jsString, out length);
 			}
 			else
 			{
-				//if (Xpcom.IsLinux)
-				//return JS_GetStringCharsAndLength_Linux64(cx, jsString, out length);
-
-				//return JS_GetStringCharsAndLength_Win64(cx, jsString, out length);
-
-				throw new Exception ();
+				throw new NotImplementedException ();
 			}
 		}
 		
@@ -175,8 +170,7 @@ namespace Gecko
 		{
 			if (Xpcom.Is32Bit)
 			{
-				if (Xpcom.IsLinux)
-					if (Xpcom.IsLinux)
+				if (Xpcom.IsLinux)					
 						throw new NotImplementedException();
 
 				return JS_GetScriptedGlobal_Win32(aJSContext);
@@ -189,11 +183,10 @@ namespace Gecko
 
 		public static IntPtr CurrentGlobalOrNull(IntPtr aJSContext)
 		{
-			if (Xpcom.IsLinux)
-				throw new NotImplementedException();
-
 			if (Xpcom.Is32Bit)
-			{				
+			{
+				if (Xpcom.IsLinux)
+					return CurrentGlobalOrNull_Linux32(aJSContext);
 
 				return CurrentGlobalOrNull_Win32(aJSContext);
 			}
@@ -242,13 +235,20 @@ namespace Gecko
 
 		public static IntPtr DefaultObjectForContextOrNull(IntPtr jsContext)
 		{
-			if (!Xpcom.IsWindows)
-				throw new NotImplementedException();
-
 			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					return DefaultObjectForContextOrNull_Linux32(jsContext);
+				
 				return DefaultObjectForContextOrNull_Win32(jsContext);
+			}
 			else
+			{
+				if (Xpcom.IsLinux)
+					throw new NotImplementedException();
+
 				return DefaultObjectForContextOrNull_Win64(jsContext);
+			}
 		}
 		
 
