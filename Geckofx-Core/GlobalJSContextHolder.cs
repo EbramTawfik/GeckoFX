@@ -51,11 +51,14 @@ namespace Gecko
 			{
 				if (_safeContext == IntPtr.Zero)
 				{
-					//_safeContext = GetContextByName("global_for_XPCJSContextStack_SafeJSContext");
+					// On mono - Marshal.GetComSlotForMethodInfo always return 3 as the the slot of the delegate isn't initalized (default value 0)
+					// So, regrettably we have to hard code the slot value.
+					// If this crashes on a gecko upgrade, then its likely that nsIXPConnect ABI has changed, and the slot number has to be adjusted.
+					const int GetSafeJSContextSlotPosition = 15;
 
 					ComPtr<nsIXPConnect> xpc = Xpcom.XPConnect;
 					int slot = xpc.GetSlotOfComMethod(new Func<IntPtr>(xpc.Instance.GetSafeJSContext));
-					var getSafeJSContext = xpc.GetComMethod<Xpcom.GetSafeJSContextDelegate>(slot);
+					var getSafeJSContext = xpc.GetComMethod<Xpcom.GetSafeJSContextDelegate>(Xpcom.IsLinux ? GetSafeJSContextSlotPosition : slot);
 					_safeContext = getSafeJSContext(xpc.Instance);
 				}
 				return _safeContext;
