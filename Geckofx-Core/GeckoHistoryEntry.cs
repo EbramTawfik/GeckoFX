@@ -118,13 +118,8 @@ namespace Gecko
 			{
 				get
 				{
-#if PORT
 					nsIURI uri = Entry.GetURIAttribute();
 					return (uri == null) ? null : new Uri(nsString.Get(uri.GetSpecAttribute));
-#else
-					//TODO: maybe use mozIPlaceInfo?
-					throw new NotImplementedException();
-#endif
 				}
 			}
 			
@@ -245,6 +240,14 @@ namespace Gecko
 		public int Count
 		{
 			get { return History.GetCountAttribute(); }
+		}
+
+		/// <summary>
+		/// Gets the index of the current document in session history.
+		/// </summary>
+		public int Index
+		{
+			get { return History.GetIndexAttribute(); }
 		}
 		
 		/// <summary>

@@ -20,6 +20,8 @@ namespace GeckofxUnitTests
 		public void BeforeEachTestSetup()
 		{
 			Xpcom.Initialize(XpComTests.XulRunnerLocation);
+			//affecting browser.Realod()/GoForward()/GoBackward() of error page
+			GeckoPreferences.User["browser.xul.error_pages.enabled"] = true;
 			browser = new GeckoWebBrowser();
 			var unused = browser.Handle;
 			Assert.IsNotNull(browser);
@@ -660,5 +662,123 @@ setTimeout(function(){
             Assert.AreEqual("hello world", browser.Document.Body.InnerHtml);
         }
 
+		[Test]
+		[Ignore("Navigate doesn't behave how describe in this unittest on my Windows 7 64bit machine.")]
+		public void Navigating_NavigationError_Http()
+		{
+			int errorCount = 0, completeCount = 0;
+			browser.DocumentCompleted += (sender, e) => ++ completeCount;
+			browser.NavigationError += (sender, e) => ++ errorCount;
+
+			browser.Navigate("http://localhost:63333");
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0, "localhost:63333 should have failed.");
+			errorCount = completeCount = 0;
+
+			browser.Navigate("http://localhost:25");
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0, "(1) localhost:25 should have failed.");
+			errorCount = completeCount = 0;
+
+			browser.Reload();
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0, "(2) localhost:25 should have failed.");
+			errorCount = completeCount = 0;
+		}
+
+		[Test]
+		public void Navigating_NavigationError_Chrome()
+		{
+			int errorCount = 0, completeCount = 0;
+			browser.DocumentCompleted += (sender, e) => ++ completeCount;
+			browser.NavigationError += (sender, e) => ++ errorCount;
+
+			browser.Navigate("chrome://global/content/bindings/general.xml"); //good url
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 0 && completeCount == 1);
+			errorCount = completeCount = 0;
+
+			browser.Navigate("chrome://global/content/aaaa"); //not found
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0);
+			errorCount = completeCount = 0;
+
+			Assert.True(browser.CanGoBack);
+			browser.GoBack();
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 0 && completeCount == 1);
+			errorCount = completeCount = 0;
+
+			Assert.True(browser.CanGoForward);
+			browser.GoForward();
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0);
+			errorCount = completeCount = 0;
+
+			browser.Navigate("chrome://global/bindings/general.xml"); //missing 'content' part
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0);
+			errorCount = completeCount = 0;
+
+			browser.Navigate("chrome://global/content/bindings/general.xml");
+			browser.Stop();
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0);
+			errorCount = completeCount = 0;
+
+			browser.Navigate("chrome://global/content/bindings/general.xml");
+			browser.Navigating += (sender, e) => e.Cancel = true;
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 1 && completeCount == 0);
+			errorCount = completeCount = 0;
+		}
+
+		[Test]
+		public void Navigating_NavigationError_History()
+		{
+			string errorUrl = null;
+			browser.NavigationError += (sender, e) => errorUrl = e.Uri;
+
+			browser.Navigate("chrome://global/content/bindings/general.xml"); //good url
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+			browser.Navigate("chrome://global/content/aaaa"); //not found
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+			Assert.True(browser.CanGoBack);
+			browser.GoBack();
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+			Assert.True(browser.CanGoForward);
+			browser.GoForward();
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.AreEqual(errorUrl, "chrome://global/content/aaaa");
+
+			browser.Navigate("chrome://global/bindings/general.xml"); //missing 'content' part
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.AreEqual(errorUrl, "chrome://global/bindings/general.xml");
+		}
+
+		[Test]
+		[Ignore("Expected fail.")]
+		public void Navigating_NavigationError_History2()
+		{
+			string errorUrl = null;
+			browser.NavigationError += (sender, e) => errorUrl = e.Uri;
+
+			browser.Navigate("chrome://global/content/bindings/general.xml"); //good url
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+			browser.Navigate("chrome://global/bindings/general.xml"); //missing 'content' part
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+			// TODO Navigate("chrome://global/bindings/general.xml") failed and the url was not pushed into history stack,
+			// so the assertion failed. may be a mozilla's bug
+			Assert.True(browser.GoBack());
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(browser.GoForward());
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.AreEqual(errorUrl, "chrome://global/bindings/general.xml");
+		}
 	}
 }

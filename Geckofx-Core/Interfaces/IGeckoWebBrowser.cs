@@ -190,9 +190,11 @@ namespace Gecko
 		T UserInterfaceThreadInvoke<T>( Func<T> func );
 
 		#region Events
-		event EventHandler<DomEventArgs> Load; 
+		event EventHandler<DomEventArgs> Load;
 
-		event EventHandler DocumentCompleted;
+		event EventHandler<Gecko.Events.GeckoDocumentCompletedEventArgs> DocumentCompleted;
+
+		event EventHandler<Gecko.Events.GeckoNavigationErrorEventArgs> NavigationError;
 
 		#endregion
 	}
