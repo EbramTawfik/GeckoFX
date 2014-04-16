@@ -54,7 +54,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("38463592-8527-11e3-b240-180373d97f23")]
+	[Guid("398dfa21-f29d-4530-bb42-136c6e7d9486")]
 	public interface nsIX509CertDB
 	{
 		

@@ -1533,6 +1533,26 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);			
 			Marshal.ReleaseComObject(instance);				
 		}
+
+		[Test]
+		public void GetnsICertOverrideService_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService2<nsICertOverrideService>(Contracts.CertOverride);
+			Assert.IsNotNull(instance);
+			instance.Dispose();
+		}
+
+		[Test]
+		public void GetnsIX509CertDB_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService2<nsIX509CertDB>(Contracts.X509CertDb);
+			Assert.IsNotNull(instance);
+			instance.Dispose();
+
+			var instance2 = Xpcom.GetService2<nsIX509CertDB2>(Contracts.X509CertDb);
+			Assert.IsNotNull(instance2);
+			instance2.Dispose();
+		}
 #endregion
 	}
 }
