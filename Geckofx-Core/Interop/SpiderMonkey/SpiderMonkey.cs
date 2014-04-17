@@ -195,6 +195,9 @@ namespace Gecko
 			}
 			else
 			{
+				if (Xpcom.IsLinux)
+					return CurrentGlobalOrNull_Linux64(aJSContext);
+				
 				return CurrentGlobalOrNull_Win64(aJSContext);
 			}
 		}
@@ -248,7 +251,7 @@ namespace Gecko
 			else
 			{
 				if (Xpcom.IsLinux)
-					throw new NotImplementedException();
+					return DefaultObjectForContextOrNull_Linux64(jsContext);
 
 				return DefaultObjectForContextOrNull_Win64(jsContext);
 			}
