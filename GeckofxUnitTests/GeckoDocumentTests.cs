@@ -99,8 +99,8 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("<div name=\"a\" id=\"_lv5\">old value</div>");
 
-			var divElement = browser.Document.GetElements("//div");
-			Assert.AreEqual(1, divElement.Count());
+			var r = browser.Document.EvaluateXPath("//div");
+			Assert.AreEqual(1, r.GetNodes().Count());
 		}
 
 		[Test]

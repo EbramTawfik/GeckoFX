@@ -123,6 +123,7 @@
     <Compile Include="DOM\Svg\SvgElement.cs" />
     <Compile Include="DOM\Svg\SvgSvgElement.cs" />
     <Compile Include="DOM\Svg\SvgLength.cs" />
+    <Compile Include="DOM\XPathResult.cs" />
     <Compile Include="Events\GeckoDocumentCompletedEventArgs.cs" />
     <Compile Include="Events\GeckoEventList.cs">
       <SubType>Code</SubType>

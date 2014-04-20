@@ -225,7 +225,7 @@ namespace Gecko
 		}
 
 
-		private nsIDOMXPathResult EvaluateXPath( string xpath )
+		private nsIDOMXPathResult EvaluateXPathInternal( string xpath )
 		{
 			var evaluator = Xpcom.CreateInstance2<nsIDOMXPathEvaluator>( Contracts.XPathEvaluator );
 			nsIDOMNode node = DomObject;
@@ -236,41 +236,14 @@ namespace Gecko
 		}
 
 		/// <summary>
-		/// Get GeckoNodes from give xpath expression.
+		/// Evaluate xpath on this node.
 		/// </summary>
 		/// <param name="xpath"></param>
 		/// <returns></returns>
-		public IEnumerable<GeckoNode> GetNodes(string xpath)
+		public XPathResult EvaluateXPath( string xpath )
 		{
-			var result = EvaluateXPath( xpath );
-
-			return new GeckoNodeEnumerable(result);
-		}
-
-		/// <summary>
-		/// Get GeckoNodes from give xpath expression.
-		/// </summary>
-		/// <param name="xpath"></param>
-		/// <returns></returns>
-		public IEnumerable<GeckoHtmlElement> GetElements(string xpath)
-		{
-			var result = EvaluateXPath( xpath );
-
-			return new GeckoElementEnumerable(result);
-		}
-
-		public GeckoNode GetSingleElement( string xpath )
-		{
-			var result = EvaluateXPath( xpath );
-
-			var type = result.GetResultTypeAttribute();
-
-			if ( type == nsIDOMXPathResultConsts.UNORDERED_NODE_ITERATOR_TYPE )
-			{
-				return result.IterateNext().Wrap( Create );
-			}
-
-			return result.GetSingleNodeValueAttribute().Wrap( Create );
+			var r = EvaluateXPathInternal( xpath );
+			return new XPathResult(r);
 		}
 
 
