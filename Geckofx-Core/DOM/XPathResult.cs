@@ -8,6 +8,7 @@ namespace Gecko.DOM {
 
         public enum ResultType {
             ANY_TYPE = 0,
+            NUMBER_TYPE = 1,
             STRING_TYPE = 2,
             BOOLEAN_TYPE = 3,
             UNORDERED_NODE_ITERATOR_TYPE = 4,
