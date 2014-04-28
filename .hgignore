@@ -21,3 +21,9 @@ GeckoWebBrowser/bin
 *.dll
 *.pdb
 *.user
+Geckofx-Wpf/bin/
+Geckofx-Wpf/obj/
+GeckoFxWpfWinFormsTest/bin/
+GeckoFxWpfWinFormsTest/obj/
+GeckoFxWpfTest/bin/
+GeckoFxWpfTest/obj/
