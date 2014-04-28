@@ -1,14 +1,15 @@
 using System.Runtime.CompilerServices;
+using Gecko.Interop;
 
 namespace Gecko.Certificates
 {
 	public sealed class CertTreeItem
 	{
-		private InstanceWrapper<nsICertTreeItem> _certTreeItem;
+		private ComPtr<nsICertTreeItem> _certTreeItem;
 
 		internal CertTreeItem(nsICertTreeItem certTreeItem)
 		{
-			_certTreeItem = new InstanceWrapper<nsICertTreeItem>( certTreeItem );
+			_certTreeItem = new ComPtr<nsICertTreeItem>( certTreeItem );
 		}
 
 		public Certificate Certificate

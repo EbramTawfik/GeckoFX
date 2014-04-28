@@ -326,8 +326,12 @@ namespace Gecko
 			NS_GetComponentManager(out ComponentManager);
 			NS_GetComponentRegistrar(out ComponentRegistrar);
 
-			_comGC = new COMGC();
-			if (!IsMono) _comGC.Dispose();
+			if (IsMono)
+			{
+				_comGC = new COMGC();
+			}
+			
+			
 
 			// RegisterProvider is necessary to get link styles etc.
 			nsIDirectoryService directoryService = GetService<nsIDirectoryService>("@mozilla.org/file/directory_service;1");
@@ -348,8 +352,8 @@ namespace Gecko
 		}
 
 		public static void Shutdown()
-		{						
-			_comGC.Dispose();
+		{
+			Xpcom.DisposeObject( ref _comGC );			
 			
 			if (ComponentRegistrar != null)
 				Marshal.ReleaseComObject(ComponentRegistrar);
@@ -701,6 +705,25 @@ namespace Gecko
 			}
 #endif
 		}
+
+		/// <summary>
+		/// special version should be used only if we absolutly sure
+		/// Use for only for determinated free (using ..., create & free, etc)
+		/// Don't use in destructors
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="obj"></param>
+		internal static void FreeComObjectDeterminate<T>( ref T obj )
+			where T : class
+		{
+			// take it to local variable
+			var localObj = Interlocked.Exchange(ref obj, null);
+			// if it is already null -> return
+			if (localObj == null) return;
+			Marshal.ReleaseComObject(localObj);
+		}
+	
+
 
 		
 

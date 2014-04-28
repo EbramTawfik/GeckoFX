@@ -1,4 +1,5 @@
 using System;
+using Gecko.Interop;
 using Gecko.IO;
 using Gecko.IO.Native;
 
@@ -7,7 +8,7 @@ namespace Gecko.Net
 	public class StreamListenerTee
 		:IDisposable
 	{
-		internal InstanceWrapper<nsIStreamListenerTee> _streamListenerTee;
+		internal ComPtr<nsIStreamListenerTee> _streamListenerTee;
 		private RequestObserver _requestObserver=new RequestObserver();
 
 		private byte[] _capturedData;
@@ -15,7 +16,7 @@ namespace Gecko.Net
 
 		public StreamListenerTee()
 		{
-			_streamListenerTee = new InstanceWrapper<nsIStreamListenerTee>( Contracts.StreamListenerTee );
+			_streamListenerTee = Xpcom.CreateInstance2<nsIStreamListenerTee>(Contracts.StreamListenerTee);
 			_requestObserver.Stopped += OnStopped;
 		}
 

@@ -260,7 +260,6 @@
     <Compile Include="Generated\nsIFrameRequestCallback.cs" />
     <Compile Include="Generated\nsIProfiler.cs" />
     <Compile Include="Generated\nsISmsService.cs" />
-    <Compile Include="Interop\InstanceWrapper.cs" />
     <Compile Include="IOService.cs" />
     <Compile Include="Listeners\GeckoBaseListener.cs" />
     <Compile Include="Listeners\GeckoDOMEventListener.cs" />

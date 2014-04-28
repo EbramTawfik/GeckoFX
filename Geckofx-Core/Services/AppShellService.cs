@@ -12,9 +12,7 @@ namespace Gecko
 
 		static AppShellService()
 		{
-			_appShellService = Xpcom.GetService2<nsIAppShellService>(Contracts.AppShellService);	
-	
-			
+			_appShellService = Xpcom.GetService2<nsIAppShellService>( Contracts.AppShellService );
 		}
 
 		public static void CreateHiddenWindow()

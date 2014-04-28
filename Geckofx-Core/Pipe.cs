@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Gecko.Interop;
 
 namespace Gecko
 {
@@ -12,11 +13,11 @@ namespace Gecko
 	public sealed class Pipe
 		:IDisposable 
 	{
-		internal InstanceWrapper<nsIPipe> _pipe;
+		internal ComPtr<nsIPipe> _pipe;
 
 		public Pipe()
 		{
-			_pipe = new InstanceWrapper<nsIPipe>( Contracts.Pipe );
+			_pipe = Xpcom.CreateInstance2<nsIPipe>( Contracts.Pipe );
 			_pipe.Instance.Init(true, true,0, 0);
 		}
 

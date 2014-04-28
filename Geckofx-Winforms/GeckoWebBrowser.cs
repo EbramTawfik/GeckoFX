@@ -341,13 +341,17 @@ namespace Gecko
 			{
 				try
 				{
-					WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postData != null ? postData.InputStream : null, headers != null ? headers.InputStream : null);
+					WebNav.LoadURI(
+						url, (uint) loadFlags, referrerUri, postData != null ? postData._inputStream : null,
+						headers != null ? headers._inputStream : null );
+				}
+				catch (COMException ce)
+				{
+					OnNavigationError(new GeckoNavigationErrorEventArgs(url, Window, ce.ErrorCode));
 				}
 				catch (Exception e)
 				{
-					var ce = e as COMException;
-					var code = ce != null ? ce.ErrorCode : GeckoError.NS_ERROR_UNEXPECTED;
-					OnNavigationError(new GeckoNavigationErrorEventArgs(url, Window, code));
+					OnNavigationError(new GeckoNavigationErrorEventArgs(url, Window, GeckoError.NS_ERROR_UNEXPECTED));
 				}
 			}));
 
