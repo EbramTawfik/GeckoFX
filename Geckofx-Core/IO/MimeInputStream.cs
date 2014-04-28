@@ -1,3 +1,5 @@
+using Gecko.Interop;
+
 namespace Gecko.IO
 {
 	public sealed class MimeInputStream
@@ -25,6 +27,23 @@ namespace Gecko.IO
 		public void SetData(InputStream stream)
 		{
 			_mimeInputStream.SetData( stream._inputStream );
+		}
+
+		public void SetData(string data)
+		{
+			using (var stringInputStream = Xpcom.CreateInstance2<nsIStringInputStream>(Contracts.StringInputStream))
+			{
+				stringInputStream.Instance.SetData(data, data.Length);
+				_mimeInputStream.SetData(stringInputStream.Instance);
+			}
+		}
+
+
+		public static MimeInputStream Create()
+		{
+			var stream = Xpcom.CreateInstance<nsIMIMEInputStream>(Contracts.MimeInputStream);
+
+			return new MimeInputStream( stream );
 		}
 	}
 }

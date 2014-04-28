@@ -6,11 +6,11 @@ namespace Gecko
 {
 	public static class ConsoleService
 	{
-		internal static ServiceWrapper<nsIConsoleService> _consoleService;
+		internal static ComPtr<nsIConsoleService> _consoleService;
 
 		static ConsoleService()
 		{
-			_consoleService = new ServiceWrapper<nsIConsoleService>(Contracts.ConsoleService);
+			_consoleService = Xpcom.GetService2<nsIConsoleService>(Contracts.ConsoleService);
 		}
 
 		public static void Reset()

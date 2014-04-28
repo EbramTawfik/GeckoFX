@@ -8,11 +8,11 @@ namespace Gecko
 {
 	public static class AppShellService
 	{
-		private static ServiceWrapper<nsIAppShellService> _appShellService;
+		private static ComPtr<nsIAppShellService> _appShellService;
 
 		static AppShellService()
 		{
-			_appShellService=new ServiceWrapper<nsIAppShellService>( Contracts.AppShellService );	
+			_appShellService = Xpcom.GetService2<nsIAppShellService>(Contracts.AppShellService);	
 	
 			
 		}

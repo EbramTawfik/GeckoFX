@@ -8,11 +8,11 @@ namespace Gecko.Services
 {
 	public static class VersionComparator
 	{
-		private static ServiceWrapper<nsIVersionComparator> _versionComparator;
+		private static ComPtr<nsIVersionComparator> _versionComparator;
 
 		static VersionComparator()
 		{
-			_versionComparator = new ServiceWrapper<nsIVersionComparator>(Contracts.VersionComparator);
+			_versionComparator = Xpcom.GetService2<nsIVersionComparator>(Contracts.VersionComparator);
 		}
 
 

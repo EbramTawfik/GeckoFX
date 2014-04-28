@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
+using Gecko.Interop;
 
 namespace Gecko.IO
 {
@@ -17,8 +19,18 @@ namespace Gecko.IO
 		internal InputStream(nsIInputStream inputStream)
 		{
 			_inputStream = inputStream;
+			// refcount (+1)
 			_seekableStream = Xpcom.QueryInterface<nsISeekableStream>(inputStream);
 			_seekable = _seekableStream != null;
+		}
+
+		protected override void Dispose( bool disposing )
+		{
+			// refcount (-1)
+			Xpcom.FreeComObject(ref _seekableStream);
+			// refcount (-1)
+			Xpcom.FreeComObject(ref _inputStream);
+			base.Dispose( disposing );
 		}
 
 		public override void Flush()
@@ -35,6 +47,11 @@ namespace Gecko.IO
 			//NS_SEEK_SET 	0 	Specifiesthat the offset is relative to the start of the stream.
 			//NS_SEEK_CUR 	1 	Specifies that the offset is relative to the current position in the stream.
 			//NS_SEEK_END 	2 	Specifies that the offset is relative to the end of the stream.
+
+			// SeekOrigin.Begin   0
+			// SeekOrigin.Current 1
+			// SeekOrigin.End     2
+
 			_seekableStream.Seek((int)origin, (int)offset);
 			return _seekableStream.Tell();
 		}

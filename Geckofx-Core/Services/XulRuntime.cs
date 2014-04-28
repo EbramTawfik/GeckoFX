@@ -8,11 +8,11 @@ namespace Gecko
 {
 	public static class XulRuntime
 	{
-		private static ServiceWrapper<nsIXULRuntime> _xulRuntime;
+		private static ComPtr<nsIXULRuntime> _xulRuntime;
 
 		static XulRuntime()
 		{
-			_xulRuntime=new ServiceWrapper<nsIXULRuntime>( Contracts.XulRuntime );
+			_xulRuntime = Xpcom.GetService2<nsIXULRuntime>(Contracts.XulRuntime);
 		}
 
 		public static string OS

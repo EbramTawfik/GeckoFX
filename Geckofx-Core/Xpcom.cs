@@ -574,7 +574,7 @@ namespace Gecko
 		}
 
 		/// <summary>
-		/// Create service wrapped into ComPtr<T>
+		/// Create service wrapped into ComPtr'T
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="contractID"></param>

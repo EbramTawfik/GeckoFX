@@ -1404,7 +1404,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search\SearchEngine.cs" />
     <Compile Include="Search\SearchSubmission.cs" />
-    <Compile Include="Interop\ServiceWrapper.cs" />
     <Compile Include="Sound.cs" />
     <Compile Include="TreeView.cs" />
     <Compile Include="Utils\VersionComparer.cs" />

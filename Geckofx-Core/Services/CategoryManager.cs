@@ -9,11 +9,11 @@ namespace Gecko
 {
 	public static class CategoryManager
 	{
-		private static ServiceWrapper<nsICategoryManager> _categoryManager;
+		private static ComPtr<nsICategoryManager> _categoryManager;
 
 		static CategoryManager()
 		{
-			_categoryManager = new ServiceWrapper<nsICategoryManager>(Contracts.CategoryManager);
+			_categoryManager = Xpcom.GetService2<nsICategoryManager>(Contracts.CategoryManager);
 		}
 
 		public static string AddCategoryEntry(string aCategory, string aEntry, string aValue, bool aPersist, bool aReplace)

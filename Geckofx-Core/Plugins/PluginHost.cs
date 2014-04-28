@@ -9,11 +9,11 @@ namespace Gecko.Plugins
 {
 	public static class PluginHost
 	{
-		private static ServiceWrapper<nsIPluginHost> _pluginHost;
+		private static ComPtr<nsIPluginHost> _pluginHost;
 
 		static PluginHost()
 		{
-			_pluginHost = new ServiceWrapper<nsIPluginHost>(Contracts.PluginHost);
+			_pluginHost = Xpcom.GetService2<nsIPluginHost>( Contracts.PluginHost );
 		}
 
 		public static void ReloadPlugins()

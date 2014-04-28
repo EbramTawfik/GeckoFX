@@ -308,7 +308,7 @@ namespace Gecko
 
 		public JsVal ConvertCOMObjectToJSVal(IntPtr globalObject, nsISupports thisObject)
 		{
-			var writableVariant = new InstanceWrapper<nsIWritableVariant>(Contracts.WritableVariant);
+			var writableVariant = Xpcom.CreateInstance2<nsIWritableVariant>(Contracts.WritableVariant);
 			writableVariant.Instance.SetAsISupports(thisObject);
 			return Xpcom.XPConnect.Instance.VariantToJS(_cx, globalObject, writableVariant.Instance);
 		}
