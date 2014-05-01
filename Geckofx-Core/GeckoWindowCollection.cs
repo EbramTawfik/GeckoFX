@@ -7,11 +7,11 @@ namespace Gecko
 {
 	public class GeckoWindowCollection : IEnumerable<GeckoWindow>
 	{
-		private InstanceWrapper<nsIDOMWindowCollection> _collection;
+		private ComPtr<nsIDOMWindowCollection> _collection;
 
 		public GeckoWindowCollection(nsIDOMWindowCollection collection)
 		{
-			_collection = new InstanceWrapper<nsIDOMWindowCollection>(collection);
+			_collection = new ComPtr<nsIDOMWindowCollection>(collection);
 		}
 
 

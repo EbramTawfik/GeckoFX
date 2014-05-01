@@ -6,11 +6,11 @@ namespace Gecko
 {
 	public static class RandomGenerator
 	{
-		private static ServiceWrapper<nsIRandomGenerator> _randomGenerator;
+		private static ComPtr<nsIRandomGenerator> _randomGenerator;
 
 		static RandomGenerator()
 		{
-			_randomGenerator = new ServiceWrapper<nsIRandomGenerator>( Contracts.RandomGenerator );
+			_randomGenerator = Xpcom.GetService2<nsIRandomGenerator>(Contracts.RandomGenerator);
 		}
 
 		/// <summary>

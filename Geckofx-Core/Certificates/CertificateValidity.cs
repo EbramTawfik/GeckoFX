@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gecko.Interop;
 
 namespace Gecko.Certificates
 {
 	public sealed class CertificateValidity
 	{
-		private InstanceWrapper<nsIX509CertValidity> _validity;
+		private ComPtr<nsIX509CertValidity> _validity;
 
-		internal CertificateValidity(nsIX509CertValidity validity)
+		internal CertificateValidity( nsIX509CertValidity validity )
 		{
-			_validity = new InstanceWrapper<nsIX509CertValidity>( validity );
+			_validity = new ComPtr<nsIX509CertValidity>( validity );
 		}
 
 		public long NotBefore

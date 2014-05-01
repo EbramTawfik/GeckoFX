@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Gecko.Interop;
 
 namespace Gecko
 {
 	public sealed class Sound
 		:IDisposable 
 	{
-		private InstanceWrapper<nsISound> _sound;
+		private ComPtr<nsISound> _sound;
 
 		public Sound()
 		{
-			_sound = new InstanceWrapper<nsISound>(Contracts.Sound);
+			_sound = Xpcom.CreateInstance2<nsISound>(Contracts.Sound);
 			_sound.Instance.Init();
 		}
 

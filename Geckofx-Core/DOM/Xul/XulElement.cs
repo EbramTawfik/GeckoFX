@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gecko.Interop;
 
 namespace Gecko.DOM.Xul
 {
@@ -39,7 +40,7 @@ namespace Gecko.DOM.Xul
 			get
 			{
 				nsIDOMCSSStyleDeclaration style;
-				using (var element = new InstanceWrapper<nsIDOMElement>(Xpcom.QueryInterface<nsIDOMElement>(this.DomObject)))
+				using (var element = new ComPtr<nsIDOMElement>(Xpcom.QueryInterface<nsIDOMElement>(this.DomObject)))
 				{
 					using (var nullString = new nsAString())
 					{

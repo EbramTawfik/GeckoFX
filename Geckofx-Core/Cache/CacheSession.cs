@@ -7,12 +7,12 @@ namespace Gecko.Cache
 {
 	public sealed class CacheSession
 	{
-		private InstanceWrapper<nsICacheSession> _cacheSession;
+		private ComPtr<nsICacheSession> _cacheSession;
 
 		internal CacheSession(nsICacheSession cacheSession)
 		{
 			//ComDebug.WriteDebugInfo( cacheSession );
-			_cacheSession = new InstanceWrapper<nsICacheSession>(cacheSession);
+			_cacheSession = new ComPtr<nsICacheSession>(cacheSession);
 		}
 
 		public bool DoomEntriesIfExpired

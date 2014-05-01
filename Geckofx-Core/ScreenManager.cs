@@ -8,11 +8,11 @@ namespace Gecko
 {
 	public static class ScreenManager
 	{
-		private static ServiceWrapper<nsIScreenManager> _screenManager;
+		private static ComPtr<nsIScreenManager> _screenManager;
 
 		static ScreenManager()
 		{
-			_screenManager = new ServiceWrapper<nsIScreenManager>( Contracts.ScreenManager );
+			_screenManager = Xpcom.GetService2<nsIScreenManager>( Contracts.ScreenManager );
 		}
 
 		public static int NumberOfScreens

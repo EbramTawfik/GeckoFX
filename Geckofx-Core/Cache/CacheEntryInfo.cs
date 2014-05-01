@@ -7,10 +7,10 @@ namespace Gecko.Cache
 {
 	public class CacheEntryInfo
 	{
-		private InstanceWrapper< nsICacheEntryInfo> _cacheEntryInfo;
+		private ComPtr< nsICacheEntryInfo> _cacheEntryInfo;
 		internal CacheEntryInfo(nsICacheEntryInfo cacheEntryInfo)
 		{
-			_cacheEntryInfo = new InstanceWrapper<nsICacheEntryInfo>( cacheEntryInfo );
+			_cacheEntryInfo = new ComPtr<nsICacheEntryInfo>( cacheEntryInfo );
 		}
 
 

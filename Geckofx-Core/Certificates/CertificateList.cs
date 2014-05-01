@@ -2,17 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Gecko.Collections;
+using Gecko.Interop;
 
 namespace Gecko.Certificates
 {
 	public sealed class CertificateList
 		:IEnumerable<Certificate>
 	{
-		internal InstanceWrapper<nsIX509CertList> _list;
+		internal ComPtr<nsIX509CertList> _list;
 
-		internal CertificateList(nsIX509CertList list)
+		internal CertificateList( nsIX509CertList list )
 		{
-			_list = new InstanceWrapper<nsIX509CertList>( list );
+			_list = new ComPtr<nsIX509CertList>( list );
 		}
 
 		public IntPtr RawCertList

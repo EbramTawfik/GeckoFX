@@ -5,13 +5,13 @@ namespace Gecko.Net
 {
 	public sealed class UploadChannel
 	{
-		private InstanceWrapper<nsIUploadChannel> _uploadChannel;
+		private ComPtr<nsIUploadChannel> _uploadChannel;
 
 		private nsIUploadChannel2 _uploadChannel2;
 
 		internal UploadChannel(nsIUploadChannel uploadChannel)
 		{
-			_uploadChannel = new InstanceWrapper<nsIUploadChannel>(uploadChannel);
+			_uploadChannel = new ComPtr<nsIUploadChannel>(uploadChannel);
 
 			_uploadChannel2 = ( nsIUploadChannel2 ) uploadChannel;
 		}

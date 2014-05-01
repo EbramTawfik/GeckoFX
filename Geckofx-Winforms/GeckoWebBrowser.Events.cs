@@ -1150,10 +1150,10 @@ namespace Gecko
 
 			//using (var a = new AutoJSContext(JSContext))
 			{
-				using (var jsd = new ServiceWrapper<jsdIDebuggerService>( "@mozilla.org/js/jsd/debugger-service;1" ))
+				using (var jsd = Xpcom.GetService2<jsdIDebuggerService>(Contracts.DebuggerService))
 				{
 					jsd.Instance.SetErrorHookAttribute( new JSErrorHandler( this ) );
-					using (var runtime = new ServiceWrapper<nsIJSRuntimeService>( "@mozilla.org/js/xpc/RuntimeService;1" ))
+					using (var runtime = Xpcom.GetService2<nsIJSRuntimeService>(Contracts.RuntimeService))
 					{
 						jsd.Instance.ActivateDebugger( runtime.Instance.GetRuntimeAttribute() );
 					}
@@ -1206,7 +1206,7 @@ namespace Gecko
 
 		public void EnableConsoleMessageNotfication()
 		{
-			using (var consoleService = new ServiceWrapper<nsIConsoleService>(Contracts.ConsoleService)) 
+			using (var consoleService = Xpcom.GetService2<nsIConsoleService>(Contracts.ConsoleService)) 
 			{
 				consoleService.Instance.RegisterListener(new ConsoleListener(this));
 			}			

@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gecko.Interop;
 
 namespace Gecko.IO
 {
 	public sealed class StorageStream
 	{
-		private InstanceWrapper<nsIStorageStream> _storageStream;
+		private ComPtr<nsIStorageStream> _storageStream;
+
 		public StorageStream()
 		{
-			_storageStream = new InstanceWrapper<nsIStorageStream>(Contracts.StorageStream);
+			_storageStream = Xpcom.CreateInstance2<nsIStorageStream>( Contracts.StorageStream );
 
-			_storageStream.Instance.Init( 1024 * 32, 1024 * 1024 * 16);
+			_storageStream.Instance.Init( 1024 * 32, 1024 * 1024 * 16 );
 
 		}
 

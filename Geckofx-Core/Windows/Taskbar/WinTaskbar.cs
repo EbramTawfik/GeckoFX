@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gecko.Interop;
 
 namespace Gecko.Windows
 {
@@ -12,11 +13,11 @@ namespace Gecko.Windows
 	/// </summary>
 	public sealed class WinTaskbar
 	{
-		private readonly InstanceWrapper<nsIWinTaskbar> _winTaskbar;
+		private readonly ComPtr<nsIWinTaskbar> _winTaskbar;
 
 		public WinTaskbar()
 		{
-			_winTaskbar = new InstanceWrapper<nsIWinTaskbar>( Contracts.WindowsTaskbar );
+			_winTaskbar = Xpcom.CreateInstance2<nsIWinTaskbar>( Contracts.WindowsTaskbar );
 		}
 
 		public bool Available

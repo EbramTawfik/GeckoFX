@@ -21,7 +21,8 @@ namespace GeckoFxTest
 		[STAThread]
 		public static void Main(string[] args)
 		{
-			// Uncomment the follow line to enable CustomPrompt's
+			// Uncomment the follow line to enable CustomPrompt's.
+			// Note: for (at least) geckofx 29, UseCustomPrompt() MUST be called, or JS/authentication dialogs CANNOT be shown.
 			GeckoWebBrowser.UseCustomPrompt();						
 			
 			// If you want to further customize the GeckoFx PromptService then 

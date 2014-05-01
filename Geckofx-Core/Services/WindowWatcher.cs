@@ -8,12 +8,12 @@ namespace Gecko.Services
 {
 	public static class WindowWatcher
 	{
-		private static ServiceWrapper<nsIWindowWatcher> _watcher;
+		private static ComPtr<nsIWindowWatcher> _watcher;
 		private static bool _windowCreatorLocked;
 
 		static WindowWatcher()
 		{
-			_watcher = new ServiceWrapper<nsIWindowWatcher>( Contracts.WindowWatcher );
+			_watcher = Xpcom.GetService2<nsIWindowWatcher>(Contracts.WindowWatcher);
 		}
 
 		/// <summary>

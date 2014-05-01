@@ -6,11 +6,11 @@ namespace Gecko.Cache
 {
 	public static class CacheService
 	{
-		private static ServiceWrapper<nsICacheService> _cacheService;
+		private static ComPtr<nsICacheService> _cacheService;
 
 		static CacheService()
 		{
-			_cacheService = new ServiceWrapper<nsICacheService>(Contracts.CacheService);
+			_cacheService = Xpcom.GetService2<nsICacheService>(Contracts.CacheService);
 		}
 
 		public static CacheSession CreateSession(string clientID, CacheStoragePolicy storagePolicy, bool streamBased)
