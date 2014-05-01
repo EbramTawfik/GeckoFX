@@ -1,18 +1,19 @@
 using System.Security.Cryptography;
+using Gecko.Interop;
 
 namespace Gecko.Cryptography
 {
 	/// <summary>
-	/// Xulrunner and .NET cryptography models are not simialar
+	/// Xulrunner and .NET cryptography models are not similar
 	/// PLZ don't make CryptoHash extends System.Security.Cryptography.HashAlgorithm
 	/// </summary>
 	public sealed class CryptoHash
 	{
-		private InstanceWrapper<nsICryptoHash> _cryptoHash;
+		private ComPtr<nsICryptoHash> _cryptoHash;
 
 		public CryptoHash(HashAlgorithm algorithm)
 		{
-			_cryptoHash = new InstanceWrapper<nsICryptoHash>(Contracts.Hash);
+			_cryptoHash = Xpcom.CreateInstance2<nsICryptoHash>(Contracts.Hash);
 			_cryptoHash.Instance.Init( ( uint ) algorithm );
 		}
 

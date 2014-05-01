@@ -6,13 +6,13 @@ namespace Gecko.Certificates
 {
 	public static class CertificateDatabase
 	{
-		private static ServiceWrapper<nsIX509CertDB> _certDb;
-		private static ServiceWrapper<nsIX509CertDB2> _certDb2;
+		private static ComPtr<nsIX509CertDB> _certDb;
+		private static ComPtr<nsIX509CertDB2> _certDb2;
 
 		static CertificateDatabase()
 		{
-			_certDb = new ServiceWrapper<nsIX509CertDB>(Contracts.X509CertDb);
-			_certDb2 = new ServiceWrapper<nsIX509CertDB2>(Contracts.X509CertDb);
+			_certDb = Xpcom.GetService2<nsIX509CertDB>(Contracts.X509CertDb);
+			_certDb2 = Xpcom.GetService2<nsIX509CertDB2>(Contracts.X509CertDb);
 		}
 
 

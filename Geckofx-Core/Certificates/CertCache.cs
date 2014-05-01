@@ -1,12 +1,14 @@
+using Gecko.Interop;
+
 namespace Gecko.Certificates
 {
 	public sealed class CertCache
 	{
-		internal InstanceWrapper<nsINSSCertCache> _certCache;
+		internal ComPtr<nsINSSCertCache> _certCache;
 
 		internal CertCache(nsINSSCertCache certCache)
 		{
-			_certCache = new InstanceWrapper<nsINSSCertCache>(certCache);
+			_certCache = new ComPtr<nsINSSCertCache>(certCache);
 		}
 
 		/// <summary>

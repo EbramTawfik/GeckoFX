@@ -4,11 +4,11 @@ namespace Gecko.DOM
 {
 	public sealed class DomEventTarget
 	{
-		private InstanceWrapper<nsIDOMEventTarget> _target;
+		private ComPtr<nsIDOMEventTarget> _target;
 		
 		private DomEventTarget(nsIDOMEventTarget target)
 		{
-			_target = new InstanceWrapper<nsIDOMEventTarget>( target );
+			_target = new ComPtr<nsIDOMEventTarget>(target);
 		}
 
 		public static DomEventTarget Create(nsIDOMEventTarget target)

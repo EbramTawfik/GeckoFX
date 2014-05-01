@@ -4,11 +4,11 @@ namespace Gecko.Net
 {
 	public static class HttpActivityDistributor
 	{
-		private static Interop.ServiceWrapper<nsIHttpActivityDistributor> _httpActivityDistributor;
+		private static ComPtr<nsIHttpActivityDistributor> _httpActivityDistributor;
 
 		static HttpActivityDistributor()
 		{
-			_httpActivityDistributor = new ServiceWrapper<nsIHttpActivityDistributor>( Contracts.HttpActivityDistributor );
+			_httpActivityDistributor = Xpcom.GetService2<nsIHttpActivityDistributor>(Contracts.HttpActivityDistributor);
 		}
 
 		public static bool IsActive

@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gecko.Interop;
 
 namespace Gecko.Images
 {
 	public sealed class ImgContainer
 	{
-		private InstanceWrapper<imgIContainer> _container;
+		private ComPtr<imgIContainer> _container;
 
 		public ImgContainer()
 		{
-			_container = new InstanceWrapper<imgIContainer>( Contracts.ImageContainer );
+			_container = Xpcom.CreateInstance2<imgIContainer>( Contracts.ImageContainer );
 		}
 
 		internal ImgContainer(imgIContainer container)
 		{
-			_container = new InstanceWrapper<imgIContainer>( container, false );
+			_container = new ComPtr<imgIContainer>( container );
 		}		
 
 		public void Draw(gfxContext context, gfxGraphicsFilter filter, gfxMatrix matrix, gfxRect fill, nsIntRect subImage, uint viewportSize, IntPtr aSVGContext, uint aWhichFrame, uint flags)

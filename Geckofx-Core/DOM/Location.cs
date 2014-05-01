@@ -1,12 +1,14 @@
-﻿namespace Gecko.DOM
+﻿using Gecko.Interop;
+
+namespace Gecko.DOM
 {
 	public sealed class Location
 	{
-		private InstanceWrapper<nsIDOMLocation> _location;
+		private ComPtr<nsIDOMLocation> _location;
 
 		private Location( nsIDOMLocation location )
 		{
-			_location = new InstanceWrapper<nsIDOMLocation>( location );
+			_location = new ComPtr<nsIDOMLocation>(  location );
 		}
 
 		public static Location Create(nsIDOMLocation location)

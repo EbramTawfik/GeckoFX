@@ -5,11 +5,11 @@ namespace Gecko.DOM
 {
 	public class WindowUtils
 	{
-		private InstanceWrapper<nsIDOMWindowUtils> _windowUtils;
+		private ComPtr<nsIDOMWindowUtils> _windowUtils;
 
 		internal WindowUtils(nsIDOMWindowUtils windowUtils)
 		{
-			_windowUtils = new InstanceWrapper<nsIDOMWindowUtils>( windowUtils );
+			_windowUtils = new ComPtr<nsIDOMWindowUtils>( windowUtils );
 		}
 
 		public static WindowUtils Create( nsIDOMWindowUtils windowUtils )

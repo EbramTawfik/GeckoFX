@@ -40,6 +40,8 @@ namespace Gecko
 		#region xml
 		public static readonly string DomParser = "@mozilla.org/xmlextras/domparser;1";
 		#endregion
+
+		public static readonly string PreferenceService = "@mozilla.org/preferences-service;1";
 		public static readonly string Array = "@mozilla.org/array;1";
 		public static readonly string BinaryOutputStream = "@mozilla.org/binaryoutputstream;1";
 		public static readonly string WindowWatcher = "@mozilla.org/embedcomp/window-watcher;1";

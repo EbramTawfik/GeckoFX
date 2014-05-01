@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gecko.Interop;
 
 namespace Gecko
 {
 	public class Variant
 	{
-		private nsIVariant _variant;
+		private ComPtr<nsIVariant> _variant;
 
 		internal Variant() {}
 
-		private Variant( nsIVariant variant )
+		internal Variant( nsIVariant variant )
 		{
-			_variant = variant;
-			
+			_variant = new ComPtr<nsIVariant>( variant );
 		}
 
 		public object Value
@@ -26,22 +26,23 @@ namespace Gecko
 		public static Variant Create(nsIVariant variant)
 		{
 			var writable = Xpcom.QueryInterface<nsIWritableVariant>( variant );
+			// if variant is writable -> refcount+1 via QueryInterface and we must free it 2 times
 			return writable != null ? new WritableVariant( writable ) : new Variant( variant );
 		}
 
 
 		protected object GetValue()
 		{
-			switch ((DataType)_variant.GetDataTypeAttribute())
+			switch ((DataType)_variant.Instance.GetDataTypeAttribute())
 			{
 				case DataType.Int8:
-					return _variant.GetAsInt8();
+					return _variant.Instance.GetAsInt8();
 				case DataType.Int16:
-					return _variant.GetAsInt16();
+					return _variant.Instance.GetAsInt16();
 				case DataType.Int32:
-					return _variant.GetAsInt32();
+					return _variant.Instance.GetAsInt32();
 				case DataType.Int64:
-					return _variant.GetAsInt64();
+					return _variant.Instance.GetAsInt64();
 				default:
 					return null;
 			}
@@ -49,7 +50,7 @@ namespace Gecko
 
 		public sbyte GetAsInt8()
 		{
-			return (sbyte)_variant.GetAsInt8();
+			return (sbyte)_variant.Instance.GetAsInt8();
 		}
 	}
 
@@ -59,19 +60,12 @@ namespace Gecko
 	public sealed class WritableVariant
 		: Variant
 	{
-		private InstanceWrapper<nsIWritableVariant> _writableVariant;
-
-		/// <summary>
-		/// Creates new writable Variant
-		/// </summary>
-		public WritableVariant()
-		{
-			_writableVariant = new InstanceWrapper<nsIWritableVariant>( Contracts.WritableVariant );
-		}
+		private ComPtr<nsIWritableVariant> _writableVariant;
 		
 		internal WritableVariant(nsIWritableVariant writableVariant)
+			:base(writableVariant)
 		{
-			_writableVariant = new InstanceWrapper<nsIWritableVariant>( writableVariant );
+			_writableVariant = new ComPtr<nsIWritableVariant>( writableVariant );
 		}
 
 		public bool Writable
@@ -83,6 +77,11 @@ namespace Gecko
 		public void SetString( string value )
 		{
 			_writableVariant.Instance.SetAsWString( value );
+		}
+
+		public static WritableVariant Create()
+		{
+			return new WritableVariant(Xpcom.CreateInstance<nsIWritableVariant>(Contracts.Variant));
 		}
 	}
 

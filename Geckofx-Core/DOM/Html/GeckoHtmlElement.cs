@@ -74,7 +74,7 @@ namespace Gecko
 			get
 			{
 				nsIDOMCSSStyleDeclaration style;
-				using (var element = new InstanceWrapper<nsIDOMElement>(Xpcom.QueryInterface<nsIDOMElement>(this.DomObject)))
+				using (var element = new ComPtr<nsIDOMElement>(Xpcom.QueryInterface<nsIDOMElement>(this.DomObject)))
 				{
 					using (var nullString = new nsAString())
 					{

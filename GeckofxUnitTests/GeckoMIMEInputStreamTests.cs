@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using Gecko.IO;
 using NUnit.Framework;
 using Gecko;
 
@@ -28,23 +29,18 @@ namespace GeckofxUnitTests
 		/// </summary>
 		/// <param name="stream"></param>
 		/// <returns></returns>
-		internal string ReadGeckoMIMEInputStreamAsUTF8(GeckoMIMEInputStream stream)
+		internal string ReadGeckoMIMEInputStreamAsUTF8(MimeInputStream stream)
 		{
-			IntPtr buffer = Marshal.AllocCoTaskMem(2048);
-			var count = stream.InputStream.Read(buffer, 2048);
-			byte[] temp = new byte[2048];
-			for (int i = 0; i < count; ++i)
-			{
-				temp[i] = Marshal.ReadByte(buffer, i);
-			}
+			byte[] buffer = new byte[2048];
+			var count = stream.Read(buffer,0, 2048);
 
-			return System.Text.UTF8Encoding.UTF8.GetString(temp).Trim();
+			return System.Text.UTF8Encoding.UTF8.GetString(buffer).Trim();
 		}
 
 		[Test]
 		public void SetData_SimpleData_HeaderContainsSimpleData()
 		{
-			GeckoMIMEInputStream stream = new GeckoMIMEInputStream();
+			MimeInputStream stream = MimeInputStream.Create();
 			string simpleData = "id=hello";
 			stream.SetData(simpleData);
 
@@ -54,7 +50,7 @@ namespace GeckofxUnitTests
 		[Test]
 		public void AddContentLength_ToTrue_HeaderContainsContentLength()
 		{
-			GeckoMIMEInputStream stream = new GeckoMIMEInputStream();			
+			MimeInputStream stream = MimeInputStream.Create();
 			stream.AddContentLength = true;
 
 			Assert.IsTrue(ReadGeckoMIMEInputStreamAsUTF8(stream).Contains("Content-Length"));
@@ -63,7 +59,7 @@ namespace GeckofxUnitTests
 		[Test]
 		public void AddHeader_AddValidHeaderEntry_HeaderContainsHeaderEntry()
 		{
-			GeckoMIMEInputStream stream = new GeckoMIMEInputStream();
+			MimeInputStream stream = MimeInputStream.Create();
 			stream.AddHeader("Content-Type", "application/x-www-form-urlencoded");
 
 			string header = ReadGeckoMIMEInputStreamAsUTF8(stream);

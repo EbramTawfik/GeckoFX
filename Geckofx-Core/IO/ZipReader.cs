@@ -2,17 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Gecko.Collections;
+using Gecko.Interop;
 
 namespace Gecko.IO
 {
 	public sealed class ZipReader
 		:IDisposable
 	{
-		private InstanceWrapper<nsIZipReader> _zipReader;
+		private ComPtr<nsIZipReader> _zipReader;
 
 		public ZipReader()
 		{
-			_zipReader = new InstanceWrapper<nsIZipReader>(Contracts.ZipReader);
+			_zipReader = Xpcom.CreateInstance2<nsIZipReader>(Contracts.ZipReader);
 		}
 
 		~ZipReader()

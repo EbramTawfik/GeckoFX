@@ -47,6 +47,7 @@ using System.Text;
 using Gecko.Events;
 using Gecko.Interop;
 using Gecko.Net;
+using Gecko.IO;
 
 namespace Gecko
 {
@@ -304,7 +305,7 @@ namespace Gecko
 		/// <param name="referrer">The referring URL, or null.</param>
 		/// <param name="postData">post data and headers, or null</param>
 		/// <returns>true if Navigate started. false otherwise.</returns>
-		public bool Navigate(string url, GeckoLoadFlags loadFlags, string referrer, GeckoMIMEInputStream postData)
+		public bool Navigate(string url, GeckoLoadFlags loadFlags, string referrer, MimeInputStream postData)
 		{
 			return Navigate(url, loadFlags, referrer, postData, null);
 		}
@@ -319,7 +320,7 @@ namespace Gecko
 		/// <param name="postData">post data and headers, or null</param>
 		/// <param name="headers">headers, or null</param>
 		/// <returns>true if Navigate started. false otherwise.</returns>
-		public bool Navigate(string url, GeckoLoadFlags loadFlags, string referrer, GeckoMIMEInputStream postData, GeckoMIMEInputStream headers)
+		public bool Navigate(string url, GeckoLoadFlags loadFlags, string referrer, MimeInputStream postData, MimeInputStream headers)
 		{
 			if (string.IsNullOrEmpty(url))
 				return false;
@@ -346,13 +347,17 @@ namespace Gecko
 			{
 				try
 				{
-					WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postData != null ? postData.InputStream : null, headers != null ? headers.InputStream : null);
+					WebNav.LoadURI(
+						url, (uint) loadFlags, referrerUri, postData != null ? postData._inputStream : null,
+						headers != null ? headers._inputStream : null );
+				}
+				catch (COMException ce)
+				{
+					OnNavigationError(new GeckoNavigationErrorEventArgs(url, Window, ce.ErrorCode));
 				}
 				catch (Exception e)
 				{
-					var ce = e as COMException;
-					var code = ce != null ? ce.ErrorCode : GeckoError.NS_ERROR_UNEXPECTED;
-					OnNavigationError(new GeckoNavigationErrorEventArgs(url, Window, code));
+					OnNavigationError(new GeckoNavigationErrorEventArgs(url, Window, GeckoError.NS_ERROR_UNEXPECTED));
 				}
 			}));
 

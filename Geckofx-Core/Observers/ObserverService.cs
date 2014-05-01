@@ -6,11 +6,11 @@ namespace Gecko
 {
 	public static class ObserverService
 	{
-		private static ServiceWrapper<nsIObserverService> _observerService;
+		private static ComPtr<nsIObserverService> _observerService;
 
 		static ObserverService()
 		{
-			_observerService = new ServiceWrapper<nsIObserverService>( Contracts.ObserverService );
+			_observerService = Xpcom.GetService2<nsIObserverService>( Contracts.ObserverService );
 		}
 
 		public static void AddObserver(nsIObserver observer, string topic, bool ownsWeak)
