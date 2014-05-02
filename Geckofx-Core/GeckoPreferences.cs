@@ -181,6 +181,15 @@ namespace Gecko
 			}
 		}
 
+
+		public string Root
+		{
+			get
+			{
+				return _branch.Instance.GetRootAttribute();
+			}
+		}
+
 		#region Typed properties
 		#region int pref
 		public bool GetIntPref( string prefName,out int? value )
