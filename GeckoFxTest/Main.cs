@@ -12,11 +12,17 @@ using System.IO;
 namespace GeckoFxTest
 {
 	class MainClass
-	{			
+	{
+		//Enable remote debugger, so that you can debug web pages in geckofx via firefox:
+		//1. Set your firefox's pref 'devtools.debugger.remote-enabled' to true, via 'about:config' page.
+		//2. In firefox, go to Tools > Web Developer > Connect..., keep localhost:6000, click connect, confirm the dialog from geckofx.
+		static bool RemoteDebuggerEnabled = true;
+
 		[STAThread]
 		public static void Main(string[] args)
 		{
-			// Uncomment the follow line to enable CustomPrompt's
+			// Uncomment the follow line to enable CustomPrompt's.
+			// Note: for (at least) geckofx 29, UseCustomPrompt() MUST be called, or JS/authentication dialogs CANNOT be shown.
 			GeckoWebBrowser.UseCustomPrompt();						
 			
 			// If you want to further customize the GeckoFx PromptService then 
@@ -33,7 +39,10 @@ namespace GeckoFxTest
 			// Uncomment the follow line to enable CustomPrompt's
 			// GeckoPreferences.User["browser.xul.error_pages.enabled"] = false;
 			
-			GeckoPreferences.User["gfx.font_rendering.graphite.enabled"] = true;			
+			GeckoPreferences.User["gfx.font_rendering.graphite.enabled"] = true;
+
+			if (RemoteDebuggerEnabled)
+				StartDebugServer();
 			
 			Application.ApplicationExit += (sender, e) => 
 			{
@@ -42,6 +51,37 @@ namespace GeckoFxTest
 			
 			//Application.Idle += (s, e) => Console.WriteLine(SynchronizationContext.Current);
 			Application.Run(new MyForm());
+		}
+
+		static void RegisterChromeDir(string dir)
+		{
+			var chromeDir = (nsIFile)Xpcom.NewNativeLocalFile(dir);
+			var chromeFile = chromeDir.Clone();
+			chromeFile.Append(new nsAString("chrome.manifest"));
+			Xpcom.ComponentRegistrar.AutoRegister(chromeFile);
+			Xpcom.ComponentManager.AddBootstrappedManifestLocation(chromeDir);
+		}
+
+		static void StartDebugServer()
+		{
+			GeckoPreferences.User["devtools.debugger.remote-enabled"] = true;
+
+			//see <geckofx_src>/chrome dir
+			RegisterChromeDir(Path.GetFullPath(Path.Combine(XULRunnerLocator.GetXULRunnerLocation(), "../../chrome")));
+
+			var browser = new GeckoWebBrowser();
+			browser.NavigationError += (s, e) =>
+			{
+				Console.Error.WriteLine("StartDebugServer error: 0x" + e.ErrorCode.ToString("X"));
+				browser.Dispose();
+			};
+			browser.DocumentCompleted += (s, e) =>
+			{
+				Console.WriteLine("StartDebugServer completed");
+				browser.Dispose();
+			};
+			//see <geckofx_src>/chrome/debugger-server.html
+			browser.Navigate("chrome://geckofx/content/debugger-server.html");
 		}
 	}
 

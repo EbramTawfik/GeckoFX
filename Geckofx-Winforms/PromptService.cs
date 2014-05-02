@@ -53,6 +53,45 @@ namespace Gecko
 		: GenericOneClassNsFactory<PromptFactoryFactory, PromptFactory>
 	{
 		public const string ContractID = "@mozilla.org/prompter;1";
+
+		public static void Init()
+		{
+			DefaultPromptFactory.Init();
+			Register();
+		}
+	}
+
+	/// <summary>
+	/// A wrapper of XULRunner's default nsIPromptFactory implementation, i.e. @mozilla.org/prompter;1
+	/// </summary>
+	class DefaultPromptFactory
+	{
+		private static nsIPromptFactory factory;
+
+		internal static void Init()
+		{
+			factory = Xpcom.GetService<nsIPromptFactory>("@mozilla.org/prompter;1");
+		}
+
+		public static IntPtr GetPrompt(nsIDOMWindow aParent, ref Guid iid)
+		{
+			return factory.GetPrompt(aParent, ref iid);
+		}
+
+		/// <summary>
+		/// Wrapper of nsIPromptFactory.GetPrompt(nsIDOMWindow aParent, ref Guid iid)
+		/// </summary>
+		/// <typeparam name="TPrompt">prompt type, may be nsIPrompt, nsIAuthPrompt, or nsIAuthPrompt2</typeparam>
+		/// <param name="aParent">window object</param>
+		/// <returns></returns>
+		public static TPrompt GetPrompt<TPrompt>(nsIDOMWindow aParent = null)
+		{
+			var iid = (GuidAttribute)typeof(TPrompt).GetCustomAttributes(typeof(GuidAttribute), false)[0];
+			var ptr = factory.GetPrompt(aParent, new Guid(iid.Value));
+			var prompt = (TPrompt)Marshal.GetTypedObjectForIUnknown(ptr, typeof(TPrompt));
+			Marshal.Release(ptr);
+			return prompt;
+		}
 	}
 
 	public class PromptFactory
@@ -65,8 +104,9 @@ namespace Gecko
 
 		/// <summary>
 		/// Allow injecting different PromptService implementations into PromptFactory.
+		/// Custom PromptService may implement some or all of nsIPrompt, nsIAuthPrompt2, and nsIAuthPrompt.
 		/// </summary>
-		public static Func<nsIPromptService2> PromptServiceCreator { get; set; }
+		public static Func<object> PromptServiceCreator { get; set; }
 
 		public IntPtr GetPrompt( nsIDOMWindow aParent, ref Guid iid )
 		{
@@ -77,220 +117,78 @@ namespace Gecko
 			return result;
 		}
 	}
-	
 
-	public class PromptService : nsIPromptService2,nsIPrompt
+	public class PromptService : nsIPrompt, nsIAuthPrompt2, nsIAuthPrompt
 	{
-		public void Alert(nsIDOMWindow aParent, string aDialogTitle, string aText)
+
+		public void Alert(string dialogTitle, string text)
 		{
-			bool checkState = false;
-			AlertCheck(aParent, aDialogTitle, aText, null, ref checkState);
+			DefaultPromptFactory.GetPrompt<nsIPrompt>().Alert(dialogTitle, text);
 		}
 
-		public void AlertCheck(nsIDOMWindow aParent, string aDialogTitle, string aText, string aCheckMsg, ref bool aCheckState)
+		public void AlertCheck(string dialogTitle, string text, string checkMsg, ref bool checkValue)
 		{
-			ConfirmDialog dialog = new ConfirmDialog(aText, aDialogTitle, "OK", null, null, aCheckMsg);
-			
-			dialog.ShowDialog();
-			
-			aCheckState = dialog.CheckBoxChecked;
+			DefaultPromptFactory.GetPrompt<nsIPrompt>().AlertCheck(dialogTitle, text, checkMsg, ref checkValue);
 		}
 
-		public bool Confirm(nsIDOMWindow aParent, string aDialogTitle, string aText)
+		public bool Confirm(string dialogTitle, string text)
 		{
-			bool checkState = false;
-			return ConfirmCheck(aParent, aDialogTitle, aText, null, ref checkState);
+			return DefaultPromptFactory.GetPrompt<nsIPrompt>().Confirm(dialogTitle, text);
 		}
 
-		public bool ConfirmCheck(nsIDOMWindow aParent, string aDialogTitle, string aText, string aCheckMsg, ref bool aCheckState)
+		public bool ConfirmCheck(string dialogTitle, string text, string checkMsg, ref bool checkValue)
 		{
-			ConfirmDialog dialog = new ConfirmDialog(aText, aDialogTitle, "OK", "Cancel", null, aCheckMsg);
-
-			DialogResult result = dialog.ShowDialog();
-			
-			aCheckState = dialog.CheckBoxChecked;
-
-			return (result == (DialogResult)1);
+			return DefaultPromptFactory.GetPrompt<nsIPrompt>().ConfirmCheck(dialogTitle, text, checkMsg, ref checkValue);
 		}
 
-		public int ConfirmEx(nsIDOMWindow aParent, string aDialogTitle, string aText, uint aButtonFlags, string aButton0Title, string aButton1Title, string aButton2Title, string aCheckMsg, ref bool aCheckState)
+		public int ConfirmEx(string dialogTitle, string text, uint buttonFlags, string button0Title, string button1Title, string button2Title, string checkMsg, ref bool checkValue)
 		{
-			string [] buttons = new String[3];
-			string [] titles = { aButton0Title, aButton1Title, aButton2Title };
-			
-			for (int i = 0; i < 3; i++)
-			{
-				uint flags = (aButtonFlags >> (i * 8)) & 0xFF;
-				switch (flags)
-				{
-					case nsIPromptServiceConstants.BUTTON_TITLE_CANCEL: buttons[i] = "Cancel"; break;
-					case nsIPromptServiceConstants.BUTTON_TITLE_DONT_SAVE: buttons[i] = "&Don't Save"; break;
-					case nsIPromptServiceConstants.BUTTON_TITLE_NO: buttons[i] = "No"; break;
-					case nsIPromptServiceConstants.BUTTON_TITLE_OK: buttons[i] = "OK"; break;
-					case nsIPromptServiceConstants.BUTTON_TITLE_REVERT: buttons[i] = "&Revert"; break;
-					case nsIPromptServiceConstants.BUTTON_TITLE_SAVE: buttons[i] = "&Save"; break;
-					case nsIPromptServiceConstants.BUTTON_TITLE_YES: buttons[i] = "Yes"; break;
-					case nsIPromptServiceConstants.BUTTON_TITLE_IS_STRING:
-						buttons[i] = titles[i];
-						break;
-				}
-			}
-			
-			ConfirmDialog dialog = new ConfirmDialog(aText, aDialogTitle, buttons[0], buttons[1], buttons[2], aCheckMsg);
-			
-			DialogResult result = dialog.ShowDialog();
-			
-			aCheckState = dialog.CheckBoxChecked;
-			
-			if (result == (DialogResult)1)
-				return 0;
-			else if (result == (DialogResult)2)
-				return 1;
-			else if (result == (DialogResult)3)
-				return 2;
-			
-			return 0;
-		}
-		
-		public bool Prompt(nsIDOMWindow aParent, string aDialogTitle, string aText, ref string aValue, string aCheckMsg, ref bool aCheckState)
-		{
-		      PromptDialog dialog = new PromptDialog(aDialogTitle, aText, aValue, aCheckMsg);
-			
-		      DialogResult result = dialog.ShowDialog();
-		      if (result == DialogResult.OK)
-		      {
-		            aValue = dialog.Result;
-		      }
-			
-			  aCheckState = dialog.IsChecked;
-			
-		      return (result == DialogResult.OK);
-		}
-		
-		public bool PromptUsernameAndPassword(nsIDOMWindow aParent, string aDialogTitle, string aText, ref string aUsername, ref string aPassword, string aCheckMsg, ref bool aCheckState)
-		{
-			//test: http://tools.dynamicdrive.com/password/example/
-			
-			bool checkState = aCheckState;
-			
-			PasswordDialog dialog = new PasswordDialog(aDialogTitle, aText, aUsername, aPassword, aCheckMsg, checkState);
-			if (dialog.ShowDialog() == DialogResult.OK)
-			{
-			      aUsername = dialog.UserName;
-			      aPassword = dialog.Password;
-				
-				  aCheckState = dialog.IsChecked;
-				
-			      return true;
-			}
-			
-			return false;
+			return DefaultPromptFactory.GetPrompt<nsIPrompt>().ConfirmEx(dialogTitle, text, buttonFlags, button0Title, button1Title, button2Title, checkMsg, ref checkValue);
 		}
 
-		public bool PromptPassword(nsIDOMWindow aParent, string aDialogTitle, string aText, ref string aPassword, string aCheckMsg, ref System.Boolean aCheckState)
+		public bool Prompt(string dialogTitle, string text, ref string value, string checkMsg, ref bool checkValue)
 		{
-			bool checkState = aCheckState;
-			
-			PasswordDialog dialog = new PasswordDialog(aDialogTitle, aText, "", aPassword, aCheckMsg, checkState);
-			dialog.DisableUserName();
-			if (dialog.ShowDialog() == DialogResult.OK)
-			{
-				aPassword = dialog.Password;
-				aCheckState = dialog.IsChecked;
-				return true;
-			}
-			
-			return false;
-		}
-		
-		public bool Select(nsIDOMWindow aParent, string aDialogTitle, string aText, uint aCount, System.IntPtr[] aSelectList, ref int aOutSelection)
-		{			
-			return false;
-		}
-		
-		public void ShowNonBlockingAlert(nsIDOMWindow aParent, string aDialogTitle, string aText)
-		{
-		      ConfirmDialog dialog = new ConfirmDialog(aText, aDialogTitle, "OK", null, null, null);
-		      dialog.Show();
-        }
-
-        #region nsIPromptService2 Members
-		public bool PromptAuth(nsIDOMWindow aParent, nsIChannel aChannel, uint level, nsIAuthInformation authInfo, string checkboxLabel, ref System.Boolean aCheckValue)
-        {
-            string userName = nsString.Get(authInfo.GetUsernameAttribute);
-			string password = nsString.Get(authInfo.GetPasswordAttribute);
-
-			string realm = nsString.Get(authInfo.GetRealmAttribute);
-
-            if (PromptUsernameAndPassword(aParent, "Server Authentication", "The server '" + realm + "' requires a user name and password.", ref userName, ref password, checkboxLabel, ref aCheckValue))
-            {
-				nsString.Set(authInfo.SetUsernameAttribute, userName);
-				nsString.Set(authInfo.SetPasswordAttribute, password);
-                return true;
-            }
-
-            return false;
-        }
-
-        public nsICancelable AsyncPromptAuth(nsIDOMWindow aParent, nsIChannel aChannel, nsIAuthPromptCallback aCallback, nsISupports aContext, uint level, nsIAuthInformation authInfo, string checkboxLabel, ref bool checkValue)
-        {
-            //throw new NotImplementedException();
-            return null;
-        }
-
-        #endregion
-
-		public void Alert( string dialogTitle, string text )
-		{
-			Alert( null, dialogTitle, text );
+			return DefaultPromptFactory.GetPrompt<nsIPrompt>().Prompt(dialogTitle, text, ref value, checkMsg, ref checkValue);
 		}
 
-		public void AlertCheck( string dialogTitle, string text, string checkMsg, ref bool checkValue )
+		public bool PromptPassword(string dialogTitle, string text, ref string password, string checkMsg, ref bool checkValue)
 		{
-			AlertCheck( null, dialogTitle, text, checkMsg, ref checkValue );
+			return DefaultPromptFactory.GetPrompt<nsIPrompt>().PromptPassword(dialogTitle, text, ref password, checkMsg, ref checkValue);
 		}
 
-		public bool Confirm( string dialogTitle, string text )
+		public bool PromptUsernameAndPassword(string dialogTitle, string text, ref string username, ref string password, string checkMsg, ref bool checkValue)
 		{
-			return Confirm( null, dialogTitle, text );
+			return DefaultPromptFactory.GetPrompt<nsIPrompt>().PromptUsernameAndPassword(dialogTitle, text, ref username, ref password, checkMsg, ref checkValue);
 		}
 
-		public bool ConfirmCheck( string dialogTitle, string text, string checkMsg, ref bool checkValue )
+		public bool Select(string dialogTitle, string text, uint count, IntPtr[] selectList, ref int outSelection)
 		{
-			return ConfirmCheck( null, dialogTitle, text, checkMsg, ref checkValue );
+			return DefaultPromptFactory.GetPrompt<nsIPrompt>().Select(dialogTitle, text, count, selectList, ref outSelection);
 		}
 
-		public int ConfirmEx( string dialogTitle, string text, uint buttonFlags, string button0Title, string button1Title, string button2Title, string checkMsg, ref bool checkValue )
+		public bool PromptAuth(nsIChannel aChannel, uint level, nsIAuthInformation authInfo)
 		{
-			return ConfirmEx( null,
-			                  dialogTitle,
-			                  text,
-			                  buttonFlags,
-			                  button0Title,
-			                  button1Title,
-			                  button2Title,
-			                  checkMsg,
-			                  ref checkValue );
+			return DefaultPromptFactory.GetPrompt<nsIAuthPrompt2>().PromptAuth(aChannel, level, authInfo);
 		}
 
-		public bool Prompt( string dialogTitle, string text, ref string value, string checkMsg, ref bool checkValue )
+		public nsICancelable AsyncPromptAuth(nsIChannel aChannel, nsIAuthPromptCallback aCallback, nsISupports aContext, uint level, nsIAuthInformation authInfo)
 		{
-			return Prompt( null, dialogTitle, text, ref value, checkMsg, ref checkValue );
+			return DefaultPromptFactory.GetPrompt<nsIAuthPrompt2>().AsyncPromptAuth(aChannel, aCallback, aContext, level, authInfo);
 		}
 
-		public bool PromptPassword( string dialogTitle, string text, ref string password, string checkMsg, ref bool checkValue )
+		public bool Prompt(string dialogTitle, string text, string passwordRealm, uint savePassword, string defaultText, ref string result)
 		{
-			return PromptPassword( null, dialogTitle, text, ref password, checkMsg, ref checkValue );
+			return DefaultPromptFactory.GetPrompt<nsIAuthPrompt>().Prompt(dialogTitle, text, passwordRealm, savePassword, defaultText, ref result);
 		}
 
-		public bool PromptUsernameAndPassword( string dialogTitle, string text, ref string username, ref string password, string checkMsg, ref bool checkValue )
+		public bool PromptUsernameAndPassword(string dialogTitle, string text, string passwordRealm, uint savePassword, ref string user, ref string pwd)
 		{
-			return PromptUsernameAndPassword( null,dialogTitle, text, ref username, ref password, checkMsg, ref checkValue );
+			return DefaultPromptFactory.GetPrompt<nsIAuthPrompt>().PromptUsernameAndPassword(dialogTitle, text, passwordRealm, savePassword, ref user, ref pwd);
 		}
 
-		public bool Select( string dialogTitle, string text, uint count, IntPtr[] selectList, ref int outSelection )
+		public bool PromptPassword(string dialogTitle, string text, string passwordRealm, uint savePassword, ref string pwd)
 		{
-			return Select( null, dialogTitle, text, count, selectList, ref outSelection );
+			return DefaultPromptFactory.GetPrompt<nsIAuthPrompt>().PromptPassword(dialogTitle, text, passwordRealm, savePassword, ref pwd);
 		}
-	}	
+	}
 }

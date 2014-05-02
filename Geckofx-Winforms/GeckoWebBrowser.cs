@@ -101,12 +101,18 @@ namespace Gecko
 		/// This must be called before calling Xpcom.Initalize.
 		/// To probvide you own implementation of Custom Prompt set the PromptFactory.PromptServiceCreator.
 		/// This also should be called before Xpcom.Initalize.
+		/// 
+		/// GeckoFx custom prompt actually uses XULRunner's default prompt implementation.
+		/// 
+		/// Note: for (at least) geckofx 29, UseCustomPrompt() MUST be called, or JS/authentication dialogs
+		/// CANNOT be shown(https://bitbucket.org/geckofx/geckofx-29.0/issue/10/alert-confirm-throw-out-of-memory-error-if).
 		/// </summary>
 		public static void UseCustomPrompt()
 		{
 			Xpcom.AfterInitalization += () =>
-			{				
-				PromptFactoryFactory.Register();
+			{
+				//TODO: Automatically call Init(); Fix issue 10 of geckofx-29.
+				PromptFactoryFactory.Init();
 			};
 		}
 
