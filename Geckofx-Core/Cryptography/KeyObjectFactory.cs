@@ -11,11 +11,11 @@ namespace Gecko.Cryptography
 	/// </summary>
 	public static class KeyObjectFactory
 	{
-		private static ServiceWrapper<nsIKeyObjectFactory> _keyObjectFactory;
+		private static ComPtr<nsIKeyObjectFactory> _keyObjectFactory;
 
 		static KeyObjectFactory()
 		{
-			_keyObjectFactory = new ServiceWrapper<nsIKeyObjectFactory>(Contracts.KeyObjectFactory);
+			_keyObjectFactory = Xpcom.GetService2<nsIKeyObjectFactory>(Contracts.KeyObjectFactory);
 		}
 
 		public static KeyObject UnwrapKey(AlgorithmType algorithm,byte[] key)

@@ -8,11 +8,11 @@ namespace Gecko
 	/// </summary>
 	public static class WindowMediator
 	{
-		private static ServiceWrapper<nsIWindowMediator> _windowMediator;
+		private static ComPtr<nsIWindowMediator> _windowMediator;
 
 		static WindowMediator()
 		{
-			_windowMediator = new ServiceWrapper<nsIWindowMediator>( Contracts.WindowMediator );			
+			_windowMediator = Xpcom.GetService2<nsIWindowMediator>(Contracts.WindowMediator);			
 		}
 
 		public static void RegisterWindow(nsIXULWindow window)

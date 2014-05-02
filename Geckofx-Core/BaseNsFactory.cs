@@ -6,16 +6,15 @@ using System.Text;
 
 namespace Gecko
 {
+	public class FactoryDetails
+	{
+		public Guid classID;
+		public nsIFactory factoryInstance;
+	}
+
 	public class BaseNsFactory<TFactory>
 		where TFactory:nsIFactory, new()
 	{
-		#region Inner Classes
-		public class FactoryDetails
-		{
-			public Guid classID;
-			public nsIFactory factoryInstance;
-		}
-		#endregion
 
 		// If you are using resharper it will generate warning because
 		// BaseNsFactory<T1>._isRegistered and BaseNsFactory<T2>._isRegistered are different fields

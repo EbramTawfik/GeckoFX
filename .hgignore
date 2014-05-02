@@ -8,6 +8,15 @@ Skybound.Gecko/_ReSharper.Skybound.Gecko
 *.dll
 *.pdb
 *.user
+*.user
+*.user
+*.user
 bin/
+Geckofx-Wpf/bin/
 obj/
+Geckofx-Wpf/obj/
 *.swp
+GeckoFxWpfWinFormsTest/bin/
+GeckoFxWpfWinFormsTest/obj/
+GeckoFxWpfTest/bin/
+GeckoFxWpfTest/obj/

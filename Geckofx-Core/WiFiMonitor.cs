@@ -10,11 +10,11 @@ namespace Gecko
 	/// </summary>
 	public static class WiFiMonitor
 	{
-		private static ServiceWrapper<nsIWifiMonitor> _wifiMonitor;
+		private static ComPtr<nsIWifiMonitor> _wifiMonitor;
 
 		static WiFiMonitor()
 		{
-			_wifiMonitor = new ServiceWrapper<nsIWifiMonitor>( Contracts.WiFiMonitor );
+			_wifiMonitor = Xpcom.GetService2<nsIWifiMonitor>(Contracts.WiFiMonitor);
 
 			
 		}

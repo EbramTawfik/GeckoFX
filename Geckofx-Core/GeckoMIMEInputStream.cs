@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
+using Gecko.Interop;
 
 namespace Gecko
 {
+	[Obsolete("Use Gecko.IO.MimeInputStream",true)]
 	public class GeckoMIMEInputStream
 		:IDisposable
 	{
-		private InstanceWrapper<nsIMIMEInputStream> _inputStream;
+		private ComPtr<nsIMIMEInputStream> _inputStream;
 
 		public nsIMIMEInputStream InputStream
 		{
@@ -18,7 +20,7 @@ namespace Gecko
 
 		public GeckoMIMEInputStream()
 		{
-			_inputStream = new InstanceWrapper<nsIMIMEInputStream>( Contracts.MimeInputStream );
+			_inputStream = Xpcom.CreateInstance2<nsIMIMEInputStream>( Contracts.MimeInputStream );
 		}
 
 		public void Dispose()
@@ -41,13 +43,12 @@ namespace Gecko
 
 		public void SetData(string data)
 		{
-			using ( var stringInputStream = new InstanceWrapper<nsIStringInputStream>( Contracts.StringInputStream ) ) 
+			using ( var stringInputStream = Xpcom.CreateInstance2<nsIStringInputStream>( Contracts.StringInputStream ) ) 
 			{
 				stringInputStream.Instance.SetData(data, data.Length);
 				_inputStream.Instance.SetData(stringInputStream.Instance);
 			}
-			
-			
+
 		}
 	}
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gecko.IO;
 
 namespace Gecko
 {
@@ -141,7 +142,7 @@ namespace Gecko
 		/// <param name="referrer">The referring URL, or null.</param>
 		/// <param name="postData">post data and headers, or null</param>
 		/// <returns>true if Navigate started. false otherwise.</returns>
-		bool Navigate(string url, GeckoLoadFlags loadFlags, string referrer, GeckoMIMEInputStream postData);
+		bool Navigate(string url, GeckoLoadFlags loadFlags, string referrer, MimeInputStream postData);
 
 		/// <summary>
 		///  Navigates to the specified URL using the given load flags, referrer and post data
@@ -153,7 +154,7 @@ namespace Gecko
 		/// <param name="postData">post data and headers, or null</param>
 		/// <param name="headers">headers, or null</param>
 		/// <returns>true if Navigate started. false otherwise.</returns>
-		bool Navigate(string url, GeckoLoadFlags loadFlags, string referrer, GeckoMIMEInputStream postData, GeckoMIMEInputStream headers);
+		bool Navigate(string url, GeckoLoadFlags loadFlags, string referrer, MimeInputStream postData, MimeInputStream headers);
 
 		/// <summary>
 		/// Navigates to the previous page in the history, if one is available.

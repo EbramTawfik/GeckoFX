@@ -9,11 +9,11 @@ namespace Gecko
 {
 	public static class IOService
 	{
-		private static ServiceWrapper<nsIIOService2> _service;
+		private static ComPtr<nsIIOService2> _service;
 
 		static IOService()
 		{
-			_service = new ServiceWrapper<nsIIOService2>( Contracts.NetworkIOService );
+			_service = Xpcom.GetService2<nsIIOService2>( Contracts.NetworkIOService );
 		}
 
 		public static bool Offline

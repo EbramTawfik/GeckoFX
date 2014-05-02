@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gecko.Interop;
 
 namespace Gecko.DOM.Svg
 {
 	public class DomSvgLength
 	{
-		private InstanceWrapper<nsIDOMSVGLength> _domSvgLength;
+		private ComPtr<nsIDOMSVGLength> _domSvgLength;
 
 		private DomSvgLength(nsIDOMSVGLength domSvgLength)
 		{
-			_domSvgLength = new InstanceWrapper<nsIDOMSVGLength>( domSvgLength );
+			_domSvgLength = new ComPtr<nsIDOMSVGLength>( domSvgLength );
 		}
 
 		public static DomSvgLength Create( nsIDOMSVGLength domSvgLength )

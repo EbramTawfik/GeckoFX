@@ -6,11 +6,11 @@ namespace Gecko.Search
 {
 	public static class BrowserSearchService
 	{
-		private static ServiceWrapper<nsIBrowserSearchService> _browserSearchService;
+		private static ComPtr<nsIBrowserSearchService> _browserSearchService;
 
 		static BrowserSearchService()
 		{
-			_browserSearchService = new ServiceWrapper<nsIBrowserSearchService>(Contracts.BrowserSearchService);
+			_browserSearchService = Xpcom.GetService2<nsIBrowserSearchService>(Contracts.BrowserSearchService);
 		}
 
 		/// <summary>

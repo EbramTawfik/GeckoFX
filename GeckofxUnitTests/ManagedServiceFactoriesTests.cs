@@ -11,6 +11,12 @@ namespace GeckofxUnitTests
 	[TestFixture]
 	class ManagedServiceFactoriesTests
 	{
+		[SetUp]
+		public void BeforeEachTestSetup()
+		{
+			Xpcom.Initialize( XpComTests.XulRunnerLocation );
+		}
+
 		[Test]
 		public void Unregister_ExistingFactoryExist_ExistingFactoryDetailsReturned()
 		{
@@ -70,7 +76,17 @@ namespace GeckofxUnitTests
 		[Test, Explicit]
 		public void Register_AfterDefaultFactoryHasBeenUnregistered_NewCookieServiceIsUsedInsteadOfDefaultOne()
 		{
-			var existingFactoryDetails = TestCookieServiceFactory.Unregister();
+			FactoryDetails existingFactoryDetails = null;
+
+			try
+			{
+				existingFactoryDetails = TestCookieServiceFactory.Unregister();
+			}
+			catch (Exception e)
+			{
+				throw e;
+			}
+			
 
 			// Perform the test - register new factory.
 			TestCookieServiceFactory.Register();

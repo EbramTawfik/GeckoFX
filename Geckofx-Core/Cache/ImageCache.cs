@@ -8,11 +8,11 @@ namespace Gecko.Cache
 {
 	public static class ImageCache
 	{
-		private static ServiceWrapper<imgICache> _imgCache;
+		private static ComPtr<imgICache> _imgCache;
 
 		static ImageCache()
 		{
-			_imgCache = new ServiceWrapper<imgICache>(Contracts.ImageCache);
+			_imgCache = Xpcom.GetService2<imgICache>(Contracts.ImageCache);
 		}
 
 		public static void ClearCache(bool chrome)
