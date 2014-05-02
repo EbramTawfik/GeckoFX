@@ -10,6 +10,9 @@ namespace Gecko
 	{
 		private static ComPtr<nsIWindowMediator> _windowMediator;
 
+		//For debugging window leak
+		//private static int _windowCount = 0;
+
 		static WindowMediator()
 		{
 			_windowMediator = Xpcom.GetService2<nsIWindowMediator>(Contracts.WindowMediator);			
@@ -18,12 +21,14 @@ namespace Gecko
 		public static void RegisterWindow(nsIXULWindow window)
 		{
 			_windowMediator.Instance.RegisterWindow(window);
+			//_windowCount ++;
 		}
 
 
 		public static void UnregisterWindow(nsIXULWindow window)
 		{
 			_windowMediator.Instance.UnregisterWindow( window );
+			//_windowCount --;
 		}
 		/// <summary>
 		/// Get most recent window.

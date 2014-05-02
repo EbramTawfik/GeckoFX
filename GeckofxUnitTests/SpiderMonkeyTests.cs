@@ -222,6 +222,7 @@ namespace GeckofxUnitTests
 					if (e is EntryPointNotFoundException)
 						Assert.Fail(String.Format("{0} EntryPoint is wrong: {1}", entryPoint.Value, e.Message));
 				}
+				dummy.Dispose();
 			}
 		}
 

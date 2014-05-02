@@ -25,7 +25,7 @@ namespace GeckofxUnitTests
 		[TearDown]
 		public void AfterEachTestTearDown()
 		{
-
+			_browser.Dispose();
 		}
 
 		[Test]

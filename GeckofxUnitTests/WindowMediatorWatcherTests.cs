@@ -17,11 +17,23 @@ namespace GeckofxUnitTests
 		private GeckoWebBrowser browser1;
 		private GeckoWebBrowser browser2;
 		private string[] urls = {"http://localhost/1", "http://localhost/2"};
+		private int wmWindowCount, wwWindowCount;
 
 		[SetUp]
 		public void BeforeEachTestSetup()
 		{
 			Xpcom.Initialize(XpComTests.XulRunnerLocation);
+
+			var ws = WindowMediator.GetEnumerator(null);
+			wmWindowCount = 0;
+			while (ws.MoveNext())
+				wmWindowCount++;
+
+			ws = Gecko.Services.WindowWatcher.GetWindowEnumerator();
+			wwWindowCount = 0;
+			while (ws.MoveNext())
+				wwWindowCount++;
+
 			browser1 = new GeckoWebBrowser();
 			var unused = browser1.Handle;
 			browser2 = new GeckoWebBrowser();
@@ -38,6 +50,14 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		public void CheckGeckoWindowLeak()
+		{
+			var msg = "Leaked gecko window(s) detected! Make sure Dispose() GeckoWebBrowser instances after you have done with them.";
+			Assert.AreEqual(0, wmWindowCount, msg);
+			Assert.AreEqual(0, wwWindowCount, msg);
+		}
+
+		[Test]
 		public void WindowMediator_GetWindows()
 		{
 			browser1.LoadHtml("<p>1", urls[0]);
@@ -49,10 +69,11 @@ namespace GeckofxUnitTests
 			int i = 0;
 			while (ws.MoveNext())
 			{
-				Assert.AreEqual(urls[i], ws.Current.Document.Uri);
+				if (i >= wmWindowCount)
+					Assert.AreEqual(urls[i - wmWindowCount], ws.Current.Document.Uri);
 				i++;
 			}
-			Assert.AreEqual(urls.Length, i);
+			Assert.AreEqual(urls.Length, i - wmWindowCount);
 		}
 
 		[Test]
@@ -66,10 +87,11 @@ namespace GeckofxUnitTests
 			int i = 0;
 			while (ws.MoveNext())
 			{
-				Assert.AreEqual(urls[i], ws.Current.Document.Uri);
+				if (i >= wwWindowCount)
+					Assert.AreEqual(urls[i - wwWindowCount], ws.Current.Document.Uri);
 				i++;
 			}
-			Assert.AreEqual(urls.Length, i);
+			Assert.AreEqual(urls.Length, i - wwWindowCount);
 		}
 	}
 			
