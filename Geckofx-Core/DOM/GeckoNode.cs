@@ -246,6 +246,14 @@ namespace Gecko
 			return new XPathResult(r);
 		}
 
+		public GeckoNode SelectSingle( string xpath )
+		{
+			var r = EvaluateXPathInternal(xpath);
+			var singleNode = r.GetSingleNodeValueAttribute();
+			var ret= singleNode.Wrap(GeckoNode.Create);
+			Xpcom.FreeComObject( ref r );
+			return ret;
+		}
 
 		public DomEventTarget GetEventTarget()
 		{
