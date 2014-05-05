@@ -50,11 +50,12 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
-		public void CheckGeckoWindowLeak()
+		public void CheckGeckoWindowwwWindowCountLeak()
 		{
-			var msg = "Leaked gecko window(s) detected! Make sure Dispose() GeckoWebBrowser instances after you have done with them.";
+			var msg = "Leaked gecko window(s) detected! Make sure Dispose() GeckoWebBrowser instances after you have done with them.";			
 			Assert.AreEqual(0, wmWindowCount, msg);
-			Assert.AreEqual(0, wwWindowCount, msg);
+			// "Xpcom.ChromeContext = new ChromeContext();" in XpCom.Initialize causes this to be 1
+			Assert.AreEqual(1, wwWindowCount, msg);
 		}
 
 		[Test]
