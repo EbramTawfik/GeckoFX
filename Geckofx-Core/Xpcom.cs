@@ -234,6 +234,8 @@ namespace Gecko
 			get { return _xulrunnerVersion; }
 		}
 
+		internal static ChromeContext ChromeContext { get; private set; }
+
 		public static nsIComponentManager ComponentManager;
 		public static nsIComponentRegistrar ComponentRegistrar;
 		public static nsIServiceManager ServiceManager;
@@ -340,6 +342,8 @@ namespace Gecko
 
 			_IsInitialized = true;
 			GlobalJSContextHolder.Initialize();
+
+			Xpcom.ChromeContext = new ChromeContext();
 
 			if (AfterInitalization != null)
 				AfterInitalization();

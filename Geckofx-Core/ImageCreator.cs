@@ -63,36 +63,7 @@ namespace Gecko
 			if (height == 0)
 				throw new ArgumentException("height");
 
-			throw new NotImplementedException("TypeError: ctx.drawWindow is not a function");
-
-			// Use of the canvas technique was inspired by: the abduction! firefox plugin by Rowan Lewis
-			// https://addons.mozilla.org/en-US/firefox/addon/abduction/
-
-			uint flags = (uint)(nsIDOMCanvasRenderingContext2DConsts.DRAWWINDOW_DO_NOT_FLUSH
-							//| nsIDOMCanvasRenderingContext2DConsts.DRAWWINDOW_DRAW_VIEW
-							| nsIDOMCanvasRenderingContext2DConsts.DRAWWINDOW_ASYNC_DECODE_IMAGES
-							| nsIDOMCanvasRenderingContext2DConsts.DRAWWINDOW_USE_WIDGET_LAYERS);
-			string data;
-			using (AutoJSContext context = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
-			{
-				context.EvaluateScript(string.Format(@"(function(canvas, ctx)
-						{{
-try {{
-							canvas = document.createElement('canvas');
-							canvas.width = {2};
-							canvas.height = {3};
-							ctx = canvas.getContext('2d');
-							ctx.drawWindow(window, {0}, {1}, {2}, {3}, 'rgb(255,255,255)', {4});
-							return canvas.toDataURL('image/png');
-}} catch(e) {{ return e + '' }}
-						}}
-						)()", xOffset, yOffset, width, height, flags), (nsISupports)m_browser.Window.DomWindow, out data);
-			}
-			if (data == null || !data.StartsWith("data:image/png;base64,"))
-				throw new InvalidOperationException();
-
-			byte[] bytes = Convert.FromBase64String(data.Substring("data:image/png;base64,".Length));
-			return bytes;
+			return Xpcom.ChromeContext.DrawWindow(m_browser.Window.DomWindow, xOffset, yOffset, width, height);
 		}
 
 		public byte[] CanvasGetPngImage(uint width, uint height)
