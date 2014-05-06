@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -16,19 +18,16 @@ namespace Gecko.CustomMarshalers
 	public class StringMarshaler
 		: ICustomMarshaler
 	{
-		public void CleanUpManagedData(object ManagedObj)
-		{
+		private List<IntPtr> allocs = new List<IntPtr>(5);
 
-		}
-
-		public void CleanUpNativeData(IntPtr pNativeData)
-		{
-			Xpcom.Free(pNativeData);
-		}
-
-		public int GetNativeDataSize()
-		{
-			return -1;
+		/// <summary>
+		/// Convert 
+		/// </summary>
+		/// <param name="pNativeData"></param>
+		/// <returns>copy of native ASCII string as managed string.</returns>
+		public object MarshalNativeToManaged(IntPtr pNativeData)
+		{			
+			return Marshal.PtrToStringAnsi(pNativeData);
 		}
 
 		/// <summary>
@@ -38,32 +37,42 @@ namespace Gecko.CustomMarshalers
 		/// <param name="ManagedObj"></param>
 		/// <returns>ptr to native memory containing ansi encoded string + null term</returns>
 		public IntPtr MarshalManagedToNative(object ManagedObj)
-		{
+		{			
 			var str = ManagedObj as string;
 			if (str == null) return IntPtr.Zero;
-			// ascii char is 1 bytes and 1 bytes '\0\0'
+			// ascii char is 1 bytes and 1 bytes '\0'
 			byte[] bytes = new byte[str.Length + 1];
 			// translate string into bytes
 			Encoding.ASCII.GetBytes(str, 0, str.Length, bytes, 0);
 			// allocate memory by xulrunner runtime
 			IntPtr unmanagedMemory = Xpcom.Alloc(new IntPtr(bytes.Length));
+			allocs.Add(unmanagedMemory);
 			// copy byte array into unmanaged memory
 			Marshal.Copy(bytes, 0, unmanagedMemory, bytes.Length);
 			return unmanagedMemory;
 		}
 
-		/// <summary>
-		/// Convert 
-		/// </summary>
-		/// <param name="pNativeData"></param>
-		/// <returns>copy of native ut16 string as managed string.</returns>
-		public object MarshalNativeToManaged(IntPtr pNativeData)
+		public void CleanUpNativeData(IntPtr pNativeData)
 		{
-			return Marshal.PtrToStringAnsi(pNativeData);
+			if (allocs.Contains(pNativeData))
+			{
+				allocs.Remove(pNativeData);
+				Xpcom.Free(pNativeData);
+			}
+		}
+
+		public void CleanUpManagedData(object ManagedObj)
+		{
+			
+		}
+
+		public int GetNativeDataSize()
+		{			
+			return -1;
 		}
 
 		static ICustomMarshaler GetInstance(string pstrCookie)
-		{
+		{			
 			return new StringMarshaler();
 		}
 	}
