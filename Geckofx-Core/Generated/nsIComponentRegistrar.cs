@@ -163,7 +163,7 @@ namespace Gecko
         /// in this interface for binary compatibility with
         /// Mozilla 1.9.2.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string CIDToContractID(ref System.Guid aClass);
 		

@@ -256,7 +256,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetAsString();
 		
@@ -277,7 +277,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetAsArray(ref ushort type, ref System.Guid iid, ref uint count, ref System.IntPtr ptr);
 		
-		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetAsStringWithSize(ref uint size);
 		
@@ -366,7 +366,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string GetAsString();
 		
@@ -387,7 +387,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetAsArray(ref ushort type, ref System.Guid iid, ref uint count, ref System.IntPtr ptr);
 		
-		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string GetAsStringWithSize(ref uint size);
 		

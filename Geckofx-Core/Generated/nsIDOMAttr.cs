@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("58f9b5f5-0e39-4999-85b1-095895569c0e")]
+	[Guid("a974a4d3-2ff1-445b-8b8e-0aada5d4eedc")]
 	public interface nsIDOMAttr : nsIDOMNode
 	{
 		
@@ -238,8 +238,12 @@ namespace Gecko
 		void SetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 		
 		/// <summary>
-        /// raises(DOMException) on setting
+        /// Introduced in DOM Level 2:
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMElement GetOwnerElementAttribute();
+		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsIdAttribute();

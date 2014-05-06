@@ -46,7 +46,7 @@ namespace Gecko
 		
 		System.Guid GetIIDForName([MarshalAs(UnmanagedType.LPStr)] string name);
 		
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetNameForIID(System.Guid iid);
 		

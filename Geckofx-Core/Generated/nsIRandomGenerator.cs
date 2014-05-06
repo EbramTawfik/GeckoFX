@@ -47,6 +47,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GenerateRandomBytes(uint aLength, out IntPtr aBuffer);
-
 	}
 }

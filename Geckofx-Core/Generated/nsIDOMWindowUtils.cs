@@ -686,7 +686,7 @@ namespace Gecko
         /// Returns the real classname (possibly of the mostly-transparent security
         /// wrapper) of aObj.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetClassName(Gecko.JsVal aObject, System.IntPtr jsContext);
 		

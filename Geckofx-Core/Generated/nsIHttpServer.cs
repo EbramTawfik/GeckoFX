@@ -368,7 +368,7 @@ namespace Gecko
         /// if host does not match the host production imported into RFC 2616 from
         /// RFC 2396, or if port is not a valid port number
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetScheme([MarshalAs(UnmanagedType.LPStr)] string host, int port);
 		
@@ -516,7 +516,7 @@ namespace Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE
         /// if the given header does not exist in this
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetHeader([MarshalAs(UnmanagedType.LPStr)] string fieldName);
 		

@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("17e227c4-2c31-4167-9dd4-f55ddee6a53a")]
+	[Guid("f087e6bc-dd33-4f6c-a106-dd786e052ee9")]
 	public interface nsIIdentityCryptoService
 	{
 		
@@ -43,9 +43,6 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Base64UrlEncode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase toEncode, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Base64UrlDecode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase toDecode, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 	}
 	
 	/// <summary>

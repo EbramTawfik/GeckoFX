@@ -271,7 +271,7 @@ namespace Gecko
         /// string pairs.  The strings do not have to conform to any particular
         /// charset, but they must be null terminated.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetMetaDataElement([MarshalAs(UnmanagedType.LPStr)] string key);
 		

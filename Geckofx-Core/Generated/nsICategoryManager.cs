@@ -41,7 +41,7 @@ namespace Gecko
         /// @param aEntry The entry you're looking for ("http")
         /// @return The value.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetCategoryEntry([MarshalAs(UnmanagedType.LPStr)] string aCategory, [MarshalAs(UnmanagedType.LPStr)] string aEntry);
 		
@@ -54,7 +54,7 @@ namespace Gecko
         /// @param aReplace Should we replace an existing entry?
         /// @return Previous entry, if any
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string AddCategoryEntry([MarshalAs(UnmanagedType.LPStr)] string aCategory, [MarshalAs(UnmanagedType.LPStr)] string aEntry, [MarshalAs(UnmanagedType.LPStr)] string aValue, [MarshalAs(UnmanagedType.U1)] bool aPersist, [MarshalAs(UnmanagedType.U1)] bool aReplace);
 		
