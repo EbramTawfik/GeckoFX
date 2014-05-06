@@ -36,11 +36,11 @@ namespace Gecko
 	public interface nsIEntityConverter
 	{
 		
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ConvertUTF32ToEntity(uint character, uint entityVersion);
 		
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ConvertToEntity(char character, uint entityVersion);
 		

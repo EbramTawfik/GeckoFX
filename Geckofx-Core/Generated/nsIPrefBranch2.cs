@@ -105,7 +105,7 @@ namespace Gecko
         ///
         /// @see setCharPref
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string GetCharPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		

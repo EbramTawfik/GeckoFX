@@ -144,7 +144,7 @@ namespace Gecko
         /// @return             the value of <code>aParamName</code> after
         /// RFC 2231 decoding but without charset conversion.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetParameterInternal([MarshalAs(UnmanagedType.LPStr)] string aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStr)] ref string aCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang);
 		

@@ -54,7 +54,7 @@ namespace Gecko
 		/// <summary>
         /// Encrypt nul-terminated string to BASE64 output.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string EncryptString([MarshalAs(UnmanagedType.LPStr)] string text);
 		
@@ -62,7 +62,7 @@ namespace Gecko
         /// Decrypt BASE64 input to nul-terminated string output.  There is
         /// no check for embedded nul values in the decrypted output.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string DecryptString([MarshalAs(UnmanagedType.LPStr)] string crypt);
 		

@@ -106,7 +106,7 @@ namespace Gecko
         /// @param aFlags
         /// authenticator may return one of the generate flags bellow.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GenerateCredentials([MarshalAs(UnmanagedType.Interface)] nsIHttpAuthenticableChannel aChannel, [MarshalAs(UnmanagedType.LPStr)] string aChallenge, [MarshalAs(UnmanagedType.U1)] bool aProxyAuth, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aDomain, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aUser, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aPassword, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aSessionState, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aContinuationState, ref uint aFlags);
 		

@@ -40,7 +40,7 @@ namespace Gecko
         /// getCertByPrefID - a BASE64 string representing a user's
         /// certificate (or NULL if there isn't one)
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetCertByPrefID([MarshalAs(UnmanagedType.LPStr)] string certID);
 		
@@ -55,14 +55,14 @@ namespace Gecko
         /// sendMessage - send a text message to the recipient indicated
         /// by the base64-encoded cert.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string SendMessage([MarshalAs(UnmanagedType.LPStr)] string msg, [MarshalAs(UnmanagedType.LPStr)] string cert);
 		
 		/// <summary>
         /// receiveMessage - receive an encrypted (enveloped) message
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ReceiveMessage([MarshalAs(UnmanagedType.LPStr)] string msg);
 	}

@@ -278,7 +278,6 @@ namespace Gecko
 		{
 			if ( string.IsNullOrEmpty( tagName ) )
 				return null;
-
 			//return new GeckoHtmlElementCollection(_domElement.GetElementsByTagName(new nsAString(tagName)));
 			return nsString.Pass<nsIDOMHTMLCollection>( _domElement.GetElementsByTagName, tagName )
 				.Wrap( x => new DomHtmlCollection<GeckoElement, nsIDOMHTMLElement>( x, CreateDomElementWrapper ) );
@@ -322,6 +321,11 @@ namespace Gecko
 				return DOM.Xul.XulElement.CreateXulElementWrapper((nsIDOMXULElement)element);
 			}
 			return new GeckoElement( element );
+		}
+
+		public GeckoElement QuerySelector( string selectors )
+		{
+			return nsString.Pass( _domElement.QuerySelector, selectors ).Wrap( CreateDomElementWrapper );
 		}
 	}
 }

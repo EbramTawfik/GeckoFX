@@ -64,7 +64,7 @@ namespace Gecko
         /// the result to the caller. The format of the command, parameters and
         /// the result are determined by the acutal implementation.
         ///	 </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string Exec([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.LPStr)] string aParameters);
 		
@@ -73,7 +73,7 @@ namespace Gecko
         /// and return the result to the caller. The format of the command,
         /// parameters and the result are determined by the implementation.
         ///	 </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string Query([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.LPStr)] string aParameters);
 	}

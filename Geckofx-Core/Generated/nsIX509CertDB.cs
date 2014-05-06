@@ -34,8 +34,8 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("25a048e8-bb1c-4c33-ad3a-eacf2ad9e9ee")]
-	public interface nsIOpenSignedJARFileCallback
+	[Guid("e12aec59-7153-4e84-9376-2e851311b7a3")]
+	public interface nsIOpenSignedAppFileCallback
 	{
 		
 		/// <summary>
@@ -45,7 +45,7 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenSignedJARFileFinished(int rv, [MarshalAs(UnmanagedType.Interface)] nsIZipReader aZipReader, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert3 aSignerCert);
+		void OpenSignedAppFileFinished(int rv, [MarshalAs(UnmanagedType.Interface)] nsIZipReader aZipReader, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert3 aSignerCert);
 	}
 	
 	/// <summary>
@@ -300,24 +300,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIRecentBadCerts GetRecentBadCerts([MarshalAs(UnmanagedType.U1)] bool isPrivate);
 		
-		/// <summary>
-        /// Verifies the signature on the given JAR file to verify that it has a
-        /// valid signature.  To be considered valid, there must be exactly one
-        /// signature on the JAR file and that signature must have signed every
-        /// entry. Further, the signature must come from a certificate that
-        /// is trusted for code signing.
-        ///
-        /// On success, NS_OK, a nsIZipReader, and the trusted certificate that
-        /// signed the JAR are returned.
-        ///
-        /// On failure, an error code is returned.
-        ///
-        /// This method returns a nsIZipReader, instead of taking an nsIZipReader
-        /// as input, to encourage users of the API to verify the signature as the
-        /// first step in opening the JAR.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenSignedJARFileAsync([MarshalAs(UnmanagedType.Interface)] nsIFile aJarFile, [MarshalAs(UnmanagedType.Interface)] nsIOpenSignedJARFileCallback callback);
+		void OpenSignedAppFileAsync(uint trustedRoot, [MarshalAs(UnmanagedType.Interface)] nsIFile aJarFile, [MarshalAs(UnmanagedType.Interface)] nsIOpenSignedAppFileCallback callback);
 		
 		/// <summary>
         /// Add a cert to a cert DB from a binary string.
@@ -354,6 +338,36 @@ namespace Gecko
 		
 		// 
 		public const ulong TRUSTED_OBJSIGN = 1<<2;
+		
+		// <summary>
+        // Verifies the signature on the given JAR file to verify that it has a
+        // valid signature.  To be considered valid, there must be exactly one
+        // signature on the JAR file and that signature must have signed every
+        // entry. Further, the signature must come from a certificate that
+        // is trusted for code signing.
+        //
+        // On success, NS_OK, a nsIZipReader, and the trusted certificate that
+        // signed the JAR are returned.
+        //
+        // On failure, an error code is returned.
+        //
+        // This method returns a nsIZipReader, instead of taking an nsIZipReader
+        // as input, to encourage users of the API to verify the signature as the
+        // first step in opening the JAR.
+        // </summary>
+		public const long AppMarketplaceProdPublicRoot = 1;
+		
+		// 
+		public const long AppMarketplaceProdReviewersRoot = 2;
+		
+		// 
+		public const long AppMarketplaceDevPublicRoot = 3;
+		
+		// 
+		public const long AppMarketplaceDevReviewersRoot = 4;
+		
+		// 
+		public const long AppXPCShellRoot = 5;
 		
 		// <summary>
         // Prevent network traffic. Doesn't work with classic verification.

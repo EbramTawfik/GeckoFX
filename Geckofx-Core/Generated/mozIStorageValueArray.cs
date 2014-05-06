@@ -93,7 +93,7 @@ namespace Gecko
 		/// <summary>
         /// Returns a shared string pointer
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetSharedUTF8String(uint aIndex, ref uint aLength);
 		

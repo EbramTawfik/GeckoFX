@@ -73,7 +73,7 @@ namespace Gecko
         /// @throws NS_BASE_STREAM_CLOSED if called after the stream has been closed
         /// @throws NS_ERROR_NOT_INITIALIZED if init was not called
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string Read(uint aCount);
 		

@@ -56,7 +56,7 @@ namespace Gecko
 		/// <summary>
         /// Retrieves a string bundle URL for an error module.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetErrorStringBundle(short errorModule);
 		
@@ -79,7 +79,7 @@ namespace Gecko
         /// for the specified nsresult's code (obtained with NS_ERROR_GET_CODE), then the stringified
         /// version of the nsresult code is returned.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetErrorStringBundleKey(int error);
 	}

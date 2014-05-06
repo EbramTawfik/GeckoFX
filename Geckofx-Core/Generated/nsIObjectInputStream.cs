@@ -187,7 +187,7 @@ namespace Gecko
         ///
         /// @throws NS_ERROR_FAILURE if it can't read aLength bytes
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string ReadBytes(uint aLength);
 		

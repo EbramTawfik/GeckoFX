@@ -584,7 +584,7 @@ namespace Gecko
         /// specifically trying to detect whether the object is a proxy, this is
         /// probably what you want.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetClassName(Gecko.JsVal aObj, [MarshalAs(UnmanagedType.U1)] bool aUnwrap, System.IntPtr jsContext);
 		
