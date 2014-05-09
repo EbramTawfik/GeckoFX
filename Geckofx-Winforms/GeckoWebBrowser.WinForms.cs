@@ -438,6 +438,51 @@ namespace Gecko
             }
         }
 
+		/// <summary>
+		/// Enable default fullscreen windowing for HTML5 fullscreen.
+		/// 
+		/// When the page enters fullscreen state, move this browser into a fullscreen Form;
+		/// When the page exits fullscreen state, move this browser back into its original parent, with original index.
+		/// You also have to set pref "full-screen-api.enabled" to true to enable fullscreen of gecko.
+		/// 
+		/// If not called, the fullscreen element only fills the viewport of this browser.
+		/// 
+		/// You can also implement your fullscreen windowing by listening to the FullscreenChange event.
+		/// 
+		/// TODO: implement confirm prompt. Currently enters fullscreen without user's confirm.
+		/// </summary>
+		public void EnableDefaultFullscreen()
+		{
+			Control browserParent = Parent;
+			int browserIndex = Parent.Controls.IndexOf(this);
+			var browserDock = Dock;
+			Form fullscreenWindow = null;
+			FullscreenChange += (s, e) =>
+			{
+				if (Document.MozFullScreen && fullscreenWindow == null)
+				{
+					fullscreenWindow = new Form();
+					Dock = DockStyle.Fill;
+					fullscreenWindow.Controls.Add(this);
+					fullscreenWindow.WindowState = FormWindowState.Maximized;
+					fullscreenWindow.TopMost = true;
+					fullscreenWindow.FormBorderStyle = FormBorderStyle.None;
+					fullscreenWindow.Show();
+					fullscreenWindow.FormClosing += (sn, ev) =>
+					{
+						Dock = browserDock;
+						browserParent.Controls.Add(this);
+						browserParent.Controls.SetChildIndex(this, browserIndex);
+					};
+				}
+				else if (!this.Document.MozFullScreen && fullscreenWindow != null)
+				{
+					fullscreenWindow.Close();
+					fullscreenWindow = null;
+				}
+			};
+		}
+
 		#endregion
 
 		#region Internal classes

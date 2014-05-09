@@ -41,6 +41,8 @@ namespace GeckoFxTest
 			
 			GeckoPreferences.User["gfx.font_rendering.graphite.enabled"] = true;
 
+			GeckoPreferences.User["full-screen-api.enabled"] = true;
+
 			if (RemoteDebuggerEnabled)
 				StartDebugServer();
 			
@@ -179,6 +181,8 @@ namespace GeckoFxTest
 
 			// Demo use of ReadyStateChange.
 			browser.ReadyStateChange += (s, e) => this.Text = browser.Document.ReadyState;
+
+			browser.EnableDefaultFullscreen();
 		}
 
 		/// <summary>
