@@ -441,11 +441,15 @@ namespace Gecko
 		/// <summary>
 		/// Enable default fullscreen windowing for HTML5 fullscreen.
 		/// 
-		/// When the page enters fullscreen state, move this browser into a fullscreen Form;
-		/// When the page exits fullscreen state, move this browser back into its original parent, with original index.
 		/// You also have to set pref "full-screen-api.enabled" to true to enable fullscreen of gecko.
 		/// 
-		/// If not called, the fullscreen element only fills the viewport of this browser.
+		/// When the page enters fullscreen state, move this browser into a fullscreen Form;
+		/// When the page exits fullscreen state, move this browser back into its original parent, with original index.
+		/// 
+		/// This method should only be called AFTER this browser has been added into its parent.
+		/// After calling this method, this browser's Dock and index should not be changed anymore.
+		/// 
+		/// If this method is not called, the fullscreen element only fills the viewport of this browser.
 		/// 
 		/// You can also implement your fullscreen windowing by listening to the FullscreenChange event.
 		/// 
