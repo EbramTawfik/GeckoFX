@@ -345,6 +345,8 @@ namespace Gecko
 
 			Xpcom.ChromeContext = new ChromeContext();
 
+			PromptFactoryFactory.Init();
+
 			if (AfterInitalization != null)
 				AfterInitalization();
 		}

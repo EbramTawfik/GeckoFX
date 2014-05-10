@@ -125,7 +125,6 @@
     <Compile Include="Dialogs\PromptDialog.Designer.cs">
       <DependentUpon>PromptDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="PromptService.cs" />
     <Compile Include="PropertiesDialog.cs">
       <SubType>Form</SubType>
     </Compile>

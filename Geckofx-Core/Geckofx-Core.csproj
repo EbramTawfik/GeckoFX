@@ -179,6 +179,7 @@
     <Compile Include="Net\IncrementalDownload.cs" />
     <Compile Include="Net\UriChecker.cs" />
     <Compile Include="NsSupportsBase.cs" />
+    <Compile Include="PromptService.cs" />
     <Compile Include="Services\AppShellService.cs" />
     <Compile Include="AutoJSContext.cs" />
     <Compile Include="BaseTypes\AccessibleTextBoundary.cs" />

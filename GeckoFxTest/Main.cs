@@ -21,14 +21,12 @@ namespace GeckoFxTest
 		[STAThread]
 		public static void Main(string[] args)
 		{
-			// Uncomment the follow line to enable CustomPrompt's.
-			// Note: for (at least) geckofx 29, UseCustomPrompt() MUST be called, or JS/authentication dialogs CANNOT be shown.
-			GeckoWebBrowser.UseCustomPrompt();						
-			
-			// If you want to further customize the GeckoFx PromptService then 
-			// you will need make a class that implements nsIPromptService2 and nsIPrompt interfaces and
+			// If you want to customize the GeckoFx PromptService then 
+			// you will need make a class that implements some or all of nsIPrompt, 
+			// nsIAuthPrompt2, and nsIAuthPrompt interfaces and
 			// set the PromptFactory.PromptServiceCreator delegate. for example:
 			// PromptFactory.PromptServiceCreator = () => new MyPromptService();
+			// Gecko.PromptService already implements those interfaces, and may be sub-classed.
 
 			string xulrunnerPath = XULRunnerLocator.GetXULRunnerLocation();
 #if GTK		
