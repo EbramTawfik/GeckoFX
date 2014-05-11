@@ -865,6 +865,7 @@ namespace Gecko
 			if (!_isNative)
 			{
 				NS_StringContainerFinish(this.Container);
+				Xpcom.Free(this.Container);
 				base.Dispose(disposing);
 			}
 		}
