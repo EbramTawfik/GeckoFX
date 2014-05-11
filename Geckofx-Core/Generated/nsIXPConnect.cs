@@ -609,7 +609,7 @@ namespace Gecko
         /// to this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal EvalInSandboxObject([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source, [MarshalAs(UnmanagedType.LPStr)] string filename, System.IntPtr cx, System.IntPtr sandbox, [MarshalAs(UnmanagedType.U1)] bool returnStringOnly);
+		Gecko.JsVal EvalInSandboxObject([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase source, [MarshalAs(UnmanagedType.LPStr)] string filename, System.IntPtr cx, System.IntPtr sandbox, [MarshalAs(UnmanagedType.U1)] bool returnStringOnly);
 		
 		/// <summary>
         /// Whether or not XPConnect should report all JS exceptions when returning

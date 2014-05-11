@@ -175,7 +175,7 @@ namespace Gecko
         /// Returns the whole selection into a plain text string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void ToString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Modifies the selection.  Note that the parameters are case-insensitive.
@@ -196,6 +196,6 @@ namespace Gecko
         /// or granularity has an unrecognized value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Modify([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase alter, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase direction, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase granularity);
+		void Modify([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase alter, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase direction, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase granularity);
 	}
 }

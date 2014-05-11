@@ -44,7 +44,7 @@ namespace Gecko
         /// to update to the new version
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aType);
 		
 		/// <summary>
         /// The type of this patch:
@@ -53,57 +53,57 @@ namespace Gecko
         /// to update to the new version
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		void SetTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aType);
 		
 		/// <summary>
         /// The URL this patch was being downloaded from
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
+		void GetURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aURL);
 		
 		/// <summary>
         /// The URL this patch was being downloaded from
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
+		void SetURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aURL);
 		
 		/// <summary>
         /// The final URL this patch was being downloaded from
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFinalURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFinalURL);
+		void GetFinalURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aFinalURL);
 		
 		/// <summary>
         /// The final URL this patch was being downloaded from
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFinalURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFinalURL);
+		void SetFinalURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aFinalURL);
 		
 		/// <summary>
         /// The hash function to use when determining this file's integrity
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHashFunctionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHashFunction);
+		void GetHashFunctionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aHashFunction);
 		
 		/// <summary>
         /// The hash function to use when determining this file's integrity
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHashFunctionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHashFunction);
+		void SetHashFunctionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aHashFunction);
 		
 		/// <summary>
         /// The value of the hash function named above that should be computed if
         /// this file is not corrupt.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHashValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHashValue);
+		void GetHashValueAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aHashValue);
 		
 		/// <summary>
         /// The value of the hash function named above that should be computed if
         /// this file is not corrupt.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHashValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHashValue);
+		void SetHashValueAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aHashValue);
 		
 		/// <summary>
         /// The size of this file, in bytes.
@@ -121,13 +121,13 @@ namespace Gecko
         /// The state of this patch
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);
+		void GetStateAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aState);
 		
 		/// <summary>
         /// The state of this patch
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);
+		void SetStateAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aState);
 		
 		/// <summary>
         /// true if this patch is currently selected as the patch to be downloaded and
@@ -179,7 +179,7 @@ namespace Gecko
         /// "minor"  A minor update to the Application (e.g. security update)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aType);
 		
 		/// <summary>
         /// The type of update:
@@ -187,69 +187,69 @@ namespace Gecko
         /// "minor"  A minor update to the Application (e.g. security update)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		void SetTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aType);
 		
 		/// <summary>
         /// The name of the update, or "<Application Name> <Update Version>"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName);
 		
 		/// <summary>
         /// The name of the update, or "<Application Name> <Update Version>"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void SetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName);
 		
 		/// <summary>
         /// The string to display in the user interface for the version. If you want
         /// a real version number use appVersion.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDisplayVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayVersion);
+		void GetDisplayVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aDisplayVersion);
 		
 		/// <summary>
         /// The string to display in the user interface for the version. If you want
         /// a real version number use appVersion.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDisplayVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayVersion);
+		void SetDisplayVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aDisplayVersion);
 		
 		/// <summary>
         /// The Application version of this update.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppVersion);
+		void GetAppVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aAppVersion);
 		
 		/// <summary>
         /// The Application version of this update.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAppVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppVersion);
+		void SetAppVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aAppVersion);
 		
 		/// <summary>
         /// The Toolkit version of this update.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPlatformVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPlatformVersion);
+		void GetPlatformVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aPlatformVersion);
 		
 		/// <summary>
         /// The Toolkit version of this update.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPlatformVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPlatformVersion);
+		void SetPlatformVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aPlatformVersion);
 		
 		/// <summary>
         /// The Application version prior to the application being updated.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPreviousAppVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPreviousAppVersion);
+		void GetPreviousAppVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aPreviousAppVersion);
 		
 		/// <summary>
         /// The Application version prior to the application being updated.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPreviousAppVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPreviousAppVersion);
+		void SetPreviousAppVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aPreviousAppVersion);
 		
 		/// <summary>
         /// The Build ID of this update. Used to determine a particular build, down
@@ -258,7 +258,7 @@ namespace Gecko
         /// for example.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBuildIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBuildID);
+		void GetBuildIDAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aBuildID);
 		
 		/// <summary>
         /// The Build ID of this update. Used to determine a particular build, down
@@ -267,7 +267,7 @@ namespace Gecko
         /// for example.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBuildIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBuildID);
+		void SetBuildIDAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aBuildID);
 		
 		/// <summary>
         /// The URL to a page which offers details about the content of this
@@ -276,7 +276,7 @@ namespace Gecko
         /// which also links to the release notes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDetailsURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDetailsURL);
+		void GetDetailsURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aDetailsURL);
 		
 		/// <summary>
         /// The URL to a page which offers details about the content of this
@@ -285,21 +285,21 @@ namespace Gecko
         /// which also links to the release notes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDetailsURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDetailsURL);
+		void SetDetailsURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aDetailsURL);
 		
 		/// <summary>
         /// The URL to a page that is typically localized to display in the update
         /// prompt.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBillboardURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBillboardURL);
+		void GetBillboardURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aBillboardURL);
 		
 		/// <summary>
         /// The URL to a page that is typically localized to display in the update
         /// prompt.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBillboardURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBillboardURL);
+		void SetBillboardURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aBillboardURL);
 		
 		/// <summary>
         /// The URL to a HTML fragment that contains a license for this update. If
@@ -308,7 +308,7 @@ namespace Gecko
         /// commences.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLicenseURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLicenseURL);
+		void GetLicenseURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aLicenseURL);
 		
 		/// <summary>
         /// The URL to a HTML fragment that contains a license for this update. If
@@ -317,31 +317,31 @@ namespace Gecko
         /// commences.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLicenseURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLicenseURL);
+		void SetLicenseURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aLicenseURL);
 		
 		/// <summary>
         /// The URL to the Update Service that supplied this update.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetServiceURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aServiceURL);
+		void GetServiceURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aServiceURL);
 		
 		/// <summary>
         /// The URL to the Update Service that supplied this update.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetServiceURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aServiceURL);
+		void SetServiceURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aServiceURL);
 		
 		/// <summary>
         /// The channel used to retrieve this update from the Update Service.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetChannelAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aChannel);
+		void GetChannelAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aChannel);
 		
 		/// <summary>
         /// The channel used to retrieve this update from the Update Service.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetChannelAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aChannel);
+		void SetChannelAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aChannel);
 		
 		/// <summary>
         /// Whether to show the update prompt which requires user confirmation when an
@@ -471,13 +471,13 @@ namespace Gecko
         /// A message associated with this update, if any.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatusText);
+		void GetStatusTextAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aStatusText);
 		
 		/// <summary>
         /// A message associated with this update, if any.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatusText);
+		void SetStatusTextAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aStatusText);
 		
 		/// <summary>
         /// The currently selected patch for this update.
@@ -500,7 +500,7 @@ namespace Gecko
         /// "failed"             The update failed to be applied.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);
+		void GetStateAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aState);
 		
 		/// <summary>
         /// The state of the selected patch:
@@ -516,7 +516,7 @@ namespace Gecko
         /// "failed"             The update failed to be applied.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);
+		void SetStateAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aState);
 		
 		/// <summary>
         /// A numeric error code that conveys additional information about the state
@@ -721,7 +721,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DownloadUpdate([MarshalAs(UnmanagedType.Interface)] nsIUpdate update, [MarshalAs(UnmanagedType.U1)] bool background, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void DownloadUpdate([MarshalAs(UnmanagedType.Interface)] nsIUpdate update, [MarshalAs(UnmanagedType.U1)] bool background, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Apply the OS update which has been downloaded and staged as applied.

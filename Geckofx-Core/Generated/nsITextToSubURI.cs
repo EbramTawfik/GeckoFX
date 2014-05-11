@@ -64,7 +64,7 @@ namespace Gecko
         /// @return Unescaped aURIFragment  converted to unicode
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnEscapeURIForUI([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURIFragment, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void UnEscapeURIForUI([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURIFragment, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Unescapes only non ASCII characters in the given URI fragment
@@ -78,6 +78,6 @@ namespace Gecko
         /// or error code of nsIUnicodeDecoder in case of conversion failure
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnEscapeNonAsciiURI([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURIFragment, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void UnEscapeNonAsciiURI([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURIFragment, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 	}
 }

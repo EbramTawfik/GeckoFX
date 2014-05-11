@@ -41,9 +41,9 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteModule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase moduleName);
+		void DeleteModule([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase moduleName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddModule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase moduleName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase libraryFullPath, int cryptoMechanismFlags, int cipherFlags);
+		void AddModule([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase moduleName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase libraryFullPath, int cryptoMechanismFlags, int cipherFlags);
 	}
 }

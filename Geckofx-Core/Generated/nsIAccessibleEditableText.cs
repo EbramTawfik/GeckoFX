@@ -42,7 +42,7 @@ namespace Gecko
         /// Replaces the text represented by this object by the given text.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextContents([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
+		void SetTextContents([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase text);
 		
 		/// <summary>
         /// Inserts text at the specified position.
@@ -51,7 +51,7 @@ namespace Gecko
         /// @param position - index at which to insert the text.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text, int position);
+		void InsertText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase text, int position);
 		
 		/// <summary>
         /// Copies the text range into the clipboard.

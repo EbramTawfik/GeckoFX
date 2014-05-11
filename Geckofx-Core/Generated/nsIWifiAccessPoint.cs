@@ -51,7 +51,7 @@ namespace Gecko
         /// for any comparisons, you want to use the Raw SSID.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSsidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSsid);
+		void GetSsidAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aSsid);
 		
 		/// <summary>
         /// Public name of a wireless network.  These are the bytes that are read off

@@ -70,9 +70,9 @@ namespace Gecko
 		void SetDisabledAttribute([MarshalAs(UnmanagedType.U1)] bool aDisabled);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLabelAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLabel);
+		void GetLabelAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aLabel);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLabelAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLabel);
+		void SetLabelAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aLabel);
 	}
 }

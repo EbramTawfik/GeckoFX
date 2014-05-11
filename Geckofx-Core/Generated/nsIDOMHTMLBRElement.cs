@@ -53,7 +53,7 @@ namespace Gecko
         /// http://www.whatwg.org/specs/web-apps/current-work/
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetClearAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClear);
+		void GetClearAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aClear);
 		
 		/// <summary>
         /// The nsIDOMHTMLBRElement interface is the interface to a [X]HTML br
@@ -66,6 +66,6 @@ namespace Gecko
         /// http://www.whatwg.org/specs/web-apps/current-work/
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetClearAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClear);
+		void SetClearAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aClear);
 	}
 }

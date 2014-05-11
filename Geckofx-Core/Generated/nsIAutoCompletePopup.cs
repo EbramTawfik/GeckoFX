@@ -48,7 +48,7 @@ namespace Gecko
         /// value of the selected item
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOverrideValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOverrideValue);
+		void GetOverrideValueAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aOverrideValue);
 		
 		/// <summary>
         /// The index of the result item that is currently selected

@@ -133,7 +133,7 @@ namespace Gecko
         /// The suggested name for this file
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSuggestedFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSuggestedFileName);
+		void GetSuggestedFileNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aSuggestedFileName);
 		
 		/// <summary>
         /// Saves the final destination of the file. Does not actually perform the

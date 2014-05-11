@@ -61,13 +61,13 @@ namespace Gecko
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueAsStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValueAsString);
+		void GetValueAsStringAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aValueAsString);
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValueAsStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValueAsString);
+		void SetValueAsStringAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aValueAsString);
 		
 		/// <summary>
         /// raises DOMException on setting

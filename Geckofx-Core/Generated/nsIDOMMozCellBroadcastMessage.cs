@@ -43,7 +43,7 @@ namespace Gecko
         /// Possible values are: "cell-immediate", "plmn", "location-area" and "cell".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetGsmGeographicalScopeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGsmGeographicalScope);
+		void GetGsmGeographicalScopeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aGsmGeographicalScope);
 		
 		/// <summary>
         /// The Message Code differentiates between messages from the same source and
@@ -64,20 +64,20 @@ namespace Gecko
         /// ISO-639-1 language code for this message. Null if unspecified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLanguageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLanguage);
+		void GetLanguageAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aLanguage);
 		
 		/// <summary>
         /// Text message carried by the message.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBodyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBody);
+		void GetBodyAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aBody);
 		
 		/// <summary>
         /// Possible values are "normal", "class-0", "class-1", "class-2", "class-3",
         /// "user-1", and "user-2".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMessageClassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessageClass);
+		void GetMessageClassAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aMessageClass);
 		
 		/// <summary>
         /// System time stamp at receival.

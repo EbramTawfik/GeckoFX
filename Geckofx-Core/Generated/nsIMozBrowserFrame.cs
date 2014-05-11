@@ -110,7 +110,7 @@ namespace Gecko
         /// This method is guaranteed not to fail.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppManifestURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppManifestURL);
+		void GetAppManifestURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aAppManifestURL);
 		
 		/// <summary>
         /// Normally, a frame tries to create its frame loader when its src is

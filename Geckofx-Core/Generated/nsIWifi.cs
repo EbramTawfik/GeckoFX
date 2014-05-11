@@ -41,10 +41,10 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSsidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSsid);
+		void GetSsidAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aSsid);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBssidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBssid);
+		void GetBssidAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aBssid);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetCapabilitiesAttribute();
@@ -249,7 +249,7 @@ namespace Gecko
         /// Returns the MAC address of the wifi adapter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMacAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMacAddress);
+		void GetMacAddressAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aMacAddress);
 		
 		/// <summary>
         /// An non-null object containing the following information:

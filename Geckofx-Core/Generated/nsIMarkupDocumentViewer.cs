@@ -166,7 +166,7 @@ namespace Gecko
         /// @param mediaType The media type to be emulated
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EmulateMedium([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMediaType);
+		void EmulateMedium([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aMediaType);
 		
 		/// <summary>
         /// Restore the viewer's natural media type

@@ -51,7 +51,7 @@ namespace Gecko
         /// twostate: don't allow the natural (unordered state)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Sort([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortHints);
+		void Sort([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aSortKey, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aSortHints);
 	}
 	
 	/// <summary>nsIXULSortServiceConsts </summary>

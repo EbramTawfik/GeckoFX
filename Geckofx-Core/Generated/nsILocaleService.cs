@@ -45,7 +45,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocale NewLocale([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLocale);
+		nsILocale NewLocale([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aLocale);
 		
 		/// <summary>
         /// Get the user preference for locale from the operating system.
@@ -92,6 +92,6 @@ namespace Gecko
         /// in nsILocale.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLocaleComponentForUserAgent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetLocaleComponentForUserAgent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 	}
 }

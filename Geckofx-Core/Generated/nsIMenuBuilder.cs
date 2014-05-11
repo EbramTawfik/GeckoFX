@@ -41,7 +41,7 @@ namespace Gecko
         /// to this newly created menu.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenContainer([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLabel);
+		void OpenContainer([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aLabel);
 		
 		/// <summary>
         /// Add a new menu item. All menu item details can be obtained from

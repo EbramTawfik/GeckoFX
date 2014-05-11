@@ -184,7 +184,7 @@ namespace Gecko
         /// 32-bit length field, followed by length PRUnichars.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void ReadString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Read an opaque byte array from the stream.

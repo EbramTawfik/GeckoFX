@@ -64,7 +64,7 @@ namespace Gecko
 		void SetDirectory([MarshalAs(UnmanagedType.Interface)] nsIFile directory);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFilter([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase filterString);
+		void SetFilter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase filterString);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

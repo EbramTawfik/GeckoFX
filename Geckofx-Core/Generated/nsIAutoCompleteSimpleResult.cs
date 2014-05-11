@@ -42,7 +42,7 @@ namespace Gecko
         /// The original search string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSearchStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString);
+		new void GetSearchStringAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aSearchString);
 		
 		/// <summary>
         /// The result of the search
@@ -60,7 +60,7 @@ namespace Gecko
         /// A string describing the cause of a search failure
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetErrorDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aErrorDescription);
+		new void GetErrorDescriptionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aErrorDescription);
 		
 		/// <summary>
         /// The number of matches
@@ -81,31 +81,31 @@ namespace Gecko
         /// Get the value of the result at the given index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetValueAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void GetValueAt(int index, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// This returns the string that is displayed in the dropdown
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetLabelAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void GetLabelAt(int index, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the comment of the result at the given index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetCommentAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void GetCommentAt(int index, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the style hint for the result at the given index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetStyleAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void GetStyleAt(int index, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the image of the result at the given index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetImageAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void GetImageAt(int index, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Remove the value at the given index from the autocomplete results.
@@ -120,13 +120,13 @@ namespace Gecko
         /// the string that the user typed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSearchString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString);
+		void SetSearchString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aSearchString);
 		
 		/// <summary>
         /// A writer for the readonly attribute 'errorDescription'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetErrorDescription([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aErrorDescription);
+		void SetErrorDescription([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aErrorDescription);
 		
 		/// <summary>
         /// A writer for the readonly attribute 'defaultIndex' which should contain
@@ -155,7 +155,7 @@ namespace Gecko
         /// This is how you add results.  Note:  image and style are optional.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendMatch([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aComment, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aImage, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStyle);
+		void AppendMatch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aValue, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aComment, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aImage, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aStyle);
 		
 		/// <summary>
         /// Sets a listener for changes in the result.
@@ -181,6 +181,6 @@ namespace Gecko
         /// Whether the value should be removed from persistent storage as well.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnValueRemoved([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSimpleResult aResult, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue, [MarshalAs(UnmanagedType.U1)] bool aRemoveFromDb);
+		void OnValueRemoved([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSimpleResult aResult, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aValue, [MarshalAs(UnmanagedType.U1)] bool aRemoveFromDb);
 	}
 }

@@ -41,13 +41,13 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		txINodeSet Match(txIFunctionEvaluationContext aContext, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlags);
+		txINodeSet Match(txIFunctionEvaluationContext aContext, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aString, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aRegEx, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aFlags);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Replace([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReplace, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Replace([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aString, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aRegEx, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aFlags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aReplace, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Test([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlags);
+		bool Test([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aString, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aRegEx, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aFlags);
 	}
 }

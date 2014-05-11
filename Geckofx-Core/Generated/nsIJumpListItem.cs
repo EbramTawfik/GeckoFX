@@ -172,13 +172,13 @@ namespace Gecko
         /// Set or get the title for a link item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUriTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUriTitle);
+		void GetUriTitleAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aUriTitle);
 		
 		/// <summary>
         /// Set or get the title for a link item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUriTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUriTitle);
+		void SetUriTitleAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aUriTitle);
 		
 		/// <summary>
         /// Get a 'privacy safe' unique string hash of the uri's

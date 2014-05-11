@@ -82,7 +82,7 @@ namespace Gecko
         /// Called to handle the doctype declaration
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void HandleDoctypeDecl([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSubset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSystemId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPublicId, [MarshalAs(UnmanagedType.Interface)] nsISupports aCatalogData);
+		new void HandleDoctypeDecl([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aSubset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aSystemId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aPublicId, [MarshalAs(UnmanagedType.Interface)] nsISupports aCatalogData);
 		
 		/// <summary>
         /// Called to handle character data.  Note that this does NOT get

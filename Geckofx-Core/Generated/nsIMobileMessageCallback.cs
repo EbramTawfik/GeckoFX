@@ -76,7 +76,7 @@ namespace Gecko
         /// SMSC Address get/set result
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyGetSmscAddress([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSmscAddress);
+		void NotifyGetSmscAddress([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aSmscAddress);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyGetSmscAddressFailed(int error);

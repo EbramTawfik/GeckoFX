@@ -66,7 +66,7 @@ namespace Gecko
         /// This attribute is "replaceable" in JavaScript
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName);
 		
 		/// <summary>
         /// Set/Get the name of this window.
@@ -74,7 +74,7 @@ namespace Gecko
         /// This attribute is "replaceable" in JavaScript
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void SetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName);
 		
 		/// <summary>
         ///The setter that takes a string argument needs to be special cased! </summary>
@@ -125,12 +125,12 @@ namespace Gecko
 		/// <summary>
         ///[replaceable] </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatus);
+		void GetStatusAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aStatus);
 		
 		/// <summary>
         ///[replaceable] </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatus);
+		void SetStatusAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aStatus);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();
@@ -243,24 +243,24 @@ namespace Gecko
         /// user prompts
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Alert([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
+		void Alert([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase text);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Confirm([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
+		bool Confirm([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase text);
 		
 		/// <summary>
         /// prompt() should return a null string if cancel is pressed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Prompt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInitial, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Prompt([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aMessage, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aInitial, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Print();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOptions, int argc);
+		nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aOptions, int argc);
 		
 		/// <summary>
         /// Implements a safe message-passing system which can cross same-origin
@@ -280,16 +280,16 @@ namespace Gecko
         /// @see <http://www.whatwg.org/html/#dom-window-postmessage>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PostMessage(Gecko.JsVal message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase targetOrigin, Gecko.JsVal transfer, System.IntPtr jsContext);
+		void PostMessage(Gecko.JsVal message, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase targetOrigin, Gecko.JsVal transfer, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Ascii base64 data to binary data and vice versa...
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Atob([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aAsciiString, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Btoa([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Session storage for the current browsing context.
@@ -328,7 +328,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports MatchMedia([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase media_query_list);
+		nsISupports MatchMedia([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase media_query_list);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -431,11 +431,11 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pseudoElt);
+		nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase pseudoElt);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSStyleDeclaration GetDefaultComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pseudoElt);
+		nsIDOMCSSStyleDeclaration GetDefaultComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase pseudoElt);
 		
 		/// <summary>
         /// Get the window root for this window. This is useful for hooking
@@ -575,7 +575,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow Open([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase options);
+		nsIDOMWindow Open([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase url, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase options);
 		
 		/// <summary>
         /// This method works like open except that aExtraArgument gets
@@ -587,13 +587,13 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase options, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraArgument);
+		nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase url, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase options, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraArgument);
 		
 		/// <summary>
         /// XXX Should this be in nsIDOMChromeWindow?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateCommands([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase action);
+		void UpdateCommands([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase action);
 		
 		/// <summary>
         ///Find in page.
@@ -607,7 +607,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, [MarshalAs(UnmanagedType.U1)] bool caseSensitive, [MarshalAs(UnmanagedType.U1)] bool backwards, [MarshalAs(UnmanagedType.U1)] bool wrapAround, [MarshalAs(UnmanagedType.U1)] bool wholeWord, [MarshalAs(UnmanagedType.U1)] bool searchInFrames, [MarshalAs(UnmanagedType.U1)] bool showDialog);
+		bool Find([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase str, [MarshalAs(UnmanagedType.U1)] bool caseSensitive, [MarshalAs(UnmanagedType.U1)] bool backwards, [MarshalAs(UnmanagedType.U1)] bool wrapAround, [MarshalAs(UnmanagedType.U1)] bool wholeWord, [MarshalAs(UnmanagedType.U1)] bool searchInFrames, [MarshalAs(UnmanagedType.U1)] bool showDialog);
 		
 		/// <summary>
         /// Returns the number of times this document for this window has
@@ -839,7 +839,7 @@ namespace Gecko
         /// This attribute is "replaceable" in JavaScript
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName);
 		
 		/// <summary>
         /// Set/Get the name of this window.
@@ -847,7 +847,7 @@ namespace Gecko
         /// This attribute is "replaceable" in JavaScript
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		new void SetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName);
 		
 		/// <summary>
         ///The setter that takes a string argument needs to be special cased! </summary>
@@ -898,12 +898,12 @@ namespace Gecko
 		/// <summary>
         ///[replaceable] </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatus);
+		new void GetStatusAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aStatus);
 		
 		/// <summary>
         ///[replaceable] </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatus);
+		new void SetStatusAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aStatus);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Close();
@@ -1016,24 +1016,24 @@ namespace Gecko
         /// user prompts
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Alert([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
+		new void Alert([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase text);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Confirm([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
+		new bool Confirm([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase text);
 		
 		/// <summary>
         /// prompt() should return a null string if cancel is pressed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Prompt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInitial, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void Prompt([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aMessage, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aInitial, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Print();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOptions, int argc);
+		new nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aOptions, int argc);
 		
 		/// <summary>
         /// Implements a safe message-passing system which can cross same-origin
@@ -1053,16 +1053,16 @@ namespace Gecko
         /// @see <http://www.whatwg.org/html/#dom-window-postmessage>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PostMessage(Gecko.JsVal message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase targetOrigin, Gecko.JsVal transfer, System.IntPtr jsContext);
+		new void PostMessage(Gecko.JsVal message, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase targetOrigin, Gecko.JsVal transfer, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Ascii base64 data to binary data and vice versa...
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void Atob([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aAsciiString, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void Btoa([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Session storage for the current browsing context.
@@ -1101,7 +1101,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISupports MatchMedia([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase media_query_list);
+		new nsISupports MatchMedia([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase media_query_list);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1204,11 +1204,11 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pseudoElt);
+		new nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase pseudoElt);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMCSSStyleDeclaration GetDefaultComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pseudoElt);
+		new nsIDOMCSSStyleDeclaration GetDefaultComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase pseudoElt);
 		
 		/// <summary>
         /// Get the window root for this window. This is useful for hooking
@@ -1348,7 +1348,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMWindow Open([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase options);
+		new nsIDOMWindow Open([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase url, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase options);
 		
 		/// <summary>
         /// This method works like open except that aExtraArgument gets
@@ -1360,13 +1360,13 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase options, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraArgument);
+		new nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase url, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase options, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraArgument);
 		
 		/// <summary>
         /// XXX Should this be in nsIDOMChromeWindow?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void UpdateCommands([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase action);
+		new void UpdateCommands([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase action);
 		
 		/// <summary>
         ///Find in page.
@@ -1380,7 +1380,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, [MarshalAs(UnmanagedType.U1)] bool caseSensitive, [MarshalAs(UnmanagedType.U1)] bool backwards, [MarshalAs(UnmanagedType.U1)] bool wrapAround, [MarshalAs(UnmanagedType.U1)] bool wholeWord, [MarshalAs(UnmanagedType.U1)] bool searchInFrames, [MarshalAs(UnmanagedType.U1)] bool showDialog);
+		new bool Find([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase str, [MarshalAs(UnmanagedType.U1)] bool caseSensitive, [MarshalAs(UnmanagedType.U1)] bool backwards, [MarshalAs(UnmanagedType.U1)] bool wrapAround, [MarshalAs(UnmanagedType.U1)] bool wholeWord, [MarshalAs(UnmanagedType.U1)] bool searchInFrames, [MarshalAs(UnmanagedType.U1)] bool showDialog);
 		
 		/// <summary>
         /// Returns the number of times this document for this window has

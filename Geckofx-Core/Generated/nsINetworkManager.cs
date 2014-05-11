@@ -54,49 +54,49 @@ namespace Gecko
         /// Name of the network interface. This identifier is unique.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName);
 		
 		/// <summary>
         /// IP Address
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIpAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIp);
+		void GetIpAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aIp);
 		
 		/// <summary>
         /// Netmask
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNetmaskAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNetmask);
+		void GetNetmaskAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aNetmask);
 		
 		/// <summary>
         /// Broadcast
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBroadcastAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBroadcast);
+		void GetBroadcastAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aBroadcast);
 		
 		/// <summary>
         /// Default gateway
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetGatewayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGateway);
+		void GetGatewayAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aGateway);
 		
 		/// <summary>
         /// Primary DNS address
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDns1Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDns1);
+		void GetDns1Attribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aDns1);
 		
 		/// <summary>
         /// Secondary DNS address
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDns2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDns2);
+		void GetDns2Attribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aDns2);
 		
 		/// <summary>
         /// The host name of the http proxy server.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHttpProxyHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHttpProxyHost);
+		void GetHttpProxyHostAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aHttpProxyHost);
 		
 		/// <summary>
         /// The port number of the http proxy server.

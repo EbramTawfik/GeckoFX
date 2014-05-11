@@ -53,6 +53,6 @@ namespace Gecko
 		void EncodeToCString([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, uint length, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EncodeToString([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, uint length, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void EncodeToString([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, uint length, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 	}
 }

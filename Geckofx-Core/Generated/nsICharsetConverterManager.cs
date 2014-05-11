@@ -100,7 +100,7 @@ namespace Gecko
         /// @throws if aCharset is an unknown charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharsetTitle([MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetCharsetTitle([MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Get some data about the given charset. This includes whether the
@@ -119,7 +119,7 @@ namespace Gecko
         /// @return the value of the property, for the character encoding.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharsetData([MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aProp, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetCharsetData([MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aProp, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the language group for the given charset. This is similar to

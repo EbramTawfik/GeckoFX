@@ -52,7 +52,7 @@ namespace Gecko
         /// @retval rv the value returned by the sub-script
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal LoadSubScript([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, Gecko.JsVal obj, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase charset, System.IntPtr jsContext);
+		Gecko.JsVal LoadSubScript([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase url, Gecko.JsVal obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase charset, System.IntPtr jsContext);
 		
 		/// <summary>
         /// This method should only be called from JS!
@@ -67,6 +67,6 @@ namespace Gecko
         /// @retval rv the value returned by the sub-script
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal LoadSubScriptWithOptions([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, Gecko.JsVal options, System.IntPtr jsContext);
+		Gecko.JsVal LoadSubScriptWithOptions([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase url, Gecko.JsVal options, System.IntPtr jsContext);
 	}
 }

@@ -77,7 +77,7 @@ namespace Gecko
         /// app/mozbrowser is in use for this request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAuthIdentity([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHost, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAuthType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRealm, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserDomain, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserPassword, [MarshalAs(UnmanagedType.U1)] bool aIsPrivate, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal);
+		void GetAuthIdentity([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHost, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAuthType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRealm, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPath, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aUserDomain, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aUserName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aUserPassword, [MarshalAs(UnmanagedType.U1)] bool aIsPrivate, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal);
 		
 		/// <summary>
         /// Store auth identity.
@@ -110,7 +110,7 @@ namespace Gecko
         /// app/mozbrowser is in use for this request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAuthIdentity([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHost, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAuthType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRealm, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserDomain, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserPassword, [MarshalAs(UnmanagedType.U1)] bool aIsPrivate, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal);
+		void SetAuthIdentity([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHost, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAuthType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRealm, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPath, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aUserDomain, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aUserName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aUserPassword, [MarshalAs(UnmanagedType.U1)] bool aIsPrivate, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal);
 		
 		/// <summary>
         /// Clear all auth cache.

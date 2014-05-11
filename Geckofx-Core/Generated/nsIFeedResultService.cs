@@ -64,7 +64,7 @@ namespace Gecko
         /// The nsIFeed type of the feed.  See nsIFeed.idl
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddToClientReader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase subtitle, uint feedType);
+		void AddToClientReader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase uri, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase title, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase subtitle, uint feedType);
 		
 		/// <summary>
         /// Registers a Feed Result object with a globally accessible service

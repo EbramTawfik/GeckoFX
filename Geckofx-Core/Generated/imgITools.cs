@@ -87,7 +87,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream EncodeImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase outputOptions);
+		nsIInputStream EncodeImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase outputOptions);
 		
 		/// <summary>
         /// encodeScaledImage
@@ -107,7 +107,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream EncodeScaledImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, int aWidth, int aHeight, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase outputOptions);
+		nsIInputStream EncodeScaledImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, int aWidth, int aHeight, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase outputOptions);
 		
 		/// <summary>
         /// getImgLoaderForDocument
@@ -155,7 +155,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream EncodeCroppedImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, int aOffsetX, int aOffsetY, int aWidth, int aHeight, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase outputOptions);
+		nsIInputStream EncodeCroppedImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, int aOffsetX, int aOffsetY, int aWidth, int aHeight, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase outputOptions);
 		
 		/// <summary>
         /// Create a wrapper around a scripted notification observer (ordinarily

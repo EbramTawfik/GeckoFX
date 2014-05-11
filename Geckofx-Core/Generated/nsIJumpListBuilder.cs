@@ -90,7 +90,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool AddListToBuild(short aCatType, [MarshalAs(UnmanagedType.Interface)] nsIArray items, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase catName);
+		bool AddListToBuild(short aCatType, [MarshalAs(UnmanagedType.Interface)] nsIArray items, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase catName);
 		
 		/// <summary>
         /// Aborts and clears the current jump list build.

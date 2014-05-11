@@ -66,7 +66,7 @@ namespace Gecko
         /// they're trusted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool useCapture, [MarshalAs(UnmanagedType.U1)] bool wantsUntrusted, int argc);
+		new void AddEventListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool useCapture, [MarshalAs(UnmanagedType.U1)] bool wantsUntrusted, int argc);
 		
 		/// <summary>
         /// addSystemEventListener() adds an event listener of aType to the system
@@ -85,7 +85,7 @@ namespace Gecko
         /// @return                 NS_OK if succeed.  Otherwise, NS_ERROR_*.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddSystemEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool aUseCapture, [MarshalAs(UnmanagedType.U1)] bool aWantsUntrusted, int argc);
+		new void AddSystemEventListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool aUseCapture, [MarshalAs(UnmanagedType.U1)] bool aWantsUntrusted, int argc);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -108,14 +108,14 @@ namespace Gecko
         /// listener, and vice versa.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool useCapture);
+		new void RemoveEventListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool useCapture);
 		
 		/// <summary>
         /// removeSystemEventListener() should be used if you have used
         /// addSystemEventListener().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveSystemEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool aUseCapture);
+		new void RemoveSystemEventListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool aUseCapture);
 		
 		/// <summary>
         /// This method allows the dispatch of events into the implementations
@@ -233,10 +233,10 @@ namespace Gecko
         /// 'mobilenetwork' permission.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastKnownNetworkAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastKnownNetwork);
+		void GetLastKnownNetworkAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aLastKnownNetwork);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastKnownHomeNetworkAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastKnownHomeNetwork);
+		void GetLastKnownHomeNetworkAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aLastKnownHomeNetwork);
 		
 		/// <summary>
         /// Information about the voice connection.
@@ -257,7 +257,7 @@ namespace Gecko
         /// mobile connection corresponds to.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIccIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIccId);
+		void GetIccIdAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aIccId);
 		
 		/// <summary>
         /// The selection mode of the voice and data networks.
@@ -265,7 +265,7 @@ namespace Gecko
         /// Possible values: null (unknown), 'automatic', 'manual'
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNetworkSelectionModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNetworkSelectionMode);
+		void GetNetworkSelectionModeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aNetworkSelectionMode);
 		
 		/// <summary>
         /// The current radio state.
@@ -274,7 +274,7 @@ namespace Gecko
         /// 'disabled'
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRadioStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRadioState);
+		void GetRadioStateAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aRadioState);
 		
 		/// <summary>
         /// Array of network types that are supported by this radio.
@@ -350,7 +350,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SetPreferredNetworkType([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type);
+		nsIDOMDOMRequest SetPreferredNetworkType([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase type);
 		
 		/// <summary>
         /// Query current preferred network type
@@ -386,7 +386,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SetRoamingPreference([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mode);
+		nsIDOMDOMRequest SetRoamingPreference([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase mode);
 		
 		/// <summary>
         /// Query current roaming preference
@@ -455,7 +455,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SendMMI([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mmi);
+		nsIDOMDOMRequest SendMMI([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase mmi);
 		
 		/// <summary>
         /// Cancel the current MMI request if one exists.
@@ -863,7 +863,7 @@ namespace Gecko
         /// null if the state is unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);
+		void GetStateAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aState);
 		
 		/// <summary>
         /// Indicates whether the connection is ready. This may be different
@@ -904,7 +904,7 @@ namespace Gecko
         /// 'evdoa', 'evdob', etc.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aType);
 		
 		/// <summary>
         /// Signal strength in dBm, or null if no service is available.
@@ -938,25 +938,25 @@ namespace Gecko
         /// Short name of the network operator
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetShortNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aShortName);
+		void GetShortNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aShortName);
 		
 		/// <summary>
         /// Long name of the network operator
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLongNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLongName);
+		void GetLongNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aLongName);
 		
 		/// <summary>
         /// Mobile Country Code (MCC) of the network operator
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMccAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMcc);
+		void GetMccAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aMcc);
 		
 		/// <summary>
         /// Mobile Network Code (MNC) of the network operator
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMncAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMnc);
+		void GetMncAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aMnc);
 		
 		/// <summary>
         /// State of this network operator.
@@ -964,7 +964,7 @@ namespace Gecko
         /// Possible values: 'available', 'connected', 'forbidden', or null (unknown)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);
+		void GetStateAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aState);
 	}
 	
 	/// <summary>nsIDOMMozMobileCellInfo </summary>
@@ -1091,7 +1091,7 @@ namespace Gecko
         /// Phone number of forwarding address.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNumber);
+		void GetNumberAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aNumber);
 		
 		/// <summary>
         /// When "no reply" is enabled or queried, this gives the time in

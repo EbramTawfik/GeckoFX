@@ -54,6 +54,6 @@ namespace Gecko
         /// @param aState The wake lock state
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Callback([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTopic, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);
+		void Callback([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aTopic, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aState);
 	}
 }

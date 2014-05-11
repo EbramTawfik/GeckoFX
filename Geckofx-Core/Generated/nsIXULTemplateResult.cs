@@ -80,7 +80,7 @@ namespace Gecko
         /// query.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
+		void GetIdAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aId);
 		
 		/// <summary>
         /// Resource for the result, which may be null. If set, the resource uri
@@ -96,7 +96,7 @@ namespace Gecko
         /// purposes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aType);
 		
 		/// <summary>
         /// Get the string representation of the value of a variable for this
@@ -111,7 +111,7 @@ namespace Gecko
         /// @return the value for the variable or a null string if it has no value
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBindingFor([MarshalAs(UnmanagedType.Interface)] nsIAtom aVar, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetBindingFor([MarshalAs(UnmanagedType.Interface)] nsIAtom aVar, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Get an object value for a variable such as ?name for this result.

@@ -37,13 +37,13 @@ namespace Gecko
 		/// <summary>
         ///NOTE: this interface is only implemented in debug builds </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SpoofVendorID([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVendorID);
+		void SpoofVendorID([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aVendorID);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SpoofDeviceID([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeviceID);
+		void SpoofDeviceID([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aDeviceID);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SpoofDriverVersion([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDriverVersion);
+		void SpoofDriverVersion([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aDriverVersion);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SpoofOSVersion(uint aVersion);

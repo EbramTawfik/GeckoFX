@@ -41,6 +41,6 @@ namespace Gecko
         /// <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleXMLDeclaration([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase version, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase encoding, [MarshalAs(UnmanagedType.U1)] bool standalone);
+		void HandleXMLDeclaration([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase version, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase encoding, [MarshalAs(UnmanagedType.U1)] bool standalone);
 	}
 }

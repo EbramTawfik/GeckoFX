@@ -544,21 +544,21 @@ namespace Gecko
         /// In both of these cases, succeeds but does nothing if the URL/keyword is not found.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKeywordForBookmark(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKeyword);
+		void SetKeywordForBookmark(long aItemId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aKeyword);
 		
 		/// <summary>
         /// Retrieves the keyword for the given URI. Will be void string
         /// (null in JS) if no such keyword is found.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeywordForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetKeywordForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Retrieves the keyword for the given bookmark. Will be void string
         /// (null in JS) if no such keyword is found.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeywordForBookmark(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetKeywordForBookmark(long aItemId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>
         /// Returns the URI associated with the given keyword. Empty if no such
@@ -566,7 +566,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetURIForKeyword([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase keyword);
+		nsIURI GetURIForKeyword([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase keyword);
 		
 		/// <summary>
         /// Adds a bookmark observer. If ownsWeak is false, the bookmark service will

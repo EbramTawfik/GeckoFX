@@ -56,6 +56,6 @@ namespace Gecko
         /// still available, then that previous overlay is displayed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOverlayIcon(imgIContainer statusIcon, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase statusDescription);
+		void SetOverlayIcon(imgIContainer statusIcon, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase statusDescription);
 	}
 }

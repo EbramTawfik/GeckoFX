@@ -39,13 +39,13 @@ namespace Gecko
         /// A nickname for the certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNicknameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNickname);
+		new void GetNicknameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aNickname);
 		
 		/// <summary>
         /// The primary email address of the certificate, if present.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetEmailAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEmailAddress);
+		new void GetEmailAddressAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aEmailAddress);
 		
 		/// <summary>
         /// Obtain a list of all email addresses
@@ -68,82 +68,82 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool ContainsEmailAddress([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEmailAddress);
+		new bool ContainsEmailAddress([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aEmailAddress);
 		
 		/// <summary>
         /// The subject owning the certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSubjectNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSubjectName);
+		new void GetSubjectNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aSubjectName);
 		
 		/// <summary>
         /// The subject's common name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetCommonNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCommonName);
+		new void GetCommonNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aCommonName);
 		
 		/// <summary>
         /// The subject's organization.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetOrganizationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrganization);
+		new void GetOrganizationAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aOrganization);
 		
 		/// <summary>
         /// The subject's organizational unit.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetOrganizationalUnitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrganizationalUnit);
+		new void GetOrganizationalUnitAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aOrganizationalUnit);
 		
 		/// <summary>
         /// The fingerprint of the certificate's public key,
         /// calculated using the SHA1 algorithm.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSha1FingerprintAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSha1Fingerprint);
+		new void GetSha1FingerprintAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aSha1Fingerprint);
 		
 		/// <summary>
         /// The fingerprint of the certificate's public key,
         /// calculated using the MD5 algorithm.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetMd5FingerprintAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMd5Fingerprint);
+		new void GetMd5FingerprintAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aMd5Fingerprint);
 		
 		/// <summary>
         /// A human readable name identifying the hardware or
         /// software token the certificate is stored on.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTokenNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTokenName);
+		new void GetTokenNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aTokenName);
 		
 		/// <summary>
         /// The subject identifying the issuer certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIssuerNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIssuerName);
+		new void GetIssuerNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aIssuerName);
 		
 		/// <summary>
         /// The serial number the issuer assigned to this certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSerialNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSerialNumber);
+		new void GetSerialNumberAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aSerialNumber);
 		
 		/// <summary>
         /// The issuer subject's common name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIssuerCommonNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIssuerCommonName);
+		new void GetIssuerCommonNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aIssuerCommonName);
 		
 		/// <summary>
         /// The issuer subject's organization.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIssuerOrganizationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIssuerOrganization);
+		new void GetIssuerOrganizationAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aIssuerOrganization);
 		
 		/// <summary>
         /// The issuer subject's organizational unit.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIssuerOrganizationUnitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIssuerOrganizationUnit);
+		new void GetIssuerOrganizationUnitAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aIssuerOrganizationUnit);
 		
 		/// <summary>
         /// The certificate used by the issuer to sign this certificate.
@@ -207,7 +207,7 @@ namespace Gecko
         /// @param purposes The string listing the usages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUsagesString([MarshalAs(UnmanagedType.U1)] bool localOnly, ref uint verified, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase usages);
+		new void GetUsagesString([MarshalAs(UnmanagedType.U1)] bool localOnly, ref uint verified, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase usages);
 		
 		/// <summary>
         /// This is the attribute which describes the ASN1 layout

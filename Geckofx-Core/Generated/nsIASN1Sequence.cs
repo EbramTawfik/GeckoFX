@@ -83,25 +83,25 @@ namespace Gecko
         /// "displayName" contains a human readable explanatory label.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDisplayNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayName);
+		new void GetDisplayNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aDisplayName);
 		
 		/// <summary>
         /// "displayName" contains a human readable explanatory label.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDisplayNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayName);
+		new void SetDisplayNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aDisplayName);
 		
 		/// <summary>
         /// "displayValue" contains the human readable value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDisplayValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayValue);
+		new void GetDisplayValueAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aDisplayValue);
 		
 		/// <summary>
         /// "displayValue" contains the human readable value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDisplayValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayValue);
+		new void SetDisplayValueAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aDisplayValue);
 		
 		/// <summary>
         /// The array of objects stored in the sequence.

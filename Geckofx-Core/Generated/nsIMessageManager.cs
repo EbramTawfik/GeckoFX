@@ -217,7 +217,7 @@ namespace Gecko
         /// second registration is ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// Undo an |addMessageListener| call -- that is, calling this causes us to no
@@ -227,7 +227,7 @@ namespace Gecko
         /// addWeakMessageListener; use removeWeakMessageListener for that.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		void RemoveMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// This is just like addMessageListener, except the message manager holds a
@@ -237,13 +237,13 @@ namespace Gecko
         /// called in any order.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		void AddWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// This undoes an |addWeakMessageListener| call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		void RemoveWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>Member MarkForCC </summary>
 		/// <returns>A System.Boolean</returns>
@@ -275,7 +275,7 @@ namespace Gecko
         /// second registration is ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// Undo an |addMessageListener| call -- that is, calling this causes us to no
@@ -285,7 +285,7 @@ namespace Gecko
         /// addWeakMessageListener; use removeWeakMessageListener for that.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void RemoveMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// This is just like addMessageListener, except the message manager holds a
@@ -295,13 +295,13 @@ namespace Gecko
         /// called in any order.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// This undoes an |addWeakMessageListener| call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -323,7 +323,7 @@ namespace Gecko
         /// to a cross-process frame whose process has crashed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		void SendAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 	}
 	
 	/// <summary>
@@ -350,7 +350,7 @@ namespace Gecko
         /// second registration is ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// Undo an |addMessageListener| call -- that is, calling this causes us to no
@@ -360,7 +360,7 @@ namespace Gecko
         /// addWeakMessageListener; use removeWeakMessageListener for that.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void RemoveMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// This is just like addMessageListener, except the message manager holds a
@@ -370,13 +370,13 @@ namespace Gecko
         /// called in any order.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// This undoes an |addWeakMessageListener| call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -391,7 +391,7 @@ namespace Gecko
         /// sensitive data.  Use with extreme caution.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BroadcastAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, System.IntPtr jsContext, int argc);
+		void BroadcastAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Number of subordinate message managers.
@@ -425,7 +425,7 @@ namespace Gecko
         /// second registration is ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// Undo an |addMessageListener| call -- that is, calling this causes us to no
@@ -435,7 +435,7 @@ namespace Gecko
         /// addWeakMessageListener; use removeWeakMessageListener for that.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void RemoveMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// This is just like addMessageListener, except the message manager holds a
@@ -445,13 +445,13 @@ namespace Gecko
         /// called in any order.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// This undoes an |addWeakMessageListener| call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>Member MarkForCC </summary>
 		/// <returns>A System.Boolean</returns>
@@ -475,7 +475,7 @@ namespace Gecko
         /// to a cross-process frame whose process has crashed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendAsyncMessage()|, except blocks the sender until all
@@ -483,7 +483,7 @@ namespace Gecko
         /// containing return values from each listener invoked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendSyncMessage()|, except re-entrant. New RPC messages may be
@@ -495,7 +495,7 @@ namespace Gecko
         /// incoming message (such as a CPOW request).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 	}
 	
 	/// <summary>nsIContentFrameMessageManager </summary>
@@ -516,7 +516,7 @@ namespace Gecko
         /// second registration is ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// Undo an |addMessageListener| call -- that is, calling this causes us to no
@@ -526,7 +526,7 @@ namespace Gecko
         /// addWeakMessageListener; use removeWeakMessageListener for that.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void RemoveMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// This is just like addMessageListener, except the message manager holds a
@@ -536,13 +536,13 @@ namespace Gecko
         /// called in any order.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// This undoes an |addWeakMessageListener| call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>Member MarkForCC </summary>
 		/// <returns>A System.Boolean</returns>
@@ -566,7 +566,7 @@ namespace Gecko
         /// to a cross-process frame whose process has crashed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendAsyncMessage()|, except blocks the sender until all
@@ -574,7 +574,7 @@ namespace Gecko
         /// containing return values from each listener invoked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendSyncMessage()|, except re-entrant. New RPC messages may be
@@ -586,7 +586,7 @@ namespace Gecko
         /// incoming message (such as a CPOW request).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		new Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// The current top level window in the frame or null.
@@ -606,7 +606,7 @@ namespace Gecko
         /// Print a string to stdout.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Dump([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStr);
+		void Dump([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aStr);
 		
 		/// <summary>
         /// If leak detection is enabled, print a note to the leak log that this
@@ -619,13 +619,13 @@ namespace Gecko
         /// Ascii base64 data to binary data and vice versa
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Atob([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aAsciiString, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>Member Btoa </summary>
 		/// <param name='aBase64Data'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Btoa([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 	}
 	
 	/// <summary>nsIInProcessContentFrameMessageManager </summary>
@@ -646,7 +646,7 @@ namespace Gecko
         /// second registration is ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// Undo an |addMessageListener| call -- that is, calling this causes us to no
@@ -656,7 +656,7 @@ namespace Gecko
         /// addWeakMessageListener; use removeWeakMessageListener for that.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void RemoveMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// This is just like addMessageListener, except the message manager holds a
@@ -666,13 +666,13 @@ namespace Gecko
         /// called in any order.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>
         /// This undoes an |addWeakMessageListener| call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
 		
 		/// <summary>Member MarkForCC </summary>
 		/// <returns>A System.Boolean</returns>
@@ -696,7 +696,7 @@ namespace Gecko
         /// to a cross-process frame whose process has crashed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendAsyncMessage()|, except blocks the sender until all
@@ -704,7 +704,7 @@ namespace Gecko
         /// containing return values from each listener invoked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendSyncMessage()|, except re-entrant. New RPC messages may be
@@ -716,7 +716,7 @@ namespace Gecko
         /// incoming message (such as a CPOW request).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		new Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// The current top level window in the frame or null.
@@ -736,7 +736,7 @@ namespace Gecko
         /// Print a string to stdout.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Dump([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStr);
+		new void Dump([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aStr);
 		
 		/// <summary>
         /// If leak detection is enabled, print a note to the leak log that this
@@ -749,13 +749,13 @@ namespace Gecko
         /// Ascii base64 data to binary data and vice versa
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void Atob([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aAsciiString, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>Member Btoa </summary>
 		/// <param name='aBase64Data'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void Btoa([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
 		
 		/// <summary>Member GetOwnerContent </summary>
 		/// <returns>A System.IntPtr</returns>
@@ -778,13 +778,13 @@ namespace Gecko
         /// only if the frame is already available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, [MarshalAs(UnmanagedType.U1)] bool aAllowDelayedLoad, [MarshalAs(UnmanagedType.U1)] bool aRunInGlobalScope);
+		void LoadFrameScript([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aURL, [MarshalAs(UnmanagedType.U1)] bool aAllowDelayedLoad, [MarshalAs(UnmanagedType.U1)] bool aRunInGlobalScope);
 		
 		/// <summary>
         /// Removes aURL from the list of scripts which support delayed load.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDelayedFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
+		void RemoveDelayedFrameScript([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aURL);
 		
 		/// <summary>
         /// Returns all delayed scripts that will be loaded once a (remote)
@@ -823,7 +823,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool AssertPermission([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPermission);
+		bool AssertPermission([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aPermission);
 		
 		/// <summary>
         /// Return true if the "remote" process has |aManifestURL|.  This is
@@ -846,14 +846,14 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool AssertContainApp([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aManifestURL);
+		bool AssertContainApp([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aManifestURL);
 		
 		/// <summary>Member AssertAppHasPermission </summary>
 		/// <param name='aPermission'> </param>
 		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool AssertAppHasPermission([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPermission);
+		bool AssertAppHasPermission([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aPermission);
 		
 		/// <summary>
         /// Return true if the "remote" process' principal has an appStatus equal to
