@@ -316,11 +316,10 @@ namespace Gecko
 							//	var str = string.Format( "+WM_MOUSEACTIVATE {0:X8} lastfocus", focus.ToInt32() );
 							//	System.Diagnostics.Debug.WriteLine( str );
 								Console.WriteLine("Activating");
-								if ( WebBrowserFocus != null )
-								{
+								if (WebBrowserFocus != null)
 									WebBrowserFocus.Activate();
-									Services.WindowWatcher.ActiveWindow = this.Window;
-								}
+								if (Window != null)
+									Services.WindowWatcher.ActiveWindow = Window;								
 							}
 							else
 							{
@@ -329,11 +328,10 @@ namespace Gecko
 							}
 							if ( !this.Window.Equals(Services.WindowWatcher.ActiveWindow) )
 							{
-								if ( WebBrowserFocus != null )
-								{
+								if (WebBrowserFocus != null)
 									WebBrowserFocus.Activate();
-									Services.WindowWatcher.ActiveWindow = this.Window;
-								}
+								if (Window != null)
+									Services.WindowWatcher.ActiveWindow = Window;								
 							}
 							return;
 						}
