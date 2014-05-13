@@ -178,9 +178,8 @@ namespace Gecko
 					// only for html documents
 					Document.Cookie = "";
 				}
+				WindowMediator.RegisterWindow(this);
 			}
-
-			WindowMediator.RegisterWindow(this);
 
 			base.OnHandleCreated( e );
 		}
