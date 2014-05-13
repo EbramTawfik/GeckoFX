@@ -428,13 +428,15 @@ namespace Gecko
         protected override void OnPrint(PaintEventArgs e)
         {
             base.OnPrint(e);
-               
-            ImageCreator creator = new ImageCreator(this);
-            byte[] mBytes = creator.CanvasGetPngImage((uint)0, (uint)0, (uint)this.Width, (uint)this.Height);
-            using (Image image = Image.FromStream(new System.IO.MemoryStream(mBytes)))
-            {
-                e.Graphics.DrawImage(image, 0.0f, 0.0f);
-            }
+            if (!this.DesignMode)
+			{
+				ImageCreator creator = new ImageCreator(this);
+				byte[] mBytes = creator.CanvasGetPngImage((uint)0, (uint)0, (uint)this.Width, (uint)this.Height);
+				using (Image image = Image.FromStream(new System.IO.MemoryStream(mBytes)))
+				{
+					e.Graphics.DrawImage(image, 0.0f, 0.0f);
+				}
+			}
         }
 
 		/// <summary>
