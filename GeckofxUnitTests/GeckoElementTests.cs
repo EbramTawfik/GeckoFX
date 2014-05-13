@@ -101,5 +101,27 @@ namespace GeckofxUnitTests
 			// Test using it.
 			style.SetPropertyValue("white-space", "pre-wrap");
 		}
+
+		[Test]
+		public void Attributes_AttributesExists_ReturnsExpectedNumberOfAttributes()
+		{
+			browser.TestLoadHtml("<div id='abc' name='hi' class='bold'>hello world</div>");
+
+			var divElement = browser.Document.GetHtmlElementById("abc");
+
+			var attributes = divElement.Attributes;
+			Assert.AreEqual(3, attributes.Count());
+		}
+
+		[Test]
+		public void Attributes_AttributesDoNotExistExists_ReturnsNoAttributes()
+		{
+			browser.TestLoadHtml("<div id='abc'><span>hi</span></div>");
+
+			var span = (GeckoHtmlElement)browser.Document.GetHtmlElementById("abc").FirstChild;
+
+			var attributes = span.Attributes;
+			Assert.AreEqual(0, attributes.Count());
+		}
 	}
 }
