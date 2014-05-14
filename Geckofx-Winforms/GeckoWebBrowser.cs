@@ -330,6 +330,9 @@ namespace Gecko
 			// so we convert them into NavigationError events.
 			BeginInvoke(new Action(() =>
 			{
+				if (IsDisposed)
+					return;
+
 				try
 				{
 					WebNav.LoadURI(
