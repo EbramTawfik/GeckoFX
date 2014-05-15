@@ -34,8 +34,8 @@ namespace GeckoFxTest
 				throw new ApplicationException(String.Format("LD_LIBRARY_PATH must contain {0}", xulrunnerPath));			
 #endif
 			Xpcom.Initialize(xulrunnerPath);
-			// Uncomment the follow line to enable CustomPrompt's
-			// GeckoPreferences.User["browser.xul.error_pages.enabled"] = false;
+			// Uncomment the follow line to enable error page
+			GeckoPreferences.User["browser.xul.error_pages.enabled"] = true;
 			
 			GeckoPreferences.User["gfx.font_rendering.graphite.enabled"] = true;
 
@@ -178,7 +178,8 @@ namespace GeckoFxTest
 			// browser.DomClick += StopLinksNavigating;
 
 			// Demo use of ReadyStateChange.
-			browser.ReadyStateChange += (s, e) => this.Text = browser.Document.ReadyState;
+			// For some special page, e.g. about:config browser.Document is null.
+			browser.ReadyStateChange += (s, e) => this.Text = browser.Document != null ? browser.Document.ReadyState : "";
 
 			browser.DocumentTitleChanged += (s, e) => tabPage.Text = browser.DocumentTitle;
 
@@ -306,13 +307,14 @@ namespace GeckoFxTest
 				}
 
 			};
-
+			//url in Navigating event may be the mapped version,
+			//e.g. about:config in Navigating event is jar:file:///<xulrunner>/omni.ja!/chrome/toolkit/content/global/config.xul
 			browser.Navigating += (s, e) =>
 			{
 				if (e.DomWindowTopLevel)
 					urlbox.Text = e.Uri.ToString();
 			};
-			browser.Redirecting += (s, e) =>
+			browser.Navigated += (s, e) =>
 			{
 				if (e.DomWindowTopLevel)
 					urlbox.Text = e.Uri.ToString();
