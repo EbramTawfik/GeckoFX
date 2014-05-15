@@ -15,30 +15,24 @@ namespace Gecko
 	/// </summary>
 	public static class XULRunnerLocator
 	{
-		private static string FindSpecialXulRunnerDirectory(string applicationPath)
+		private static string FindSpecialXulRunnerDirectory(string applicationPath, string hintPath)
 		{
 			string rootPath = Path.GetPathRoot(applicationPath);
 			string path = applicationPath;
 
 			while (!rootPath.Equals(path, StringComparison.CurrentCultureIgnoreCase))
 			{
-				if(Directory.GetDirectories(path).FirstOrDefault(x => Path.GetFileName(x) == "PutXulRunnerFolderHere") != null)
-				{
-					// in solition directory
-					if (path != null)
-					{
-						path = Path.GetFullPath(Path.Combine(Path.Combine(path, "PutXulRunnerFolderHere"), "xulrunner"));
-						return Directory.Exists(path) ? path : null;
-					}
-				}
+				var candinate = Path.Combine(path, hintPath);
+				if (Directory.Exists(candinate))
+					return candinate;
 				path = Path.GetDirectoryName(path);				
 			}
 			return null;
 		}
 
-		private static string GetXULRunnerLocationLinux()
+		private static string GetXULRunnerLocationLinux(string hintPath)
 		{
-			string solutionXulRunnerFolder = FindSpecialXulRunnerDirectory(DirectoryOfTheApplicationExecutable);
+			string solutionXulRunnerFolder = FindSpecialXulRunnerDirectory(DirectoryOfTheApplicationExecutable, hintPath);
 			if (solutionXulRunnerFolder != null)
 				return solutionXulRunnerFolder;
 
@@ -48,13 +42,13 @@ namespace Gecko
 			return "/usr/lib/firefox";
 		}
 
-		private static string GetXULRunnerLocationWindows()
+		private static string GetXULRunnerLocationWindows(string hintPath)
 		{
 			//NB for shipping apps, we don't have a way to find their xulrunner, so they won't be running this code 
 			//unless they depend on the customer installing a certain verion of Firefox and keeping it from auto-updating.
 			//So this is more for unit tests and geckofx sample apps.
 
-			string solutionXulRunnerFolder = FindSpecialXulRunnerDirectory(DirectoryOfTheApplicationExecutable);
+			string solutionXulRunnerFolder = FindSpecialXulRunnerDirectory(DirectoryOfTheApplicationExecutable, hintPath);
 			if (solutionXulRunnerFolder != null) 
 				return solutionXulRunnerFolder;
 
@@ -87,11 +81,16 @@ namespace Gecko
 			}
 		}
 
-		public static string GetXULRunnerLocation()
+		/// <summary>
+		/// Get xulrunner's directory.
+		/// </summary>
+		/// <param name="hintPath">A hint path to search the xulrunner with. Should be a relative path from any ancestors of the executable.</param>
+		/// <returns></returns>
+		public static string GetXULRunnerLocation(string hintPath = "PutXulRunnerFolderHere/xulrunner")
 		{
 			return Xpcom.IsLinux
-				? GetXULRunnerLocationLinux()
-				: GetXULRunnerLocationWindows();
+				? GetXULRunnerLocationLinux(hintPath)
+				: GetXULRunnerLocationWindows(hintPath);
 		}
 	}
 }
