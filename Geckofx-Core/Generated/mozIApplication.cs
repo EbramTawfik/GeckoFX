@@ -50,17 +50,17 @@ namespace Gecko
 		/// <summary>
         ///Returns the uuid of the app. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
+		void GetIdAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aId);
 		
 		/// <summary>
         ///Returns the origin of the app. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrigin);
+		void GetOriginAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aOrigin);
 		
 		/// <summary>
         ///Returns the manifest url of the app. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetManifestURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aManifestURL);
+		void GetManifestURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aManifestURL);
 		
 		/// <summary>
         ///Returns the local id of the app. </summary>
@@ -70,22 +70,22 @@ namespace Gecko
 		/// <summary>
         ///Returns the base directory for the app </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBasePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBasePath);
+		void GetBasePathAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aBasePath);
 		
 		/// <summary>
         ///Name copied from the manifest </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName);
 		
 		/// <summary>
         ///CSP copied from the manifest </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCspAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCsp);
+		void GetCspAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCsp);
 		
 		/// <summary>
         ///Store ID if the app is installed from a store </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStoreIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStoreID);
+		void GetStoreIDAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aStoreID);
 		
 		/// <summary>
         ///Store version if the app is installed from a store </summary>
@@ -95,6 +95,6 @@ namespace Gecko
 		/// <summary>
         ///role copied from the manifest </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRoleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRole);
+		void GetRoleAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aRole);
 	}
 }

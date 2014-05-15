@@ -48,7 +48,7 @@ namespace Gecko
         /// according to the environment time zone.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNotBeforeLocalTimeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aNotBeforeLocalTime);
+		void GetNotBeforeLocalTimeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNotBeforeLocalTime);
 		
 		/// <summary>
         /// The day portion of "notBefore"
@@ -57,7 +57,7 @@ namespace Gecko
         /// according to the environment time zone.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNotBeforeLocalDayAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aNotBeforeLocalDay);
+		void GetNotBeforeLocalDayAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNotBeforeLocalDay);
 		
 		/// <summary>
         /// "notBefore" attribute formatted as a string
@@ -65,7 +65,7 @@ namespace Gecko
         /// displayed as GMT / UTC.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNotBeforeGMTAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aNotBeforeGMT);
+		void GetNotBeforeGMTAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNotBeforeGMT);
 		
 		/// <summary>
         /// The latest point in time where
@@ -80,7 +80,7 @@ namespace Gecko
         /// according to the environment time zone.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNotAfterLocalTimeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aNotAfterLocalTime);
+		void GetNotAfterLocalTimeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNotAfterLocalTime);
 		
 		/// <summary>
         /// The day portion of "notAfter"
@@ -89,7 +89,7 @@ namespace Gecko
         /// according to the environment time zone.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNotAfterLocalDayAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aNotAfterLocalDay);
+		void GetNotAfterLocalDayAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNotAfterLocalDay);
 		
 		/// <summary>
         /// "notAfter" attribute formatted as a time string
@@ -97,6 +97,6 @@ namespace Gecko
         /// displayed as GMT / UTC.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNotAfterGMTAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aNotAfterGMT);
+		void GetNotAfterGMTAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNotAfterGMT);
 	}
 }

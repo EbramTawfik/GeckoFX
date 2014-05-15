@@ -42,23 +42,23 @@ namespace Gecko
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozSmsMessage CreateSmsMessage(int id, ulong threadId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase iccId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase delivery, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase deliveryStatus, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sender, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase receiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageClass, Gecko.JsVal timestamp, Gecko.JsVal sentTimestamp, Gecko.JsVal deliveryTimestamp, [MarshalAs(UnmanagedType.U1)] bool read, System.IntPtr jsContext);
+		nsIDOMMozSmsMessage CreateSmsMessage(int id, ulong threadId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase iccId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase delivery, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase deliveryStatus, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sender, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase receiver, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase body, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageClass, Gecko.JsVal timestamp, Gecko.JsVal sentTimestamp, Gecko.JsVal deliveryTimestamp, [MarshalAs(UnmanagedType.U1)] bool read, System.IntPtr jsContext);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMozMmsMessage CreateMmsMessage(
 					int id, 
 					ulong threadId, 
-					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase iccId, 
-					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase delivery, 
+					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase iccId, 
+					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase delivery, 
 					Gecko.JsVal deliveryInfo, 
-					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sender, 
+					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sender, 
 					Gecko.JsVal receivers, 
 					Gecko.JsVal timestamp, 
 					Gecko.JsVal sentTimestamp, 
 					[MarshalAs(UnmanagedType.U1)] bool read, 
-					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase subject, 
-					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase smil, 
+					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase subject, 
+					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase smil, 
 					Gecko.JsVal attachments, 
 					Gecko.JsVal expiryDate, 
 					[MarshalAs(UnmanagedType.U1)] bool readReportRequested, 
@@ -70,6 +70,6 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozMobileMessageThread CreateThread(ulong id, Gecko.JsVal participants, Gecko.JsVal timestamp, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase lastMessageSubject, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, ulong unreadCount, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastMessageType, System.IntPtr jsContext);
+		nsIDOMMozMobileMessageThread CreateThread(ulong id, Gecko.JsVal participants, Gecko.JsVal timestamp, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase lastMessageSubject, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase body, ulong unreadCount, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aLastMessageType, System.IntPtr jsContext);
 	}
 }

@@ -98,7 +98,7 @@ namespace Gecko
         /// exists, in which case handleResult is not called at all.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetByDomainAndName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase domain, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
+		void GetByDomainAndName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase domain, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
 		
 		/// <summary>
         /// Gets all preferences with the given name whose domains are either the same
@@ -111,7 +111,7 @@ namespace Gecko
         /// such preferences exist, handleResult is not called at all.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBySubdomainAndName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase domain, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
+		void GetBySubdomainAndName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase domain, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
 		
 		/// <summary>
         /// Gets the preference with no domain and the given name.
@@ -122,7 +122,7 @@ namespace Gecko
         /// exists, in which case handleResult is not called at all.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetGlobal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
+		void GetGlobal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
 		
 		/// <summary>
         /// Synchronously retrieves from the in-memory cache the preference with the
@@ -145,7 +145,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIContentPref GetCachedByDomainAndName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase domain, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context);
+		nsIContentPref GetCachedByDomainAndName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase domain, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context);
 		
 		/// <summary>
         /// Synchronously retrieves from the in-memory cache all preferences with the
@@ -164,7 +164,7 @@ namespace Gecko
         /// @param prefs    The array of preferences.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCachedBySubdomainAndName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase domain, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, ref uint len, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] ref nsIContentPref[] prefs);
+		void GetCachedBySubdomainAndName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase domain, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, ref uint len, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] ref nsIContentPref[] prefs);
 		
 		/// <summary>
         /// Synchronously retrieves from the in-memory cache the preference with no
@@ -182,7 +182,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIContentPref GetCachedGlobal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context);
+		nsIContentPref GetCachedGlobal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context);
 		
 		/// <summary>
         /// Sets a preference.
@@ -195,7 +195,7 @@ namespace Gecko
         /// stored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Set([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase domain, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsIVariant value, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
+		void Set([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase domain, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsIVariant value, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
 		
 		/// <summary>
         /// Sets a preference with no domain.
@@ -207,7 +207,7 @@ namespace Gecko
         /// stored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGlobal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsIVariant value, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
+		void SetGlobal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsIVariant value, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
 		
 		/// <summary>
         /// Removes the preference with the given domain and name.
@@ -218,7 +218,7 @@ namespace Gecko
         /// @param callback  handleCompletion is called when the operation completes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveByDomainAndName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase domain, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
+		void RemoveByDomainAndName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase domain, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
 		
 		/// <summary>
         /// Removes all the preferences with the given name whose domains are either
@@ -230,7 +230,7 @@ namespace Gecko
         /// @param callback  handleCompletion is called when the operation completes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveBySubdomainAndName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase domain, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
+		void RemoveBySubdomainAndName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase domain, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
 		
 		/// <summary>
         /// Removes the preference with no domain and the given name.
@@ -240,7 +240,7 @@ namespace Gecko
         /// @param callback  handleCompletion is called when the operation completes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveGlobal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
+		void RemoveGlobal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
 		
 		/// <summary>
         /// Removes all preferences with the given domain.
@@ -250,7 +250,7 @@ namespace Gecko
         /// @param callback  handleCompletion is called when the operation completes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveByDomain([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase domain, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
+		void RemoveByDomain([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase domain, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
 		
 		/// <summary>
         /// Removes all preferences whose domains are either the same as or subdomains
@@ -261,7 +261,7 @@ namespace Gecko
         /// @param callback  handleCompletion is called when the operation completes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveBySubdomain([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase domain, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
+		void RemoveBySubdomain([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase domain, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
 		
 		/// <summary>
         /// Removes all preferences with the given name regardless of domain, including
@@ -272,7 +272,7 @@ namespace Gecko
         /// @param callback  handleCompletion is called when the operation completes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveByName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
+		void RemoveByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
 		
 		/// <summary>
         /// Removes all non-global preferences -- in other words, all preferences that
@@ -310,7 +310,7 @@ namespace Gecko
         /// @param observer  The observer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserverForName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, System.IntPtr observer);
+		void AddObserverForName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, System.IntPtr observer);
 		
 		/// <summary>
         /// Unregisters an observer for the given name.
@@ -320,7 +320,7 @@ namespace Gecko
         /// @param observer  The observer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserverForName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, System.IntPtr observer);
+		void RemoveObserverForName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, System.IntPtr observer);
 		
 		/// <summary>
         /// Extracts and returns the domain from the given string representation of a
@@ -332,7 +332,7 @@ namespace Gecko
         /// returned.  Otherwise, the string itself is returned.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ExtractDomain([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void ExtractDomain([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase str, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 	}
 	
 	/// <summary>
@@ -395,12 +395,12 @@ namespace Gecko
 		/// <summary>Member GetDomainAttribute </summary>
 		/// <param name='aDomain'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDomain);
+		void GetDomainAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDomain);
 		
 		/// <summary>Member GetNameAttribute </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName);
 		
 		/// <summary>Member GetValueAttribute </summary>
 		/// <returns>A nsIVariant</returns>

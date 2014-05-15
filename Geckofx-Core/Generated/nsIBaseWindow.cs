@@ -193,7 +193,7 @@ namespace Gecko
         ///	@throws NS_ERROR_NOT_IMPLEMENTED for non-XULWindows
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNativeHandleAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aNativeHandle);
+		void GetNativeHandleAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNativeHandle);
 		
 		/// <summary>
         ///Attribute controls the visibility of the object behind this interface.

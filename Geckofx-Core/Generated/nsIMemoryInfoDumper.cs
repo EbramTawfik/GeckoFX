@@ -126,7 +126,7 @@ namespace Gecko
         /// }
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DumpMemoryReportsToNamedFile([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFilename, [MarshalAs(UnmanagedType.Interface)] nsIFinishDumpingCallback aFinishDumping, [MarshalAs(UnmanagedType.Interface)] nsISupports aFinishDumpingData);
+		void DumpMemoryReportsToNamedFile([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aFilename, [MarshalAs(UnmanagedType.Interface)] nsIFinishDumpingCallback aFinishDumping, [MarshalAs(UnmanagedType.Interface)] nsISupports aFinishDumpingData);
 		
 		/// <summary>
         /// Similar to dumpMemoryReportsToNamedFile, this method dumps gzipped memory
@@ -158,7 +158,7 @@ namespace Gecko
         /// so, the child processes will also dump their children, and so on.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DumpMemoryInfoToTempDir([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIdentifier, [MarshalAs(UnmanagedType.U1)] bool aMinimizeMemoryUsage, [MarshalAs(UnmanagedType.U1)] bool aDumpChildProcesses);
+		void DumpMemoryInfoToTempDir([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aIdentifier, [MarshalAs(UnmanagedType.U1)] bool aMinimizeMemoryUsage, [MarshalAs(UnmanagedType.U1)] bool aDumpChildProcesses);
 		
 		/// <summary>
         /// Dump GC and CC logs to files in the OS's temp directory (or in
@@ -192,6 +192,6 @@ namespace Gecko
         /// @param aCCLogPath The full path of the file that the CC log was written to.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DumpGCAndCCLogsToFile([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIdentifier, [MarshalAs(UnmanagedType.U1)] bool aDumpAllTraces, [MarshalAs(UnmanagedType.U1)] bool aDumpChildProcesses, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGCLogPath, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCCLogPath);
+		void DumpGCAndCCLogsToFile([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aIdentifier, [MarshalAs(UnmanagedType.U1)] bool aDumpAllTraces, [MarshalAs(UnmanagedType.U1)] bool aDumpChildProcesses, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aGCLogPath, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCCLogPath);
 	}
 }

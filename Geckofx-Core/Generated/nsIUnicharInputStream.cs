@@ -78,7 +78,7 @@ namespace Gecko
         /// @return The number of characters that were read.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint ReadString(uint aCount, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aString);
+		uint ReadString(uint aCount, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aString);
 		
 		/// <summary>
         /// Close the stream and free associated resources. This also closes the

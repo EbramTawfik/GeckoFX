@@ -39,13 +39,13 @@ namespace Gecko
         ///name of the DocShellTreeItem
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName);
 		
 		/// <summary>
         ///name of the DocShellTreeItem
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName);
+		new void SetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName);
 		
 		/// <summary>
         /// Compares the provided name against the item's name and
@@ -293,13 +293,13 @@ namespace Gecko
 					uint aFlags, 
 					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aWindowTarget, 
 					[MarshalAs(UnmanagedType.LPStr)] string aTypeHint, 
-					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aFileName, 
+					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aFileName, 
 					[MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostDataStream, 
 					[MarshalAs(UnmanagedType.Interface)] nsIInputStream aHeadersStream, 
 					uint aLoadFlags, 
 					[MarshalAs(UnmanagedType.Interface)] nsISHEntry aSHEntry, 
 					[MarshalAs(UnmanagedType.U1)] bool firstParty, 
-					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aSrcdoc, 
+					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSrcdoc, 
 					[MarshalAs(UnmanagedType.Interface)] nsIDocShell aSourceDocShell, 
 					[MarshalAs(UnmanagedType.Interface)] ref nsIDocShell aDocShell, 
 					[MarshalAs(UnmanagedType.Interface)] ref nsIRequest aRequest);
@@ -309,7 +309,7 @@ namespace Gecko
         /// depending on the value of aReplace.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddState(Gecko.JsVal aData, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aTitle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aURL, [MarshalAs(UnmanagedType.U1)] bool aReplace, System.IntPtr jsContext);
+		void AddState(Gecko.JsVal aData, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTitle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aURL, [MarshalAs(UnmanagedType.U1)] bool aReplace, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Creates a DocShellLoadInfo object that you can manipulate and then pass
@@ -782,7 +782,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorage GetSessionStorageForPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase documentURI, [MarshalAs(UnmanagedType.U1)] bool create);
+		nsIDOMStorage GetSessionStorageForPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase documentURI, [MarshalAs(UnmanagedType.U1)] bool create);
 		
 		/// <summary>
         /// @deprecated, use nsIDocShell.QueryInterface(nsIDOMStorageManager) instead.
@@ -1146,7 +1146,7 @@ namespace Gecko
         /// If there is no associated app in our hierarchy, we return empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppManifestURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aAppManifestURL);
+		void GetAppManifestURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aAppManifestURL);
 		
 		/// <summary>
         /// Like nsIDocShellTreeItem::GetSameTypeParent, except this ignores <iframe

@@ -195,7 +195,7 @@ namespace Gecko
         /// var thirtyFive = C.u.evalInSandbox("five * seven", s);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal EvalInSandbox([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase source, Gecko.JsVal sandbox, Gecko.JsVal version, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase filename, int lineNo, System.IntPtr jsContext, int argc);
+		Gecko.JsVal EvalInSandbox([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase source, Gecko.JsVal sandbox, Gecko.JsVal version, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase filename, int lineNo, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// getSandboxMetadata is designed to be called from JavaScript only.
@@ -372,7 +372,7 @@ namespace Gecko
         /// Principal of the caller must subsume the target's.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal EvalInWindow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase source, Gecko.JsVal window, System.IntPtr jsContext);
+		Gecko.JsVal EvalInWindow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase source, Gecko.JsVal window, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -594,7 +594,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIClassInfo GetDOMClassInfo([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aClassName);
+		nsIClassInfo GetDOMClassInfo([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aClassName);
 		
 		/// <summary>
         /// Gets the incument global for the execution of this function. For internal
@@ -630,7 +630,7 @@ namespace Gecko
         /// "WatchdogHibernateStop"   - Watchdog stops hibernating
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		long GetWatchdogTimestamp([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aCategory);
+		long GetWatchdogTimestamp([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCategory);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetJSEngineTelemetryValue(System.IntPtr jsContext);

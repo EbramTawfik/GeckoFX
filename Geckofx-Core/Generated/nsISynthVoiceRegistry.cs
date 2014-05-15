@@ -46,7 +46,7 @@ namespace Gecko
         /// @param aLocalService true if service does not require network.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddVoice([MarshalAs(UnmanagedType.Interface)] nsISpeechService aService, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLang, [MarshalAs(UnmanagedType.U1)] bool aLocalService);
+		void AddVoice([MarshalAs(UnmanagedType.Interface)] nsISpeechService aService, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUri, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aLang, [MarshalAs(UnmanagedType.U1)] bool aLocalService);
 		
 		/// <summary>
         /// Remove a speech synthesis voice.
@@ -55,7 +55,7 @@ namespace Gecko
         /// @param aUri     a unique identifier of an existing voice.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveVoice([MarshalAs(UnmanagedType.Interface)] nsISpeechService aService, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUri);
+		void RemoveVoice([MarshalAs(UnmanagedType.Interface)] nsISpeechService aService, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUri);
 		
 		/// <summary>
         /// Set a voice as default.
@@ -64,26 +64,26 @@ namespace Gecko
         /// @param aIsDefault true if this voice should be toggled as default.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultVoice([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUri, [MarshalAs(UnmanagedType.U1)] bool aIsDefault);
+		void SetDefaultVoice([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUri, [MarshalAs(UnmanagedType.U1)] bool aIsDefault);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetVoiceCountAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVoice(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetVoice(uint aIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsDefaultVoice([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUri);
+		bool IsDefaultVoice([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUri);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsLocalVoice([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUri);
+		bool IsLocalVoice([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUri);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVoiceLang([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetVoiceLang([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUri, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVoiceName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetVoiceName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUri, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 	}
 }

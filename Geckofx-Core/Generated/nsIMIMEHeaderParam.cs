@@ -84,14 +84,14 @@ namespace Gecko
         /// @return the value of <code>aParamName</code> in Unichar(UTF-16).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetParameter([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFallbackCharset, [MarshalAs(UnmanagedType.U1)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
+		void GetParameter([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFallbackCharset, [MarshalAs(UnmanagedType.U1)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// Like getParameter, but disabling encodings and workarounds specific to
         /// MIME (as opposed to HTTP).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetParameterHTTP([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFallbackCharset, [MarshalAs(UnmanagedType.U1)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
+		void GetParameterHTTP([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFallbackCharset, [MarshalAs(UnmanagedType.U1)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// Given the value of a header field parameter using the encoding
@@ -114,7 +114,7 @@ namespace Gecko
         /// @return the decoded parameter value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DecodeRFC5987Param([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParamVal, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aLang, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
+		void DecodeRFC5987Param([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParamVal, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aLang, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// Given the value of a single header field  (such as

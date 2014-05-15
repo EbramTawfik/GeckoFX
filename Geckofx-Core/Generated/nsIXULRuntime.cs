@@ -138,7 +138,7 @@ namespace Gecko
         /// on the previous run. Can be passed directly to CrashSubmit.submit.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastRunCrashIDAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aLastRunCrashID);
+		void GetLastRunCrashIDAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aLastRunCrashID);
 	}
 	
 	/// <summary>nsIXULRuntimeConsts </summary>

@@ -40,18 +40,18 @@ namespace Gecko
         /// Base64 encoded and digitally signed payment request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetJwtAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aJwt);
+		void GetJwtAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aJwt);
 		
 		/// <summary>
         /// format.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aType);
 		
 		/// <summary>
         /// Payment provider name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProviderNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aProviderName);
+		void GetProviderNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aProviderName);
 	}
 }

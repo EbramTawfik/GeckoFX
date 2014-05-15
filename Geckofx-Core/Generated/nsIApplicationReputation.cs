@@ -83,7 +83,7 @@ namespace Gecko
         /// query won't produce any useful information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSuggestedFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSuggestedFileName);
+		void GetSuggestedFileNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSuggestedFileName);
 		
 		/// <summary>
         /// The size of the downloaded file in bytes.

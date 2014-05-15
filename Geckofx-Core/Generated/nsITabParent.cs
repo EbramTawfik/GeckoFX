@@ -41,7 +41,7 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InjectTouchEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aType, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] uint[] aIdentifiers, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] int[] aXs, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] int[] aYs, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] uint[] aRxs, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] uint[] aRys, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] float[] aRotationAngles, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] float[] aForces, uint count, int aModifiers);
+		void InjectTouchEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aType, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] uint[] aIdentifiers, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] int[] aXs, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] int[] aYs, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] uint[] aRxs, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] uint[] aRys, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] float[] aRotationAngles, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] float[] aForces, uint count, int aModifiers);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

@@ -45,7 +45,7 @@ namespace Gecko
         /// @param    aValue      the new value of the pref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnContentPrefSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aGroup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
+		void OnContentPrefSet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aGroup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
 		/// <summary>
         /// Called when a content pref is removed.
@@ -55,7 +55,7 @@ namespace Gecko
         /// @param    aName       the name of the pref that was removed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnContentPrefRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aGroup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName);
+		void OnContentPrefRemoved([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aGroup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName);
 	}
 	
 	/// <summary>nsIContentPrefCallback </summary>
@@ -111,7 +111,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aPrivacyContext, System.IntPtr aCallback);
+		nsIVariant GetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aPrivacyContext, System.IntPtr aCallback);
 		
 		/// <summary>
         /// Set a pref.
@@ -134,7 +134,7 @@ namespace Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aPrivacyContext);
+		void SetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aPrivacyContext);
 		
 		/// <summary>
         /// Check whether or not a pref exists.
@@ -154,7 +154,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
+		bool HasPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
 		
 		/// <summary>
         /// Check whether or not the value of a pref (or its non-existance) is cached.
@@ -174,7 +174,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasCachedPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
+		bool HasCachedPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
 		
 		/// <summary>
         /// Remove a pref.
@@ -193,7 +193,7 @@ namespace Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
+		void RemovePref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
 		
 		/// <summary>
         /// Remove all grouped prefs.  Useful for removing references to the sites
@@ -220,7 +220,7 @@ namespace Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePrefsByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
+		void RemovePrefsByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
 		
 		/// <summary>
         /// Get the prefs that apply to the given site.
@@ -257,7 +257,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPropertyBag2 GetPrefsByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
+		nsIPropertyBag2 GetPrefsByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
 		
 		/// <summary>
         /// Add an observer.
@@ -267,7 +267,7 @@ namespace Gecko
         /// @param    aObserver   the observer to add
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName, System.IntPtr aObserver);
+		void AddObserver([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, System.IntPtr aObserver);
 		
 		/// <summary>
         /// Remove an observer.
@@ -277,7 +277,7 @@ namespace Gecko
         /// @param    aObserver   the observer to remove
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName, System.IntPtr aObserver);
+		void RemoveObserver([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, System.IntPtr aObserver);
 		
 		/// <summary>
         /// The component that the service uses to determine the groups to which

@@ -82,7 +82,7 @@ namespace Gecko
         /// the name of the WPS class' default viewer/player.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandlerFromExtension([MarshalAs(UnmanagedType.LPStr)] string aExt, ref uint aHandle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
+		void HandlerFromExtension([MarshalAs(UnmanagedType.LPStr)] string aExt, ref uint aHandle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// Returns the name of the default handler for a specific file.
@@ -97,7 +97,7 @@ namespace Gecko
         /// the name of the WPS class' default viewer/player.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandlerFromPath([MarshalAs(UnmanagedType.LPStr)] string aPath, ref uint aHandle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
+		void HandlerFromPath([MarshalAs(UnmanagedType.LPStr)] string aPath, ref uint aHandle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// Returns the unqualified title of the specified object.
@@ -106,7 +106,7 @@ namespace Gecko
         /// @return            The title of this object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TitleFromHandle(uint aHandle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
+		void TitleFromHandle(uint aHandle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// Displays the WPS object menu for the specified file or abstract object.

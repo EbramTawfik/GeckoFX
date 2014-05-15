@@ -104,6 +104,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow ProvideWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, uint aChromeFlags, [MarshalAs(UnmanagedType.U1)] bool aCalledFromJS, [MarshalAs(UnmanagedType.U1)] bool aPositionSpecified, [MarshalAs(UnmanagedType.U1)] bool aSizeSpecified, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFeatures, [MarshalAs(UnmanagedType.U1)] ref bool aWindowIsNew);
+		nsIDOMWindow ProvideWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, uint aChromeFlags, [MarshalAs(UnmanagedType.U1)] bool aCalledFromJS, [MarshalAs(UnmanagedType.U1)] bool aPositionSpecified, [MarshalAs(UnmanagedType.U1)] bool aSizeSpecified, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFeatures, [MarshalAs(UnmanagedType.U1)] ref bool aWindowIsNew);
 	}
 }

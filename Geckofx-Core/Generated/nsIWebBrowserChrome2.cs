@@ -139,6 +139,6 @@ namespace Gecko
         /// be null if there is no context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStatusWithContext(uint statusType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase statusText, [MarshalAs(UnmanagedType.Interface)] nsISupports statusContext);
+		void SetStatusWithContext(uint statusType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase statusText, [MarshalAs(UnmanagedType.Interface)] nsISupports statusContext);
 	}
 }

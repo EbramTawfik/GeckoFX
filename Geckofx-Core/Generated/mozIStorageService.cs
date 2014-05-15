@@ -202,6 +202,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile BackupDatabaseFile([MarshalAs(UnmanagedType.Interface)] nsIFile aDBFile, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aBackupFileName, [MarshalAs(UnmanagedType.Interface)] nsIFile aBackupParentDirectory);
+		nsIFile BackupDatabaseFile([MarshalAs(UnmanagedType.Interface)] nsIFile aDBFile, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aBackupFileName, [MarshalAs(UnmanagedType.Interface)] nsIFile aBackupParentDirectory);
 	}
 }

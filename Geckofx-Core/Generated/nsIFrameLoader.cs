@@ -227,13 +227,13 @@ namespace Gecko
         /// @see nsIDOMWindowUtils sendMouseEvent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendCrossProcessMouseEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame);
+		void SendCrossProcessMouseEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame);
 		
 		/// <summary>
         /// Activate event forwarding from client (remote frame) to parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ActivateFrameEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aType, [MarshalAs(UnmanagedType.U1)] bool capture);
+		void ActivateFrameEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aType, [MarshalAs(UnmanagedType.U1)] bool capture);
 		
 		/// <summary>
         /// Note, when frameloaders are swapped, also messageManagers are swapped.
@@ -246,7 +246,7 @@ namespace Gecko
         /// @see nsIDOMWindowUtils sendKeyEvent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendCrossProcessKeyEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aType, int aKeyCode, int aCharCode, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aPreventDefault);
+		void SendCrossProcessKeyEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aType, int aKeyCode, int aCharCode, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aPreventDefault);
 		
 		/// <summary>Member GetDelayRemoteDialogsAttribute </summary>
 		/// <returns>A System.Boolean</returns>

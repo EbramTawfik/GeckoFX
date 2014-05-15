@@ -45,6 +45,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmSignText([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctxt, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase host, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase signText, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] certNickList, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] certDetailsList, uint count, ref int selectedIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase password);
+		bool ConfirmSignText([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctxt, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase host, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase signText, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] certNickList, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] certDetailsList, uint count, ref int selectedIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase password);
 	}
 }

@@ -46,7 +46,7 @@ namespace Gecko
         /// used to mark elements as generated and for menuitem identification
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMDocumentFragment aDocumentFragment, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aGeneratedItemIdAttrName);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMDocumentFragment aDocumentFragment, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aGeneratedItemIdAttrName);
 		
 		/// <summary>
         /// Invoke the action of the menuitem with assigned id aGeneratedItemId.
@@ -54,6 +54,6 @@ namespace Gecko
         /// @param aGeneratedItemId the menuitem id
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Click([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aGeneratedItemId);
+		void Click([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aGeneratedItemId);
 	}
 }

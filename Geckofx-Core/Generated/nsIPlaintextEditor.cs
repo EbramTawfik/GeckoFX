@@ -111,7 +111,7 @@ namespace Gecko
         /// @param aString   the string to be inserted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aStringToInsert);
+		void InsertText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aStringToInsert);
 		
 		/// <summary>
         /// Insert a line break into the content model.

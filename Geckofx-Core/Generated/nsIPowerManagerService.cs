@@ -60,7 +60,7 @@ namespace Gecko
 		void RemoveWakeLockListener([MarshalAs(UnmanagedType.Interface)] nsIDOMMozWakeLockListener aListener);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWakeLockState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTopic, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetWakeLockState([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTopic, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// Return a wake lock (MozWakeLock) object of aTopic associated with aWindow.
@@ -69,6 +69,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports NewWakeLock([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTopic, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
+		nsISupports NewWakeLock([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTopic, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 	}
 }

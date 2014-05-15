@@ -47,7 +47,7 @@ namespace Gecko
         /// SessionToken received from Chrome process
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PeerNotification(uint @event, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sessionToken);
+		void PeerNotification(uint @event, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
 	}
 	
 	/// <summary>nsINfcContentHelper </summary>
@@ -60,7 +60,7 @@ namespace Gecko
 		/// <summary>Member SetSessionToken </summary>
 		/// <param name='sessionToken'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSessionToken([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sessionToken);
+		void SetSessionToken([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
 		
 		/// <summary>Member GetDetailsNDEF </summary>
 		/// <param name='window'> </param>
@@ -68,7 +68,7 @@ namespace Gecko
 		/// <returns>A nsIDOMDOMRequest</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest GetDetailsNDEF([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sessionToken);
+		nsIDOMDOMRequest GetDetailsNDEF([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
 		
 		/// <summary>Member ReadNDEF </summary>
 		/// <param name='window'> </param>
@@ -76,7 +76,7 @@ namespace Gecko
 		/// <returns>A nsIDOMDOMRequest</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest ReadNDEF([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sessionToken);
+		nsIDOMDOMRequest ReadNDEF([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
 		
 		/// <summary>Member WriteNDEF </summary>
 		/// <param name='window'> </param>
@@ -85,7 +85,7 @@ namespace Gecko
 		/// <returns>A nsIDOMDOMRequest</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest WriteNDEF([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.Interface)] nsIVariant records, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sessionToken);
+		nsIDOMDOMRequest WriteNDEF([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.Interface)] nsIVariant records, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
 		
 		/// <summary>Member MakeReadOnlyNDEF </summary>
 		/// <param name='window'> </param>
@@ -93,7 +93,7 @@ namespace Gecko
 		/// <returns>A nsIDOMDOMRequest</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest MakeReadOnlyNDEF([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sessionToken);
+		nsIDOMDOMRequest MakeReadOnlyNDEF([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
 		
 		/// <summary>Member Connect </summary>
 		/// <param name='window'> </param>
@@ -102,7 +102,7 @@ namespace Gecko
 		/// <returns>A nsIDOMDOMRequest</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest Connect([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, uint techType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sessionToken);
+		nsIDOMDOMRequest Connect([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, uint techType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
 		
 		/// <summary>Member Close </summary>
 		/// <param name='window'> </param>
@@ -110,7 +110,7 @@ namespace Gecko
 		/// <returns>A nsIDOMDOMRequest</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest Close([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sessionToken);
+		nsIDOMDOMRequest Close([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
 		
 		/// <summary>
         /// Initiate Send file operation
@@ -131,7 +131,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SendFile([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal blob, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sessionToken);
+		nsIDOMDOMRequest SendFile([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal blob, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
 		
 		/// <summary>
         /// Register the given application id with Chrome process
@@ -207,7 +207,7 @@ namespace Gecko
         /// Request ID of SendFile DOM Request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifySendFileStatus([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, System.IntPtr status, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase requestId);
+		void NotifySendFileStatus([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, System.IntPtr status, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase requestId);
 	}
 	
 	/// <summary>nsINfcContentHelperConsts </summary>

@@ -82,7 +82,7 @@ namespace Gecko
         /// The line on which the error occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReportError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase errorText, int lineNumber, [MarshalAs(UnmanagedType.U1)] bool bozo);
+		void ReportError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase errorText, int lineNumber, [MarshalAs(UnmanagedType.U1)] bool bozo);
 		
 		/// <summary>
         /// StartFeed will be called as soon as a reasonable start to

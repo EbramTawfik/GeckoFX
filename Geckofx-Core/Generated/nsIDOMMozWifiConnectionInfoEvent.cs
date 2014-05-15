@@ -41,7 +41,7 @@ namespace Gecko
         /// name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aType);
 		
 		/// <summary>
         /// Used to indicate the EventTarget to which the event was originally
@@ -148,7 +148,7 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
@@ -254,9 +254,9 @@ namespace Gecko
         /// IP address in the dotted quad format.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIpAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIpAddress);
+		void GetIpAddressAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aIpAddress);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitMozWifiConnectionInfoEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, [MarshalAs(UnmanagedType.U1)] bool aCanBubble, [MarshalAs(UnmanagedType.U1)] bool aCancelable, [MarshalAs(UnmanagedType.Interface)] nsIVariant aNetwork, short signalStrength, short relSignalStrength, int linkSpeed, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase ipAddress);
+		void InitMozWifiConnectionInfoEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aType, [MarshalAs(UnmanagedType.U1)] bool aCanBubble, [MarshalAs(UnmanagedType.U1)] bool aCancelable, [MarshalAs(UnmanagedType.Interface)] nsIVariant aNetwork, short signalStrength, short relSignalStrength, int linkSpeed, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase ipAddress);
 	}
 }

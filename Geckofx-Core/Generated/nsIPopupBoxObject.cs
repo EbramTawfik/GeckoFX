@@ -136,7 +136,7 @@ namespace Gecko
         /// @param triggerEvent the event that triggered this popup (mouse click for example)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenPopup([MarshalAs(UnmanagedType.Interface)] nsIDOMElement anchorElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase position, int x, int y, [MarshalAs(UnmanagedType.U1)] bool isContextMenu, [MarshalAs(UnmanagedType.U1)] bool attributesOverride, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent triggerEvent);
+		void OpenPopup([MarshalAs(UnmanagedType.Interface)] nsIDOMElement anchorElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase position, int x, int y, [MarshalAs(UnmanagedType.U1)] bool isContextMenu, [MarshalAs(UnmanagedType.U1)] bool attributesOverride, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent triggerEvent);
 		
 		/// <summary>
         /// Open the popup at a specific screen position specified by x and y. This
@@ -161,7 +161,7 @@ namespace Gecko
         /// hiding - the popup is in the process of being hidden
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPopupStateAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aPopupState);
+		void GetPopupStateAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aPopupState);
 		
 		/// <summary>
         /// The node that triggered the popup. If the popup is not open, will return
@@ -193,14 +193,14 @@ namespace Gecko
         /// on popups that are not open.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MoveToAnchor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement anchorElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase position, int x, int y, [MarshalAs(UnmanagedType.U1)] bool attributesOverride);
+		void MoveToAnchor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement anchorElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase position, int x, int y, [MarshalAs(UnmanagedType.U1)] bool attributesOverride);
 		
 		/// <summary>
         ///Returns the alignment position where the popup has appeared relative to its
         /// anchor node or point, accounting for any flipping that occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAlignmentPositionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aAlignmentPosition);
+		void GetAlignmentPositionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aAlignmentPosition);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetAlignmentOffsetAttribute();

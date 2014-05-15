@@ -57,10 +57,10 @@ namespace Gecko
 		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument doc, System.IntPtr aRoot, [MarshalAs(UnmanagedType.Interface)] nsISelectionController aSelCon, uint aFlags);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase sourceAttrName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase sourceAttrValue, [MarshalAs(UnmanagedType.U1)] bool aSuppressTransaction);
+		void SetAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sourceAttrName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sourceAttrValue, [MarshalAs(UnmanagedType.U1)] bool aSuppressTransaction);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase sourceAttrName, [MarshalAs(UnmanagedType.U1)] bool aSuppressTransaction);
+		void RemoveAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sourceAttrName, [MarshalAs(UnmanagedType.U1)] bool aSuppressTransaction);
 		
 		/// <summary>
         /// postCreate should be called after Init, and is the time that the editor
@@ -453,7 +453,7 @@ namespace Gecko
         /// @param aValue      the value to set aAttribute to
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase attributestr, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase attvalue);
+		void SetAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase attributestr, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase attvalue);
 		
 		/// <summary>
         /// getAttributeValue() retrieves the attribute's value for aElement.
@@ -467,7 +467,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAttributeValue([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase attributestr, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase resultValue);
+		bool GetAttributeValue([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase attributestr, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase resultValue);
 		
 		/// <summary>
         /// removeAttribute() deletes aAttribute from the attribute list of aElement.
@@ -477,7 +477,7 @@ namespace Gecko
         /// @param aAttribute    the string representation of the attribute to get
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aAttribute);
+		void RemoveAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aAttribute);
 		
 		/// <summary>
         /// cloneAttribute() copies the attribute from the source node to
@@ -492,7 +492,7 @@ namespace Gecko
         /// element
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CloneAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aAttribute, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aDestNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSourceNode);
+		void CloneAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aAttribute, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aDestNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSourceNode);
 		
 		/// <summary>
         /// cloneAttributes() is similar to nsIDOMNode::cloneNode(),
@@ -518,7 +518,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode CreateNode([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase tag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode parent, int position);
+		nsIDOMNode CreateNode([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase tag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode parent, int position);
 		
 		/// <summary>
         /// insertNode inserts aNode into aParent at aPosition.
@@ -594,10 +594,10 @@ namespace Gecko
         /// aFormatType is a mime type, like text/plain.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OutputToString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase formatType, uint flags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
+		void OutputToString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase formatType, uint flags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OutputToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase formatType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase charsetOverride, uint flags);
+		void OutputToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase formatType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase charsetOverride, uint flags);
 		
 		/// <summary>
         ///add an EditorObserver to the editors list of observers. </summary>

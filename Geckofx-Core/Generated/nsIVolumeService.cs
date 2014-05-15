@@ -42,22 +42,22 @@ namespace Gecko
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVolume GetVolumeByName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase volName);
+		nsIVolume GetVolumeByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase volName);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVolume GetVolumeByPath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase path);
+		nsIVolume GetVolumeByPath([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase path);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVolume CreateOrGetVolumeByPath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase path);
+		nsIVolume CreateOrGetVolumeByPath([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase path);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BroadcastVolume([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase volName);
+		void BroadcastVolume([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase volName);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVolumeMountLock CreateMountLock([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase volName);
+		nsIVolumeMountLock CreateMountLock([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase volName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetVolumeNames(System.IntPtr aVolNames);
@@ -65,9 +65,9 @@ namespace Gecko
 		/// <summary>
         ///for test case only to simulate sdcard insertion/removal </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateFakeVolume([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase path);
+		void CreateFakeVolume([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase path);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFakeVolumeState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, int state);
+		void SetFakeVolumeState([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, int state);
 	}
 }

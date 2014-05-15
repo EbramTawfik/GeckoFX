@@ -158,6 +158,6 @@ namespace Gecko
         /// possible to get a description for it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetApplicationDescription([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aScheme, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase retval);
+		void GetApplicationDescription([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aScheme, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 	}
 }

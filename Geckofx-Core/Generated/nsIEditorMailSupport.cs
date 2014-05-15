@@ -54,7 +54,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode InsertAsQuotation([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aQuotedText);
+		nsIDOMNode InsertAsQuotation([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aQuotedText);
 		
 		/// <summary>
         /// Inserts a plaintext string at the current location,
@@ -67,7 +67,7 @@ namespace Gecko
         /// @param aString   the string to be inserted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertTextWithQuotations([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aStringToInsert);
+		void InsertTextWithQuotations([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aStringToInsert);
 		
 		/// <summary>
         ///Paste a string as quoted text,
@@ -77,7 +77,7 @@ namespace Gecko
         /// @param aSelectionType Text or html?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PasteAsCitedQuotation([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aCitation, int aSelectionType);
+		void PasteAsCitedQuotation([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCitation, int aSelectionType);
 		
 		/// <summary>
         ///Insert a string as quoted text
@@ -91,7 +91,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode InsertAsCitedQuotation([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aQuotedText, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aCitation, [MarshalAs(UnmanagedType.U1)] bool aInsertHTML);
+		nsIDOMNode InsertAsCitedQuotation([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aQuotedText, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCitation, [MarshalAs(UnmanagedType.U1)] bool aInsertHTML);
 		
 		/// <summary>
         /// Rewrap the selected part of the document, re-quoting if necessary.

@@ -140,7 +140,7 @@ namespace Gecko
         /// Thrown if the favicon is overbloated and won't be saved to the db.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceFaviconDataFromDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aDataURL, long aExpiration);
+		void ReplaceFaviconDataFromDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDataURL, long aExpiration);
 		
 		/// <summary>
         /// Retrieves the favicon URI associated to the given page, if any.

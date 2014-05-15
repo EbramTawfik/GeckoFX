@@ -45,7 +45,7 @@ namespace Gecko
         /// Id value is '0' for wifi or the iccid for mobile (SIM).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
+		void GetIdAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aId);
 	}
 	
 	/// <summary>

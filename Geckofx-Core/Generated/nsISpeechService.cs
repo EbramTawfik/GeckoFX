@@ -140,7 +140,7 @@ namespace Gecko
         /// @param aCharIndex   offset of spoken characters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DispatchBoundary([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, float aElapsedTime, uint aCharIndex);
+		void DispatchBoundary([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, float aElapsedTime, uint aCharIndex);
 		
 		/// <summary>
         /// Dispatch mark event.
@@ -150,7 +150,7 @@ namespace Gecko
         /// @param aCharIndex   offset of spoken characters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DispatchMark([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, float aElapsedTime, uint aCharIndex);
+		void DispatchMark([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, float aElapsedTime, uint aCharIndex);
 	}
 	
 	/// <summary>
@@ -185,7 +185,7 @@ namespace Gecko
         /// data back to browser.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Speak([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aText, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUri, float aRate, float aPitch, [MarshalAs(UnmanagedType.Interface)] nsISpeechTask aTask);
+		void Speak([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aText, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUri, float aRate, float aPitch, [MarshalAs(UnmanagedType.Interface)] nsISpeechTask aTask);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		SpeechServiceType GetServiceTypeAttribute();

@@ -73,13 +73,13 @@ namespace Gecko
         /// wasn't provided.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetReturnNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReturnNumber);
+		void GetReturnNumberAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aReturnNumber);
 		
 		/// <summary>
         /// Displayable return call message received for this voicemail status, or null
         /// if one wasn't provided.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetReturnMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReturnMessage);
+		void GetReturnMessageAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aReturnMessage);
 	}
 }

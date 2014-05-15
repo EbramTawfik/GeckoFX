@@ -49,7 +49,7 @@ namespace Gecko
         /// top of this file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Update([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase color);
+		void Update([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase color);
 		
 		/// <summary>
         /// Callback called when the color picker is dismissed.
@@ -61,7 +61,7 @@ namespace Gecko
         /// top of this file or the empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Done([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase color);
+		void Done([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase color);
 	}
 	
 	/// <summary>nsIColorPicker </summary>
@@ -89,7 +89,7 @@ namespace Gecko
         /// of this file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase initialColor);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase title, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase initialColor);
 		
 		/// <summary>
         /// Opens the color dialog asynchrounously.

@@ -69,7 +69,7 @@ namespace Gecko
         /// @param error The error message.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Error([MarshalAs(UnmanagedType.Interface)] nsISAXLocator locator, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase error);
+		void Error([MarshalAs(UnmanagedType.Interface)] nsISAXLocator locator, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase error);
 		
 		/// <summary>
         /// Receive notification of a non-recoverable error.
@@ -96,7 +96,7 @@ namespace Gecko
         /// @param error The error message.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FatalError([MarshalAs(UnmanagedType.Interface)] nsISAXLocator locator, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase error);
+		void FatalError([MarshalAs(UnmanagedType.Interface)] nsISAXLocator locator, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase error);
 		
 		/// <summary>
         /// Receive notification of a warning.
@@ -116,6 +116,6 @@ namespace Gecko
         /// @param error The warning message.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IgnorableWarning([MarshalAs(UnmanagedType.Interface)] nsISAXLocator locator, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase error);
+		void IgnorableWarning([MarshalAs(UnmanagedType.Interface)] nsISAXLocator locator, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase error);
 	}
 }

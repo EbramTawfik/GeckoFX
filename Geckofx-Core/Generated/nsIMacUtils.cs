@@ -49,7 +49,7 @@ namespace Gecko
         /// ppc > i386 > ppc64 > x86_64 > (future additions)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetArchitecturesInBinaryAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAStringBase aArchitecturesInBinary);
+		void GetArchitecturesInBinaryAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aArchitecturesInBinary);
 		
 		/// <summary>
         /// True when running under binary translation (Rosetta).

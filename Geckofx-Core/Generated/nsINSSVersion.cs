@@ -39,35 +39,35 @@ namespace Gecko
 		/// <summary>
         ///Minimal required versions as used at build time </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNSPR_MinVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSPR_MinVersion);
+		void GetNSPR_MinVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNSPR_MinVersion);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNSS_MinVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSS_MinVersion);
+		void GetNSS_MinVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNSS_MinVersion);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNSSUTIL_MinVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSSUTIL_MinVersion);
+		void GetNSSUTIL_MinVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNSSUTIL_MinVersion);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNSSSSL_MinVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSSSSL_MinVersion);
+		void GetNSSSSL_MinVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNSSSSL_MinVersion);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNSSSMIME_MinVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSSSMIME_MinVersion);
+		void GetNSSSMIME_MinVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNSSSMIME_MinVersion);
 		
 		/// <summary>
         ///Versions of libraries currently in use </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNSPR_VersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSPR_Version);
+		void GetNSPR_VersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNSPR_Version);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNSS_VersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSS_Version);
+		void GetNSS_VersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNSS_Version);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNSSUTIL_VersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSSUTIL_Version);
+		void GetNSSUTIL_VersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNSSUTIL_Version);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNSSSSL_VersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSSSSL_Version);
+		void GetNSSSSL_VersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNSSSSL_Version);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNSSSMIME_VersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSSSMIME_Version);
+		void GetNSSSMIME_VersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNSSSMIME_Version);
 	}
 }
