@@ -153,7 +153,7 @@ namespace GeckoFxTest
 			DisplayElements(g);
 		}
 
-		protected void AddTab()
+		protected GeckoWebBrowser AddTab()
 		{
 			var tabPage = new TabPage();
 			tabPage.Text = "blank";
@@ -180,7 +180,28 @@ namespace GeckoFxTest
 			// Demo use of ReadyStateChange.
 			browser.ReadyStateChange += (s, e) => this.Text = browser.Document.ReadyState;
 
+			browser.DocumentTitleChanged += (s, e) => tabPage.Text = browser.DocumentTitle;
+
 			browser.EnableDefaultFullscreen();
+
+			// Popup window management.
+			browser.CreateWindow += (s, e) =>
+			{
+				// For <a target="_blank"> and window.open() without specs(3rd param),
+				// e.Flags == GeckoWindowFlags.All, and we load it in a new tab;
+				// otherwise, load it in a popup window, which is maximized by default.
+				// This simulates firefox's behavior.
+				if (e.Flags == GeckoWindowFlags.All)
+					e.WebBrowser = AddTab();
+				else
+				{
+					var wa = System.Windows.Forms.Screen.GetWorkingArea(this);
+					e.InitialWidth = wa.Width;
+					e.InitialHeight = wa.Height;
+				}
+			};
+
+			return browser;
 		}
 
 		/// <summary>
@@ -246,15 +267,12 @@ namespace GeckoFxTest
 			scrollDown.Click += (s, e) => { browser.Window.ScrollByPages(1); };
 			scrollUp.Click += (s, e) => { browser.Window.ScrollByPages(-1); };
 
-			nav.Click += delegate {
+			nav.Click += delegate
+			{
 				// use javascript to warn if url box is empty.
 				if (string.IsNullOrEmpty(urlbox.Text.Trim()))
 					browser.Navigate("javascript:alert('hey try typing a url!');");
-
-				try{
 				browser.Navigate(urlbox.Text);
-				}catch { }
-				tabPage.Text = urlbox.Text;
 			};
 
 			newTab.Click += delegate { AddTab(); };
@@ -287,6 +305,21 @@ namespace GeckoFxTest
 					}					
 				}
 
+			};
+
+			browser.Navigating += (s, e) =>
+			{
+				if (e.DomWindowTopLevel)
+					urlbox.Text = e.Uri.ToString();
+			};
+			browser.Redirecting += (s, e) =>
+			{
+				if (e.DomWindowTopLevel)
+					urlbox.Text = e.Uri.ToString();
+			};
+			browser.HashChange += (s, e) =>
+			{
+				urlbox.Text = e.NewUrl.ToString();
 			};
 
 			tabPage.Controls.Add(urlbox);
