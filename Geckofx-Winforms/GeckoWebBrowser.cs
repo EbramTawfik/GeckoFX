@@ -389,6 +389,10 @@ namespace Gecko
 			if (url == null)
 				throw new ArgumentNullException("url");
 
+			// Control handle must be created so we can get a nsIDocShell.
+			if (!IsHandleCreated)
+				CreateHandle();
+
 			using (var sContentType = new nsACString(contentType))
 			using (var sUtf8 = new nsACString("UTF8"))
 			{
