@@ -78,7 +78,7 @@ namespace Gecko
         /// jump lists.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDefaultGroupIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultGroupId);
+		void GetDefaultGroupIdAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDefaultGroupId);
 		
 		/// <summary>
         /// Creates a taskbar preview. The docshell should be a toplevel docshell and
@@ -153,7 +153,7 @@ namespace Gecko
         /// @throw NS_ERROR_UNEXPECTED for general failures.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGroupIdForWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIdentifier);
+		void SetGroupIdForWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aIdentifier);
 		
 		/// <summary>
         /// Notify the taskbar that a window is about to enter full screen mode.

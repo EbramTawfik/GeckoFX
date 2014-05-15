@@ -50,7 +50,7 @@ namespace Gecko
         /// "arraybuffer" to use UInt8 array instances or "string" to use String.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Listen([MarshalAs(UnmanagedType.Interface)] nsITCPServerSocketInternal serverSocket, ushort port, ushort backlog, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase binaryType, System.IntPtr jsContext);
+		void Listen([MarshalAs(UnmanagedType.Interface)] nsITCPServerSocketInternal serverSocket, ushort port, ushort backlog, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase binaryType, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Tell the chrome process to close the server socket.

@@ -51,7 +51,7 @@ namespace Gecko
         /// Can throw if the user cancels entry of their master password.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Encrypt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase plainText, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Encrypt([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase plainText, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// decrypt
@@ -66,7 +66,7 @@ namespace Gecko
         /// encrypted with some other key).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Decrypt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase cipherText, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Decrypt([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase cipherText, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// uiBusy

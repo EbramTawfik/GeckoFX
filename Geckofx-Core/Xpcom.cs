@@ -97,7 +97,7 @@ namespace Gecko
 		/// <param name="result"></param>
 		/// <returns></returns>
 		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
-		static extern int NS_NewLocalFile(nsAString path, bool followLinks, [MarshalAs(UnmanagedType.IUnknown)] out object result);
+		static extern int NS_NewLocalFile([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAString path, bool followLinks, [MarshalAs(UnmanagedType.IUnknown)] out object result);
 
 		/// <summary>
 		/// Declaration in nsXPCOM.h

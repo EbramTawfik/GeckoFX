@@ -39,12 +39,12 @@ namespace Gecko
         /// Find the path for an app with the given signature.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PathForAppWithIdentifier([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase bundleIdentifier, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void PathForAppWithIdentifier([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase bundleIdentifier, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// Launch the app with the given identifier, if it exists.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LaunchAppWithIdentifier([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase bundleIdentifier);
+		void LaunchAppWithIdentifier([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase bundleIdentifier);
 	}
 }

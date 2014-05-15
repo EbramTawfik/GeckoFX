@@ -52,6 +52,6 @@ namespace Gecko
         /// @param aURI the namespace URI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddNameSpace([MarshalAs(UnmanagedType.Interface)] nsIAtom aPrefix, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURI);
+		void AddNameSpace([MarshalAs(UnmanagedType.Interface)] nsIAtom aPrefix, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aURI);
 	}
 }

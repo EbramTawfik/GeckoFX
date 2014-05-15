@@ -41,7 +41,7 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Onresult([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase requestId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase result);
+		void Onresult([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase requestId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase result);
 	}
 	
 	/// <summary>nsIPaymentUIGlue </summary>
@@ -55,14 +55,14 @@ namespace Gecko
         /// for each JWT provided via navigator.mozPay call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConfirmPaymentRequest([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase requestId, Gecko.JsVal paymentRequestsInfo, [MarshalAs(UnmanagedType.Interface)] nsIPaymentUIGlueCallback successCb, [MarshalAs(UnmanagedType.Interface)] nsIPaymentUIGlueCallback errorCb);
+		void ConfirmPaymentRequest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase requestId, Gecko.JsVal paymentRequestsInfo, [MarshalAs(UnmanagedType.Interface)] nsIPaymentUIGlueCallback successCb, [MarshalAs(UnmanagedType.Interface)] nsIPaymentUIGlueCallback errorCb);
 		
 		/// <summary>Member ShowPaymentFlow </summary>
 		/// <param name='requestId'> </param>
 		/// <param name='paymentFlowInfo'> </param>
 		/// <param name='errorCb'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowPaymentFlow([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase requestId, [MarshalAs(UnmanagedType.Interface)] nsIPaymentFlowInfo paymentFlowInfo, [MarshalAs(UnmanagedType.Interface)] nsIPaymentUIGlueCallback errorCb);
+		void ShowPaymentFlow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase requestId, [MarshalAs(UnmanagedType.Interface)] nsIPaymentFlowInfo paymentFlowInfo, [MarshalAs(UnmanagedType.Interface)] nsIPaymentUIGlueCallback errorCb);
 		
 		/// <summary>Member Cleanup </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

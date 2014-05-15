@@ -61,13 +61,13 @@ namespace Gecko
         /// Functionality for making and managing phone calls.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Dial(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.U1)] bool isEmergency);
+		new void Dial(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number, [MarshalAs(UnmanagedType.U1)] bool isEmergency);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void HangUp(uint clientId, uint callIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void StartTone(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase dtmfChar);
+		new void StartTone(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase dtmfChar);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StopTone(uint clientId);
@@ -118,7 +118,7 @@ namespace Gecko
 		void NotifyCallDisconnected(uint clientId, Gecko.JsVal call);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyCallError(uint clientId, int callIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase error);
+		void NotifyCallError(uint clientId, int callIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase error);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyCallRing();
@@ -127,15 +127,15 @@ namespace Gecko
 		void NotifyCallStateChanged(uint clientId, Gecko.JsVal call);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyCdmaCallWaiting(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number);
+		void NotifyCdmaCallWaiting(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifySupplementaryService(uint clientId, int callIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase notification);
+		void NotifySupplementaryService(uint clientId, int callIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase notification);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyConferenceCallStateChanged(short state);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyConferenceError([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase errorName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase errorMsg);
+		void NotifyConferenceError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase errorName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase errorMsg);
 	}
 }

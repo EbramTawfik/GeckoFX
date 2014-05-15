@@ -46,13 +46,13 @@ namespace Gecko
         /// Last (MMS) message subject.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastMessageSubjectAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastMessageSubject);
+		void GetLastMessageSubjectAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aLastMessageSubject);
 		
 		/// <summary>
         /// Message body of the last message in the thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBodyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBody);
+		void GetBodyAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aBody);
 		
 		/// <summary>
         /// Total unread messages in the thread.
@@ -76,6 +76,6 @@ namespace Gecko
         /// Message type of the last message in the thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastMessageTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastMessageType);
+		void GetLastMessageTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aLastMessageType);
 	}
 }

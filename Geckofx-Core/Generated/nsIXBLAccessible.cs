@@ -40,6 +40,6 @@ namespace Gecko
         /// Return accessible name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAccessibleNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAccessibleName);
+		void GetAccessibleNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aAccessibleName);
 	}
 }

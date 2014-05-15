@@ -57,6 +57,6 @@ namespace Gecko
         /// @return The locale code to be used for the given category.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCategory([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase category, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetCategory([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase category, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 	}
 }

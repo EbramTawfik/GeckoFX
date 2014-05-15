@@ -41,7 +41,7 @@ namespace Gecko
         /// name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aType);
 		
 		/// <summary>
         /// Used to indicate the EventTarget to which the event was originally
@@ -148,7 +148,7 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
@@ -238,6 +238,6 @@ namespace Gecko
 		bool GetDocumentSheetAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitStyleSheetChangeEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTypeArg, [MarshalAs(UnmanagedType.U1)] bool aCanBubbleArg, [MarshalAs(UnmanagedType.U1)] bool aCancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMCSSStyleSheet aStyleSheet, [MarshalAs(UnmanagedType.U1)] bool aDocumentSheet);
+		void InitStyleSheetChangeEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTypeArg, [MarshalAs(UnmanagedType.U1)] bool aCanBubbleArg, [MarshalAs(UnmanagedType.U1)] bool aCancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMCSSStyleSheet aStyleSheet, [MarshalAs(UnmanagedType.U1)] bool aDocumentSheet);
 	}
 }

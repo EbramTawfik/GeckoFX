@@ -49,7 +49,7 @@ namespace Gecko
         /// @param tag: the notification tag
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Handle([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase dir, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase lang, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase tag, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase icon, System.IntPtr jsContext);
+		void Handle([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase id, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase title, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase dir, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase lang, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase body, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase tag, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase icon, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Callback function used to notify C++ the we have returned
@@ -82,7 +82,7 @@ namespace Gecko
         /// notifications with same origin/tag pair
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Put([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase origin, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase dir, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase lang, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase tag, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase icon);
+		void Put([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase origin, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase id, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase title, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase dir, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase lang, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase body, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase tag, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase icon);
 		
 		/// <summary>
         /// Retrieve a list of notifications.
@@ -93,7 +93,7 @@ namespace Gecko
         /// returning notifications objects
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Get([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase origin, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase tag, [MarshalAs(UnmanagedType.Interface)] nsINotificationStorageCallback aCallback);
+		void Get([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase origin, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase tag, [MarshalAs(UnmanagedType.Interface)] nsINotificationStorageCallback aCallback);
 		
 		/// <summary>
         /// Remove a notification from storage.
@@ -102,6 +102,6 @@ namespace Gecko
         /// @param id: the uuid for the notification to delete
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Delete([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase origin, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase id);
+		void Delete([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase origin, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase id);
 	}
 }

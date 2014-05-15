@@ -292,7 +292,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXULTemplateResult GetResultForId([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
+		nsIXULTemplateResult GetResultForId([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aId);
 		
 		/// <summary>
         /// Retrieve the result corresponding to a generated element, or null is

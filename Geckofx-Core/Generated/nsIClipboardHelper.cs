@@ -44,7 +44,7 @@ namespace Gecko
         /// (eg. kSelectionClipboard -- see nsIClipboard.idl)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyStringToClipboard([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, int aClipboardID, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDoc);
+		void CopyStringToClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aString, int aClipboardID, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDoc);
 		
 		/// <summary>
         /// copy string to (default) clipboard
@@ -53,6 +53,6 @@ namespace Gecko
         /// @param aDoc, the source document for the string, if available
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDoc);
+		void CopyString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aString, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDoc);
 	}
 }

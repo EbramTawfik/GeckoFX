@@ -125,25 +125,25 @@ namespace Gecko
         /// This string will appear somewhere in the log's filename.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFilenameIdentifierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFilenameIdentifier);
+		void GetFilenameIdentifierAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aFilenameIdentifier);
 		
 		/// <summary>
         /// This string will appear somewhere in the log's filename.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFilenameIdentifierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFilenameIdentifier);
+		void SetFilenameIdentifierAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aFilenameIdentifier);
 		
 		/// <summary>
         /// This string will indicate the full path of the GC log if enabled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetGcLogPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGcLogPath);
+		void GetGcLogPathAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aGcLogPath);
 		
 		/// <summary>
         /// This string will indicate the full path of the CC log if enabled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCcLogPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCcLogPath);
+		void GetCcLogPathAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCcLogPath);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Begin();

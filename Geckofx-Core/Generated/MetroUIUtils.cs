@@ -40,25 +40,25 @@ namespace Gecko
         /// Obtains the current page URI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCurrentPageURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCurrentPageURI);
+		void GetCurrentPageURIAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCurrentPageURI);
 		
 		/// <summary>
         /// Obtains the current page URI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurrentPageURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCurrentPageURI);
+		void SetCurrentPageURIAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCurrentPageURI);
 		
 		/// <summary>
         /// Obtains the current page title
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCurrentPageTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCurrentPageTitle);
+		void GetCurrentPageTitleAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCurrentPageTitle);
 		
 		/// <summary>
         /// Obtains the current page title
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurrentPageTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCurrentPageTitle);
+		void SetCurrentPageTitleAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCurrentPageTitle);
 		
 		/// <summary>
         /// Determines if the browser has selected content
@@ -77,24 +77,24 @@ namespace Gecko
         /// Determines the text that should be shared
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetShareTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aShareText);
+		void GetShareTextAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aShareText);
 		
 		/// <summary>
         /// Determines the text that should be shared
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShareTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aShareText);
+		void SetShareTextAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aShareText);
 		
 		/// <summary>
         /// Determines the HTML that should be shared
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetShareHTMLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aShareHTML);
+		void GetShareHTMLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aShareHTML);
 		
 		/// <summary>
         /// Determines the HTML that should be shared
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShareHTMLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aShareHTML);
+		void SetShareHTMLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aShareHTML);
 	}
 }
