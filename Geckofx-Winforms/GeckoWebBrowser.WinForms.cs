@@ -178,9 +178,8 @@ namespace Gecko
 					// only for html documents
 					Document.Cookie = "";
 				}
+				WindowMediator.RegisterWindow(this);
 			}
-
-			WindowMediator.RegisterWindow(this);
 
 			base.OnHandleCreated( e );
 		}
@@ -317,11 +316,10 @@ namespace Gecko
 							//	var str = string.Format( "+WM_MOUSEACTIVATE {0:X8} lastfocus", focus.ToInt32() );
 							//	System.Diagnostics.Debug.WriteLine( str );
 								Console.WriteLine("Activating");
-								if ( WebBrowserFocus != null )
-								{
+								if (WebBrowserFocus != null)
 									WebBrowserFocus.Activate();
-									Services.WindowWatcher.ActiveWindow = this.Window;
-								}
+								if (Window != null)
+									Services.WindowWatcher.ActiveWindow = Window;								
 							}
 							else
 							{
@@ -330,11 +328,10 @@ namespace Gecko
 							}
 							if ( !this.Window.Equals(Services.WindowWatcher.ActiveWindow) )
 							{
-								if ( WebBrowserFocus != null )
-								{
+								if (WebBrowserFocus != null)
 									WebBrowserFocus.Activate();
-									Services.WindowWatcher.ActiveWindow = this.Window;
-								}
+								if (Window != null)
+									Services.WindowWatcher.ActiveWindow = Window;								
 							}
 							return;
 						}
@@ -429,13 +426,15 @@ namespace Gecko
         protected override void OnPrint(PaintEventArgs e)
         {
             base.OnPrint(e);
-               
-            ImageCreator creator = new ImageCreator(this);
-            byte[] mBytes = creator.CanvasGetPngImage((uint)0, (uint)0, (uint)this.Width, (uint)this.Height);
-            using (Image image = Image.FromStream(new System.IO.MemoryStream(mBytes)))
-            {
-                e.Graphics.DrawImage(image, 0.0f, 0.0f);
-            }
+            if (!this.DesignMode)
+			{
+				ImageCreator creator = new ImageCreator(this);
+				byte[] mBytes = creator.CanvasGetPngImage((uint)0, (uint)0, (uint)this.Width, (uint)this.Height);
+				using (Image image = Image.FromStream(new System.IO.MemoryStream(mBytes)))
+				{
+					e.Graphics.DrawImage(image, 0.0f, 0.0f);
+				}
+			}
         }
 
 		/// <summary>

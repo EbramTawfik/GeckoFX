@@ -86,7 +86,8 @@ namespace Gecko
 		public static TPrompt GetPrompt<TPrompt>(nsIDOMWindow aParent = null)
 		{
 			var iid = (GuidAttribute)typeof(TPrompt).GetCustomAttributes(typeof(GuidAttribute), false)[0];
-			var ptr = factory.GetPrompt(aParent, new Guid(iid.Value));
+			var g = new Guid (iid.Value);
+			var ptr = factory.GetPrompt(aParent, ref g);
 			var prompt = (TPrompt)Marshal.GetTypedObjectForIUnknown(ptr, typeof(TPrompt));
 			Marshal.Release(ptr);
 			return prompt;
