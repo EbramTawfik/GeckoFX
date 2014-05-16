@@ -2,6 +2,22 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v29.0-0.6 ==
+
+1. Eliminate mandatory GeckoWebBrowser.UseCustomPrompt() call.
+2. Add FullscreenChange event.
+3. Fix GeckoWebBrowser.OnPrint in desing mode
+4. Allow LoadContent to be called if control handle is not yet created.
+5. Fix print issues (#50 and #54); add print button to geckfxtest.
+6. Use custom marshaler for nsAStringBase
+7. More flexible XULRunnerLocator
+
+Thanks : Duan Yao, vmas
+
+== v29.0-0.5 ==
+
+1. Linux only tag.
+
 == v29.0-0.4 ==
 
 1. Regenerate interfaces against released firefox 29
