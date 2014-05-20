@@ -70,14 +70,14 @@ namespace Gecko
         /// specified app.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppManifestURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppManifestURL);
+		void GetAppManifestURLAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aAppManifestURL);
 		
 		/// <summary>
         /// Service type is used to retrieve the corresponding "system-only" stats.
         /// E.g., "Tethering", "OTA", etc.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetServiceTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aServiceType);
+		void GetServiceTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aServiceType);
 		
 		/// <summary>
         /// Network the returned data belongs to.

@@ -97,7 +97,7 @@ namespace Gecko
 		/// <param name="result"></param>
 		/// <returns></returns>
 		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
-		static extern int NS_NewLocalFile(nsAString path, bool followLinks, [MarshalAs(UnmanagedType.IUnknown)] out object result);
+		static extern int NS_NewLocalFile([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Gecko.CustomMarshalers.AStringMarshaler))] nsAString path, bool followLinks, [MarshalAs(UnmanagedType.IUnknown)] out object result);
 
 		/// <summary>
 		/// Declaration in nsXPCOM.h
@@ -659,24 +659,8 @@ namespace Gecko
 		{
 			if (ptr == IntPtr.Zero)
 				return null;
-			
-			int startRef = 0, endRef = 0;
-			
-			// Mono bug : Marshal.GetObjectForIUnknown is decrementing the COM objects ref count not incrementing in.
-			if (IsMono)			
-				startRef = Marshal.AddRef(ptr);			
-			
-			object ret = Marshal.GetObjectForIUnknown(ptr);
-			
-			if (IsMono)
-			{
-				endRef = Marshal.AddRef(ptr);
-				if (endRef > startRef + 1)
-					Debug.WriteLine("mono GetObjectForIUknown bug has been fixed! Please delete this fix.");
-			}
-			
-			return ret;
-				
+
+			return Marshal.GetObjectForIUnknown(ptr);
 		}
 
 		internal static void DisposeObject<T>(ref T obj)

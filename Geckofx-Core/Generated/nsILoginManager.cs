@@ -136,7 +136,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHost);
+		bool GetLoginSavingEnabled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aHost);
 		
 		/// <summary>
         /// Disable (or enable) storing logins for the specified host. When
@@ -151,7 +151,7 @@ namespace Gecko
         /// disabled (false)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHost, [MarshalAs(UnmanagedType.U1)] bool isEnabled);
+		void SetLoginSavingEnabled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aHost, [MarshalAs(UnmanagedType.U1)] bool isEnabled);
 		
 		/// <summary>
         /// Search for logins matching the specified criteria. Called when looking
@@ -184,7 +184,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FindLogins(ref uint count, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHostname, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aActionURL, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHttpRealm, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsILoginInfo[] logins);
+		void FindLogins(ref uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aHostname, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aActionURL, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aHttpRealm, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsILoginInfo[] logins);
 		
 		/// <summary>
         /// Search for logins matching the specified criteria, as with
@@ -207,7 +207,7 @@ namespace Gecko
         /// realm, specify null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint CountLogins([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHostname, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aActionURL, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHttpRealm);
+		uint CountLogins([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aHostname, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aActionURL, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aHttpRealm);
 		
 		/// <summary>
         /// Generate results for a userfield autocomplete menu.
@@ -218,7 +218,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAutoCompleteResult AutoCompleteSearch([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult aPreviousResult, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement aElement);
+		nsIAutoCompleteResult AutoCompleteSearch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSearchString, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult aPreviousResult, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement aElement);
 		
 		/// <summary>
         /// Fill a form with login information if we have it. This method will fill

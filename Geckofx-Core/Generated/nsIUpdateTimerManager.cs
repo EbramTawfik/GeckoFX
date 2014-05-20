@@ -71,6 +71,6 @@ namespace Gecko
         /// interval   : the default interval in seconds for the timer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterTimer([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase id, [MarshalAs(UnmanagedType.Interface)] nsITimerCallback callback, uint interval);
+		void RegisterTimer([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase id, [MarshalAs(UnmanagedType.Interface)] nsITimerCallback callback, uint interval);
 	}
 }

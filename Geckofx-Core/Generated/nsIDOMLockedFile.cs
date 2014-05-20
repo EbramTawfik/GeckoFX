@@ -48,7 +48,7 @@ namespace Gecko
         /// "readonly" or "readwrite"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMode);
+		void GetModeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMode);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -76,7 +76,7 @@ namespace Gecko
         ///FileRequest </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports ReadAsText(ulong size, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase encoding);
+		nsISupports ReadAsText(ulong size, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase encoding);
 		
 		/// <summary>
         ///FileRequest </summary>

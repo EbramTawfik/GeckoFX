@@ -41,7 +41,7 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnWaitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase @event, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aInterface);
+		void OnWaitEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase @event, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aInterface);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnCommand(Gecko.JsVal result, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aInterface);

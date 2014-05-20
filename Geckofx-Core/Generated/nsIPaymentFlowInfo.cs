@@ -40,36 +40,36 @@ namespace Gecko
         /// Payment provider uri.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUri);
+		void GetUriAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUri);
 		
 		/// <summary>
         /// Payment provider uri.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUri);
+		void SetUriAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUri);
 		
 		/// <summary>
         /// Base64 encoded and digitally signed payment request information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetJwtAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aJwt);
+		void GetJwtAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aJwt);
 		
 		/// <summary>
         /// Base64 encoded and digitally signed payment request information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetJwtAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aJwt);
+		void SetJwtAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aJwt);
 		
 		/// <summary>
         /// parameters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRequestMethod);
+		void GetRequestMethodAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aRequestMethod);
 		
 		/// <summary>
         /// parameters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRequestMethod);
+		void SetRequestMethodAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aRequestMethod);
 	}
 }

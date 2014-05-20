@@ -125,7 +125,7 @@ namespace Gecko
         /// startElement returns is undefined
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartElement([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase qName, [MarshalAs(UnmanagedType.Interface)] nsISAXAttributes attributes);
+		void StartElement([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase uri, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase localName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase qName, [MarshalAs(UnmanagedType.Interface)] nsISAXAttributes attributes);
 		
 		/// <summary>
         /// Receive notification of the end of an element.
@@ -147,7 +147,7 @@ namespace Gecko
         /// empty string if qualified names are not available
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EndElement([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase qName);
+		void EndElement([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase uri, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase localName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase qName);
 		
 		/// <summary>
         /// Receive notification of character data.
@@ -166,7 +166,7 @@ namespace Gecko
         /// @param value the characters from the XML document
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Characters([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
+		void Characters([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase value);
 		
 		/// <summary>
         /// Receive notification of a processing instruction.
@@ -185,7 +185,7 @@ namespace Gecko
         /// whitespace separating it from the target
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ProcessingInstruction([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase target, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
+		void ProcessingInstruction([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase target, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase data);
 		
 		/// <summary>
         /// Receive notification of ignorable whitespace in element content.
@@ -204,7 +204,7 @@ namespace Gecko
         /// @param whitespace the characters from the XML document
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IgnorableWhitespace([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase whitespace);
+		void IgnorableWhitespace([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase whitespace);
 		
 		/// <summary>
         /// Begin the scope of a prefix-URI Namespace mapping.
@@ -237,7 +237,7 @@ namespace Gecko
         /// @param uri The Namespace URI the prefix is mapped to.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartPrefixMapping([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prefix, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri);
+		void StartPrefixMapping([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase prefix, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase uri);
 		
 		/// <summary>
         /// End the scope of a prefix-URI mapping.
@@ -250,6 +250,6 @@ namespace Gecko
         /// string when a default mapping scope ends.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EndPrefixMapping([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prefix);
+		void EndPrefixMapping([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase prefix);
 	}
 }

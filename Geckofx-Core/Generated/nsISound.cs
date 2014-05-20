@@ -54,7 +54,7 @@ namespace Gecko
         /// this method.  You should use playEventSound method instaed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PlaySystemSound([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase soundAlias);
+		void PlaySystemSound([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase soundAlias);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Beep();

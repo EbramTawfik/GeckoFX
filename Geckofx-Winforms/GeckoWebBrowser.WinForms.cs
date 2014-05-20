@@ -486,6 +486,36 @@ namespace Gecko
 			};
 		}
 
+		/// <summary>
+		/// This method is called by gecko when showing a print dialog; window handle
+		/// returned here is the dialog's owner. If model print dialog is not required, just returns NULL.
+		/// 
+		/// TODO: Gecko destroys the window returned after the dialog is dismissed, so we can't return this.Handle, we
+		/// create and return a temp window instead. This may be a bug of gecko.
+		/// 
+		/// See https://bitbucket.org/geckofx/geckofx-29.0/issue/50/printing-with-native-printingpromptservice for more info.
+		/// </summary>
+		/// <returns></returns>
+		IntPtr nsIEmbeddingSiteWindow.GetSiteWindowAttribute()
+		{
+			const string name = "TempSubWindow";
+			var temp = Controls[name];
+			if (temp == null)
+			{
+				temp = new Control()
+				{
+					Top = -10,
+					Left = -10,
+					Width = 1,
+					Height = 1,
+					Name = name
+				};
+				temp.HandleDestroyed += (s, e) => Controls.Remove(temp);
+				Controls.Add(temp);
+			}
+			return temp.Handle;
+		}
+
 		#endregion
 
 		#region Internal classes

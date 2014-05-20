@@ -111,6 +111,7 @@
     <Compile Include="ChromeContext.cs" />
     <Compile Include="Collections\DomNodeList.cs" />
     <Compile Include="Collections\GeckoNodeEnumerator.cs" />
+    <Compile Include="CustomMarshalers\AStringMarshaler.cs" />
     <Compile Include="CustomMarshalers\StringMarshaler.cs" />
     <Compile Include="DOM\DomParser.cs" />
     <Compile Include="DOM\Events\DomHashChangeEventArgs.cs" />

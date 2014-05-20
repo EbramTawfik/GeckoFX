@@ -43,7 +43,7 @@ namespace Gecko
 		bool HasMore();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNext([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetNext([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 	}
 	
 	/// <summary>nsIUTF8StringEnumerator </summary>

@@ -119,6 +119,6 @@ namespace Gecko
         /// beginning of the current selection range. Defaults to 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceSurroundingText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text, int beforeLength, int afterLength);
+		void ReplaceSurroundingText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase text, int beforeLength, int afterLength);
 	}
 }

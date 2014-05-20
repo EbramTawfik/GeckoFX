@@ -41,19 +41,19 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Get([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase permission, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase origin, [MarshalAs(UnmanagedType.U1)] bool browserFlag, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Get([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase permission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase manifestURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase origin, [MarshalAs(UnmanagedType.U1)] bool browserFlag, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Set([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase permission, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase origin, [MarshalAs(UnmanagedType.U1)] bool browserFlag);
+		void Set([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase permission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase value, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase manifestURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase origin, [MarshalAs(UnmanagedType.U1)] bool browserFlag);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsExplicit([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase permission, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase origin, [MarshalAs(UnmanagedType.U1)] bool browserFlag);
+		bool IsExplicit([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase permission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase manifestURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase origin, [MarshalAs(UnmanagedType.U1)] bool browserFlag);
 		
 		/// <summary>
         /// and pages that have browserFlag=true, so remove() doesn't have a browserFlag parameter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase permission, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase origin);
+		void Remove([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase permission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase manifestURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase origin);
 	}
 }

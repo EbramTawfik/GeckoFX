@@ -240,6 +240,10 @@ namespace GeckoFxTest
 			open.Text = "FileOpen";
 			open.Left = closeWithDisposeTab.Left + closeWithDisposeTab.Width;
 
+			Button print = new Button();
+			print.Text = "Print";
+			print.Left = open.Left + open.Width;
+
 			Button scrollDown = new Button { Text = "Down", Left = closeWithDisposeTab.Left + 250 };
 			Button scrollUp = new Button { Text = "Up", Left = closeWithDisposeTab.Left + 330 };
 
@@ -289,6 +293,8 @@ namespace GeckoFxTest
 
 			};
 
+			print.Click += delegate { browser.Window.Print(); };
+
 			tabPage.Controls.Add(urlbox);
 			tabPage.Controls.Add(nav);
 			tabPage.Controls.Add(newTab);
@@ -296,6 +302,7 @@ namespace GeckoFxTest
 			tabPage.Controls.Add(closeTab);
 			tabPage.Controls.Add(closeWithDisposeTab);
 			tabPage.Controls.Add(open);
+			tabPage.Controls.Add(print);
 			tabPage.Controls.Add(browser);
 			tabPage.Controls.Add(scrollDown);
 			tabPage.Controls.Add(scrollUp);

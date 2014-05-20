@@ -52,6 +52,6 @@ namespace Gecko
 		void Retrieve(int id, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendReadReport([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageID, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase toAddress, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase iccId);
+		void SendReadReport([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageID, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase toAddress, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase iccId);
 	}
 }

@@ -95,7 +95,7 @@ namespace Gecko
         /// Will be null if a non-feed is processed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVersion);
+		void GetVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aVersion);
 		
 		/// <summary>
         /// Feed Version:
@@ -105,7 +105,7 @@ namespace Gecko
         /// Will be null if a non-feed is processed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVersion);
+		void SetVersionAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aVersion);
 		
 		/// <summary>
         /// An XSLT stylesheet available to transform the source of the
@@ -143,6 +143,6 @@ namespace Gecko
         /// Registers a prefix used to access an extension in the feed/entry
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterExtensionPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNamespace, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPrefix);
+		void RegisterExtensionPrefix([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNamespace, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aPrefix);
 	}
 }

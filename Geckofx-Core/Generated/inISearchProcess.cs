@@ -91,7 +91,7 @@ namespace Gecko
         /// methods for getting results of specific types
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStringResultAt(int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetStringResultAt(int aIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetIntResultAt(int aIndex);

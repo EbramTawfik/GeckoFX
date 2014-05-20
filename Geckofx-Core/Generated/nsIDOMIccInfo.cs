@@ -42,31 +42,31 @@ namespace Gecko
         /// Possible values: "sim", "usim", "ruim".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIccTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIccType);
+		void GetIccTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aIccType);
 		
 		/// <summary>
         /// Integrated Circuit Card Identifier.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIccidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIccid);
+		void GetIccidAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aIccid);
 		
 		/// <summary>
         /// Mobile Country Code (MCC) of the subscriber's home network.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMccAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMcc);
+		void GetMccAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMcc);
 		
 		/// <summary>
         /// Mobile Network Code (MNC) of the subscriber's home network.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMncAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMnc);
+		void GetMncAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMnc);
 		
 		/// <summary>
         /// Service Provider Name (SPN) of the subscriber's home network.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSpnAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSpn);
+		void GetSpnAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSpn);
 		
 		/// <summary>
         /// Network name must be a part of displayed carrier name.
@@ -96,31 +96,31 @@ namespace Gecko
         /// Possible values: "sim", "usim", "ruim".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIccTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIccType);
+		new void GetIccTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aIccType);
 		
 		/// <summary>
         /// Integrated Circuit Card Identifier.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIccidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIccid);
+		new void GetIccidAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aIccid);
 		
 		/// <summary>
         /// Mobile Country Code (MCC) of the subscriber's home network.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetMccAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMcc);
+		new void GetMccAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMcc);
 		
 		/// <summary>
         /// Mobile Network Code (MNC) of the subscriber's home network.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetMncAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMnc);
+		new void GetMncAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMnc);
 		
 		/// <summary>
         /// Service Provider Name (SPN) of the subscriber's home network.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSpnAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSpn);
+		new void GetSpnAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSpn);
 		
 		/// <summary>
         /// Network name must be a part of displayed carrier name.
@@ -141,7 +141,7 @@ namespace Gecko
         /// his phone number.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMsisdnAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMsisdn);
+		void GetMsisdnAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMsisdn);
 	}
 	
 	/// <summary>nsIDOMMozCdmaIccInfo </summary>
@@ -157,31 +157,31 @@ namespace Gecko
         /// Possible values: "sim", "usim", "ruim".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIccTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIccType);
+		new void GetIccTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aIccType);
 		
 		/// <summary>
         /// Integrated Circuit Card Identifier.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIccidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIccid);
+		new void GetIccidAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aIccid);
 		
 		/// <summary>
         /// Mobile Country Code (MCC) of the subscriber's home network.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetMccAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMcc);
+		new void GetMccAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMcc);
 		
 		/// <summary>
         /// Mobile Network Code (MNC) of the subscriber's home network.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetMncAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMnc);
+		new void GetMncAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMnc);
 		
 		/// <summary>
         /// Service Provider Name (SPN) of the subscriber's home network.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSpnAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSpn);
+		new void GetSpnAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSpn);
 		
 		/// <summary>
         /// Network name must be a part of displayed carrier name.
@@ -201,6 +201,6 @@ namespace Gecko
         /// Mobile Directory Number (MDN) of the subscriber, aka his phone number.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMdnAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMdn);
+		void GetMdnAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMdn);
 	}
 }

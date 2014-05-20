@@ -54,7 +54,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMTCPSocket Open([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase host, ushort port, Gecko.JsVal options);
+		nsIDOMTCPSocket Open([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase host, ushort port, Gecko.JsVal options);
 		
 		/// <summary>
         /// Listen on a port
@@ -87,7 +87,7 @@ namespace Gecko
         /// The host of this socket object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHost);
+		void GetHostAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aHost);
 		
 		/// <summary>
         /// The port of this socket object.
@@ -162,7 +162,7 @@ namespace Gecko
         /// in. The state will be either "connecting", "open", "closing", or "closed".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetReadyStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReadyState);
+		void GetReadyStateAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aReadyState);
 		
 		/// <summary>
         /// The binaryType attribute indicates which mode this socket uses for
@@ -171,7 +171,7 @@ namespace Gecko
         /// will be "arraybuffer". Otherwise, it will be "string".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBinaryTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBinaryType);
+		void GetBinaryTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aBinaryType);
 		
 		/// <summary>
         /// The onopen event handler is called when the connection to the server
@@ -304,31 +304,31 @@ namespace Gecko
         /// Trigger the callback for |type| and provide a DOMError() object with the given data
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallListenerError([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
+		void CallListenerError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name);
 		
 		/// <summary>
         /// Trigger the callback for |type| and provide a string argument
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallListenerData([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
+		void CallListenerData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase data);
 		
 		/// <summary>
         /// Trigger the callback for |type| and provide an ArrayBuffer argument
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallListenerArrayBuffer([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, Gecko.JsVal data);
+		void CallListenerArrayBuffer([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, Gecko.JsVal data);
 		
 		/// <summary>
         /// Trigger the callback for |type| with no argument
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallListenerVoid([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type);
+		void CallListenerVoid([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type);
 		
 		/// <summary>
         ///        new ready state to be set to TCPSocket.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateReadyState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase readyState);
+		void UpdateReadyState([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase readyState);
 		
 		/// <summary>
         ///        from child are sent to parent.
@@ -341,14 +341,14 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMTCPSocket CreateAcceptedParent([MarshalAs(UnmanagedType.Interface)] nsISocketTransport transport, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase binaryType);
+		nsIDOMTCPSocket CreateAcceptedParent([MarshalAs(UnmanagedType.Interface)] nsISocketTransport transport, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase binaryType);
 		
 		/// <summary>
         ///        An object to create ArrayBuffer for this window. See Bug 831107.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMTCPSocket CreateAcceptedChild([MarshalAs(UnmanagedType.Interface)] nsITCPSocketChild socketChild, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase binaryType, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		nsIDOMTCPSocket CreateAcceptedChild([MarshalAs(UnmanagedType.Interface)] nsITCPSocketChild socketChild, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase binaryType, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
 		/// <summary>
         /// Set App ID.
@@ -398,7 +398,7 @@ namespace Gecko
         /// close
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aType);
 		
 		/// <summary>
         /// The data related to this event, if any. In the ondata callback,
