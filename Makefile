@@ -9,6 +9,7 @@ all: Geckofx
 clean:
 	xbuild /p:Configuration=Debug_Linux Geckofx.sln /target:clean
 	rm -rf */obj */bin
+	cd Geckofx-Core/Linux && make clean
 
 Geckofx: Geckofx.sln
 	xbuild /p:Configuration=Debug_Linux Geckofx.sln
@@ -45,7 +46,7 @@ testpackagebuild: debiandist
 
 install: Geckofx
 	install -d $(DESTDIR)
-	install GeckoFxTest/bin/x86/Debug_Linux/geckofx-core-${FF_MAJOR}.dll $(DESTDIR)/geckofx-core-${FF_MAJOR}.dll
-	install GeckoFxTest/bin/x86/Debug_Linux/geckofx-core-${FF_MAJOR}.dll.config $(DESTDIR)/geckofx-core-${FF_MAJOR}.dll.config
-	install GeckoFxTest/bin/x86/Debug_Linux/Geckofx-Winforms-${FF_MAJOR}.dll $(DESTDIR)/Geckofx-Winforms-${FF_MAJOR}.dll
+	install GeckoFxTest/bin/x86/Debug_Linux/Geckofx-Core.dll $(DESTDIR)/Geckofx-Core.dll
+	install GeckoFxTest/bin/x86/Debug_Linux/Geckofx-Core.dll.config $(DESTDIR)/Geckofx-Core.dll.config
+	install GeckoFxTest/bin/x86/Debug_Linux/Geckofx-Winforms.dll $(DESTDIR)/Geckofx-Winforms.dll
 	install Geckofx-Core/Linux/geckofix.so $(DESTDIR)/geckofix.so
