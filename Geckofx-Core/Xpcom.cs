@@ -659,24 +659,8 @@ namespace Gecko
 		{
 			if (ptr == IntPtr.Zero)
 				return null;
-			
-			int startRef = 0, endRef = 0;
-			
-			// Mono bug : Marshal.GetObjectForIUnknown is decrementing the COM objects ref count not incrementing in.
-			if (IsMono)			
-				startRef = Marshal.AddRef(ptr);			
-			
-			object ret = Marshal.GetObjectForIUnknown(ptr);
-			
-			if (IsMono)
-			{
-				endRef = Marshal.AddRef(ptr);
-				if (endRef > startRef + 1)
-					Debug.WriteLine("mono GetObjectForIUknown bug has been fixed! Please delete this fix.");
-			}
-			
-			return ret;
-				
+
+			return Marshal.GetObjectForIUnknown(ptr);
 		}
 
 		internal static void DisposeObject<T>(ref T obj)
