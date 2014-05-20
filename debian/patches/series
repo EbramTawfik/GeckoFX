@@ -1,0 +1,4 @@
+fix-make-install.patch
+Add-pkgconfig-files.patch
+Fix-XULRunnerLocator-for-Linux.patch
+Update-geckofix-library.patch

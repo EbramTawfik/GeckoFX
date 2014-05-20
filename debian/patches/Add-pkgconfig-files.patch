@@ -1,0 +1,36 @@
+--- /dev/null
++++ b/Geckofx-Core/Geckofx-Core.pc
+@@ -0,0 +1,10 @@
++prefix=/usr
++exec_prefix=${prefix}
++libdir=${exec_prefix}/lib
++assemblies_dir=${libdir}/cli/geckofx-29
++Libraries=${assemblies_dir}/Geckofx-Core.dll
++
++Name: Geckofx-Core-29
++Description: .Net binding to the Gecko web handling stuff
++Version: 29.0
++Libs: -r:${assemblies_dir}/Geckofx-Core.dll
+--- /dev/null
++++ b/Geckofx-Winforms/Geckofx-Winforms.pc
+@@ -0,0 +1,10 @@
++prefix=/usr
++exec_prefix=${prefix}
++libdir=${exec_prefix}/lib
++assemblies_dir=${libdir}/cli/geckofx-29
++Libraries=${assemblies_dir}/Geckofx-Winforms.dll
++
++Name: Geckofx-Winforms-29
++Description: .Net binding to more Gecko web handling stuff
++Version: 29.0
++Libs: -r:${assemblies_dir}/Geckofx-Winforms.dll
+--- a/Makefile
++++ b/Makefile
+@@ -49,3 +49,7 @@
+ 	install GeckoFxTest/bin/x86/Debug_Linux/Geckofx-Core.dll.config $(DESTDIR)/Geckofx-Core.dll.config
+ 	install GeckoFxTest/bin/x86/Debug_Linux/Geckofx-Winforms.dll $(DESTDIR)/Geckofx-Winforms.dll
+ 	install Geckofx-Core/Linux/geckofix.so $(DESTDIR)/geckofix.so
++	install -d $(DESTDIR)/pkgconfig
++	install Geckofx-Core/Geckofx-Core.pc $(DESTDIR)/pkgconfig/Geckofx-Core-29.pc
++	install Geckofx-Winforms/Geckofx-Winforms.pc $(DESTDIR)/pkgconfig/Geckofx-Winforms-29.pc
++	chmod -x $(DESTDIR)/pkgconfig/*.pc
