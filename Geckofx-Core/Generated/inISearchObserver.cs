@@ -49,7 +49,7 @@ namespace Gecko
 		void OnSearchEnd(inISearchProcess aModule, short aResult);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSearchError(inISearchProcess aModule, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage);
+		void OnSearchError(inISearchProcess aModule, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMessage);
 	}
 	
 	/// <summary>inISearchObserverConsts </summary>

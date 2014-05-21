@@ -126,7 +126,16 @@ namespace Gecko
 		{
 			nsIWebBrowserPrint print = Xpcom.QueryInterface<nsIWebBrowserPrint>( _domWindow.Instance );
 			
-			print.Print(null, null);
+			try
+			{
+				print.Print(null, null);
+			}
+			catch(COMException e)
+			{
+				//NS_ERROR_ABORT means user cancelled the printing, not really an error.
+				if (e.ErrorCode != GeckoError.NS_ERROR_ABORT)
+					throw;
+			}
 
 			Marshal.ReleaseComObject( print );
 		}

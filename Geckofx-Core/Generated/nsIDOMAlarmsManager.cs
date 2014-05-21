@@ -46,7 +46,7 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest Add(Gecko.JsVal date, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase respectTimezone, Gecko.JsVal data);
+		nsIDOMDOMRequest Add(Gecko.JsVal date, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase respectTimezone, Gecko.JsVal data);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Remove(uint id);

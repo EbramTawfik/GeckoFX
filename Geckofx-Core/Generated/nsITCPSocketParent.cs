@@ -45,7 +45,7 @@ namespace Gecko
         ///        Current ready state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, Gecko.JsVal data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase readyState, System.IntPtr jsContext);
+		void SendEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, Gecko.JsVal data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase readyState, System.IntPtr jsContext);
 		
 		/// <summary>
         ///        Intermediate class object. See nsITCPSocketIntermediary.
@@ -74,20 +74,20 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMTCPSocket Open([MarshalAs(UnmanagedType.Interface)] nsITCPSocketParent parent, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase host, ushort port, [MarshalAs(UnmanagedType.U1)] bool useSSL, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase binaryType, uint appId);
+		nsIDOMTCPSocket Open([MarshalAs(UnmanagedType.Interface)] nsITCPSocketParent parent, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase host, ushort port, [MarshalAs(UnmanagedType.U1)] bool useSSL, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase binaryType, uint appId);
 		
 		/// <summary>
         /// Listen on a port
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMTCPServerSocket Listen([MarshalAs(UnmanagedType.Interface)] nsITCPServerSocketParent parent, ushort port, ushort backlog, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase binaryType);
+		nsIDOMTCPServerSocket Listen([MarshalAs(UnmanagedType.Interface)] nsITCPServerSocketParent parent, ushort port, ushort backlog, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase binaryType);
 		
 		/// <summary>
         /// Called when received a child request to send a string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnRecvSendString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data, uint trackingNumber);
+		void OnRecvSendString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase data, uint trackingNumber);
 		
 		/// <summary>
         /// Called when received a child request to send an array buffer.

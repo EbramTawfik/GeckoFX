@@ -41,7 +41,7 @@ namespace Gecko
         /// non-javascript code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIApplication GetAppByManifestURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURL);
+		mozIApplication GetAppByManifestURL([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase manifestURL);
 		
 		/// <summary>
         /// Returns the |localId| of the app associated with the |manifestURL| passed
@@ -50,7 +50,7 @@ namespace Gecko
         /// installed manifest URL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetAppLocalIdByManifestURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURL);
+		uint GetAppLocalIdByManifestURL([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase manifestURL);
 		
 		/// <summary>
         /// Returns the application associated to this localId.
@@ -62,28 +62,28 @@ namespace Gecko
         /// Returns the manifest URL associated to this localId.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetManifestURLByLocalId(uint localId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetManifestURLByLocalId(uint localId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// Returns the CSP associated to this localId.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCSPByLocalId(uint localId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetCSPByLocalId(uint localId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// Returns the basepath for core apps
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCoreAppsBasePath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetCoreAppsBasePath([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// Returns the basepath for regular packaged apps
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWebAppsBasePath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetWebAppsBasePath([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetAppInfo([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase appId);
+		Gecko.JsVal GetAppInfo([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase appId);
 		
 		/// <summary>
         /// Returns a URI to redirect to when we get a redirection to 'uri'.
@@ -97,6 +97,6 @@ namespace Gecko
         /// Returns the localId if the app was installed from a store
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppLocalIdByStoreId([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase storeID, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetAppLocalIdByStoreId([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase storeID, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 	}
 }

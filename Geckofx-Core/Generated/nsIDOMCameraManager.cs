@@ -242,7 +242,7 @@ namespace Gecko
 		/// <summary>Member HandleStateChange </summary>
 		/// <param name='newState'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleStateChange([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newState);
+		void HandleStateChange([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase newState);
 	}
 	
 	/// <summary>nsICameraPreviewStateChange </summary>
@@ -255,7 +255,7 @@ namespace Gecko
 		/// <summary>Member HandleStateChange </summary>
 		/// <param name='newState'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleStateChange([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newState);
+		void HandleStateChange([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase newState);
 	}
 	
 	/// <summary>nsICameraReleaseCallback </summary>
@@ -280,7 +280,7 @@ namespace Gecko
 		/// <summary>Member HandleEvent </summary>
 		/// <param name='error'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase error);
+		void HandleEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase error);
 	}
 	
 	/// <summary>nsICameraGetCameraCallback </summary>

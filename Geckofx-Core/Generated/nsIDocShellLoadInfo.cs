@@ -181,7 +181,7 @@ namespace Gecko
         /// sets isSrcdocLoad to true
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSrcdocDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrcdocData);
+		void GetSrcdocDataAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSrcdocData);
 		
 		/// <summary>
         ///When set, the load will be interpreted as a srcdoc load, where contents
@@ -189,7 +189,7 @@ namespace Gecko
         /// sets isSrcdocLoad to true
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSrcdocDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrcdocData);
+		void SetSrcdocDataAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSrcdocData);
 		
 		/// <summary>
         ///When set, this is the Source Browsing Context for the navigation. </summary>

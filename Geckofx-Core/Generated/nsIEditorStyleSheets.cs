@@ -44,7 +44,7 @@ namespace Gecko
         /// @param aURL The style sheet to be loaded and applied.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
+		void ReplaceStyleSheet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aURL);
 		
 		/// <summary>
         ///Add the given style sheet to the editor's document,
@@ -54,7 +54,7 @@ namespace Gecko
         /// @param aURL The style sheet to be loaded and applied.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
+		void AddStyleSheet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aURL);
 		
 		/// <summary>
         ///Load and apply the override style sheet, specified by aURL, to the
@@ -69,7 +69,7 @@ namespace Gecko
         /// @param aURL The style sheet to be loaded and applied.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceOverrideStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
+		void ReplaceOverrideStyleSheet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aURL);
 		
 		/// <summary>
         ///Load and apply an override style sheet, specified by aURL, to
@@ -80,7 +80,7 @@ namespace Gecko
         /// @param aURL The style sheet to be loaded and applied.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddOverrideStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
+		void AddOverrideStyleSheet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aURL);
 		
 		/// <summary>
         ///Remove the given style sheet from the editor's document
@@ -89,7 +89,7 @@ namespace Gecko
         /// @param aURL The style sheet to be removed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
+		void RemoveStyleSheet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aURL);
 		
 		/// <summary>
         ///Remove the given override style sheet from the editor's document
@@ -98,7 +98,7 @@ namespace Gecko
         /// @param aURL The style sheet to be removed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveOverrideStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
+		void RemoveOverrideStyleSheet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aURL);
 		
 		/// <summary>
         ///Enable or disable the given style sheet from the editor's document
@@ -108,7 +108,7 @@ namespace Gecko
         /// @param aEnable true to enable, or false to disable the style sheet
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, [MarshalAs(UnmanagedType.U1)] bool aEnable);
+		void EnableStyleSheet([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aURL, [MarshalAs(UnmanagedType.U1)] bool aEnable);
 		
 		/// <summary>
         ///Get the nsCSSStyleSheet associated with the given URL.
@@ -117,7 +117,7 @@ namespace Gecko
         /// @return             the style sheet
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetStyleSheetForURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
+		System.IntPtr GetStyleSheetForURL([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aURL);
 		
 		/// <summary>
         ///Get the URL associated with the given nsCSSStyleSheet.
@@ -126,6 +126,6 @@ namespace Gecko
         /// @return             the style sheet's URL
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetURLForStyleSheet(System.IntPtr aStyleSheet, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetURLForStyleSheet(System.IntPtr aStyleSheet, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 	}
 }

@@ -1130,7 +1130,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Eval([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase bytes, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase fileName, uint line, ref jsdIValue result);
+		bool Eval([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase bytes, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase fileName, uint line, ref jsdIValue result);
 	}
 	
 	/// <summary>
@@ -1230,7 +1230,7 @@ namespace Gecko
         /// Source code for this script, without function declaration.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFunctionSourceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFunctionSource);
+		void GetFunctionSourceAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aFunctionSource);
 		
 		/// <summary>
         /// Line number in source file containing the first line of this script.

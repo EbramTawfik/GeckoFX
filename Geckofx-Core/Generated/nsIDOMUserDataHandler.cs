@@ -36,7 +36,7 @@ namespace Gecko
 	{
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Handle(ushort operation, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key, [MarshalAs(UnmanagedType.Interface)] nsIVariant data, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode src, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode dst);
+		void Handle(ushort operation, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase key, [MarshalAs(UnmanagedType.Interface)] nsIVariant data, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode src, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode dst);
 	}
 	
 	/// <summary>nsIDOMUserDataHandlerConsts </summary>

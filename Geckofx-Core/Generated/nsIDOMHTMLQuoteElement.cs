@@ -53,7 +53,7 @@ namespace Gecko
         /// http://www.whatwg.org/specs/web-apps/current-work/
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCiteAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCite);
+		void GetCiteAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCite);
 		
 		/// <summary>
         /// The nsIDOMHTMLQuoteElement interface is the interface to a [X]HTML
@@ -66,6 +66,6 @@ namespace Gecko
         /// http://www.whatwg.org/specs/web-apps/current-work/
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCiteAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCite);
+		void SetCiteAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCite);
 	}
 }

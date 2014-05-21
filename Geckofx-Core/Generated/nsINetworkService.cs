@@ -165,7 +165,7 @@ namespace Gecko
         /// The external interface name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateUpStreamResult([MarshalAs(UnmanagedType.U1)] bool success, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase externalIfname);
+		void UpdateUpStreamResult([MarshalAs(UnmanagedType.U1)] bool success, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase externalIfname);
 	}
 	
 	/// <summary>
@@ -223,7 +223,7 @@ namespace Gecko
         /// and the date when stats are retrieved
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNetworkInterfaceStats([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase networkName, [MarshalAs(UnmanagedType.Interface)] nsINetworkStatsCallback callback);
+		void GetNetworkInterfaceStats([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase networkName, [MarshalAs(UnmanagedType.Interface)] nsINetworkStatsCallback callback);
 		
 		/// <summary>
         /// Set Alarm of usage per interface
@@ -241,7 +241,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SetNetworkInterfaceAlarm([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase networkName, int threshold, [MarshalAs(UnmanagedType.Interface)] nsINetworkUsageAlarmCallback callback);
+		bool SetNetworkInterfaceAlarm([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase networkName, int threshold, [MarshalAs(UnmanagedType.Interface)] nsINetworkUsageAlarmCallback callback);
 		
 		/// <summary>
         /// Reload Wifi firmware to specific operation mode.
@@ -258,7 +258,7 @@ namespace Gecko
         /// Callback to notify Wifi firmware reload result.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWifiOperationMode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase interfaceName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mode, [MarshalAs(UnmanagedType.Interface)] nsIWifiOperationModeCallback callback);
+		void SetWifiOperationMode([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase mode, [MarshalAs(UnmanagedType.Interface)] nsIWifiOperationModeCallback callback);
 		
 		/// <summary>
         /// Set http proxy for specific network
@@ -319,7 +319,7 @@ namespace Gecko
         /// The network interface we want remove from the default route.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDefaultRoute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase interfaceName);
+		void RemoveDefaultRoute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName);
 		
 		/// <summary>
         /// Add host route.
@@ -346,7 +346,7 @@ namespace Gecko
         /// The interface name we want remove from the routing table.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveHostRoutes([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase interfaceName);
+		void RemoveHostRoutes([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName);
 		
 		/// <summary>
         /// Add host route with resolve.

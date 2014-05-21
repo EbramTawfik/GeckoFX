@@ -780,5 +780,27 @@ setTimeout(function(){
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 			Assert.AreEqual(errorUrl, "chrome://global/bindings/general.xml");
 		}
+
+		[Test]
+		public void LoadContent_ControlHandleCreated_DocumentIsInitalizedWithSpecifiedContent()
+		{
+			Assert.AreEqual(true, browser.IsHandleCreated);
+			browser.LoadContent("<body><div id='main'>hello world</div></body>", "http://www.earth.com", "text/html");
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.AreEqual(browser.Document.GetElementById("main").TextContent, "hello world");
+		}
+
+		[Test]
+		public void LoadContent_ControlHandleNotCreated_DocumentIsInitalizedWithContentAndHandleCreationisForced()
+		{
+			using (var browser = new GeckoWebBrowser())
+			{
+				Assert.AreEqual(false, browser.IsHandleCreated);
+				browser.LoadContent("<body><div id='main'>hello world</div></body>", "http://www.earth.com", "text/html");
+				Assert.AreEqual(true, browser.IsHandleCreated);
+				browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+				Assert.AreEqual(browser.Document.GetElementById("main").TextContent, "hello world");
+			}
+		}
 	}
 }

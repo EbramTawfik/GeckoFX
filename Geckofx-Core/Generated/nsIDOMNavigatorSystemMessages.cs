@@ -55,13 +55,13 @@ namespace Gecko
 		/// <param name='type'> </param>
 		/// <param name='callback'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozSetMessageHandler([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMSystemMessageCallback callback);
+		void MozSetMessageHandler([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMSystemMessageCallback callback);
 		
 		/// <summary>Member MozHasPendingMessage </summary>
 		/// <param name='type'> </param>
 		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MozHasPendingMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type);
+		bool MozHasPendingMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type);
 	}
 }

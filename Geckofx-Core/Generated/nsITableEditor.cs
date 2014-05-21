@@ -320,7 +320,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetSelectedOrParentTableElement([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTagName, ref int aCount);
+		nsIDOMElement GetSelectedOrParentTableElement([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTagName, ref int aCount);
 		
 		/// <summary>
         ///Generally used after GetSelectedOrParentTableElement

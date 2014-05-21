@@ -388,6 +388,10 @@ namespace Gecko
 			if (url == null)
 				throw new ArgumentNullException("url");
 
+			// Control handle must be created so we can get a nsIDocShell.
+			if (!IsHandleCreated)
+				CreateHandle();
+
 			using (var sContentType = new nsACString(contentType))
 			using (var sUtf8 = new nsACString("UTF8"))
 			{
@@ -1451,11 +1455,6 @@ namespace Gecko
 		void nsIEmbeddingSiteWindow.SetTitleAttribute(string aTitle)
 		{
 			DocumentTitle = aTitle;
-		}
-
-		IntPtr nsIEmbeddingSiteWindow.GetSiteWindowAttribute()
-		{
-			return Handle;
 		}
 
 		void nsIEmbeddingSiteWindow.Blur()

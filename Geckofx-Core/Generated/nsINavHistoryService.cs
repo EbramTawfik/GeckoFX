@@ -161,7 +161,7 @@ namespace Gecko
         /// for the uri represented by this node. Otherwise this is an empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTags);
+		void GetTagsAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTags);
 		
 		/// <summary>
         /// The unique ID associated with the page. It my return an empty string
@@ -345,7 +345,7 @@ namespace Gecko
         /// for the uri represented by this node. Otherwise this is an empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTags);
+		new void GetTagsAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTags);
 		
 		/// <summary>
         /// The unique ID associated with the page. It my return an empty string
@@ -622,7 +622,7 @@ namespace Gecko
         /// for the uri represented by this node. Otherwise this is an empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTags);
+		new void GetTagsAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTags);
 		
 		/// <summary>
         /// The unique ID associated with the page. It my return an empty string
@@ -1393,7 +1393,7 @@ namespace Gecko
         /// The unique ID associated with the page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnTitleChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPageTitle, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
+		void OnTitleChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aPageTitle, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
 		
 		/// <summary>
         /// This page and all of its visits are being deleted. Note: the page may not
@@ -1434,7 +1434,7 @@ namespace Gecko
         /// The unique ID associated with the page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPageChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aChangedAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNewValue, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
+		void OnPageChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aChangedAttribute, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNewValue, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
 		
 		/// <summary>
         /// Called when some visits of an history entry are expired.
@@ -1539,13 +1539,13 @@ namespace Gecko
         /// Text search terms.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSearchTermsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchTerms);
+		void GetSearchTermsAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSearchTerms);
 		
 		/// <summary>
         /// Text search terms.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSearchTermsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchTerms);
+		void SetSearchTermsAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSearchTerms);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -2257,7 +2257,7 @@ namespace Gecko
         /// @deprecated use mozIAsyncHistory.getPlacesInfo instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// This is just like markPageAsTyped (in nsIBrowserHistory, also implemented
@@ -2296,7 +2296,7 @@ namespace Gecko
         /// @return character-set, empty string if not found
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// Sets the character-set for an URI.
@@ -2307,7 +2307,7 @@ namespace Gecko
         /// character-set to be set
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCharset);
+		void SetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCharset);
 		
 		/// <summary>
         /// Returns true if this URI would be added to the history. You don't have to

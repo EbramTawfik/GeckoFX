@@ -51,7 +51,7 @@ namespace Gecko
         /// Determine the activation URI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetActivationURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aActivationURI);
+		void GetActivationURIAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aActivationURI);
 		
 		/// <summary>
         /// Determine the previous execution state. The possible values of this
@@ -89,13 +89,13 @@ namespace Gecko
         /// switches to Desktop mode if in metro mode.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LaunchInDesktop([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aArguments);
+		void LaunchInDesktop([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aPath, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aArguments);
 		
 		/// <summary>
         /// Displays a native Windows 8 toast.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowNativeToast([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase anImage, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCookie);
+		void ShowNativeToast([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTitle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMessage, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase anImage, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCookie);
 		
 		/// <summary>
         /// Pins a new tile to the Windows 8 start screen.
@@ -110,7 +110,7 @@ namespace Gecko
         /// @param aSmallTileImage An image for the small tile view
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PinTileAsync([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTileID, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aShortName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aActivationArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTileImage, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSmallTileImage);
+		void PinTileAsync([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTileID, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aShortName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDisplayName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aActivationArgs, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTileImage, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSmallTileImage);
 		
 		/// <summary>
         /// Unpins a tile from the Windows 8 start screen.
@@ -119,7 +119,7 @@ namespace Gecko
         /// ID must only contain valid filesystem characters
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnpinTileAsync([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTileID);
+		void UnpinTileAsync([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTileID);
 		
 		/// <summary>
         /// Determines if a tile is pinned to the Windows 8 start screen.
@@ -130,7 +130,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsTilePinned([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTileID);
+		bool IsTilePinned([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTileID);
 		
 		/// <summary>
         /// Soft keyboard attributes. Used in unison with shown/hidden observer
@@ -167,7 +167,7 @@ namespace Gecko
         /// "metro-settings-entry-selected" notification when the entry is clicked
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint AddSettingsPanelEntry([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLabel);
+		uint AddSettingsPanelEntry([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aLabel);
 		
 		/// <summary>
         /// Change the value of the "switch primary and secondary buttons" preference.

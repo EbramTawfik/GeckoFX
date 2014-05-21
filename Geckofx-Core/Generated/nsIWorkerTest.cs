@@ -41,10 +41,10 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Onmessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
+		void Onmessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase data);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Onerror([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
+		void Onerror([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase data);
 	}
 	
 	/// <summary>nsIWorkerTest </summary>
@@ -57,7 +57,7 @@ namespace Gecko
 		/// <summary>Member PostMessage </summary>
 		/// <param name='data'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PostMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
+		void PostMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase data);
 		
 		/// <summary>Member Terminate </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

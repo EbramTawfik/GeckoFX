@@ -60,7 +60,7 @@ namespace Gecko
         /// return A localized human readable error explanation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetErrorMessage(int aXPCOMErrorCode, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetErrorMessage(int aXPCOMErrorCode, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// Function will fail if aXPCOMErrorCode is not an NSS error code.

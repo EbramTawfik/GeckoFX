@@ -70,14 +70,14 @@ namespace Gecko
         /// entries have standard fields for this in all major formats.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
+		new void GetIdAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aId);
 		
 		/// <summary>
         /// Many feeds contain an ID distinct from their URI, and
         /// entries have standard fields for this in all major formats.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
+		new void SetIdAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aId);
 		
 		/// <summary>
         /// The fields found in the document. Common Atom
@@ -204,14 +204,14 @@ namespace Gecko
         /// and mail code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUpdatedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUpdated);
+		new void GetUpdatedAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUpdated);
 		
 		/// <summary>
         /// The date the feed was updated, in RFC822 form. Parsable by JS
         /// and mail code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetUpdatedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUpdated);
+		new void SetUpdatedAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUpdated);
 		
 		/// <summary>
         /// Syncs a container's fields with its convenience attributes.

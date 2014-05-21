@@ -507,6 +507,23 @@ namespace Gecko
 		void SetData( string value );
 	}
 
+	[StructLayout(LayoutKind.Sequential)]
+	internal struct nsStringContainer
+	{
+		#region unused variables used to ensure struct is correct size on different platforms
+#pragma warning disable 169
+		IntPtr mData;
+		int mLength;
+		int mFlags;
+#pragma warning restore 169
+		#endregion
+
+		public static int Size
+		{
+			get { return Marshal.SizeOf(typeof(nsStringContainer)); }
+		}
+	}
+
 	#region nsAUTF8String
 	[StructLayout(LayoutKind.Sequential)]
 	public class nsAUTF8StringBase
@@ -723,62 +740,97 @@ namespace Gecko
 	}
 	#endregion
 
+
 	#region nsAString
-	[StructLayout(LayoutKind.Sequential)]
-	public class nsAStringBase
-		: IString
+
+	public abstract class nsAStringBase
+		: IString, IDisposable
 	{
-		protected nsAStringBase() { }
+		private IntPtr _container;
 
-		[DllImport("xul", CharSet = CharSet.Unicode,CallingConvention = CallingConvention.Cdecl)]
-		protected static extern int NS_StringContainerInit(nsAStringBase container);
 
-		[DllImport("xul", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-		protected static extern int NS_StringSetData(nsAStringBase str, string data, int length);
+		[DllImport("xul", CallingConvention = CallingConvention.Cdecl)]
+		protected static extern int NS_StringContainerInit(IntPtr container);
 
-		[DllImport("xul", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-		protected static extern int NS_StringGetData(nsAStringBase str, out IntPtr data, IntPtr nullTerm);
+		[DllImport("xul", CallingConvention = CallingConvention.Cdecl)]
+		protected static extern int NS_StringGetData(IntPtr str, out IntPtr data, [MarshalAs(UnmanagedType.U1)] out bool nullTerm);
 
-		[DllImport("xul", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
-		protected static extern int NS_StringContainerFinish(nsAStringBase container);
+		[DllImport("xul", CallingConvention = CallingConvention.Cdecl)]
+		protected static extern int NS_StringContainerFinish(IntPtr container);
 
-		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
-		[return: MarshalAs(UnmanagedType.Bool)]
-		protected static extern bool NS_StringGetIsVoid(nsAStringBase str);
+		[DllImport("xul", CallingConvention = CallingConvention.Cdecl)]
+		[return: MarshalAs(UnmanagedType.U1)]
+		protected static extern bool NS_StringGetIsVoid(IntPtr str);
 
-		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
-		protected static extern void NS_StringSetIsVoid(nsAStringBase str, [MarshalAs(UnmanagedType.Bool)] bool isVoid);
+		[DllImport("xul", CallingConvention = CallingConvention.Cdecl)]
+		protected static extern void NS_StringSetIsVoid(IntPtr str, [MarshalAs(UnmanagedType.U1)] bool isVoid);
 
-		#region unused variables used to ensure struct is correct size on different platforms
-		#pragma warning disable 169
-		IntPtr mData;
-		int mLength;
-		int mFlags;
-		#pragma warning restore 169
-		#endregion
+		[DllImport("xul", EntryPoint = "NS_StringSetData", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+		protected static extern int NS_StringSetAStringData(IntPtr aAString, string data, int length);
 
-		public void SetData(string value)
+		protected nsAStringBase(IntPtr container)
+		{
+			_container = container;
+		}
+
+		~nsAStringBase()
+		{
+			Dispose(false);
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
+			_container = IntPtr.Zero;
+		}
+
+		public IntPtr Container
+		{
+			get
+			{
+				if (_container == IntPtr.Zero)
+					throw new ObjectDisposedException(this.GetType().Name);
+				return _container;
+			}
+		}
+
+		protected bool IsDisposed
+		{
+			get { return _container == IntPtr.Zero; }
+		}
+
+		public virtual void SetData(string value)
 		{
 			if (value != null)
 			{
-				NS_StringSetData(this, value, value.Length);
+				NS_StringSetAStringData(this.Container, value, value.Length);
 			}
 			else
 			{
-				NS_StringSetIsVoid(this, true);
+				NS_StringSetIsVoid(this.Container, true);
 			}
 		}
 
 		public override string ToString()
 		{
+			if (this.IsDisposed)
+				return this.GetType().Name;
+
 			IntPtr data;
-			int length = NS_StringGetData(this, out data, IntPtr.Zero);
+			bool isNullTerminated;
+			int length = NS_StringGetData(this.Container, out data, out isNullTerminated);
 
 			if (length > 0)
 			{
 				return Marshal.PtrToStringUni(data, length);
 			}
-			if (NS_StringGetIsVoid(this))
+
+			if (NS_StringGetIsVoid(this.Container))
 			{
 				return null;
 			}
@@ -786,39 +838,39 @@ namespace Gecko
 		}
 	}
 
-	// TODO: internal nsAString is implementation dependant write some unit tests to ensure we at least notice if it breaks.
-	// On 32 bit Linux systems it will be 12 bytes
-	// On 64 bit Linux Systems it will be 16 bytes.
-	[StructLayout(LayoutKind.Sequential)]
-	public class nsAString : nsAStringBase, IDisposable
-	{					
+	public sealed class nsAString : nsAStringBase
+	{
+		private bool _isNative;
+
 		public nsAString()
+			: base(Xpcom.Alloc(new IntPtr(nsStringContainer.Size)))
 		{
-			NS_StringContainerInit(this);
+			NS_StringContainerInit(this.Container);
 		}
-		
-		public nsAString(string value) : this()
+
+		public nsAString(IntPtr container)
+			: base(container)
 		{
-			if (value != null)
+			_isNative = true;
+		}
+
+		public nsAString(string value)
+			: this()
+		{
+			base.SetData(value);
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			if (!_isNative)
 			{
-				NS_StringSetData(this, value, value.Length);
-			}
-			else
-			{
-				NS_StringSetIsVoid(this, true);
+				NS_StringContainerFinish(this.Container);
+				Xpcom.Free(this.Container);
+				base.Dispose(disposing);
 			}
 		}
-		
-		~nsAString()
-		{
-			Dispose();
-		}
-		
-		public void Dispose()
-		{
-			NS_StringContainerFinish(this);
-			GC.SuppressFinalize(this);
-		}				
+
 	}
+	
 	#endregion
 }

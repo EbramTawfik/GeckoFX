@@ -59,6 +59,6 @@ namespace Gecko
         /// @param onresult    The callback to send the index of the choosen activity. Send -1 if no choice is made.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ChooseActivity([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, Gecko.JsVal activities, [MarshalAs(UnmanagedType.Interface)] nsIActivityUIGlueCallback onresult);
+		void ChooseActivity([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase title, Gecko.JsVal activities, [MarshalAs(UnmanagedType.Interface)] nsIActivityUIGlueCallback onresult);
 	}
 }

@@ -78,9 +78,9 @@ namespace Gecko
 		System.IntPtr GetVoicemailStatus(uint clientId);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVoicemailNumber(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetVoicemailNumber(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVoicemailDisplayName(uint clientId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetVoicemailDisplayName(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 	}
 }

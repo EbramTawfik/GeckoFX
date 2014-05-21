@@ -98,6 +98,6 @@ namespace Gecko
         /// The inserted or removed text
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetModifiedTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aModifiedText);
+		void GetModifiedTextAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aModifiedText);
 	}
 }

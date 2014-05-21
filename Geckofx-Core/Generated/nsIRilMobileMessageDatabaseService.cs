@@ -151,7 +151,7 @@ namespace Gecko
         /// |aCallback| nsIRilMobileMessageDatabaseCallback: an optional callback.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMessageDeliveryByMessageId(int aMessageId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReceiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDelivery, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeliveryStatus, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEnvelopeId, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
+		void SetMessageDeliveryByMessageId(int aMessageId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aReceiver, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDelivery, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDeliveryStatus, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aEnvelopeId, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
 		
 		/// <summary>
         /// |aEnvelopeId| DOMString: the "message-id" specified in the MMS PDU headers.
@@ -160,7 +160,7 @@ namespace Gecko
         /// |aCallback| nsIRilMobileMessageDatabaseCallback: an optional callback.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMessageDeliveryStatusByEnvelopeId([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEnvelopeId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReceiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeliveryStatus, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
+		void SetMessageDeliveryStatusByEnvelopeId([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aEnvelopeId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aReceiver, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDeliveryStatus, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
 		
 		/// <summary>
         /// |aEnvelopeId| DOMString: the "message-id" specified in the MMS PDU headers.
@@ -169,7 +169,7 @@ namespace Gecko
         /// |aCallback| nsIRilMobileMessageDatabaseCallback: an optional callback.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMessageReadStatusByEnvelopeId([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEnvelopeId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReceiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReadStatus, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
+		void SetMessageReadStatusByEnvelopeId([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aEnvelopeId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aReceiver, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aReadStatus, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
 		
 		/// <summary>
         /// |aMessageId| Number: the message's DB record ID.
@@ -185,6 +185,6 @@ namespace Gecko
         /// takes result flag and message record as parameters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMessageRecordByTransactionId([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransactionId, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseRecordCallback aCallback);
+		void GetMessageRecordByTransactionId([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTransactionId, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseRecordCallback aCallback);
 	}
 }

@@ -40,13 +40,13 @@ namespace Gecko
         /// But some phones support multiple volumes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName);
 		
 		/// <summary>
         /// and is only valid when state == STATE_MOUNTED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMountPointAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMountPoint);
+		void GetMountPointAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMountPoint);
 		
 		/// <summary>
         /// from above.
@@ -64,7 +64,7 @@ namespace Gecko
         /// the wakelock every time the volume becomes mounted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMountLockNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMountLockName);
+		void GetMountLockNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMountLockName);
 		
 		/// <summary>
         /// Determines if a mountlock is currently being held against this volume.

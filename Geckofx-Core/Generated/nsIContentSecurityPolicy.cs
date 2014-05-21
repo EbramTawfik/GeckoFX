@@ -81,7 +81,7 @@ namespace Gecko
         /// index.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPolicy(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetPolicy(uint index, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// Returns the number of policies attached to this CSP instance.  Useful with
@@ -119,7 +119,7 @@ namespace Gecko
         /// implementation with different semantics and directive names.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendPolicy([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase policyString, [MarshalAs(UnmanagedType.Interface)] nsIURI selfURI, [MarshalAs(UnmanagedType.U1)] bool reportOnly, [MarshalAs(UnmanagedType.U1)] bool specCompliant);
+		void AppendPolicy([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase policyString, [MarshalAs(UnmanagedType.Interface)] nsIURI selfURI, [MarshalAs(UnmanagedType.U1)] bool reportOnly, [MarshalAs(UnmanagedType.U1)] bool specCompliant);
 		
 		/// <summary>
         /// Whether this policy allows in-page script.
@@ -186,7 +186,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAllowsNonce([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNonce, uint aContentType, [MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolation);
+		bool GetAllowsNonce([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNonce, uint aContentType, [MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolation);
 		
 		/// <summary>
         /// Whether this policy accepts the given inline resource based on the hash
@@ -205,7 +205,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAllowsHash([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContent, ushort aContentType, [MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolation);
+		bool GetAllowsHash([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aContent, ushort aContentType, [MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolation);
 		
 		/// <summary>
         /// For each violated policy (of type violationType), log policy violation on
@@ -231,7 +231,7 @@ namespace Gecko
         /// reports.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogViolationDetails(ushort violationType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceFile, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase scriptSample, int lineNum, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase nonce, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase content);
+		void LogViolationDetails(ushort violationType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sourceFile, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase scriptSample, int lineNum, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase nonce, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase content);
 		
 		/// <summary>
         /// Called after the CSP object is created to fill in appropriate request

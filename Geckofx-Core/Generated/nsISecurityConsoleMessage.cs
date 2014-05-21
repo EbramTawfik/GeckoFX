@@ -41,19 +41,19 @@ namespace Gecko
         /// for security related console messages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTagAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTag);
+		void GetTagAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTag);
 		
 		/// <summary>
         /// Holds localization message tag and message category
         /// for security related console messages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTagAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTag);
+		void SetTagAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTag);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCategoryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCategory);
+		void GetCategoryAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCategory);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCategoryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCategory);
+		void SetCategoryAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCategory);
 	}
 }

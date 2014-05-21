@@ -65,7 +65,7 @@ namespace Gecko
         /// undefined. Don't rely on this for anything.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ContentShellAdded([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aContentShell, [MarshalAs(UnmanagedType.U1)] bool aPrimary, [MarshalAs(UnmanagedType.U1)] bool aTargetable, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aID);
+		void ContentShellAdded([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aContentShell, [MarshalAs(UnmanagedType.U1)] bool aPrimary, [MarshalAs(UnmanagedType.U1)] bool aTargetable, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aID);
 		
 		/// <summary>
         /// Called when a content shell is removed from the docshell tree.  This is
