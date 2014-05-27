@@ -388,17 +388,27 @@ namespace Gecko
 			if (url == null)
 				throw new ArgumentNullException("url");
 
-			// Control handle must be created so we can get a nsIDocShell.
-			if (!IsHandleCreated)
-				CreateHandle();
+			//// Control handle must be created so we can get a nsIDocShell.
+			if(CouldFindOrCreateHandle())
+				InternalLoadContent(content, url, contentType);
+			else //No handle could be created yet, so postpone loading the content until the Handle has been created
+			{
+				EventHandler handler = null;
+				handler = (sender, args) => InternalLoadContent(content, url, contentType);
+				HandleCreated += handler;
+			}
+		}
 
+		private void InternalLoadContent(string content, string url, string contentType)
+		{
 			using (var sContentType = new nsACString(contentType))
 			using (var sUtf8 = new nsACString("UTF8"))
 			{
 				ByteArrayInputStream inputStream = null;
 				try
 				{
-					inputStream = ByteArrayInputStream.Create(System.Text.Encoding.UTF8.GetBytes(content != null ? content : string.Empty));
+					inputStream =
+						ByteArrayInputStream.Create(System.Text.Encoding.UTF8.GetBytes(content != null ? content : string.Empty));
 
 					nsIDocShell docShell = Xpcom.QueryInterface<nsIDocShell>(this.WebBrowser);
 					docShell.LoadStream(inputStream, IOService.CreateNsIUri(url), sContentType, sUtf8, null);					
@@ -411,6 +421,13 @@ namespace Gecko
 				}
 			}
 		} 
+
+		private bool CouldFindOrCreateHandle()
+		{
+			if(!IsHandleCreated)
+				CreateHandle();
+			return IsHandleCreated;
+		}
 
 		[Obsolete]
 		public NavigateFinishedNotifier NavigateFinishedNotifier;
