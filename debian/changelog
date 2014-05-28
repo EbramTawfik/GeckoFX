@@ -1,3 +1,9 @@
+geckofx29 (29.0-5) unstable; urgency=low
+
+  * Various fixes from upstream
+
+ -- Stephen McConnel <stephen_mcconnel@sil.org>  Tue, 20 May 2014 17:34:38 -0500
+
 geckofx29 (29.0-4) unstable; urgency=low
 
   * Fix the Makefile for geckofix.so to avoid unnecessary downloads and other
