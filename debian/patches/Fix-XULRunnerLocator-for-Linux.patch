@@ -1,6 +1,7 @@
+Enhance XULRunnerLocator to check for xulrunner-geckofx29 or xulrunner29
 --- a/Geckofx-Core/XULRunnerLocator.cs
 +++ b/Geckofx-Core/XULRunnerLocator.cs
-@@ -42,10 +42,18 @@
+@@ -36,10 +36,18 @@
  			if (solutionXulRunnerFolder != null)
  				return solutionXulRunnerFolder;
  
@@ -22,4 +23,4 @@
 +			throw new ApplicationException("/usr/lib/firefox doesn't exist");
  		}
  
- 		private static string GetXULRunnerLocationWindows()
+ 		private static string GetXULRunnerLocationWindows(string hintPath)
