@@ -34,8 +34,8 @@ namespace GeckoFxTest
 				throw new ApplicationException(String.Format("LD_LIBRARY_PATH must contain {0}", xulrunnerPath));			
 #endif
 			Xpcom.Initialize(xulrunnerPath);
-			// Uncomment the follow line to enable CustomPrompt's
-			// GeckoPreferences.User["browser.xul.error_pages.enabled"] = false;
+			// Uncomment the follow line to enable error page
+			GeckoPreferences.User["browser.xul.error_pages.enabled"] = true;
 			
 			GeckoPreferences.User["gfx.font_rendering.graphite.enabled"] = true;
 
@@ -153,7 +153,7 @@ namespace GeckoFxTest
 			DisplayElements(g);
 		}
 
-		protected void AddTab()
+		protected GeckoWebBrowser AddTab()
 		{
 			var tabPage = new TabPage();
 			tabPage.Text = "blank";
@@ -178,9 +178,31 @@ namespace GeckoFxTest
 			// browser.DomClick += StopLinksNavigating;
 
 			// Demo use of ReadyStateChange.
-			browser.ReadyStateChange += (s, e) => this.Text = browser.Document.ReadyState;
+			// For some special page, e.g. about:config browser.Document is null.
+			browser.ReadyStateChange += (s, e) => this.Text = browser.Document != null ? browser.Document.ReadyState : "";
+
+			browser.DocumentTitleChanged += (s, e) => tabPage.Text = browser.DocumentTitle;
 
 			browser.EnableDefaultFullscreen();
+
+			// Popup window management.
+			browser.CreateWindow += (s, e) =>
+			{
+				// For <a target="_blank"> and window.open() without specs(3rd param),
+				// e.Flags == GeckoWindowFlags.All, and we load it in a new tab;
+				// otherwise, load it in a popup window, which is maximized by default.
+				// This simulates firefox's behavior.
+				if (e.Flags == GeckoWindowFlags.All)
+					e.WebBrowser = AddTab();
+				else
+				{
+					var wa = System.Windows.Forms.Screen.GetWorkingArea(this);
+					e.InitialWidth = wa.Width;
+					e.InitialHeight = wa.Height;
+				}
+			};
+
+			return browser;
 		}
 
 		/// <summary>
@@ -250,15 +272,12 @@ namespace GeckoFxTest
 			scrollDown.Click += (s, e) => { browser.Window.ScrollByPages(1); };
 			scrollUp.Click += (s, e) => { browser.Window.ScrollByPages(-1); };
 
-			nav.Click += delegate {
+			nav.Click += delegate
+			{
 				// use javascript to warn if url box is empty.
 				if (string.IsNullOrEmpty(urlbox.Text.Trim()))
 					browser.Navigate("javascript:alert('hey try typing a url!');");
-
-				try{
 				browser.Navigate(urlbox.Text);
-				}catch { }
-				tabPage.Text = urlbox.Text;
 			};
 
 			newTab.Click += delegate { AddTab(); };
@@ -291,6 +310,22 @@ namespace GeckoFxTest
 					}					
 				}
 
+			};
+			//url in Navigating event may be the mapped version,
+			//e.g. about:config in Navigating event is jar:file:///<xulrunner>/omni.ja!/chrome/toolkit/content/global/config.xul
+			browser.Navigating += (s, e) =>
+			{
+				if (e.DomWindowTopLevel)
+					urlbox.Text = e.Uri.ToString();
+			};
+			browser.Navigated += (s, e) =>
+			{
+				if (e.DomWindowTopLevel)
+					urlbox.Text = e.Uri.ToString();
+			};
+			browser.HashChange += (s, e) =>
+			{
+				urlbox.Text = e.NewUrl.ToString();
 			};
 
 			print.Click += delegate { browser.Window.Print(); };

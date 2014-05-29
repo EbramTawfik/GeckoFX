@@ -1451,6 +1451,9 @@ namespace Gecko
 		private GeckoWebBrowser _webBrowser;
 
 		public readonly GeckoWindowFlags Flags;
+
+		public int InitialWidth = (int)nsIAppShellServiceConsts.SIZE_TO_CONTENT;
+		public int InitialHeight = (int)nsIAppShellServiceConsts.SIZE_TO_CONTENT;
 		
 		/// <summary>Creates a new instance of a <see cref="GeckoCreateWindowEventArgs"/> object.</summary>
 		/// <param name="flags"></param>
@@ -1467,7 +1470,7 @@ namespace Gecko
 			get { return _webBrowser; }
 			set { _webBrowser = value; }
 		}
-		
+
 	}
 	#endregion
 

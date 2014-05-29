@@ -219,9 +219,8 @@ namespace Gecko
 						((nsIWebBrowserChrome)e.WebBrowser).SetChromeFlagsAttribute(chromeFlags);
 						return e.WebBrowser;
 					}
-									
-					//nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>(Contracts.AppShellService);
-					nsIXULWindow xulChild = AppShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1);
+					
+					nsIXULWindow xulChild = AppShellService.CreateTopLevelWindow(null, null, chromeFlags, e.InitialWidth, e.InitialHeight);
 					return Xpcom.QueryInterface<nsIWebBrowserChrome>(xulChild);									
 				}
 				return null;
@@ -389,10 +388,15 @@ namespace Gecko
 			if (url == null)
 				throw new ArgumentNullException("url");
 
-			// Control handle must be created so we can get a nsIDocShell.
-			if (!IsHandleCreated)
-				CreateHandle();
+			//// Control handle must be created so we can get a nsIDocShell.
+			if(CouldFindOrCreateHandle())
+				InternalLoadContent(content, url, contentType);
+			else //No handle could be created yet, so postpone loading the content until the Handle has been created
+				HandleCreated += (sender, args) => InternalLoadContent(content, url, contentType);
+		}
 
+		private void InternalLoadContent(string content, string url, string contentType)
+		{
 			using (var sContentType = new nsACString(contentType))
 			using (var sUtf8 = new nsACString("UTF8"))
 			{
@@ -412,6 +416,13 @@ namespace Gecko
 				}
 			}
 		} 
+
+		private bool CouldFindOrCreateHandle()
+		{
+			if(!IsHandleCreated)
+				CreateHandle();
+			return IsHandleCreated;
+		}
 
 		[Obsolete]
 		public NavigateFinishedNotifier NavigateFinishedNotifier;
