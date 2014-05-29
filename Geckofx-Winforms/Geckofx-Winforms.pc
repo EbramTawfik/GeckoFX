@@ -4,7 +4,7 @@ libdir=${exec_prefix}/lib
 assemblies_dir=${libdir}/cli/geckofx-29
 Libraries=${assemblies_dir}/Geckofx-Winforms.dll
 
-Name: Geckofx-Winforms-29
+Name: Geckofx-Winforms
 Description: .Net binding to more Gecko web handling stuff
 Version: 29.0
 Libs: -r:${assemblies_dir}/Geckofx-Winforms.dll
