@@ -2,6 +2,18 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v29.0-0.8 ==
+
+1. Improve how geckofx handles Popups.
+2. Improve handling of LoadContent calls that occur before geckofx control handle is created.
+3. Linux Makefile improvements.
+
+Thanks : Duan Yao, Jason Naylor, Steve McConnel.
+
+== v29.0-0.7 ==
+
+1. Linux only tag.
+
 == v29.0-0.6 ==
 
 1. Eliminate mandatory GeckoWebBrowser.UseCustomPrompt() call.
