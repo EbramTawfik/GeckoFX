@@ -90,33 +90,33 @@ namespace Gecko
 		// <summary>
         // XPathResultType
         // </summary>
-		public const ulong ANY_TYPE = 0;
+		public const ushort ANY_TYPE = 0;
 		
 		// 
-		public const ulong NUMBER_TYPE = 1;
+		public const ushort NUMBER_TYPE = 1;
 		
 		// 
-		public const ulong STRING_TYPE = 2;
+		public const ushort STRING_TYPE = 2;
 		
 		// 
-		public const ulong BOOLEAN_TYPE = 3;
+		public const ushort BOOLEAN_TYPE = 3;
 		
 		// 
-		public const ulong UNORDERED_NODE_ITERATOR_TYPE = 4;
+		public const ushort UNORDERED_NODE_ITERATOR_TYPE = 4;
 		
 		// 
-		public const ulong ORDERED_NODE_ITERATOR_TYPE = 5;
+		public const ushort ORDERED_NODE_ITERATOR_TYPE = 5;
 		
 		// 
-		public const ulong UNORDERED_NODE_SNAPSHOT_TYPE = 6;
+		public const ushort UNORDERED_NODE_SNAPSHOT_TYPE = 6;
 		
 		// 
-		public const ulong ORDERED_NODE_SNAPSHOT_TYPE = 7;
+		public const ushort ORDERED_NODE_SNAPSHOT_TYPE = 7;
 		
 		// 
-		public const ulong ANY_UNORDERED_NODE_TYPE = 8;
+		public const ushort ANY_UNORDERED_NODE_TYPE = 8;
 		
 		// 
-		public const ulong FIRST_ORDERED_NODE_TYPE = 9;
+		public const ushort FIRST_ORDERED_NODE_TYPE = 9;
 	}
 }

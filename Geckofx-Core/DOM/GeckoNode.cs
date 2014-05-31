@@ -227,11 +227,15 @@ namespace Gecko
 
 		private nsIDOMXPathResult EvaluateXPathInternal( string xpath )
 		{
-			var evaluator = Xpcom.CreateInstance2<nsIDOMXPathEvaluator>( Contracts.XPathEvaluator );
-			nsIDOMNode node = DomObject;
-			nsIDOMXPathNSResolver resolver = evaluator.Instance.CreateNSResolver( node );
-			nsIDOMXPathResult result =
-				( nsIDOMXPathResult ) evaluator.Instance.Evaluate( new nsAString( xpath ), node, resolver, 0, null );
+			nsIDOMXPathResult result = null;
+            using (var evaluator = Xpcom.CreateInstance2<nsIDOMXPathEvaluator>(Contracts.XPathEvaluator))
+			{
+				var node = DomObject;
+				nsIDOMXPathNSResolver resolver = evaluator.Instance.CreateNSResolver(node);
+				result = (nsIDOMXPathResult)evaluator.Instance.Evaluate(new nsAString(xpath), node, resolver, 0, null);
+				Xpcom.FreeComObject( ref resolver );
+			}
+
 			return result;
 		}
 
@@ -246,11 +250,59 @@ namespace Gecko
 			return new XPathResult(r);
 		}
 
+
+
+		/// <summary>
+		/// Working similar to SelectSingle but not throwing exceptions on error (simply return first result)
+		/// </summary>
+		/// <param name="xpath"></param>
+		/// <returns></returns>
+		public GeckoNode SelectFirst( string xpath )
+		{
+			var r = EvaluateXPathInternal( xpath );
+
+			nsIDOMNode singleNode = null;
+			switch (r.GetResultTypeAttribute())
+			{
+				case nsIDOMXPathResultConsts.UNORDERED_NODE_ITERATOR_TYPE:
+					singleNode = r.IterateNext();
+					break;
+				case nsIDOMXPathResultConsts.FIRST_ORDERED_NODE_TYPE:
+				case nsIDOMXPathResultConsts.ANY_UNORDERED_NODE_TYPE:
+					singleNode = r.GetSingleNodeValueAttribute();
+					break;
+			}
+
+			var ret = singleNode.Wrap( GeckoNode.Create );
+			Xpcom.FreeComObject( ref r );
+			return ret;
+		}
+
 		public GeckoNode SelectSingle( string xpath )
 		{
-			var r = EvaluateXPathInternal(xpath);
-			var singleNode = r.GetSingleNodeValueAttribute();
-			var ret= singleNode.Wrap(GeckoNode.Create);
+			var r = EvaluateXPathInternal( xpath );
+
+			nsIDOMNode singleNode = null;
+			switch (r.GetResultTypeAttribute())
+			{
+				case nsIDOMXPathResultConsts.UNORDERED_NODE_ITERATOR_TYPE:
+					singleNode = r.IterateNext();
+					var test = r.IterateNext();
+					if (test != null)
+					{
+						Xpcom.FreeComObject( ref test );
+						Xpcom.FreeComObject( ref singleNode );
+						Xpcom.FreeComObject( ref r );
+						throw new GeckoDomException( "There are more than 1 nodes in Single selection" );
+					}
+					break;
+				case nsIDOMXPathResultConsts.FIRST_ORDERED_NODE_TYPE:
+				case nsIDOMXPathResultConsts.ANY_UNORDERED_NODE_TYPE:
+					singleNode = r.GetSingleNodeValueAttribute();
+					break;
+			}
+
+			var ret = singleNode.Wrap( GeckoNode.Create );
 			Xpcom.FreeComObject( ref r );
 			return ret;
 		}
