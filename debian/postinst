@@ -20,8 +20,8 @@ set -e
 
 case "$1" in
     configure)
-        gacutil -i /usr/lib/cli/geckofx-29/Geckofx-Core.dll
-        gacutil -i /usr/lib/cli/geckofx-29/Geckofx-Winforms.dll
+        gacutil -root /usr/lib -i /usr/lib/cli/geckofx-29/Geckofx-Core.dll
+        gacutil -root /usr/lib -i /usr/lib/cli/geckofx-29/Geckofx-Winforms.dll
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

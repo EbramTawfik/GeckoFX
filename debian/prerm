@@ -19,8 +19,8 @@ set -e
 
 case "$1" in
     remove|upgrade|deconfigure)
-        gacutil -us /usr/lib/cli/geckofx-29/Geckofx-Core.dll
-        gacutil -us /usr/lib/cli/geckofx-29/Geckofx-Winforms.dll
+        gacutil -root /usr/lib -us /usr/lib/cli/geckofx-29/Geckofx-Core.dll
+        gacutil -root /usr/lib -us /usr/lib/cli/geckofx-29/Geckofx-Winforms.dll
     ;;
 
     failed-upgrade)
