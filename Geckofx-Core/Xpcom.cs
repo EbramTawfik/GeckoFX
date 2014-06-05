@@ -283,8 +283,8 @@ namespace Gecko
 
 			if (binDirectory != null)
 			{
-				Environment.SetEnvironmentVariable("path",
-					Environment.GetEnvironmentVariable("path") + ";" + binDirectory, EnvironmentVariableTarget.Process);
+				Environment.SetEnvironmentVariable("PATH",
+					Environment.GetEnvironmentVariable("PATH") + ";" + binDirectory, EnvironmentVariableTarget.Process);
 			}
 			
 			object mreAppDir = null;
