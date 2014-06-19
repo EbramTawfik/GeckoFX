@@ -2184,19 +2184,44 @@ namespace Gecko
 									ActiveNetworkChannelUrls.Add(nsString.Get(httpChannel.GetURIAttribute().GetSpecAttribute));
 
 									var callbacks = httpChannel.GetNotificationCallbacksAttribute();
-									var httpChannelXHR = Xpcom.QueryInterface<nsIXMLHttpRequest>(callbacks);
 
-									if (httpChannelXHR != null) {
-#if false
-										nsIDOMEventListener origEventListener = httpChannelXHR.GetOnreadystatechangeAttribute();
-										var newEventListener = new GeckoJavaScriptHttpChannelWrapper(this, httpChannel, origEventListener);
-										origJavaScriptHttpChannels.Add(httpChannel, newEventListener);
-										httpChannelXHR.SetOnreadystatechangeAttribute(newEventListener);
-#else
-										// TODO: update for xulrunner/firefox 18
-										throw new NotImplementedException();
-#endif
-									}
+                                    if (callbacks != null)
+                                    {
+                                        var httpChannelXHR = Xpcom.QueryInterface<nsIXMLHttpRequest>(callbacks);
+
+                                        if (httpChannelXHR != null)
+                                        {
+                                            nsIXMLHttpRequestEventTarget mXMLRequestEvent = Xpcom.QueryInterface<nsIXMLHttpRequestEventTarget>(httpChannelXHR);
+
+                                            if (mXMLRequestEvent != null)
+                                            {
+                                                GeckoJavaScriptHttpChannelWrapper mEventListener = new GeckoJavaScriptHttpChannelWrapper(this, httpChannel);
+                                                origJavaScriptHttpChannels.Add(httpChannel, mEventListener);
+                       
+                                                using (nsAString mLoads = new nsAString("load"))
+                                                {
+                                                    mXMLRequestEvent.AddEventListener(mLoads, mEventListener, true, false, 0);
+                                                }
+
+                                                using (nsAString mLoads = new nsAString("abort"))
+                                                {
+                                                    mXMLRequestEvent.AddEventListener(mLoads, mEventListener, true, false, 0);
+                                                }
+
+                                                using (nsAString mLoads = new nsAString("error"))
+                                                {
+                                                    mXMLRequestEvent.AddEventListener(mLoads, mEventListener, true, false, 0);
+                                                }
+
+                                                Marshal.ReleaseComObject(mXMLRequestEvent);
+                                            }
+
+                                            Marshal.ReleaseComObject(httpChannelXHR);
+                                        }
+
+                                        Marshal.ReleaseComObject(callbacks);
+                                    }
+
 								}
 								break;
 							case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_REQUEST_BODY_SENT:
@@ -2246,21 +2271,17 @@ namespace Gecko
 	}
 	#endregion
 	
-
-
 	#region GeckoJavaScriptHttpChannelWrapper
 	public class GeckoJavaScriptHttpChannelWrapper : nsIDOMEventListener
 	{
 		private readonly GeckoWebBrowser m_browser;
 		private readonly nsIHttpChannel m_httpChannel;
-		private readonly nsIDOMEventListener m_origEventListener;
 		private readonly nsIXMLHttpRequest m_notificationCallsbacks;
 
-		public GeckoJavaScriptHttpChannelWrapper(GeckoWebBrowser p_browser, nsIHttpChannel p_httpChannel, nsIDOMEventListener p_origEventListener)
+		public GeckoJavaScriptHttpChannelWrapper(GeckoWebBrowser p_browser, nsIHttpChannel p_httpChannel)
 		{
 			m_browser = p_browser;
 			m_httpChannel = p_httpChannel;
-			m_origEventListener = p_origEventListener;
 
 			m_notificationCallsbacks = Xpcom.QueryInterface<nsIXMLHttpRequest>(m_httpChannel.GetNotificationCallbacksAttribute());
 		}
@@ -2272,21 +2293,9 @@ namespace Gecko
 			//var xhr_status = m_notificationCallsbacks.GetStatusAttribute();
 			var xhr_readyState = m_notificationCallsbacks.GetReadyStateAttribute();
 
-			bool bHandlerFailed = false;
-
-			try
-			{
-				if (m_origEventListener != null)
-					m_origEventListener.HandleEvent(@event);
-			}
-			catch (Exception)
-			{
-				bHandlerFailed = true;
-			}
-
 			// remove when finished
-			if (bHandlerFailed || (xhr_readyState == 4))
-			{
+			if (xhr_readyState == 4)
+			{                         
 				m_browser.origJavaScriptHttpChannels.Remove(m_httpChannel);
 			}
 		}

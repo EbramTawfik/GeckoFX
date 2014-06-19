@@ -607,7 +607,12 @@ namespace Gecko
 		public static JSErrorReportCallback JS_SetErrorReporter(IntPtr cx, JSErrorReportCallback callback)
 		{
 			if (Xpcom.IsLinux)
-				throw new NotImplementedException();
+			{
+				if (Xpcom.Is64Bit)
+					return JS_SetErrorReporter_Linux64(cx, callback);
+
+				return JS_SetErrorReporter_Linux32(cx, callback);
+			}
 
 			if (Xpcom.Is64Bit)
 				return JS_SetErrorReporter_Win64(cx, callback);
@@ -947,7 +952,6 @@ namespace Gecko
 		
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_DestroyRuntimeP9JSRuntime")]
 		private static extern void JS_DestroyRuntime_Linux32(IntPtr rt);
-
 		#endregion
 
 		#region Linux x64
@@ -1077,7 +1081,6 @@ namespace Gecko
 		
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_DestroyRuntimeP9JSRuntime")]
 		private static extern void JS_DestroyRuntime_Linux64(IntPtr rt);
-
 		#endregion
 
 	}

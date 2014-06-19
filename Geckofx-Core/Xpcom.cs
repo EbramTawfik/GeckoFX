@@ -283,8 +283,8 @@ namespace Gecko
 
 			if (binDirectory != null)
 			{
-				Environment.SetEnvironmentVariable("path",
-					Environment.GetEnvironmentVariable("path") + ";" + binDirectory, EnvironmentVariableTarget.Process);
+				Environment.SetEnvironmentVariable("PATH",
+					Environment.GetEnvironmentVariable("PATH") + ";" + binDirectory, EnvironmentVariableTarget.Process);
 			}
 			
 			object mreAppDir = null;
@@ -659,7 +659,11 @@ namespace Gecko
 		{
 			if (ptr == IntPtr.Zero)
 				return null;
-
+						
+			// Mono (2.10.8.1) bug : Marshal.GetObjectForIUnknown is not incrementing the COM objects ref count.			
+			if (IsMono)			
+				Marshal.AddRef(ptr);
+			
 			return Marshal.GetObjectForIUnknown(ptr);
 		}
 
