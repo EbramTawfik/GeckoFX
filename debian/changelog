@@ -1,3 +1,9 @@
+geckofx29 (29.0.0.8-1) unstable; urgency=low
+
+  * Merge in upstream fixes.  See README.txt for details.
+
+ -- Stephen McConnel <stephen_mcconnel@sil.org>  Wed, 04 Jun 2014 10:59:22 -0500
+
 geckofx29 (29.0.0.6-3) unstable; urgency=low
 
   * Use "gacutil -root /usr/lib" to ensure installing into the standard GAC.
