@@ -38,7 +38,6 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
  libgtk2.0-cil (>= 2.12.10),
  libgdiplus (>= 2.10),
  xulrunner-geckofx29|xulrunner29
-Provides: geckofx
 Description: C# binding for gecko web browser controls
  GeckoFx is a C# binding of the Gecko (aka Firefox) browser controls.
  This version binds the controls from Firefox/xulrunner 29.

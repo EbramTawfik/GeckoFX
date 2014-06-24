@@ -1,3 +1,11 @@
+geckofx29 (29.0.0.10) unstable; urgency=low
+
+  * Convert to native package instead of quilt since local changes have all
+    been accepted upstream.
+  * Merge in upstream fixes.  See README.txt for details.
+
+ -- Stephen McConnel <stephen_mcconnel@sil.org>  Tue, 24 Jun 2014 11:24:45 -0500
+
 geckofx29 (29.0.0.8-1) unstable; urgency=low
 
   * Merge in upstream fixes.  See README.txt for details.
