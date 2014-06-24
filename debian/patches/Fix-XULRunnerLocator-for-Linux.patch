@@ -1,0 +1,26 @@
+Enhance XULRunnerLocator to check for xulrunner-geckofx29 or xulrunner29
+--- a/Geckofx-Core/XULRunnerLocator.cs
++++ b/Geckofx-Core/XULRunnerLocator.cs
+@@ -36,10 +36,18 @@
+ 			if (solutionXulRunnerFolder != null)
+ 				return solutionXulRunnerFolder;
+ 
+-			if (!Directory.Exists("/usr/lib/firefox"))
+-				throw new ApplicationException("/usr/lib doesn't exist");
+-
+-			return "/usr/lib/firefox";
++			string version = typeof(XULRunnerLocator).Assembly.GetName().Version.Major.ToString();
++			string[] folders = new string[] {
++				"/usr/lib/xulrunner-geckofx-" + version,
++				"/usr/lib/xulrunner-" + version,
++				"/usr/lib/firefox"
++			};
++			for (int i = 0; i < folders.Length; ++i)
++			{
++				if (Directory.Exists(folders[i]))
++					return folders[i];
++			}
++			throw new ApplicationException("/usr/lib/firefox doesn't exist");
+ 		}
+ 
+ 		private static string GetXULRunnerLocationWindows(string hintPath)
