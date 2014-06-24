@@ -2,6 +2,19 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v29.0-0.10 ==
+
+1. Added "load", "abort", and "error" listeners to XML Requests to fix the AjaxIsBusy flag.
+2. Hook up JS_SetErrorReporter on Linux
+3. Generate debug info on Linux
+4. Enhance effective Debian/Ubuntu packaging.
+
+Thanks: Bron-Yr-Aur, Eberhard Beilharz, Steve McConnel.
+
+== v29.0-0.9 ==
+
+1. Linux only tag.
+
 == v29.0-0.8 ==
 
 1. Improve how geckofx handles Popups.
