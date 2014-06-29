@@ -50,3 +50,7 @@ install: Geckofx
 	install GeckoFxTest/bin/x86/Debug_Linux/Geckofx-Core.dll.config $(DESTDIR)/Geckofx-Core.dll.config
 	install GeckoFxTest/bin/x86/Debug_Linux/Geckofx-Winforms.dll $(DESTDIR)/Geckofx-Winforms.dll
 	install Geckofx-Core/Linux/geckofix.so $(DESTDIR)/geckofix.so
+	install -d $(DESTDIR)/pkgconfig
+	install Geckofx-Core/Geckofx-Core.pc $(DESTDIR)/pkgconfig/Geckofx-Core.pc
+	install Geckofx-Winforms/Geckofx-Winforms.pc $(DESTDIR)/pkgconfig/Geckofx-Winforms.pc
+	chmod -x $(DESTDIR)/pkgconfig/*.pc

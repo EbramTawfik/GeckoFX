@@ -45,11 +45,13 @@
     <DefineConstants>GECKO_1_9_1;GECKO_1_9</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_Linux|x86'">
+    <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Debug_Linux\</OutputPath>
-    <DebugType>none</DebugType>
     <Optimize>false</Optimize>
     <DefineConstants>TRACE;DEBUG;GECKO_1_9_1;GECKO_1_9;GTK</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_Windows|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -80,7 +82,7 @@
     <DefineConstants>TRACE;DEBUG;GECKO_1_9_1;GECKO_1_9;GTK</DefineConstants>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <DebugType>none</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_Windows|AnyCPU'">
