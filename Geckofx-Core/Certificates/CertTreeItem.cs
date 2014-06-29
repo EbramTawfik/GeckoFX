@@ -14,7 +14,7 @@ namespace Gecko.Certificates
 
 		public Certificate Certificate
 		{
-			get { return Certificate.Create( _certTreeItem.Instance.GetCertAttribute() ); }
+			get { return Certificate.Create( (nsIX509Cert3) _certTreeItem.Instance.GetCertAttribute() ); }
 		}
 
 		public string HostPort

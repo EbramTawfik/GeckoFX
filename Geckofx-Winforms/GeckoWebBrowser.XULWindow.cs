@@ -1,8 +1,12 @@
-﻿namespace Gecko
+﻿using System.Diagnostics;
+
+namespace Gecko
 {
 
 	// Implement nsIXULWindow interface on GeckoWebBrowser, so that nsIWindowMediator can find GeckoWebBrowser.
 	// It seems that only GetDocShellAttribute() is required by nsIWindowMediator, so we leave other method not implemented.
+	// 
+	// It was a bad idea to throw NotImplementedException, because this methods are called in XUL specific urls like about:config
 	public partial class GeckoWebBrowser : nsIXULWindow
 	{
 
@@ -13,97 +17,107 @@
 
 		public bool GetIntrinsicallySizedAttribute()
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("GetIntrinsicallySizedAttribute called");
+			return false;
 		}
 
 		public void SetIntrinsicallySizedAttribute(bool aIntrinsicallySized)
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("SetIntrinsicallySizedAttribute called");
 		}
 
 		public nsIDocShellTreeItem GetPrimaryContentShellAttribute()
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("GetPrimaryContentShellAttribute called");
+			return null;
 		}
 
 		public nsIDocShellTreeItem GetContentShellById(string ID)
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("GetContentShellById called");
+			return null;
 		}
 
 		public void AddChildWindow(nsIXULWindow aChild)
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("AddChildWindow called");
 		}
 
 		public void RemoveChildWindow(nsIXULWindow aChild)
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("RemoveChildWindow called");
 		}
 
 		public void Center(nsIXULWindow aRelative, bool aScreen, bool aAlert)
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("Center called");
 		}
 
 		public void ShowModal()
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("ShowModal called");
 		}
 
 		public uint GetZLevelAttribute()
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("GetZLevelAttribute called");
+			return 0;
 		}
 
 		public void SetZLevelAttribute(uint aZLevel)
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("SetZLevelAttribute called");
 		}
 
 		public uint GetContextFlagsAttribute()
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("GetContextFlagsAttribute called");
+			return 0;
 		}
 
 		public void SetContextFlagsAttribute(uint aContextFlags)
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("SetContextFlagsAttribute called");
 		}
 
 		uint nsIXULWindow.GetChromeFlagsAttribute()
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("GetChromeFlagsAttribute called");
+			return ChromeFlags;
 		}
 
 		void nsIXULWindow.SetChromeFlagsAttribute(uint aChromeFlags)
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("SetChromeFlagsAttribute called");
+			ChromeFlags = aChromeFlags;
 		}
 
 		public void AssumeChromeFlagsAreFrozen()
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("AssumeChromeFlagsAreFrozen called");
 		}
 
 		public nsIXULWindow CreateNewWindow(int aChromeFlags)
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("CreateNewWindow called");
+			return null;
 		}
 
 		public nsIXULBrowserWindow GetXULBrowserWindowAttribute()
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("GetXULBrowserWindowAttribute called");
+			return null;
 		}
 
 		public void SetXULBrowserWindowAttribute(nsIXULBrowserWindow aXULBrowserWindow)
 		{
-			throw new System.NotImplementedException();
+			Debug.WriteLine("SetXULBrowserWindowAttribute called");
 		}
 
 		public void ApplyChromeFlags()
 		{
-			throw new System.NotImplementedException();
+			// this method is called in about:config !!!
+			Debug.WriteLine("ApplyChromeFlags called");
 		}
 	}
 }

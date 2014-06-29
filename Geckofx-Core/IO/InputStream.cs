@@ -129,14 +129,27 @@ namespace Gecko.IO
 		{
 			get
 			{
-				return _seekableStream.Tell() + _inputStream.Available();
+				if (_seekable)
+				{
+					return _seekableStream.Tell() + _inputStream.Available();
+				}
+				return _inputStream.Available();
 			}
 		}
 
 		public override long Position
 		{
-			get { return _seekableStream.Tell(); }
-			set { _seekableStream.Seek( 0, (int) value ); }
+			get
+			{
+				return _seekable ? _seekableStream.Tell() : 0;
+			}
+			set
+			{
+				if (_seekable)
+				{
+					_seekableStream.Seek(0, (int)value);
+				}
+			}
 		}
 		#endregion
 

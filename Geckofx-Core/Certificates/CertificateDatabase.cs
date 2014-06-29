@@ -18,7 +18,7 @@ namespace Gecko.Certificates
 
 		public static Certificate ConstructX509FromBase64(string base64)
 		{
-			return Certificate.Create(  _certDb.Instance.ConstructX509FromBase64( base64 ) );
+			return Certificate.Create(  (nsIX509Cert3) _certDb.Instance.ConstructX509FromBase64( base64 ) );
 		}
 
 

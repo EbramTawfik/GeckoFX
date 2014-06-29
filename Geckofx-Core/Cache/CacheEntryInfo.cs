@@ -6,11 +6,24 @@ using Gecko.Interop;
 namespace Gecko.Cache
 {
 	public class CacheEntryInfo
+		:IDisposable
 	{
-		private ComPtr< nsICacheEntryInfo> _cacheEntryInfo;
-		internal CacheEntryInfo(nsICacheEntryInfo cacheEntryInfo)
+		private ComPtr<nsICacheEntryInfo> _cacheEntryInfo;
+
+		protected CacheEntryInfo( nsICacheEntryInfo cacheEntryInfo )
 		{
 			_cacheEntryInfo = new ComPtr<nsICacheEntryInfo>( cacheEntryInfo );
+		}
+
+		public void Dispose()
+		{
+			_cacheEntryInfo.Dispose();
+			GC.SuppressFinalize( this );
+		}
+
+		public nsICacheEntryInfo NativeCacheEntryInfo
+		{
+			get { return _cacheEntryInfo.Instance; }
 		}
 
 
@@ -36,7 +49,7 @@ namespace Gecko.Cache
 
 		public DateTime ExpirationTime
 		{
-			get { return Xpcom.Time.FromSecondsSinceEpoch(ExpirationTimeNative); }
+			get { return Xpcom.Time.FromSecondsSinceEpoch( ExpirationTimeNative ); }
 		}
 
 
@@ -65,6 +78,19 @@ namespace Gecko.Cache
 			get { return _cacheEntryInfo.Instance.IsStreamBased(); }
 		}
 
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="info"></param>
+		/// <param name="incrementRefCounter">for visitor api OLNY</param>
+		/// <returns></returns>
+		public static CacheEntryInfo Create( nsICacheEntryInfo info)
+		{
+			if (info is nsICacheEntryDescriptor)
+			{
+				return CacheEntryDescriptor.Create( (nsICacheEntryDescriptor) info );
+			}
+			return new CacheEntryInfo( info );
+		}
 	}
 }

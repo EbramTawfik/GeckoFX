@@ -85,6 +85,24 @@ namespace Gecko.Interop
 
 		#endregion
 
+
+		public ComPtr<TInterface> QueryInterface<TInterface>()
+			where TInterface : class
+		{
+			var iface = Xpcom.QueryInterface<TInterface>( _instance );
+			return iface == null ? null : new ComPtr<TInterface>( iface );
+		}
+
+		/// <summary>
+  /// Reflection-like Mozilla API
+  /// </summary>
+  /// <returns></returns>
+		public ClassInfo GetClassInfo()
+		{
+			var iface = Xpcom.QueryInterface<nsIClassInfo>(_instance);
+			return iface == null ? null : new ClassInfo( iface );
+		}
+
 		/// <summary>
 		/// Method for getting specific function in com object
 		/// </summary>

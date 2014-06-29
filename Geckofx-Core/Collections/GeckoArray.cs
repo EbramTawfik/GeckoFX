@@ -13,6 +13,8 @@ namespace Gecko.Collections
 	/// <typeparam name="TGeckoObject"></typeparam>
 	internal sealed class GeckoArray<TWrapper,TGeckoObject>
 		: IGeckoArray<TWrapper>
+		where TGeckoObject :class
+		where TWrapper :class
 	{
 		private nsIArray _array;
 		private Func<TGeckoObject, TWrapper> _translator;
@@ -27,7 +29,8 @@ namespace Gecko.Collections
 		{
 			get
 			{
-				var obj = _array.GetElementAs<TGeckoObject>(index);
+				var obj = _array.GetElementAs<TGeckoObject>( index );
+				if (obj == null) return null;
 				var ret = _translator( obj );
 				return ret;
 			}
