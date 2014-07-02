@@ -20,6 +20,12 @@ namespace GeckofxUnitTests.Common
 			Assert.IsNotNull( _browser );
 		}
 
+		protected override void AfterEachTestTearDown()
+		{
+			base.AfterEachTestTearDown();
+			_browser.Dispose();
+		}
+
 		protected GeckoWebBrowser Browser
 		{
 			get { return _browser; }
