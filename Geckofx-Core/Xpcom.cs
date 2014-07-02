@@ -561,7 +561,7 @@ namespace Gecko
 		#endregion
 
 		#region GetService
-		public static object GetService(Guid classIID)
+		public static IntPtr GetService(Guid classIID)
 		{
 			AssertCorrectThread();
 

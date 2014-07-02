@@ -32,7 +32,7 @@ namespace Gecko.Certificates
 		/// <returns>A nsIX509Cert</returns>
 		public Certificate GetCert(uint index)
 		{
-			return Certificate.Create( _certTree.GetCert( index ) );
+			return Certificate.Create( (nsIX509Cert3) _certTree.GetCert( index ) );
 		}
 
 		/// <summary>Member GetTreeItem </summary>

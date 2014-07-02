@@ -73,8 +73,9 @@
     <DefineConstants>GECKO_1_9_1;GECKO_1_9</DefineConstants>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <DebugType>none</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_Linux|AnyCPU'">
     <OutputPath>bin\Debug_Linux\</OutputPath>
@@ -149,9 +150,11 @@
     <Compile Include="Generated\nsILoadContextInfo.cs" />
     <Compile Include="Generated\nsINetworkService.cs" />
     <Compile Include="Generated\nsIReflowObserver.cs" />
+    <Compile Include="Interop\ClassInfo.cs" />
     <Compile Include="Interop\HandWrittenInterfaces\nsIScriptContext.cs" />
     <Compile Include="Interop\SpiderMonkey\JSAutoCompartment.cs" />
     <Compile Include="Interop\SpiderMonkey\MutableHandle.cs" />
+    <Compile Include="IO\WrapperInputStream.cs" />
     <Compile Include="NSSErrors.cs" />
     <Compile Include="GeckoWindowCollection.cs" />
     <Compile Include="Generated\imgINotificationObserver.cs" />

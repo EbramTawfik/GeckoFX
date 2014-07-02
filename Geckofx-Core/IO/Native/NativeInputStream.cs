@@ -15,62 +15,17 @@ namespace Gecko.IO.Native
 	public sealed class NativeInputStream
 		: BaseNativeInputStream, IDisposable
 	{
-		
-		#region ctor & dtor
-		private NativeInputStream(byte[] array)
-		{
-			Init( AllocateBufferCopy( array ), array.Length );
-		}
-
-		private static IntPtr AllocateBufferCopy(byte[] array)
-		{
-			if (array.Length ==0) return IntPtr.Zero;
-			var ret = Marshal.AllocHGlobal(array.Length);
-			Marshal.Copy(array, 0, ret, array.Length);
-			return ret;
-		}
-
-		~NativeInputStream()
-		{
-			Close();
-		}
-
-		public void Dispose()
-		{
-			Close();
-			GC.SuppressFinalize( this );
-		}
-		#endregion
-
-		public override void Close()
-		{
-			if (Buffer != IntPtr.Zero)
-			{
-				Marshal.FreeHGlobal(Buffer);
-				Init( IntPtr.Zero, 0 );
-			}
-		}
-
-		public static NativeInputStream Create(byte[] buffer)
-		{
-			return buffer == null ? null : new NativeInputStream( buffer );
-		}
-	}
-
-	public sealed class NativeInputStream2
-		: BaseNativeInputStream, IDisposable
-	{
 		private GCHandle _handle;
 
 		#region ctor & dtor
-		private NativeInputStream2(byte[] array)
+		private NativeInputStream(byte[] array)
 		{
 			_handle = GCHandle.Alloc(array, GCHandleType.Pinned);
 			Init( _handle.AddrOfPinnedObject(), array.Length );
 		}
 
 
-		~NativeInputStream2()
+		~NativeInputStream()
 		{
 			Close();
 		}
@@ -92,9 +47,9 @@ namespace Gecko.IO.Native
 
 		
 
-		public static NativeInputStream2 Create(byte[] buffer)
+		public static NativeInputStream Create(byte[] buffer)
 		{
-			return buffer == null ? null : new NativeInputStream2( buffer );
+			return buffer == null ? null : new NativeInputStream( buffer );
 		}
 	}
 }

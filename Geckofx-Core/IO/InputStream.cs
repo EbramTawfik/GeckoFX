@@ -10,29 +10,32 @@ using Gecko.Interop;
 namespace Gecko.IO
 {
 	public class InputStream
-		:System.IO.Stream
+		: System.IO.Stream
 	{
 		private bool _seekable;
 		private nsISeekableStream _seekableStream;
 		internal nsIInputStream _inputStream;
 
-		internal InputStream(nsIInputStream inputStream)
+		#region ctor & dtor
+		internal InputStream( nsIInputStream inputStream )
 		{
 			_inputStream = inputStream;
 			// refcount (+1)
-			_seekableStream = Xpcom.QueryInterface<nsISeekableStream>(inputStream);
+			_seekableStream = Xpcom.QueryInterface<nsISeekableStream>( inputStream );
 			_seekable = _seekableStream != null;
 		}
 
 		protected override void Dispose( bool disposing )
 		{
 			// refcount (-1)
-			Xpcom.FreeComObject(ref _seekableStream);
+			Xpcom.FreeComObject( ref _seekableStream );
 			// refcount (-1)
-			Xpcom.FreeComObject(ref _inputStream);
+			Xpcom.FreeComObject( ref _inputStream );
 			base.Dispose( disposing );
 		}
+		#endregion
 
+		#region .NET Stream Model
 		public override void Flush()
 		{
 		}
@@ -52,39 +55,39 @@ namespace Gecko.IO
 			// SeekOrigin.Current 1
 			// SeekOrigin.End     2
 
-			_seekableStream.Seek((int)origin, (int)offset);
+			_seekableStream.Seek( (int) origin, offset );
 			return _seekableStream.Tell();
 		}
 
 		public override void SetLength( long value )
 		{
 			var position = _seekableStream.Tell();
-			_seekableStream.Seek(0, (int)value);
+			_seekableStream.Seek( 0, (int) value );
 			_seekableStream.SetEOF();
 			if (position < value)
 			{
 				// Returning to old position
-				_seekableStream.Seek( 0,position );
+				_seekableStream.Seek( 0, position );
 			}
 
 		}
 
-		public unsafe override int Read( byte[] buffer, int offset, int count )
+		public override unsafe int Read( byte[] buffer, int offset, int count )
 		{
 			uint ret;
 			// strict values & buffer size check before using pointers
-			if ((offset<0)||(count<=0)) return 0;
+			if (( offset < 0 ) || ( count <= 0 )) return 0;
 			// offset >= 0 count>0
-			if ((offset+count)>buffer.Length) return 0;
-			fixed (byte* bufferPtr =buffer)
+			if (( offset + count ) > buffer.Length) return 0;
+			fixed (byte* bufferPtr = buffer)
 			{
 				byte* writePtr = bufferPtr + offset;
-				ret=_inputStream.Read(new IntPtr(writePtr), (uint)count);
+				ret = _inputStream.Read( new IntPtr( writePtr ), (uint) count );
 			}
-			return ( int ) ret;
+			return (int) ret;
 		}
 
-		public unsafe override int ReadByte()
+		public override unsafe int ReadByte()
 		{
 			byte ret;
 			byte* ptr = &ret;
@@ -101,7 +104,7 @@ namespace Gecko.IO
 		/// <param name="count"></param>
 		public override void Write( byte[] buffer, int offset, int count )
 		{
-			throw new NotSupportedException("InputStream can only read data :)");
+			throw new NotSupportedException( "InputStream can only read data :)" );
 		}
 
 		public override bool CanRead
@@ -126,26 +129,67 @@ namespace Gecko.IO
 		{
 			get
 			{
-				return _seekableStream.Tell() + _inputStream.Available();
+				if (_seekable)
+				{
+					return _seekableStream.Tell() + _inputStream.Available();
+				}
+				return _inputStream.Available();
 			}
 		}
+
+		public override long Position
+		{
+			get
+			{
+				return _seekable ? _seekableStream.Tell() : 0;
+			}
+			set
+			{
+				if (_seekable)
+				{
+					_seekableStream.Seek(0, (int)value);
+				}
+			}
+		}
+		#endregion
 
 		public long Available
 		{
 			get { return _inputStream.Available(); }
 		}
 
-		public override long Position
+		/// <summary>
+		/// Method is useful when reading headers
+		/// </summary>
+		/// <returns></returns>
+		public string ReadLine()
 		{
-			get { return _seekableStream.Tell(); }
-			set { _seekableStream.Seek( 0, ( int ) value ); }
+			StringBuilder ret = new StringBuilder( 64 );
+			var count = _inputStream.Available();
+			for (var i = 0; i < count; i++)
+			{
+				var character = ReadByte();
+				if (character < 0) break;
+				char test = (char) (byte) character;
+				if (test == '\r')
+				{
+					// nothing
+				}
+				else
+				{
+					if (test == '\n')
+					{
+						break;
+					}
+					ret.Append( test );
+				}
+			}
+			return ret.ToString();
 		}
 
-
-
-		public static InputStream Create(nsIInputStream stream)
+		public static InputStream Create( nsIInputStream stream )
 		{
-			var mimeInputStream= Xpcom.QueryInterface<nsIMIMEInputStream>(stream);
+			var mimeInputStream = Xpcom.QueryInterface<nsIMIMEInputStream>( stream );
 			if (mimeInputStream != null)
 			{
 				Marshal.ReleaseComObject( stream );
@@ -157,36 +201,7 @@ namespace Gecko.IO
 				Marshal.ReleaseComObject( stream );
 				return new StringInputStream( stringInputStream );
 			}
-			return new InputStream(stream);
-		}
-
-		/// <summary>
-		/// Method is useful when reading headers
-		/// </summary>
-		/// <returns></returns>
-		public string ReadLine()
-		{
-			StringBuilder ret = new StringBuilder(64);
-			var count = _inputStream.Available();
-			for (var i = 0; i < count; i++)
-			{
-				var character = ReadByte();
-				if (character < 0) break;
-				char test = (char)(byte)character;
-				if (test == '\r')
-				{
-					// nothing
-				}
-				else
-				{
-					if (test == '\n')
-					{
-						break;
-					}
-					ret.Append(test);
-				}
-			}
-			return ret.ToString();
+			return new InputStream( stream );
 		}
 	}
 }

@@ -10,7 +10,7 @@ namespace Gecko
 	/// General errors may be mapped here
 	/// </summary>
 	public class GeckoException
-		:ApplicationException
+		:Exception
 	{
 		internal GeckoException()
 			:base()
@@ -88,7 +88,11 @@ namespace Gecko
 	public class GeckoDomException
 		: GeckoException
 	{
-
+		public GeckoDomException(string message)
+			:base(message)
+		{
+			
+		}
 	}
 
 	/// <summary>

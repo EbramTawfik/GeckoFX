@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -59,7 +60,7 @@ namespace Gecko.Interop
 			int hashCode = xulrunnerObject.GetHashCode();
 			int refCount = GetComRefCount(xulrunnerObject);
 			int rcwCount = GetRcwRefCount(xulrunnerObject);
-			Console.WriteLine( "{0}({1}) - ref:{2},rcw:{3}", hashCode, typeof( T ), refCount, rcwCount );
+			Debug.WriteLine( string.Format( "{0}({1}) - ref:{2},rcw:{3}", hashCode, typeof (T), refCount, rcwCount ) );
 
 			XulObjectInfo info = null;
 			if (_xulObjects.TryGetValue( hashCode,out info ))

@@ -14,7 +14,7 @@ namespace Gecko.Certificates
 		internal CertificateList( nsIX509CertList list )
 		{
 			_list = new ComPtr<nsIX509CertList>( list );
-		}
+        }
 
 		public IntPtr RawCertList
 		{
@@ -23,7 +23,7 @@ namespace Gecko.Certificates
 
 		public IEnumerator<Certificate> GetEnumerator()
 		{
-			return new GeckoEnumerator<Certificate, nsIX509Cert>( _list.Instance.GetEnumerator(), Certificate.Create );
+			return new GeckoEnumerator<Certificate, nsIX509Cert3>( _list.Instance.GetEnumerator(), Certificate.Create );
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
@@ -33,12 +33,12 @@ namespace Gecko.Certificates
 
 		public void AddCert(Certificate certificate)
 		{
-			_list.Instance.AddCert(certificate._cert1);
+			_list.Instance.AddCert(certificate._cert.Instance);
 		}
 
 		public void DeleteCert(Certificate certificate)
 		{
-			_list.Instance.DeleteCert(certificate._cert1);
+			_list.Instance.DeleteCert(certificate._cert.Instance);
 		}
 	}
 }

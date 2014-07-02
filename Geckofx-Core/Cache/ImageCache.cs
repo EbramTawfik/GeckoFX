@@ -24,13 +24,16 @@ namespace Gecko.Cache
 		public static Properties FindEntryProperties(string url)
 		{
 			var xpComUri = IOService.CreateNsIUri(url);
-			return _imgCache.Instance.FindEntryProperties( xpComUri ).Wrap( ( x ) => new Properties( x ) );
+			var ret= _imgCache.Instance.FindEntryProperties( xpComUri ).Wrap( ( x ) => new Properties( x ) );
+			Xpcom.FreeComObject( ref xpComUri );
+			return ret;
 		}
 
 		public static void RemoveEntry(string url)
 		{
 			var xpComUri = IOService.CreateNsIUri(url);
 			_imgCache.Instance.RemoveEntry(xpComUri);
+			Xpcom.FreeComObject(ref xpComUri);
 		}
 
 

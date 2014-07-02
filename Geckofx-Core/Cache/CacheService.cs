@@ -10,24 +10,23 @@ namespace Gecko.Cache
 
 		static CacheService()
 		{
-			_cacheService = Xpcom.GetService2<nsICacheService>(Contracts.CacheService);
+			_cacheService = Xpcom.GetService2<nsICacheService>( Contracts.CacheService );
 		}
 
-		public static CacheSession CreateSession(string clientID, CacheStoragePolicy storagePolicy, bool streamBased)
+		public static CacheSession CreateSession( string clientID, CacheStoragePolicy storagePolicy, bool streamBased )
 		{
-#if false
-			return new CacheSession(_cacheService.Instance.CreateSession(clientID, (int)storagePolicy, streamBased));
-#else
-			throw new NotImplementedException();
-#endif
+			// typedef long nsCacheStoragePolicy in nsICache.idl
+			// In WINDOWS long is 4 bytes int
+			return
+				new CacheSession( _cacheService.Instance.CreateSession( clientID, new IntPtr( (int) storagePolicy ), streamBased ) );
 		}
 
-		public static string[] Search(string deviceID, Predicate<CacheEntryInfo> predicate)
+		public static string[] Search( string deviceID, Predicate<CacheEntryInfo> predicate )
 		{
 			string[] ret = null;
-			using (var searcher = new CacheSearcher(predicate))
+			using (var searcher = new CacheSearcher( deviceID, predicate ))
 			{
-				_cacheService.Instance.VisitEntries(searcher);
+				_cacheService.Instance.VisitEntries( searcher );
 				ret = searcher.GetResult();
 			}
 			return ret;
@@ -40,15 +39,21 @@ namespace Gecko.Cache
 		/// </summary>
 		/// <param name="predicate"></param>
 		/// <returns></returns>
-		public static string[] Search(Predicate<CacheEntryInfo> predicate)
+		public static string[] Search( Predicate<CacheEntryInfo> predicate )
 		{
 			string[] ret = null;
-			using (var searcher = new CacheSearcher(predicate))
+			using (var searcher = new CacheSearcher( predicate ))
 			{
-				_cacheService.Instance.VisitEntries(searcher);
+				_cacheService.Instance.VisitEntries( searcher );
 				ret = searcher.GetResult();
 			}
 			return ret;
+		}
+
+		public static void ProcessEntries( Action<CacheEntryInfo> entryProcessor )
+		{
+			CacheVisitor visitor = new CacheVisitor( entryProcessor );
+			_cacheService.Instance.VisitEntries( visitor );
 		}
 
 		/// <summary>
@@ -57,13 +62,9 @@ namespace Gecko.Cache
 		/// <param name="storagePolicy">The cache storage policy.</param>
 		/// <remarks>This function may evict some items but will throw if it fails to evict everything.</remarks>
 		/// <exception cref="System.Runtime.InteropServices.COMException"></exception>
-		public static void Clear(CacheStoragePolicy storagePolicy)
-		{	
-#if false
-			_cacheService.Instance.EvictEntries((int)storagePolicy);
-#else
-			throw new NotImplementedException();
-#endif
+		public static void Clear( CacheStoragePolicy storagePolicy )
+		{
+			_cacheService.Instance.EvictEntries( new IntPtr( (int) storagePolicy ) );
 		}
 
 		public static readonly string MemoryCacheDevice = "memory";
@@ -71,20 +72,20 @@ namespace Gecko.Cache
 	}
 
 	internal sealed class CacheSearcher
-		: nsICacheVisitor,IDisposable
+		: nsICacheVisitor, IDisposable
 	{
 		private Predicate<CacheEntryInfo> _predicate;
 		private string _deviceID;
 
 		private List<string> _foundEntries = new List<string>();
 
-		internal CacheSearcher(Predicate<CacheEntryInfo> predicate)
-			:this(null,predicate)
+		internal CacheSearcher( Predicate<CacheEntryInfo> predicate )
+			: this( null, predicate )
 		{
-			
+
 		}
 
-		internal CacheSearcher(string deviceID, Predicate<CacheEntryInfo> predicate)
+		internal CacheSearcher( string deviceID, Predicate<CacheEntryInfo> predicate )
 		{
 			_deviceID = deviceID;
 			_predicate = predicate;
@@ -103,17 +104,21 @@ namespace Gecko.Cache
 
 		public bool VisitDevice( string deviceID, nsICacheDeviceInfo deviceInfo )
 		{
-			if (string.IsNullOrEmpty(_deviceID)) return true;
+			if (string.IsNullOrEmpty( _deviceID )) return true;
 			return string.Equals( _deviceID, deviceID );
 		}
 
 		public bool VisitEntry( string deviceID, nsICacheEntryInfo entryInfo )
 		{
-			if ( entryInfo == null ) return true;
-			var entry = new CacheEntryInfo(entryInfo);
-			if (_predicate(entry))
+			if (entryInfo == null) return true;
+
+			using (var entry = CacheEntryInfo.Create( entryInfo ))
 			{
-				_foundEntries.Add( entry.Key );
+				if (_predicate(entry))
+				{				
+					var key = entry.Key;
+					_foundEntries.Add( key );
+				}
 			}
 			return true;
 		}
@@ -122,15 +127,68 @@ namespace Gecko.Cache
 		{
 			return _foundEntries.ToArray();
 		}
-		
+
+	}
+
+
+	internal sealed class CacheVisitor
+		: nsICacheVisitor
+	{
+		private string _deviceID;
+		private Action<CacheEntryInfo> _entryProcessor;
+
+		internal CacheVisitor( Action<CacheEntryInfo> entryProcessor )
+			: this( null, entryProcessor )
+		{
+
+		}
+
+		internal CacheVisitor( string deviceID, Action<CacheEntryInfo> entryProcessor )
+		{
+			_deviceID = deviceID;
+			_entryProcessor = entryProcessor;
+		}
+
+		public bool VisitDevice( string deviceID, nsICacheDeviceInfo deviceInfo )
+		{
+			if (string.IsNullOrEmpty( _deviceID )) return true;
+			return string.Equals( _deviceID, deviceID );
+		}
+
+		public bool VisitEntry( string deviceID, nsICacheEntryInfo entryInfo )
+		{
+			if (entryInfo == null) return true;
+			using (var entry = CacheEntryInfo.Create( entryInfo ))
+			{
+				_entryProcessor( entry );
+			}
+			return true;
+		}
 	}
 
 	public enum CacheStoragePolicy
 	{
+		/// <summary>
+		/// nsCacheStoragePolicy STORE_ANYWHERE
+		/// </summary>
 		Anywhere = 0,
+
+		/// <summary>
+		/// nsCacheStoragePolicy STORE_IN_MEMORY
+		/// </summary>
 		InMemory = 1,
+
+		/// <summary>
+		/// nsCacheStoragePolicy STORE_ON_DISK
+		/// </summary>
 		OnDisk = 2,
+
+		[Obsolete( "value 3 was used by STORE_ON_DISK_AS_FILE which was removed", true )]
 		OnDiskAsFile = 3,
+
+		/// <summary>
+		/// nsCacheStoragePolicy STORE_OFFLINE
+		/// </summary>
 		Offline = 4
 	}
 }

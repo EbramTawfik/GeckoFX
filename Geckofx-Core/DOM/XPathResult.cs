@@ -2,56 +2,63 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gecko.Interop;
 
-namespace Gecko.DOM {
-    public class XPathResult {
+namespace Gecko.DOM
+{
+	public class XPathResult
+	{
+		private ComPtr<nsIDOMXPathResult> xpathResult = null;
 
-        public enum ResultType {
-            ANY_TYPE = 0,
-            NUMBER_TYPE = 1,
-            STRING_TYPE = 2,
-            BOOLEAN_TYPE = 3,
-            UNORDERED_NODE_ITERATOR_TYPE = 4,
-            ORDERED_NODE_ITERATOR_TYPE = 5,
-            UNORDERED_NODE_SNAPSHOT_TYPE = 6,
-            ORDERED_NODE_SNAPSHOT_TYPE = 7,
-            ANY_UNORDERED_NODE_TYPE = 8,
-            FIRST_ORDERED_NODE_TYPE = 9,
-        }
+		internal XPathResult( nsIDOMXPathResult xpathResult )
+		{
+			this.xpathResult = new ComPtr<nsIDOMXPathResult>( xpathResult );
+		}
 
-        private nsIDOMXPathResult xpathResult = null;
+		public XPathResultType GetResultType()
+		{
+			return (XPathResultType) xpathResult.Instance.GetResultTypeAttribute();
+		}
 
-        internal XPathResult(nsIDOMXPathResult xpathResult) {
-            this.xpathResult = xpathResult;
-        }
+		public double GetNumberValue()
+		{
+			return xpathResult.Instance.GetNumberValueAttribute();
+		}
 
-        public ResultType GetResultType() {
-            return (ResultType)xpathResult.GetResultTypeAttribute();
-        }
+		public string GetStringValue()
+		{
+			return nsString.Get( xpathResult.Instance.GetStringValueAttribute );
+		}
 
-        public double GetNumberValue() {
-            return xpathResult.GetNumberValueAttribute();
-        }
+		public bool GetBooleanValue()
+		{
+			return xpathResult.Instance.GetBooleanValueAttribute();
+		}
 
-        public string GetStringValue() {
-            using (var str = new nsAString()) {
-                xpathResult.GetStringValueAttribute(str);
-                return str.ToString();
-            }
-        }
+		public GeckoNode GetSingleNodeValue()
+		{
+			return xpathResult.Instance.GetSingleNodeValueAttribute().Wrap( GeckoNode.Create );
+		}
 
-        public bool GetBooleanValue() {
-            return xpathResult.GetBooleanValueAttribute();
-        }
+		public IEnumerable<GeckoNode> GetNodes()
+		{
+			return new GeckoNodeEnumerable( xpathResult.Instance );
+		}
 
-        public GeckoNode GetSingleNodeValue() {
-            var r = xpathResult.GetSingleNodeValueAttribute();
-            return new GeckoNode(r);
-        }
+	}
 
-        public IEnumerable<GeckoNode> GetNodes() {
-            return new GeckoNodeEnumerable(xpathResult);
-        }
-
-    }
+	public enum XPathResultType
+		: ushort
+	{
+		Any = nsIDOMXPathResultConsts.ANY_TYPE,
+		Number = nsIDOMXPathResultConsts.NUMBER_TYPE,
+		String = nsIDOMXPathResultConsts.STRING_TYPE,
+		Boolean = nsIDOMXPathResultConsts.BOOLEAN_TYPE,
+		UnorderedNodeIterator = nsIDOMXPathResultConsts.UNORDERED_NODE_ITERATOR_TYPE,
+		OrderedNodeIterator = nsIDOMXPathResultConsts.ORDERED_NODE_ITERATOR_TYPE,
+		UnorderedNodeSnapshot = nsIDOMXPathResultConsts.UNORDERED_NODE_SNAPSHOT_TYPE,
+		OrderedNodeSnapshot = nsIDOMXPathResultConsts.ORDERED_NODE_SNAPSHOT_TYPE,
+		AnyUnorderedNode = nsIDOMXPathResultConsts.ANY_UNORDERED_NODE_TYPE,
+		FirstOrderedNode = nsIDOMXPathResultConsts.FIRST_ORDERED_NODE_TYPE,
+	}
 }
