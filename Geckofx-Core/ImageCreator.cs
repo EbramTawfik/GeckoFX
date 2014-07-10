@@ -15,9 +15,6 @@ namespace Gecko
 
 		public ImageCreator(IGeckoWebBrowser browser)
 		{
-			if (Xpcom.IsLinux)
-				throw new NotImplementedException();
-
 			m_browser = browser;
 		}
 

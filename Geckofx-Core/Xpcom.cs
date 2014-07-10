@@ -343,13 +343,24 @@ namespace Gecko
 			_IsInitialized = true;
 			GlobalJSContextHolder.Initialize();
 
-			Xpcom.ChromeContext = new ChromeContext();
+            // On Linux calling CreateWindowlessBrowser too early crashes with passing null to gdk_window_enable_synchronized_configure()
+            // the gdkwidgets window is null.
+            if (!Xpcom.IsLinux)
+                InitChromeContext();
 
 			PromptFactoryFactory.Init();
 
 			if (AfterInitalization != null)
 				AfterInitalization();
 		}
+
+        public static void InitChromeContext()
+        {
+            if (Xpcom.ChromeContext != null)
+                return;
+
+            Xpcom.ChromeContext = new ChromeContext();
+        }
 
 		private static void ReadXulrunnerVersion(string xulDll)
 		{

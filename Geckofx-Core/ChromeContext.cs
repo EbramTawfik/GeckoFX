@@ -11,12 +11,7 @@ namespace Gecko
 		private ComPtr<nsIDOMXULElement> command;
 
 		public ChromeContext()
-		{
-			// TODO: CreateWindowlessBrowser crashes with passing null to gdk_window_enable_synchronized_configure()
-			// the gdkwidgets window is null. Purhaps WindowlessBrowser doesn't work on Linux or calling it here is too early?
-			if (Xpcom.IsLinux)
-				return;
-
+		{			
 			using (var appShallSvc = Xpcom.GetService2<nsIAppShellService>(Contracts.AppShellService))
 			{
 				webNav = appShallSvc.Instance.CreateWindowlessBrowser(true).AsComPtr();
