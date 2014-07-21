@@ -2,6 +2,12 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v29.0-0.11 ==
+
+1. Upgraded OffScreenGeckoWebBrowser to use ImageCreater.
+2. Certificates and Cache fixes
+3. XPath add SelectSingle and SelectFirst
+
 == v29.0-0.10 ==
 
 1. Added "load", "abort", and "error" listeners to XML Requests to fix the AjaxIsBusy flag.
