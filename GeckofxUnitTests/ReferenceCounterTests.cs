@@ -23,6 +23,7 @@ namespace GeckofxUnitTests
 			new object[] {Contracts.Array}
 
 		};
+#if DEBUG
 
 		/// <summary>
 		/// Test for counting objects when it is created
@@ -164,5 +165,6 @@ namespace GeckofxUnitTests
 			int comCount1 = ComDebug.GetComRefCount(service.Instance);
 			int rcwCount1 = ComDebug.GetRcwRefCount(service.Instance);
 		}
+#endif
 	}
 }
