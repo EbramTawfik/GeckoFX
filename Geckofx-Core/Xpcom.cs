@@ -704,7 +704,11 @@ namespace Gecko
 			if (Marshal.IsComObject(localObj)) // Is real COM? Not CLR object?
 			{
 				if (IsMono && Xpcom.InvokeRequired)
-					_comGC.Free(ref localObj);
+				{
+					// Xpcom.Shutdown() may have already been called.
+					if (_comGC != null)
+						_comGC.Free(ref localObj);
+				}
 				else
 					Marshal.ReleaseComObject(localObj);
 			}
@@ -744,7 +748,9 @@ namespace Gecko
 			{
 				if (IsMono && Xpcom.InvokeRequired)
 				{
-					_comGC.FinalFree(ref localObj);
+					// Xpcom.Shutdown() may have already been called.
+					if (_comGC != null)
+						_comGC.FinalFree(ref localObj);
 				}
 				else
 				{
