@@ -1,3 +1,9 @@
+geckofx29 (29.0.0.11) unstable; urgency=low
+
+  * Merge in upstream fixes. See README.txt for details. 
+
+ -- Eberhard Beilharz <eb1@sil.org>  Wed, 10 Sep 2014 17:16:49 +0200
+
 geckofx29 (29.0.0.10) unstable; urgency=low
 
   * Convert to native package instead of quilt since local changes have all
