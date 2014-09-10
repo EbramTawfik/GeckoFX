@@ -88,19 +88,20 @@ namespace Gecko
 		{
 			if (Xpcom.Is32Bit)
 			{
-				if (Xpcom.IsLinux)
-				{
-					throw new NotImplementedException();
-				}
-				
 				MutableHandle mutableHandle = new MutableHandle();
-				JS_ValueToObject_Win32(cx, ref v, ref mutableHandle);
+				if (Xpcom.IsLinux)
+					JS_ValueToObject_Linux32(cx, ref v, ref mutableHandle);
+				else
+					JS_ValueToObject_Win32(cx, ref v, ref mutableHandle);
 				return mutableHandle.Handle;
 			}
 			else
 			{
 				MutableHandle mutableHandle = new MutableHandle();
-				JS_ValueToObject_Win64(cx, ref v, ref mutableHandle);
+				if (Xpcom.IsLinux)
+					JS_ValueToObject_Linux64(cx, ref v, ref mutableHandle);
+				else
+					JS_ValueToObject_Win64(cx, ref v, ref mutableHandle);
 				return mutableHandle.Handle;
 			}
 		}
@@ -173,13 +174,16 @@ namespace Gecko
 		{
 			if (Xpcom.Is32Bit)
 			{
-				if (Xpcom.IsLinux)					
-						throw new NotImplementedException();
+				if (Xpcom.IsLinux)
+					return JS_GetScriptedGlobal_Linux32(aJSContext);
 
 				return JS_GetScriptedGlobal_Win32(aJSContext);
 			}
 			else
-			{				
+			{
+				if (Xpcom.IsLinux)
+					return JS_GetScriptedGlobal_Linux64(aJSContext);
+
 				throw new NotImplementedException();
 			}
 		}
@@ -204,18 +208,38 @@ namespace Gecko
 
 		public static IntPtr JS_NewContext(IntPtr runtime, int stackChunkSize)
 		{
-			if (!Xpcom.Is32Bit || !Xpcom.IsWindows)
-				throw new NotImplementedException();
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					return JS_NewContext_Linux32(runtime, stackChunkSize);
 
-			return JS_NewContext_Win32(runtime, stackChunkSize);
+				return JS_NewContext_Win32(runtime, stackChunkSize);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					return JS_NewContext_Linux64(runtime, stackChunkSize);
+
+				throw new NotImplementedException();
+			}
 		}
 
 		public static IntPtr JS_GetRuntime(IntPtr jsContext)
 		{
-			if (!Xpcom.Is32Bit || !Xpcom.IsWindows)
-				throw new NotImplementedException();
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					return JS_GetRuntime_Linux32(jsContext);
 
-			return JS_GetRuntime_Win32(jsContext);
+				return JS_GetRuntime_Win32(jsContext);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					return JS_GetRuntime_Linux64(jsContext);
+
+				throw new NotImplementedException();
+			}
 		}
 		
 		/// <summary>
@@ -225,18 +249,38 @@ namespace Gecko
 		/// <returns></returns>
 		public static IntPtr JS_GetContextPrivate(IntPtr jsContext)
 		{
-			if (!Xpcom.Is32Bit || !Xpcom.IsWindows)
-				throw new NotImplementedException();
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					return JS_GetContextPrivate_Linux32(jsContext);
 
-			return JS_GetContextPrivate_Win32(jsContext);
+				return JS_GetContextPrivate_Win32(jsContext);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					return JS_GetContextPrivate_Linux64(jsContext);
+
+				throw new NotImplementedException();
+			}
 		}
 
 		public static void JS_SetContextPrivate(IntPtr jsContext, IntPtr data)
 		{
-			if (!Xpcom.Is32Bit || !Xpcom.IsWindows)
-				throw new NotImplementedException();
-
-			JS_SetContextPrivate_Win32(jsContext, data);
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					JS_SetContextPrivate_Linux32(jsContext, data);
+				else
+					JS_SetContextPrivate_Win32(jsContext, data);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					JS_SetContextPrivate_Linux64(jsContext, data);
+				else
+					throw new NotImplementedException();
+			}
 		}
 
 		public static IntPtr DefaultObjectForContextOrNull(IntPtr jsContext)
@@ -365,11 +409,21 @@ namespace Gecko
 	
 		public static IntPtr JS_GetClassObject(IntPtr context, IntPtr proto)
 		{
-			if (!Xpcom.Is32Bit || Xpcom.IsLinux)
-				return IntPtr.Zero;
-			
 			var m = new MutableHandle();
-			JS_GetClassObject_Win32(context, proto, ref m);
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					JS_GetClassObject_Linux32(context, proto, ref m);
+				else
+					JS_GetClassObject_Win32(context, proto, ref m);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					JS_GetClassObject_Linux64(context, proto, ref m);
+				else
+					return IntPtr.Zero; // Not implemented
+			}
 			return m.Handle;
 		}
 				
@@ -484,26 +538,40 @@ namespace Gecko
 
 		public static IntPtr JS_WrapObject(IntPtr cx, IntPtr jsObject)
 		{
-			if (Xpcom.Is32Bit && Xpcom.IsWindows)
+			MutableHandle mh = new MutableHandle(jsObject);
+			bool success = false;
+			if (Xpcom.Is32Bit)
 			{
-				MutableHandle mh = new MutableHandle(jsObject);
-				if (JS_WrapObject_Win32(cx, ref mh))
-					return mh.Handle;
-
-				return IntPtr.Zero;
+				if (Xpcom.IsLinux)
+					success = JS_WrapObject_Linux32(cx, ref mh);
+				else
+					success = JS_WrapObject_Win32(cx, ref mh);
 			}
-
-			throw new NotImplementedException();
+			else
+			{
+				if (Xpcom.IsLinux)
+					success = JS_WrapObject_Linux64(cx, ref mh);
+				else
+					throw new NotImplementedException();
+			}
+			return success ? mh.Handle : IntPtr.Zero;
 		}
 
 		public static bool IsObjectInContextCompartment(IntPtr jsObject, IntPtr cx)
 		{
-			if (Xpcom.Is32Bit && Xpcom.IsWindows)
+			if (Xpcom.Is32Bit)
 			{
+				if (Xpcom.IsLinux)
+					return IsObjectInContextCompartment_Linux32(jsObject, cx);
 				return IsObjectInContextCompartment_Win32(jsObject, cx);
 			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					return IsObjectInContextCompartment_Linux64(jsObject, cx);
 
-			throw new NotImplementedException();
+				throw new NotImplementedException();
+			}
 		}
 
 		public static void JS_DestroyRuntime(IntPtr rt)
@@ -519,105 +587,135 @@ namespace Gecko
 
 		public static bool JS_HasProperty(IntPtr cx, IntPtr jsObject, string name)
 		{
-			if (Xpcom.IsLinux)
-				throw new NotImplementedException();
+			bool hasProperty;
 
 			if (Xpcom.Is32Bit)
 			{
-				var hasProperty = false;
-
-				JS_HasProperty_Win32(cx, ref jsObject, name, out hasProperty);
-
-				return hasProperty;
+				if (Xpcom.IsLinux)
+					JS_HasProperty_Linux32(cx, ref jsObject, name, out hasProperty);
+				else
+					JS_HasProperty_Win32(cx, ref jsObject, name, out hasProperty);
 			}
 			else
 			{
-				throw new NotImplementedException();
+				if (Xpcom.IsLinux)
+					JS_HasProperty_Linux64(cx, ref jsObject, name, out hasProperty);
+				else
+					throw new NotImplementedException();
 			}
+
+			return hasProperty;
 		}
 
 		public static JsVal JS_GetProperty(IntPtr cx, IntPtr jsObject, string name)
 		{
-			if (Xpcom.IsLinux)
-				throw new NotImplementedException();
-
+			JsVal Value = new JsVal();
 			if (Xpcom.Is32Bit)
 			{
-				JsVal Value = new JsVal();
-
-				JS_GetProperty_Win32(cx, ref jsObject, name, ref Value);
-
-				return Value;
+				if (Xpcom.IsLinux)
+					JS_GetProperty_Linux32(cx, ref jsObject, name, ref Value);
+				else
+					JS_GetProperty_Win32(cx, ref jsObject, name, ref Value);
 			}
 			else
 			{
-				throw new NotImplementedException();
+				if (Xpcom.IsLinux)
+					JS_GetProperty_Linux64(cx, ref jsObject, name, ref Value);
+				else
+					throw new NotImplementedException();
 			}
+
+			return Value;
 		}
 
 		public static void JS_SetCompartmentPrincipals(IntPtr jsCompartment, IntPtr principals)
 		{
-			if (Xpcom.IsLinux)
-				throw new NotImplementedException();
-
-			if (Xpcom.Is64Bit)
-				throw new NotImplementedException();
-
-			JS_SetCompartmentPrincipals_Win32(jsCompartment, principals);
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					JS_SetCompartmentPrincipals_Linux32(jsCompartment, principals);
+				else
+					JS_SetCompartmentPrincipals_Win32(jsCompartment, principals);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					JS_SetCompartmentPrincipals_Linux64(jsCompartment, principals);
+				else
+					throw new NotImplementedException();
+			}
 		}
 
 		public static IntPtr JS_GetCompartmentPrincipals(IntPtr jsCompartment)
 		{
-			if (Xpcom.IsLinux)
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					return JS_GetCompartmentPrincipals_Linux32(jsCompartment);
+				return JS_GetCompartmentPrincipals_Win32(jsCompartment);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					return JS_GetCompartmentPrincipals_Linux64(jsCompartment);
 				throw new NotImplementedException();
-
-			if (Xpcom.Is64Bit)
-				throw new NotImplementedException();
-
-			return JS_GetCompartmentPrincipals_Win32(jsCompartment);
+			}
 		}
 
 		public static void JS_SetTrustedPrincipals(IntPtr runtime, IntPtr principals)
 		{
-			if (Xpcom.IsLinux)
-				throw new NotImplementedException();
-
-			if (Xpcom.Is64Bit)
-				throw new NotImplementedException();
-
-			JS_SetCompartmentPrincipals_Win32(runtime, principals);
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					JS_SetTrustedPrincipals_Linux32(runtime, principals);
+				else
+					JS_SetTrustedPrincipals_Win32(runtime, principals);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					JS_SetTrustedPrincipals_Linux64(runtime, principals);
+				else
+					throw new NotImplementedException();
+			}
 		}
 
 		public static IntPtr JS_GetPendingException(IntPtr cx)
 		{
-			if (Xpcom.IsLinux)
-				throw new NotImplementedException();
-
-			if (Xpcom.Is64Bit)
-				throw new NotImplementedException();
-
 			MutableHandle mutableHandle = new MutableHandle();
-			bool success = JS_GetPendingException_Win32(cx, ref mutableHandle);
-			if (!success)
-				return IntPtr.Zero;
+			bool success = false;
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					success = JS_GetPendingException_Linux32(cx, ref mutableHandle);
+				else
+					success = JS_GetPendingException_Win32(cx, ref mutableHandle);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					success = JS_GetPendingException_Linux64(cx, ref mutableHandle);
+				else
+					throw new NotImplementedException();
+			}
 
-			return mutableHandle.Handle;
+			return success ? mutableHandle.Handle : IntPtr.Zero;
 		}
 
 		public static JSErrorReportCallback JS_SetErrorReporter(IntPtr cx, JSErrorReportCallback callback)
 		{
-			if (Xpcom.IsLinux)
+			if (Xpcom.Is32Bit)
 			{
-				if (Xpcom.Is64Bit)
-					return JS_SetErrorReporter_Linux64(cx, callback);
-
-				return JS_SetErrorReporter_Linux32(cx, callback);
+				if (Xpcom.IsLinux)
+					return JS_SetErrorReporter_Linux32(cx, callback);
+				return JS_SetErrorReporter_Win32(cx, callback);
 			}
-
-			if (Xpcom.Is64Bit)
+			else
+			{
+				if (Xpcom.IsLinux)
+					return JS_SetErrorReporter_Linux64(cx, callback);
 				return JS_SetErrorReporter_Win64(cx, callback);
-
-			return JS_SetErrorReporter_Win32(cx, callback);
+			}
 		}
 
 
