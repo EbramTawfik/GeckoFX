@@ -274,7 +274,21 @@ namespace Gecko.DOM
 		{
 			_windowUtils.Instance.SendNativeMouseEvent( aScreenX, aScreenY, aNativeMessage, aModifierFlags, ( nsIDOMElement ) aElement.DomObject );
 		}
-		
+
+        /// <summary>
+        /// Synthesize a wheel event for a window. The event type is always "wheel".
+        /// 
+        /// Events are sent in coordinates offset by aX and aY from the window.
+        /// 
+        /// Cannot be accessed from unprivileged context (not content-accessible)
+        /// Will throw a DOM security error if called without UniversalXPConnect
+        /// privileges.
+        /// </summary>
+        public void SendWheelEvent(float aX, float aY, double aDeltaX, double aDeltaY, double aDeltaZ, uint aDeltaMode, int aModifiers, int aLineOrPageDeltaX, int aLineOrPageDeltaY, uint aOptions)
+        {
+            _windowUtils.Instance.SendWheelEvent(aX, aY, aDeltaX, aDeltaY, aDeltaZ, aDeltaMode, aModifiers, aLineOrPageDeltaX, aLineOrPageDeltaY, aOptions);
+        }
+
 		/// <summary>
         /// See nsIWidget::ActivateNativeMenuItemAt
         ///
