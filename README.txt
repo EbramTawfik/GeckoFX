@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v29.0-0.12 ==
+
+1. Linux only tag.
+
 == v29.0-0.11 ==
 
 1. Upgraded OffScreenGeckoWebBrowser to use ImageCreater.
