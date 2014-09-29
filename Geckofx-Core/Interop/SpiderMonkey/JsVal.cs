@@ -39,18 +39,18 @@ namespace Gecko
 		[FieldOffset(0)]
 		public ulong Ptr;
 		[FieldOffset(4)]
-		public uint Tag;
+		public uint tag;
 		
 		public enum ValueTag64Bit : uint
-		{			
-			Clear = 0x1FFF0,
-			Int32 = (Clear | 1) << 47,
-			Undefined = (Clear | 2) << 47,
-			String = (Clear | 5) << 47,
-			Boolean = (Clear | 3) << 47,
-			Magic = (Clear | 4) << 47,
-			Null = (Clear | 6) << 47,
-			Object = (Clear | 7) << 47
+		{		
+            Clear = 0x1FFF0,
+            Int32 = Clear | 1,
+            Undefined = Clear | 2,
+            String = Clear | 5,
+            Boolean = Clear | 3,
+            Magic = Clear | 4,
+            Null = Clear | 6,
+            Object = Clear | 7
 		}
 
 		public enum ValueTag32Bit : uint
@@ -64,6 +64,11 @@ namespace Gecko
 			Null = Clear | 6,
 			Object = Clear | 7
 		}
+
+        public uint Tag
+        {
+            get { return Xpcom.Is32Bit ? tag : tag >> 47; }
+        }
 
 		public bool IsNull
 		{
