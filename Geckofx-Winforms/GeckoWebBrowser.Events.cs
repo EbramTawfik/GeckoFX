@@ -907,7 +907,7 @@ namespace Gecko
 			}
 		}
 
-		/// <summary>Raises the <see cref="LoadEvent"/> event.</summary>
+		/// <summary>Raises the <see cref="DOMContentLoadedEvent"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
 		protected virtual void OnDOMContentLoaded(DomEventArgs e) {
 			var evnt = (EventHandler<DomEventArgs>)Events[DOMContentLoadedEvent];
@@ -927,7 +927,7 @@ namespace Gecko
 			}
 		}
 
-		/// <summary>Raises the <see cref="LoadEvent"/> event.</summary>
+		/// <summary>Raises the <see cref="ReadyStateChangeEvent"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
 		protected virtual void OnReadyStateChange(DomEventArgs e) {
 			var evnt = (EventHandler<DomEventArgs>)Events[ReadyStateChangeEvent];
