@@ -977,21 +977,24 @@ namespace Gecko
 		public void SetInputFocus()
 		{
 #if GTK
-			m_wrapper.SetInputFocus();		
+			if (m_wrapper != null)
+				m_wrapper.SetInputFocus();
 #endif
 		}
 		
 		public void RemoveInputFocus()
 		{
 #if GTK
-			m_wrapper.RemoveInputFocus();		
+			if (m_wrapper != null)
+				m_wrapper.RemoveInputFocus();
 #endif
 		}
 		
 		public bool HasInputFocus()
 		{
 #if GTK
-			return m_wrapper.HasInputFocus();
+			if (m_wrapper != null)
+				return m_wrapper.HasInputFocus();
 #endif
 			return false;
 		}

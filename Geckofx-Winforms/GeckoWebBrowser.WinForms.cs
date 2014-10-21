@@ -110,7 +110,8 @@ namespace Gecko
 			if (Xpcom.IsMono)
 			{
 				base.OnHandleCreated(e);
-				m_wrapper.Init();
+				if (m_wrapper != null)
+					m_wrapper.Init();
 			}
 #endif
 			if ( !this.DesignMode )
@@ -128,7 +129,7 @@ namespace Gecko
 
 				WebBrowser.SetContainerWindowAttribute( this );
 #if GTK
-				if (Xpcom.IsMono)
+				if (Xpcom.IsMono && m_wrapper != null)
 					BaseWindow.InitWindow(m_wrapper.BrowserWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
 				else
 #endif
@@ -242,7 +243,10 @@ namespace Gecko
 				Xpcom.FreeComObject(ref WebBrowser);
 #if GTK			
 				if (m_wrapper != null)
+				{
 					m_wrapper.Dispose();
+					m_wrapper = null;
+				}
 #endif
 			}
 
@@ -254,7 +258,8 @@ namespace Gecko
 			if ( WebBrowserFocus != null )
 				WebBrowserFocus.Activate();
 #if GTK
-			m_wrapper.SetInputFocus();		
+			if (m_wrapper != null)
+				m_wrapper.SetInputFocus();		
 #endif
 			base.OnEnter( e );
 		}
@@ -264,7 +269,8 @@ namespace Gecko
 			if ( WebBrowserFocus != null && !IsBusy )
 				WebBrowserFocus.Deactivate();
 #if GTK
-			m_wrapper.RemoveInputFocus();		
+			if (m_wrapper != null)
+				m_wrapper.RemoveInputFocus();		
 #endif
 			base.OnLeave( e );
 		}
