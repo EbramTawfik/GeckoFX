@@ -1422,6 +1422,7 @@
     <Compile Include="Windows\Taskbar\JumpListShortcut.cs" />
     <Compile Include="Windows\Taskbar\WinTaskbar.cs" />
     <Compile Include="Xpcom.cs" />
+    <Compile Include="XULAppInfo.cs" />
     <Compile Include="XULRunnerLocator.cs" />
     <None Include="Geckofx-Core.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
