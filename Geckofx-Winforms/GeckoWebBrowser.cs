@@ -1658,11 +1658,16 @@ namespace Gecko
 					IsBusy = false;
 					if (aStatus == 0)
 					{
-						// kill any cached document and raise DocumentCompleted event
-						OnDocumentCompleted(new GeckoDocumentCompletedEventArgs(destUri, domWindow));
+						// navigating to a unrenderable file (.zip, .exe, etc.) causes the request pending;
+						// also an OnStateChange call with aStatus:804B0004(NS_BINDING_RETARGETED) has been generated previously.
+						if (!request.IsPending)
+						{
+							// kill any cached document and raise DocumentCompleted event
+							OnDocumentCompleted(new GeckoDocumentCompletedEventArgs(destUri, domWindow));
 
-						// clear progress bar
-						OnProgressChanged(new GeckoProgressEventArgs(100, 100));
+							// clear progress bar
+							OnProgressChanged(new GeckoProgressEventArgs(100, 100));
+						}
 					}
 					else
 					{
