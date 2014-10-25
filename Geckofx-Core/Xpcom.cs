@@ -338,7 +338,7 @@ namespace Gecko
 			// RegisterProvider is necessary to get link styles etc.
 			nsIDirectoryService directoryService = GetService<nsIDirectoryService>("@mozilla.org/file/directory_service;1");
 			if (directoryService != null)
-				directoryService.RegisterProvider(new ProfileProvider());
+				directoryService.RegisterProvider(new DirectoryServiceProvider());
 
 			_IsInitialized = true;
 			GlobalJSContextHolder.Initialize();
@@ -804,19 +804,31 @@ namespace Gecko
 		}
 		#endregion
 
-		#region ProfileProvider
+		#region DirectoryServiceProvider
 		/// <summary>
-		/// A simple nsIDirectoryServiceProvider which provides the profile directory.
+		/// A simple nsIDirectoryServiceProvider which provides the profile directory, etc.
+		/// This is still an incomplete implementation and can cause issues -- if this happens, add the missing item.
+		/// For lists of items in DirectoryService, see
+		/// https://developer.mozilla.org/en-US/Add-ons/Code_snippets/File_I_O#Getting_files_in_special_directories
+		/// http://mxr.mozilla.org/mozilla-central/source/xpcom/build/nsXULAppAPI.h
 		/// </summary>
-		class ProfileProvider : nsIDirectoryServiceProvider
+		class DirectoryServiceProvider : nsIDirectoryServiceProvider
 		{
 			public nsIFile GetFile(string prop, ref bool persistent)
 			{
-				if (prop == "ProfD" || prop == "ProfLD")
+				switch (prop)
 				{
-					return (nsIFile)NewNativeLocalFile(ProfileDirectory ?? "");
+					case "ProfD":
+					case "ProfLD":
+					case "ProfDS":
+					case "ProfLDS":
+						return (nsIFile)NewNativeLocalFile(ProfileDirectory ?? "");
+					case "UMimTyp": // required to handle mailto protocol, etc.
+						return (nsIFile)NewNativeLocalFile(Path.Combine(ProfileDirectory ?? "", "mimeTypes.rdf"));
+					default:
+						Console.Error.WriteLine("Gecko.Xpcom.DirectoryServiceProvider.GetFile: not implemented: " + prop);
+						return null;
 				}
-				return null;
 			}
 		}
 		#endregion
