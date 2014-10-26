@@ -25,6 +25,7 @@ namespace Gecko
 		private static readonly object FrameNavigatingEvent = new object();
 		private static readonly object DocumentCompletedEvent = new object();
 		private static readonly object RedirectingEvent = new object();
+		private static readonly object RetargetedEvent = new object();
 		private static readonly object CanGoBackChangedEvent = new object();
 		private static readonly object CanGoForwardChangedEvent = new object();
 		// ProgressChanged
@@ -106,6 +107,30 @@ namespace Gecko
 		{
 			var evnt = ( ( EventHandler<GeckoNavigatingEventArgs> ) Events[ NavigatingEvent ] );
 			if ( evnt != null ) evnt( this, e );
+		}
+
+		#endregion
+
+		#region public event EventHandler<GeckoRetargetedEventArgs> Retargeted
+
+		/// <summary>
+		/// Occurs after the navigation is retargeted.
+		/// E.g. the content-type can't be handled by browser or plugins, or the content is supposed to be downloaded.
+		/// </summary>
+		[Category("Navigation")]
+		[Description("Occurs after the navigation is retargeted.")]
+		public event EventHandler<GeckoRetargetedEventArgs> Retargeted
+		{
+			add { Events.AddHandler(RetargetedEvent, value); }
+			remove { Events.RemoveHandler(RetargetedEvent, value); }
+		}
+
+		/// <summary>Raises the <see cref="Retargeted"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnRetargeted(GeckoRetargetedEventArgs e)
+		{
+			var evnt = ((EventHandler<GeckoRetargetedEventArgs>)Events[RetargetedEvent]);
+			if (evnt != null) evnt(this, e);
 		}
 
 		#endregion
@@ -1438,6 +1463,28 @@ namespace Gecko
 			Uri = value;
 			DomWindow = domWind;
 			DomWindowTopLevel = ((domWind == null) ? true : DomWindow.DomWindow.Equals(DomWindow.Top.DomWindow));
+		}
+	}
+	#endregion
+
+	#region GeckoRetargetedEventArgs
+	/// <summary>Provides data for event.</summary>
+	public class GeckoRetargetedEventArgs
+		: EventArgs
+	{
+		public readonly Uri Uri;
+		public readonly GeckoWindow DomWindow;
+		public readonly bool DomWindowTopLevel;
+		public readonly Request Request;
+
+		/// <summary>Creates a new instance of a <see cref="GeckoRetargetedEventArgs"/> object.</summary>
+		/// <param name="uri"></param>
+		public GeckoRetargetedEventArgs(Uri uri, GeckoWindow domWind, Request req)
+		{
+			Uri = uri;
+			DomWindow = domWind;
+			DomWindowTopLevel = domWind.IsTopWindow();
+			Request = req;
 		}
 	}
 	#endregion

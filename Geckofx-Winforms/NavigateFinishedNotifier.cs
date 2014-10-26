@@ -13,9 +13,9 @@ namespace Gecko
 	[Obsolete("Use the DocumentCompleted event instead of the NavigateFinished event.",false)]
 	public class NavigateFinishedNotifier : IDisposable
 	{
-		IGeckoWebBrowser m_browser;
+		GeckoWebBrowser m_browser;
 
-		public NavigateFinishedNotifier(IGeckoWebBrowser browser)
+		public NavigateFinishedNotifier(GeckoWebBrowser browser)
 		{
 			m_browser = browser;
 		}		
@@ -29,6 +29,7 @@ namespace Gecko
 			bool done = false;
 			m_browser.DocumentCompleted += (sender, e) => done = true;
 			m_browser.NavigationError += (sender, e) => done = true;
+			m_browser.Retargeted += (sender, e) => done = true;
 			while (!done)
 			{
 				Application.DoEvents();

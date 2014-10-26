@@ -1688,6 +1688,12 @@ namespace Gecko
 							aRequest.Cancel(GeckoError.NS_BINDING_ABORTED);
 						}
 					}
+
+					if (aStatus == GeckoError.NS_BINDING_RETARGETED)
+					{
+						GeckoRetargetedEventArgs ea = new GeckoRetargetedEventArgs(destUri, domWindow, request);
+						OnRetargeted(ea);
+					}
 				}
 			}
 			#endregion STATE_STOP
