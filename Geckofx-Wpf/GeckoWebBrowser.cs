@@ -84,14 +84,14 @@ namespace Gecko
 			get 
 			{
 				if (_webBrowser == null)
-                    return null;
+					return null;
 
-                nsIWebBrowserChrome chromeBrowser = this;
-                nsIWebBrowser browser = chromeBrowser.GetWebBrowserAttribute();
-                var domWindow = browser.GetContentDOMWindowAttribute();
-                var domDocument = domWindow.GetDocumentAttribute();
-                Marshal.ReleaseComObject(domWindow);
-                return GeckoDomDocument.CreateDomDocumentWraper(domDocument) as GeckoDocument;
+				nsIWebBrowserChrome chromeBrowser = this;
+				nsIWebBrowser browser = chromeBrowser.GetWebBrowserAttribute();
+				var domWindow = browser.GetContentDOMWindowAttribute();
+				var domDocument = domWindow.GetDocumentAttribute();
+				Marshal.ReleaseComObject(domWindow);
+				return GeckoDomDocument.CreateDomDocumentWraper(domDocument) as GeckoDocument;
 			}
 		}
 
