@@ -188,6 +188,15 @@ namespace GeckoFxTest
 			// Popup window management.
 			browser.CreateWindow += (s, e) =>
 			{
+				// A naive popup blocker, demonstrating popup cancelling.
+				Console.WriteLine("A popup is trying to show: " + e.Uri);
+				if (e.Uri.StartsWith("http://annoying-site.com"))
+				{
+					e.Cancel = true;
+					Console.WriteLine("A popup is blocked: " + e.Uri);
+					return;
+				}
+
 				// For <a target="_blank"> and window.open() without specs(3rd param),
 				// e.Flags == GeckoWindowFlags.All, and we load it in a new tab;
 				// otherwise, load it in a popup window, which is maximized by default.
