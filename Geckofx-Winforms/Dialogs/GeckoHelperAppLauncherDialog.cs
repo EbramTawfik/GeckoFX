@@ -48,13 +48,16 @@ namespace Gecko
 			WebNavigation.LoadURI(Url, 0, null, null, null);
 		}
 
+		/// <summary>
+		/// Gets the nsIWebNavigation object. May be null for popup windows.
+		/// </summary>
 		public nsIWebNavigation WebNavigation { get; private set; }
 		public nsIHelperAppLauncher HelperAppLauncher { get; private set; }
 
 		public LauncherDialogEvent(nsIHelperAppLauncher aLauncher, nsISupports aWindowContext, uint aReason)
 		{
 			HelperAppLauncher = aLauncher;
-			WebNavigation = (nsIWebNavigation)aWindowContext;
+			WebNavigation = aWindowContext as nsIWebNavigation;
 		}
 	}
 
