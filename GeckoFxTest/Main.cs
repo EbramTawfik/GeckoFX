@@ -36,21 +36,25 @@ namespace GeckoFxTest
 			Xpcom.Initialize(xulrunnerPath);
 			// Uncomment the follow line to enable error page
 			GeckoPreferences.User["browser.xul.error_pages.enabled"] = true;
-			
+
 			GeckoPreferences.User["gfx.font_rendering.graphite.enabled"] = true;
 
 			GeckoPreferences.User["full-screen-api.enabled"] = true;
 
 			if (RemoteDebuggerEnabled)
 				StartDebugServer();
-			
-			Application.ApplicationExit += (sender, e) => 
+
+			Application.ApplicationExit += (sender, e) =>
 			{
-        		Xpcom.Shutdown();
+				Xpcom.Shutdown();
 			};
-			
+
+			var mainForm = new MyForm();
+
+			Gecko.LauncherDialog.Download += (s, e) => LauncherDialog_Download(mainForm, s, e);
+
 			//Application.Idle += (s, e) => Console.WriteLine(SynchronizationContext.Current);
-			Application.Run(new MyForm());
+			Application.Run(mainForm);
 		}
 
 		static void RegisterChromeDir(string dir)
@@ -82,6 +86,29 @@ namespace GeckoFxTest
 			};
 			//see <geckofx_src>/chrome/debugger-server.html
 			browser.Navigate("chrome://geckofx/content/debugger-server.html");
+		}
+
+		// From Timothy N in https://bitbucket.org/geckofx/geckofx-29.0/issue/34/how-to-download-files-using-this-engine
+		static void LauncherDialog_Download(IWin32Window owner, object sender, LauncherDialogEvent e)
+		{
+			uint flags = (uint)nsIWebBrowserPersistConsts.PERSIST_FLAGS_NO_CONVERSION |
+				(uint)nsIWebBrowserPersistConsts.PERSIST_FLAGS_REPLACE_EXISTING_FILES |
+				(uint)nsIWebBrowserPersistConsts.PERSIST_FLAGS_BYPASS_CACHE;
+			SaveFileDialog sfd = new SaveFileDialog();
+			sfd.FileName = e.Filename;
+			if (sfd.ShowDialog(owner) == DialogResult.OK)
+			{
+				// the part that do the download, may be used for automation, or when the source URI is known, or after a parse of the dom :
+				string url = e.Url;  //url to download
+				string fullpath = sfd.FileName; //destination file absolute path
+				nsIWebBrowserPersist persist = Xpcom.GetService<nsIWebBrowserPersist>("@mozilla.org/embedding/browser/nsWebBrowserPersist;1");
+				nsIURI source = IOService.CreateNsIUri(url);
+				nsIURI dest = IOService.CreateNsIUri(new Uri(fullpath).AbsoluteUri);
+				persist.SetPersistFlagsAttribute(flags);
+				persist.SaveURI(source, null, null, null, null, (nsISupports)dest, null);
+				// file is saved - asynchronous call
+				// need to try to have a temp name while the file is downloaded eg filename.ext.geckodownload (one of the SaveURI option)
+			}
 		}
 	}
 
@@ -188,6 +215,15 @@ namespace GeckoFxTest
 			// Popup window management.
 			browser.CreateWindow += (s, e) =>
 			{
+				// A naive popup blocker, demonstrating popup cancelling.
+				Console.WriteLine("A popup is trying to show: " + e.Uri);
+				if (e.Uri.StartsWith("http://annoying-site.com"))
+				{
+					e.Cancel = true;
+					Console.WriteLine("A popup is blocked: " + e.Uri);
+					return;
+				}
+
 				// For <a target="_blank"> and window.open() without specs(3rd param),
 				// e.Flags == GeckoWindowFlags.All, and we load it in a new tab;
 				// otherwise, load it in a popup window, which is maximized by default.
@@ -315,17 +351,27 @@ namespace GeckoFxTest
 			//e.g. about:config in Navigating event is jar:file:///<xulrunner>/omni.ja!/chrome/toolkit/content/global/config.xul
 			browser.Navigating += (s, e) =>
 			{
-				if (e.DomWindowTopLevel)
-					urlbox.Text = e.Uri.ToString();
+				Console.WriteLine("Navigating: url: " + e.Uri + ", top: " + e.DomWindowTopLevel);
 			};
 			browser.Navigated += (s, e) =>
 			{
 				if (e.DomWindowTopLevel)
 					urlbox.Text = e.Uri.ToString();
+				Console.WriteLine("Navigated: url: " + e.Uri + ", top: " + e.DomWindowTopLevel, ", errorPage: " + e.IsErrorPage);
 			};
 			browser.HashChange += (s, e) =>
 			{
 				urlbox.Text = e.NewUrl.ToString();
+				Console.WriteLine("HashChange: newUrl: " + e.NewUrl + ", oldUrl: " + e.OldUrl);
+			};
+			browser.Retargeted += (s, e) =>
+			{
+				var ch = e.Request as Gecko.Net.Channel;
+				Console.WriteLine("Retargeted: url: " + e.Uri + ", contentType: " + ch.ContentType + ", top: " + e.DomWindowTopLevel);
+			};
+			browser.DocumentCompleted += (s, e) =>
+			{
+				Console.WriteLine("DocumentCompleted: url: " + e.Uri + ", top: " + e.IsTopLevel);
 			};
 
 			print.Click += delegate { browser.Window.Print(); };

@@ -43,12 +43,34 @@ namespace Gecko.Net
 			
 		public bool IsPending
 		{
-			get { return _request.Instance.IsPending(); }
+			get
+			{
+				// Some subtype (ImgRequest) may throw 
+				try
+				{
+					return _request.Instance.IsPending();
+				}
+				catch (NotImplementedException)
+				{
+					return false;
+				}
+			}
 		}
 
 		public int Status
 		{
-			get { return _request.Instance.GetStatusAttribute(); }
+			get
+			{
+				// Some subtype (ImgRequest) may throw 
+				try
+				{
+					return _request.Instance.GetStatusAttribute();
+				}
+				catch (NotImplementedException)
+				{
+					return 0;
+				}
+			}
 		}
 
 		public void Cancel(int aStatus)
