@@ -175,9 +175,15 @@ namespace Gecko
 			{
 				// calling this method simply invokes the static ctor
 			}
-			
-			public nsIWebBrowserChrome CreateChromeWindow(nsIWebBrowserChrome parent, uint chromeFlags)
+
+			private nsIWebBrowserChrome DoCreateChromeWindow(nsIWebBrowserChrome parent, uint chromeFlags, uint contextFlags, nsIURI uri, ref bool cancel)
 			{
+				var url = "";
+				if (uri != null)
+					url = (nsString.Get(uri.GetSpecAttribute)).ToString();
+				else
+					url = "about:blank";
+
 				// for chrome windows, we can use the AppShellService to create the window using some built-in xulrunner code
 				GeckoWindowFlags flags = (GeckoWindowFlags)chromeFlags;
 				if ((flags & GeckoWindowFlags.OpenAsChrome) != 0)
@@ -210,9 +216,17 @@ namespace Gecko
 				GeckoWebBrowser browser = parent as GeckoWebBrowser;
 				if (browser != null)
 				{
-					GeckoCreateWindowEventArgs e = new GeckoCreateWindowEventArgs((GeckoWindowFlags)chromeFlags);
+					var e = new GeckoCreateWindow2EventArgs(flags, url);
+					if (uri != null) // called by CreateChromeWindow2()
+						browser.OnCreateWindow2(e);
 					browser.OnCreateWindow(e);
-					
+
+					if (e.Cancel)
+					{
+					    cancel = true;
+					    return null;
+					}
+
 					if (e.WebBrowser != null)
 					{
 						// set flags
@@ -226,35 +240,15 @@ namespace Gecko
 				return null;
 			}
 
+			public nsIWebBrowserChrome CreateChromeWindow(nsIWebBrowserChrome parent, uint chromeFlags)
+			{
+				bool cancel = false;
+				return DoCreateChromeWindow(parent, chromeFlags, 0, null, ref cancel);
+			}
 
 			public nsIWebBrowserChrome CreateChromeWindow2(nsIWebBrowserChrome parent, uint chromeFlags, uint contextFlags, nsIURI uri, ref bool cancel)
 			{
-				GeckoWebBrowser browser = parent as GeckoWebBrowser;
-				if (browser != null)
-				{
-					var url = "";
-					if (uri != null)
-					{
-						url = (nsString.Get(uri.GetSpecAttribute)).ToString();
-					}
-					else
-					{
-						url = "about:blank";
-					}
-
-					GeckoCreateWindow2EventArgs e = new GeckoCreateWindow2EventArgs((GeckoWindowFlags)chromeFlags, url);
-					e.WebBrowser = browser;
-
-					browser.OnCreateWindow2(e);
-
-					if (e.Cancel)
-					{
-						cancel = true;
-						return null;
-					}
-				}
-
-				return CreateChromeWindow(parent, chromeFlags);
+				return DoCreateChromeWindow(parent, chromeFlags, contextFlags, uri, ref cancel);
 			}
 		}
 
