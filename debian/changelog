@@ -1,3 +1,9 @@
+geckofx29 (29.0.0.14) unstable; urgency=low
+
+  * See README.txt for details.
+
+ -- Eberhard Beilharz <eb1@sil.org>  Fri, 31 Oct 2014 17:35:55 +0100
+
 geckofx29 (29.0.0.13) unstable; urgency=low
 
   * Merge in upstream fixes. See README.txt for details.
