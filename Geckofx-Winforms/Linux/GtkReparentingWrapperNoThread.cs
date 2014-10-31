@@ -125,11 +125,21 @@ namespace GtkDotNet
 		{			
 			// TODO: reparent back into m_popupWindow before destroying Window.
 			
+			m_parent.HandleCreated -= HandleParentCreated;
+			m_parent.Resize -= HandleParentResize;
+
+			m_parent = null;
+			m_popupWindow = null;
+			m_xDisplayPointer = IntPtr.Zero;
+
 			base.Cleanup();
 		}
 		
 		public override void SetInputFocus()
 		{
+			if (IsDisposed)
+				throw new ObjectDisposedException("GtkReparentingWrapperNoThread");
+
 			if (m_xDisplayPointer == IntPtr.Zero)
 				throw new ArgumentNullException("m_xDisplayPointer");
 			

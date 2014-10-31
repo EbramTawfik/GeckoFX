@@ -22,6 +22,8 @@ namespace GtkDotNet
 		/// stores if the passed popup windows has been created.
 		/// </summary>
 		protected bool m_popupWindowCreated = false;
+
+		protected bool IsDisposed { get; set; }
 		
 		protected GtkWrapperNoThread()
 		{
@@ -77,6 +79,7 @@ namespace GtkDotNet
 		public void Dispose()
 		{
 			Cleanup();
+			IsDisposed = true;
 		}
 #endregion
 		

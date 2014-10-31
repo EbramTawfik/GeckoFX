@@ -370,7 +370,13 @@ namespace Gecko
 
 		public static void Shutdown()
 		{
-			Xpcom.DisposeObject( ref _comGC );			
+			Xpcom.DisposeObject(ref _comGC );
+
+			if (Xpcom.ChromeContext != null)
+			{
+				Xpcom.ChromeContext.Dispose();
+				Xpcom.ChromeContext = null;
+			}
 			
 			if (ComponentRegistrar != null)
 				Marshal.ReleaseComObject(ComponentRegistrar);
