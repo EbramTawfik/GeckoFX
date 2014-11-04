@@ -831,6 +831,10 @@ namespace Gecko
 						return (nsIFile)NewNativeLocalFile(ProfileDirectory ?? "");
 					case "UMimTyp": // required to handle mailto protocol, etc.
 						return (nsIFile)NewNativeLocalFile(Path.Combine(ProfileDirectory ?? "", "mimeTypes.rdf"));
+					case "UChrm":
+						return (nsIFile)NewNativeLocalFile(Path.Combine(ProfileDirectory, "chrome"));
+					case "TmpD":
+						return (nsIFile)NewNativeLocalFile(Path.GetTempPath());
 					default:
 						Console.Error.WriteLine("Gecko.Xpcom.DirectoryServiceProvider.GetFile: not implemented: " + prop);
 						return null;
