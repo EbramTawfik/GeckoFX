@@ -25,7 +25,10 @@ namespace Gecko
 
 		public void Dispose()
 		{
-			Xpcom.DisposeObject( ref _inputStream );
+			if (_inputStream != null)
+				Xpcom.DisposeObject( ref _inputStream );
+			_inputStream = null;
+			GC.SuppressFinalize(this);
 		}
 
 		public bool AddContentLength

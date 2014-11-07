@@ -165,7 +165,12 @@ namespace Gecko
 			IntPtr _Hdc;
 			
 			public void ReleaseHdc() { }
-			public void Dispose() { }
+
+			public void Dispose()
+			{
+				_Hdc = IntPtr.Zero;
+				GC.SuppressFinalize(this);
+			}
 		}
 	}
 	#endregion

@@ -36,7 +36,9 @@ namespace Gecko.Interop
 
 		private void Free()
 		{
-			Xpcom.FreeComObject( ref _instance );
+			if (_instance != null)
+				Xpcom.FreeComObject( ref _instance );
+			_instance = null;
 		}
 		#endregion
 
@@ -46,7 +48,9 @@ namespace Gecko.Interop
 		/// </summary>
 		public void FinalRelease()
 		{
-			Xpcom.FinalFreeComObject(ref _instance);
+			if (_instance != null)
+				Xpcom.FinalFreeComObject(ref _instance);
+			_instance = null;
 		}
 
 		public T Instance

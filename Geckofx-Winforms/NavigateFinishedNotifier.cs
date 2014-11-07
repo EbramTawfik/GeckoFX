@@ -41,8 +41,8 @@ namespace Gecko
 		public event EventHandler NavigateFinished;
 
 		public void Dispose()
-		{		
-
+		{
+			GC.SuppressFinalize(this);
 		}
 	}
 }

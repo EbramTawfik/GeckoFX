@@ -45,8 +45,12 @@ namespace Gecko.Collections
 
 		public void Dispose()
 		{
+			var disposable = _wrapper as IDisposable;
+			if (disposable != null)
+				disposable.Dispose();
 			_wrapper = null;
 			_translator = null;
+			GC.SuppressFinalize(this);
 		}
 
 		public bool MoveNext()

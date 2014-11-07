@@ -57,17 +57,16 @@ namespace GtkDotNet
 			{
 				m_popupWindow.Destroy();
 				m_popupWindow.Dispose();
+				m_popupWindow = null;
 			}
 		}
 
 		public virtual void SetInputFocus()
 		{
-			
 		}
 		
 		public virtual void RemoveInputFocus()
 		{
-			
 		}
 		
 		public virtual bool HasInputFocus()
@@ -80,6 +79,7 @@ namespace GtkDotNet
 		{
 			Cleanup();
 			IsDisposed = true;
+			System.GC.SuppressFinalize(this);
 		}
 #endregion
 		
