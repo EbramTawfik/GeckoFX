@@ -844,7 +844,7 @@ namespace Gecko
 					case "TmpD":
 						return (nsIFile)NewNativeLocalFile(Path.GetTempPath());
 					default:
-						Console.Error.WriteLine("Gecko.Xpcom.DirectoryServiceProvider.GetFile: not implemented: " + prop);
+						Debug.WriteLine("Gecko.Xpcom.DirectoryServiceProvider.GetFile: not implemented: " + prop);
 						return null;
 				}
 			}
