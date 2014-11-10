@@ -22,6 +22,9 @@ namespace Gecko.Interop
 		public static int GetRcwRefCount<T>(T xulrunnerObject)
 			where T:class
 		{
+		    if (!Marshal.IsComObject(xulrunnerObject))
+		        return -1;
+
 			T supports = null;
 			try
 			{
