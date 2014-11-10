@@ -175,9 +175,15 @@ namespace Gecko
 			{
 				// calling this method simply invokes the static ctor
 			}
-			
-			public nsIWebBrowserChrome CreateChromeWindow(nsIWebBrowserChrome parent, uint chromeFlags)
+
+			private nsIWebBrowserChrome DoCreateChromeWindow(nsIWebBrowserChrome parent, uint chromeFlags, uint contextFlags, nsIURI uri, ref bool cancel)
 			{
+				var url = "";
+				if (uri != null)
+					url = (nsString.Get(uri.GetSpecAttribute)).ToString();
+				else
+					url = "about:blank";
+
 				// for chrome windows, we can use the AppShellService to create the window using some built-in xulrunner code
 				GeckoWindowFlags flags = (GeckoWindowFlags)chromeFlags;
 				if ((flags & GeckoWindowFlags.OpenAsChrome) != 0)
@@ -210,9 +216,17 @@ namespace Gecko
 				GeckoWebBrowser browser = parent as GeckoWebBrowser;
 				if (browser != null)
 				{
-					GeckoCreateWindowEventArgs e = new GeckoCreateWindowEventArgs((GeckoWindowFlags)chromeFlags);
+					var e = new GeckoCreateWindow2EventArgs(flags, url);
+					if (uri != null) // called by CreateChromeWindow2()
+						browser.OnCreateWindow2(e);
 					browser.OnCreateWindow(e);
-					
+
+					if (e.Cancel)
+					{
+					    cancel = true;
+					    return null;
+					}
+
 					if (e.WebBrowser != null)
 					{
 						// set flags
@@ -226,35 +240,15 @@ namespace Gecko
 				return null;
 			}
 
+			public nsIWebBrowserChrome CreateChromeWindow(nsIWebBrowserChrome parent, uint chromeFlags)
+			{
+				bool cancel = false;
+				return DoCreateChromeWindow(parent, chromeFlags, 0, null, ref cancel);
+			}
 
 			public nsIWebBrowserChrome CreateChromeWindow2(nsIWebBrowserChrome parent, uint chromeFlags, uint contextFlags, nsIURI uri, ref bool cancel)
 			{
-				GeckoWebBrowser browser = parent as GeckoWebBrowser;
-				if (browser != null)
-				{
-					var url = "";
-					if (uri != null)
-					{
-						url = (nsString.Get(uri.GetSpecAttribute)).ToString();
-					}
-					else
-					{
-						url = "about:blank";
-					}
-
-					GeckoCreateWindow2EventArgs e = new GeckoCreateWindow2EventArgs((GeckoWindowFlags)chromeFlags, url);
-					e.WebBrowser = browser;
-
-					browser.OnCreateWindow2(e);
-
-					if (e.Cancel)
-					{
-						cancel = true;
-						return null;
-					}
-				}
-
-				return CreateChromeWindow(parent, chromeFlags);
+				return DoCreateChromeWindow(parent, chromeFlags, contextFlags, uri, ref cancel);
 			}
 		}
 
@@ -977,21 +971,24 @@ namespace Gecko
 		public void SetInputFocus()
 		{
 #if GTK
-			m_wrapper.SetInputFocus();		
+			if (m_wrapper != null)
+				m_wrapper.SetInputFocus();
 #endif
 		}
 		
 		public void RemoveInputFocus()
 		{
 #if GTK
-			m_wrapper.RemoveInputFocus();		
+			if (m_wrapper != null)
+				m_wrapper.RemoveInputFocus();
 #endif
 		}
 		
 		public bool HasInputFocus()
 		{
 #if GTK
-			return m_wrapper.HasInputFocus();
+			if (m_wrapper != null)
+				return m_wrapper.HasInputFocus();
 #endif
 			return false;
 		}
@@ -1658,11 +1655,16 @@ namespace Gecko
 					IsBusy = false;
 					if (aStatus == 0)
 					{
-						// kill any cached document and raise DocumentCompleted event
-						OnDocumentCompleted(new GeckoDocumentCompletedEventArgs(destUri, domWindow));
+						// navigating to a unrenderable file (.zip, .exe, etc.) causes the request pending;
+						// also an OnStateChange call with aStatus:804B0004(NS_BINDING_RETARGETED) has been generated previously.
+						if (!request.IsPending)
+						{
+							// kill any cached document and raise DocumentCompleted event
+							OnDocumentCompleted(new GeckoDocumentCompletedEventArgs(destUri, domWindow));
 
-						// clear progress bar
-						OnProgressChanged(new GeckoProgressEventArgs(100, 100));
+							// clear progress bar
+							OnProgressChanged(new GeckoProgressEventArgs(100, 100));
+						}
 					}
 					else
 					{
@@ -1682,6 +1684,12 @@ namespace Gecko
 						{
 							aRequest.Cancel(GeckoError.NS_BINDING_ABORTED);
 						}
+					}
+
+					if (aStatus == GeckoError.NS_BINDING_RETARGETED)
+					{
+						GeckoRetargetedEventArgs ea = new GeckoRetargetedEventArgs(destUri, domWindow, request);
+						OnRetargeted(ea);
 					}
 				}
 			}

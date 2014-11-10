@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace Gecko
 {
-	sealed class ChromeContext
+	sealed class ChromeContext: IDisposable
 	{
 		private bool _isInitialized;
 		private ComPtr<nsIWebNavigation> webNav;
@@ -18,6 +18,46 @@ namespace Gecko
 				webNav.Instance.LoadURI("chrome://global/content/alerts/alert.xul", 0, null, null, null);
 			}
 		}
+
+		#region IDisposable implementation
+
+		#if DEBUG
+		/// <summary/>
+		~ChromeContext()
+		{
+			Dispose(false);
+		}
+		#endif
+
+		/// <summary/>
+		public bool IsDisposed { get; private set; }
+
+		/// <summary/>
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		/// <summary/>
+		private void Dispose(bool fDisposing)
+		{
+			System.Diagnostics.Debug.WriteLineIf(!fDisposing, "****** Missing Dispose() call for " + GetType() + ". *******");
+			if (fDisposing && !IsDisposed)
+			{
+				// dispose managed and unmanaged objects
+				if (webNav != null)
+					webNav.Dispose();
+				if (command != null)
+					command.Dispose();
+				_isInitialized = false;
+			}
+			webNav = null;
+			command = null;
+			IsDisposed = true;
+		}
+
+		#endregion
 
 		private void Init()
 		{

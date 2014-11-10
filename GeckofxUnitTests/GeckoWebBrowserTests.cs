@@ -782,6 +782,27 @@ setTimeout(function(){
 		}
 
 		[Test]
+		public void Navigating_Retarget()
+		{
+			int errorCount = 0, completeCount = 0, retargetCount = 0;
+			string url = "data:application/zip,xyzuvw";
+			GeckoRetargetedEventArgs rte = null;
+			browser.DocumentCompleted += (sender, e) => ++ completeCount;
+			browser.NavigationError += (sender, e) => ++ errorCount;
+			browser.Retargeted += (sender, e) =>
+			{
+				++retargetCount;
+				rte = e;
+			};
+
+			browser.Navigate(url);
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.True(errorCount == 0 && completeCount == 0 && retargetCount == 1, "Unexpected event counts");
+			Assert.AreEqual(url, rte.Uri.ToString());
+			Assert.AreEqual("application/zip", (rte.Request as Gecko.Net.Channel).ContentType);
+		}
+
+		[Test]
 		public void LoadContent_ControlHandleCreated_DocumentIsInitalizedWithSpecifiedContent()
 		{
 			Assert.AreEqual(true, browser.IsHandleCreated);

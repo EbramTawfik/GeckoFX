@@ -81,7 +81,18 @@ namespace Gecko
 
 		public GeckoDocument Document
 		{
-			get { throw new NotImplementedException(); }
+			get 
+			{
+				if (_webBrowser == null)
+					return null;
+
+				nsIWebBrowserChrome chromeBrowser = this;
+				nsIWebBrowser browser = chromeBrowser.GetWebBrowserAttribute();
+				var domWindow = browser.GetContentDOMWindowAttribute();
+				var domDocument = domWindow.GetDocumentAttribute();
+				Marshal.ReleaseComObject(domWindow);
+				return GeckoDomDocument.CreateDomDocumentWraper(domDocument) as GeckoDocument;
+			}
 		}
 
 		public GeckoWindow Window
