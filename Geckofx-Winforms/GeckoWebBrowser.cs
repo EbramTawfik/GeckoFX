@@ -92,6 +92,9 @@ namespace Gecko
 
 		uint ChromeFlags;
 		bool m_javascriptDebuggingEnabled;
+
+		GeckoWindow _Window;
+		GeckoDomDocument _Document;
 		#endregion
 
 		#region public static methods
@@ -121,11 +124,20 @@ namespace Gecko
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
 		{
-			//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
-			if (NavigateFinishedNotifier != null)
-				NavigateFinishedNotifier.Dispose();
-			
-			//count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);            
+			if (disposing)
+			{
+				//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
+				if (NavigateFinishedNotifier != null)
+					NavigateFinishedNotifier.Dispose();
+				//count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
+
+				if (_Window != null)
+					_Window.Dispose();
+				_Window = null;
+				if (_Document != null)
+					_Document.Dispose();
+				_Document = null;
+			}
 			base.Dispose(disposing);
 		}
 
@@ -925,7 +937,7 @@ namespace Gecko
 				return uri ?? new Uri("about:blank");				
 			}
 		}
-		
+
 		/// <summary>
 		/// Gets the <see cref="GeckoWindow"/> object for this browser.
 		/// </summary>
@@ -937,7 +949,15 @@ namespace Gecko
 				if (WebBrowser == null)
 					return null;
 
-				return WebBrowser.GetContentDOMWindowAttribute().Wrap( x=>new GeckoWindow( x ) );
+				if (_Window != null)
+				{
+					var window = WebBrowser.GetContentDOMWindowAttribute();
+					if (_Window.DomWindow == window)
+						return _Window;
+					_Window.Dispose();
+				}
+				_Window = WebBrowser.GetContentDOMWindowAttribute().Wrap( x=>new GeckoWindow( x ) );
+				return _Window;
 			}
 		}
 		
@@ -952,15 +972,19 @@ namespace Gecko
 				if (WebBrowser == null)
 					return null;
 
-				// caching document is bad idea in some situations when ajax is used
-				// dom document wrapper is 1 per page, so it is better to create it when it needed
-				var domWindow = WebBrowser.GetContentDOMWindowAttribute();
-				var domDocument = domWindow.GetDocumentAttribute();
-				Marshal.ReleaseComObject( domWindow );
-				return GeckoDomDocument.CreateDomDocumentWraper( domDocument );
+				if (_Document != null)
+				{
+					var domDocument = Window.DomWindow.GetDocumentAttribute();
+					if (_Document.NativeDomDocument == domDocument)
+						return _Document;
+					// In some situations when ajax is used dom document wrapper is 1 per page,
+					// therefore we have to create a new one.
+					_Document.Dispose();
+				}
+				_Document = GeckoDomDocument.CreateDomDocumentWraper(Window.DomWindow.GetDocumentAttribute());
+				return _Document;
 			}
 		}
-		//GeckoDomDocument _Document;
 
 		public GeckoDocument Document
 		{
