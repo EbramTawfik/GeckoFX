@@ -31,6 +31,10 @@
  * the provisions above, a recipient may use your version of this file under
  * the terms of any one of the MPL, the GPL or the LGPL.
  */
+using Gecko.DOM;
+using Gecko.Services;
+
+
 #endregion END LICENSE BLOCK
 
 using System;
@@ -369,6 +373,10 @@ namespace Gecko
 
 		public static void Shutdown()
 		{
+			GeckoPreferences.Shutdown();
+			WindowWatcher.Shutdown();
+			WindowMediator.Shutdown();
+
 			Xpcom.DisposeObject(ref _comGC );
 
 			if (Xpcom.ChromeContext != null)
@@ -835,7 +843,7 @@ namespace Gecko
 					case "TmpD":
 						return (nsIFile)NewNativeLocalFile(Path.GetTempPath());
 					default:
-						Console.Error.WriteLine("Gecko.Xpcom.DirectoryServiceProvider.GetFile: not implemented: " + prop);
+						Debug.WriteLine("Gecko.Xpcom.DirectoryServiceProvider.GetFile: not implemented: " + prop);
 						return null;
 				}
 			}

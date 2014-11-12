@@ -16,6 +16,13 @@ namespace Gecko.Services
 			_watcher = Xpcom.GetService2<nsIWindowWatcher>(Contracts.WindowWatcher);
 		}
 
+		public static void Shutdown()
+		{
+			if (_watcher != null)
+				_watcher.Dispose();
+			_watcher = null;
+		}
+
 		/// <summary>
 		/// After calling this method changing of WindowCreator is not allowed
 		/// </summary>

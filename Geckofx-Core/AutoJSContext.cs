@@ -315,11 +315,18 @@ namespace Gecko
 
 		public void Dispose()
 		{
-			while (_compartmentStack.Count > 0)
-				_compartmentStack.Pop().Dispose();
+			if (_compartmentStack != null)
+			{
+				while (_compartmentStack.Count > 0)
+					_compartmentStack.Pop().Dispose();
+				_compartmentStack = null;
+			}
 
 			if (_defaultCompartment != null)
 				_defaultCompartment.Dispose();
+			_defaultCompartment = null;
+
+			GC.SuppressFinalize(this);
 		}
 	}
 }

@@ -114,7 +114,10 @@ namespace Gecko.Interop
 				var localObj = Interlocked.Exchange(ref _timer, null);
 				if (localObj != null)
 					Marshal.ReleaseComObject(localObj);
+
+				_timer = null;
 			}
+			GC.SuppressFinalize(this);
 		}
 
 	}
