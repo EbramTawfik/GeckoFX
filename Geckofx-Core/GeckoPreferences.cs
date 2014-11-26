@@ -42,9 +42,7 @@ namespace Gecko
 				return null;
 			var sStr = (nsISupportsString) Xpcom.GetObjectForIUnknown(pStr);
 			Marshal.Release(pStr);
-			nsAString value = new nsAString();
-			sStr.GetDataAttribute(value);
-			return value.ToString();
+			return nsString.Get(sStr.GetDataAttribute);
 		}
 
 		/// <summary>
@@ -54,7 +52,7 @@ namespace Gecko
 		{
 			var iid = typeof(nsISupportsString).GUID;
 			var str = Xpcom.CreateInstance<nsISupportsString>(Contracts.SupportsString);
-			str.SetDataAttribute(new nsAString(value));
+			nsString.Set(str.SetDataAttribute, value);
 			branch.SetComplexValue(name, ref iid, Xpcom.QueryInterface<nsISupports>(str));
 		}
 
