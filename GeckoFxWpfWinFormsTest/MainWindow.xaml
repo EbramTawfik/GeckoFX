@@ -1,0 +1,22 @@
+﻿<Window x:Class="GeckoFxWpfWinFormsTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:gecko="clr-namespace:Gecko;assembly=Geckofx-Winforms"
+        Title="MainWindow" Height="350" Width="525">
+	<DockPanel>
+		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="25">
+			<Button Name="btn" Content="Google" Click="Btn_OnClick"></Button>
+		</StackPanel>
+		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="25">
+			<TextBlock Text="DocumentTitle:"/>
+			<TextBlock Text="{Binding ElementName=browser,Path=DocumentTitle}"/>
+		</StackPanel>
+		<StackPanel DockPanel.Dock="Bottom">
+			<TextBlock Text="Status:"/>
+			<TextBlock Text="{Binding ElementName=browser,Path=Status}"/>
+		</StackPanel>
+		<WindowsFormsHost>
+			<gecko:GeckoWebBrowser x:Name="browser"/>
+		</WindowsFormsHost>
+	</DockPanel>
+</Window>
