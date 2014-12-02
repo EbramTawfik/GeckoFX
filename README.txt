@@ -2,6 +2,18 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v29.0-0.15 ==
+
+1. Fix Release build.
+2. WindowUtils -- Add SendWheelEvent method (Thanks Matt Gerginski)
+3. Fix JSVal Is{Type} functions on 64bit Linux. 
+4. Unifiy CreateWindow and CreateWindow2 events, and mark CreateWindow2 as Obsolete. (Thanks Duan Yao)
+5. Fix nsIDirectoryServiceProvider (Thanks Duan Yao And Eberhard Beilharz)
+6. Handle retargeting during navigation (Thanks Duan Yao)
+7. Implements nsIXULAppInfo, and make remote debugging works with firefox 31+. (Thanks Duan Yao)
+8. Fixed infinite loop when minizing the window using Facebook. (Thanks Bron-Yr-Aur)
+9. Make GeckoPreferences support unicode values  (Thanks Duan Yao)
+
 == v29.0-0.14 ==
 
 1. Linux only tag.
