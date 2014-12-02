@@ -369,6 +369,7 @@ namespace Gecko
 
 		public static void Shutdown()
 		{
+			PromptFactoryFactory.Shutdown();
 			Xpcom.DisposeObject(ref _comGC );
 
 			if (Xpcom.ChromeContext != null)
@@ -382,7 +383,7 @@ namespace Gecko
 			
 			if (ComponentManager != null)
 				Marshal.ReleaseComObject(ComponentManager);
-			
+
 			if (ServiceManager != null)
 			{
 				// NS_ShutdownXPCOM calls Release on the ServiceManager COM objects.

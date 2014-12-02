@@ -58,6 +58,11 @@ namespace Gecko
 			DefaultPromptFactory.Init();
 			Register();
 		}
+
+		public static void Shutdown()
+		{
+			DefaultPromptFactory.Shutdown();
+		}
 	}
 
 	/// <summary>
@@ -70,6 +75,11 @@ namespace Gecko
 		internal static void Init()
 		{
 			factory = Xpcom.GetService<nsIPromptFactory>("@mozilla.org/prompter;1");
+		}
+
+		internal static void Shutdown()
+		{
+			Marshal.ReleaseComObject(factory);
 		}
 
 		public static IntPtr GetPrompt(nsIDOMWindow aParent, ref Guid iid)
