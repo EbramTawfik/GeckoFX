@@ -20,8 +20,12 @@ namespace Gecko.Collections
 
 		public void Dispose()
 		{
+			var disposable = _enumerator as IDisposable;
+			if (disposable != null)
+				disposable.Dispose();
 			_enumerator = null;
 			_current = null;
+			GC.SuppressFinalize(this);
 		}
 
 		public bool MoveNext()

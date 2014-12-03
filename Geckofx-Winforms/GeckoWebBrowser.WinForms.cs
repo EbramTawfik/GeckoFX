@@ -174,12 +174,15 @@ namespace Gecko
 				BaseWindow.SetVisibilityAttribute( true );
 
 				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
-				if ( Document != null )
+				using (var doc = Document)
 				{
-					// only for html documents
-					Document.Cookie = "";
+					if (doc != null)
+					{
+						// only for html documents
+						doc.Cookie = "";
+					}
+					WindowMediator.RegisterWindow(this);
 				}
-				WindowMediator.RegisterWindow(this);
 			}
 
 			base.OnHandleCreated( e );

@@ -105,7 +105,6 @@
     <Compile Include="IOServiceTests.cs" />
     <Compile Include="JsValTests.cs" />
     <Compile Include="ManagedServiceFactoriesTests.cs" />
-    <Compile Include="MemoryLeakTests.cs" />
     <Compile Include="nsACStringTests.cs" />
     <Compile Include="nsAStringTests.cs" />
     <Compile Include="nsIEditorTests.cs" />

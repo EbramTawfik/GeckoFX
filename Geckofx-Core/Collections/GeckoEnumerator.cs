@@ -24,9 +24,16 @@ namespace Gecko.Collections
 
 		public void Dispose()
 		{
+			var disposable = _enumerator as IDisposable;
+			if (disposable != null)
+				disposable.Dispose();
 			_enumerator = null;
+			disposable = _current as IDisposable;
+			if (disposable != null)
+				disposable.Dispose();
 			_current = default(TGeckoObject);
 			_translator = null;
+			GC.SuppressFinalize(this);
 		}
 
 		public bool MoveNext()

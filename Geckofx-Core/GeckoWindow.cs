@@ -186,9 +186,12 @@ namespace Gecko
 		public static bool IsTopWindow( this GeckoWindow geckoWindow )
 		{
 			if ( geckoWindow == null ) return true;
-			var top = geckoWindow.Top;
-			if ( top == null ) return true;
-			return top.DomWindow.GetHashCode() == geckoWindow.DomWindow.GetHashCode();
+			using (var top = geckoWindow.Top)
+			{
+				if (top == null)
+					return true;
+				return top.DomWindow.GetHashCode() == geckoWindow.DomWindow.GetHashCode();
+			}
 		}
 	}
 }

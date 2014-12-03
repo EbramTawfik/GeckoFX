@@ -1435,7 +1435,11 @@ namespace Gecko
 			Uri = value;
 			_response = response;
 			DomWindow = domWind;
-			DomWindowTopLevel = ((domWind == null) ? true : DomWindow.DomWindow.Equals(DomWindow.Top.DomWindow));
+
+			using (var topWindow = DomWindow.Top)
+			{
+				DomWindowTopLevel = ((domWind == null) ? true : DomWindow.DomWindow.Equals(topWindow.DomWindow));
+			}
 
 			IsSameDocument = _sameDocument;
 			IsErrorPage = _errorPage;

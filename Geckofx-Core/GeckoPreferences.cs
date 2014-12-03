@@ -11,7 +11,7 @@ namespace Gecko
 	/// <summary>
 	/// Provides access to Gecko preferences.
 	/// </summary>
-	public class GeckoPreferences
+	public class GeckoPreferences: IDisposable
 	{
 		const int PREF_INVALID = 0;
 		const int PREF_STRING = 32;
@@ -30,6 +30,18 @@ namespace Gecko
 			_prefService = Xpcom.GetService2<nsIPrefService>( Contracts.PreferenceService );
 		}
 
+		static public void Shutdown()
+		{
+			if (_prefService != null)
+				_prefService.Dispose();
+			if (_user != null)
+				_user.Dispose();
+			if (_default != null)
+				_default.Dispose();
+			_prefService = null;
+			_user = null;
+			_default = null;
+		}
 		/// <summary>
 		/// Gets the string value of a pref. This is a replacement of nsIPrefBranch::GetCharPref(), which can't handle unicode values.
 		/// See also <a href="http://www-archive.mozilla.org/projects/intl/changefontpref2.html">How to change the font setting in Gecko from the Embedding Application</a>
@@ -55,6 +67,7 @@ namespace Gecko
 			nsString.Set(str.SetDataAttribute, value);
 			branch.SetComplexValue(name, ref iid, Xpcom.QueryInterface<nsISupports>(str));
 		}
+
 
 		#region Properties
 		/// <summary>
@@ -136,6 +149,18 @@ namespace Gecko
 				_branch = new ComPtr<nsIPrefBranch>( _prefService.Instance.GetBranch( "" ) );
 			}
 		}
+
+		#region IDisposable implementation
+
+		public void Dispose()
+		{
+			if (_branch != null)
+				_branch.Dispose();
+			_branch = null;
+			GC.SuppressFinalize(this);
+		}
+
+		#endregion
 	
 		/// <summary>
 		/// Resets all preferences to their default values.

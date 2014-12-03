@@ -18,6 +18,13 @@ namespace Gecko
 			_windowMediator = Xpcom.GetService2<nsIWindowMediator>(Contracts.WindowMediator);			
 		}
 
+		public static void Shutdown()
+		{
+			if (_windowMediator != null)
+				_windowMediator.Dispose();
+			_windowMediator = null;
+		}
+
 		public static void RegisterWindow(nsIXULWindow window)
 		{
 			_windowMediator.Instance.RegisterWindow(window);
