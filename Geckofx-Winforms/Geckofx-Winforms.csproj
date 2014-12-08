@@ -78,7 +78,6 @@
     <Optimize>true</Optimize>
     <OutputPath>bin\Release_Linux</OutputPath>
     <DefineConstants>TRACE;GTK</DefineConstants>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
