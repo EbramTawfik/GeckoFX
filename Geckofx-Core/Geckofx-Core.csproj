@@ -64,9 +64,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Linux|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Release_Linux\</OutputPath>
-    <DebugType>none</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
     <DefineConstants>GECKO_1_9_1;GECKO_1_9;GTK</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Windows|AnyCPU'">
     <OutputPath>bin\Release_Windows\</OutputPath>
