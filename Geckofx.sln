@@ -208,10 +208,10 @@ Global
 		{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}.Debug|x86.Build.0 = Debug|x86
 		{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}.Release_Linux|Any CPU.ActiveCfg = Release_Linux|Any CPU
 		{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}.Release_Linux|Any CPU.Build.0 = Release_Linux|Any CPU
-		{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}.Release_Linux|Mixed Platforms.ActiveCfg = Release|x86
-		{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}.Release_Linux|Mixed Platforms.Build.0 = Release|x86
-		{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}.Release_Linux|x86.ActiveCfg = Release|x86
-		{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}.Release_Linux|x86.Build.0 = Release|x86
+		{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}.Release_Linux|Mixed Platforms.ActiveCfg = Release_Linux|x86
+		{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}.Release_Linux|Mixed Platforms.Build.0 = Release_Linux|x86
+		{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}.Release_Linux|x86.ActiveCfg = Release_Linux|x86
+		{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}.Release_Linux|x86.Build.0 = Release_Linux|x86
 		{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}.Release_Windows|Any CPU.ActiveCfg = Release|Any CPU
 		{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}.Release_Windows|Any CPU.Build.0 = Release|Any CPU
 		{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}.Release_Windows|Mixed Platforms.ActiveCfg = Release|Any CPU

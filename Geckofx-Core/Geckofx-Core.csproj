@@ -65,7 +65,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Release_Linux\</OutputPath>
     <DebugType>pdbonly</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <DefineConstants>GECKO_1_9_1;GECKO_1_9;GTK</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
@@ -98,10 +98,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Linux|AnyCPU'">
     <OutputPath>bin\Release_Linux\</OutputPath>
     <DefineConstants>GECKO_1_9_1;GECKO_1_9;GTK</DefineConstants>
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <DebugType>none</DebugType>
-    <Optimize>false</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
