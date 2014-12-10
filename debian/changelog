@@ -1,3 +1,9 @@
+geckofx29 (29.0.0.17) unstable; urgency=medium
+
+  * Fix a context menu bug.  See README.txt for details.
+
+ -- Stephen McConnel <stephen_mcconnel@sil.org>  Wed, 10 Dec 2014 14:32:12 -0600
+
 geckofx29 (29.0.0.16) unstable; urgency=medium
 
   * See README.txt for details.

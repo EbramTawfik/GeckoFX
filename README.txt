@@ -2,6 +2,8 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+1. Fix GeckoWebBrowser.nsIContextMenuListener2.OnShowContextMenu() to properly encapsulate SWF.MenuItem objects inside Gtk.MenuItem objects.
+
 == v29.0-0.16 ==
 
 1. Linux only tag.

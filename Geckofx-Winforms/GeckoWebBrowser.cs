@@ -1309,7 +1309,8 @@ namespace Gecko
 				{
 					var gtkMenuItem = new Gtk.MenuItem(swfMenuItem.Text);
 					gtkMenuItem.Sensitive = swfMenuItem.Enabled;
-					gtkMenuItem.Activated += (sender, ev) => swfMenuItem.PerformClick();
+					MenuItem origMenuItem = swfMenuItem;
+					gtkMenuItem.Activated += (sender, ev) => origMenuItem.PerformClick();
 					popupMenu.Append(gtkMenuItem);
 				}
 				popupMenu.ShowAll();
