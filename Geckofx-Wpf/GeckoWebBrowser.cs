@@ -97,7 +97,15 @@ namespace Gecko
 
 		public GeckoWindow Window
 		{
-			get { throw new NotImplementedException(); }
+			get
+			{
+				if (_webBrowser == null || _webBrowser.Instance == null)
+				{
+					return null;
+				}
+
+				return _webBrowser.Instance.GetContentDOMWindowAttribute().Wrap(x => new GeckoWindow(x));
+			}
 		}
 
 		public bool IsDisposed
