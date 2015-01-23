@@ -140,28 +140,88 @@ namespace Gecko
 		
 		public static IntPtr JS_GetGlobalForObject(IntPtr jsContext, IntPtr jsObject)
 		{
-			return JS_GetGlobalForObject_Win32(jsContext, jsObject);
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					return JS_GetGlobalForObject_Linux32(jsContext, jsObject);
+				return JS_GetGlobalForObject_Win32(jsContext, jsObject);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					return JS_GetGlobalForObject_Linux64(jsContext, jsObject);
+				throw new NotImplementedException("JS_GetGlobalForObject_Win64 is not hooked up yet");
+				//return JS_GetGlobalForObject_Win64(jsContext, jsObject);
+			}
 		}
 		
 		public static IntPtr GetGlobalForObjectCrossCompartment(IntPtr jsObject)
 		{
-			return GetGlobalForObjectCrossCompartment_Win32(jsObject);
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					return GetGlobalForObjectCrossCompartment_Linux32(jsObject);
+				return GetGlobalForObjectCrossCompartment_Win32(jsObject);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					return GetGlobalForObjectCrossCompartment_Linux64(jsObject);
+				throw new NotImplementedException("GetGlobalForObjectCrossCompartment_Win64 is not hooked up yet");
+				//return GetGlobalForObjectCrossCompartment_Win64(jsObject);
+			}
 		}
 		
 		public static bool JS_SaveFrameChain(IntPtr jsContext)
 		{
-			return JS_SaveFrameChain_Win32(jsContext);
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					return JS_SaveFrameChain_Linux32(jsContext);
+				return JS_SaveFrameChain_Win32(jsContext);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					return JS_SaveFrameChain_Linux64(jsContext);
+				throw new NotImplementedException("JS_SaveFrameChain_Win64 is not hooked up yet");
+				//return JS_SaveFrameChain_Win64(jsContext);
+			}
 		}
 
 		public static IntPtr JS_NewObject(IntPtr context, IntPtr globalClass, IntPtr proto, IntPtr parent)
 		{
-			return JS_NewObject_Win32(context, globalClass, proto, parent);
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					return JS_NewObject_Linux32(context, globalClass, proto, parent);
+				return JS_NewObject_Win32(context, globalClass, proto, parent);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					return JS_NewObject_Linux64(context, globalClass, proto, parent);
+				throw new NotImplementedException("JS_NewObject_Win64 is not hooked up yet");
+				//return JS_NewObject_Win64(context, globalClass, proto, parent);
+			}
 		}
 		
 
 		public static IntPtr JS_GetParent(IntPtr jsObject)
 		{
-			return JS_GetParent_Win32(jsObject);
+			if (Xpcom.Is32Bit)
+			{
+				if (Xpcom.IsLinux)
+					return JS_GetParent_Linux32(jsObject);
+				return JS_GetParent_Win32(jsObject);
+			}
+			else
+			{
+				if (Xpcom.IsLinux)
+					return JS_GetParent_Linux64(jsObject);
+				throw new NotImplementedException("JS_GetParent_Win64 is not hooked up yet");
+				//return JS_GetParent_Win64(jsObject);
+			}
 		}
 
 		/// <summary>
