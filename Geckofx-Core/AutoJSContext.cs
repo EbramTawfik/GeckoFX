@@ -88,6 +88,7 @@ namespace Gecko
 		/// <summary>
 		/// Create a AutoJSContext using the SafeJSContext.
 		/// If context is IntPtr.Zero use the SafeJSContext
+        /// (but SafeJSContext doesn't contain a Global object then try the BackstageJSContext instead)
 		/// </summary>
 		/// <param name="context"></param>
 		public AutoJSContext(IntPtr context)
@@ -95,19 +96,19 @@ namespace Gecko
 			// We can't just use nsIXPConnect::GetSafeJSContext(); because its marked as [noxpcom, nostdcall]
 			// TODO: Enhance IDL compiler to not generate methods for noxpcom, nostdcall tagged methods.
 			if (context == IntPtr.Zero)
-			{
-				context = GlobalJSContextHolder.SafeJSContext;
-			}
+				context = GlobalJSContextHolder.SafeJSContext;			
 
-			IntPtr globalObject = SpiderMonkey.CurrentGlobalOrNull(context);
-			if (globalObject == IntPtr.Zero)
-			{
-				globalObject = SpiderMonkey.DefaultObjectForContextOrNull(context);
-				if (globalObject == IntPtr.Zero)
-					throw new InvalidOperationException("JSContext don't store their default compartment object on the cx.");
-				_defaultCompartment = new JSAutoCompartment(context, globalObject);
-			}
-
+            IntPtr globalObject = GetGlobalFromContext(context);
+            if (globalObject == IntPtr.Zero && context == GlobalJSContextHolder.SafeJSContext)
+		    {
+		        context = GlobalJSContextHolder.BackstageJSContext;
+                globalObject = GetGlobalFromContext(context);
+		    }
+            
+            if (globalObject == IntPtr.Zero)
+                throw new InvalidOperationException("JSContext don't store their default compartment object on the cx.");
+		  
+            _defaultCompartment = new JSAutoCompartment(context, globalObject);
 			_cx = context;
 		}
 
@@ -115,7 +116,7 @@ namespace Gecko
 		/// Create a AutoJSContext using the SafeJSContext.
 		/// </summary>		
 		public AutoJSContext()
-			: this(IntPtr.Zero)
+            : this(GlobalJSContextHolder.BackstageJSContext)
 		{
 		}
 
@@ -128,10 +129,7 @@ namespace Gecko
 		public bool EvaluateScript(string jsScript, out string result)
 		{
 			var ptr = new JsVal();
-			bool ret = SpiderMonkey.JS_EvaluateScript(_cx, GetGlobalObject(), jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
-			// TODO: maybe getting JS_EvaluateScriptForPrincipals working would increase priviliges of the running script.
-			//bool ret = SpiderMonkey.JS_EvaluateScriptForPrincipals(_cx, globalObject, ..., jsScript, (uint)jsScript.Length,"script", 1, ref ptr);
-
+			bool ret = SpiderMonkey.JS_EvaluateScript(_cx, GetGlobalObject(), jsScript, (uint)jsScript.Length, "script", 1, ref ptr);			
 
 			result = ret ? ConvertValueToString(ptr) : null;
 			return ret;
@@ -239,6 +237,23 @@ namespace Gecko
 			}
 			return ret;
 		}
+
+	    /// <summary>
+	    /// Helper method which attempts to find the global object in a Context.
+	    /// </summary>
+	    /// <returns>the Global object ptr or Null/Zero ptr if not found.</returns>
+	    private IntPtr GetGlobalFromContext(IntPtr context)
+	    {
+            IntPtr globalObject = SpiderMonkey.CurrentGlobalOrNull(context);
+            if (globalObject == IntPtr.Zero)
+            {
+                globalObject = SpiderMonkey.DefaultObjectForContextOrNull(context);
+                if (globalObject == IntPtr.Zero)
+                    return IntPtr.Zero;
+            }
+
+            return globalObject;
+	    }
 
 		private IntPtr GetGlobalObject()
 		{

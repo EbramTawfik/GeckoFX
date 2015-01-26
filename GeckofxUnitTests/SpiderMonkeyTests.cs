@@ -156,8 +156,7 @@ namespace GeckofxUnitTests
 			yield return new KeyValuePair<string, Action<IntPtr>>("GetGlobalForObjectCrossCompartment", (c) => SpiderMonkey.GetGlobalForObjectCrossCompartment(IntPtr.Zero));
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_SaveFrameChain", (c) => SpiderMonkey.JS_SaveFrameChain(c));
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_NewObject", (c) => SpiderMonkey.JS_NewObject(c, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero));
-			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetParent", (c) => SpiderMonkey.JS_GetParent(IntPtr.Zero));						
-			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetScriptedGlobal", (c) => SpiderMonkey.JS_GetScriptedGlobal(c));
+			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetParent", (c) => SpiderMonkey.JS_GetParent(IntPtr.Zero));									
 			yield return new KeyValuePair<string, Action<IntPtr>>("CurrentGlobalOrNull", (c) => SpiderMonkey.CurrentGlobalOrNull(c));
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_NewContext", (c) => SpiderMonkey.JS_NewContext(IntPtr.Zero, 0));
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetRuntime", (c) => SpiderMonkey.JS_GetRuntime(c));
@@ -170,11 +169,6 @@ namespace GeckofxUnitTests
 			{
 				var jsVal = new JsVal();
 				SpiderMonkey.JS_EvaluateScript(c, IntPtr.Zero, "", 0, "", 0, ref jsVal);
-			});
-			yield return new KeyValuePair<string, Action<IntPtr>>("JS_EvaluateScriptForPrincipals", (c) =>
-			{
-				var jsVal = new JsVal();
-				SpiderMonkey.JS_EvaluateScriptForPrincipals(c, IntPtr.Zero, IntPtr.Zero, "", 0, "", 0, ref jsVal);
 			});
 			
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetClassObject", (c) => SpiderMonkey.JS_GetClassObject(c, IntPtr.Zero));
@@ -220,7 +214,7 @@ namespace GeckofxUnitTests
 				catch (Exception e)
 				{
 					if (e is EntryPointNotFoundException)
-						Assert.Fail(String.Format("{0} EntryPoint is wrong: {1}", entryPoint.Value, e.Message));
+						Assert.Fail(String.Format("{0}:{1} EntryPoint is wrong: {2}", entryPoint.Value, entryPoint.Key, e.Message));
 				}
 				dummy.Dispose();
 			}
