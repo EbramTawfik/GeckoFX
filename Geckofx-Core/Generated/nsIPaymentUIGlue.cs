@@ -55,7 +55,7 @@ namespace Gecko
         /// for each JWT provided via navigator.mozPay call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConfirmPaymentRequest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase requestId, Gecko.JsVal paymentRequestsInfo, [MarshalAs(UnmanagedType.Interface)] nsIPaymentUIGlueCallback successCb, [MarshalAs(UnmanagedType.Interface)] nsIPaymentUIGlueCallback errorCb);
+		void ConfirmPaymentRequest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase requestId, ref Gecko.JsVal paymentRequestsInfo, [MarshalAs(UnmanagedType.Interface)] nsIPaymentUIGlueCallback successCb, [MarshalAs(UnmanagedType.Interface)] nsIPaymentUIGlueCallback errorCb);
 		
 		/// <summary>Member ShowPaymentFlow </summary>
 		/// <param name='requestId'> </param>

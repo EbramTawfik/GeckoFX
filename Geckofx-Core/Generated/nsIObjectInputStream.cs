@@ -213,7 +213,7 @@ namespace Gecko
         /// @throws NS_ERROR_FAILURE if it can't read aLength bytes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ReadArrayBuffer(uint aLength, Gecko.JsVal aArrayBuffer, System.IntPtr jsContext);
+		new void ReadArrayBuffer(uint aLength, ref Gecko.JsVal aArrayBuffer, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Read an object from this stream to satisfy a strong or weak reference

@@ -41,7 +41,7 @@ namespace Gecko
         /// encode() is not a conforming JSON stringify implementation!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Encode(Gecko.JsVal value, System.IntPtr jsContext, int argc, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		void Encode(ref Gecko.JsVal value, System.IntPtr jsContext, int argc, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// New users should use JSON.stringify.
@@ -51,7 +51,7 @@ namespace Gecko
         /// encodeToStream() is not a conforming JSON stringify implementation!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EncodeToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream stream, [MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.U1)] bool writeBOM, Gecko.JsVal value, System.IntPtr jsContext, int argc);
+		void EncodeToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream stream, [MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.U1)] bool writeBOM, ref Gecko.JsVal value, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// New users should use JSON.parse!

@@ -176,15 +176,15 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest GetCallBarringOption(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal option);
+		nsIDOMDOMRequest GetCallBarringOption(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ref Gecko.JsVal option);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SetCallBarringOption(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal option);
+		nsIDOMDOMRequest SetCallBarringOption(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ref Gecko.JsVal option);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest ChangeCallBarringPassword(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal info);
+		nsIDOMDOMRequest ChangeCallBarringPassword(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ref Gecko.JsVal info);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

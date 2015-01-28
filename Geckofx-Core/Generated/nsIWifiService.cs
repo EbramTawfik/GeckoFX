@@ -44,7 +44,7 @@ namespace Gecko
 		void OnWaitEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase @event, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aInterface);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCommand(Gecko.JsVal result, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aInterface);
+		void OnCommand(ref Gecko.JsVal result, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aInterface);
 	}
 	
 	/// <summary>nsIWifiProxyService </summary>
@@ -70,7 +70,7 @@ namespace Gecko
 		/// <param name='aInterface'> </param>
 		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendCommand(Gecko.JsVal parameters, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aInterface, System.IntPtr jsContext);
+		void SendCommand(ref Gecko.JsVal parameters, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aInterface, System.IntPtr jsContext);
 		
 		/// <summary>Member WaitForEvent </summary>
 		/// <param name='aInterface'> </param>

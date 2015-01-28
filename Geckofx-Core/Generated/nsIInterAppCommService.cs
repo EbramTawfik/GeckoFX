@@ -53,6 +53,6 @@ namespace Gecko
         /// @param rules          The connection's rules.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterConnection([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase keyword, [MarshalAs(UnmanagedType.Interface)] nsIURI handlerPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI manifestURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase description, Gecko.JsVal rules);
+		void RegisterConnection([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase keyword, [MarshalAs(UnmanagedType.Interface)] nsIURI handlerPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI manifestURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase description, ref Gecko.JsVal rules);
 	}
 }

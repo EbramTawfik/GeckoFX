@@ -379,7 +379,7 @@ namespace Gecko
         /// defined error code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIValue WrapValue(Gecko.JsVal value);
+		jsdIValue WrapValue(ref Gecko.JsVal value);
 		
 		/// <summary>
         /// Push a new network queue, and enter a new UI event loop.

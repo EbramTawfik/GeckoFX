@@ -39,13 +39,13 @@ namespace Gecko
         /// is written in C++.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitJS(Gecko.JsVal intermediary, System.IntPtr jsContext);
+		void InitJS(ref Gecko.JsVal intermediary, System.IntPtr jsContext);
 		
 		/// <summary>
         ///        Current ready state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, Gecko.JsVal data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase readyState, System.IntPtr jsContext);
+		void SendEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, ref Gecko.JsVal data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase readyState, System.IntPtr jsContext);
 		
 		/// <summary>
         ///        Intermediate class object. See nsITCPSocketIntermediary.
@@ -93,6 +93,6 @@ namespace Gecko
         /// Called when received a child request to send an array buffer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnRecvSendArrayBuffer(Gecko.JsVal data, uint trackingNumber);
+		void OnRecvSendArrayBuffer(ref Gecko.JsVal data, uint trackingNumber);
 	}
 }

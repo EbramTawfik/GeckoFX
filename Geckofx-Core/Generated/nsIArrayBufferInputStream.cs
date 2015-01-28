@@ -136,6 +136,6 @@ namespace Gecko
         /// @param byteLen - stream data length
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetData(Gecko.JsVal buffer, uint byteOffset, uint byteLen, System.IntPtr jsContext);
+		void SetData(ref Gecko.JsVal buffer, uint byteOffset, uint byteLen, System.IntPtr jsContext);
 	}
 }

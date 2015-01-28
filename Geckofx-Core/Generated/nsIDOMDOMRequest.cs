@@ -288,7 +288,7 @@ namespace Gecko
 		/// <param name='request'> </param>
 		/// <param name='result'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FireSuccess([MarshalAs(UnmanagedType.Interface)] nsIDOMDOMRequest request, Gecko.JsVal result);
+		void FireSuccess([MarshalAs(UnmanagedType.Interface)] nsIDOMDOMRequest request, ref Gecko.JsVal result);
 		
 		/// <summary>Member FireError </summary>
 		/// <param name='request'> </param>
@@ -306,7 +306,7 @@ namespace Gecko
 		/// <param name='request'> </param>
 		/// <param name='result'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FireSuccessAsync([MarshalAs(UnmanagedType.Interface)] nsIDOMDOMRequest request, Gecko.JsVal result);
+		void FireSuccessAsync([MarshalAs(UnmanagedType.Interface)] nsIDOMDOMRequest request, ref Gecko.JsVal result);
 		
 		/// <summary>Member FireErrorAsync </summary>
 		/// <param name='request'> </param>

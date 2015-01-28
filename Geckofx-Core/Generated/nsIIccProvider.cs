@@ -90,16 +90,16 @@ namespace Gecko
         /// STK interfaces.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkResponse(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal command, Gecko.JsVal response);
+		void SendStkResponse(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ref Gecko.JsVal command, ref Gecko.JsVal response);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendStkMenuSelection(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ushort itemIdentifier, [MarshalAs(UnmanagedType.U1)] bool helpRequested);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkTimerExpiration(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal timer);
+		void SendStkTimerExpiration(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ref Gecko.JsVal timer);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendStkEventDownload(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal @event);
+		void SendStkEventDownload(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ref Gecko.JsVal @event);
 		
 		/// <summary>
         /// Card lock interfaces.
@@ -110,11 +110,11 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest UnlockCardLock(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal info);
+		nsIDOMDOMRequest UnlockCardLock(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ref Gecko.JsVal info);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SetCardLock(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal info);
+		nsIDOMDOMRequest SetCardLock(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ref Gecko.JsVal info);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -129,7 +129,7 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest UpdateContact(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase contactType, Gecko.JsVal contact, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase pin2);
+		nsIDOMDOMRequest UpdateContact(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase contactType, ref Gecko.JsVal contact, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase pin2);
 		
 		/// <summary>
         /// Secure Card Icc communication channel
@@ -140,7 +140,7 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest IccExchangeAPDU(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, int channel, Gecko.JsVal apdu);
+		nsIDOMDOMRequest IccExchangeAPDU(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, int channel, ref Gecko.JsVal apdu);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

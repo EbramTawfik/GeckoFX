@@ -45,7 +45,7 @@ namespace Gecko
         /// has been nested using this API.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint EnterNestedEventLoop(Gecko.JsVal requestor);
+		uint EnterNestedEventLoop(ref Gecko.JsVal requestor);
 		
 		/// <summary>
         /// Exits the current nested event loop.

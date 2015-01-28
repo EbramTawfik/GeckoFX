@@ -100,7 +100,7 @@ namespace Gecko
 		void TestACString([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase a, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase b, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal TestJsval(Gecko.JsVal a, ref Gecko.JsVal b);
+		Gecko.JsVal TestJsval(ref Gecko.JsVal a, ref Gecko.MutableJSVal b);
 		
 		/// <summary>
         /// Test arrays.

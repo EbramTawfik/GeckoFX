@@ -176,7 +176,7 @@ namespace Gecko
         /// is converted to a string and reported as a new error.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReportError(Gecko.JsVal error, System.IntPtr jsContext);
+		void ReportError(ref Gecko.JsVal error, System.IntPtr jsContext);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -195,7 +195,7 @@ namespace Gecko
         /// var thirtyFive = C.u.evalInSandbox("five * seven", s);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal EvalInSandbox([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase source, Gecko.JsVal sandbox, Gecko.JsVal version, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase filename, int lineNo, System.IntPtr jsContext, int argc);
+		Gecko.JsVal EvalInSandbox([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase source, ref Gecko.JsVal sandbox, ref Gecko.JsVal version, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase filename, int lineNo, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// getSandboxMetadata is designed to be called from JavaScript only.
@@ -208,7 +208,7 @@ namespace Gecko
         /// var metadata = C.u.getSandboxMetadata(s);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetSandboxMetadata(Gecko.JsVal sandbox, System.IntPtr jsContext);
+		Gecko.JsVal GetSandboxMetadata(ref Gecko.JsVal sandbox, System.IntPtr jsContext);
 		
 		/// <summary>
         /// setSandboxMetadata is designed to be called from JavaScript only.
@@ -222,7 +222,7 @@ namespace Gecko
         /// it will throw if it encounters them.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSandboxMetadata(Gecko.JsVal sandbox, Gecko.JsVal metadata, System.IntPtr jsContext);
+		void SetSandboxMetadata(ref Gecko.JsVal sandbox, ref Gecko.JsVal metadata, System.IntPtr jsContext);
 		
 		/// <summary>
         /// import is designed to be called from JavaScript only.
@@ -255,7 +255,7 @@ namespace Gecko
         /// (This comment is duplicated from xpcIJSModuleLoader.)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aResourceURI, Gecko.JsVal targetObj, System.IntPtr jsContext, int argc);
+		Gecko.JsVal Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aResourceURI, ref Gecko.JsVal targetObj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Unloads the JS module at 'registryLocation'. Existing references to the
@@ -277,7 +277,7 @@ namespace Gecko
         /// properties.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportGlobalProperties(Gecko.JsVal aPropertyList, System.IntPtr jsContext);
+		void ImportGlobalProperties(ref Gecko.JsVal aPropertyList, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -285,7 +285,7 @@ namespace Gecko
         /// Return a weak reference for the given JS object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		xpcIJSWeakReference GetWeakReference(Gecko.JsVal obj, System.IntPtr jsContext);
+		xpcIJSWeakReference GetWeakReference(ref Gecko.JsVal obj, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -345,7 +345,7 @@ namespace Gecko
         ///                map as an array.  Otherwise, return undefined.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal NondeterministicGetWeakMapKeys(Gecko.JsVal aMap, System.IntPtr jsContext);
+		Gecko.JsVal NondeterministicGetWeakMapKeys(ref Gecko.JsVal aMap, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetJSTestingFunctions(System.IntPtr jsContext);
@@ -369,7 +369,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsProxy(Gecko.JsVal vobject, System.IntPtr jsContext);
+		bool IsProxy(ref Gecko.JsVal vobject, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Similar to evalInSandbox except this one is used to eval a script in the
@@ -399,7 +399,7 @@ namespace Gecko
         /// the forwarder function as the value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal ExportFunction(Gecko.JsVal vfunction, Gecko.JsVal vscope, Gecko.JsVal voptions, System.IntPtr jsContext);
+		Gecko.JsVal ExportFunction(ref Gecko.JsVal vfunction, ref Gecko.JsVal vscope, ref Gecko.JsVal voptions, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -410,7 +410,7 @@ namespace Gecko
         /// returned new object is always automatically waived (see waiveXrays).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal CreateObjectIn(Gecko.JsVal vobj, Gecko.JsVal voptions, System.IntPtr jsContext);
+		Gecko.JsVal CreateObjectIn(ref Gecko.JsVal vobj, ref Gecko.JsVal voptions, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -419,7 +419,7 @@ namespace Gecko
         /// compartment wrappers).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MakeObjectPropsNormal(Gecko.JsVal vobj, System.IntPtr jsContext);
+		void MakeObjectPropsNormal(ref Gecko.JsVal vobj, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Determines whether this object is backed by a DeadObjectProxy.
@@ -430,7 +430,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsDeadWrapper(Gecko.JsVal obj);
+		bool IsDeadWrapper(ref Gecko.JsVal obj);
 		
 		/// <summary>
         /// To be called from JS only. This is for Gecko internal use only, and may
@@ -441,7 +441,7 @@ namespace Gecko
         /// are recomputed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RecomputeWrappers(Gecko.JsVal vobj, System.IntPtr jsContext);
+		void RecomputeWrappers(ref Gecko.JsVal vobj, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only. This is for Gecko internal use only, and may
@@ -451,14 +451,14 @@ namespace Gecko
         /// indicated by |vscope|. All outgoing wrappers are recomputed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWantXrays(Gecko.JsVal vscope, System.IntPtr jsContext);
+		void SetWantXrays(ref Gecko.JsVal vscope, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Forces the usage of a privileged |Components| object for a potentially-
         /// unprivileged scope. This will crash if used outside of automation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ForcePrivilegedComponentsForScope(Gecko.JsVal vscope, System.IntPtr jsContext);
+		void ForcePrivilegedComponentsForScope(ref Gecko.JsVal vscope, System.IntPtr jsContext);
 		
 		/// <summary>
         /// This seemingly-paradoxical API allows privileged code to explicitly give
@@ -467,7 +467,7 @@ namespace Gecko
         /// also SpecialPowers.getComponents.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetComponentsForScope(Gecko.JsVal vscope, System.IntPtr jsContext);
+		Gecko.JsVal GetComponentsForScope(ref Gecko.JsVal vscope, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Dispatches a runnable to the current/main thread. If |scope| is passed,
@@ -475,7 +475,7 @@ namespace Gecko
         /// affects which error reporter gets called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Dispatch(Gecko.JsVal runnable, Gecko.JsVal scope, System.IntPtr jsContext);
+		void Dispatch(ref Gecko.JsVal runnable, ref Gecko.JsVal scope, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -531,7 +531,7 @@ namespace Gecko
 		void SetGCZeal(int zeal, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NukeSandbox(Gecko.JsVal obj, System.IntPtr jsContext);
+		void NukeSandbox(ref Gecko.JsVal obj, System.IntPtr jsContext);
 		
 		/// <summary>
         /// API to dynamically block script for a given global. This takes effect
@@ -544,10 +544,10 @@ namespace Gecko
         /// interfere with another consumer's script blocking.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BlockScriptForGlobal(Gecko.JsVal global, System.IntPtr jsContext);
+		void BlockScriptForGlobal(ref Gecko.JsVal global, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnblockScriptForGlobal(Gecko.JsVal global, System.IntPtr jsContext);
+		void UnblockScriptForGlobal(ref Gecko.JsVal global, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Check whether the given object is an XrayWrapper.
@@ -560,7 +560,7 @@ namespace Gecko
         /// Waive Xray on a given value. Identity op for primitives.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-        Gecko.JsVal WaiveXrays(ref Gecko.JsVal aVal, System.IntPtr jsContext);
+		Gecko.JsVal WaiveXrays(ref Gecko.JsVal aVal, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Strip off Xray waivers on a given value. Identity op for primitives.
@@ -577,7 +577,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetClassName(Gecko.JsVal aObj, [MarshalAs(UnmanagedType.U1)] bool aUnwrap, System.IntPtr jsContext);
+		string GetClassName(ref Gecko.JsVal aObj, [MarshalAs(UnmanagedType.U1)] bool aUnwrap, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Get a DOM classinfo for the given classname.  Only some class
@@ -596,7 +596,7 @@ namespace Gecko
         /// environments with no scripted frames on the stack.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetIncumbentGlobal(Gecko.JsVal callback, System.IntPtr jsContext);
+		Gecko.JsVal GetIncumbentGlobal(ref Gecko.JsVal callback, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Forces the generation of an XPCWrappedJS for a given object. For internal
@@ -608,7 +608,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GenerateXPCWrappedJS(Gecko.JsVal obj, Gecko.JsVal scope, System.IntPtr jsContext);
+		nsISupports GenerateXPCWrappedJS(ref Gecko.JsVal obj, ref Gecko.JsVal scope, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Retrieve the last time, in microseconds since epoch, that a given
@@ -634,7 +634,7 @@ namespace Gecko
         /// the content scope.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal CloneInto(Gecko.JsVal value, Gecko.JsVal scope, Gecko.JsVal options, System.IntPtr jsContext);
+		Gecko.JsVal CloneInto(ref Gecko.JsVal value, ref Gecko.JsVal scope, ref Gecko.JsVal options, System.IntPtr jsContext);
 		
 		/// <summary>
         /// When C++-Implemented code does security checks, it can generally query
@@ -660,7 +660,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetObjectPrincipal(Gecko.JsVal obj, System.IntPtr jsContext);
+		nsIPrincipal GetObjectPrincipal(ref Gecko.JsVal obj, System.IntPtr jsContext);
 	}
 	
 	/// <summary>
@@ -796,6 +796,6 @@ namespace Gecko
 		/// <summary>
         ///@deprecated Use Components.utils.reportError instead. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReportError(Gecko.JsVal error, System.IntPtr jsContext);
+		void ReportError(ref Gecko.JsVal error, System.IntPtr jsContext);
 	}
 }

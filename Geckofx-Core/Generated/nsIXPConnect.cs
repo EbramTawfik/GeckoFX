@@ -446,7 +446,7 @@ namespace Gecko
         /// aJSContext.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WrapNativeToJSVal(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, System.IntPtr aCache, System.Guid aIID, [MarshalAs(UnmanagedType.U1)] bool aAllowWrapper, ref Gecko.JsVal aVal);
+		void WrapNativeToJSVal(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, System.IntPtr aCache, System.Guid aIID, [MarshalAs(UnmanagedType.U1)] bool aAllowWrapper, ref Gecko.MutableJSVal aVal);
 		
 		/// <summary>
         /// wrapJS will yield a new or previously existing xpcom interface pointer
@@ -479,7 +479,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant JSValToVariant(System.IntPtr cx, Gecko.JsVal aJSVal);
+		nsIVariant JSValToVariant(System.IntPtr cx, ref Gecko.JsVal aJSVal);
 		
 		/// <summary>
         /// This only succeeds if the JSObject is a nsIXPConnectWrappedNative.
@@ -575,7 +575,7 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant JSToVariant(System.IntPtr ctx, Gecko.JsVal value);
+		nsIVariant JSToVariant(System.IntPtr ctx, ref Gecko.JsVal value);
 		
 		/// <summary>
         /// Create a sandbox for evaluating code in isolation using

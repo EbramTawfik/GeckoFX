@@ -259,7 +259,7 @@ namespace Gecko
 		/// <param name='message'> </param>
 		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleGeckoMessage(Gecko.JsVal message, System.IntPtr jsContext);
+		void HandleGeckoMessage(ref Gecko.JsVal message, System.IntPtr jsContext);
 		
 		/// <summary>Member GetBrowserAppAttribute </summary>
 		/// <returns>A nsIAndroidBrowserApp</returns>

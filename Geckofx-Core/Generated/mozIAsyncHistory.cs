@@ -198,7 +198,7 @@ namespace Gecko
         /// - Not providing at least one valid GUID or URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPlacesInfo(Gecko.JsVal aPlaceIdentifiers, mozIVisitInfoCallback aCallback, System.IntPtr jsContext);
+		void GetPlacesInfo(ref Gecko.JsVal aPlaceIdentifiers, mozIVisitInfoCallback aCallback, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Adds a set of visits for one or more mozIPlaceInfo objects, and updates
@@ -224,7 +224,7 @@ namespace Gecko
         /// - Providing an invalid transitionType for a mozIVisitInfo.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdatePlaces(Gecko.JsVal aPlaceInfo, mozIVisitInfoCallback aCallback, System.IntPtr jsContext);
+		void UpdatePlaces(ref Gecko.JsVal aPlaceInfo, mozIVisitInfoCallback aCallback, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Checks if a given URI has been visited.

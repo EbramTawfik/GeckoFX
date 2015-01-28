@@ -285,7 +285,12 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public nsIVariant ShowModalDialog(nsAStringBase aURI, nsIVariant aArgs, nsAStringBase aOptions)
+	    public void PostMessage(ref JsVal message, nsAStringBase targetOrigin, ref JsVal transfer, IntPtr jsContext)
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    public nsIVariant ShowModalDialog(nsAStringBase aURI, nsIVariant aArgs, nsAStringBase aOptions)
 		{
 			throw new NotImplementedException();
 		}
@@ -540,7 +545,12 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public int RequestAnimationFrame(JsVal aCallback, IntPtr jsContext)
+	    public int RequestAnimationFrame(ref JsVal aCallback, IntPtr jsContext)
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    public int RequestAnimationFrame(JsVal aCallback, IntPtr jsContext)
 		{
 			throw new NotImplementedException();
 		}

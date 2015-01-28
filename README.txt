@@ -2,6 +2,12 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v31.0-0.1 ==
+
+1. Initial version supporting firefox/xulrunner v31.0
+2. Support for executing javascript in a window, via new EvaluateScript(string javascript, nsIDOMWindow window) overload.
+3. Added debug warning message if geckofx is used in non STA mode.
+
 == v29.0-0.17 ==
 
 Linux only tag.

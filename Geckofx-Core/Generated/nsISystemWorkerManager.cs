@@ -39,9 +39,9 @@ namespace Gecko
         /// Information about networks that is exposed to network manager API consumers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterRilWorker(uint aClientId, Gecko.JsVal aWorker, System.IntPtr jsContext);
+		void RegisterRilWorker(uint aClientId, ref Gecko.JsVal aWorker, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterNfcWorker(Gecko.JsVal aWorker, System.IntPtr jsContext);
+		void RegisterNfcWorker(ref Gecko.JsVal aWorker, System.IntPtr jsContext);
 	}
 }

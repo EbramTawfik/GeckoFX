@@ -41,6 +41,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest Pay(Gecko.JsVal jwts);
+		nsIDOMDOMRequest Pay(ref Gecko.JsVal jwts);
 	}
 }

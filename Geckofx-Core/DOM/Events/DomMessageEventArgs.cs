@@ -34,7 +34,8 @@ namespace Gecko
 			{
 				using (AutoJSContext context = new AutoJSContext(_messageEvent.GetTargetAttribute().GetJSContextForEventHandlers()))
 				{
-					var val = _messageEvent.GetDataAttribute(context.ContextPointer);
+				    
+                    var val = _messageEvent.GetDataAttribute(context.ContextPointer);
 					//TODO if(!val.IsString)
 					//throw new NotImplementedException("GeckoFx currently only supports messages which are strings.");
 

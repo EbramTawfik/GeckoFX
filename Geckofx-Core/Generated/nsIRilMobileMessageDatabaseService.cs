@@ -55,7 +55,7 @@ namespace Gecko
         /// |aDomMessage|: the nsIDOMMoz{Mms,Sms}Message. Noted, this value might be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Notify(int aRv, Gecko.JsVal aMessageRecord, [MarshalAs(UnmanagedType.Interface)] nsISupports aDomMessage);
+		void Notify(int aRv, ref Gecko.JsVal aMessageRecord, [MarshalAs(UnmanagedType.Interface)] nsISupports aDomMessage);
 	}
 	
 	/// <summary>nsIRilMobileMessageDatabaseConcatenationCallback </summary>
@@ -69,7 +69,7 @@ namespace Gecko
         /// |aCompleteMessage|: jsval: the completely concatenated message. Noted, this value might be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Notify(int aRv, Gecko.JsVal aCompleteMessage);
+		void Notify(int aRv, ref Gecko.JsVal aCompleteMessage);
 	}
 	
 	/// <summary>nsIRilMobileMessageDatabaseService </summary>
@@ -137,7 +137,7 @@ namespace Gecko
         /// - |phoneNumber| DOMString: [optional] my own phone number.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveReceivedMessage(Gecko.JsVal aMessage, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
+		void SaveReceivedMessage(ref Gecko.JsVal aMessage, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
 		
 		/// <summary>
         /// |aMessage| Object: should contain the following properties for internal use:
@@ -154,7 +154,7 @@ namespace Gecko
         /// - |receivers| DOMString Array: the phone numbers of receivers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveSendingMessage(Gecko.JsVal aMessage, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
+		void SaveSendingMessage(ref Gecko.JsVal aMessage, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseCallback aCallback);
 		
 		/// <summary>
         /// |aMessageId| Number: the message's DB record ID.
@@ -215,6 +215,6 @@ namespace Gecko
         /// takes result flag, and complete mesage as parameters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveSmsSegment(Gecko.JsVal aSmsSegment, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseConcatenationCallback aCallback);
+		void SaveSmsSegment(ref Gecko.JsVal aSmsSegment, [MarshalAs(UnmanagedType.Interface)] nsIRilMobileMessageDatabaseConcatenationCallback aCallback);
 	}
 }

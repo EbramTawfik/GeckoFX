@@ -516,7 +516,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SetCallBarringOption(Gecko.JsVal option);
+		nsIDOMDOMRequest SetCallBarringOption(ref Gecko.JsVal option);
 		
 		/// <summary>
         /// Queries current call barring status.
@@ -536,7 +536,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest GetCallBarringOption(Gecko.JsVal option);
+		nsIDOMDOMRequest GetCallBarringOption(ref Gecko.JsVal option);
 		
 		/// <summary>
         /// Change call barring facility password.
@@ -553,7 +553,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest ChangeCallBarringPassword(Gecko.JsVal info);
+		nsIDOMDOMRequest ChangeCallBarringPassword(ref Gecko.JsVal info);
 		
 		/// <summary>
         /// Configures call waiting options.

@@ -46,7 +46,7 @@ namespace Gecko
 		/// <summary>
         ///MmsParameters </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Send(uint serviceId, Gecko.JsVal parameters, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
+		void Send(uint serviceId, ref Gecko.JsVal parameters, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Retrieve(int id, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);

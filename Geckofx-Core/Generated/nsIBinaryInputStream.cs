@@ -219,6 +219,6 @@ namespace Gecko
         /// @throws NS_ERROR_FAILURE if it can't read aLength bytes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadArrayBuffer(uint aLength, Gecko.JsVal aArrayBuffer, System.IntPtr jsContext);
+		void ReadArrayBuffer(uint aLength, ref Gecko.JsVal aArrayBuffer, System.IntPtr jsContext);
 	}
 }

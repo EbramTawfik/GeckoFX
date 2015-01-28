@@ -41,7 +41,7 @@ namespace Gecko
         /// @param cue An object representing the data of a parsed WebVTT cue.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCue(Gecko.JsVal cue, System.IntPtr jsContext);
+		void OnCue(ref Gecko.JsVal cue, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Is called when the WebVTT parser successfully parses a WebVTT region.
@@ -50,7 +50,7 @@ namespace Gecko
         /// WebVTT region.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnRegion(Gecko.JsVal region, System.IntPtr jsContext);
+		void OnRegion(ref Gecko.JsVal region, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Is called when the WebVTT parser encounters a parsing error.

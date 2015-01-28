@@ -257,6 +257,6 @@ namespace Gecko
         /// Callback function used to report status to WifiManager.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWifiTethering([MarshalAs(UnmanagedType.U1)] bool enabled, [MarshalAs(UnmanagedType.Interface)] nsINetworkInterface networkInterface, Gecko.JsVal config, [MarshalAs(UnmanagedType.Interface)] nsIWifiTetheringCallback callback);
+		void SetWifiTethering([MarshalAs(UnmanagedType.U1)] bool enabled, [MarshalAs(UnmanagedType.Interface)] nsINetworkInterface networkInterface, ref Gecko.JsVal config, [MarshalAs(UnmanagedType.Interface)] nsIWifiTetheringCallback callback);
 	}
 }

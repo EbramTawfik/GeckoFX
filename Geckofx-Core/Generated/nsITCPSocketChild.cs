@@ -39,13 +39,13 @@ namespace Gecko
         /// Tell the chrome process to open a corresponding connection with the given parameters
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendOpen([MarshalAs(UnmanagedType.Interface)] nsITCPSocketInternal socket, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase host, ushort port, [MarshalAs(UnmanagedType.U1)] bool ssl, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase binaryType, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal windowVal, System.IntPtr jsContext);
+		void SendOpen([MarshalAs(UnmanagedType.Interface)] nsITCPSocketInternal socket, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase host, ushort port, [MarshalAs(UnmanagedType.U1)] bool ssl, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase binaryType, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ref Gecko.JsVal windowVal, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Tell the chrome process to perform send and update the tracking number.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendSend(Gecko.JsVal data, uint byteOffset, uint byteLength, uint trackingNumber, System.IntPtr jsContext);
+		void SendSend(ref Gecko.JsVal data, uint byteOffset, uint byteLength, uint trackingNumber, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Tell the chrome process to perform equivalent operations to all following methods
@@ -76,6 +76,6 @@ namespace Gecko
         /// as "jsval" for deserialization.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSocketAndWindow([MarshalAs(UnmanagedType.Interface)] nsITCPSocketInternal socket, Gecko.JsVal windowVal, System.IntPtr jsContext);
+		void SetSocketAndWindow([MarshalAs(UnmanagedType.Interface)] nsITCPSocketInternal socket, ref Gecko.JsVal windowVal, System.IntPtr jsContext);
 	}
 }

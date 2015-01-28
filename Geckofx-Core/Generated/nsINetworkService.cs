@@ -44,7 +44,7 @@ namespace Gecko
         /// or `null` if it was.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WifiTetheringEnabledChange(Gecko.JsVal error);
+		void WifiTetheringEnabledChange(ref Gecko.JsVal error);
 	}
 	
 	/// <summary>nsINetworkStatsCallback </summary>
@@ -60,7 +60,7 @@ namespace Gecko
 		/// <param name='txBytes'> </param>
 		/// <param name='date'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NetworkStatsAvailable([MarshalAs(UnmanagedType.U1)] bool success, uint rxBytes, uint txBytes, Gecko.JsVal date);
+		void NetworkStatsAvailable([MarshalAs(UnmanagedType.U1)] bool success, uint rxBytes, uint txBytes, ref Gecko.JsVal date);
 	}
 	
 	/// <summary>nsINetworkUsageAlarmCallback </summary>
@@ -73,7 +73,7 @@ namespace Gecko
 		/// <summary>Member NetworkUsageAlarmResult </summary>
 		/// <param name='error'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NetworkUsageAlarmResult(Gecko.JsVal error);
+		void NetworkUsageAlarmResult(ref Gecko.JsVal error);
 	}
 	
 	/// <summary>nsIWifiOperationModeCallback </summary>
@@ -91,7 +91,7 @@ namespace Gecko
         /// or `null` if it was.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WifiOperationModeResult(Gecko.JsVal error);
+		void WifiOperationModeResult(ref Gecko.JsVal error);
 	}
 	
 	/// <summary>nsISetDhcpServerCallback </summary>
@@ -109,7 +109,7 @@ namespace Gecko
         /// or `null` if it was.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DhcpServerResult(Gecko.JsVal error);
+		void DhcpServerResult(ref Gecko.JsVal error);
 	}
 	
 	/// <summary>nsIUsbTetheringCallback </summary>
@@ -127,7 +127,7 @@ namespace Gecko
         /// or `null` if it was.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UsbTetheringEnabledChange(Gecko.JsVal error);
+		void UsbTetheringEnabledChange(ref Gecko.JsVal error);
 	}
 	
 	/// <summary>nsIEnableUsbRndisCallback </summary>
@@ -188,7 +188,7 @@ namespace Gecko
         /// Callback function used to report status to WifiManager.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWifiTethering([MarshalAs(UnmanagedType.U1)] bool enabled, Gecko.JsVal config, [MarshalAs(UnmanagedType.Interface)] nsIWifiTetheringCallback callback);
+		void SetWifiTethering([MarshalAs(UnmanagedType.U1)] bool enabled, ref Gecko.JsVal config, [MarshalAs(UnmanagedType.Interface)] nsIWifiTetheringCallback callback);
 		
 		/// <summary>
         /// Enable or disable DHCP server
@@ -210,7 +210,7 @@ namespace Gecko
         /// Callback function used to report status.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDhcpServer([MarshalAs(UnmanagedType.U1)] bool enabled, Gecko.JsVal config, [MarshalAs(UnmanagedType.Interface)] nsISetDhcpServerCallback callback);
+		void SetDhcpServer([MarshalAs(UnmanagedType.U1)] bool enabled, ref Gecko.JsVal config, [MarshalAs(UnmanagedType.Interface)] nsISetDhcpServerCallback callback);
 		
 		/// <summary>
         /// Retrieve network interface stats.
@@ -281,7 +281,7 @@ namespace Gecko
         /// Callback function used to report the result enabling/disabling usb tethering.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUSBTethering([MarshalAs(UnmanagedType.U1)] bool enabled, Gecko.JsVal config, [MarshalAs(UnmanagedType.Interface)] nsIUsbTetheringCallback callback);
+		void SetUSBTethering([MarshalAs(UnmanagedType.U1)] bool enabled, ref Gecko.JsVal config, [MarshalAs(UnmanagedType.Interface)] nsIUsbTetheringCallback callback);
 		
 		/// <summary>
         /// Reset routing table.
@@ -357,7 +357,7 @@ namespace Gecko
         /// The array of host names we want to add.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddHostRouteWithResolve([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface network, Gecko.JsVal hosts);
+		void AddHostRouteWithResolve([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface network, ref Gecko.JsVal hosts);
 		
 		/// <summary>
         /// Remove host route with resolve.
@@ -368,7 +368,7 @@ namespace Gecko
         /// The array of host names we want to remove.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveHostRouteWithResolve([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface network, Gecko.JsVal hosts);
+		void RemoveHostRouteWithResolve([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface network, ref Gecko.JsVal hosts);
 		
 		/// <summary>
         /// Add route to secondary routing table.
@@ -382,7 +382,7 @@ namespace Gecko
         /// .gateway: gateway ip address
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddSecondaryRoute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, Gecko.JsVal route);
+		void AddSecondaryRoute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, ref Gecko.JsVal route);
 		
 		/// <summary>
         /// Remove route from secondary routing table.
@@ -396,7 +396,7 @@ namespace Gecko
         /// .gateway: gateway ip address
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveSecondaryRoute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, Gecko.JsVal route);
+		void RemoveSecondaryRoute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, ref Gecko.JsVal route);
 		
 		/// <summary>
         /// Enable or disable usb rndis.
@@ -420,6 +420,6 @@ namespace Gecko
         /// Callback function to report the result.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateUpStream(Gecko.JsVal previous, Gecko.JsVal current, [MarshalAs(UnmanagedType.Interface)] nsIUpdateUpStreamCallback callback);
+		void UpdateUpStream(ref Gecko.JsVal previous, ref Gecko.JsVal current, [MarshalAs(UnmanagedType.Interface)] nsIUpdateUpStreamCallback callback);
 	}
 }

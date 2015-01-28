@@ -41,7 +41,7 @@ namespace Gecko
         /// @param aMessage message
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Notify([MarshalAs(UnmanagedType.U1)] bool aResult, Gecko.JsVal aMessage);
+		void Notify([MarshalAs(UnmanagedType.U1)] bool aResult, ref Gecko.JsVal aMessage);
 	}
 	
 	/// <summary>nsINetworkStatsServiceProxy </summary>

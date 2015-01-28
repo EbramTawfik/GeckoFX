@@ -85,7 +85,7 @@ namespace Gecko
         /// Used for emiting boundary and mark events.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendAudio(Gecko.JsVal aData, Gecko.JsVal aLandmarks, System.IntPtr jsContext);
+		void SendAudio(ref Gecko.JsVal aData, ref Gecko.JsVal aLandmarks, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendAudioNative(@short aData, uint aDataLen);

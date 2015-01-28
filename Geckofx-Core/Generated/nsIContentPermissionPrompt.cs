@@ -104,7 +104,7 @@ namespace Gecko
 		void Cancel();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Allow(Gecko.JsVal choices);
+		void Allow(ref Gecko.JsVal choices);
 	}
 	
 	/// <summary>

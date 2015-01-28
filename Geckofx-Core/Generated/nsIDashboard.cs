@@ -41,7 +41,7 @@ namespace Gecko
         /// The returned JSON contains arrays with data
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDashboardDataAvailable(Gecko.JsVal data);
+		void OnDashboardDataAvailable(ref Gecko.JsVal data);
 	}
 	
 	/// <summary>

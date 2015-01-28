@@ -88,13 +88,13 @@ namespace Gecko
         ///NetworkStatsGetOptions </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest GetSamples([MarshalAs(UnmanagedType.Interface)] nsIDOMMozNetworkStatsInterface network, Gecko.JsVal start, Gecko.JsVal end, Gecko.JsVal options);
+		nsIDOMDOMRequest GetSamples([MarshalAs(UnmanagedType.Interface)] nsIDOMMozNetworkStatsInterface network, ref Gecko.JsVal start, ref Gecko.JsVal end, ref Gecko.JsVal options);
 		
 		/// <summary>
         ///NetworkStatsAlarmOptions </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest AddAlarm([MarshalAs(UnmanagedType.Interface)] nsIDOMMozNetworkStatsInterface network, int threshold, Gecko.JsVal options);
+		nsIDOMDOMRequest AddAlarm([MarshalAs(UnmanagedType.Interface)] nsIDOMMozNetworkStatsInterface network, int threshold, ref Gecko.JsVal options);
 		
 		/// <summary>
         /// Obtain all alarms for those networks returned by getAvailableNetworks().

@@ -48,7 +48,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMDOMRequest Install([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase manifestUrl, Gecko.JsVal parameters);
+		new nsIDOMDOMRequest Install([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase manifestUrl, ref Gecko.JsVal parameters);
 		
 		/// <summary>
         /// the request will return the application currently installed, or null.
@@ -84,7 +84,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMDOMRequest InstallPackage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase packageUrl, Gecko.JsVal parameters);
+		new nsIDOMDOMRequest InstallPackage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase packageUrl, ref Gecko.JsVal parameters);
 		
 		/// <summary>Member GetMgmtAttribute </summary>
 		/// <returns>A mozIDOMApplicationMgmt</returns>

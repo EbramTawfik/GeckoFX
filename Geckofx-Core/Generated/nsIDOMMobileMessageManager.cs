@@ -250,7 +250,7 @@ namespace Gecko
         /// has been passed; an array of DOMRequest objects otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal Send(Gecko.JsVal number, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase message, Gecko.JsVal sendParameters, System.IntPtr jsContext, int argc);
+		Gecko.JsVal Send(ref Gecko.JsVal number, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase message, ref Gecko.JsVal sendParameters, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Function to send MMS.
@@ -264,7 +264,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SendMMS(Gecko.JsVal parameters, Gecko.JsVal sendParameters, System.IntPtr jsContext, int argc);
+		nsIDOMDOMRequest SendMMS(ref Gecko.JsVal parameters, ref Gecko.JsVal sendParameters, System.IntPtr jsContext, int argc);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -275,7 +275,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest Delete(Gecko.JsVal param, System.IntPtr jsContext);
+		nsIDOMDOMRequest Delete(ref Gecko.JsVal param, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Iterates through nsIDOMMoz{Mms,Sms}Message.

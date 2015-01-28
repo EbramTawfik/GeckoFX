@@ -53,7 +53,7 @@ namespace Gecko
         /// won't return a promise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal AddLivemark(Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
+		Gecko.JsVal AddLivemark(ref Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
 		
 		/// <summary>
         /// Removes an existing livemark.
@@ -72,7 +72,7 @@ namespace Gecko
         /// won't return a promise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal RemoveLivemark(Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
+		Gecko.JsVal RemoveLivemark(ref Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
 		
 		/// <summary>
         /// Gets an existing livemark.
@@ -92,7 +92,7 @@ namespace Gecko
         /// won't return a promise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetLivemark(Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
+		Gecko.JsVal GetLivemark(ref Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
 		
 		/// <summary>
         /// Reloads all livemarks if they are expired or if forced to do so.
@@ -272,7 +272,7 @@ namespace Gecko
         /// parent of the livemark nodes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetNodesForContainer(Gecko.JsVal aContainerNode);
+		Gecko.JsVal GetNodesForContainer(ref Gecko.JsVal aContainerNode);
 		
 		/// <summary>
         /// Registers a container node for updates on this livemark.
@@ -287,7 +287,7 @@ namespace Gecko
         /// to the livemark contents.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterForUpdates(Gecko.JsVal aContainerNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultObserver aResultObserver);
+		void RegisterForUpdates(ref Gecko.JsVal aContainerNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultObserver aResultObserver);
 		
 		/// <summary>
         /// Unregisters a previously registered container node.
@@ -301,7 +301,7 @@ namespace Gecko
         /// the container gets closed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterForUpdates(Gecko.JsVal aContainerNode);
+		void UnregisterForUpdates(ref Gecko.JsVal aContainerNode);
 	}
 	
 	/// <summary>mozILivemarkConsts </summary>

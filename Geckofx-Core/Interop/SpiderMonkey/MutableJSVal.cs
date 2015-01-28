@@ -3,7 +3,7 @@
 namespace Gecko
 {
     [StructLayout(LayoutKind.Sequential)]
-    internal struct MutableJSVal
+    public struct MutableJSVal
     {
         private JsVal _val;
 

@@ -131,7 +131,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SendFile([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal blob, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
+		nsIDOMDOMRequest SendFile([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ref Gecko.JsVal blob, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
 		
 		/// <summary>
         /// Register the given application id with Chrome process

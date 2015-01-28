@@ -286,7 +286,7 @@ namespace Gecko
         /// @see <http://www.whatwg.org/html/#dom-window-postmessage>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PostMessage(Gecko.JsVal message, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase targetOrigin, Gecko.JsVal transfer, System.IntPtr jsContext);
+		void PostMessage(ref Gecko.JsVal message, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase targetOrigin, ref Gecko.JsVal transfer, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Ascii base64 data to binary data and vice versa...
@@ -632,7 +632,7 @@ namespace Gecko
         /// jsval because we want a WebIDL callback here
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int RequestAnimationFrame(Gecko.JsVal aCallback, System.IntPtr jsContext);
+		int RequestAnimationFrame(ref Gecko.JsVal aCallback, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Cancel a refresh callback.
@@ -1077,7 +1077,7 @@ namespace Gecko
         /// @see <http://www.whatwg.org/html/#dom-window-postmessage>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PostMessage(Gecko.JsVal message, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase targetOrigin, Gecko.JsVal transfer, System.IntPtr jsContext);
+		new void PostMessage(ref Gecko.JsVal message, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase targetOrigin, ref Gecko.JsVal transfer, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Ascii base64 data to binary data and vice versa...
@@ -1423,7 +1423,7 @@ namespace Gecko
         /// jsval because we want a WebIDL callback here
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int RequestAnimationFrame(Gecko.JsVal aCallback, System.IntPtr jsContext);
+		new int RequestAnimationFrame(ref Gecko.JsVal aCallback, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Cancel a refresh callback.

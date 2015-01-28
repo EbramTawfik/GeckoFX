@@ -103,7 +103,7 @@ namespace Gecko
         /// An object to create ArrayBuffer for this window. See Bug 831107.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(Gecko.JsVal windowVal);
+		void Init(ref Gecko.JsVal windowVal);
 		
 		/// <summary>
         /// Listen on a port
@@ -124,7 +124,7 @@ namespace Gecko
         /// Pass -1 to use the default value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Listen(ushort localPort, Gecko.JsVal options, ushort backlog);
+		void Listen(ushort localPort, ref Gecko.JsVal options, ushort backlog);
 		
 		/// <summary>
         /// Listener for receiving an accepted socket.

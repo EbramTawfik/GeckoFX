@@ -50,7 +50,7 @@ namespace Gecko
         /// given jsval.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitFromJSVal(Gecko.JsVal aData, System.IntPtr jsContext);
+		void InitFromJSVal(ref Gecko.JsVal aData, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Initialize this structured clone container from a base-64-encoded byte

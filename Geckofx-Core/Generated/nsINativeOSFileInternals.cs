@@ -118,6 +118,6 @@ namespace Gecko
         /// @param onError The error callback.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Read([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase path, Gecko.JsVal options, [MarshalAs(UnmanagedType.Interface)] nsINativeOSFileSuccessCallback onSuccess, [MarshalAs(UnmanagedType.Interface)] nsINativeOSFileErrorCallback onError, System.IntPtr jsContext);
+		void Read([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase path, ref Gecko.JsVal options, [MarshalAs(UnmanagedType.Interface)] nsINativeOSFileSuccessCallback onSuccess, [MarshalAs(UnmanagedType.Interface)] nsINativeOSFileErrorCallback onError, System.IntPtr jsContext);
 	}
 }

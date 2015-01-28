@@ -41,7 +41,7 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleMessage(Gecko.JsVal message);
+		void HandleMessage(ref Gecko.JsVal message);
 	}
 	
 	/// <summary>nsIDOMNavigatorSystemMessages </summary>

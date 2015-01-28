@@ -115,13 +115,13 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyCallDisconnected(uint clientId, Gecko.JsVal call);
+		void NotifyCallDisconnected(uint clientId, ref Gecko.JsVal call);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyCallRing();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyCallStateChanged(uint clientId, Gecko.JsVal call, [MarshalAs(UnmanagedType.U1)] bool skipStateConversion);
+		void NotifyCallStateChanged(uint clientId, ref Gecko.JsVal call, [MarshalAs(UnmanagedType.U1)] bool skipStateConversion);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyCdmaCallWaiting(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number);

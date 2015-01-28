@@ -41,7 +41,7 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnEvent(Gecko.JsVal result);
+		void OnEvent(ref Gecko.JsVal result);
 	}
 	
 	/// <summary>nsINetworkWorker </summary>
@@ -64,6 +64,6 @@ namespace Gecko
 		/// <param name='options'> </param>
 		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PostMessage(Gecko.JsVal options, System.IntPtr jsContext);
+		void PostMessage(ref Gecko.JsVal options, System.IntPtr jsContext);
 	}
 }

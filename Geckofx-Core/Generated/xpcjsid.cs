@@ -179,7 +179,7 @@ namespace Gecko
 		/// <param name='argc'> </param>
 		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal CreateInstance(Gecko.JsVal iid, System.IntPtr jsContext, int argc);
+		Gecko.JsVal CreateInstance(ref Gecko.JsVal iid, System.IntPtr jsContext, int argc);
 		
 		/// <summary>Member GetService </summary>
 		/// <param name='iid'> </param>
@@ -187,6 +187,6 @@ namespace Gecko
 		/// <param name='argc'> </param>
 		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetService(Gecko.JsVal iid, System.IntPtr jsContext, int argc);
+		Gecko.JsVal GetService(ref Gecko.JsVal iid, System.IntPtr jsContext, int argc);
 	}
 }

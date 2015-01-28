@@ -60,7 +60,7 @@ namespace Gecko
         /// A JavaScript object you want to store.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RecordEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aId, Gecko.JsVal aEvent);
+		void RecordEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aId, ref Gecko.JsVal aEvent);
 		
 		/// <summary>
         /// Clear storage data for the given window.

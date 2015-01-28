@@ -45,7 +45,7 @@ namespace Gecko
         /// notification to open the page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, Gecko.JsVal message, [MarshalAs(UnmanagedType.Interface)] nsIURI pageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI manifestURI, Gecko.JsVal extra);
+		void SendMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, ref Gecko.JsVal message, [MarshalAs(UnmanagedType.Interface)] nsIURI pageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI manifestURI, ref Gecko.JsVal extra);
 		
 		/// <summary>
         /// Allow any internal user to broadcast a message of a given type.
@@ -56,7 +56,7 @@ namespace Gecko
         /// notification to open the page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BroadcastMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, Gecko.JsVal message, Gecko.JsVal extra);
+		void BroadcastMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, ref Gecko.JsVal message, ref Gecko.JsVal extra);
 		
 		/// <summary>
         /// Registration of a page that wants to be notified of a message type.
@@ -80,7 +80,7 @@ namespace Gecko
         /// @param message  The json blob to wrap.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal WrapMessage(Gecko.JsVal message, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		Gecko.JsVal WrapMessage(ref Gecko.JsVal message, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 	}
 	
 	/// <summary>

@@ -48,6 +48,6 @@ namespace Gecko
         /// The global object, indexedDB and IDBKeyRange should be defined on.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWindowless(Gecko.JsVal aGlobal, System.IntPtr jsContext);
+		void InitWindowless(ref Gecko.JsVal aGlobal, System.IntPtr jsContext);
 	}
 }

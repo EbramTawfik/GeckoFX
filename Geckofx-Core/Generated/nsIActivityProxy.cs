@@ -38,7 +38,7 @@ namespace Gecko
 		/// <summary>
         ///MozActivity </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartActivity([MarshalAs(UnmanagedType.Interface)] nsISupports activity, Gecko.JsVal options, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		void StartActivity([MarshalAs(UnmanagedType.Interface)] nsISupports activity, ref Gecko.JsVal options, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Cleanup();

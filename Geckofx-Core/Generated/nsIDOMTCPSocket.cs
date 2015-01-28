@@ -54,7 +54,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMTCPSocket Open([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase host, ushort port, Gecko.JsVal options);
+		nsIDOMTCPSocket Open([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase host, ushort port, ref Gecko.JsVal options);
 		
 		/// <summary>
         /// Listen on a port
@@ -75,7 +75,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMTCPServerSocket Listen(ushort localPort, Gecko.JsVal options, ushort backlog);
+		nsIDOMTCPServerSocket Listen(ushort localPort, ref Gecko.JsVal options, ushort backlog);
 		
 		/// <summary>
         /// Enable secure on channel.
@@ -155,7 +155,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Send(Gecko.JsVal data, uint byteOffset, uint byteLength);
+		bool Send(ref Gecko.JsVal data, uint byteOffset, uint byteLength);
 		
 		/// <summary>
         /// The readyState attribute indicates which state the socket is currently
@@ -316,7 +316,7 @@ namespace Gecko
         /// Trigger the callback for |type| and provide an ArrayBuffer argument
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallListenerArrayBuffer([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, Gecko.JsVal data);
+		void CallListenerArrayBuffer([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, ref Gecko.JsVal data);
 		
 		/// <summary>
         /// Trigger the callback for |type| with no argument
@@ -360,13 +360,13 @@ namespace Gecko
         /// socket parent wants to notify that its bufferedAmount is updated.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnUpdateBufferedAmountHandler(Gecko.JsVal handler);
+		void SetOnUpdateBufferedAmountHandler(ref Gecko.JsVal handler);
 		
 		/// <summary>
         ///        lastest send() invocation from child.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnRecvSendFromChild(Gecko.JsVal data, uint byteOffset, uint byteLength, uint trackingNumber);
+		void OnRecvSendFromChild(ref Gecko.JsVal data, uint byteOffset, uint byteLength, uint trackingNumber);
 	}
 	
 	/// <summary>

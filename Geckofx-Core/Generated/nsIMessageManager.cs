@@ -323,7 +323,7 @@ namespace Gecko
         /// to a cross-process frame whose process has crashed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		void SendAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 	}
 	
 	/// <summary>
@@ -391,7 +391,7 @@ namespace Gecko
         /// sensitive data.  Use with extreme caution.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BroadcastAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, System.IntPtr jsContext, int argc);
+		void BroadcastAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Number of subordinate message managers.
@@ -475,7 +475,7 @@ namespace Gecko
         /// to a cross-process frame whose process has crashed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendAsyncMessage()|, except blocks the sender until all
@@ -483,7 +483,7 @@ namespace Gecko
         /// containing return values from each listener invoked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendSyncMessage()|, except re-entrant. New RPC messages may be
@@ -495,7 +495,7 @@ namespace Gecko
         /// incoming message (such as a CPOW request).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 	}
 	
 	/// <summary>nsIContentFrameMessageManager </summary>
@@ -566,7 +566,7 @@ namespace Gecko
         /// to a cross-process frame whose process has crashed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendAsyncMessage()|, except blocks the sender until all
@@ -574,7 +574,7 @@ namespace Gecko
         /// containing return values from each listener invoked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendSyncMessage()|, except re-entrant. New RPC messages may be
@@ -586,7 +586,7 @@ namespace Gecko
         /// incoming message (such as a CPOW request).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		new Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// The current top level window in the frame or null.
@@ -696,7 +696,7 @@ namespace Gecko
         /// to a cross-process frame whose process has crashed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendAsyncMessage()|, except blocks the sender until all
@@ -704,7 +704,7 @@ namespace Gecko
         /// containing return values from each listener invoked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Like |sendSyncMessage()|, except re-entrant. New RPC messages may be
@@ -716,7 +716,7 @@ namespace Gecko
         /// incoming message (such as a CPOW request).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, Gecko.JsVal obj, Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		new Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// The current top level window in the frame or null.

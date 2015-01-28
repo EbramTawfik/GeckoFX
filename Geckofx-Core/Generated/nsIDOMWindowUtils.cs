@@ -814,7 +814,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetClassName(Gecko.JsVal aObject, System.IntPtr jsContext);
+		string GetClassName(ref Gecko.JsVal aObject, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Generate a content command event.
@@ -948,7 +948,7 @@ namespace Gecko
         /// @return the parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetParent(Gecko.JsVal obj, System.IntPtr jsContext);
+		Gecko.JsVal GetParent(ref Gecko.JsVal obj, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Get the id of the outer window of this window.  This will never throw.
@@ -1172,7 +1172,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFile GetFile([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, Gecko.JsVal aBlobParts, Gecko.JsVal aParameters, System.IntPtr jsContext, int argc);
+		nsIDOMFile GetFile([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, ref Gecko.JsVal aBlobParts, ref Gecko.JsVal aParameters, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Internal blob constructor intended for testing of Blob objects.
@@ -1181,13 +1181,13 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBlob GetBlob(Gecko.JsVal aBlobParts, Gecko.JsVal aParameters, System.IntPtr jsContext, int argc);
+		nsIDOMBlob GetBlob(ref Gecko.JsVal aBlobParts, ref Gecko.JsVal aParameters, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Get internal id of the stored blob, file or file handle.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetFileId(Gecko.JsVal aFile, System.IntPtr jsContext);
+		int GetFileId(ref Gecko.JsVal aFile, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Get file ref count info for given database and file id.
@@ -1195,7 +1195,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetFileReferences([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDatabaseName, long aId, Gecko.JsVal aOptions, ref int aRefCnt, ref int aDBRefCnt, ref int aSliceRefCnt, System.IntPtr jsContext);
+		bool GetFileReferences([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDatabaseName, long aId, ref Gecko.JsVal aOptions, ref int aRefCnt, ref int aDBRefCnt, ref int aSliceRefCnt, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Return whether incremental GC has been disabled due to a binary add-on.

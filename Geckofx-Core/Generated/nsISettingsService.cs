@@ -41,7 +41,7 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Handle([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, Gecko.JsVal aResult);
+		void Handle([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, ref Gecko.JsVal aResult);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HandleError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aErrorMessage);
@@ -77,7 +77,7 @@ namespace Gecko
 		/// <param name='aCallback'> </param>
 		/// <param name='aMessage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Set([MarshalAs(UnmanagedType.LPStr)] string aName, Gecko.JsVal aValue, [MarshalAs(UnmanagedType.Interface)] nsISettingsServiceCallback aCallback, [MarshalAs(UnmanagedType.LPStr)] string aMessage);
+		void Set([MarshalAs(UnmanagedType.LPStr)] string aName, ref Gecko.JsVal aValue, [MarshalAs(UnmanagedType.Interface)] nsISettingsServiceCallback aCallback, [MarshalAs(UnmanagedType.LPStr)] string aMessage);
 		
 		/// <summary>Member Get </summary>
 		/// <param name='aName'> </param>
