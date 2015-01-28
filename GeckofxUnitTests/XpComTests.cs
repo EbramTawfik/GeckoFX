@@ -153,16 +153,6 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
-		
-#if delme
-		[Test]
-		public void CreateInstance_CreatingNameSpaceManager_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/content/namespacemanager;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-#endif
 
 		[Test]
 		public void CreateInstance_CreatingXmlHttpRequest_ReturnsValidInstance()
