@@ -154,6 +154,7 @@ namespace GeckofxUnitTests
 			Marshal.ReleaseComObject(instance);
 		}
 		
+#if delme
 		[Test]
 		public void CreateInstance_CreatingNameSpaceManager_ReturnsValidInstance()
 		{			
@@ -161,6 +162,7 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
+#endif
 
 		[Test]
 		public void CreateInstance_CreatingXmlHttpRequest_ReturnsValidInstance()

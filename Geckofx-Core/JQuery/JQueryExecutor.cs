@@ -5,11 +5,11 @@ namespace Gecko.JQuery
 {
 	public class JQueryExecutor
 	{
-		private readonly GeckoWindow m_Window;
+		private readonly GeckoWindow _window;
 
 		public JQueryExecutor(GeckoWindow window)
 		{
-			m_Window = window;
+			_window = window;
 		}
 
 		public JsVal ExecuteJQuery(string jQuery)
@@ -17,9 +17,8 @@ namespace Gecko.JQuery
 			JsVal jsValue;
 
 			using (var autoContext = new AutoJSContext())
-			{
-				autoContext.PushCompartmentScope((nsISupports)m_Window.DomWindow);
-				jsValue = autoContext.EvaluateScript(jQuery);
+			{				
+                jsValue = autoContext.EvaluateScript(jQuery, _window.DomWindow);
 			}
 
 			return jsValue;
@@ -31,8 +30,8 @@ namespace Gecko.JQuery
 
 			using (var autoContext = new AutoJSContext())
 			{
-				autoContext.PushCompartmentScope((nsISupports)m_Window.Document.DomObject);
-				jsValue = autoContext.EvaluateScript(jQuery);
+				autoContext.PushCompartmentScope((nsISupports)_window.Document.DomObject);
+				jsValue = autoContext.EvaluateScript(jQuery, _window.DomWindow);
 				if (jsValue.IsObject)
 				{					
 					var nativeComObject = jsValue.ToComObject(autoContext.ContextPointer);
@@ -72,8 +71,8 @@ namespace Gecko.JQuery
 
 			using (var autoContext = new AutoJSContext())
 			{
-				autoContext.PushCompartmentScope((nsISupports)m_Window.Document.DomObject);
-				jsValue = autoContext.EvaluateScript(jQuery);
+				autoContext.PushCompartmentScope((nsISupports)_window.Document.DomObject);
+				jsValue = autoContext.EvaluateScript(jQuery, _window.DomWindow);
 				if (!jsValue.IsObject) 
 					return elements;
 

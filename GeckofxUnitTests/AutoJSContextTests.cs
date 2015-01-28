@@ -73,5 +73,15 @@ namespace GeckofxUnitTests
 				Assert.AreEqual(context.PeekCompartmentScope(), globalObject);
 			}
 		}
+
+	    [Test]
+	    public void GetComponentsObject_DoesNotReturnNull()
+	    {
+	        _browser.TestLoadHtml("hello world");
+	        using (var context = new AutoJSContext(_browser.Window.JSContext))
+	        {
+	            Assert.NotNull(context.GetComponentsObject(), "Getting the javascript Components object failed.");
+	        }
+	    }
 	}
 }

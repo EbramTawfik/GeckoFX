@@ -53,8 +53,9 @@ namespace Gecko
 		public IntPtr ContextPointer { get { return _cx; } }
 
 		Stack<JSAutoCompartment> _compartmentStack = new Stack<JSAutoCompartment>();
+	    private nsIXPCComponents _nsIXPCComponents;
 
-		public void PushCompartmentScope(nsISupports obj)
+	    public void PushCompartmentScope(nsISupports obj)
 		{
 			_compartmentStack.Push(new JSAutoCompartment(this, obj));
 		}
@@ -135,27 +136,69 @@ namespace Gecko
 			return ret;
 		}
 
+        /// <summary>
+        /// Evaluate JavaScript in specified window.
+        /// Will throw a GeckoJavaScriptException if unable to convert window into a JsVal
+        /// </summary>
+        /// <param name="javascript">The javascript to run.</param>
+        /// <param name="window">The window to execuate javascript in.</param>
+        /// <returns>The return value of the script as a JsVal</returns>
+	    public JsVal EvaluateScript(string javascript, nsIDOMWindow window)
+	    {
+            string msg = String.Empty;
+            var old = SpiderMonkey.JS_SetErrorReporter(_cx, (cx, message, report) => { msg = message; });
+            try
+            {
+                IntPtr globalObject = ConvertCOMObjectToJSObject((nsISupports)window);
+
+                using (new JSAutoCompartment(_cx, globalObject))
+                {
+                    var windowJsVal = new JsVal();
+                    string jsScript = "this";
+                    bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length,
+                        "script", 1, ref windowJsVal);
+
+                    if (!ret)
+                    {
+                        throw new GeckoJavaScriptException(String.Format("JSError : {0}", msg));
+                    }
+
+                    if (GetComponentsObject().GetUtilsAttribute().IsXrayWrapper(windowJsVal))
+                        windowJsVal = GetComponentsObject().GetUtilsAttribute().WaiveXrays(ref windowJsVal, _cx);
+
+                    using (nsAStringBase b = new nsAString(javascript))
+                    {
+                        return GetComponentsObject().GetUtilsAttribute().EvalInWindow(b, windowJsVal, _cx);
+                    }
+                }
+            }
+            finally
+            {
+                SpiderMonkey.JS_SetErrorReporter(_cx, old);
+            }
+	    }
+
 		public JsVal EvaluateScript(string javaScript)
 		{
-			string msg = String.Empty;
-			var old = SpiderMonkey.JS_SetErrorReporter(_cx, (cx, message, report) => { msg = message; });
-			try
-			{
-			var jsValue = new JsVal();
-				var ret = SpiderMonkey.JS_EvaluateScript(_cx, PeekCompartmentScope(), javaScript, (uint) javaScript.Length, "script",
-					1, ref jsValue);
+            string msg = String.Empty;
+            var old = SpiderMonkey.JS_SetErrorReporter(_cx, (cx, message, report) => { msg = message; });
+            try
+            {
+                var jsValue = new JsVal();
+                var ret = SpiderMonkey.JS_EvaluateScript(_cx, PeekCompartmentScope(), javaScript, (uint)javaScript.Length, "script",
+                    1, ref jsValue);
 
-			if (!ret)
-			{
-					throw new GeckoJavaScriptException(String.Format("JSError : {0}", msg));
-			}
+                if (!ret)
+                {
+                    throw new GeckoJavaScriptException(String.Format("JSError : {0}", msg));
+                }
 
-			return jsValue;
-		}
-			finally
-			{
-				SpiderMonkey.JS_SetErrorReporter(_cx, old);
-			}
+                return jsValue;
+            }
+            finally
+            {
+                SpiderMonkey.JS_SetErrorReporter(_cx, old);
+            }
 		}
 
 		/// <summary>
@@ -184,14 +227,19 @@ namespace Gecko
 		public bool EvaluateScript(string jsScript, nsISupports thisObject, out string result)
 		{
 			try
-			{
-				Guid guid = typeof(nsISupports).GUID;
+			{				
 				var ptr = new JsVal();
 				IntPtr globalObject = ConvertCOMObjectToJSObject(thisObject);
-				using (new JSAutoCompartment(_cx, globalObject))
+
+			    using (new JSAutoCompartment(_cx, globalObject))
 				{
 					bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
-					result = ret ? ConvertValueToString(ptr) : null;
+
+                    if (GetComponentsObject().GetUtilsAttribute().IsXrayWrapper(ptr))
+                        ptr = GetComponentsObject().GetUtilsAttribute().WaiveXrays(ref ptr, _cx);
+
+				    result = ret ? ConvertValueToString(ptr) : null;
+
 					return ret;
 				}
 			}
@@ -311,7 +359,7 @@ namespace Gecko
 			Guid guid = typeof(nsISupports).GUID;
 
 			IntPtr globalObject = GetGlobalObject();
-
+            
 			using (var holder = new ComPtr<nsIXPConnectJSObjectHolder>(Xpcom.XPConnect.Instance.WrapNative(_cx, globalObject, (nsISupports)obj, ref guid)))
 			{
 				int slot = holder.GetSlotOfComMethod(new Func<IntPtr>(holder.Instance.GetJSObject));
@@ -327,6 +375,31 @@ namespace Gecko
 			writableVariant.Instance.SetAsISupports(thisObject);
 			return Xpcom.XPConnect.Instance.VariantToJS(_cx, globalObject, writableVariant.Instance);
 		}
+
+        /// <summary>
+        /// Gets the nsIXPCComponents which is the javascript 'Components' objects
+        /// The Components objects is the main object XPConnect object.        
+        /// </summary>
+        /// <returns></returns>
+	    public nsIXPCComponents GetComponentsObject()
+	    {
+	        if (_nsIXPCComponents == null)
+	        {
+	            string javaScript = "Components";
+
+	            var jsValue = new JsVal();
+	            var ret = SpiderMonkey.JS_EvaluateScript(_cx, PeekCompartmentScope(), javaScript, (uint) javaScript.Length,
+	                "script",
+	                1, ref jsValue);
+
+	            if (!ret || !jsValue.IsObject)
+	                return null;
+
+                _nsIXPCComponents = jsValue.ToObject() as nsIXPCComponents;
+	        }
+
+	        return _nsIXPCComponents;
+	    }
 
 		public void Dispose()
 		{

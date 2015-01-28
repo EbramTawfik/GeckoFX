@@ -359,7 +359,7 @@ namespace Gecko
         /// @return the corresponding global.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetGlobalForObject(Gecko.JsVal obj, System.IntPtr jsContext);
+		Gecko.JsVal GetGlobalForObject(ref Gecko.JsVal obj, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -379,7 +379,7 @@ namespace Gecko
         /// Principal of the caller must subsume the target's.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal EvalInWindow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase source, Gecko.JsVal window, System.IntPtr jsContext);
+		Gecko.JsVal EvalInWindow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase source, ref Gecko.JsVal window, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -554,19 +554,19 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsXrayWrapper(Gecko.JsVal obj);
+		bool IsXrayWrapper(ref Gecko.JsVal obj);
 		
 		/// <summary>
         /// Waive Xray on a given value. Identity op for primitives.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal WaiveXrays(Gecko.JsVal aVal, System.IntPtr jsContext);
+        Gecko.JsVal WaiveXrays(ref Gecko.JsVal aVal, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Strip off Xray waivers on a given value. Identity op for primitives.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal UnwaiveXrays(Gecko.JsVal aVal, System.IntPtr jsContext);
+		Gecko.JsVal UnwaiveXrays(ref Gecko.JsVal aVal, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Gets the name of the JSClass of the object.
