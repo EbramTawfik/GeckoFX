@@ -216,8 +216,8 @@ namespace Gecko
 			{
 				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
 				{
-					context.PushCompartmentScope((nsISupports)StyleSheet._DomStyleSheet);
-					var val = context.EvaluateScriptBypassingSomeSecurityRestrictions("this.cssRules;");					
+				    var window = StyleSheet._DomStyleSheet.GetOwnerNodeAttribute().GetOwnerDocumentAttribute().GetDefaultViewAttribute();
+				    var val = context.EvaluateScript("this.document.styleSheets[0].cssRules;", window);
 					return (nsIDOMCSSRuleList)val.ToObject();
 				}
 			}
@@ -300,8 +300,8 @@ namespace Gecko
 
 				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
 				{
-					context.PushCompartmentScope((nsISupports)StyleSheet._DomStyleSheet);
-					var val = context.EvaluateScriptBypassingSomeSecurityRestrictions(String.Format("this.insertRule('{0}',{1});", rule, index));
+                    var window = StyleSheet._DomStyleSheet.GetOwnerNodeAttribute().GetOwnerDocumentAttribute().GetDefaultViewAttribute();
+                    var val = context.EvaluateScript(String.Format("this.document.styleSheets[0].insertRule('{0}',{1});", rule, index), window);
 					return val.ToInteger();
 				}
 				
@@ -320,9 +320,9 @@ namespace Gecko
 					throw new ArgumentOutOfRangeException("index");
 
 				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
-				{
-					context.PushCompartmentScope((nsISupports)StyleSheet._DomStyleSheet);
-					var val = context.EvaluateScriptBypassingSomeSecurityRestrictions(String.Format("DeleteRule({0});", index));
+				{					
+                    var window = StyleSheet._DomStyleSheet.GetOwnerNodeAttribute().GetOwnerDocumentAttribute().GetDefaultViewAttribute();
+                    context.EvaluateScript(String.Format("this.document.styleSheets[0].deleteRule({0});", index), window);
 				}
 			}
 			
@@ -336,9 +336,9 @@ namespace Gecko
 
 				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
 				{
-					context.PushCompartmentScope((nsISupports)StyleSheet._DomStyleSheet);
+                    var window = StyleSheet._DomStyleSheet.GetOwnerNodeAttribute().GetOwnerDocumentAttribute().GetDefaultViewAttribute();
 					for (int i = Count - 1; i >= 0; i--)
-						context.EvaluateScriptBypassingSomeSecurityRestrictions(String.Format("deleteRule({0});", i));
+                        context.EvaluateScript(String.Format("this.document.styleSheets[0].deleteRule({0});", i), window);
 				}
 			}
 			
