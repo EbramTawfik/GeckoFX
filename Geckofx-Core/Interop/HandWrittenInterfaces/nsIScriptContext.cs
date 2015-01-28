@@ -7,7 +7,7 @@ namespace Gecko
 	/// </summary>
 	[ComImport]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("513c2c1a-f4f1-44da-8e38-f40c309a5def")]
+    [Guid("274840b6-7349-4798-be24-bd75a64699b7")]
 	public interface nsIScriptContext
 	{
 		// Methods on this interface aren't directly callable via (XP)COM, due to
