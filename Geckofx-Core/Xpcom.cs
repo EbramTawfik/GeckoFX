@@ -262,6 +262,9 @@ namespace Gecko
 			if (_IsInitialized)
 				return;
 
+            Debug.WriteLineIf(Thread.CurrentThread.GetApartmentState() != ApartmentState.STA, "Warning: Main Entry point missing [STAThread] attribute.");
+            Debug.Assert(Thread.CurrentThread.GetApartmentState() == ApartmentState.STA, "Main Entry point missing [STAThread] attribute.");		    
+
 			if (BeforeInitalization != null)
 				BeforeInitalization();
 
