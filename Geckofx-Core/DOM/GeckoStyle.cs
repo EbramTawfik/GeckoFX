@@ -224,7 +224,7 @@ namespace Gecko
 
 			private IntPtr GetJSContext()
 			{
-				if (_cx != IntPtr.Zero)
+				if (_cx == IntPtr.Zero)
 				{
 					_cx = GlobalJSContextHolder.GetJSContextForDomWindow(StyleSheet._DomStyleSheet
 							.GetOwnerNodeAttribute().GetOwnerDocumentAttribute().GetDefaultViewAttribute());
