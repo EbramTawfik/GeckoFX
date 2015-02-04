@@ -49,8 +49,9 @@ namespace Gecko
             String = Clear | 5,
             Boolean = Clear | 3,
             Magic = Clear | 4,
-            Null = Clear | 6,
-            Object = Clear | 7
+            Symbol = Clear | 6,
+            Null = Clear | 7,
+            Object = Clear | 8
 		}
 
 		public enum ValueTag32Bit : uint
@@ -61,8 +62,9 @@ namespace Gecko
 			String = Clear | 5,
 			Boolean = Clear | 3,
 			Magic = Clear | 4,
-			Null = Clear | 6,
-			Object = Clear | 7
+            Symbol = Clear | 6,
+			Null = Clear | 7,
+			Object = Clear | 8
 		}
 
         public uint Tag
