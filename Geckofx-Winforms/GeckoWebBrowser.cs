@@ -1948,11 +1948,6 @@ namespace Gecko
 				case "change":
 					OnDomContentChanged(e);
 					break;
-#if DELME
-				case "hashchange":
-					OnHashChange((DomHashChangeEventArgs)e);
-					break;
-#endif
 				case "dragstart":
 					OnDomDragStart((DomDragEventArgs)e);
 					break;

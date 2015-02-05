@@ -29,25 +29,51 @@ namespace Gecko
 			}
 		}
 
-		public static IntPtr JS_GetStringCharsAndLength(IntPtr cx, IntPtr jsString, out uint length)
-		{
-			// TODO: 64bit Windows.
-			if (Xpcom.Is32Bit)
-			{
-				if (Xpcom.IsLinux)
-					return JS_GetStringCharsAndLength_Linux32(cx, jsString, out length);
+        public static IntPtr JS_EncodeStringUTF8(IntPtr cx, IntPtr jsString)
+        {
+            if (Xpcom.Is32Bit)
+            {
+                if (Xpcom.IsLinux)
+                    throw new NotImplementedException();
 
-				return JS_GetStringCharsAndLength_Win32(cx, jsString, out length);
-			}
-			else
-			{
-				if (Xpcom.IsLinux)
-					return JS_GetStringCharsAndLength_Linux64(cx, jsString, out length);
-				
-				throw new NotImplementedException ();
-			}
-		}
+                return JS_EncodeStringUTF8_Win32(cx, ref jsString);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
 		
+        public static int JS_GetStringLength(IntPtr jsString)
+	    {
+            if (Xpcom.Is32Bit)
+            {
+                if (Xpcom.IsLinux)
+                    throw new NotImplementedException();
+
+                return JS_GetStringLength_Win32(jsString);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+	    }
+
+        public static int JS_GetStringEncodingLength(IntPtr cx, IntPtr jsString)
+	    {
+            if (Xpcom.Is32Bit)
+            {
+                if (Xpcom.IsLinux)
+                    throw new NotImplementedException();
+
+                return JS_GetStringEncodingLength_Win32(cx, jsString);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+	    }
+
 		public static JSType JS_TypeOfValue(IntPtr cx, JsVal jsVal)
 		{
 			if (Xpcom.Is32Bit)
@@ -647,6 +673,46 @@ namespace Gecko
 			return Value;
 		}
 
+        /* A handle to an array of rooted values. */
+
+	    private struct HandleValueArray
+	    {
+	        public HandleValueArray(int length, JsVal[] args)
+	        {
+	            _length = length;
+	            _args = args;
+	        }
+            
+	        private int _length;
+	        private JsVal[] _args;	    
+	    }
+
+	    public static JsVal JS_CallFunctionName(IntPtr cx, IntPtr jsObject, string name, JsVal[] args = null)
+        {
+            bool result;
+            JsVal value = new JsVal();
+            if (Xpcom.Is32Bit)
+            {
+                if (args == null)
+                    args = new JsVal[0];
+
+                HandleValueArray argsArray = new HandleValueArray(args.Length, args);
+
+                if (Xpcom.IsLinux)
+                    throw new NotImplementedException();
+                else
+                    result = JS_CallFunctionName_Win32(cx, ref jsObject, name, ref argsArray, ref value);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+            
+            if (!result)
+                throw new GeckoException("Function does not exist!");
+            return value;
+        }
+
 		public static void JS_SetCompartmentPrincipals(IntPtr jsCompartment, IntPtr principals)
 		{
 			if (Xpcom.Is32Bit)
@@ -756,6 +822,10 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		private static extern bool JS_GetProperty_Win32(IntPtr cx, ref IntPtr jsObject, string name, ref JsVal jsValue);
 
+        [DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_CallFunctionName@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDABVHandleValueArray@3@V?$MutableHandle@VValue@JS@@@3@@Z")]
+		[return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_CallFunctionName_Win32(IntPtr cx, ref IntPtr jsObject, string name, ref HandleValueArray args, ref JsVal jsValue);
+
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetCompartmentPrincipals@@YAXPAUJSCompartment@@PAUJSPrincipals@@@Z")]
 		private static extern void JS_SetCompartmentPrincipals_Win32(IntPtr jsCompartment, IntPtr principals);
 
@@ -768,9 +838,15 @@ namespace Gecko
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EncodeString@@YAPADPAUJSContext@@PAVJSString@@@Z")]
 		private static extern IntPtr JS_EncodeString_Win32(IntPtr cx, IntPtr jsString);
 
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetStringCharsAndLength@@YAPB_WPAUJSContext@@PAVJSString@@PAI@Z")]
-		private static extern IntPtr JS_GetStringCharsAndLength_Win32(IntPtr cx, IntPtr jsString, out uint length);
+        [DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EncodeStringToUTF8@@YAPADPAUJSContext@@V?$Handle@PAVJSString@@@JS@@@Z")]
+        private static extern IntPtr JS_EncodeStringUTF8_Win32(IntPtr cx, ref IntPtr jsString);
+        
+        [DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetStringLength@@YAIPAVJSString@@@Z")]
+        private static extern int JS_GetStringLength_Win32(IntPtr jsString);
 
+        [DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetStringEncodingLength@@YAIPAUJSContext@@PAVJSString@@@Z")]
+        private static extern int JS_GetStringEncodingLength_Win32(IntPtr cx, IntPtr jsString);
+       
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_TypeOfValue@@YA?AW4JSType@@PAUJSContext@@V?$Handle@VValue@JS@@@JS@@@Z")]
 		private static extern JSType JS_TypeOfValue_Win32(IntPtr cx, ref JsVal jsVal);
 		
@@ -952,10 +1028,7 @@ namespace Gecko
 		private static extern void JS_SetTrustedPrincipals_Linux32(IntPtr runtime, IntPtr principals);
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z15JS_EncodeStringP9JSContextP8JSString")]
-		private static extern IntPtr JS_EncodeString_Linux32(IntPtr cx, IntPtr jsString);
-
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z26JS_GetStringCharsAndLengthP9JSContextP8JSStringPj")]
-		private static extern IntPtr JS_GetStringCharsAndLength_Linux32(IntPtr cx, IntPtr jsString, out uint length);
+		private static extern IntPtr JS_EncodeString_Linux32(IntPtr cx, IntPtr jsString);		
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z14JS_TypeOfValueP9JSContextN2JS6HandleINS1_5ValueEEE")]
 		private static extern JSType JS_TypeOfValue_Linux32(IntPtr cx, ref JsVal jsVal);
@@ -1075,9 +1148,6 @@ namespace Gecko
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z15JS_EncodeStringP9JSContextP8JSString")]
 		private static extern IntPtr JS_EncodeString_Linux64(IntPtr cx, IntPtr jsString);
-
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z26JS_GetStringCharsAndLengthP9JSContextP8JSStringPm")]
-		private static extern IntPtr JS_GetStringCharsAndLength_Linux64(IntPtr cx, IntPtr jsString, out uint length);
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z14JS_TypeOfValueP9JSContextN2JS6HandleINS1_5ValueEEE")]
 		private static extern JSType JS_TypeOfValue_Linux64(IntPtr cx, ref JsVal jsVal);

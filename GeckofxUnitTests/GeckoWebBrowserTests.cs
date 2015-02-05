@@ -168,7 +168,8 @@ namespace GeckofxUnitTests
 			browser.TestLoadEditableHtml("hello world.");
 			Assert.NotNull(browser.Editor);
 		}
-		 
+
+        [Ignore("JavascriptError need refactoring to the new system (in gecko 33+)")]
 		[Platform("Win")]
 		[Test]
 		public void JavascriptError_NaviagateWithSomeJavascriptThatThrowsException_AttachedEventHandlerShouldExecute()

@@ -359,13 +359,7 @@ namespace GeckoFxTest
 					urlbox.Text = e.Uri.ToString();
 				Console.WriteLine("Navigated: url: " + e.Uri + ", top: " + e.DomWindowTopLevel, ", errorPage: " + e.IsErrorPage);
 			};
-#if DELME
-			browser.HashChange += (s, e) =>
-			{
-				urlbox.Text = e.NewUrl.ToString();
-				Console.WriteLine("HashChange: newUrl: " + e.NewUrl + ", oldUrl: " + e.OldUrl);
-			};
-#endif
+
 			browser.Retargeted += (s, e) =>
 			{
 				var ch = e.Request as Gecko.Net.Channel;

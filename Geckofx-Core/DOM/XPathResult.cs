@@ -6,41 +6,62 @@ using Gecko.Interop;
 
 namespace Gecko.DOM
 {
+    /// <summary>
+    /// // TODO: (Idenally this class would be generated using a webidl-> C# compiler but for now just do it via manually written spidermonkey calls..)
+    /// </summary>
 	public class XPathResult
 	{
-		private ComPtr<nsIDOMXPathResult> xpathResult = null;
+        private ComPtr<nsIXPathResult> xpathResult = null;
 
-		internal XPathResult( nsIDOMXPathResult xpathResult )
+        internal XPathResult(nsIXPathResult xpathResult)
 		{
-			this.xpathResult = new ComPtr<nsIDOMXPathResult>( xpathResult );
+            this.xpathResult = new ComPtr<nsIXPathResult>(xpathResult);
 		}
 
-#if NEED_WEBIDL
 		public XPathResultType GetResultType()
 		{
-			return (XPathResultType) xpathResult.Instance.GetResultTypeAttribute();
+            using (var context = new AutoJSContext())
+            {
+                var jsObject = context.ConvertCOMObjectToJSObject((nsISupports)xpathResult);
+                return (XPathResultType)SpiderMonkey.JS_GetProperty(context.ContextPointer, jsObject, "resultType").ToInteger();
+            }			
 		}
 
 		public double GetNumberValue()
 		{
-			return xpathResult.Instance.GetNumberValueAttribute();
+            using (var context = new AutoJSContext())
+            {
+                var jsObject = context.ConvertCOMObjectToJSObject((nsISupports)xpathResult);
+                return SpiderMonkey.JS_GetProperty(context.ContextPointer, jsObject, "numberValue").ToDouble();
+            }
 		}
 
 		public string GetStringValue()
 		{
-			return nsString.Get( xpathResult.Instance.GetStringValueAttribute );
+            using (var context = new AutoJSContext())
+            {
+                var jsObject = context.ConvertCOMObjectToJSObject((nsISupports)xpathResult);
+                return SpiderMonkey.JS_GetProperty(context.ContextPointer, jsObject, "stringValue").ToString();
+            }
 		}
 
 		public bool GetBooleanValue()
-		{
-			return xpathResult.Instance.GetBooleanValueAttribute();
+		{            
+		    using (var context = new AutoJSContext())
+		    {
+		        var jsObject = context.ConvertCOMObjectToJSObject((nsISupports) xpathResult);		        
+		        return SpiderMonkey.JS_GetProperty(context.ContextPointer, jsObject, "booleanValue").ToBoolean();
+		    }
 		}
 
 		public GeckoNode GetSingleNodeValue()
 		{
-			return xpathResult.Instance.GetSingleNodeValueAttribute().Wrap( GeckoNode.Create );
+		    using (var context = new AutoJSContext())
+		    {
+		        var jsObject = context.ConvertCOMObjectToJSObject((nsISupports) xpathResult);
+                return (SpiderMonkey.JS_GetProperty(context.ContextPointer, jsObject, "singleNodeValue").ToComObject(context.ContextPointer) as nsIDOMNode).Wrap(GeckoNode.Create);
+		    }
 		}
-#endif
         public IEnumerable<GeckoNode> GetNodes()
 		{
 			return new GeckoNodeEnumerable( xpathResult.Instance );

@@ -38,6 +38,8 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using Gecko.Interop;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Gecko
 {
@@ -343,13 +345,21 @@ namespace Gecko
 
 		internal string ConvertValueToString(JsVal value)
 		{
-			IntPtr jsp = SpiderMonkey.JS_ValueToString(_cx, value);
-			if (jsp != IntPtr.Zero)
+            IntPtr jsp = SpiderMonkey.JS_ValueToString(_cx, value);
+            var utf8StrPtr = SpiderMonkey.JS_EncodeStringUTF8(_cx, jsp);
+			if (utf8StrPtr != IntPtr.Zero)
 			{
-				uint length;
-				var chars = SpiderMonkey.JS_GetStringCharsAndLength(_cx, jsp, out length);
-				if (chars != IntPtr.Zero)
-					return Marshal.PtrToStringUni(chars, (int)length);
+			    try
+			    {
+                    var length = SpiderMonkey.JS_GetStringEncodingLength(_cx, jsp);
+                    byte[] result = new byte[length];
+                    Marshal.Copy(utf8StrPtr, result, 0, length);
+			        return Encoding.UTF8.GetString(result, 0 , length);
+			    }
+			    finally
+			    {
+                    SpiderMonkey.JS_Free(_cx, utf8StrPtr);
+			    }
 			}
 			return null;
 		}

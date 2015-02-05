@@ -962,25 +962,6 @@ namespace Gecko
 		}
 		#endregion
 
-#if DELME
-        #region public event GeckoDomEventHandler HashChange
-        [Category("DOM Events")]
-		public event EventHandler<DomHashChangeEventArgs> HashChange
-        {
-            add { Events.AddHandler(HashChangeEvent, value); }
-            remove { Events.RemoveHandler(HashChangeEvent, value); }
-        }
-
-        /// <summary>Raises the <see cref="HashChangeEvent"/> event.</summary>
-        /// <param name="e">The data for the event.</param>
-		protected virtual void OnHashChange(DomHashChangeEventArgs e)
-        {
-            var evnt = (EventHandler<DomHashChangeEventArgs>)Events[HashChangeEvent];
-            if (evnt != null) evnt(this, e);
-        }
-        #endregion
-#endif
-
 		#region drag events
 
 		// DragStart

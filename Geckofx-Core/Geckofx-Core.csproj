@@ -161,7 +161,9 @@
     <Compile Include="Generated\nsINetworkService.cs" />
     <Compile Include="Generated\nsIReflowObserver.cs" />
     <Compile Include="Interop\ClassInfo.cs" />
+    <Compile Include="Interop\HandWrittenInterfaces\nsIDOMScriptObjectFactory.cs" />
     <Compile Include="Interop\HandWrittenInterfaces\nsIScriptContext.cs" />
+    <Compile Include="Interop\HandWrittenInterfaces\nsIXPathResult.cs" />
     <Compile Include="Interop\SpiderMonkey\JSAutoCompartment.cs" />
     <Compile Include="Interop\SpiderMonkey\MutableHandle.cs" />
     <Compile Include="Interop\SpiderMonkey\MutableJSVal.cs" />

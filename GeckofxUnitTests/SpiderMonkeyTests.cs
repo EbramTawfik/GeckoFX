@@ -95,7 +95,7 @@ namespace GeckofxUnitTests
 			{
 				Assert.AreEqual(JSType.JSTYPE_NUMBER, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, JsVal.FromPtr(0)));
 				Assert.AreEqual(JSType.JSTYPE_NUMBER, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, JsVal.FromPtr(0xffff0000ffffffff)));
-				Assert.AreEqual(JSType.JSTYPE_BOOLEAN, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, JsVal.FromPtr(0xffffffffffffffff)));
+				Assert.AreEqual(JSType.JSTYPE_XML, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, JsVal.FromPtr(0xffffffffffffffff)));
 			}
 		}
 
@@ -187,11 +187,17 @@ namespace GeckofxUnitTests
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_DestroyRuntime", (c) => SpiderMonkey.JS_DestroyRuntime(IntPtr.Zero));
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_HasProperty", (c) => SpiderMonkey.JS_HasProperty(c, IntPtr.Zero, ""));
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetProperty", (c) => SpiderMonkey.JS_GetProperty(c, IntPtr.Zero, ""));
+            yield return new KeyValuePair<string, Action<IntPtr>>("JS_CallFunctionName", (c) => SpiderMonkey.JS_CallFunctionName(c, IntPtr.Zero, "", new JsVal[0]));            
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_SetCompartmentPrincipals", (c) => SpiderMonkey.JS_SetCompartmentPrincipals(c, IntPtr.Zero));
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetCompartmentPrincipals", (c) => SpiderMonkey.JS_GetCompartmentPrincipals(c));
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_SetTrustedPrincipals", (c) => SpiderMonkey.JS_SetTrustedPrincipals(IntPtr.Zero, IntPtr.Zero));
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetPendingException", (c) => SpiderMonkey.JS_GetPendingException(c));
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_SetErrorReporter", (c) => SpiderMonkey.JS_SetErrorReporter(c, (cx, message, report) => {}));
+            yield return new KeyValuePair<string, Action<IntPtr>>("JS_EncodeStringUTF8", (c) => SpiderMonkey.JS_EncodeStringUTF8(c, IntPtr.Zero));
+            yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetStringLength", (c) => SpiderMonkey.JS_GetStringLength(IntPtr.Zero));
+            yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetStringEncodingLength", (c) => SpiderMonkey.JS_GetStringEncodingLength(c, IntPtr.Zero));
+
+            
 		}
 
 		[Test]

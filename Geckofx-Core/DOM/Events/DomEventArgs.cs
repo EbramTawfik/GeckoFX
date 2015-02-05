@@ -44,10 +44,6 @@ namespace Gecko
 				case "drop":
 				case "dragend":
 					return DomDragEventArgs.Create((nsIDOMDragEvent)ev);
-#if DELME
-				case "hashchange":
-					return DomHashChangeEventArgs.Create( ( nsIDOMHashChangeEvent ) ev );
-#endif
 			}
 			
 			if (ev is nsIDOMUIEvent)

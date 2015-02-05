@@ -65,17 +65,6 @@ namespace GeckofxUnitTests
 			Marshal.ReleaseComObject(instance);
 		}
 
-#if DELME
-		[Ignore("This test fails with System.OutOfMemoryException exception when the nsIRandomGenerator service is used.")]
-		[Test]
-		public void CreateInstance_CreatingPSM_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsISignatureVerifier>("@mozilla.org/psm;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-#endif
-
 		[Test]
 		public void CreateInstance_CreatingNullPrincipal_ReturnsValidInstance()
 		{
@@ -326,14 +315,6 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
-
-		[Test]
-		public void CreateInstance_CreatingIndexedDbManager_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/dom/indexeddb/manager;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}		
 
 		[Test]
 		public void CreateInstance_CreatingContentPrefService_ThrowsFail()
@@ -648,16 +629,6 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
-	
-#if DELME
-		[Test]
-		public void CreateInstance_CreatingCharsetConverterManager_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsICharsetConverterManager>("@mozilla.org/charset-converter-manager;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-#endif
 
 		[Test]
 		public void CreateInstance_CreatingScriptableUnicodeConverter_ReturnsValidInstance()
@@ -1544,12 +1515,6 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.GetService2<nsIX509CertDB>(Contracts.X509CertDb);
 			Assert.IsNotNull(instance);
 			instance.Dispose();
-
-#if DELME
-			var instance2 = Xpcom.GetService2<nsIX509CertDB2>(Contracts.X509CertDb);
-			Assert.IsNotNull(instance2);
-			instance2.Dispose();
-#endif
 		}
 #endregion
 	}
