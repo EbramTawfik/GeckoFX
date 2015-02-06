@@ -46,8 +46,15 @@ namespace GtkDotNet
 
 		protected void HandleSystemWindowsFormsApplicationIdle(object sender, EventArgs e)
 		{
-			Init();
-			ProcessPendingGtkEvents();
+			try
+			{
+				Init();
+				ProcessPendingGtkEvents();
+			}
+			catch(ObjectDisposedException)
+			{
+				Cleanup();
+			}
 		}
 
 		protected virtual void Cleanup()
