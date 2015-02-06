@@ -169,9 +169,7 @@ namespace Gecko
 				{
 					var sessionHistory = WebNav.GetSessionHistoryAttribute();
 					if ( sessionHistory != null ) sessionHistory.AddSHistoryListener( this );
-				}
-
-				BaseWindow.SetVisibilityAttribute( true );
+                }
 
 				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
 				using (var doc = Document)
@@ -183,7 +181,7 @@ namespace Gecko
 					}
 					WindowMediator.RegisterWindow(this);
 				}
-			}
+            }
 
 			base.OnHandleCreated( e );
 		}
