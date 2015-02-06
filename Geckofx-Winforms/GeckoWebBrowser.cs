@@ -426,6 +426,9 @@ namespace Gecko
 
 		private bool CouldFindOrCreateHandle()
 		{
+			if (this.IsDisposed)
+				return false;
+			
 			if(!IsHandleCreated)
 				CreateHandle();
 			return IsHandleCreated;
