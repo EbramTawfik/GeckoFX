@@ -39,10 +39,9 @@ namespace Gecko
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
 		{
 		    var i = GetEnumerator();
-            while (i.Current != null)
+            while (i.MoveNext())
 		    {
-                yield return i.Current;
-                i.MoveNext();
+                yield return i.Current;                
 		    }
 		        
 		}

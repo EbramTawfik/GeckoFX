@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -95,7 +96,7 @@ namespace GeckofxUnitTests
 		}
 		
 		[Test]
-		public void GetElements_XPathSelectsSingleElement_ReturnsCollectionWithSingleItem()
+        public void GetNodes_XPathSelectsSingleElement_ReturnsCollectionWithSingleItem()
 		{
 			browser.TestLoadHtml("<div name=\"a\" id=\"_lv5\">old value</div>");
 
@@ -131,5 +132,12 @@ namespace GeckofxUnitTests
 			Assert.AreEqual(2, browser.Document.Forms.Length);
 			Assert.AreEqual("a", browser.Document.Forms[0].Id);
 		}
+
+	    [Test]
+	    public void GetNotes_NonGenericGetEnumerator_ReturnsExpectedNodes()
+	    {
+            browser.TestLoadHtml("<h1>text</h1>>");
+            Assert.AreEqual(5, browser.Document.EvaluateXPath("//*").GetNodes().Cast<GeckoHtmlElement>().Count());
+	    }
 	}
 }
