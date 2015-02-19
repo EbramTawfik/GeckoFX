@@ -193,7 +193,7 @@ namespace GeckofxUnitTests
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_SetTrustedPrincipals", (c) => SpiderMonkey.JS_SetTrustedPrincipals(IntPtr.Zero, IntPtr.Zero));
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetPendingException", (c) => SpiderMonkey.JS_GetPendingException(c));
 			yield return new KeyValuePair<string, Action<IntPtr>>("JS_SetErrorReporter", (c) => SpiderMonkey.JS_SetErrorReporter(c, (cx, message, report) => {}));
-            yield return new KeyValuePair<string, Action<IntPtr>>("JS_EncodeStringUTF8", (c) => SpiderMonkey.JS_EncodeStringUTF8(c, IntPtr.Zero));
+            yield return new KeyValuePair<string, Action<IntPtr>>("JS_EncodeStringUTF8", (c) => SpiderMonkey.JS_EncodeStringToUTF8(c, IntPtr.Zero));
             yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetStringLength", (c) => SpiderMonkey.JS_GetStringLength(IntPtr.Zero));
             yield return new KeyValuePair<string, Action<IntPtr>>("JS_GetStringEncodingLength", (c) => SpiderMonkey.JS_GetStringEncodingLength(c, IntPtr.Zero));
 

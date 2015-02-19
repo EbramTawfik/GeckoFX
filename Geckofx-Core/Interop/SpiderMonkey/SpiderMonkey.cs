@@ -29,7 +29,7 @@ namespace Gecko
 			}
 		}
 
-        public static IntPtr JS_EncodeStringUTF8(IntPtr cx, IntPtr jsString)
+        public static IntPtr JS_EncodeStringToUTF8(IntPtr cx, IntPtr jsString)
         {
             if (Xpcom.Is32Bit)
             {

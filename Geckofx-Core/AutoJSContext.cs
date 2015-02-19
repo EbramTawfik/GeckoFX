@@ -345,23 +345,34 @@ namespace Gecko
 
 		internal string ConvertValueToString(JsVal value)
 		{
-            IntPtr jsp = SpiderMonkey.JS_ValueToString(_cx, value);
-            var utf8StrPtr = SpiderMonkey.JS_EncodeStringUTF8(_cx, jsp);
-			if (utf8StrPtr != IntPtr.Zero)
-			{
-			    try
-			    {
-                    var length = SpiderMonkey.JS_GetStringEncodingLength(_cx, jsp);
-                    byte[] result = new byte[length];
-                    Marshal.Copy(utf8StrPtr, result, 0, length);
-			        return Encoding.UTF8.GetString(result, 0 , length);
-			    }
-			    finally
-			    {
-                    SpiderMonkey.JS_Free(_cx, utf8StrPtr);
-			    }
-			}
-			return null;
+		    if (value.IsString)
+		    {		        
+		        var v = Xpcom.XPConnect.Instance.JSValToVariant(_cx, ref value);
+		        return nsString.Get(v.GetAsAString);
+		    }
+
+            // Fallback for non string JsVal's
+            // If the JsVal is not a string convert it to a JSString
+		    // then convert the JSString to a utf8 string.
+		    // NOTE: This fallback isn't ideal and may cause unicode replacement chars to appear.
+                
+		    IntPtr jsp = SpiderMonkey.JS_ValueToString(_cx, value);
+		    var utf8StrPtr = SpiderMonkey.JS_EncodeStringToUTF8(_cx, jsp);
+		    if (utf8StrPtr != IntPtr.Zero)
+		    {
+		        try
+		        {
+		            var length = SpiderMonkey.JS_GetStringEncodingLength(_cx, jsp);
+		            byte[] result = new byte[length];
+		            Marshal.Copy(utf8StrPtr, result, 0, length);
+		            return Encoding.UTF8.GetString(result, 0, length);
+		        }
+		        finally
+		        {
+		            SpiderMonkey.JS_Free(_cx, utf8StrPtr);
+		        }
+		    }
+		    return null;
 		}
 
 		public IntPtr ConvertCOMObjectToJSObject(nsISupports obj)
