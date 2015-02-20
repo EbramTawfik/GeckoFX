@@ -165,12 +165,12 @@ namespace Gecko
                         throw new GeckoJavaScriptException(String.Format("JSError : {0}", msg));
                     }
 
-                    if (GetComponentsObject().GetUtilsAttribute().IsXrayWrapper(windowJsVal))
+                    if (GetComponentsObject().GetUtilsAttribute().IsXrayWrapper(ref windowJsVal))
                         windowJsVal = GetComponentsObject().GetUtilsAttribute().WaiveXrays(ref windowJsVal, _cx);
 
                     using (nsAStringBase b = new nsAString(javascript))
                     {
-                        return GetComponentsObject().GetUtilsAttribute().EvalInWindow(b, windowJsVal, _cx);
+                        return GetComponentsObject().GetUtilsAttribute().EvalInWindow(b, ref windowJsVal, _cx);
                     }
                 }
             }
@@ -237,7 +237,7 @@ namespace Gecko
 				{
 					bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
 
-                    if (GetComponentsObject().GetUtilsAttribute().IsXrayWrapper(ptr))
+                    if (GetComponentsObject().GetUtilsAttribute().IsXrayWrapper(ref ptr))
                         ptr = GetComponentsObject().GetUtilsAttribute().WaiveXrays(ref ptr, _cx);
 
 				    result = ret ? ConvertValueToString(ptr) : null;
