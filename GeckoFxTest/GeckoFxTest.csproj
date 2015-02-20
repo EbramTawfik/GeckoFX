@@ -67,6 +67,8 @@
         <Variable name="LD_LIBRARY_PATH" value="$(SolutionDir)/PutXulRunnerFolderHere/xulrunner:/usr/lib/firefox/" />
         <Variable name="LD_PRELOAD" value="$(SolutionDir)/Geckofx-Core/Linux/geckofix.so" />
         <Variable name="MONO_PATH" value="/usr/lib/cli/gdk-sharp-2.0/" />
+        <Variable name="MONO_DEBUG" value="explicit-null-checks" />
+        <Variable name="MONO_ENV_OPTIONS" value="-O=-gshared" />
       </EnvironmentVariables>
     </EnvironmentVariables>
     <WarningLevel>4</WarningLevel>
