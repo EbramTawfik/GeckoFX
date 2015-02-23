@@ -38,6 +38,7 @@ namespace Gecko
 		private static readonly object HistoryReloadEvent = new object();
 		private static readonly object HistoryGotoIndexEvent = new object();
 		private static readonly object HistoryPurgeEvent = new object();
+        private static readonly object HistoryReplaceEntryEvent = new object();        
 		// Windows
 		private static readonly object CreateWindowEvent = new object();
 		private static readonly object CreateWindow2Event = new object();
@@ -422,11 +423,30 @@ namespace Gecko
 
 		#endregion
 
-		#endregion
+        #region public event HistoryReplaceEntry
+        
+        [Category( "History" )]
+		public event EventHandler<GeckoHistoryRepalaceEntryEventArgs> HistoryReplaceEntry
+		{
+			add { Events.AddHandler( HistoryReplaceEntryEvent, value ); }
+			remove { Events.RemoveHandler( HistoryReplaceEntryEvent, value ); }
+		}
 
-		#region public event GeckoRequestProgressEventHandler ProgressChanged
+		/// <summary>Raises the <see cref="HistoryPurge"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+        protected virtual void OnHistoryReplaceEntry(GeckoHistoryRepalaceEntryEventArgs e)
+		{
+			var evnt = ( EventHandler<GeckoHistoryRepalaceEntryEventArgs> ) Events[ HistoryReplaceEntryEvent ];
+			if ( evnt != null ) evnt( this, e );
+		}
 
-		/// <summary>
+        #endregion
+
+        #endregion
+
+        #region public event GeckoRequestProgressEventHandler ProgressChanged
+
+        /// <summary>
 		/// Occurs when the control has updated progress information.
 		/// </summary>
 		[Category("Navigation")]
@@ -1349,6 +1369,19 @@ namespace Gecko
 
 	}
 	#endregion
+
+    #region OnHistoryReplaceEntry
+
+    public class GeckoHistoryRepalaceEntryEventArgs : CancelEventArgs
+    {
+        public readonly int Index;
+
+        public GeckoHistoryRepalaceEntryEventArgs(int index)
+		{
+			Index = index;
+		}
+    }
+    #endregion
 
 	#region GeckoRequestProgressEventArgs
 	/// <summary>Provides data for event.</summary>

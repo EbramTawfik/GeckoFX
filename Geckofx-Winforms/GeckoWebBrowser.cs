@@ -2060,9 +2060,9 @@ namespace Gecko
 			return !e.Cancel;
 		}
 
-	    public void OnHistoryReplaceEntry(int aIndex)
+        void nsISHistoryListener.OnHistoryReplaceEntry(int aIndex)
 	    {
-	        throw new NotImplementedException();
+            OnHistoryReplaceEntry(new GeckoHistoryRepalaceEntryEventArgs(aIndex));
 	    }
 
 	    #endregion
