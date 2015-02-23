@@ -54,7 +54,7 @@ namespace Gecko
 					// On mono - Marshal.GetComSlotForMethodInfo always return 3 as the the slot of the delegate isn't initalized (default value 0)
 					// So, regrettably we have to hard code the slot value.
 					// If this crashes on a gecko upgrade, then its likely that nsIXPConnect ABI has changed, and the slot number has to be adjusted.
-					const int GetSafeJSContextSlotPosition = 15;
+					const int GetSafeJSContextSlotPosition = 12;
 
 					ComPtr<nsIXPConnect> xpc = Xpcom.XPConnect;
 					int slot = xpc.GetSlotOfComMethod(new Func<IntPtr>(xpc.Instance.GetSafeJSContext));
