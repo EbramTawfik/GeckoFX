@@ -2,6 +2,11 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v33.0-0.2 ==
+
+1. Fix compiling using mono.
+2. Implement nsISHistoryListener.OnHistoryReplaceEntry rather than throwing NotImplementedException.
+
 == v33.0-0.1 ==
 
 1. Initial version supporting firefox/xulrunner v33.0
