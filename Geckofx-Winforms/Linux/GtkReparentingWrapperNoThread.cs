@@ -89,6 +89,9 @@ namespace GtkDotNet
 			if (m_gdkWrapperOfForm != null)
 				return;
 
+            if (m_parent == null)
+                return;
+
 			// Wraps the panel native (X) window handle in a GdkWrapper
 			m_gdkWrapperOfForm = Gdk.Window.ForeignNewForDisplay(Gdk.Display.Default, (uint)m_parent.Handle);
 			
