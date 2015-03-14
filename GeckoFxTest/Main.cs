@@ -195,6 +195,9 @@ namespace GeckoFxTest
 			// add a handler showing how to modify the DOM.
 //			browser.DocumentCompleted += (s, e) => TestModifyingDom(browser);
 
+            // add a handle to detect when user modifies a contentEditable part of the document.
+		    browser.DomInput += (sender, args) => MessageBox.Show(String.Format("User modified element {0}", (args.Target.CastToGeckoElement() as GeckoHtmlElement).OuterHtml));		    
+
 			AddToolbarAndBrowserToTab(tabPage, browser);
 
 			m_tabControl.TabPages.Add(tabPage);

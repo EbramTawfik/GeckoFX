@@ -85,6 +85,7 @@ namespace Gecko
 		private static readonly object DomDropEvent = new object();
 		private static readonly object DomDragEndEvent = new object();
 		private static readonly object FullscreenChangeEvent = new object();
+        private static readonly object InputEvent = new object();
 		#endregion
 
 		#region Navigation events
@@ -1169,6 +1170,28 @@ namespace Gecko
 		}
 
 		#endregion public event GeckoDomEventHandler FullscreenChange
+
+        #region public event GeckoDomEventHandler DomInput
+
+        /// <summary>
+        /// Raised when the user modifyies a content editable part of a document.
+        /// </summary>
+        [Category("DOM Events")]        
+        public event EventHandler<DomEventArgs> DomInput
+        {
+            add { Events.AddHandler(InputEvent, value); }
+            remove { Events.RemoveHandler(InputEvent, value); }
+        }
+
+        /// <summary>Raises the <see cref="Input"/> event.</summary>
+        /// <param name="e">The data for the event.</param>
+        protected virtual void OnDomInput(DomEventArgs e)
+        {
+            var evnt = (EventHandler<DomEventArgs>)Events[InputEvent];
+            if (evnt != null) evnt(this, e);
+        }
+
+        #endregion public event GeckoDomEventHandler Input
 
 		#endregion
 

@@ -1976,6 +1976,9 @@ namespace Gecko
 				case "mozfullscreenchange": //TODO: change to "fullscreenchange" after prefix removed
 					OnFullscreenChange(e);
 					break;
+                case "input":
+                    OnDomInput(e);
+			        break;
 			}
 			if (e is DomMessageEventArgs)
 			{

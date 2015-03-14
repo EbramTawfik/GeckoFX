@@ -99,6 +99,7 @@ namespace Gecko
 				yield return "drop";
 				yield return "dragend";
 				yield return "mozfullscreenchange"; //TODO: change to "fullscreenchange" after prefix removed
+			    yield return "input";
 			}
 		}
 
