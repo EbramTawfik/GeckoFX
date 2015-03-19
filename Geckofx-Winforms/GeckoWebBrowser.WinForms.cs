@@ -105,86 +105,101 @@ namespace Gecko
 
 		protected ComPtr<nsIDOMEventTarget> EventTarget { get; private set; }
 
+        public event EventHandler GeckoHandleCreated = delegate { };       
+
+        bool InOnHandleCreate;
+
 		protected override void OnHandleCreated( EventArgs e )
 		{
+            try
+            {
+                    InOnHandleCreate = true;
 #if GTK	
-			if (Xpcom.IsMono)
-			{
-				base.OnHandleCreated(e);
-				if (m_wrapper != null)
-					m_wrapper.Init();
-			}
+    			if (Xpcom.IsMono)
+    			{
+    				base.OnHandleCreated(e);
+    				if (m_wrapper != null)
+    					m_wrapper.Init();
+    			}
 #endif
-			if ( !this.DesignMode )
-			{
-				Xpcom.Initialize();
-				WindowCreator.Register();
+    			if ( !this.DesignMode )
+    			{
+    				Xpcom.Initialize();
+    				WindowCreator.Register();
 #if !GTK
-				LauncherDialogFactory.Register();
+    				LauncherDialogFactory.Register();
 #endif
 
-				WebBrowser = Xpcom.CreateInstance<nsIWebBrowser>(Contracts.WebBrowser);
-				WebBrowserFocus = ( nsIWebBrowserFocus ) WebBrowser;
-				BaseWindow = ( nsIBaseWindow ) WebBrowser;
-				WebNav = ( nsIWebNavigation ) WebBrowser;
+    				WebBrowser = Xpcom.CreateInstance<nsIWebBrowser>(Contracts.WebBrowser);
+    				WebBrowserFocus = ( nsIWebBrowserFocus ) WebBrowser;
+    				BaseWindow = ( nsIBaseWindow ) WebBrowser;
+    				WebNav = ( nsIWebNavigation ) WebBrowser;
 
-				WebBrowser.SetContainerWindowAttribute( this );
+    				WebBrowser.SetContainerWindowAttribute( this );
 #if GTK
-				if (Xpcom.IsMono && m_wrapper != null)
-					BaseWindow.InitWindow(m_wrapper.BrowserWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
-				else
+    				if (Xpcom.IsMono && m_wrapper != null)
+    					BaseWindow.InitWindow(m_wrapper.BrowserWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
+    				else
 #endif
-				BaseWindow.InitWindow( this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height );
+    				BaseWindow.InitWindow( this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height );
 
-				
-				BaseWindow.Create();
+    				
+    				BaseWindow.Create();
 
-				Guid nsIWebProgressListenerGUID = typeof (nsIWebProgressListener).GUID;
-				Guid nsIWebProgressListener2GUID = typeof (nsIWebProgressListener2).GUID;
-				WebBrowser.AddWebBrowserListener( this.GetWeakReference(), ref nsIWebProgressListenerGUID );
-				WebBrowser.AddWebBrowserListener( this.GetWeakReference(), ref nsIWebProgressListener2GUID );
+    				Guid nsIWebProgressListenerGUID = typeof (nsIWebProgressListener).GUID;
+    				Guid nsIWebProgressListener2GUID = typeof (nsIWebProgressListener2).GUID;
+    				WebBrowser.AddWebBrowserListener( this.GetWeakReference(), ref nsIWebProgressListenerGUID );
+    				WebBrowser.AddWebBrowserListener( this.GetWeakReference(), ref nsIWebProgressListener2GUID );
 
-				if ( UseHttpActivityObserver )
-				{
-					ObserverService.AddObserver( this, ObserverNotifications.HttpRequests.HttpOnModifyRequest, false );
-					Net.HttpActivityDistributor.AddObserver(this);
-				}
+    				if ( UseHttpActivityObserver )
+    				{
+    					ObserverService.AddObserver( this, ObserverNotifications.HttpRequests.HttpOnModifyRequest, false );
+    					Net.HttpActivityDistributor.AddObserver(this);
+    				}
 
-				// var domEventListener = new GeckoDOMEventListener(this);
+    				// var domEventListener = new GeckoDOMEventListener(this);
 
-				{
-					var domWindow = WebBrowser.GetContentDOMWindowAttribute();
-					EventTarget = domWindow.GetWindowRootAttribute().AsComPtr();
-					Marshal.ReleaseComObject(domWindow);
-				}
+    				{
+    					var domWindow = WebBrowser.GetContentDOMWindowAttribute();
+    					EventTarget = domWindow.GetWindowRootAttribute().AsComPtr();
+    					Marshal.ReleaseComObject(domWindow);
+    				}
 
-				foreach (string sEventName in this.DefaultEvents)
-				{
-					using (var eventType = new nsAString(sEventName))
-					{
-						EventTarget.Instance.AddEventListener(eventType, this, true, true, 2);
-					}
-				}
+    				foreach (string sEventName in this.DefaultEvents)
+    				{
+    					using (var eventType = new nsAString(sEventName))
+    					{
+    						EventTarget.Instance.AddEventListener(eventType, this, true, true, 2);
+    					}
+    				}
 
-				// history
-				{
-					var sessionHistory = WebNav.GetSessionHistoryAttribute();
-					if ( sessionHistory != null ) sessionHistory.AddSHistoryListener( this );
+    				// history
+    				{
+    					var sessionHistory = WebNav.GetSessionHistoryAttribute();
+    					if ( sessionHistory != null ) sessionHistory.AddSHistoryListener( this );
+                    }
+
+    				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
+    				using (var doc = Document)
+    				{
+    					if (doc != null)
+    					{
+    						// only for html documents
+    						doc.Cookie = "";
+    					}
+    					WindowMediator.RegisterWindow(this);
+    				}
                 }
 
-				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
-				using (var doc = Document)
-				{
-					if (doc != null)
-					{
-						// only for html documents
-						doc.Cookie = "";
-					}
-					WindowMediator.RegisterWindow(this);
-				}
+#if !GTK 
+    			base.OnHandleCreated( e );
+#endif
+            }finally
+            {
+                InOnHandleCreate = false;
+				GeckoHandleCreated(this, EventArgs.Empty);
             }
 
-			base.OnHandleCreated( e );
 		}
 
 		protected override void OnHandleDestroyed( EventArgs e )

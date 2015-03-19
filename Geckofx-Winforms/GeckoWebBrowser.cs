@@ -399,7 +399,7 @@ namespace Gecko
 			if(CouldFindOrCreateHandle())
 				InternalLoadContent(content, url, contentType);
 			else //No handle could be created yet, so postpone loading the content until the Handle has been created
-				HandleCreated += (sender, args) => InternalLoadContent(content, url, contentType);
+				GeckoHandleCreated += (sender, args) => InternalLoadContent(content, url, contentType);
 		}
 
 		private void InternalLoadContent(string content, string url, string contentType)
@@ -428,7 +428,10 @@ namespace Gecko
 		{
 			if (this.IsDisposed)
 				return false;
-			
+
+            if (InOnHandleCreate)
+                return false;
+
 			if(!IsHandleCreated)
 				CreateHandle();
 			return IsHandleCreated;
