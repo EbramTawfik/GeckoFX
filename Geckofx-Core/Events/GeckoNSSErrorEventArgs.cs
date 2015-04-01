@@ -1,31 +1,22 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using Gecko.Certificates;
 using Gecko.Interop;
-
 
 namespace Gecko.Events
 {
-	public class GeckoNSSErrorEventArgs : HandledEventArgs 
+	public sealed class GeckoNSSErrorEventArgs : HandledEventArgs
 	{
-		private ComPtr<nsINSSErrorsService> _nssErrorSvc;
 		private int _statusCode;
 		private Uri _uri;
+		private SSLStatus _sslStatus;
 
-		public GeckoNSSErrorEventArgs(Uri uri, int status)
-		{			
+		public GeckoNSSErrorEventArgs(Uri uri, int status, SSLStatus sslStatus)
+		{
 			_statusCode = status;
 			_uri = uri;
-		}
-
-		private nsINSSErrorsService NSSErrorSvc
-		{
-			get
-			{
-				if(_nssErrorSvc == null)
-					_nssErrorSvc = Xpcom.GetService2<nsINSSErrorsService>(Contracts.NSSErrorsService);
-				return _nssErrorSvc.Instance;
-			}
+			_sslStatus = sslStatus;
 		}
 
 
@@ -53,7 +44,10 @@ namespace Gecko.Events
 		{
 			get
 			{
-				return nsString.Get(NSSErrorSvc.GetErrorMessage, _statusCode);
+				using (var svc = Xpcom.GetService2<nsINSSErrorsService>(Contracts.NSSErrorsService))
+				{
+					return nsString.Get(svc.Instance.GetErrorMessage, _statusCode);
+				}
 			}
 		}
 
@@ -61,16 +55,36 @@ namespace Gecko.Events
 		{
 			get
 			{
+				ComPtr<nsINSSErrorsService> nssErrorSvc = Xpcom.GetService2<nsINSSErrorsService>(Contracts.NSSErrorsService);
 				try
 				{
-					return (int)NSSErrorSvc.GetErrorClass(_statusCode);
+					return (int)nssErrorSvc.Instance.GetErrorClass(_statusCode);
 				}
-				catch(COMException ex)
+				catch (COMException ex)
 				{
-					if(ex.ErrorCode == GeckoError.NS_ERROR_UNEXPECTED)
+					if (ex.ErrorCode == GeckoError.NS_ERROR_UNEXPECTED)
 						return (int)nsINSSErrorsServiceConsts.ERROR_CLASS_SSL_PROTOCOL;
 					throw;
 				}
+				finally
+				{
+					((IDisposable)nssErrorSvc).Dispose();
+				}
+			}
+		}
+
+		public SSLStatus SSLStatus
+		{
+			get { return _sslStatus; }
+		}
+
+		public Certificate Certificate
+		{
+			get
+			{
+				if(_sslStatus != null)
+					return _sslStatus.ServerCert;
+				return null;
 			}
 		}
 

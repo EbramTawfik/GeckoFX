@@ -1714,9 +1714,37 @@ namespace Gecko
 
 					if (stateIsRequest)
 					{
+
 						if ((aStatus & 0xff0000) == ((GeckoError.NS_ERROR_MODULE_SECURITY + GeckoError.NS_ERROR_MODULE_BASE_OFFSET) << 16))
 						{
-							var ea = new GeckoNSSErrorEventArgs(destUri, aStatus);
+							SSLStatus sslStatus = null;
+							nsIChannel aChannel = null;
+							nsISupports aSecInfo = null;
+							nsISSLStatusProvider aSslStatusProv = null;
+							try
+							{
+								aChannel = Xpcom.QueryInterface<nsIChannel>(aRequest);
+								if (aChannel != null)
+								{
+									aSecInfo = aChannel.GetSecurityInfoAttribute();
+									if (aSecInfo != null)
+									{
+										aSslStatusProv = Xpcom.QueryInterface<nsISSLStatusProvider>(aSecInfo);
+										if (aSslStatusProv != null)
+										{
+											sslStatus = aSslStatusProv.GetSSLStatusAttribute().Wrap(SSLStatus.Create);
+										}
+									}
+								}
+							}
+							finally
+							{
+								Xpcom.FreeComObject(ref aChannel);
+								Xpcom.FreeComObject(ref aSecInfo);
+								Xpcom.FreeComObject(ref aSslStatusProv);
+							}
+
+							var ea = new GeckoNSSErrorEventArgs(destUri, aStatus, sslStatus);
 							OnNSSError(ea);
 							if (ea.Handled)
 							{

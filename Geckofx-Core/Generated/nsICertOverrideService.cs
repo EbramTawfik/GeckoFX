@@ -108,7 +108,7 @@ namespace Gecko
         /// @param aHostsWithPortsArray The array of host:port entries returned
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAllOverrideHostsWithPorts(ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] aHostsWithPortsArray);
+		void GetAllOverrideHostsWithPorts(ref uint aCount, ref System.IntPtr aHostsWithPortsArray);
 		
 		/// <summary>
         /// Is the given cert used in rules?
