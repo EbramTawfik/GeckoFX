@@ -6,6 +6,9 @@ using System.Reflection;
 using Gecko;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using NUnit.Framework;
+
+[assembly: RequiresSTA]
 
 namespace GeckofxUnitTests
 {

@@ -700,13 +700,48 @@ namespace Gecko
 	        private JsVal[] _args;	    
 	    }
 
-	    public static JsVal JS_CallFunctionName(IntPtr cx, IntPtr jsObject, string name, JsVal[] args = null)
-        {
-            bool result;
-            JsVal value = new JsVal();
+		/// <summary>
+		/// JS_CallFunctionName without args
+		/// </summary>
+		/// <param name="cx"></param>
+		/// <param name="jsObject"></param>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		public static JsVal JS_CallFunctionName( IntPtr cx, IntPtr jsObject, string name )
+		{
+			bool result;
+			JsVal value = new JsVal();
+			int parameterCount = 0;
+			if ( Xpcom.Is32Bit )
+			{
+				if ( Xpcom.IsLinux )
+					result = JS_CallFunctionName_Linux32( cx, ref jsObject, name, ref parameterCount, ref value );
+				else
+					result = JS_CallFunctionName_Win32( cx, ref jsObject, name, ref parameterCount, ref value );
+			}
+			else
+			{
+				if ( Xpcom.IsLinux )
+					result = JS_CallFunctionName_Linux64( cx, ref jsObject, name, ref parameterCount, ref value );
+				else
+					throw new NotImplementedException();
+			}
 
-            if (args == null)
-                args = new JsVal[0];
+			if ( !result )
+				throw new GeckoException( "Function does not exist!" );
+			return value;
+		}
+
+	    public static JsVal JS_CallFunctionName(IntPtr cx, IntPtr jsObject, string name, JsVal[] args)
+        {
+		    if ( ( args == null ) || ( args.Length == 0 ) )
+		    {
+			    return JS_CallFunctionName( cx, jsObject, name );
+		    }
+
+			bool result;
+			JsVal value = new JsVal();
+
 
             HandleValueArray argsArray = new HandleValueArray(args.Length, args);
 
@@ -842,6 +877,10 @@ namespace Gecko
         [DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_CallFunctionName@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDABVHandleValueArray@3@V?$MutableHandle@VValue@JS@@@3@@Z")]
 		[return: MarshalAs(UnmanagedType.U1)]
         private static extern bool JS_CallFunctionName_Win32(IntPtr cx, ref IntPtr jsObject, string name, ref HandleValueArray args, ref JsVal jsValue);
+
+		[DllImport( "mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_CallFunctionName@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDABVHandleValueArray@3@V?$MutableHandle@VValue@JS@@@3@@Z" )]
+		[return: MarshalAs( UnmanagedType.U1 )]
+		private static extern bool JS_CallFunctionName_Win32( IntPtr cx, ref IntPtr jsObject, string name, ref int args, ref JsVal jsValue );
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetCompartmentPrincipals@@YAXPAUJSCompartment@@PAUJSPrincipals@@@Z")]
 		private static extern void JS_SetCompartmentPrincipals_Win32(IntPtr jsCompartment, IntPtr principals);
@@ -1048,6 +1087,10 @@ namespace Gecko
         [return: MarshalAs(UnmanagedType.U1)]
         private static extern bool JS_CallFunctionName_Linux32(IntPtr cx, ref IntPtr jsObject, string name, ref HandleValueArray args, ref JsVal jsValue);
 
+		[DllImport( "mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_CallFunctionNameP9JSContextN2JS6HandleIP8JSObjectEEPKcRKNS1_16HandleValueArrayENS1_13MutableHandleINS1_5ValueEEE" )]
+		[return: MarshalAs( UnmanagedType.U1 )]
+		private static extern bool JS_CallFunctionName_Linux32( IntPtr cx, ref IntPtr jsObject, string name, ref int args, ref JsVal jsValue );
+
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z27JS_SetCompartmentPrincipalsP13JSCompartmentP12JSPrincipals")]
 		private static extern void JS_SetCompartmentPrincipals_Linux32(IntPtr jsCompartment, IntPtr principals);
 
@@ -1175,6 +1218,10 @@ namespace Gecko
         [DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z14JS_GetPropertyP9JSContextN2JS6HandleIP8JSObjectEEPKcNS1_13MutableHandleINS1_5ValueEEE")]
 		[return: MarshalAs(UnmanagedType.U1)]
 		private static extern bool JS_GetProperty_Linux64(IntPtr cx, ref IntPtr jsObject, string name, ref JsVal jsValue);
+
+		[DllImport( "mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_CallFunctionNameP9JSContextN2JS6HandleIP8JSObjectEEPKcRKNS1_16HandleValueArrayENS1_13MutableHandleINS1_5ValueEEE" )]
+		[return: MarshalAs( UnmanagedType.U1 )]
+		private static extern bool JS_CallFunctionName_Linux64( IntPtr cx, ref IntPtr jsObject, string name, ref int args, ref JsVal jsValue );
 
         [DllImport("mozjs", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_CallFunctionNameP9JSContextN2JS6HandleIP8JSObjectEEPKcRKNS1_16HandleValueArrayENS1_13MutableHandleINS1_5ValueEEE")]
         [return: MarshalAs(UnmanagedType.U1)]
