@@ -168,35 +168,52 @@ namespace Gecko
 
 			if (IsObject)
 			{
-				return ToComObject(IntPtr.Zero);
+				return ToComObjectInternal( IntPtr.Zero );
 			}
 
 			return null;
 		}
 
-		internal object ToComObject(IntPtr cx)
+		/// <summary>
+		/// Converts to COM object without null check
+		/// </summary>
+		/// <param name="cx"></param>
+		/// <returns></returns>
+		private object ToComObjectInternal( IntPtr cx )
 		{
-			using (var context = new AutoJSContext(cx))
+			using ( var context = new AutoJSContext( cx ) )
 			{
-				var jsObject = SpiderMonkey.JS_ValueToObject(context.ContextPointer, this);
+				var jsObject = SpiderMonkey.JS_ValueToObject( context.ContextPointer, this );
 
-				var guid = typeof(nsISupports).GUID;
+				var guid = typeof( nsISupports ).GUID;
 				var pUnk = IntPtr.Zero;
 				try
 				{
-					pUnk = Xpcom.XPConnect.Instance.WrapJS(context.ContextPointer, jsObject, ref guid);
-					var comObj = Xpcom.GetObjectForIUnknown(pUnk);
+					pUnk = Xpcom.XPConnect.Instance.WrapJS( context.ContextPointer, jsObject, ref guid );
+					var comObj = Xpcom.GetObjectForIUnknown( pUnk );
 
 					return comObj;
 				}
 				finally
 				{
-					if (pUnk != IntPtr.Zero)
+					if ( pUnk != IntPtr.Zero )
 					{
-						Marshal.Release(pUnk);
+						Marshal.Release( pUnk );
 					}
 				}
 			}
+		}
+
+		/// <summary>
+		/// Convert to COM object with Null checking
+		/// </summary>
+		/// <param name="cx"></param>
+		/// <returns>COM object or Null</returns>
+		internal object ToComObject( IntPtr cx )
+		{
+			if ( IsNull ) return null;
+
+			return ToComObjectInternal( cx );
 		}
 
 		public JSType Type
