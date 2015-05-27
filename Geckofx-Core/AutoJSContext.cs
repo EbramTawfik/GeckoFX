@@ -147,37 +147,37 @@ namespace Gecko
         /// <returns>The return value of the script as a JsVal</returns>
 	    public JsVal EvaluateScript(string javascript, nsIDOMWindow window)
 	    {
-            JsVal result;
             string msg = String.Empty;
-            
             IntPtr globalObject = ConvertCOMObjectToJSObject((nsISupports)window);
-
+            
             using (new JSAutoCompartment(_cx, globalObject))
             {
                 var old = SpiderMonkey.JS_SetErrorReporter(_cx, (cx, message, report) => { msg = message; });
-                    
-                var windowJsVal = new JsVal();
-                string jsScript = "this";
-                bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length,
-                    "script", 1, ref windowJsVal);
-
-                if (!ret)
+                try
                 {
-                    throw new GeckoJavaScriptException(String.Format("JSError : {0}", msg));
+                    var windowJsVal = new JsVal();
+                    string jsScript = "this";
+                    bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length,
+                        "script", 1, ref windowJsVal);
+
+                    if (!ret)
+                    {
+                        throw new GeckoJavaScriptException(String.Format("JSError : {0}", msg));
+                    }
+
+                    if (GetComponentsObject().GetUtilsAttribute().IsXrayWrapper(ref windowJsVal))
+                        windowJsVal = GetComponentsObject().GetUtilsAttribute().WaiveXrays(ref windowJsVal, _cx);
+
+                    using (nsAStringBase b = new nsAString(javascript))
+                    {
+                        return GetComponentsObject().GetUtilsAttribute().EvalInWindow(b, ref windowJsVal, _cx);
+                    }
                 }
-
-                if (GetComponentsObject().GetUtilsAttribute().IsXrayWrapper(ref windowJsVal))
-                    windowJsVal = GetComponentsObject().GetUtilsAttribute().WaiveXrays(ref windowJsVal, _cx);
-
-                using (nsAStringBase b = new nsAString(javascript))
+                finally
                 {
-                    result = GetComponentsObject().GetUtilsAttribute().EvalInWindow(b, ref windowJsVal, _cx);
+                    SpiderMonkey.JS_SetErrorReporter(_cx, old);
                 }
-                    
-                SpiderMonkey.JS_SetErrorReporter(_cx, old);
             }
-            
-            return result;
 	    }
 
 		public JsVal EvaluateScript(string javaScript)
