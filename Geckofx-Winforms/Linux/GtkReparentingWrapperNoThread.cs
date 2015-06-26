@@ -125,9 +125,8 @@ namespace GtkDotNet
 		}
 		
 		protected override void Cleanup()
-		{			
-			// TODO: reparent back into m_popupWindow before destroying Window.
-			
+		{
+            m_gdkWrapperOfForm.Reparent(m_popupWindow.GdkWindow, 0, 0);
             m_popupWindow.GdkWindow.Destroy();
 
 			m_parent.HandleCreated -= HandleParentCreated;
