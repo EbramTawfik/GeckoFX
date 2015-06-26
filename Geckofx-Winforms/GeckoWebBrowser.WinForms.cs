@@ -258,6 +258,13 @@ namespace Gecko
 				Xpcom.FreeComObject(ref WebNav);
 				Xpcom.FreeComObject(ref BaseWindow);
 				Xpcom.FreeComObject(ref WebBrowser);
+
+                if (this.menu != null)
+                {
+                    this.menu.MenuItems.Clear();
+                    this.menu.Dispose();
+                    this.menu = null;
+                }
 #if GTK			
 				if (m_wrapper != null)
 				{

@@ -1189,132 +1189,140 @@ namespace Gecko
 
 		#region nsIContextMenuListener2 Members
 
+        ContextMenu menu = null;
+
 		void nsIContextMenuListener2.OnShowContextMenu(uint aContextFlags, nsIContextMenuInfo info)
 		{
 			// if we don't have a target node, we can't do anything by default.  this happens in XUL forms (i.e. about:config)
 			if (info.GetTargetNodeAttribute() == null)
 				return;
-			
-			ContextMenu menu = new ContextMenu();
-			
-			// no default items are added when the context menu is disabled
-			if (!this.NoDefaultContextMenu)
-			{
-				List<MenuItem> optionals = new List<MenuItem>();
-				
-				if (this.CanUndo || this.CanRedo)
-				{
-					optionals.Add(new MenuItem("Undo", delegate { Undo(); }));
-					optionals.Add(new MenuItem("Redo", delegate { Redo(); }));
-					
-					optionals[0].Enabled = this.CanUndo;
-					optionals[1].Enabled = this.CanRedo;
-				}
-				else
-				{
-					optionals.Add(new MenuItem("Back", delegate { GoBack(); }));
-					optionals.Add(new MenuItem("Forward", delegate { GoForward(); }));
-					
-					optionals[0].Enabled = this.CanGoBack;
-					optionals[1].Enabled = this.CanGoForward;
-				}
-				
-				optionals.Add(new MenuItem("-"));
-				
-				if (this.CanCopyImageContents)
-					optionals.Add(new MenuItem("Copy Image Contents", delegate { CopyImageContents(); }));
-				
-				if (this.CanCopyImageLocation)
-					optionals.Add(new MenuItem("Copy Image Location", delegate { CopyImageLocation(); }));
-				
-				if (this.CanCopyLinkLocation)
-					optionals.Add(new MenuItem("Copy Link Location", delegate { CopyLinkLocation(); }));
-				
-				if (this.CanCopySelection)
-					optionals.Add(new MenuItem("Copy Selection", delegate { CopySelection(); }));
-				
-				MenuItem mnuSelectAll = new MenuItem("Select All");
-				mnuSelectAll.Click += delegate { SelectAll(); };
 
-				GeckoDomDocument doc = GeckoDomDocument.CreateDomDocumentWraper(info.GetTargetNodeAttribute().GetOwnerDocumentAttribute());
+            if (menu == null)
+            {
+                menu = new ContextMenu();
+            }
 
-				string viewSourceUrl = (doc == null) ? null : Convert.ToString(doc.Uri);
-				
-				MenuItem mnuViewSource = new MenuItem("View Source");
-				mnuViewSource.Enabled = !string.IsNullOrEmpty(viewSourceUrl);
-				mnuViewSource.Click += delegate { ViewSource(viewSourceUrl); };
+            menu.MenuItems.Clear();
 
-				MenuItem mnuOpenInSystemBrowser = new MenuItem("View In System Browser");//nice for debugging with firefox/firebug
-				mnuOpenInSystemBrowser.Enabled = !string.IsNullOrEmpty(viewSourceUrl);
-				mnuOpenInSystemBrowser.Click += delegate { ViewInSystemBrowser(viewSourceUrl); };
+            // no default items are added when the context menu is disabled
+            if (!this.NoDefaultContextMenu)
+            {
+                List<MenuItem> optionals = new List<MenuItem>();
+
+                if (this.CanUndo || this.CanRedo)
+                {
+                    optionals.Add(new MenuItem("Undo", delegate { Undo(); }));
+                    optionals.Add(new MenuItem("Redo", delegate { Redo(); }));
+
+                    optionals[0].Enabled = this.CanUndo;
+                    optionals[1].Enabled = this.CanRedo;
+                }
+                else
+                {
+                    optionals.Add(new MenuItem("Back", delegate { GoBack(); }));
+                    optionals.Add(new MenuItem("Forward", delegate { GoForward(); }));
+
+                    optionals[0].Enabled = this.CanGoBack;
+                    optionals[1].Enabled = this.CanGoForward;
+                }
+
+                optionals.Add(new MenuItem("-"));
+
+                if ((aContextFlags & nsIContextMenuListener2Consts.CONTEXT_IMAGE) != 0)
+                {
+                    if (this.CanCopyImageContents)
+                        optionals.Add(new MenuItem("Copy Image Contents", delegate { CopyImageContents(); }));
+
+                    if (this.CanCopyImageLocation)
+                        optionals.Add(new MenuItem("Copy Image Location", delegate { CopyImageLocation(); }));
+                }
+
+                if ((aContextFlags & nsIContextMenuListener2Consts.CONTEXT_LINK) != 0)
+                {
+                    if (this.CanCopyLinkLocation)
+                        optionals.Add(new MenuItem("Copy Link Location", delegate { CopyLinkLocation(); }));
+                }
+
+                if (this.CanCopySelection)
+                    optionals.Add(new MenuItem("Copy Selection", delegate { CopySelection(); }));
+
+                MenuItem mnuSelectAll = new MenuItem("Select All");
+                mnuSelectAll.Click += delegate { SelectAll(); };
+
+                GeckoDomDocument doc = GeckoDomDocument.CreateDomDocumentWraper(info.GetTargetNodeAttribute().GetOwnerDocumentAttribute());
+
+                string viewSourceUrl = (doc == null) ? null : Convert.ToString(doc.Uri);
+
+                MenuItem mnuViewSource = new MenuItem("View Source");
+                mnuViewSource.Enabled = !string.IsNullOrEmpty(viewSourceUrl);
+                mnuViewSource.Click += delegate { ViewSource(viewSourceUrl); };
+
+                MenuItem mnuOpenInSystemBrowser = new MenuItem("View In System Browser");//nice for debugging with firefox/firebug
+                mnuOpenInSystemBrowser.Enabled = !string.IsNullOrEmpty(viewSourceUrl);
+                mnuOpenInSystemBrowser.Click += delegate { ViewInSystemBrowser(viewSourceUrl); };
 
 
-				string properties = (doc != null && doc.Uri == Document.Uri) ? "Page Properties" : "IFRAME Properties";
-				
-				MenuItem mnuProperties = new MenuItem(properties);
-				mnuProperties.Enabled = doc != null;
-				mnuProperties.Click += delegate { ShowPageProperties(doc); };
-				
-				menu.MenuItems.AddRange(optionals.ToArray());
-				menu.MenuItems.Add(mnuSelectAll);
-				menu.MenuItems.Add("-");
-				menu.MenuItems.Add(mnuViewSource);
-				menu.MenuItems.Add(mnuOpenInSystemBrowser);
-				menu.MenuItems.Add(mnuProperties);
-			}
+                string properties = (doc != null && doc.Uri == Document.Uri) ? "Page Properties" : "IFRAME Properties";
 
-			// get image urls
-			Uri backgroundImageSrc = null, imageSrc = null;
-			nsIURI src;
-			try
-			{
-				src = info.GetBackgroundImageSrcAttribute();
-				backgroundImageSrc = src.ToUri();
-				Marshal.ReleaseComObject( src );
-			}
-			catch (COMException comException)
-			{
-				if ((comException.ErrorCode & 0xFFFFFFFF) != 0x80004005)
-					throw comException;
-			}
+                MenuItem mnuProperties = new MenuItem(properties);
+                mnuProperties.Enabled = doc != null;
+                mnuProperties.Click += delegate { ShowPageProperties(doc); };
 
-			try
-			{
-				src = info.GetImageSrcAttribute();
-				if ( src != null )
-				{
-					imageSrc = src.ToUri();
-					Marshal.ReleaseComObject( src );
-				}
-			}
-			catch (COMException comException)
-			{
-				if ((comException.ErrorCode & 0xFFFFFFFF) != 0x80004005)
-					throw comException;
-			}
-			
-			// get associated link.  note that this needs to be done manually because GetAssociatedLink returns a non-zero
-			// result when no associated link is available, so an exception would be thrown by nsString.Get()
-			string associatedLink = null;
-			try
-			{
-				using (nsAString str = new nsAString())
-				{
-					info.GetAssociatedLinkAttribute(str);
-					associatedLink = str.ToString();
-				}
-			}
-			catch (COMException comException) { }			
-			
-			GeckoContextMenuEventArgs e = new GeckoContextMenuEventArgs(
-				PointToClient(MousePosition), menu, associatedLink, backgroundImageSrc, imageSrc,
-				GeckoNode.Create(Xpcom.QueryInterface<nsIDOMNode>(info.GetTargetNodeAttribute()))
-				);
-			
-			OnShowContextMenu(e);
-			
-			if (e.ContextMenu != null && e.ContextMenu.MenuItems.Count > 0)
-			{
+                menu.MenuItems.AddRange(optionals.ToArray());
+                menu.MenuItems.Add(mnuSelectAll);
+                menu.MenuItems.Add("-");
+                menu.MenuItems.Add(mnuViewSource);
+                menu.MenuItems.Add(mnuOpenInSystemBrowser);
+                menu.MenuItems.Add(mnuProperties);
+            }
+
+            // get image urls
+            Uri backgroundImageSrc = null, imageSrc = null;
+            nsIURI src;
+
+            if ((aContextFlags & nsIContextMenuListener2Consts.CONTEXT_BACKGROUND_IMAGE) != 0)
+            {
+                src = info.GetBackgroundImageSrcAttribute();
+
+                if (src != null)
+                {
+                    backgroundImageSrc = src.ToUri();
+                    Marshal.ReleaseComObject(src);
+                }
+            }
+
+            if ((aContextFlags & nsIContextMenuListener2Consts.CONTEXT_IMAGE) != 0)
+            {
+                src = info.GetImageSrcAttribute();
+
+                if (src != null)
+                {
+                    imageSrc = src.ToUri();
+                    Marshal.ReleaseComObject(src);
+                }
+            }
+
+            // get associated link.  note that this needs to be done manually because GetAssociatedLink returns a non-zero
+            // result when no associated link is available, so an exception would be thrown by nsString.Get()
+            string associatedLink = null;
+
+            if ((aContextFlags & nsIContextMenuListener2Consts.CONTEXT_LINK) != 0)
+            {
+                using (nsAString str = new nsAString())
+                {
+                    info.GetAssociatedLinkAttribute(str);
+                    associatedLink = str.ToString();
+                }
+            }
+
+            using (GeckoNode mParamNode = GeckoNode.Create(Xpcom.QueryInterface<nsIDOMNode>(info.GetTargetNodeAttribute())))
+            {
+                GeckoContextMenuEventArgs e = new GeckoContextMenuEventArgs(PointToClient(MousePosition), menu, associatedLink, backgroundImageSrc, imageSrc, mParamNode);
+
+                OnShowContextMenu(e);
+
+                if (e.ContextMenu != null && e.ContextMenu.MenuItems.Count > 0)
+                {
 #if GTK
 				// When using GTK we can't use SWF to display the context menu: SWF displays
 				// the context menu and then tries to track the mouse so that it knows when to
@@ -1336,9 +1344,10 @@ namespace Gecko
 				popupMenu.ShowAll();
 				popupMenu.Popup();
 #else
-				e.ContextMenu.Show(this, e.Location);
+                    e.ContextMenu.Show(this, e.Location);
 #endif
-			}
+                }
+            }
 		}
 
 		private void ViewInSystemBrowser(string url)
