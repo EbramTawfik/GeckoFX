@@ -128,6 +128,8 @@ namespace GtkDotNet
 		{			
 			// TODO: reparent back into m_popupWindow before destroying Window.
 			
+            m_popupWindow.GdkWindow.Destroy();
+
 			m_parent.HandleCreated -= HandleParentCreated;
 			m_parent.Resize -= HandleParentResize;
 
