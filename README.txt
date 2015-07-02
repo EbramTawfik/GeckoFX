@@ -2,6 +2,14 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v33.0-0.7 ==
+
+1. `JS_SetErrorReporter()` moved into `using (new JSAutoCompartment())` block. Fixes issue #47
+2. Add null check to JsVal
+3. LINUX: Fix Linux message "Gdk-WARNING **: GdkWindow ?????? unexpectedly destroyed"
+4. LINUX: Remove a Linux TODO: (Reparenting back before destroying window)
+5. Make GeckoWebBrowser.Stop method more robust.
+
 == v33.0-0.6 ==
 
 1. Fix: Issue 20 https://bitbucket.org/geckofx/geckofx-33.0/issue/20/unit-tests
