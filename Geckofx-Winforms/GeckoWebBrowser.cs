@@ -590,7 +590,9 @@ namespace Gecko
 		{
 			// We want Stop() to return immediately and to fire events asynchronously. Howerver,
 			// WebNav.Stop() may fire 'NavigationError' event synchronously, so we call it asynchronously.
-			BeginInvoke(new Action(() =>
+            // REVIEW: I'm not convinced that using BeginInvoke when Stop is called on the UI thread is a 
+            // good idea. It mearly moves The WebNav.Stop call to later on the UI thread.
+			var a = (new Action(() =>
 			{
 				if (WebNav == null)
 					return;
@@ -605,6 +607,12 @@ namespace Gecko
 					throw;
 				}
 			}));
+
+		    if (IsHandleCreated)
+		        BeginInvoke(a);
+		    else
+		        a();
+
 		}
 
 		/// <summary>
