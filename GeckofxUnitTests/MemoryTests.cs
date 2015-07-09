@@ -16,10 +16,14 @@ namespace GeckofxUnitTests
     [Platform(Exclude="Win", Reason = "Linux Specific memory checking")]
     internal class MemoryTests
     {
+        static nsIMemory _memoryService;
+
         [SetUp]
         public void BeforeEachTestSetup()
         {
             Xpcom.Initialize(XpComTests.XulRunnerLocation);
+            if (_memoryService == null)
+                _memoryService = Xpcom.GetService<nsIMemory>("@mozilla.org/xpcom/memory-service;1");
         }
 
         [Test]
@@ -103,6 +107,7 @@ namespace GeckofxUnitTests
                 Application.RaiseIdle(EventArgs.Empty);
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
+                _memoryService.HeapMinimize(true);
             }
 
             start = MemorySnapShot.Record();
@@ -120,6 +125,7 @@ namespace GeckofxUnitTests
                 Application.RaiseIdle(EventArgs.Empty);
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
+                _memoryService.HeapMinimize(true);
             }
 
             end = MemorySnapShot.Record();
