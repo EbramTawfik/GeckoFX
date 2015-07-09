@@ -102,7 +102,7 @@ namespace GtkDotNet
 			m_popupWindow.GdkWindow.Reparent(m_gdkWrapperOfForm, 0, 0);
 			ProcessPendingGtkEvents();
 			
-			m_popupWindow.GdkWindow.AddFilter(FilterFunc);									
+			m_popupWindow.GdkWindow.AddFilter(FilterFunc);
 		}
 								
 		private FilterReturn FilterFunc (IntPtr xevent, Event evnt)
@@ -129,7 +129,10 @@ namespace GtkDotNet
             if (m_gdkWrapperOfForm != null)
                 m_gdkWrapperOfForm.Reparent(m_popupWindow.GdkWindow, 0, 0);
             if (m_popupWindow.GdkWindow != null)
+            {
+                m_popupWindow.GdkWindow.RemoveFilter(FilterFunc);
                 m_popupWindow.GdkWindow.Destroy();
+            }
 			m_parent.HandleCreated -= HandleParentCreated;
 			m_parent.Resize -= HandleParentResize;
 
