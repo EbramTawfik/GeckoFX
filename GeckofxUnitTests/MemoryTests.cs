@@ -37,6 +37,44 @@ namespace GeckofxUnitTests
             Assert.AreEqual(Leaks.None, result, String.Format("leak = {0}, \nstart = {1} \nend = {2}", result, start, end));
         }
 
+        [Test]
+        public void CreatedGeckofxControl()
+        {
+            Func<GeckoWebBrowser> operation = () => { 
+                var b = new GeckoWebBrowser(); 
+                var unused = b.Handle;
+                return b;
+            };
+            Action<GeckoWebBrowser> cleanupOperation = (browser) => browser.Dispose();
+
+            Warmup(operation, cleanupOperation);
+
+            MemorySnapShot start;
+            MemorySnapShot end;
+            var result = PerformTest(operation, cleanupOperation, 20, out start, out end);
+
+            Assert.AreEqual(Leaks.None, result, String.Format("leak = {0}, \nstart = {1} \nend = {2}", result, start, end));
+        }
+
+        //[Test]
+        public void NavigatedGeckofxControl()
+        {
+            Func<GeckoWebBrowser> operation = () => { 
+                var b = new GeckoWebBrowser(); 
+                b.TestLoadHtml("hello world");
+                return b;
+            };
+            Action<GeckoWebBrowser> cleanupOperation = (browser) => browser.Dispose();
+
+            Warmup(operation, cleanupOperation);
+
+            MemorySnapShot start;
+            MemorySnapShot end;
+            var result = PerformTest(operation, cleanupOperation, 20, out start, out end);
+
+            Assert.AreEqual(Leaks.None, result, String.Format("leak = {0}, \nstart = {1} \nend = {2}", result, start, end));
+        }
+
         #region HelperMethods
 
         private void Warmup<T>(Func<T> create, Action<T> cleanup)
