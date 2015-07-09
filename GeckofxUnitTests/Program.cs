@@ -26,7 +26,7 @@ namespace GeckofxUnitTests
 			string domain = prefix + "domain=None";
             string labels = prefix + "labels";
 
-            string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain, labels, "--fixture=GeckofxUnitTests.MemoryTests" };
+            string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain, labels, /*"--fixture=GeckofxUnitTests.MemoryTests"*/ };
 
 			int returnCode = NUnit.ConsoleRunner.Runner.Main(my_args); 
 
