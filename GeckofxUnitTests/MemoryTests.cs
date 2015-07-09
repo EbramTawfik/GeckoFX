@@ -29,8 +29,13 @@ namespace GeckofxUnitTests
             Func<GeckoWebBrowser> operation = () => { return new GeckoWebBrowser(); };
             Action<GeckoWebBrowser> cleanupOperation = (browser) => browser.Dispose();
 #else
-            Func<int[]> operation = () => { return new int[100000]; };
-            Action<int[]> cleanupOperation = (browser) => { };
+            // Just creating a control 2000 times leaks a bit.
+            // Func<Control> operation = () => { return new Control(); };
+            // Action<Control> cleanupOperation = (browser) => { browser.Dispose();};
+           
+
+            Func<Dictionary<nsIHttpChannel, GeckoJavaScriptHttpChannelWrapper>> operation = () => { return  new Dictionary<nsIHttpChannel, GeckoJavaScriptHttpChannelWrapper>(); };
+            Action<Dictionary<nsIHttpChannel, GeckoJavaScriptHttpChannelWrapper>> cleanupOperation = (browser) => { };
 #endif
 
             Warmup(operation, cleanupOperation);
@@ -64,8 +69,13 @@ namespace GeckofxUnitTests
         /// <typeparam name="T"></typeparam>
         private Leaks PerformTest<T>(Func<T> create, Action<T> cleanup, int operationCount, out MemorySnapShot start, out MemorySnapShot end)
         {
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+            for (int i = 0; i < 5; i++)
+            {
+                Application.DoEvents();
+                Application.RaiseIdle(EventArgs.Empty);
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
 
             start = MemorySnapShot.Record();
 
