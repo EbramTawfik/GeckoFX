@@ -128,6 +128,13 @@ namespace Gecko
 			{
                 origJavaScriptHttpChannels = null;
                 _messageEventListeners = null;
+#if GTK         
+                if (m_wrapper != null)
+                {
+                    m_wrapper.Dispose();
+                    m_wrapper = null;
+                }
+#endif
 
 				//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
 				if (NavigateFinishedNotifier != null)
