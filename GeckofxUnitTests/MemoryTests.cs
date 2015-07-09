@@ -23,26 +23,16 @@ namespace GeckofxUnitTests
         }
 
         [Test]
-        public void NonCreatedGeckofxControl()
+        public void UncreatedGeckofxControl()
         {
-#if true
             Func<GeckoWebBrowser> operation = () => { return new GeckoWebBrowser(); };
             Action<GeckoWebBrowser> cleanupOperation = (browser) => browser.Dispose();
-#else
-            // Just creating a control 2000 times leaks a bit.
-            // Func<Control> operation = () => { return new Control(); };
-            // Action<Control> cleanupOperation = (browser) => { browser.Dispose();};
-           
-
-            Func<Dictionary<nsIHttpChannel, GeckoJavaScriptHttpChannelWrapper>> operation = () => { return  new Dictionary<nsIHttpChannel, GeckoJavaScriptHttpChannelWrapper>(); };
-            Action<Dictionary<nsIHttpChannel, GeckoJavaScriptHttpChannelWrapper>> cleanupOperation = (browser) => { };
-#endif
 
             Warmup(operation, cleanupOperation);
 
             MemorySnapShot start;
             MemorySnapShot end;
-            var result = PerformTest(operation, cleanupOperation, 2000, out start, out end);
+            var result = PerformTest(operation, cleanupOperation, 800, out start, out end);
 
             Assert.AreEqual(Leaks.None, result, String.Format("leak = {0}, \nstart = {1} \nend = {2}", result, start, end));
         }
