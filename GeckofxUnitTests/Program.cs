@@ -24,8 +24,9 @@ namespace GeckofxUnitTests
 			string prefix = Xpcom.IsLinux ? "--" : "/";
 			string nothread = prefix + "nothread";
 			string domain = prefix + "domain=None";
+            string labels = prefix + "labels";
 
-			string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain, /*"/fixture=GeckofxUnitTests.CrossLanguageTests"*/ };
+            string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain, labels/*"/fixture=GeckofxUnitTests.CrossLanguageTests"*/ };
 
 			int returnCode = NUnit.ConsoleRunner.Runner.Main(my_args); 
 

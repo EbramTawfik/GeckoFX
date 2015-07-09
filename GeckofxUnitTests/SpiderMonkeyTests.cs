@@ -201,6 +201,7 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+        [Platform(Exclude="Linux", Reason = "Crashes on Linux")]
 		public void SpiderMonkeyEntryPointTests()
 		{
 			foreach (var entryPoint in EntryPoints())

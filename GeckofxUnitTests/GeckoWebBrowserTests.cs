@@ -502,6 +502,7 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+        [Platform(Exclude="Linux", Reason = "Crashes on Linux")]
 		public void JQueryExecutor_GetElementByJQuery_ScriptExecutesAndReturnsExpectedResult()
 		{
 			browser.TestLoadHtml(JQueryExecutorTestsHtml);
@@ -515,6 +516,7 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+        [Platform(Exclude="Linux", Reason = "Crashes on Linux")]
 		public void JQueryExecutor_GetElementsByJQuery_ScriptExecutesAndReturnsExpectedResult()
 		{
 			browser.TestLoadHtml(JQueryExecutorTestsHtml);

@@ -32,6 +32,10 @@ namespace Gecko
 
 		private static string GetXULRunnerLocationLinux(string hintPath)
 		{
+            var path = Environment.GetEnvironmentVariable("MOZ_PATH");
+            if (path != null && Directory.Exists(path))
+                return path;
+
 			string solutionXulRunnerFolder = FindSpecialXulRunnerDirectory(DirectoryOfTheApplicationExecutable, hintPath);
 			if (solutionXulRunnerFolder != null)
 				return solutionXulRunnerFolder;
