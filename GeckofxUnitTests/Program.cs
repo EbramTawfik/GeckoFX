@@ -18,7 +18,7 @@ namespace GeckofxUnitTests
 		static void Main(string[] args)
 		{
 			// Needed when single unittests are run
-			// Xpcom.Initialize(XpComTests.XulRunnerLocation);
+			 Xpcom.Initialize(XpComTests.XulRunnerLocation);
 			OverrideX11ErrorHandler();
 						
 			string prefix = Xpcom.IsLinux ? "--" : "/";
@@ -26,7 +26,7 @@ namespace GeckofxUnitTests
 			string domain = prefix + "domain=None";
             string labels = prefix + "labels";
 
-            string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain, labels/*"/fixture=GeckofxUnitTests.CrossLanguageTests"*/ };
+            string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain, labels, "--fixture=GeckofxUnitTests.MemoryTests" };
 
 			int returnCode = NUnit.ConsoleRunner.Runner.Main(my_args); 
 

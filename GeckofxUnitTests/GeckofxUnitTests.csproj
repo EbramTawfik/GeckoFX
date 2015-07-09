@@ -125,6 +125,7 @@
     <Compile Include="XpComTests.cs" />
     <Compile Include="XPConnectTests.cs" />
     <Compile Include="WindowMediatorWatcherTests.cs" />
+    <Compile Include="MemoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app1.manifest" />
