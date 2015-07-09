@@ -126,6 +126,9 @@ namespace Gecko
 		{
 			if (disposing)
 			{
+                origJavaScriptHttpChannels = null;
+                _messageEventListeners = null;
+
 				//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
 				if (NavigateFinishedNotifier != null)
 					NavigateFinishedNotifier.Dispose();
