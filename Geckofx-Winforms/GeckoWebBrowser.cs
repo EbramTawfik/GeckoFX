@@ -2372,9 +2372,13 @@ namespace Gecko
 		}
 		#endregion nsIHttpActivityObserver members
 
+        GeckoWebBrowserWeakRef _weakRef;
+
 		public nsIWeakReference GetWeakReference()
 		{
-			return new ControlWeakReference( this );
+            if (_weakRef == null)
+                return _weakRef = new GeckoWebBrowserWeakRef(this);
+            return _weakRef;
 		}
 	}
 	

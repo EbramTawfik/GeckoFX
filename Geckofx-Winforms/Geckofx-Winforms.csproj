@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D7ADC901-E1C4-480E-8F6D-B1FFD5CF87E8}</ProjectGuid>
@@ -48,9 +48,6 @@
     <OutputPath>bin\Debug_Linux</OutputPath>
     <DefineConstants>DEBUG;TRACE;GTK</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>GeckoFX.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugType>full</DebugType>
@@ -59,18 +56,12 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>GeckoFX.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\x86\Release</OutputPath>
     <PlatformTarget>x86</PlatformTarget>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>GeckoFX.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release_Linux|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -158,6 +149,7 @@
     <Compile Include="Linux\X11Structs.cs" />
     <Compile Include="Linux\GtkOnceOnly.cs" />
     <Compile Include="Utils\WindowsImageCreator.cs" />
+    <Compile Include="Interop\GeckoWebBrowserWeakRef.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dialogs\ChromeDialog.resx">
@@ -186,7 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Geckofx-Core\Geckofx-Core.csproj">
-      <Project>{6ab4eee6-1889-43ab-83f7-a4f083230be7}</Project>
+      <Project>{6AB4EEE6-1889-43AB-83F7-A4F083230BE7}</Project>
       <Name>Geckofx-Core</Name>
     </ProjectReference>
   </ItemGroup>

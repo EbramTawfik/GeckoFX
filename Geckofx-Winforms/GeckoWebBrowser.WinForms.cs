@@ -210,6 +210,12 @@ namespace Gecko
 
 				WindowMediator.UnregisterWindow(this);
 
+                if (_weakRef != null)
+                {
+                    _weakRef.Dispose();
+                    _weakRef = null;
+                }
+
 				nsIDocShell docShell = Xpcom.QueryInterface<nsIDocShell>(BaseWindow);
 				if (docShell != null && !docShell.IsBeingDestroyed())
 				{
