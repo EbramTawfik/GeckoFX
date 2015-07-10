@@ -15,8 +15,15 @@ namespace Gecko
 
 		static WindowMediator()
 		{
-			_windowMediator = Xpcom.GetService2<nsIWindowMediator>(Contracts.WindowMediator);			
+			_windowMediator = Xpcom.GetService2<nsIWindowMediator>(Contracts.WindowMediator);
 		}
+
+        /// <summary>
+        /// Set this to true to disable WindowMediator.
+        /// This saves a small amount of memory each time a GeckoWebBrowser control is created.
+        /// </summary>
+        /// <value></value>
+        public static bool Disable { get; set; }
 
 		public static void Shutdown()
 		{
@@ -27,6 +34,9 @@ namespace Gecko
 
 		public static void RegisterWindow(nsIXULWindow window)
 		{
+            if (Disable)
+                return;
+
 			_windowMediator.Instance.RegisterWindow(window);
 			//_windowCount ++;
 		}
@@ -34,6 +44,9 @@ namespace Gecko
 
 		public static void UnregisterWindow(nsIXULWindow window)
 		{
+            if (Disable)
+                return;
+
 			_windowMediator.Instance.UnregisterWindow( window );
 			//_windowCount --;
 		}
@@ -45,6 +58,9 @@ namespace Gecko
 		/// <returns></returns>
 		public static nsIDOMWindow GetMostRecentWindow(string type)
 		{
+            if (Disable)
+                return null;
+
 			return _windowMediator.Instance.GetMostRecentWindow( type );
 		}
 
@@ -56,6 +72,9 @@ namespace Gecko
 		/// ""/null: for normal html pages.</param>
 		public static IEnumerator<GeckoWindow> GetEnumerator(string type)
 		{
+            if (Disable)
+                return null;
+
 			return new Collections.GeckoEnumerator<GeckoWindow, nsIDOMWindow>(
 				_windowMediator.Instance.GetEnumerator(type),
 				x => new GeckoWindow(x));
