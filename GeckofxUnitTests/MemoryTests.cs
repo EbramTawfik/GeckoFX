@@ -22,6 +22,7 @@ namespace GeckofxUnitTests
         public void BeforeEachTestSetup()
         {
             Xpcom.Initialize(XpComTests.XulRunnerLocation);
+            WindowMediator.Disable = true;
             if (_memoryService == null)
                 _memoryService = Xpcom.GetService<nsIMemory>("@mozilla.org/xpcom/memory-service;1");
         }
@@ -55,7 +56,7 @@ namespace GeckofxUnitTests
 
             MemorySnapShot start;
             MemorySnapShot end;
-            var result = PerformTest(operation, cleanupOperation, 20, out start, out end);
+            var result = PerformTest(operation, cleanupOperation, 220, out start, out end);
 
             Assert.AreEqual(Leaks.None, result, String.Format("leak = {0}, \nstart = {1} \nend = {2}", result, start, end));
         }
