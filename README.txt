@@ -2,6 +2,13 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v33.0-0.8 ==
+
+1. Using only one context menu for the life of the GeckoBrowser.
+2. Some memory leak fixes (Mostly for Linux)
+3. Add option to Disable WindowMeditator (saves a small amount of mem on each GeckoWebBrowser Creation)
+usage: WindowMediator.Disable = true;
+
 == v33.0-0.7 ==
 
 1. `JS_SetErrorReporter()` moved into `using (new JSAutoCompartment())` block. Fixes issue #47
