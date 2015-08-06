@@ -70,21 +70,24 @@ namespace Gecko
 	/// </summary>
 	class DefaultPromptFactory
 	{
-		private static nsIPromptFactory factory;
+		private static nsIPromptFactory _factory;
 
 		internal static void Init()
 		{
-			factory = Xpcom.GetService<nsIPromptFactory>("@mozilla.org/prompter;1");
+			_factory = Xpcom.GetService<nsIPromptFactory>("@mozilla.org/prompter;1");
 		}
 
 		internal static void Shutdown()
 		{
-			Marshal.ReleaseComObject(factory);
+            if (_factory != null && Marshal.IsComObject(_factory))           
+			    Marshal.ReleaseComObject(_factory);
+
+		    _factory = null;
 		}
 
 		public static IntPtr GetPrompt(nsIDOMWindow aParent, ref Guid iid)
 		{
-			return factory.GetPrompt(aParent, ref iid);
+			return _factory.GetPrompt(aParent, ref iid);
 		}
 
 		/// <summary>
@@ -97,7 +100,7 @@ namespace Gecko
 		{
 			var iid = (GuidAttribute)typeof(TPrompt).GetCustomAttributes(typeof(GuidAttribute), false)[0];
 			var g = new Guid (iid.Value);
-			var ptr = factory.GetPrompt(aParent, ref g);
+			var ptr = _factory.GetPrompt(aParent, ref g);
 			var prompt = (TPrompt)Marshal.GetTypedObjectForIUnknown(ptr, typeof(TPrompt));
 			Marshal.Release(ptr);
 			return prompt;
