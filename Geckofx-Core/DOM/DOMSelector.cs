@@ -21,7 +21,7 @@ namespace Gecko.DOM
 
 		private static void Add(GeckoClassDesc classDesc)
 		{
-			_dictionary.Add( classDesc.TagName.ToLower(), classDesc );
+            _dictionary.Add(classDesc.TagName.ToLowerInvariant(), classDesc);
 		}
 
         static DOMSelector()
@@ -177,7 +177,7 @@ namespace Gecko.DOM
 
 		internal static GeckoHtmlElement CreateDomHtmlElementWrapper(nsIDOMHTMLElement instance)
 		{
-			var lowerTagName = nsString.Get(instance.GetTagNameAttribute).ToLower();
+			var lowerTagName = nsString.Get(instance.GetTagNameAttribute).ToLowerInvariant();
         	GeckoClassDesc desc;
 
 			if (_dictionary.TryGetValue(lowerTagName, out desc))

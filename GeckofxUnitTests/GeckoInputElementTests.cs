@@ -11,7 +11,9 @@ using Gecko.DOM;
 
 namespace GeckofxUnitTests
 {
+    // Using SetCulture to catch bugs where ToLower is used instead of ToLowerInvariant
 	[TestFixture]
+    [SetCulture("tr-TR")]
 	internal class GeckoInputElementTests
 	{
 		private GeckoWebBrowser browser;
