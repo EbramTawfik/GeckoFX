@@ -2173,6 +2173,7 @@ namespace Gecko
 		/// </summary>
 		/// <param name="eventName"></param>
 		/// <param name="action"></param>
+		/// <param name="useCapture"></param>
 		/// <example>AddMessageEventListener("callMe", (message=>MessageBox.Show(message)));</example>
 		public void AddMessageEventListener(string eventName, Action<string> action, bool useCapture)
 		{
@@ -2182,6 +2183,32 @@ namespace Gecko
 				// (useCapture and wantsUntrusted are specified as optional so we always pass 2 when calling interface from C#)
 				target.AddEventListener(new nsAString(eventName), this, /*Review*/ useCapture, true, 2);
 				_messageEventListeners.Add(eventName, action);
+			}
+		}
+
+		/// <summary>
+		/// Unregister a listener for a custom jscrip-initiated MessageEvent
+		/// </summary>
+		/// <param name="eventName"></param>
+		/// <example>AddMessageEventListener("callMe", (message=>MessageBox.Show(message)));</example>
+		public void RemoveMessageEventListener(string eventName)
+		{
+			RemoveMessageEventListener(eventName, true);
+		}
+
+		/// <summary>
+		/// Unregister a listener for a custom jscrip-initiated MessageEvent
+		/// </summary>
+		/// <param name="eventName"></param>
+		/// <param name="useCapture"></param>
+		/// <example>AddMessageEventListener("callMe", (message=>MessageBox.Show(message)));</example>
+		public void RemoveMessageEventListener(string eventName, bool useCapture)
+		{
+			nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMEventTarget>(Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute());
+			if (target != null)
+			{
+				target.RemoveEventListener(new nsAString(eventName), this, useCapture);
+				_messageEventListeners.Remove(eventName);
 			}
 		}
 
