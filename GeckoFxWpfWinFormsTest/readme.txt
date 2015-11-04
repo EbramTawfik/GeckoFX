@@ -1,0 +1,1 @@
+﻿This sample is showing usage of Geckofx-Winforms inside WPF application
