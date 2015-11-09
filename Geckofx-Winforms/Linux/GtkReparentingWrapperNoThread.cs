@@ -38,7 +38,9 @@ namespace GtkDotNet
 		[DllImport ("libX11")]
         public extern static int XGetInputFocus(IntPtr display, out IntPtr focus_return, out RevertTo revert_to_return);
 
-		IntPtr m_xDisplayPointer;		
+		IntPtr m_xDisplayPointer;
+
+        bool _filterAdded;
 		#endregion
 		
 		/// <summary>
@@ -103,6 +105,7 @@ namespace GtkDotNet
 			ProcessPendingGtkEvents();
 			
 			m_popupWindow.GdkWindow.AddFilter(FilterFunc);
+            _filterAdded = true;
 		}
 								
 		private FilterReturn FilterFunc (IntPtr xevent, Event evnt)
@@ -130,7 +133,9 @@ namespace GtkDotNet
                 m_gdkWrapperOfForm.Reparent(m_popupWindow.GdkWindow, 0, 0);
             if (m_popupWindow.GdkWindow != null)
             {
-                m_popupWindow.GdkWindow.RemoveFilter(FilterFunc);
+                if (_filterAdded)
+                    m_popupWindow.GdkWindow.RemoveFilter(FilterFunc);
+                _filterAdded = false;
                 m_popupWindow.GdkWindow.Destroy();
             }
 			m_parent.HandleCreated -= HandleParentCreated;
