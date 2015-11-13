@@ -1330,6 +1330,14 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
+
+        [Test]
+        public void CreateInstance_CreatingDomUtils_ReturnsValidInstance()
+        {
+            var instance = Xpcom.CreateInstance<inIDOMUtils>("@mozilla.org/inspector/dom-utils;1");
+            Assert.IsNotNull(instance);
+            Marshal.ReleaseComObject(instance);
+        }
 #endregion
 
 #region GetService Unittests
