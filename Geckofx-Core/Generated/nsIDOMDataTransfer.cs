@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c71180e3-298b-4fbb-9ccb-82c822474741")]
+	[Guid("655078bf-1675-4aa0-a48d-a133e864ce57")]
 	public interface nsIDOMDataTransfer
 	{
 		
@@ -164,18 +164,6 @@ namespace Gecko
 		void ClearData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase format);
 		
 		/// <summary>
-        /// Set the data for a given format. If data for the format does not exist,
-        /// it is added at the end, such that the last item in the types list will be
-        /// the new format. If data for the format already exists, the existing data
-        /// is replaced in the same position. That is, the order of the types list is
-        /// not changed.
-        ///
-        /// @throws NS_ERROR_NULL_POINTER if the data is null
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase format, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase data);
-		
-		/// <summary>
         /// Retrieves the data for a given format, or an empty string if data for
         /// that format does not exist or the data transfer contains no data.
         /// </summary>
@@ -276,43 +264,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MozClearDataAt([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase format, uint index);
-		
-		/// <summary>
-        /// A data transfer may store multiple items, each at a given zero-based
-        /// index. setDataAt may only be called with an index argument less than
-        /// itemCount in which case an existing item is modified, or equal to
-        /// itemCount in which case a new item is added, and the itemCount is
-        /// incremented by one.
-        ///
-        /// Data should be added in order of preference, with the most specific
-        /// format added first and the least specific format added last. If data of
-        /// the given format already exists, it is replaced in the same position as
-        /// the old data.
-        ///
-        /// The data should be either a string, a primitive boolean or number type
-        /// (which will be converted into a string) or an nsISupports.
-        ///
-        /// @param format the format to add
-        /// @param data the data to add
-        /// @throws NS_ERROR_NULL_POINTER if the data is null
-        /// @throws NS_ERROR_DOM_INDEX_SIZE_ERR if index is greater than itemCount
-        /// @throws NO_MODIFICATION_ALLOWED_ERR if the item cannot be modified
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozSetDataAt([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase format, [MarshalAs(UnmanagedType.Interface)] nsIVariant data, uint index);
-		
-		/// <summary>
-        /// Retrieve the data associated with the given format for an item at the
-        /// specified index, or null if it does not exist. The index should be in the
-        /// range from zero to itemCount - 1.
-        ///
-        /// @param format the format of the data to look up
-        /// @returns the data of the given format, or null if it doesn't exist.
-        /// @throws NS_ERROR_DOM_INDEX_SIZE_ERR if index is greater or equal than itemCount
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant MozGetDataAt([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase format, uint index);
 		
 		/// <summary>
         /// Will be true when the user has cancelled the drag (typically by pressing

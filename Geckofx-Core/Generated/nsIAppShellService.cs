@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("41a2f0c6-3ca1-44f9-8efa-744a43aa399d")]
+	[Guid("83f23c7e-6ce0-433f-9fe2-f287ae8c6e0c")]
 	public interface nsIAppShellService
 	{
 		
@@ -55,6 +55,16 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DestroyHiddenWindow();
+		
+		/// <summary>
+        /// B2G multi-screen support. When open another top-level window on b2g,
+        /// a screen ID is needed for identifying which screen this window is
+        /// opened to.
+        /// @param aScreenId Differentiate screens of windows. It is platform-
+        /// specific due to the hardware limitation for now.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetScreenId(uint aScreenId);
 		
 		/// <summary>
         /// Return the (singleton) application hidden window, automatically created

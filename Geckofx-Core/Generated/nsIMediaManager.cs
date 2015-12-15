@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f431b523-4536-4ba7-a2c1-7e1bf670d32a")]
+	[Guid("24b23e01-33fd-401f-ba25-6e52658750b0")]
 	public interface nsIMediaManagerService
 	{
 		
@@ -45,6 +45,12 @@ namespace Gecko
 		/// <summary>
         ///Get the capture state for the given window and all descendant windows (iframes, etc) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MediaCaptureWindowState([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.U1)] ref bool aVideo, [MarshalAs(UnmanagedType.U1)] ref bool aAudio, [MarshalAs(UnmanagedType.U1)] ref bool aScreenShare, [MarshalAs(UnmanagedType.U1)] ref bool aWindowShare);
+		void MediaCaptureWindowState([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.U1)] ref bool aVideo, [MarshalAs(UnmanagedType.U1)] ref bool aAudio, [MarshalAs(UnmanagedType.U1)] ref bool aScreenShare, [MarshalAs(UnmanagedType.U1)] ref bool aWindowShare, [MarshalAs(UnmanagedType.U1)] ref bool aAppShare, [MarshalAs(UnmanagedType.U1)] ref bool aBrowserShare);
+		
+		/// <summary>
+        ///Clear per-orgin list of persistent DeviceIds stored for enumerateDevices
+        ///     sinceTime is milliseconds since 1 January 1970 00:00:00 UTC. 0 = clear all </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SanitizeDeviceIds(long sinceWhen);
 	}
 }

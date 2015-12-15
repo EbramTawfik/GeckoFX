@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("AD9D3F1C-A8DE-4d0b-9714-1B922297AD65")]
+	[Guid("2f712b52-19c5-4e0c-9e8f-b5c7c3b67049")]
 	public interface nsIUploadChannel2
 	{
 		
@@ -70,5 +70,24 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUploadStreamHasHeadersAttribute();
+		
+		/// <summary>
+        /// Ensure the upload stream, if any, is cloneable.  This may involve
+        /// async copying, so a callback runnable must be provided.  It will
+        /// invoked on the current thread when the upload stream is ready
+        /// for cloning.  If the stream is already cloneable, then the callback
+        /// will be invoked synchronously.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void EnsureUploadStreamIsCloneable([MarshalAs(UnmanagedType.Interface)] nsIRunnable aCallback);
+		
+		/// <summary>
+        /// Clones the upload stream.  May return failure if the upload stream
+        /// is not cloneable.  If this is not acceptable, use the
+        /// ensureUploadStreamIsCloneable() method first.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIInputStream CloneUploadStream();
 	}
 }

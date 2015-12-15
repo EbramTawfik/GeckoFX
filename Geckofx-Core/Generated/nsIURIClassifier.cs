@@ -55,7 +55,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("617f1002-ec55-42c4-a7b0-ebb221ba9fa2")]
+	[Guid("596620cc-76e3-4133-9d90-360e59a794cf")]
 	public interface nsIURIClassifier
 	{
 		
@@ -64,6 +64,10 @@ namespace Gecko
         ///
         /// @param aPrincipal
         /// The principal that should be checked by the URI classifier.
+        /// @param aTrackingProtectionEnabled
+        /// Whether or not to classify the given URI against tracking
+        /// protection lists
+        ///
         /// @param aCallback
         /// The URI classifier will call this callback when the URI has been
         /// classified.
@@ -75,6 +79,14 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Classify([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIURIClassifierCallback aCallback);
+		bool Classify([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.U1)] bool aTrackingProtectionEnabled, [MarshalAs(UnmanagedType.Interface)] nsIURIClassifierCallback aCallback);
+		
+		/// <summary>
+        /// Synchronously classify a URI with a comma-separated string
+        /// containing the given tables. This does not make network requests.
+        /// The result is a comma-separated string of tables that match.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ClassifyLocalWithTables([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aTables, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 	}
 }

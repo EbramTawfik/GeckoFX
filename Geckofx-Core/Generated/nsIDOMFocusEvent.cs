@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4faecbd6-1bcd-42d8-bc66-ec6b95050063")]
+	[Guid("f2606aee-1801-4e4c-9700-af99e435c02c")]
 	public interface nsIDOMFocusEvent : nsIDOMUIEvent
 	{
 		
@@ -224,6 +224,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr InternalDOMEvent();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopCrossProcessForwarding();
 		
 		/// <summary>
         /// The nsIDOMUIEvent interface is the datatype for all UI events in the

@@ -124,8 +124,7 @@ namespace Gecko
 		public GeckoNode LastChild { get { return _domNode.Instance.GetLastChildAttribute().Wrap(Create); } }
 		public GeckoNode NextSibling { get { return _domNode.Instance.GetNextSiblingAttribute().Wrap(Create); } }
 		public GeckoNode PreviousSibling { get { return _domNode.Instance.GetPreviousSiblingAttribute().Wrap(Create); } }
-		public bool HasChildNodes { get { return _domNode.Instance.HasChildNodes(); } }
-		public bool HasAttributes { get { return _domNode.Instance.HasAttributes(); } }
+		public bool HasChildNodes { get { return _domNode.Instance.HasChildNodes(); } }		
 
 		public GeckoDocument OwnerDocument
 		{
@@ -231,9 +230,16 @@ namespace Gecko
             using (var evaluator = Xpcom.CreateInstance2<nsIDOMXPathEvaluator>(Contracts.XPathEvaluator))
 			{
 				var node = DomObject;
+                // Attempt to port for geckofx 45
+#if false
 				nsIDOMXPathNSResolver resolver = evaluator.Instance.CreateNSResolver(node);
                 result = (nsIXPathResult)evaluator.Instance.Evaluate(new nsAString(xpath), node, resolver, 0, null);
-				Xpcom.FreeComObject( ref resolver );
+                Xpcom.FreeComObject( ref resolver );
+#else
+                var resolver = new WebIDL.XPathEvaluator((nsISupports) evaluator).CreateNSResolver(node);
+                result = (nsIXPathResult)evaluator.Instance.Evaluate(new nsAString(xpath), node, resolver, 0, null);
+#endif
+				
 			}
 
 			return result;

@@ -44,6 +44,32 @@ namespace Gecko
 		void HandleSlowScriptDebug([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 	}
 	
+	/// <summary>nsISlowScriptDebuggerStartupCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("b1c6ecd0-8fa4-11e4-b4a9-0800200c9a66")]
+	public interface nsISlowScriptDebuggerStartupCallback
+	{
+		
+		/// <summary>Member FinishDebuggerStartup </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void FinishDebuggerStartup();
+	}
+	
+	/// <summary>nsISlowScriptDebugRemoteCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("dbee14b0-8fa0-11e4-b4a9-0800200c9a66")]
+	public interface nsISlowScriptDebugRemoteCallback
+	{
+		
+		/// <summary>Member HandleSlowScriptDebug </summary>
+		/// <param name='aBrowser'> </param>
+		/// <param name='aCallback'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void HandleSlowScriptDebug([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aBrowser, [MarshalAs(UnmanagedType.Interface)] nsISlowScriptDebuggerStartupCallback aCallback);
+	}
+	
 	/// <summary>nsISlowScriptDebug </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -61,5 +87,16 @@ namespace Gecko
 		/// <param name='aActivationHandler'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetActivationHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsISlowScriptDebugCallback aActivationHandler);
+		
+		/// <summary>Member GetRemoteActivationHandlerAttribute </summary>
+		/// <returns>A nsISlowScriptDebugRemoteCallback</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISlowScriptDebugRemoteCallback GetRemoteActivationHandlerAttribute();
+		
+		/// <summary>Member SetRemoteActivationHandlerAttribute </summary>
+		/// <param name='aRemoteActivationHandler'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetRemoteActivationHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsISlowScriptDebugRemoteCallback aRemoteActivationHandler);
 	}
 }

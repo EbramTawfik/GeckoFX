@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("17a17ce4-9a07-43fb-a0a3-947a6e21476c")]
+	[Guid("ea730238-4bfd-4015-8489-8f264d05b343")]
 	public interface nsIInputStreamChannel
 	{
 		

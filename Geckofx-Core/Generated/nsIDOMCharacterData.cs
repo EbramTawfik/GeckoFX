@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("84f72a38-1873-46f8-937c-1df22d7e7cae")]
+	[Guid("4109a2d2-e7af-445d-bb72-c7c9b875f35e")]
 	public interface nsIDOMCharacterData : nsIDOMNode
 	{
 		
@@ -141,11 +141,11 @@ namespace Gecko
 		new void GetLocalNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aLocalName);
 		
 		/// <summary>
-        /// Introduced in DOM Level 2:
+        /// For vtable compatibility (see bug 1078674)
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool HasAttributes();
+		new bool UnusedPlaceholder();
 		
 		/// <summary>
         /// nsINode::GetBaseURI
@@ -202,7 +202,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIVariant SetUserData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase key, [MarshalAs(UnmanagedType.Interface)] nsIVariant data, [MarshalAs(UnmanagedType.Interface)] nsIDOMUserDataHandler handler);
+		new nsIVariant SetUserData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase key, [MarshalAs(UnmanagedType.Interface)] nsIVariant data);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:

@@ -58,13 +58,59 @@ namespace Gecko
 	}
 	
 	/// <summary>
+    /// Interface provides the callback type.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("5fb5bb60-7069-11e4-9803-0800200c9a66")]
+	public interface nsIContentPermissionRequestCallback
+	{
+		
+		/// <summary>
+        /// The callback of the visibility result.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyVisibility([MarshalAs(UnmanagedType.U1)] bool isVisible);
+	}
+	
+	/// <summary>
+    /// Interface provides the way to get the visibility and
+    /// the notification.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("f8577124-6a5f-486f-ae04-c5bcae911eb5")]
+	public interface nsIContentPermissionRequester
+	{
+		
+		/// <summary>
+        /// The function to get the visibility.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetVisibility([MarshalAs(UnmanagedType.Interface)] nsIContentPermissionRequestCallback callback);
+		
+		/// <summary>
+        /// The callback to get the notification of visibility change.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIContentPermissionRequestCallback GetOnVisibilityChangeAttribute();
+		
+		/// <summary>
+        /// The callback to get the notification of visibility change.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnVisibilityChangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIContentPermissionRequestCallback aOnVisibilityChange);
+	}
+	
+	/// <summary>
     /// Interface allows access to a content to request
     /// permission to perform a privileged operation such as
     /// geolocation.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("69a39d88-d1c4-4ba9-9b19-bafc7a1bb783")]
+	[Guid("408c8fcd-1420-4aff-94d8-39bf74d79219")]
 	public interface nsIContentPermissionRequest
 	{
 		
@@ -96,6 +142,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetElementAttribute();
+		
+		/// <summary>
+        /// The requester to get the required information of
+        /// the window.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIContentPermissionRequester GetRequesterAttribute();
 		
 		/// <summary>
         /// allow or cancel the request

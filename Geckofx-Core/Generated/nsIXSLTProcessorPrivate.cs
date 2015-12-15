@@ -32,9 +32,17 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b8d727f7-67f4-4dc1-a318-ec0c87280816")]
+	[Guid("75d14f5d-293d-4872-8a26-e79268de592f")]
 	public interface nsIXSLTProcessorPrivate
 	{
+		
+		/// <summary>
+        /// This needs to be called if the XSLTProcessor is instantiated
+        /// through the XPCOM registry (i.e. using do_createInstance) and the
+        /// stylesheet uses xsl:import/xsl:include or the document() xpath function.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Init([MarshalAs(UnmanagedType.Interface)] nsISupports global);
 		
 		/// <summary>
         /// Flags for this processor. Defaults to 0. See individual flags above

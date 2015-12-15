@@ -80,7 +80,7 @@ namespace Gecko
         /// @param  aLang             If non-null, assigns it to a pointer
         /// to a string containing the value of language
         /// obtained from RFC 2231 parsing. Caller has to
-        /// nsMemory::Free it.
+        /// free it.
         /// @return the value of <code>aParamName</code> in Unichar(UTF-16).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -137,10 +137,10 @@ namespace Gecko
         /// the first (possibly) _unnamed_ 'parameter'.
         /// @param  aCharset    If non-null, it gets assigned a new pointer
         /// to a string containing the value of charset obtained
-        /// from RFC 2231 parsing. Caller has to nsMemory::Free it.
+        /// from RFC 2231 parsing. Caller has to free it.
         /// @param  aLang       If non-null, it gets assigned a new pointer
         /// to a string containing the value of language obtained
-        /// from RFC 2231 parsing. Caller has to nsMemory::Free it.
+        /// from RFC 2231 parsing. Caller has to free it.
         /// @return             the value of <code>aParamName</code> after
         /// RFC 2231 decoding but without charset conversion.
         /// </summary>

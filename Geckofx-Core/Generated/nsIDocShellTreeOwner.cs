@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6cd89e60-1060-491e-8c31-ce969435ec56")]
+	[Guid("0e3dc4b1-4cea-4a37-af71-79f0afd07574")]
 	public interface nsIDocShellTreeOwner
 	{
 		
@@ -86,7 +86,18 @@ namespace Gecko
 		nsIDocShellTreeItem GetPrimaryContentShellAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetContentWindowAttribute(System.IntPtr jsContext);
+		void TabParentAdded([MarshalAs(UnmanagedType.Interface)] nsITabParent aTab, [MarshalAs(UnmanagedType.U1)] bool aPrimary);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void TabParentRemoved([MarshalAs(UnmanagedType.Interface)] nsITabParent aTab);
+		
+		/// <summary>
+        ///In multiprocess case we may not have primaryContentShell but
+        ///	primaryTabParent.
+        ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsITabParent GetPrimaryTabParentAttribute();
 		
 		/// <summary>
         ///Tells the tree owner to size its window or parent window in such a way

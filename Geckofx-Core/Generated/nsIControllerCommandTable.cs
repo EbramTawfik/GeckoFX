@@ -39,7 +39,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d1a47834-6ad4-11d7-bfad-000393636592")]
+	[Guid("c847f90e-b8f3-49db-a4df-8867831f2800")]
 	public interface nsIControllerCommandTable
 	{
 		
@@ -118,5 +118,8 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCommandState([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsICommandParams aParam, [MarshalAs(UnmanagedType.Interface)] nsISupports aCommandRefCon);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSupportedCommands(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] commands);
 	}
 }

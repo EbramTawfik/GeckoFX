@@ -36,16 +36,20 @@ namespace Gecko.DOM
 				CreationMethod = (x) => new GeckoBaseElement((nsIDOMHTMLBaseElement)x) });
 			Add(new GeckoClassDesc() { TagName = "body", InterfaceType = typeof(nsIDOMHTMLBodyElement), GeckoElement = typeof(GeckoBodyElement), 
 				CreationMethod = (x) => new GeckoBodyElement((nsIDOMHTMLBodyElement)x) });
+#if NO_LONGER_EXISTS_GECKO45
 			Add(new GeckoClassDesc() { TagName = "br", InterfaceType = typeof(nsIDOMHTMLBRElement), GeckoElement = typeof(GeckoBRElement), 
 				CreationMethod = (x) => new GeckoBRElement((nsIDOMHTMLBRElement)x) });
+#endif
 			Add(new GeckoClassDesc() { TagName = "button", InterfaceType = typeof(nsIDOMHTMLButtonElement), GeckoElement = typeof(GeckoButtonElement), 
 				CreationMethod = (x) => new GeckoButtonElement((nsIDOMHTMLButtonElement)x) });
 			Add(new GeckoClassDesc() { TagName = "canvas", InterfaceType = typeof(nsIDOMHTMLCanvasElement), GeckoElement = typeof(GeckoCanvasElement),
 				CreationMethod = (x) => new GeckoCanvasElement((nsIDOMHTMLCanvasElement)x) });
 			Add(new GeckoClassDesc() { TagName = "dir", InterfaceType = typeof(nsIDOMHTMLDirectoryElement), GeckoElement = typeof(GeckoDirectoryElement), 
 				CreationMethod = (x) => new GeckoDirectoryElement((nsIDOMHTMLDirectoryElement)x) });
+#if NO_LONGER_EXISTS_GECKO45
 			Add(new GeckoClassDesc() { TagName = "div", InterfaceType = typeof(nsIDOMHTMLDivElement), GeckoElement = typeof(GeckoDivElement), 
 				CreationMethod = (x) => new GeckoDivElement((nsIDOMHTMLDivElement)x) });
+#endif
 			Add(new GeckoClassDesc() { TagName = "embed", InterfaceType = typeof(nsIDOMHTMLEmbedElement), GeckoElement = typeof(GeckoEmbedElement), 
 				CreationMethod = (x) => new GeckoEmbedElement((nsIDOMHTMLEmbedElement)x) });
 			Add(new GeckoClassDesc() { TagName = "fieldset", InterfaceType = typeof(nsIDOMHTMLFieldSetElement), GeckoElement = typeof(GeckoFieldSetElement), 
@@ -58,6 +62,7 @@ namespace Gecko.DOM
 				CreationMethod = (x) => new GeckoFrameSetElement((nsIDOMHTMLFrameSetElement)x) });
 			Add(new GeckoClassDesc() { TagName = "head", InterfaceType = typeof(nsIDOMHTMLHeadElement), GeckoElement = typeof(GeckoHeadElement), 
 				CreationMethod = (x) => new GeckoHeadElement((nsIDOMHTMLHeadElement)x) });
+#if NO_LONGER_EXISTS_GECKO45
 			Add(new GeckoClassDesc() { TagName = "h1", InterfaceType = typeof(nsIDOMHTMLHeadingElement), GeckoElement = typeof(GeckoHeadingElement), 
 				CreationMethod = (x) => new GeckoHeadingElement((nsIDOMHTMLHeadingElement)x) });
 			Add(new GeckoClassDesc() { TagName = "h2", InterfaceType = typeof(nsIDOMHTMLHeadingElement), GeckoElement = typeof(GeckoHeadingElement), 
@@ -70,6 +75,7 @@ namespace Gecko.DOM
 				CreationMethod = (x) => new GeckoHeadingElement((nsIDOMHTMLHeadingElement)x) });
 			Add(new GeckoClassDesc() { TagName = "h6", InterfaceType = typeof(nsIDOMHTMLHeadingElement), GeckoElement = typeof(GeckoHeadingElement), 
 				CreationMethod = (x) => new GeckoHeadingElement((nsIDOMHTMLHeadingElement)x) });
+#endif
 			Add(new GeckoClassDesc() { TagName = "hr", InterfaceType = typeof(nsIDOMHTMLHRElement), GeckoElement = typeof(GeckoHRElement), 
 				CreationMethod = (x) => new GeckoHRElement((nsIDOMHTMLHRElement)x) });
 			Add(new GeckoClassDesc() { TagName = "html", InterfaceType = typeof(nsIDOMHTMLHtmlElement), GeckoElement = typeof(GeckoHtmlHtmlElement), 
@@ -112,14 +118,18 @@ namespace Gecko.DOM
 				CreationMethod = (x) => new GeckoSelectElement((nsIDOMHTMLSelectElement)x) });
 			Add(new GeckoClassDesc() { TagName = "style", InterfaceType = typeof(nsIDOMHTMLStyleElement), GeckoElement = typeof(GeckoStyleElement),
 				CreationMethod = (x) => new GeckoStyleElement((nsIDOMHTMLStyleElement)x) });
+#if NONO_LONGER_EXISTS_IN_GECKO45
 			Add(new GeckoClassDesc() { TagName = "caption", InterfaceType = typeof(nsIDOMHTMLTableCaptionElement), GeckoElement = typeof(GeckoTableCaptionElement),
 				CreationMethod = (x) => new GeckoTableCaptionElement((nsIDOMHTMLTableCaptionElement)x) });
+#endif
 			Add(new GeckoClassDesc() { TagName = "td", InterfaceType = typeof(nsIDOMHTMLTableCellElement), GeckoElement = typeof(GeckoTableCellElement),
 				CreationMethod = (x) => new GeckoTableCellElement((nsIDOMHTMLTableCellElement)x) });
 			Add(new GeckoClassDesc() { TagName = "textarea", InterfaceType = typeof(nsIDOMHTMLTextAreaElement), GeckoElement = typeof(GeckoTextAreaElement), 
 				CreationMethod = (x) => new GeckoTextAreaElement((nsIDOMHTMLTextAreaElement)x) });
+#if NO_LONGER_EXISTS_IN_GECKO45
 			Add(new GeckoClassDesc() { TagName = "title", InterfaceType = typeof(nsIDOMHTMLTitleElement), GeckoElement = typeof(GeckoTitleElement), 
 				CreationMethod = (x) => new GeckoTitleElement((nsIDOMHTMLTitleElement)x) });
+#endif
 			Add(new GeckoClassDesc() { TagName = "ul", InterfaceType = typeof(nsIDOMHTMLUListElement), GeckoElement = typeof(GeckoUListElement), 
 				CreationMethod = (x) => new GeckoUListElement((nsIDOMHTMLUListElement)x) });
         }

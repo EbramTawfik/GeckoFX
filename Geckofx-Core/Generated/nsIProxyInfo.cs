@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9e557d99-7af0-4895-95b7-e6dba28c9ad9")]
+	[Guid("63fff172-2564-4138-96c6-3ae7d245fbed")]
 	public interface nsIProxyInfo
 	{
 		
@@ -53,6 +53,7 @@ namespace Gecko
         /// Some special values for this attribute include (but are not limited to)
         /// the following:
         /// "http"     HTTP proxy (or SSL CONNECT for HTTPS)
+        /// "https"    HTTP proxying over TLS connection to proxy
         /// "socks"    SOCKS v5 proxy
         /// "socks4"   SOCKS v4 proxy
         /// "direct"   no proxy
@@ -77,6 +78,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetResolveFlagsAttribute();
+		
+		/// <summary>
+        /// Specifies a proxy username.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aUsername);
+		
+		/// <summary>
+        /// Specifies a proxy password.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPassword);
 		
 		/// <summary>
         /// This attribute specifies the failover timeout in seconds for this proxy.

@@ -27,123 +27,12 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// These interfaces do *not* scroll or scale the content document;
-    /// instead they set a "goal" scroll/scale wrt the current content
-    /// view.  When the content document is painted, the scroll*
-    /// attributes are used to set a compensating transform.  If the
-    /// metrics of the content document's current pixels don't match the
-    /// view config, the transform matrix may need to translate
-    /// content pixels and/or perform a "fuzzy-scale" that doesn't
-    /// re-rasterize fonts or intelligently resample images.
-    ///
-    /// The attrs are allowed to transform content pixels in
-    /// such a way that the <browser>'s visible rect encloses pixels that
-    /// the content document does not (yet) define.
-    ///
-    /// The view scroll values are in units of chrome-document CSS
-    /// pixels.
-    ///
-    /// These APIs are designed to be used with nsIDOMWindowUtils
-    /// setDisplayPort() and setResolution().
-    /// </summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c04c5c40-fa2a-4e9c-94f5-b362a10a86cb")]
-	public interface nsIContentView
-	{
-		
-		/// <summary>
-        /// Scroll view to or by the given chrome-document CSS pixels.
-        /// Fails if the view is no longer valid.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollTo(float xPx, float yPx);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollBy(float dxPx, float dyPx);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScale(float xScale, float yScale);
-		
-		/// <summary>
-        /// Scroll offset in chrome-document CSS pixels.
-        ///
-        /// When this view is active (i.e. it is being painted because it's in the
-        /// visible region of the screen), this value is at first lined up with the
-        /// content's scroll offset.
-        ///
-        /// Note that when this view becomes inactive, the new content view will have
-        /// scroll values that are reset to the default!
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		float GetScrollXAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		float GetScrollYAttribute();
-		
-		/// <summary>
-        /// Dimensions of the viewport in chrome-document CSS pixels.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		float GetViewportWidthAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		float GetViewportHeightAttribute();
-		
-		/// <summary>
-        /// Dimensions of scrolled content in chrome-document CSS pixels.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		float GetContentWidthAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		float GetContentHeightAttribute();
-		
-		/// <summary>
-        /// ID that can be used in conjunction with nsIDOMWindowUtils to change
-        /// the actual document, instead of just how it is transformed.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetIdAttribute();
-	}
-	
-	/// <summary>nsIContentViewManager </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ba5af90d-ece5-40b2-9a1d-a0154128db1c")]
-	public interface nsIContentViewManager
-	{
-		
-		/// <summary>
-        /// Retrieve view scrolling/scaling interfaces in a given area,
-        /// used to support asynchronous re-paints of content pixels.
-        /// These interfaces are only meaningful for <browser>.
-        ///
-        /// Pixels are in chrome device pixels and are relative to the browser
-        /// element.
-        ///
-        /// @param aX x coordinate that will be in target rectangle
-        /// @param aY y coordinate that will be in target rectangle
-        /// @param aTopSize How much to expand up the rectangle
-        /// @param aRightSize How much to expand right the rectangle
-        /// @param aBottomSize How much to expand down the rectangle
-        /// @param aLeftSize How much to expand left the rectangle
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetContentViewsIn(float aXPx, float aYPx, float aTopSize, float aRightSize, float aBottomSize, float aLeftSize, ref uint aLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=6)] ref nsIContentView[] aResult);
-		
-		/// <summary>
-        /// The root content view.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIContentView GetRootContentViewAttribute();
-	}
-	
-	/// <summary>nsIFrameLoader </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a5cefcc8-551b-4901-83f3-7436b09ecaba")]
+	[Guid("1645af04-1bc7-4363-8f2c-eb9679220ab1")]
 	public interface nsIFrameLoader
 	{
 		
@@ -184,6 +73,22 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LoadURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		
+		/// <summary>
+        /// Loads the specified URI in this frame but using a different process.
+        /// Behaves identically to loadURI, except that this method only works
+        /// with remote frame. For a signed package, we need to specifiy the
+        /// package identifier.
+        /// Throws an exception with non-remote frames.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SwitchProcessAndLoadURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPackageId);
+		
+		/// <summary>
+        /// Puts the frameloader in prerendering mode.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsPrerendered();
 		
 		/// <summary>
         /// Destroy the frame loader and everything inside it. This will
@@ -248,23 +153,28 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendCrossProcessKeyEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aType, int aKeyCode, int aCharCode, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aPreventDefault);
 		
-		/// <summary>Member GetRenderModeAttribute </summary>
-		/// <returns>A System.UInt32</returns>
+		/// <summary>
+        /// Request that the next time a remote layer transaction has been
+        /// received by the Compositor, a MozAfterRemoteFrame event be sent
+        /// to the window.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetRenderModeAttribute();
+		void RequestNotifyAfterRemotePaint();
 		
-		/// <summary>Member SetRenderModeAttribute </summary>
-		/// <param name='aRenderMode'> </param>
+		/// <summary>
+        /// Request an event when the layer tree from the remote tab becomes
+        /// available or unavailable. When this happens, a mozLayerTreeReady
+        /// or mozLayerTreeCleared event is fired.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRenderModeAttribute(uint aRenderMode);
+		void RequestNotifyLayerTreeReady();
 		
-		/// <summary>Member GetEventModeAttribute </summary>
-		/// <returns>A System.UInt32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RequestNotifyLayerTreeCleared();
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetEventModeAttribute();
 		
-		/// <summary>Member SetEventModeAttribute </summary>
-		/// <param name='aEventMode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEventModeAttribute(uint aEventMode);
 		
@@ -342,31 +252,24 @@ namespace Gecko
 		
 		/// <summary>
         /// Find out whether the owner content really is a browser or app frame
+        /// Especially, a widget frame is regarded as an app frame.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetOwnerIsBrowserOrAppFrameAttribute();
+		
+		/// <summary>
+        /// Find out whether the owner content really is a widget. If this attribute
+        /// returns true, |ownerIsBrowserOrAppFrame| must return true.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetOwnerIsWidgetAttribute();
 	}
 	
 	/// <summary>nsIFrameLoaderConsts </summary>
 	public class nsIFrameLoaderConsts
 	{
-		
-		// <summary>
-        // The default rendering mode is synchronous scrolling.  In this
-        // mode, it's an error to try to set a target viewport.
-        // </summary>
-		public const ulong RENDER_MODE_DEFAULT = 0x00000000;
-		
-		// <summary>
-        // When asynchronous scrolling is enabled, a target viewport can be
-        // set to transform content pixels wrt its CSS viewport.
-        //
-        // NB: when async scrolling is enabled, it's the *user's*
-        // responsibility to update the target scroll offset.  In effect,
-        // the platform hands over control of scroll offset to the user.
-        // </summary>
-		public const ulong RENDER_MODE_ASYNC_SCROLL = 0x00000001;
 		
 		// <summary>
         // The default event mode automatically forwards the events
@@ -388,7 +291,7 @@ namespace Gecko
 	/// <summary>nsIFrameLoaderOwner </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5879040e-83e9-40e3-b2bb-5ddf43b76e47")]
+	[Guid("c4abebcf-55f3-47d4-af15-151311971255")]
 	public interface nsIFrameLoaderOwner
 	{
 		
@@ -402,6 +305,12 @@ namespace Gecko
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetFrameLoader();
+		
+		/// <summary>
+        /// Puts the FrameLoaderOwner in prerendering mode.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsPrerendered();
 		
 		/// <summary>
         /// Swap frame loaders with the given nsIFrameLoaderOwner.  This may

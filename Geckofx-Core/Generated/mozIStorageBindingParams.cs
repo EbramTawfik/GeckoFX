@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7d8763ad-79d9-4674-ada1-37fd702af68c")]
+	[Guid("2d09f42f-966e-4663-b4b3-b0c8676bf2bf")]
 	public interface mozIStorageBindingParams
 	{
 		
@@ -69,6 +69,15 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindBlobByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] aValue, uint aValueSize);
+		
+		/// <summary>
+        /// Convenience routines for storing strings as blobs.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void BindStringAsBlobByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aValue);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void BindUTF8StringAsBlobByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aValue);
 		
 		/// <summary>
         /// underlying pointer.
@@ -107,6 +116,15 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindBlobByIndex(uint aIndex, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] aValue, uint aValueSize);
+		
+		/// <summary>
+        /// Convenience routines for storing strings as blobs.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void BindStringAsBlobByIndex(uint aIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aValue);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void BindUTF8StringAsBlobByIndex(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aValue);
 		
 		/// <summary>
         /// underlying pointer.

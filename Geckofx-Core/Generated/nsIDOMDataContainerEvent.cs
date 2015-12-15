@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dc6b39da-87ff-4b6f-b065-b52602602e06")]
+	[Guid("31ceb43e-5f49-43bf-9a18-3b60a535c814")]
 	public interface nsIDOMDataContainerEvent : nsIDOMEvent
 	{
 		
@@ -224,6 +224,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr InternalDOMEvent();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopCrossProcessForwarding();
 		
 		/// <summary>
         /// Return the data associated with the given key.

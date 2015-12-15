@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("decb9cc7-c08f-4ea5-be91-a8fc637ce2d2")]
+	[Guid("1f84fd56-3956-40df-b86a-1ea01402ee96")]
 	public interface nsIPrefService
 	{
 		
@@ -138,5 +138,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrefBranch GetDefaultBranch([MarshalAs(UnmanagedType.LPStr)] string aPrefRoot);
+		
+		/// <summary>
+        /// The preference service is 'dirty' if there are changes to user preferences
+        /// that have not been written to disk
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetDirtyAttribute();
 	}
 }

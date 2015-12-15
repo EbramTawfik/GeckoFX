@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("766a09c1-d21b-4bf8-9fe3-8b34b716251a")]
+	[Guid("da9ffc70-d444-47d4-b4ab-df3fb0fd24d0")]
 	public interface nsISessionStore
 	{
 		
@@ -55,19 +55,19 @@ namespace Gecko
         /// Get closed tab data
         ///
         /// @param aWindow is the browser window for which to get closed tab data
-        /// @returns a JSON string representing the list of closed tabs.
+        /// @returns a JS array of closed tabs.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetClosedTabData([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		Gecko.JsVal GetClosedTabs([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// @param aWindow is the browser window to reopen a closed tab in.
-        /// @param aIndex  is the index of the tab to be restored (FIFO ordered).
+        /// @param aCloseTabData is the data of the tab to be restored.
         /// @returns a reference to the reopened tab.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode UndoCloseTab([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, uint aIndex);
+		nsIDOMNode UndoCloseTab([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, ref Gecko.JsVal aCloseTabData);
 		
 		/// <summary>
         /// @param aWindow is the browser window associated with the closed tab.
@@ -84,7 +84,7 @@ namespace Gecko
         /// @returns A string value or an empty string if none is set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aKey, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		void GetTabValue(ref Gecko.JsVal aTab, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aKey, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
         /// @param aTab         is the browser tab to set the value for.
@@ -92,27 +92,29 @@ namespace Gecko
         /// @param aStringValue is the value itself (use JSON.stringify/parse before setting JS objects).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aKey, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aStringValue);
+		void SetTabValue(ref Gecko.JsVal aTab, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aKey, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aStringValue);
 		
 		/// <summary>
         /// @param aTab is the browser tab to get the value for.
         /// @param aKey is the value's name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aKey);
-		
-		/// <summary>
-        /// @returns A boolean indicating we should restore previous browser session
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ShouldRestore();
+		void DeleteTabValue(ref Gecko.JsVal aTab, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aKey);
 		
 		/// <summary>
         /// Restores the previous browser session using a fast, lightweight strategy
-        /// @param aBringToFront should a restored tab be brought to the foreground?
+        /// @param aSessionString The session string to restore from. If null, the
+        /// backup session file is read from.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RestoreLastSession([MarshalAs(UnmanagedType.U1)] bool aBringToFront);
+		void RestoreLastSession([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSessionString);
+		
+		/// <summary>
+        /// Removes a window from the current session history. Data from this window
+        /// won't be saved when its closed.
+        /// @param aWindow The window to remove
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 	}
 }

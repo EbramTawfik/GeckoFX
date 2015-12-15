@@ -3,6 +3,8 @@
 namespace Gecko
 {
 
+    // inteface nsIMarkupDocumentViewer does not exist in gecko 45
+#if false
 	public class GeckoMarkupDocumentViewer
 	{
 		nsIMarkupDocumentViewer m_markupDocumentViewer;
@@ -115,4 +117,5 @@ namespace Gecko
 			m_markupDocumentViewer.SetMinFontSizeAttribute(aMinFontSize);
 		}
 	}
+#endif
 }

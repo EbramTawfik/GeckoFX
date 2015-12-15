@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d463dfbb-89c4-4553-97af-b4fd8854e161")]
+	[Guid("a6dcc76e-9f62-4cc1-a470-b483a1a6f096")]
 	public interface nsIBlocklistService
 	{
 		
@@ -106,6 +106,16 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPluginBlocklistURL([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		
+		/// <summary>
+        /// Determine the blocklist infoURL of a plugin.
+        /// @param   plugin
+        /// The blocked plugin that we are determining the infoURL for.
+        /// @returns The preferred URL to present the user, or |null| if
+        /// it is not available.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPluginInfoURL([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 	}
 	
 	/// <summary>nsIBlocklistServiceConsts </summary>

@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f1971942-19db-44bf-81e8-d15df220a39f")]
+	[Guid("de5642c6-61fc-4fcf-9a47-03226b0d4e21")]
 	public interface nsIDNSService
 	{
 		
@@ -93,6 +93,26 @@ namespace Gecko
 		nsIDNSRecord Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHostName, uint aFlags);
 		
 		/// <summary>
+        /// kicks off an asynchronous host lookup.
+        ///
+        /// This function is identical to asyncResolve except an additional
+        /// parameter aNetwortInterface. If parameter aNetworkInterface is an empty
+        /// string function will return the same result as asyncResolve.
+        /// Setting aNetworkInterface value make only sense for gonk,because it
+        /// an per networking interface query is possible.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsICancelable AsyncResolveExtended([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHostName, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNetworkInterface, [MarshalAs(UnmanagedType.Interface)] nsIDNSListener aListener, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aListenerTarget);
+		
+		/// <summary>
+        /// Attempts to cancel a previously requested async DNS lookup
+        /// This is an extended versin with a additional parameter aNetworkInterface
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CancelAsyncResolveExtended([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHostName, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNetworkInterface, [MarshalAs(UnmanagedType.Interface)] nsIDNSListener aListener, int aReason);
+		
+		/// <summary>
         /// The method takes a pointer to an nsTArray
         /// and fills it with cache entry data
         /// Called by the networking dashboard
@@ -151,5 +171,10 @@ namespace Gecko
         // If set, only IPv6 addresses will be returned from resolve/asyncResolve.
         // </summary>
 		public const ulong RESOLVE_DISABLE_IPV4 = (1<<7);
+		
+		// <summary>
+        // If set, allow name collision results (127.0.53.53) which are normally filtered.
+        // </summary>
+		public const ulong RESOLVE_ALLOW_NAME_COLLISION = (1<<8);
 	}
 }

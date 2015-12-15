@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8D92944A-F2E5-41F4-9CF3-D85043B90CAC")]
+	[Guid("4ef84980-52c2-425c-b41a-2ee75ec5d497")]
 	public interface nsIDOMClipboardEvent : nsIDOMEvent
 	{
 		
@@ -224,6 +224,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr InternalDOMEvent();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopCrossProcessForwarding();
 		
 		/// <summary>
         ///This Source Code Form is subject to the terms of the Mozilla Public

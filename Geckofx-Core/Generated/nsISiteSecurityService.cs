@@ -32,32 +32,46 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b20a9242-5732-45bc-9fa0-a178154f2721")]
+	[Guid("275127f8-dbd7-4681-afbf-6df0c6587a01")]
 	public interface nsISiteSecurityService
 	{
 		
 		/// <summary>
         /// Parses a given HTTP header and records the results internally.
-        /// Currently the only header type supported is HSTS (aka STS).
+        /// Currently two header types are supported: HSTS (aka STS) and HPKP
         /// The format of the HSTS header is defined by the HSTS specification:
         /// https://tools.ietf.org/html/rfc6797
         /// and allows a host to specify that future HTTP requests should be
         /// upgraded to HTTPS.
+        /// The format of the HPKP header is defined by the HPKP specification:
+        /// https://tools.ietf.org/html/rfc7469
+        /// and allows a host to specify a subset of trusted anchors to be used
+        /// in future HTTPS connections.
         ///
         /// @param aType the type of security header in question.
         /// @param aSourceURI the URI of the resource with the HTTP header.
+        /// @param aSSLStatus the SSLStatus of the current channel
         /// @param aHeader the HTTP response header specifying security data.
         /// @param aFlags  options for this request as defined in nsISocketProvider:
         /// NO_PERMANENT_STORAGE
         /// @param aMaxAge the parsed max-age directive of the header.
         /// @param aIncludeSubdomains the parsed includeSubdomains directive.
+        /// @param aFailureResult a more specific failure result if NS_ERROR_FAILURE
+        ///                             was returned.
         /// @return NS_OK            if it succeeds
         /// NS_ERROR_FAILURE if it can't be parsed
         /// NS_SUCCESS_LOSS_OF_INSIGNIFICANT_DATA
         /// if there are unrecognized tokens in the header.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ProcessHeader(uint aType, [MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.LPStr)] string aHeader, uint aFlags, ref ulong aMaxAge, [MarshalAs(UnmanagedType.U1)] ref bool aIncludeSubdomains);
+		void ProcessHeader(uint aType, [MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.LPStr)] string aHeader, [MarshalAs(UnmanagedType.Interface)] nsISSLStatus aSSLStatus, uint aFlags, ref ulong aMaxAge, [MarshalAs(UnmanagedType.U1)] ref bool aIncludeSubdomains, ref uint aFailureResult);
+		
+		/// <summary>
+        /// Same as processHeader but without checking for the security properties
+        /// of the connection. Use ONLY for testing.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnsafeProcessHeader(uint aType, [MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.LPStr)] string aHeader, uint aFlags, ref ulong aMaxAge, [MarshalAs(UnmanagedType.U1)] ref bool aIncludeSubdomains, ref uint aFailureResult);
 		
 		/// <summary>
         /// Given a header type, removes state relating to that header of a host,
@@ -85,14 +99,6 @@ namespace Gecko
 		bool IsSecureHost(uint aType, [MarshalAs(UnmanagedType.LPStr)] string aHost, uint aFlags);
 		
 		/// <summary>
-        /// Checks if the given security info is for a host with a broken
-        /// transport layer (certificate errors like invalid CN).
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ShouldIgnoreHeaders([MarshalAs(UnmanagedType.Interface)] nsISupports aSecurityInfo);
-		
-		/// <summary>
         /// Checks whether or not the URI's hostname has a given security state set.
         /// For example, for HSTS:
         /// The URI is an HSTS URI if either the host has the HSTS state set, or one
@@ -109,6 +115,44 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsSecureURI(uint aType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlags);
+		
+		/// <summary>
+        /// Removes all security state by resetting to factory-original settings.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ClearAll();
+		
+		/// <summary>
+        /// Returns an array of sha256-hashed key pins for the given domain, if any.
+        /// If these pins also apply to subdomains of the given domain,
+        /// aIncludeSubdomains will be true. Pins returned are only for non-built-in
+        /// pin entries.
+        ///
+        /// @param aHostname the hosname (punycode) to be queried about
+        /// @param the time at which the pins should be valid. This is in
+        ///              mozilla::pkix::Time which uses internally seconds since 0 AD.
+        /// @param aPinArray the set of sha256-hashed key pins for the given domain
+        /// @param aIncludeSubdomains true if the pins apply to subdomains of the
+        /// given domain
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetKeyPinsForHostname([MarshalAs(UnmanagedType.LPStr)] string aHostname, mozillaPkixTime evalTime, ref System.IntPtr aPinArray, [MarshalAs(UnmanagedType.U1)] ref bool aIncludeSubdomains);
+		
+		/// <summary>
+        /// Set public-key pins for a host. The resulting pins will be permanent
+        /// and visible from private and non-private contexts. These pins replace
+        /// any already set by this mechanism or those built-in to Gecko.
+        ///
+        /// @param aHost the hostname (punycode) that pins will apply to
+        /// @param aIncludeSubdomains whether these pins also apply to subdomains
+        /// @param aMaxAge lifetime (in seconds) of this pin set
+        /// @param aPinCount number of keys being pinnned
+        /// @param aSha256Pins array of hashed key fingerprints (SHA-256, base64)
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool SetKeyPins([MarshalAs(UnmanagedType.LPStr)] string aHost, [MarshalAs(UnmanagedType.U1)] bool aIncludeSubdomains, uint aMaxAge, uint aPinCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] string[] aSha256Pins);
 	}
 	
 	/// <summary>nsISiteSecurityServiceConsts </summary>
@@ -122,9 +166,54 @@ namespace Gecko
 		public const long HEADER_HSTS = 0;
 		
 		// 
-		public const long HEADER_HKPK = 1;
+		public const long HEADER_HPKP = 1;
 		
 		// 
 		public const long HEADER_OMS = 2;
+		
+		// 
+		public const long Success = 0;
+		
+		// 
+		public const long ERROR_UNKNOWN = 1;
+		
+		// 
+		public const long ERROR_UNTRUSTWORTHY_CONNECTION = 2;
+		
+		// 
+		public const long ERROR_COULD_NOT_PARSE_HEADER = 3;
+		
+		// 
+		public const long ERROR_NO_MAX_AGE = 4;
+		
+		// 
+		public const long ERROR_MULTIPLE_MAX_AGES = 5;
+		
+		// 
+		public const long ERROR_INVALID_MAX_AGE = 6;
+		
+		// 
+		public const long ERROR_MULTIPLE_INCLUDE_SUBDOMAINS = 7;
+		
+		// 
+		public const long ERROR_INVALID_INCLUDE_SUBDOMAINS = 8;
+		
+		// 
+		public const long ERROR_INVALID_PIN = 9;
+		
+		// 
+		public const long ERROR_MULTIPLE_REPORT_URIS = 10;
+		
+		// 
+		public const long ERROR_PINSET_DOES_NOT_MATCH_CHAIN = 11;
+		
+		// 
+		public const long ERROR_NO_BACKUP_PIN = 12;
+		
+		// 
+		public const long ERROR_COULD_NOT_SAVE_STATE = 13;
+		
+		// 
+		public const long ERROR_ROOT_NOT_BUILT_IN = 14;
 	}
 }

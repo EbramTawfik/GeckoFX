@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ef68f0d5-5b55-4198-9e59-a5e2c57d3adc")]
+	[Guid("550f660c-65a5-4e17-b828-3dbec7c44304")]
 	public interface nsIDOMNotifyPaintEvent : nsIDOMEvent
 	{
 		
@@ -225,6 +225,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr InternalDOMEvent();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopCrossProcessForwarding();
 		
 		/// <summary>
         /// Get a list of rectangles which are affected. The rectangles are in CSS pixels

@@ -27,6 +27,42 @@ namespace Gecko
 	
 	
 	/// <summary>
+    /// Contains an event target along with an array of nsIAtom in form "oneventname"
+    /// representing changed event listener names.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("07222b02-da12-4cf4-b2f7-761da007a8d8")]
+	public interface nsIEventListenerChange
+	{
+		
+		/// <summary>
+        /// Contains an event target along with an array of nsIAtom in form "oneventname"
+        /// representing changed event listener names.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventTarget GetTargetAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIArray GetChangedListenerNamesAttribute();
+	}
+	
+	/// <summary>nsIListenerChangeListener </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("aa7c95f6-d3b5-44b3-9597-1d9f19b9c5f2")]
+	public interface nsIListenerChangeListener
+	{
+		
+		/// <summary>Member ListenersChanged </summary>
+		/// <param name='aEventListenerChanges'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ListenersChanged([MarshalAs(UnmanagedType.Interface)] nsIArray aEventListenerChanges);
+	}
+	
+	/// <summary>
     /// An instance of this interface describes how an event listener
     /// was added to an event target.
     /// </summary>
@@ -74,7 +110,7 @@ namespace Gecko
 	/// <summary>nsIEventListenerService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f6964bfb-dabe-4cab-9733-be0ee2bf8171")]
+	[Guid("77aab5f7-213d-4db4-9f22-e46dfb774f15")]
 	public interface nsIEventListenerService
 	{
 		
@@ -131,5 +167,15 @@ namespace Gecko
 		/// <param name='aSystemEventGroup'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveListenerForAllEvents([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget target, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool aUseCapture, [MarshalAs(UnmanagedType.U1)] bool aSystemEventGroup);
+		
+		/// <summary>Member AddListenerChangeListener </summary>
+		/// <param name='aListener'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddListenerChangeListener([MarshalAs(UnmanagedType.Interface)] nsIListenerChangeListener aListener);
+		
+		/// <summary>Member RemoveListenerChangeListener </summary>
+		/// <param name='aListener'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveListenerChangeListener([MarshalAs(UnmanagedType.Interface)] nsIListenerChangeListener aListener);
 	}
 }

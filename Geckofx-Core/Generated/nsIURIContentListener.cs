@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("94928AB3-8B63-11d3-989D-001083010E9B")]
+	[Guid("10a28f38-32e8-4c63-8aa1-12eaaebc369a")]
 	public interface nsIURIContentListener
 	{
 		
@@ -76,7 +76,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DoContent([MarshalAs(UnmanagedType.LPStr)] string aContentType, [MarshalAs(UnmanagedType.U1)] bool aIsContentPreferred, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] ref nsIStreamListener aContentHandler);
+		bool DoContent([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType, [MarshalAs(UnmanagedType.U1)] bool aIsContentPreferred, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] ref nsIStreamListener aContentHandler);
 		
 		/// <summary>
         /// When given a uri to dispatch, if the URI is specified as 'preferred

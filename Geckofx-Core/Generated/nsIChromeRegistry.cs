@@ -95,7 +95,7 @@ namespace Gecko
 	/// <summary>nsIXULChromeRegistry </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c2461347-2b8f-48c7-9d59-3a61fb868828")]
+	[Guid("93251ddf-5e85-4172-ac2a-31780562974f")]
 	public interface nsIXULChromeRegistry : nsIChromeRegistry
 	{
 		
@@ -174,5 +174,23 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool AllowContentToAccess([MarshalAs(UnmanagedType.Interface)] nsIURI url);
+		
+		/// <summary>
+        /// Returns true if the passed chrome URL is allowed to be loaded in a remote
+        /// process. This reflects the remoteenabled flag on packages.
+        /// Do not pass non-chrome URIs to this method.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool CanLoadURLRemotely([MarshalAs(UnmanagedType.Interface)] nsIURI url);
+		
+		/// <summary>
+        /// Returns true if the passed chrome URL must be loaded in a remote process.
+        /// This reflects the remoterequired flag on packages.
+        /// Do not pass non-chrome URIs to this method.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool MustLoadURLRemotely([MarshalAs(UnmanagedType.Interface)] nsIURI url);
 	}
 }

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("60da41b4-cdc2-11e2-8a91-10bf48d64bd4")]
+	[Guid("df31c280-1ef1-11e5-867f-0800200c9a66")]
 	public interface nsIAudioManager
 	{
 		
@@ -75,15 +75,18 @@ namespace Gecko
 		int GetForceForUse(int usage);
 		
 		/// <summary>
-        ///The range of volume index is from 0 to N. Ex: 0 ~ 15 </summary>
+        /// These functions would be used when we enable the new volume control API
+        /// (mozAudioChannelManager). The range of volume index is from 0 to N.
+        /// More details on : https://gist.github.com/evanxd/41d8e2d91c5201a42bfa
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAudioChannelVolume(int channel, int index);
+		void SetAudioChannelVolume(uint channel, uint index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetAudioChannelVolume(int channel);
+		uint GetAudioChannelVolume(uint channel);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetMaxAudioChannelVolume(int channel);
+		uint GetMaxAudioChannelVolume(uint channel);
 	}
 	
 	/// <summary>nsIAudioManagerConsts </summary>
@@ -138,6 +141,15 @@ namespace Gecko
 		
 		// 
 		public const long FORCE_BT_DESK_DOCK = 7;
+		
+		// 
+		public const long FORCE_ANALOG_DOCK = 8;
+		
+		// 
+		public const long FORCE_DIGITAL_DOCK = 9;
+		
+		// 
+		public const long FORCE_NO_BT_A2DP = 10;
 		
 		// 
 		public const long USE_COMMUNICATION = 0;

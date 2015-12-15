@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9eed7e92-1121-46f2-95e5-2f5c0dca46f0")]
+	[Guid("3a5e5fa0-5364-4fbb-a87a-3f12a6b51903")]
 	public interface nsISHEntry
 	{
 		
@@ -46,6 +46,36 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI GetURIAttribute();
+		
+		/// <summary>
+        /// A readonly property that returns the original URI of the current entry.
+        /// If an entry is the result of a redirect this attribute holds original
+        /// URI. The object returned is of type nsIURI
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIURI GetOriginalURIAttribute();
+		
+		/// <summary>
+        /// A readonly property that returns the original URI of the current entry.
+        /// If an entry is the result of a redirect this attribute holds original
+        /// URI. The object returned is of type nsIURI
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOriginalURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aOriginalURI);
+		
+		/// <summary>
+        /// This flag remembers whether channel has LOAD_REPLACE set.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetLoadReplaceAttribute();
+		
+		/// <summary>
+        /// This flag remembers whether channel has LOAD_REPLACE set.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetLoadReplaceAttribute([MarshalAs(UnmanagedType.U1)] bool aLoadReplace);
 		
 		/// <summary>
         /// A readonly property that returns the title
@@ -84,6 +114,20 @@ namespace Gecko
         ///Referrer URI </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetReferrerURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI);
+		
+		/// <summary>
+        ///Referrer policy, holding one of the values (REFERRER_POLICY_*)
+        /// defined in nsIHttpChannel.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetReferrerPolicyAttribute();
+		
+		/// <summary>
+        ///Referrer policy, holding one of the values (REFERRER_POLICY_*)
+        /// defined in nsIHttpChannel.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetReferrerPolicyAttribute(uint aReferrerPolicy);
 		
 		/// <summary>
         ///Content viewer, for fast restoration of presentation </summary>

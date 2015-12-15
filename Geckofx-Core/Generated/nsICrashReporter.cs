@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a2080795-e54c-4ecb-b001-bdc08a2021dd")]
+	[Guid("4b74c39a-cf69-4a8a-8e63-169d81ad1ecf")]
 	public interface nsICrashReporter
 	{
 		
@@ -110,7 +110,7 @@ namespace Gecko
         /// '\n'.  Invalid character for data is '\0'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AnnotateCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase data);
+		void AnnotateCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase data);
 		
 		/// <summary>
         /// Append some data to the "Notes" field, to be submitted with a crash report.
@@ -179,5 +179,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UpdateCrashEventsDir();
+		
+		/// <summary>
+        /// Save an anonymized memory report file for inclusion in a future crash
+        /// report in this session.
+        ///
+        /// @throws NS_ERROR_NOT_INITIALIZED if crash reporting is disabled.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SaveMemoryReport();
 	}
 }

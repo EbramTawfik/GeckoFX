@@ -42,17 +42,12 @@ namespace Gecko
     /// become current only when the image is loaded.  It is the responsibility of
     /// observers to check which request they are getting notifications for.
     ///
-    /// Observers added in mid-load will not get any notifications they
-    /// missed.  We should NOT freeze this interface without considering
-    /// this issue.  (It could be that the image status on imgIRequest is
-    /// sufficient, when combined with the imageBlockingStatus information.)
-    ///
     /// Please make sure to update the MozImageLoadingContent WebIDL
     /// interface to mirror this interface when changing it.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("256a5283-ebb5-4430-8e15-5ada92156ef7")]
+	[Guid("770f7d84-c917-42d7-bf8d-d1b70649e733")]
 	public interface nsIImageLoadingContent : imgINotificationObserver
 	{
 		
@@ -122,6 +117,13 @@ namespace Gecko
 		imgIRequest GetRequest(int aRequestType);
 		
 		/// <summary>
+        /// @return true if the current request's size is available.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool CurrentRequestHasSize();
+		
+		/// <summary>
         /// Used to notify the image loading content node that a frame has been
         /// created.
         /// </summary>
@@ -175,12 +177,9 @@ namespace Gecko
 		nsIStreamListener LoadImageWithChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
 		
 		/// <summary>
-        /// forceReload forces reloading of the image pointed to by currentURI
-        ///
-        /// @throws NS_ERROR_NOT_AVAILABLE if there is no current URI to reload
-        /// </summary>
+        ///= true </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ForceReload();
+		void ForceReload([MarshalAs(UnmanagedType.U1)] bool aNotify, int argc);
 		
 		/// <summary>
         /// Enables/disables image state forcing. When |aForce| is PR_TRUE, we force
@@ -202,13 +201,18 @@ namespace Gecko
 		
 		/// <summary>
         /// A visible count is stored, if it is non-zero then this image is considered
-        /// visible. These methods increment, decrement, or return the visible coount.
+        /// visible. These methods increment, decrement, or return the visible count.
+        ///
+        /// @param aNonvisibleAction What to do if the image's visibility count is now
+        /// zero. If ON_NONVISIBLE_NO_ACTION, nothing will be
+        /// done. If ON_NONVISIBLE_REQUEST_DISCARD, the image
+        /// will be asked to discard its surfaces if possible.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void IncrementVisibleCount();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DecrementVisibleCount();
+		void DecrementVisibleCount(uint aNonvisibleAction);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetVisibleCount();
@@ -233,5 +237,11 @@ namespace Gecko
 		
 		// 
 		public const long PENDING_REQUEST = 1;
+		
+		// 
+		public const long ON_NONVISIBLE_NO_ACTION = 0;
+		
+		// 
+		public const long ON_NONVISIBLE_REQUEST_DISCARD = 1;
 	}
 }

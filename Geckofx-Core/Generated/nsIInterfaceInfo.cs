@@ -30,7 +30,7 @@ namespace Gecko
     ///this is NOT intended to be scriptable </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3f1ae084-607e-45b2-8f1e-8d450b0f9c65")]
+	[Guid("3820e663-8e22-4789-b470-56bcf7083f2b")]
 	public interface nsIInterfaceInfo
 	{
 		
@@ -119,5 +119,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetIIDForParamNoAlloc(ushort methodIndex, System.IntPtr param, ref System.Guid iid);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsMainProcessScriptableOnly();
 	}
 }

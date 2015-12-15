@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("B47E5A0F-D384-48EF-8885-4259793D9CF0")]
+	[Guid("481f15ce-224a-40b6-9927-7effbc326776")]
 	public interface nsIUDPSocketChild
 	{
 		
@@ -53,10 +53,16 @@ namespace Gecko
 		void SetFilterNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFilterName);
 		
 		/// <summary>
+        /// Allow hosting this over PBackground instead of PNecko
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBackgroundSpinsEvents();
+		
+		/// <summary>
         /// Tell the chrome process to bind the UDP socket to a given local host and port
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Bind([MarshalAs(UnmanagedType.Interface)] nsIUDPSocketInternal socket, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase host, ushort port);
+		void Bind([MarshalAs(UnmanagedType.Interface)] nsIUDPSocketInternal socket, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase host, ushort port, [MarshalAs(UnmanagedType.U1)] bool addressReuse, [MarshalAs(UnmanagedType.U1)] bool loopback);
 		
 		/// <summary>
         /// Tell the chrome process to perform equivalent operations to all following methods
@@ -73,8 +79,20 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendWithAddress(System.IntPtr addr, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] bytes, uint byteLength);
 		
+		/// <summary>
+        /// Send input stream. This must be a buffered stream implementation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendBinaryStream([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase host, ushort port, [MarshalAs(UnmanagedType.Interface)] nsIInputStream stream);
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void JoinMulticast([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase multicastAddress, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase iface);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void LeaveMulticast([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase multicastAddress, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase iface);
 	}
 	
 	/// <summary>
@@ -82,26 +100,32 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1E27E9B3-C1C8-4B05-A415-1A2C1A641C60")]
+	[Guid("44cd9ad5-d574-4169-baf9-e1af0648a143")]
 	public interface nsIUDPSocketInternal
 	{
 		
 		/// <summary>
-        /// Internal interface for callback from chrome process
+        /// callback while socket is opened. localPort and localAddress is ready until this time.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallListenerError([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase type, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase message, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase filename, uint lineNumber, uint columnNumber);
+		void CallListenerOpened();
 		
+		/// <summary>
+        /// callback while socket is closed.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallListenerReceivedData([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase type, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase host, ushort port, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=4)] byte[] data, uint dataLength);
+		void CallListenerClosed();
 		
+		/// <summary>
+        /// callback while incoming packet is received.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallListenerVoid([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase type);
+		void CallListenerReceivedData([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase host, ushort port, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] byte[] data, uint dataLength);
 		
+		/// <summary>
+        /// callback while any error happened.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallListenerSent([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase type, int status);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateReadyState([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase readyState);
+		void CallListenerError([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase message, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase filename, uint lineNumber);
 	}
 }

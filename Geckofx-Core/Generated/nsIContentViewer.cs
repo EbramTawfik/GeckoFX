@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f92298b8-4fe3-40d1-aad7-44e704fffd0d")]
+	[Guid("91b6c1f3-fc5f-43a9-88f4-9286bd19387f")]
 	public interface nsIContentViewer
 	{
 		
@@ -59,14 +59,10 @@ namespace Gecko
 		/// <summary>
         /// Checks if the document wants to prevent unloading by firing beforeunload on
         /// the document, and if it does, prompts the user. The result is returned.
-        ///
-        /// @param aCallerClosesWindow indicates that the current caller will close the
-        /// window. If the method returns true, all subsequent calls will be
-        /// ignored.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool PermitUnload([MarshalAs(UnmanagedType.U1)] bool aCallerClosesWindow);
+		bool PermitUnload();
 		
 		/// <summary>
         /// Exposes whether we're blocked in a call to permitUnload.
@@ -82,7 +78,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool PermitUnloadInternal([MarshalAs(UnmanagedType.U1)] bool aCallerClosesWindow, [MarshalAs(UnmanagedType.U1)] ref bool aShouldPrompt);
+		bool PermitUnloadInternal([MarshalAs(UnmanagedType.U1)] ref bool aShouldPrompt);
 		
 		/// <summary>
         /// Exposes whether we're in the process of firing the beforeunload event.
@@ -91,18 +87,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBeforeUnloadFiringAttribute();
-		
-		/// <summary>
-        /// Works in tandem with permitUnload, if the caller decides not to close the
-        /// window it indicated it will, it is the caller's responsibility to reset
-        /// that with this method.
-        ///
-        /// @Note this method is only meant to be called on documents for which the
-        /// caller has indicated that it will close the window. If that is not the case
-        /// the behavior of this method is undefined.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResetCloseWindow();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PageHide([MarshalAs(UnmanagedType.U1)] bool isUnload);
@@ -283,5 +267,118 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetNavigationTiming(System.IntPtr aTiming);
+		
+		/// <summary>
+        ///Scrolls to a given DOM content node.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ScrollToNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node);
+		
+		/// <summary>
+        ///The amount by which to scale all text. Default is 1.0. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetTextZoomAttribute();
+		
+		/// <summary>
+        ///The amount by which to scale all text. Default is 1.0. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTextZoomAttribute(float aTextZoom);
+		
+		/// <summary>
+        ///The amount by which to scale all lengths. Default is 1.0. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetFullZoomAttribute();
+		
+		/// <summary>
+        ///The amount by which to scale all lengths. Default is 1.0. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFullZoomAttribute(float aFullZoom);
+		
+		/// <summary>
+        ///Disable entire author style level (including HTML presentation hints) </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAuthorStyleDisabledAttribute();
+		
+		/// <summary>
+        ///Disable entire author style level (including HTML presentation hints) </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAuthorStyleDisabledAttribute([MarshalAs(UnmanagedType.U1)] bool aAuthorStyleDisabled);
+		
+		/// <summary>
+        /// XXX comm-central only: bug 829543. Not the Character Encoding menu in
+        /// browser!
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetForceCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aForceCharacterSet);
+		
+		/// <summary>
+        /// XXX comm-central only: bug 829543. Not the Character Encoding menu in
+        /// browser!
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetForceCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aForceCharacterSet);
+		
+		/// <summary>
+        /// XXX comm-central only: bug 829543.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetHintCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHintCharacterSet);
+		
+		/// <summary>
+        /// XXX comm-central only: bug 829543.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetHintCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHintCharacterSet);
+		
+		/// <summary>
+        /// XXX comm-central only: bug 829543.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetHintCharacterSetSourceAttribute();
+		
+		/// <summary>
+        /// XXX comm-central only: bug 829543.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetHintCharacterSetSourceAttribute(int aHintCharacterSetSource);
+		
+		/// <summary>
+        /// Requests the size of the content to the container.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetContentSize(ref int width, ref int height);
+		
+		/// <summary>
+        ///The minimum font size </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetMinFontSizeAttribute();
+		
+		/// <summary>
+        ///The minimum font size </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMinFontSizeAttribute(int aMinFontSize);
+		
+		/// <summary>
+        /// Append |this| and all of its descendants to the given array,
+        /// in depth-first pre-order traversal.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AppendSubtree(System.IntPtr array);
+		
+		/// <summary>
+        /// Render the document as if being viewed on a device with the specified
+        /// media type. This will cause a reflow.
+        ///
+        /// @param mediaType The media type to be emulated
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void EmulateMedium([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMediaType);
+		
+		/// <summary>
+        /// Restore the viewer's natural media type
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void StopEmulatingMedium();
 	}
 }

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("68b3cb59-51b8-4c57-bd7f-b2ce955a593d")]
+	[Guid("425f73b9-b2db-4e8a-88c5-9ac2512934ce")]
 	public interface nsILoginManagerPrompter
 	{
 		
@@ -49,6 +49,17 @@ namespace Gecko
 		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
+        /// If the caller knows which browser this prompter is being created for,
+        /// they can call this function to avoid having to calculate it from the
+        /// window passed to init.
+        ///
+        /// @param aBrowser the <browser> to use for this prompter.
+        /// @param aOpener the opener to use for this prompter.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetE10sData([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aBrowser, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aOpener);
+		
+		/// <summary>
         /// Ask the user if they want to save a login (Yes, Never, Not Now)
         ///
         /// @param aLogin
@@ -58,8 +69,8 @@ namespace Gecko
 		void PromptToSavePassword([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLogin);
 		
 		/// <summary>
-        /// Ask the user if they want to change a login's password. If the
-        /// user consents, modifyLogin() will be called.
+        /// Ask the user if they want to change a login's password or username.
+        /// If the user consents, modifyLogin() will be called.
         ///
         /// @param aOldLogin
         /// The existing login (with the old password).

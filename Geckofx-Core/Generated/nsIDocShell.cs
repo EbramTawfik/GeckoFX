@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e5fe5c76-e511-4da3-9709-f8294b8dc5ce")]
+	[Guid("63adb599-6dc9-4746-972e-c22e9018020b")]
 	public interface nsIDocShell : nsIDocShellTreeItem
 	{
 		
@@ -270,7 +270,14 @@ namespace Gecko
         /// of an nsIDocShellLoadInfo object...
         ///
         /// @param aURI            - The URI to load.
+        /// @param aOriginalURI    - The URI to set as the originalURI on the channel
+        /// that does the load. If null, aURI will be set as
+        /// the originalURI.
+        /// @param aLoadReplace    - If set LOAD_REPLACE flag will be set on the
+        /// channel. aOriginalURI is null, this argument is
+        /// ignored.
         /// @param aReferrer       - Referring URI
+        /// @param aReferrerPolicy - Referrer policy
         /// @param aOwner          - Owner (security principal)
         /// @param aInheritOwner   - Flag indicating whether the owner of the current
         /// document should be inherited if aOwner is null.
@@ -297,7 +304,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InternalLoad(
 					[MarshalAs(UnmanagedType.Interface)] nsIURI aURI, 
+					[MarshalAs(UnmanagedType.Interface)] nsIURI aOriginalURI, 
+					[MarshalAs(UnmanagedType.U1)] bool aLoadReplace, 
 					[MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, 
+					uint aReferrerPolicy, 
 					[MarshalAs(UnmanagedType.Interface)] nsISupports aOwner, 
 					uint aFlags, 
 					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aWindowTarget, 
@@ -521,6 +531,21 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAllowContentRetargetingAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowContentRetargeting);
 		
+		/// <summary>
+        /// True if new child docshells should allow content retargeting.
+        /// Setting allowContentRetargeting also overwrites this value.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAllowContentRetargetingOnChildrenAttribute();
+		
+		/// <summary>
+        /// True if new child docshells should allow content retargeting.
+        /// Setting allowContentRetargeting also overwrites this value.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAllowContentRetargetingOnChildrenAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowContentRetargetingOnChildren);
+		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetDocShellEnumerator(int aItemType, int aDirection);
@@ -609,9 +634,14 @@ namespace Gecko
 		/// <summary>
         /// Tells the docshell to offer focus to its tree owner.
         /// This is currently only necessary for embedding chrome.
+        /// If forDocumentNavigation is true, then document navigation should be
+        /// performed, where only the root of documents are selected. Otherwise, the
+        /// next element in the parent should be returned. Returns true if focus was
+        /// successfully taken by the tree owner.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TabToTreeOwner([MarshalAs(UnmanagedType.U1)] bool forward, [MarshalAs(UnmanagedType.U1)] ref bool tookFocus);
+		bool TabToTreeOwner([MarshalAs(UnmanagedType.U1)] bool forward, [MarshalAs(UnmanagedType.U1)] bool forDocumentNavigation);
 		
 		/// <summary>
         /// History.pushState()
@@ -755,9 +785,13 @@ namespace Gecko
         /// @param  aURI           nsIURI of the page where the error happened
         /// @param  aURL           wstring of the page where the error happened
         /// @param  aFailedChannel The channel related to this error
+        ///
+        /// Returns whether or not we displayed an error page (note: will always
+        /// return false if in-content error pages are disabled!)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisplayLoadError(int aError, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aURL, [MarshalAs(UnmanagedType.Interface)] nsIChannel aFailedChannel);
+		bool DisplayLoadError(int aError, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aURL, [MarshalAs(UnmanagedType.Interface)] nsIChannel aFailedChannel);
 		
 		/// <summary>
         /// The channel that failed to load and resulted in an error page.
@@ -893,6 +927,23 @@ namespace Gecko
 		bool GetHasMixedDisplayContentBlockedAttribute();
 		
 		/// <summary>
+        /// This attribute determines whether a document has Tracking Content
+        /// that has been blocked from loading.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHasTrackingContentBlockedAttribute();
+		
+		/// <summary>
+        /// This attribute determines whether Tracking Content is loaded on the
+        /// document. When it is true, tracking content was not blocked and has
+        /// loaded (or is about to load) on the page.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHasTrackingContentLoadedAttribute();
+		
+		/// <summary>
         /// Disconnects this docshell's editor from its window, and stores the
         /// editor data in the open document's session history entry.  This
         /// should be called only during page transitions.
@@ -951,6 +1002,24 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetIsActiveAttribute([MarshalAs(UnmanagedType.U1)] bool aIsActive);
+		
+		/// <summary>
+        /// Sets whether a docshell is active, as above, but ensuring it does
+        /// not discard its layers
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsActiveAndForeground([MarshalAs(UnmanagedType.U1)] bool aIsActive);
+		
+		/// <summary>
+        /// Puts the docshell in prerendering mode. noscript because we want only
+        /// native code to be able to put a docshell in prerendering.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsPrerendered([MarshalAs(UnmanagedType.U1)] bool prerendered);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsPrerenderedAttribute();
 		
 		/// <summary>
         /// The ID of the docshell in the session history.
@@ -1028,6 +1097,34 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetParentCharset([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase parentCharset, ref int parentCharsetSource, [MarshalAs(UnmanagedType.Interface)] ref nsIPrincipal parentCharsetPrincipal);
+		
+		/// <summary>
+        /// Whether the docShell records profile timeline markers at the moment
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetRecordProfileTimelineMarkersAttribute();
+		
+		/// <summary>
+        /// Whether the docShell records profile timeline markers at the moment
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetRecordProfileTimelineMarkersAttribute([MarshalAs(UnmanagedType.U1)] bool aRecordProfileTimelineMarkers);
+		
+		/// <summary>
+        /// Return a DOMHighResTimeStamp representing the number of
+        /// milliseconds from an arbitrary point in time.  The reference
+        /// point is shared by all DocShells and is also used by timestamps
+        /// on markers.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		DOMHighResTimeStamp Now();
+		
+		/// <summary>
+        /// Returns and flushes the profile timeline markers gathered by the docShell
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal PopProfileTimelineMarkers(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Add an observer to the list of parties to be notified when this docshell's
@@ -1120,7 +1217,7 @@ namespace Gecko
 		
 		/// <summary>
         /// Returns true if this docshell corresponds to an <iframe mozbrowser> or
-        /// <iframe mozap>, or if this docshell is contained in an <iframe mozbrowser>
+        /// <iframe mozapp>, or if this docshell is contained in an <iframe mozbrowser>
         /// or <iframe mozapp>.
         ///
         /// To compute this value, we walk up the docshell hierarchy.  If we encounter
@@ -1161,6 +1258,13 @@ namespace Gecko
 		void SetIsBrowserInsideApp(uint containingAppId);
 		
 		/// <summary>
+        /// Indicate that this docshell corresponds to a signed package with
+        /// the given packageId.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsSignedPackage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase packageId);
+		
+		/// <summary>
         /// Returns the id of the app associated with this docshell.  If this docshell
         /// is an <iframe mozbrowser> inside an <iframe mozapp>, we return the app's
         /// appId.
@@ -1194,6 +1298,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDocShell GetSameTypeParentIgnoreBrowserAndAppBoundaries();
+		
+		/// <summary>
+        /// Like nsIDocShellTreeItem::GetSameTypeRootTreeItem, except this ignores
+        /// <iframe mozbrowser> and <iframe mozapp> boundaries.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDocShell GetSameTypeRootTreeItemIgnoreBrowserAndAppBoundaries();
 		
 		/// <summary>
         /// True iff asynchronous panning and zooming is enabled for this
@@ -1335,6 +1447,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFullscreenAllowed([MarshalAs(UnmanagedType.U1)] bool allowed);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint OrientationLock();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOrientationLock(uint orientationLock);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1503,15 +1621,52 @@ namespace Gecko
 		nsITabParent GetOpener();
 		
 		/// <summary>
-        /// See the documentation for setOpener and getOpener about why we
-        /// don't use attribute here instead.
+        /// Notify DocShell when the browser is about to start executing JS, and after
+        /// that execution has stopped.  This only occurs when the Timeline devtool
+        /// is collecting information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOpenedRemote([MarshalAs(UnmanagedType.Interface)] nsITabParent aOpenedRemote);
+		void NotifyJSRunToCompletionStart([MarshalAs(UnmanagedType.LPStr)] string aReason, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string functionName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string fileName, uint lineNumber, ref Gecko.JsVal asyncStack, ref Gecko.JsVal asyncCause);
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITabParent GetOpenedRemote();
+		void NotifyJSRunToCompletionStop();
+		
+		/// <summary>
+        /// This attribute determines whether a document which is not about:blank has
+        /// already be loaded by this docShell.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHasLoadedNonBlankURIAttribute();
+		
+		/// <summary>
+        /// Holds the id of the payment request associated with this docshell if any.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPaymentRequestIdAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aPaymentRequestId);
+		
+		/// <summary>
+        /// Holds the id of the payment request associated with this docshell if any.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPaymentRequestIdAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aPaymentRequestId);
+		
+		/// <summary>
+        /// Allow usage of -moz-window-dragging:drag for content docshells.
+        /// True for top level chrome docshells. Throws if set to false with
+        /// top level chrome docshell.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetWindowDraggingAllowedAttribute();
+		
+		/// <summary>
+        /// Allow usage of -moz-window-dragging:drag for content docshells.
+        /// True for top level chrome docshells. Throws if set to false with
+        /// top level chrome docshell.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetWindowDraggingAllowedAttribute([MarshalAs(UnmanagedType.U1)] bool aWindowDraggingAllowed);
 	}
 	
 	/// <summary>nsIDocShellConsts </summary>

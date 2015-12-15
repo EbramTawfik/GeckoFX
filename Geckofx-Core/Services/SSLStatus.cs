@@ -22,7 +22,7 @@ namespace Gecko
 
 		public string CipherName
 		{
-			get { return Instance.GetCipherNameAttribute(); }
+			get { return nsString.Get(Instance.GetCipherNameAttribute); }
 		}
 
 		public bool IsDomainMismatch

@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("44de2fa4-1b0e-4cd3-9e32-211e936f721e")]
+	[Guid("ae29c44b-fbc3-4552-afaf-0a157ce771e7")]
 	public interface nsICacheStorageService
 	{
 		
@@ -65,6 +65,15 @@ namespace Gecko
 		nsICacheStorage DiskCacheStorage([MarshalAs(UnmanagedType.Interface)] nsILoadContextInfo aLoadContextInfo, [MarshalAs(UnmanagedType.U1)] bool aLookupAppCache);
 		
 		/// <summary>
+        /// Get storage where entries will be written to disk and marked as pinned.
+        /// These pinned entries are immune to over limit eviction and call of clear()
+        /// on this service.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsICacheStorage PinningCacheStorage([MarshalAs(UnmanagedType.Interface)] nsILoadContextInfo aLoadContextInfo);
+		
+		/// <summary>
         /// Get storage for a specified application cache obtained using some different
         /// mechanism.
         ///
@@ -77,6 +86,15 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsICacheStorage AppCacheStorage([MarshalAs(UnmanagedType.Interface)] nsILoadContextInfo aLoadContextInfo, [MarshalAs(UnmanagedType.Interface)] nsIApplicationCache aApplicationCache);
+		
+		/// <summary>
+        /// Get storage for synthesized cache entries that we currently use for ServiceWorker interception in non-e10s mode.
+        ///
+        /// This cache storage has no limits on file size to allow the ServiceWorker to intercept large files.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsICacheStorage SynthesizedCacheStorage([MarshalAs(UnmanagedType.Interface)] nsILoadContextInfo aLoadContextInfo);
 		
 		/// <summary>
         /// Evict the whole cache.

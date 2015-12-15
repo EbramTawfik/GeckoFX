@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1bcfc611-8941-4c39-9e06-7116e564a1ce")]
+	[Guid("04dd3a01-a74e-44aa-8d49-2c30478fd7b8")]
 	public interface nsIPrintSettings
 	{
 		
@@ -49,10 +49,16 @@ namespace Gecko
 		bool GetPrintOptions(int aType);
 		
 		/// <summary>
-        /// Set PrintOptions Bit field
+        /// Get PrintOptions Bit field
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetPrintOptionsBits();
+		
+		/// <summary>
+        /// Set PrintOptions Bit field
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPrintOptionsBits(int bits);
 		
 		/// <summary>
         /// Get the page size in twips, considering the
@@ -438,62 +444,12 @@ namespace Gecko
 		
 		/// <summary>
         ///paper is in inches or mm </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetPlexNameAttribute();
-		
-		/// <summary>
-        ///paper is in inches or mm </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPlexNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aPlexName);
-		
-		/// <summary>
-        ///name of plex mode (like "simplex", "duplex",
-        /// "tumble" and various custom values) </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetColorspaceAttribute();
-		
-		/// <summary>
-        ///name of plex mode (like "simplex", "duplex",
-        /// "tumble" and various custom values) </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetColorspaceAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aColorspace);
-		
-		/// <summary>
-        ///device-specific name of colorspace, overrides |printInColor| </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetResolutionNameAttribute();
-		
-		/// <summary>
-        ///device-specific name of colorspace, overrides |printInColor| </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetResolutionNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aResolutionName);
-		
-		/// <summary>
-        ///device-specific identifer of resolution or quality
-        /// (like "600", "600x300", "600x300x12", "high-res",
-        /// "med-res". "low-res", etc.) </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetDownloadFontsAttribute();
-		
-		/// <summary>
-        ///device-specific identifer of resolution or quality
-        /// (like "600", "600x300", "600x300x12", "high-res",
-        /// "med-res". "low-res", etc.) </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDownloadFontsAttribute([MarshalAs(UnmanagedType.U1)] bool aDownloadFonts);
-		
-		/// <summary>
-        ///enable font download to printer? </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPrintReversedAttribute();
 		
 		/// <summary>
-        ///enable font download to printer? </summary>
+        ///paper is in inches or mm </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPrintReversedAttribute([MarshalAs(UnmanagedType.U1)] bool aPrintReversed);
 		
@@ -516,18 +472,11 @@ namespace Gecko
 		
 		/// <summary>
         ///see orientation consts </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetPrintCommandAttribute();
-		
-		/// <summary>
-        ///see orientation consts </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintCommandAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aPrintCommand);
-		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetNumCopiesAttribute();
 		
+		/// <summary>
+        ///see orientation consts </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetNumCopiesAttribute(int aNumCopies);
 		
@@ -760,9 +709,6 @@ namespace Gecko
 		public const ulong kInitSaveOrientation = 0x00040000;
 		
 		// 
-		public const ulong kInitSavePrintCommand = 0x00080000;
-		
-		// 
 		public const ulong kInitSavePrinterName = 0x00100000;
 		
 		// 
@@ -781,22 +727,10 @@ namespace Gecko
 		public const ulong kInitSaveNativeData = 0x02000000;
 		
 		// 
-		public const ulong kInitSavePlexName = 0x04000000;
-		
-		// 
 		public const ulong kInitSaveShrinkToFit = 0x08000000;
 		
 		// 
 		public const ulong kInitSaveScaling = 0x10000000;
-		
-		// 
-		public const ulong kInitSaveColorspace = 0x20000000;
-		
-		// 
-		public const ulong kInitSaveResolutionName = 0x40000000;
-		
-		// 
-		public const ulong kInitSaveDownloadFonts = 0x80000000;
 		
 		// 
 		public const ulong kInitSaveAll = 0xFFFFFFFF;

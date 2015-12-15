@@ -110,6 +110,9 @@ namespace Gecko
 		
 		// 
 		public const short TYPE_PROGRESSMETER = 3;
+		
+		// 
+		public const short TYPE_PASSWORD = 4;
 	}
 	
 	/// <summary>nsITreeColumns </summary>

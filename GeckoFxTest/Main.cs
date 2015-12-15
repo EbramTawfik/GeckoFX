@@ -105,7 +105,9 @@ namespace GeckoFxTest
 				nsIURI source = IOService.CreateNsIUri(url);
 				nsIURI dest = IOService.CreateNsIUri(new Uri(fullpath).AbsoluteUri);
 				persist.SetPersistFlagsAttribute(flags);
+#if PORT_GECKO45
 				persist.SaveURI(source, null, null, null, null, (nsISupports)dest, null);
+#endif
 				// file is saved - asynchronous call
 				// need to try to have a temp name while the file is downloaded eg filename.ext.geckodownload (one of the SaveURI option)
 			}

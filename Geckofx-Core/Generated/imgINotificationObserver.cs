@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ac65c702-7771-4f6d-b18b-1c7d806ce3c1")]
+	[Guid("03da5641-a333-454a-a859-036d0bb683b7")]
 	public interface imgINotificationObserver
 	{
 		
@@ -47,32 +47,48 @@ namespace Gecko
 	{
 		
 		// <summary>
-        //-*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
-        //
-        // This Source Code Form is subject to the terms of the Mozilla Public
-        // License, v. 2.0. If a copy of the MPL was not distributed with this
-        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+        // image.
+        // </summary>
 		public const long SIZE_AVAILABLE = 1;
 		
-		// 
+		// <summary>
+        // rendering as the image gets decoded and for changes due to animation.
+        // </summary>
 		public const long FRAME_UPDATE = 2;
 		
-		// 
+		// <summary>
+        // The first frame of the image is now decoded and ready to draw.
+        // </summary>
 		public const long FRAME_COMPLETE = 3;
 		
-		// 
+		// <summary>
+        // (modulo decode errors, at least) if you specify FLAG_SYNC_DECODE.
+        // </summary>
 		public const long LOAD_COMPLETE = 4;
 		
-		// 
+		// <summary>
+        // The entire image has been decoded.
+        // </summary>
 		public const long DECODE_COMPLETE = 5;
 		
-		// 
+		// <summary>
+        // detail. This notification should normally only be observed by tests.
+        // </summary>
 		public const long DISCARD = 6;
 		
-		// 
+		// <summary>
+        // generally only image locking code needs to observe it.
+        // </summary>
 		public const long UNLOCKED_DRAW = 7;
 		
-		// 
+		// <summary>
+        // The image is animated.
+        // </summary>
 		public const long IS_ANIMATED = 8;
+		
+		// <summary>
+        // The image is transparent.
+        // </summary>
+		public const long HAS_TRANSPARENCY = 9;
 	}
 }

@@ -27,52 +27,19 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///interface to expose information about calls to NS_DebugBreak </summary>
+    /// For use by consumers in scripted languages (JavaScript, Java, Python,
+    /// Perl, ...).
+    ///
+    /// @note C/C++ consumers who are planning to use the nsIDebug2 interface with
+    /// the "@mozilla.org/xpcom;1" contract should use NS_DebugBreak from xpcom
+    /// glue instead.
+    ///
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6cb17fec-cdf7-4f7c-b267-37a0acaa9cf1")]
-	public interface nsIDebug2 : nsIDebug
+	[Guid("9641dc15-10fb-42e3-a285-18be90a5c10b")]
+	public interface nsIDebug2
 	{
-		
-		/// <summary>
-        /// Show an assertion and trigger nsIDebug.break().
-        ///
-        /// @param aStr assertion message
-        /// @param aExpr expression that failed
-        /// @param aFile file containing assertion
-        /// @param aLine line number of assertion
-        ///
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Assertion([MarshalAs(UnmanagedType.LPStr)] string aStr, [MarshalAs(UnmanagedType.LPStr)] string aExpr, [MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
-		
-		/// <summary>
-        /// Show a warning.
-        ///
-        /// @param aStr warning message
-        /// @param aFile file containing assertion
-        /// @param aLine line number of assertion
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Warning([MarshalAs(UnmanagedType.LPStr)] string aStr, [MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
-		
-		/// <summary>
-        /// Request to break into a debugger.
-        ///
-        /// @param aFile file containing break request
-        /// @param aLine line number of break request
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Break([MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
-		
-		/// <summary>
-        /// Request the process to trigger a fatal abort.
-        ///
-        /// @param aFile file containing abort request
-        /// @param aLine line number of abort request
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Abort([MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
 		
 		/// <summary>
         /// Whether XPCOM was compiled with DEBUG defined.  This often
@@ -96,5 +63,44 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsDebuggerAttachedAttribute();
+		
+		/// <summary>
+        /// Show an assertion and trigger nsIDebug2.break().
+        ///
+        /// @param aStr assertion message
+        /// @param aExpr expression that failed
+        /// @param aFile file containing assertion
+        /// @param aLine line number of assertion
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Assertion([MarshalAs(UnmanagedType.LPStr)] string aStr, [MarshalAs(UnmanagedType.LPStr)] string aExpr, [MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
+		
+		/// <summary>
+        /// Show a warning.
+        ///
+        /// @param aStr warning message
+        /// @param aFile file containing assertion
+        /// @param aLine line number of assertion
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Warning([MarshalAs(UnmanagedType.LPStr)] string aStr, [MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
+		
+		/// <summary>
+        /// Request to break into a debugger.
+        ///
+        /// @param aFile file containing break request
+        /// @param aLine line number of break request
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Break([MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
+		
+		/// <summary>
+        /// Request the process to trigger a fatal abort.
+        ///
+        /// @param aFile file containing abort request
+        /// @param aLine line number of abort request
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Abort([MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
 	}
 }

@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f7259bf4-1f2b-4e9e-8983-1978cc076fa1")]
+	[Guid("5d1acf82-223a-46fb-a8f3-a1b16e2ceb04")]
 	public interface nsISecurityUITelemetry
 	{
 	}
@@ -244,10 +244,9 @@ namespace Gecko
 		// 
 		public const long WARNING_BAD_CERT_TOP_UNDERSTAND_RISKS = 74;
 		
-		// 
-		public const long WARNING_BAD_CERT_TOP_TECHNICAL_DETAILS = 75;
-		
-		// 
+		// <summary>
+        //     removed WARNING_BAD_CERT_TOP_TECHNICAL_DETAILS = 75;
+        // </summary>
 		public const long WARNING_BAD_CERT_TOP_ADD_EXCEPTION_BASE = 76;
 		
 		// 
@@ -270,5 +269,31 @@ namespace Gecko
 		
 		// 
 		public const long WARNING_BAD_CERT_TOP_CONFIRM_ADD_EXCEPTION_FLAG_TIME = 4;
+		
+		// <summary>
+        // Another Safe Browsing list (like malware & phishing above)
+        // </summary>
+		public const long WARNING_UNWANTED_PAGE_TOP = 92;
+		
+		// 
+		public const long WARNING_UNWANTED_PAGE_TOP_WHY_BLOCKED = 93;
+		
+		// 
+		public const long WARNING_UNWANTED_PAGE_TOP_GET_ME_OUT_OF_HERE = 94;
+		
+		// 
+		public const long WARNING_UNWANTED_PAGE_TOP_IGNORE_WARNING = 95;
+		
+		// 
+		public const long WARNING_UNWANTED_PAGE_FRAME = 96;
+		
+		// 
+		public const long WARNING_UNWANTED_PAGE_FRAME_WHY_BLOCKED = 97;
+		
+		// 
+		public const long WARNING_UNWANTED_PAGE_FRAME_GET_ME_OUT_OF_HERE = 98;
+		
+		// 
+		public const long WARNING_UNWANTED_PAGE_FRAME_IGNORE_WARNING = 99;
 	}
 }

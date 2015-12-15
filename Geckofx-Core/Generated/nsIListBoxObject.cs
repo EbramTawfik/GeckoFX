@@ -27,9 +27,8 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///This Source Code Form is subject to the terms of the Mozilla Public
-    /// License, v. 2.0. If a copy of the MPL was not distributed with this
-    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+    /// DEPRECATED: see ListBoxObject.webidl
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("AA9DEF4E-2E59-412d-A6DF-B76F52167795")]
@@ -37,26 +36,10 @@ namespace Gecko
 	{
 		
 		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this
-        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+        /// DEPRECATED: see ListBoxObject.webidl
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetRowCount();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetNumberOfVisibleRows();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetIndexOfFirstVisibleRow();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnsureIndexIsVisible(int rowIndex);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollToIndex(int rowIndex);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollByLines(int numLines);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

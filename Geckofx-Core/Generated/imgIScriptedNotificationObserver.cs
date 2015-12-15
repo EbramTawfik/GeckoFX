@@ -64,5 +64,8 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void IsAnimated(imgIRequest aRequest);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void HasTransparency(imgIRequest aRequest);
 	}
 }

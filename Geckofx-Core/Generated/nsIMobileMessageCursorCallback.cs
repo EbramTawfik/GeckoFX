@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8fd0dba2-032e-4190-a751-07cc3782e93e")]
+	[Guid("134a6958-543b-46e2-b419-4631a2314164")]
 	public interface nsIMobileMessageCursorCallback
 	{
 		
@@ -44,7 +44,7 @@ namespace Gecko
 		void NotifyCursorError(int error);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyCursorResult([MarshalAs(UnmanagedType.Interface)] nsISupports result);
+		void NotifyCursorResult([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsISupports[] results, uint size);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyCursorDone();

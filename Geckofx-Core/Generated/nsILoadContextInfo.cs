@@ -28,13 +28,13 @@ namespace Gecko
 	
 	/// <summary>
     /// Helper interface to carry informatin about the load context
-    /// encapsulating an AppID, IsInBrowser and IsPrivite properties.
+    /// encapsulating origin attributes and IsAnonymous, IsPrivite properties.
     /// It shall be used where nsILoadContext cannot be used or is not
     /// available.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1ea9cbdb-9df4-46a0-8c45-f4091aad9459")]
+	[Guid("555e2f8a-a1f6-41dd-88ca-ed4ed6b98a22")]
 	public interface nsILoadContextInfo
 	{
 		
@@ -46,24 +46,20 @@ namespace Gecko
 		bool GetIsPrivateAttribute();
 		
 		/// <summary>
-        /// UINT32_MAX
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetAppIdAttribute();
-		
-		/// <summary>
-        /// Whether the context is in a browser tag
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetIsInBrowserElementAttribute();
-		
-		/// <summary>
         /// Whether the load is initiated as anonymous
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsAnonymousAttribute();
+		
+		/// <summary>
+        /// NeckoOriginAttributes hiding all the security context attributes
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOriginAttributesAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr BinaryOriginAttributesPtr();
 	}
 	
 	/// <summary>nsILoadContextInfoConsts </summary>
@@ -71,11 +67,57 @@ namespace Gecko
 	{
 		
 		// <summary>
-        // Whether the context belongs under an App
+        // Helper interface to carry informatin about the load context
+        // encapsulating origin attributes and IsAnonymous, IsPrivite properties.
+        // It shall be used where nsILoadContext cannot be used or is not
+        // available.
         // </summary>
 		public const ulong NO_APP_ID = 0;
 		
 		// 
 		public const ulong UNKNOWN_APP_ID = 4294967295;
+	}
+	
+	/// <summary>
+    /// Since NeckoOriginAttributes struct limits the implementation of
+    /// nsILoadContextInfo (that needs to be thread safe) to C++,
+    /// we need a scriptable factory to create instances of that
+    /// interface from JS.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("c1c7023d-4318-4f99-8307-b5ccf0558793")]
+	public interface nsILoadContextInfoFactory
+	{
+		
+		/// <summary>
+        /// Since NeckoOriginAttributes struct limits the implementation of
+        /// nsILoadContextInfo (that needs to be thread safe) to C++,
+        /// we need a scriptable factory to create instances of that
+        /// interface from JS.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsILoadContextInfo GetDefaultAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsILoadContextInfo GetPrivateAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsILoadContextInfo GetAnonymousAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsILoadContextInfo Custom([MarshalAs(UnmanagedType.U1)] bool aPrivate, [MarshalAs(UnmanagedType.U1)] bool aAnonymous, ref Gecko.JsVal aOriginAttributes, System.IntPtr jsContext);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsILoadContextInfo FromLoadContext([MarshalAs(UnmanagedType.Interface)] nsILoadContext aLoadContext, [MarshalAs(UnmanagedType.U1)] bool aAnonymous);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsILoadContextInfo FromWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.U1)] bool aAnonymous);
 	}
 }

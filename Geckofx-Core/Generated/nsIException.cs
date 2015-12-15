@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("13b75be1-f950-497b-81e4-a0214a14e5ae")]
+	[Guid("28bfb2a2-5ea6-4738-918b-049dc4d51f0b")]
 	public interface nsIStackFrame
 	{
 		
@@ -57,7 +57,17 @@ namespace Gecko
 		int GetLineNumberAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetColumnNumberAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSourceLineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSourceLine);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAsyncCauseAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aAsyncCause);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIStackFrame GetAsyncCallerAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -69,6 +79,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetFormattedStackAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aFormattedStack);
 		
+		/// <summary>
+        /// or null if this is not a native JavaScript stack frame.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetNativeSavedFrameAttribute();
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
@@ -76,7 +92,7 @@ namespace Gecko
 	/// <summary>nsIException </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1caf1461-be1d-4b79-a552-5292b6bf3c35")]
+	[Guid("4371b5bf-6845-487f-8d9d-3f1e4a9badd2")]
 	public interface nsIException
 	{
 		
@@ -122,13 +138,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIStackFrame GetLocationAttribute();
-		
-		/// <summary>
-        /// An inner exception that triggered this, if available.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIException GetInnerAttribute();
 		
 		/// <summary>
         /// Arbitary data for the implementation.

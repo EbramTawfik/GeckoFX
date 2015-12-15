@@ -80,9 +80,15 @@ namespace Gecko
 	/// <summary>nsIAndroidBrowserApp </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c31331d2-afad-460f-9c66-728b8c838cec")]
+	[Guid("78ec5811-78ee-4239-a554-3303f823dbbc")]
 	public interface nsIAndroidBrowserApp
 	{
+		
+		/// <summary>Member GetSelectedTabAttribute </summary>
+		/// <returns>A nsIBrowserTab</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIBrowserTab GetSelectedTabAttribute();
 		
 		/// <summary>Member GetBrowserTab </summary>
 		/// <param name='tabId'> </param>
@@ -120,7 +126,7 @@ namespace Gecko
 	/// <summary>nsIAndroidViewport </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("59cfcb35-69b7-47b2-8155-32b193272666")]
+	[Guid("92ae801d-da9c-4a24-b2b6-344c4af7008b")]
 	public interface nsIAndroidViewport
 	{
 		
@@ -135,14 +141,14 @@ namespace Gecko
 		float GetYAttribute();
 		
 		/// <summary>Member GetWidthAttribute </summary>
-		/// <returns>A System.Single</returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		float GetWidthAttribute();
+		int GetWidthAttribute();
 		
 		/// <summary>Member GetHeightAttribute </summary>
-		/// <returns>A System.Single</returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		float GetHeightAttribute();
+		int GetHeightAttribute();
 		
 		/// <summary>Member GetPageLeftAttribute </summary>
 		/// <returns>A System.Single</returns>

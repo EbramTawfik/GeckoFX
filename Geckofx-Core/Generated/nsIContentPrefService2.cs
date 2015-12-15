@@ -84,7 +84,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f2507add-dc39-48e0-9147-e0270376148b")]
+	[Guid("bed98666-d995-470f-bebd-62476d318576")]
 	public interface nsIContentPrefService2
 	{
 		
@@ -295,6 +295,16 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveAllDomains([MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
+		
+		/// <summary>
+        /// Removes all non-global preferences created after and including |since|.
+        ///
+        /// @param since     Timestamp in milliseconds.
+        /// @param context   The private-browsing context, if any.
+        /// @param callback  handleCompletion is called when the operation completes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveAllDomainsSince(ulong since, [MarshalAs(UnmanagedType.Interface)] nsILoadContext context, [MarshalAs(UnmanagedType.Interface)] nsIContentPrefCallback2 callback);
 		
 		/// <summary>
         /// Removes all global preferences -- in other words, all preferences that have

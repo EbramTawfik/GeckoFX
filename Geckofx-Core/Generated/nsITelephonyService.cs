@@ -32,56 +32,9 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("464d4cf8-454a-4cdb-9329-bfe7ede97103")]
+	[Guid("baa9f5f3-5cab-40e0-81e9-ae0abd917907")]
 	public interface nsITelephonyListener
 	{
-		
-		/// <summary>
-        /// Notified when a telephony call changes state.
-        ///
-        /// @param clientId
-        ///            Indicate the RIL client, 0 ~ (number of client - 1).
-        /// @param callIndex
-        /// Call identifier assigned by the RIL.
-        /// @param callState
-        /// One of the nsITelephonyService::CALL_STATE_* values.
-        /// @param number
-        /// Number of the other party.
-        /// @param numberPresentation
-        /// Presentation of the call number.
-        /// One of the nsITelephonyProvider::CALL_PRESENTATION_* values.
-        /// @param name
-        /// Name of the other party.
-        /// @param namePresentation
-        /// Presentation of the call name.
-        /// One of the nsITelephonyProvider::CALL_PRESENTATION_* values.
-        /// @param isOutgoing
-        /// Indicates whether this call is outgoing or incoming.
-        /// @param isEmergency
-        /// Indicates whether this call is an emergency call.
-        /// @param isConference
-        /// Indicates whether this call is a conference call.
-        /// @param isSwitchable
-        /// Indicates whether this call can be switched between states of
-        /// nsITelephonyService::CALL_STATE_CONNECTED and
-        /// nsITelephonyService::CALL_STATE_HELD.
-        /// @param isMergeable
-        /// Indicates whether this call be be added into a conference.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallStateChanged(uint clientId, uint callIndex, ushort callState, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number, ushort numberPresentation, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, ushort namePresentation, [MarshalAs(UnmanagedType.U1)] bool isOutgoing, [MarshalAs(UnmanagedType.U1)] bool isEmergency, [MarshalAs(UnmanagedType.U1)] bool isConference, [MarshalAs(UnmanagedType.U1)] bool isSwitchable, [MarshalAs(UnmanagedType.U1)] bool isMergeable);
-		
-		/// <summary>
-        /// Called when participants of a conference call have been updated, and the
-        /// conference call state changes.
-        ///
-        /// @param callState
-        /// Possible values are: nsITelephonyService::CALL_STATE_UNKNOWN,
-        /// nsITelephonyService::CALL_STATE_HELD,
-        /// nsITelephonyService::CALL_STATE_CONNECTED.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConferenceCallStateChanged(ushort callState);
 		
 		/// <summary>
         /// Called when enumeration asked by nsITelephonyService::enumerateCalls
@@ -94,36 +47,15 @@ namespace Gecko
         /// Called when nsITelephonyService is asked to enumerate the current
         /// telephony call state (nsITelephonyService::enumerateCalls). This is
         /// called once per call that is currently managed by the RIL.
-        ///
-        /// @param clientId
-        ///            Indicate the RIL client, 0 ~ (number of client - 1).
-        /// @param callIndex
-        /// Call identifier assigned by the RIL.
-        /// @param callState
-        /// One of the nsITelephonyService::CALL_STATE_* values.
-        /// @param number
-        /// Number of the other party.
-        /// @param numberPresentation
-        /// Presentation of the call number.
-        /// One of the nsITelephonyProvider::CALL_PRESENTATION_* values.
-        /// @param name
-        /// Name of the other party.
-        /// @param namePresentation
-        /// Presentation of the call name.
-        /// One of the nsITelephonyProvider::CALL_PRESENTATION_* values.
-        /// @param isOutgoing
-        /// Indicates whether this call is outgoing or incoming.
-        /// @param isConference
-        /// Indicates whether this call is a conference call.
-        /// @param isSwitchable
-        /// Indicates whether this call can be switched between states of
-        /// nsITelephonyService::CALL_STATE_CONNECTED and
-        /// nsITelephonyService::CALL_STATE_HELD.
-        /// @param isMergeable
-        /// Indicates whether this call be be added into a conference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnumerateCallState(uint clientId, uint callIndex, ushort callState, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number, ushort numberPresentation, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, ushort namePresentation, [MarshalAs(UnmanagedType.U1)] bool isOutgoing, [MarshalAs(UnmanagedType.U1)] bool isEmergency, [MarshalAs(UnmanagedType.U1)] bool isConference, [MarshalAs(UnmanagedType.U1)] bool isSwitchable, [MarshalAs(UnmanagedType.U1)] bool isMergeable);
+		void EnumerateCallState([MarshalAs(UnmanagedType.Interface)] nsITelephonyCallInfo info);
+		
+		/// <summary>
+        /// Notified when a telephony call changes state.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CallStateChanged(uint length, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] nsITelephonyCallInfo[] allInfo);
 		
 		/// <summary>
         /// Notify when RIL receives supplementary service notification.
@@ -137,19 +69,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SupplementaryServiceNotification(uint clientId, int callIndex, ushort notification);
-		
-		/// <summary>
-        /// Called when RIL error occurs.
-        ///
-        /// @param clientId
-        ///            Indicate the RIL client, 0 ~ (number of client - 1).
-        /// @param callIndex
-        /// Call identifier assigned by the RIL. -1 if no connection
-        /// @param error
-        /// Error from RIL.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyError(uint clientId, int callIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase error);
 		
 		/// <summary>
         /// Called when a waiting call comes in CDMA networks.
@@ -182,26 +101,92 @@ namespace Gecko
 		void NotifyConferenceError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase message);
 	}
 	
-	/// <summary>nsITelephonyCallback </summary>
+	/// <summary>
+    /// A callback interface for handling asynchronous response.
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b80a2349-a0d9-4029-8c71-b61fbeb24267")]
+	[Guid("cffc3f9d-2c88-4a14-8ebc-f216caf0cc1d")]
 	public interface nsITelephonyCallback
 	{
 		
 		/// <summary>
-        /// Called when a dial request fails.
-        /// @param error
-        /// Error from RIL.
+        /// A callback interface for handling asynchronous response.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyDialError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase error);
+		void NotifySuccess();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase error);
+	}
+	
+	/// <summary>
+    /// A callback interface for handling asynchronous response for telephony.dial.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("e16c6e6f-93c6-4e1e-99bf-592b98f67e15")]
+	public interface nsITelephonyDialCallback : nsITelephonyCallback
+	{
 		
 		/// <summary>
-        /// Called when a dial request succeeds.
+        /// A callback interface for handling asynchronous response.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyDialSuccess(uint callIndex);
+		new void NotifySuccess();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void NotifyError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase error);
+		
+		/// <summary>
+        /// Called when a dial request is treated as an MMI code and it is about to
+        /// process the request.
+        ///
+        /// @param serviceCode
+        /// MMI service code key string that defined in MMI_KS_SC_*
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyDialMMI([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase serviceCode);
+		
+		/// <summary>
+        /// Called when a dial request is treated as a call setup and the result
+        /// succeeds.
+        ///
+        /// @param clientId
+        ///            Indicate the RIL client, 0 ~ (number of client - 1).
+        /// @param callIndex
+        /// Call index from RIL.
+        /// @param number
+        /// Dialed out phone number (ex: Temporary CLIR prefix will be removed)
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyDialCallSuccess(uint cliendId, uint callIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number);
+		
+		/// <summary>
+        /// Called when a MMI code request succeeds.
+        /// The function should only be called after notifyDialMMI.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyDialMMISuccess([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase statusMessage);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyDialMMISuccessWithInteger([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase statusMessage, ushort aAdditionalInformation);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyDialMMISuccessWithStrings([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase statusMessage, uint aLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] aAdditionalInformation);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyDialMMISuccessWithCallForwardingOptions([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase statusMessage, uint aLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsIMobileCallForwardingOptions[] aAdditionalInformation);
+		
+		/// <summary>
+        /// Called when a MMI code request fails.
+        /// The function should only be called after notifyDialMMI.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyDialMMIError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase error);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyDialMMIErrorWithInfo([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase error, ushort info);
 	}
 	
 	/// <summary>
@@ -210,7 +195,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4ff3ecb7-b024-4752-9dd6-c3623c6e6b8a")]
+	[Guid("75e4b5e3-6710-4156-bdaa-ba1081f390f4")]
 	public interface nsITelephonyService
 	{
 		
@@ -239,10 +224,10 @@ namespace Gecko
         /// Functionality for making and managing phone calls.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Dial(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number, [MarshalAs(UnmanagedType.U1)] bool isEmergency, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
+		void Dial(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number, [MarshalAs(UnmanagedType.U1)] bool isEmergency, [MarshalAs(UnmanagedType.Interface)] nsITelephonyDialCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HangUp(uint clientId, uint callIndex);
+		void SendTones(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase dtmfChars, uint pauseDuration, uint toneDuration, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StartTone(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase dtmfChar);
@@ -251,28 +236,53 @@ namespace Gecko
 		void StopTone(uint clientId);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AnswerCall(uint clientId, uint callIndex);
+		void AnswerCall(uint clientId, uint callIndex, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RejectCall(uint clientId, uint callIndex);
+		void RejectCall(uint clientId, uint callIndex, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HoldCall(uint clientId, uint callIndex);
+		void HangUpCall(uint clientId, uint callIndex, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResumeCall(uint clientId, uint callIndex);
+		void HoldCall(uint clientId, uint callIndex, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConferenceCall(uint clientId);
+		void ResumeCall(uint clientId, uint callIndex, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SeparateCall(uint clientId, uint callIndex);
+		void ConferenceCall(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HoldConference(uint clientId);
+		void SeparateCall(uint clientId, uint callIndex, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResumeConference(uint clientId);
+		void HangUpConference(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void HoldConference(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ResumeConference(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
+		
+		/// <summary>
+        /// Send an USSD on existing session. It results in error if the session is
+        /// not existed.
+        ///
+        /// If successful, callback.notifySuccess() will be called.
+        /// Otherwise, callback.notifyError() will be called.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendUSSD(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase ussd, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
+		
+		/// <summary>
+        /// Cancel an existing USSD session.
+        ///
+        /// If successful, callback.notifySuccess() will be called.
+        /// Otherwise, callback.notifyError() will be called.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CancelUSSD(uint cliendId, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -306,28 +316,16 @@ namespace Gecko
 		public const ushort CALL_STATE_ALERTING = 2;
 		
 		// 
-		public const ushort CALL_STATE_CONNECTING = 3;
+		public const ushort CALL_STATE_CONNECTED = 3;
 		
 		// 
-		public const ushort CALL_STATE_CONNECTED = 4;
+		public const ushort CALL_STATE_HELD = 4;
 		
 		// 
-		public const ushort CALL_STATE_HOLDING = 5;
+		public const ushort CALL_STATE_DISCONNECTED = 5;
 		
 		// 
-		public const ushort CALL_STATE_HELD = 6;
-		
-		// 
-		public const ushort CALL_STATE_RESUMING = 7;
-		
-		// 
-		public const ushort CALL_STATE_DISCONNECTING = 8;
-		
-		// 
-		public const ushort CALL_STATE_DISCONNECTED = 9;
-		
-		// 
-		public const ushort CALL_STATE_INCOMING = 10;
+		public const ushort CALL_STATE_INCOMING = 6;
 		
 		// 
 		public const ushort NOTIFICATION_REMOTE_HELD = 0;

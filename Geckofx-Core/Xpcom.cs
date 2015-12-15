@@ -126,7 +126,7 @@ namespace Gecko
 		/// </summary>
 		/// <param name="size"></param>
 		/// <returns></returns>
-		[DllImport("xul", EntryPoint = "NS_Alloc", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport("mozglue", EntryPoint = "moz_xmalloc", CallingConvention = CallingConvention.Cdecl)]
 		public static extern IntPtr Alloc(IntPtr size);
 
 		/// <summary>
@@ -135,14 +135,14 @@ namespace Gecko
 		/// <param name="ptr"></param>
 		/// <param name="size"></param>
 		/// <returns></returns>
-		[DllImport("xul", EntryPoint = "NS_Realloc", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("mozglue", EntryPoint = "moz_xrealloc", CallingConvention = CallingConvention.Cdecl)]
 		public static extern IntPtr Realloc(IntPtr ptr, IntPtr size);
 
 		/// <summary>
 		/// XPCOM_API(void) NS_Free(void* ptr)
 		/// </summary>
 		/// <param name="ptr"></param>
-		[DllImport("xul", EntryPoint = "NS_Free", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("mozglue", EntryPoint = "free", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void Free(IntPtr ptr);
 		#endregion
 
@@ -792,7 +792,10 @@ namespace Gecko
 				}
 				else if (uuid == typeof(nsIDOMDocument).GUID)
 				{
+				    obj = new WebIDL.Window((nsISupports) instance.GetContentDOMWindowAttribute()).Document;
+#if PORTING_TOWEBIDL
 					obj = instance.GetContentDOMWindowAttribute().GetDocumentAttribute();
+#endif
 				}
 			}
 

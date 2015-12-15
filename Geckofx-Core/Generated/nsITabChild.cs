@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2eb3bc54-78bf-40f2-b301-a5b5b70f7da0")]
+	[Guid("1fb79c27-e760-4088-b19c-1ce3673ec24e")]
 	public interface nsITabChild
 	{
 		
@@ -43,7 +43,20 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetMessageManagerAttribute();
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIWebBrowserChrome3 GetWebBrowserChromeAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetWebBrowserChromeAttribute([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome3 aWebBrowserChrome);
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendRequestFocus([MarshalAs(UnmanagedType.U1)] bool canFocus);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void EnableDisableCommands([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase action, System.IntPtr enabledCommands, System.IntPtr disabledCommands);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetTabIdAttribute();
 	}
 }

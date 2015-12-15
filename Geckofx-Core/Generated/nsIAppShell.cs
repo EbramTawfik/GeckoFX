@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2d10ca53-f143-439a-bb2e-c1fbc71f6a05")]
+	[Guid("7cd5c71d-223b-4afe-931d-5eedb1f2b01f")]
 	public interface nsIAppShell
 	{
 		
@@ -96,25 +96,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetEventloopNestingLevelAttribute();
-		
-		/// <summary>
-        /// Allows running of a "synchronous section", in the form of an nsIRunnable
-        /// once the event loop has reached a "stable state". We've reached a stable
-        /// state when the currently executing task/event has finished, see:
-        /// http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#synchronous-section
-        /// In practice this runs aRunnable once the currently executing event
-        /// finishes. If called multiple times per task/event, all the runnables will
-        /// be executed, in the order in which runInStableState() was called.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RunInStableState([MarshalAs(UnmanagedType.Interface)] nsIRunnable runnable);
-		
-		/// <summary>
-        /// Run the given runnable before the next iteration of the event loop (this
-        /// includes native events too). If a nested loop is spawned within the current
-        /// event then the runnable will not be run until that loop has terminated.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RunBeforeNextEvent([MarshalAs(UnmanagedType.Interface)] nsIRunnable runnable);
 	}
 }

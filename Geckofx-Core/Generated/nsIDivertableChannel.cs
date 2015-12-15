@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4430e0d0-ff70-45f5-99dc-b5fd06943fc1")]
+	[Guid("7a9bf52d-f828-4b31-b8df-b40fdd37d007")]
 	public interface nsIDivertableChannel
 	{
 		
@@ -69,5 +69,27 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ChannelDiverterChild DivertToParent();
+		
+		/// <summary>
+        /// nsUnknownDecoder delays calling OnStartRequest until it gets enough data
+        /// to decide about the content type (until OnDataAvaiable is called). In a
+        /// OnStartRequest DivertToParent can be called but some OnDataAvailables are
+        /// already called and therefore can not be diverted to parent.
+        ///
+        /// nsUnknownDecoder will call UnknownDecoderInvolvedKeepData in its
+        /// OnStartRequest function and when it calls OnStartRequest of the next
+        /// listener it will call UnknownDecoderInvolvedOnStartRequestCalled. In this
+        /// function Child process will decide to discarge data if it is not diverting
+        /// to parent or keep them if it is diverting to parent.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnknownDecoderInvolvedKeepData();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnknownDecoderInvolvedOnStartRequestCalled();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetDivertingToParentAttribute();
 	}
 }

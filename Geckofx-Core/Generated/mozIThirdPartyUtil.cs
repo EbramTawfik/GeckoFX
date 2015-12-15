@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d994fd1d-d2fe-4372-9ae7-88b08b7d9d90")]
+	[Guid("b711bd7f-0674-49be-ae77-f221db5f7b6c")]
 	public interface mozIThirdPartyUtil
 	{
 		
@@ -168,5 +168,24 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetBaseDomain([MarshalAs(UnmanagedType.Interface)] nsIURI aHostURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		
+		/// <summary>
+        /// getURIFromWindow
+        ///
+        /// Returns the URI associated with the script object principal for the
+        /// window.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIURI GetURIFromWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
+		
+		/// <summary>
+        /// getTopWindowForChannel
+        ///
+        /// Returns the top-level window associated with the given channel.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow GetTopWindowForChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
 	}
 }

@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6eb7ed3d-13ca-450b-b370-15c75e2f3dab")]
+	[Guid("366ee63e-a413-477d-9ad6-8d6863e89401")]
 	public interface nsPIPlacesDatabase
 	{
 		
@@ -57,5 +57,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		mozIStoragePendingStatement AsyncExecuteLegacyQueries([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsINavHistoryQuery[] aQueries, uint aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions aOptions, mozIStorageStatementCallback aCallback);
+		
+		/// <summary>
+        /// Hook for clients who need to perform actions during/by the end of
+        /// the shutdown of the database.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAsyncShutdownClient GetShutdownClientAttribute();
 	}
 }

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a9b826da-725a-4b81-814f-b715445188f2")]
+	[Guid("b5492915-2f0e-4973-9f91-a6fe61ac4749")]
 	public interface mozIGeckoMediaPluginService
 	{
 		
@@ -49,38 +49,81 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasPluginForAPI([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase origin, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase api, TagArray tags);
+		bool HasPluginForAPI([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase api, TagArray tags);
+		
+		/// <summary>
+        /// Get the version of the plugin that supports the specified tags.
+        /// Callable on any thread
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPluginVersionForAPI([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase api, TagArray tags, [MarshalAs(UnmanagedType.U1)] ref bool hasPlugin, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase version);
 		
 		/// <summary>
         /// Get a video decoder that supports the specified tags.
         /// The array of tags should at least contain a codec tag, and optionally
         /// other tags such as for EME keysystem.
         /// Callable only on GMP thread.
+        /// This is an asynchronous operation, the Done method of the callback object
+        /// will be called on the GMP thread with the result (which might be null in
+        /// the case of failure). This method always takes ownership of the callback
+        /// object, but if this method returns an error then the Done method of the
+        /// callback object will not be called at all.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		GMPVideoDecoderProxy GetGMPVideoDecoder(TagArray tags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase origin, ref GMPVideoHost outVideoHost);
+		void GetGMPVideoDecoder(TagArray tags, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase nodeId, GetGMPVideoDecoderCallback callback);
 		
 		/// <summary>
         /// Get a video encoder that supports the specified tags.
         /// The array of tags should at least contain a codec tag, and optionally
         /// other tags.
         /// Callable only on GMP thread.
+        /// This is an asynchronous operation, the Done method of the callback object
+        /// will be called on the GMP thread with the result (which might be null in
+        /// the case of failure). This method always takes ownership of the callback
+        /// object, but if this method returns an error then the Done method of the
+        /// callback object will not be called at all.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		GMPVideoEncoderProxy GetGMPVideoEncoder(TagArray tags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase origin, ref GMPVideoHost outVideoHost);
+		void GetGMPVideoEncoder(TagArray tags, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase nodeId, GetGMPVideoEncoderCallback callback);
 		
 		/// <summary>
-        /// Add a directory to scan for gecko media plugins.
-        /// @note Main-thread API.
+        /// Returns an audio decoder that supports the specified tags.
+        /// The array of tags should at least contain a codec tag, and optionally
+        /// other tags such as for EME keysystem.
+        /// Callable only on GMP thread.
+        /// This is an asynchronous operation, the Done method of the callback object
+        /// will be called on the GMP thread with the result (which might be null in
+        /// the case of failure). This method always takes ownership of the callback
+        /// object, but if this method returns an error then the Done method of the
+        /// callback object will not be called at all.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddPluginDirectory([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase directory);
+		void GetGMPAudioDecoder(TagArray tags, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase nodeId, GetGMPAudioDecoderCallback callback);
 		
 		/// <summary>
-        /// Remove a directory for gecko media plugins.
-        /// @note Main-thread API.
+        /// Returns a decryption session manager that supports the specified tags.
+        /// The array of tags should at least contain a key system tag, and optionally
+        /// other tags.
+        /// Callable only on GMP thread.
+        /// This is an asynchronous operation, the Done method of the callback object
+        /// will be called on the GMP thread with the result (which might be null in
+        /// the case of failure). This method always takes ownership of the callback
+        /// object, but if this method returns an error then the Done method of the
+        /// callback object will not be called at all.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePluginDirectory([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase directory);
+		void GetGMPDecryptor(TagArray tags, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase nodeId, GetGMPDecryptorCallback callback);
+		
+		/// <summary>
+        /// Gets the NodeId for a (origin, urlbarOrigin, isInprivateBrowsing) tuple.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetNodeId([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase origin, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase topLevelOrigin, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase gmpName, [MarshalAs(UnmanagedType.U1)] bool inPrivateBrowsingMode, GetNodeIdCallback callback);
+		
+		/// <summary>
+        /// Stores the result of trying to create a decoder for the given keysystem.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UpdateTrialCreateState([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase keySystem, uint status);
 	}
 }

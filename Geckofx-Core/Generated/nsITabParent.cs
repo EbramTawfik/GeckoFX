@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("33e8571d-5e5d-4000-81cf-e01f5f85d424")]
+	[Guid("7615408c-1fb3-4128-8dd5-a3e2f3fa8842")]
 	public interface nsITabParent
 	{
 		
@@ -43,11 +43,62 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InjectTouchEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aType, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] uint[] aIdentifiers, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] int[] aXs, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] int[] aYs, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] uint[] aRxs, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] uint[] aRys, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] float[] aRotationAngles, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] float[] aForces, uint count, int aModifiers);
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetChildProcessOffset(ref int aCssX, ref int aCssY);
+		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUseAsyncPanZoomAttribute();
 		
+		/// <summary>
+        /// Manages the docshell active state of the remote browser.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsDocShellActive([MarshalAs(UnmanagedType.U1)] bool aIsActive);
+		bool GetDocShellIsActiveAttribute();
+		
+		/// <summary>
+        /// Manages the docshell active state of the remote browser.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDocShellIsActiveAttribute([MarshalAs(UnmanagedType.U1)] bool aDocShellIsActive);
+		
+		/// <summary>
+        /// As an optimisation, setting the docshell's active state to
+        /// inactive also triggers a layer invalidation to free up some
+        /// potentially unhelpful memory usage. This attribute should be
+        /// used where callers would like to set the docshell's state
+        /// without losing any layer data.
+        ///
+        /// Otherwise, this does the same as setting the attribute above.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDocShellIsActiveAndForeground([MarshalAs(UnmanagedType.U1)] bool aIsActive);
+		
+		/// <summary>
+        /// During interactions where painting performance
+        /// is more important than scrolling, we may temporarily
+        /// suppress the displayport. Each enable called must be matched
+        /// with a disable call.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SuppressDisplayport([MarshalAs(UnmanagedType.U1)] bool aEnabled);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetTabIdAttribute();
+		
+		/// <summary>
+        /// Navigate by key. If aForDocumentNavigation is true, navigate by document.
+        /// If aForDocumentNavigation is false, navigate by element.
+        ///
+        /// If aForward is true, navigate to the first focusable element or document.
+        /// If aForward is false, navigate to the last focusable element or document.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NavigateByKey([MarshalAs(UnmanagedType.U1)] bool aForward, [MarshalAs(UnmanagedType.U1)] bool aForDocumentNavigation);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHasContentOpenerAttribute();
 	}
 }

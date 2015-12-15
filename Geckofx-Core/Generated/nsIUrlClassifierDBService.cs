@@ -96,7 +96,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3f9e61e5-01bd-45d0-8dd2-f1abcd20dbb7")]
+	[Guid("7a258022-6765-11e5-b379-b37b1f2354be")]
 	public interface nsIUrlClassifierDBService
 	{
 		
@@ -130,6 +130,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetHashCompleter([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tableName, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierHashCompleter completer);
+		
+		/// <summary>
+        /// Set the last update time for the given table. We use this to
+        /// remember freshness past restarts. Time is in milliseconds since epoch.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetLastUpdateTime([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tableName, ulong lastUpdateTime);
 		
 		/// <summary>
         /// Begin an update process.  Will throw NS_ERROR_NOT_AVAILABLE if there
@@ -201,7 +208,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("abcd7978-c304-4a7d-a44c-33c2ed5441e7")]
+	[Guid("b7b505d0-bfa2-44db-abf8-6e2bfc25bbab")]
 	public interface nsIUrlClassifierDBServiceWorker : nsIUrlClassifierDBService
 	{
 		
@@ -235,6 +242,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetHashCompleter([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tableName, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierHashCompleter completer);
+		
+		/// <summary>
+        /// Set the last update time for the given table. We use this to
+        /// remember freshness past restarts. Time is in milliseconds since epoch.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetLastUpdateTime([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tableName, ulong lastUpdateTime);
 		
 		/// <summary>
         /// Begin an update process.  Will throw NS_ERROR_NOT_AVAILABLE if there
@@ -298,6 +312,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void ResetDatabase();
+		
+		/// <summary>
+        /// Open the DB connection
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OpenDb();
 		
 		/// <summary>
         /// Provide a way to forcibly close the db connection.

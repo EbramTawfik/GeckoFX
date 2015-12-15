@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b44d74db-c9d6-41dd-98ae-a56918d6e6ad")]
+	[Guid("55779d32-1e28-4f43-af87-09d04bc3cce9")]
 	public interface nsINetworkInterfaceList
 	{
 		
@@ -43,18 +43,18 @@ namespace Gecko
 		int GetNumberOfInterface();
 		
 		/// <summary>
-        /// Get the i-th interface from the list.
+        /// Get the i-th interface info info from the list.
         /// @param interfaceIndex index of interface, from 0 to number of interface - 1.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINetworkInterface GetInterface(int interfaceIndex);
+		nsINetworkInfo GetInterfaceInfo(int interfaceIndex);
 	}
 	
 	/// <summary>nsINetworkInterfaceListService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ee0e7cd7-1baa-44fd-86cb-f70acb549163")]
+	[Guid("21d7fc8b-28c4-4a4f-a15e-1f9defbc2cec")]
 	public interface nsINetworkInterfaceListService
 	{
 		
@@ -84,5 +84,8 @@ namespace Gecko
 		
 		// 
 		public const long LIST_NOT_INCLUDE_DUN_INTERFACES = (1<<3);
+		
+		// 
+		public const long LIST_NOT_INCLUDE_FOTA_INTERFACES = (1<<4);
 	}
 }

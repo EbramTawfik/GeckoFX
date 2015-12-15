@@ -474,7 +474,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2e91e088-e9fa-4ba4-9887-2a0b7cf27a3e")]
+	[Guid("6f54214c-7175-498d-9d2d-0429e38c2869")]
 	public interface nsIXMLHttpRequest
 	{
 		
@@ -627,16 +627,6 @@ namespace Gecko
 		void Send([MarshalAs(UnmanagedType.Interface)] nsIVariant body);
 		
 		/// <summary>
-        /// A variant of the send() method used to send binary data.
-        ///
-        /// @param body The request body as a DOM string.  The string data will be
-        /// converted to a single-byte string by truncation (i.e., the
-        /// high-order byte of each character will be discarded).
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendAsBinary([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase body);
-		
-		/// <summary>
         /// Sets a HTTP request header for HTTP requests. You must call open
         /// before setting the request headers.
         ///
@@ -733,9 +723,12 @@ namespace Gecko
         /// document.
         /// @param baseURI The base URI to use when resolving relative URIs. May be
         /// null.
+        /// @param loadGroup An optional load group to use when performing the request.
+        /// This will be used even if the global has a window with a
+        /// load group.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr scriptContext, System.IntPtr globalObject, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr scriptContext, System.IntPtr globalObject, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup loadGroup);
 		
 		/// <summary>
         /// Upload process can be tracked by adding event listener to |upload|.

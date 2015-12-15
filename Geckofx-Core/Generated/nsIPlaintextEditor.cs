@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("07b6d070-ccea-4a00-84b4-f4b94dd9eb52")]
+	[Guid("b74fb158-1265-4102-91eb-edd0136b49f8")]
 	public interface nsIPlaintextEditor
 	{
 		

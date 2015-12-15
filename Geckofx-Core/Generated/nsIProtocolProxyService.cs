@@ -32,17 +32,20 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e77c642b-026f-41ce-9b23-f829a6e3f300")]
+	[Guid("ef57c8b6-e09d-4cd4-9222-2a5d2402e15d")]
 	public interface nsIProtocolProxyService
 	{
 		
 		/// <summary>
         /// This method returns via callback a nsIProxyInfo instance that identifies
-        /// a proxy to be used for loading the given URI.  Otherwise, this method returns
+        /// a proxy to be used for the given channel.  Otherwise, this method returns
         /// null indicating that a direct connection should be used.
         ///
-        /// @param aURI
-        /// The URI to test.
+        /// @param aChannelOrURI
+        /// The channel for which a proxy is to be found, or, if no channel is
+        /// available, a URI indicating the same. This method will return
+        /// NS_ERROR_NOINTERFACE if this argument isn't either an nsIURI or an
+        /// nsIChannel.
         /// @param aFlags
         /// A bit-wise combination of the RESOLVE_ flags defined above.  Pass
         /// 0 to specify the default behavior.  Any additional bits that do
@@ -70,7 +73,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICancelable AsyncResolve([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlags, [MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyCallback aCallback);
+		nsICancelable AsyncResolve([MarshalAs(UnmanagedType.Interface)] nsISupports aChannelOrURI, uint aFlags, [MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyCallback aCallback);
 		
 		/// <summary>
         /// This method may be called to construct a nsIProxyInfo instance from
@@ -82,6 +85,7 @@ namespace Gecko
         /// The proxy type.  This is a string value that identifies the proxy
         /// type.  Standard values include:
         /// "http"    - specifies a HTTP proxy
+        /// "https"   - specifies HTTP proxying over TLS connection to proxy
         /// "socks"   - specifies a SOCKS version 5 proxy
         /// "socks4"  - specifies a SOCKS version 4 proxy
         /// "direct"  - specifies a direct connection (useful for failover)
@@ -107,6 +111,42 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIProxyInfo NewProxyInfo([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, int aPort, uint aFlags, uint aFailoverTimeout, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aFailoverProxy);
+		
+		/// <summary>
+        /// This method may be called to construct a nsIProxyInfo instance for
+        /// with the specified username and password.
+        /// Currently implemented for SOCKS proxies only.
+        /// @param aType
+        /// The proxy type.  This is a string value that identifies the proxy
+        /// type.  Standard values include:
+        /// "socks"   - specifies a SOCKS version 5 proxy
+        /// "socks4"  - specifies a SOCKS version 4 proxy
+        /// The type name is case-insensitive.  Other string values may be
+        /// possible, and new types may be defined by a future version of
+        /// this interface.
+        /// @param aHost
+        /// The proxy hostname or IP address.
+        /// @param aPort
+        /// The proxy port.
+        /// @param aUsername
+        /// The proxy username
+        /// @param aPassword
+        /// The proxy password
+        /// @param aFlags
+        /// Flags associated with this connection.  See nsIProxyInfo.idl
+        /// for currently defined flags.
+        /// @param aFailoverTimeout
+        /// Specifies the length of time (in seconds) to ignore this proxy if
+        /// this proxy fails.  Pass UINT32_MAX to specify the default
+        /// timeout value, causing nsIProxyInfo::failoverTimeout to be
+        /// assigned the default value.
+        /// @param aFailoverProxy
+        /// Specifies the next proxy to try if this proxy fails.  This
+        /// parameter may be null.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIProxyInfo NewProxyInfoWithAuth([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aUsername, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPassword, uint aFlags, uint aFailoverTimeout, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aFailoverProxy);
 		
 		/// <summary>
         /// If the proxy identified by aProxyInfo is unavailable for some reason,
@@ -165,6 +205,18 @@ namespace Gecko
 		void RegisterFilter([MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyFilter aFilter, uint aPosition);
 		
 		/// <summary>
+        /// Similar to registerFilter, but accepts an nsIProtocolProxyChannelFilter,
+        /// which selects proxies according to channel rather than URI.
+        ///
+        /// @param aFilter
+        /// The nsIProtocolProxyChannelFilter instance to be registered.
+        /// @param aPosition
+        /// The position of the filter.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterChannelFilter([MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyChannelFilter aFilter, uint aPosition);
+		
+		/// <summary>
         /// This method may be used to unregister a proxy filter instance.  All
         /// filters will be automatically unregistered at XPCOM shutdown.
         ///
@@ -173,6 +225,16 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterFilter([MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyFilter aFilter);
+		
+		/// <summary>
+        /// This method may be used to unregister a proxy channel filter instance.  All
+        /// filters will be automatically unregistered at XPCOM shutdown.
+        ///
+        /// @param aFilter
+        /// The nsIProtocolProxyChannelFilter instance to be unregistered.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnregisterChannelFilter([MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyChannelFilter aFilter);
 		
 		/// <summary>
         /// This attribute specifies the current type of proxy configuration.

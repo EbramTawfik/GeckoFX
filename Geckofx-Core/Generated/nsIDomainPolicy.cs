@@ -40,7 +40,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("27b10f54-f34b-42b7-8594-4348d3ad7953")]
+	[Guid("82b24a20-6701-4d40-a0f9-f5dc7321b555")]
 	public interface nsIDomainPolicy
 	{
 		
@@ -74,14 +74,26 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Deactivate();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CloneDomainPolicy(System.IntPtr aClone);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ApplyClone(System.IntPtr aClone);
 	}
 	
 	/// <summary>nsIDomainSet </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("946a01ff-6525-4007-a2c2-447ebe1875d3")]
+	[Guid("665c981b-0a0f-4229-ac06-a826e02d4f69")]
 	public interface nsIDomainSet
 	{
+		
+		/// <summary>
+        /// The type of the set. See: DomainSetType
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetTypeAttribute();
 		
 		/// <summary>
         /// Add a domain to the set. No-op if it already exists.

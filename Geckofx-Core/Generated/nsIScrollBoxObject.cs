@@ -35,55 +35,5 @@ namespace Gecko
 	[Guid("56E2ADA8-4631-11d4-BA11-001083023C1E")]
 	public interface nsIScrollBoxObject
 	{
-		
-		/// <summary>
-        /// Scroll to the given coordinates, in css pixels.
-        /// (0,0) will put the top left corner of the scrolled element's padding-box
-        /// at the top left corner of the scrollport (which is its inner-border-box).
-        /// Values will be clamped to legal values.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollTo(int x, int y);
-		
-		/// <summary>
-        /// Scroll the given amount of device pixels to the right and down.
-        /// Values will be clamped to make the resuling position legal.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollBy(int dx, int dy);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollByLine(int dlines);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollByIndex(int dindexes);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollToLine(int line);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollToElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement child);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollToIndex(int index);
-		
-		/// <summary>
-        /// Get the current scroll position in css pixels.
-        /// @see scrollTo for the definition of x and y.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPosition(ref int x, ref int y);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetScrolledSize(ref int width, ref int height);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnsureElementIsVisible([MarshalAs(UnmanagedType.Interface)] nsIDOMElement child);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnsureIndexIsVisible(int index);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnsureLineIsVisible(int line);
 	}
 }

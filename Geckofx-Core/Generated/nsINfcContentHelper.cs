@@ -32,174 +32,348 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("26673d1a-4af4-470a-ba96-f1f54b1f2052")]
-	public interface nsINfcPeerCallback
+	[Guid("a694c7e8-10dd-416e-a3d9-433edf40647e")]
+	public interface nsITagInfo
 	{
 		
 		/// <summary>
-        /// Callback function used to notify NFC peer events.
-        ///
-        /// @param event
-        /// An event indicating 'PeerReady' or 'PeerLost'
-        /// One of NFC_EVENT_PEER_XXXX
-        ///
-        /// @param sessionToken
-        /// SessionToken received from Chrome process
+        /// Array of technolgies supported. See NFCTechType in MozNFCTag.webidl
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIVariant GetTechListAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIVariant GetTagIdAttribute();
+	}
+	
+	/// <summary>
+    /// Uint8Array
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("74d70ebb-557f-4ac8-8296-7885961cd1dc")]
+	public interface nsITagNDEFInfo
+	{
+		
+		/// <summary>
+        /// one of NFCTagType defined in MozNFCTag.webidl.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PeerNotification(uint @event, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
+		void GetTagTypeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTagType);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetMaxNDEFSizeAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsReadOnlyAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsFormatableAttribute();
+	}
+	
+	/// <summary>nsINfcEventListener </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("86e46a0c-016d-4e5d-9fb5-789eb71848a1")]
+	public interface nsINfcEventListener
+	{
+		
+		/// <summary>
+        /// Callback function used to notify tagfound.
+        ///
+        /// @param sessionToken
+        /// SessionToken received from parent process
+        /// @param tagInfo
+        /// nsITagInfo received from parent process.
+        /// @param ndefInfo
+        /// nsITagNDEFInfo received from parent process, could be null if the
+        /// tag is not formated as NDEF.
+        /// @param ndefRecords
+        /// NDEF records pre-read during tag-discovered.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyTagFound([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken, [MarshalAs(UnmanagedType.Interface)] nsITagInfo tagInfo, [MarshalAs(UnmanagedType.Interface)] nsITagNDEFInfo ndefInfo, [MarshalAs(UnmanagedType.Interface)] nsIVariant ndefRecords);
+		
+		/// <summary>
+        /// Callback function used to notify taglost.
+        ///
+        /// @param sessionToken
+        /// SessionToken received from parent process
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyTagLost([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
+		
+		/// <summary>
+        /// Callback function used to notify peerfound/peerready.
+        /// @param sessionToken
+        /// SessionToken received from parent process
+        /// @param isPeerReady
+        /// Set to true to dispatch peerready instead of peerfound
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyPeerFound([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken, [MarshalAs(UnmanagedType.U1)] bool isPeerReady);
+		
+		/// <summary>
+        /// Callback function used to notify peerlost.
+        ///
+        /// @param sessionToken
+        /// SessionToken received from parent process
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyPeerLost([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
+		
+		/// <summary>
+        /// Callback function used to notify RF state change.
+        ///
+        /// @param rfState
+        /// RF state received from parent process
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyRFStateChanged([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase rfState);
+		
+		/// <summary>
+        /// Callback function used to notify focus changed.
+        ///
+        /// @param focus
+        /// focus value receveid from parent process.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyFocusChanged([MarshalAs(UnmanagedType.U1)] bool focus);
+		
+		/// <summary>
+        /// The window object of this event listener.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow GetWindowAttribute();
+	}
+	
+	/// <summary>nsINfcRequestCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("6c913015-9658-46a9-88d9-6ecfda2bd020")]
+	public interface nsINfcRequestCallback
+	{
+		
+		/// <summary>Member GetCallbackId </summary>
+		/// <param name='retval'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCallbackId([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		
+		/// <summary>Member NotifySuccess </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifySuccess();
+		
+		/// <summary>Member NotifySuccessWithBoolean </summary>
+		/// <param name='result'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifySuccessWithBoolean([MarshalAs(UnmanagedType.U1)] bool result);
+		
+		/// <summary>Member NotifySuccessWithNDEFRecords </summary>
+		/// <param name='records'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifySuccessWithNDEFRecords([MarshalAs(UnmanagedType.Interface)] nsIVariant records);
+		
+		/// <summary>Member NotifySuccessWithByteArray </summary>
+		/// <param name='array'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifySuccessWithByteArray([MarshalAs(UnmanagedType.Interface)] nsIVariant array);
+		
+		/// <summary>Member NotifyError </summary>
+		/// <param name='errorMsg'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase errorMsg);
+	}
+	
+	/// <summary>nsINfcBrowserAPI </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("9f86c799-6959-4ad2-bdd6-6fbf49b52d1c")]
+	public interface nsINfcBrowserAPI
+	{
+		
+		/// <summary>Member SetFocusTab </summary>
+		/// <param name='tabId'> </param>
+		/// <param name='isFocus'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFocusTab(ulong tabId, [MarshalAs(UnmanagedType.U1)] bool isFocus);
+	}
+	
+	/// <summary>nsINfcBrowserAPIConsts </summary>
+	public class nsINfcBrowserAPIConsts
+	{
+		
+		// 
+		public const long SYSTEM_APP_ID = 0;
 	}
 	
 	/// <summary>nsINfcContentHelper </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("26e8123f-ba00-4708-ac77-d1902457168c")]
+	[Guid("75f0c8c0-2e5a-491f-a75d-4f3849c4feec")]
 	public interface nsINfcContentHelper
 	{
 		
-		/// <summary>Member SetSessionToken </summary>
-		/// <param name='sessionToken'> </param>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
+		/// <summary>
+        /// Read current NDEF data on the tag.
+        ///
+        /// @param sessionToken
+        /// Current token
+        ///
+        /// @param callback
+        /// Called when request is finished
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SetSessionToken([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
-		
-		/// <summary>Member GetDetailsNDEF </summary>
-		/// <param name='window'> </param>
-		/// <param name='sessionToken'> </param>
-		/// <returns>A nsIDOMDOMRequest</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest GetDetailsNDEF([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
-		
-		/// <summary>Member ReadNDEF </summary>
-		/// <param name='window'> </param>
-		/// <param name='sessionToken'> </param>
-		/// <returns>A nsIDOMDOMRequest</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest ReadNDEF([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
-		
-		/// <summary>Member WriteNDEF </summary>
-		/// <param name='window'> </param>
-		/// <param name='records'> </param>
-		/// <param name='sessionToken'> </param>
-		/// <returns>A nsIDOMDOMRequest</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest WriteNDEF([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.Interface)] nsIVariant records, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
-		
-		/// <summary>Member MakeReadOnlyNDEF </summary>
-		/// <param name='window'> </param>
-		/// <param name='sessionToken'> </param>
-		/// <returns>A nsIDOMDOMRequest</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest MakeReadOnlyNDEF([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
-		
-		/// <summary>Member Connect </summary>
-		/// <param name='window'> </param>
-		/// <param name='techType'> </param>
-		/// <param name='sessionToken'> </param>
-		/// <returns>A nsIDOMDOMRequest</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest Connect([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, uint techType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
-		
-		/// <summary>Member Close </summary>
-		/// <param name='window'> </param>
-		/// <param name='sessionToken'> </param>
-		/// <returns>A nsIDOMDOMRequest</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest Close([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
+		void ReadNDEF([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken, [MarshalAs(UnmanagedType.Interface)] nsINfcRequestCallback callback);
 		
 		/// <summary>
-        /// Initiate Send file operation
+        /// Write NDEF data to a peer device or a tag.
         ///
-        /// @param window
-        /// Current window
+        /// @param records
+        /// NDEF records to be written
+        ///
+        /// @param isP2P
+        /// If this write is for P2P.
+        /// @param sessionToken
+        /// Current token
+        ///
+        /// @param callback
+        /// Called when request is finished
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void WriteNDEF([MarshalAs(UnmanagedType.Interface)] nsIVariant records, [MarshalAs(UnmanagedType.U1)] bool isP2P, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken, [MarshalAs(UnmanagedType.Interface)] nsINfcRequestCallback callback);
+		
+		/// <summary>
+        /// Make a tag read-only
+        ///
+        /// @param sessionToken
+        /// Current token
+        ///
+        /// @param callback
+        /// Called when request is finished
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void MakeReadOnly([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken, [MarshalAs(UnmanagedType.Interface)] nsINfcRequestCallback callback);
+		
+		/// <summary>
+        /// Format a tag as NDEF
+        ///
+        /// @param sessionToken
+        /// Current token
+        ///
+        /// @param callback
+        /// Called when request is finished
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Format([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken, [MarshalAs(UnmanagedType.Interface)] nsINfcRequestCallback callback);
+		
+		/// <summary>
+        /// Send raw command to the tag and receive the response.
+        ///
+        /// @param sessionToken
+        /// Current token
+        ///
+        /// @param technology
+        /// Tag technology
+        ///
+        /// @param command
+        /// Command to send
+        ///
+        /// @param callback
+        /// Called when request is finished
+        ///
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Transceive([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase technology, [MarshalAs(UnmanagedType.Interface)] nsIVariant command, [MarshalAs(UnmanagedType.Interface)] nsINfcRequestCallback callback);
+		
+		/// <summary>
+        /// Get current RF state. This function will be blocking.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void QueryRFState([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		
+		/// <summary>
+        /// Initiate send file operation.
         ///
         /// @param blob
         /// Raw data of the file to be sent. This object represents a file-like
-        /// (nsIDOMFile) object of immutable, raw data. The blob data needs
+        /// (DOM File) object of immutable, raw data. The blob data needs
         /// to be 'object wrapped' before calling this interface.
         ///
         /// @param sessionToken
         /// Current token
         ///
-        /// Returns DOMRequest, if initiation of send file operation is successful
-        /// then 'onsuccess' is called else 'onerror'
+        /// @param callback
+        /// Called when request is finished
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SendFile([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ref Gecko.JsVal blob, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken);
+		void SendFile(ref Gecko.JsVal blob, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken, [MarshalAs(UnmanagedType.Interface)] nsINfcRequestCallback callback);
 		
 		/// <summary>
-        /// Register the given application id with Chrome process
+        /// Add the event listener.
         ///
-        /// @param window
-        /// Current window
+        /// @param listener
+        /// An instance of the nsINfcEventListener.
+        /// @param tabId
+        /// The tab ID of the listener.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddEventListener([MarshalAs(UnmanagedType.Interface)] nsINfcEventListener listener, ulong tabId);
+		
+		/// <summary>
+        /// Remove event listener.
+        ///
+        /// @param tabId
+        /// The tabId provided in addEventListener.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveEventListener(ulong tabId);
+		
+		/// <summary>
+        /// Register the given application id with parent process
         ///
         /// @param appId
         /// Application ID to be registered
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterTargetForPeerReady(uint appId);
+		
+		/// <summary>
+        /// Unregister the given application id with parent process
         ///
-        /// @param event
-        /// Event to be registered. Either NFC_EVENT_PEER_READY or NFC_EVENT_PEER_LOST
+        /// @param appId
+        /// Application ID to be registered
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnregisterTargetForPeerReady(uint appId);
+		
+		/// <summary>
+        /// Checks if the given application's id is a registered peer target (with the parent process)
+        ///
+        /// @param appId
+        /// Application ID to be updated with parent process
         ///
         /// @param callback
-        /// Callback that is used to notify upper layers whenever PeerEvents happen.
+        /// Called when request is finished
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterTargetForPeerEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, uint appId, System.IntPtr @event, [MarshalAs(UnmanagedType.Interface)] nsINfcPeerCallback callback);
+		void CheckP2PRegistration(uint appId, [MarshalAs(UnmanagedType.Interface)] nsINfcRequestCallback callback);
 		
 		/// <summary>
-        /// Unregister the given application id with Chrome process
-        ///
-        /// @param window
-        /// Current window
-        ///
-        /// @param appId
-        /// Application ID to be registered
-        ///
-        /// @param event
-        /// Event to be unregistered. Either NFC_EVENT_PEER_READY or NFC_EVENT_PEER_LOST
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterTargetForPeerEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, uint appId, System.IntPtr @event);
-		
-		/// <summary>
-        /// Checks if the given application's id is a registered peer target (with the Chrome process)
-        ///
-        /// @param window
-        /// Current window
-        ///
-        /// @param appId
-        /// Application ID to be updated with Chrome process
-        ///
-        /// Returns DOMRequest, if appId is registered then 'onsuccess' is called else 'onerror'
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest CheckP2PRegistration([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, uint appId);
-		
-		/// <summary>
-        /// Notify the Chrome process that user has accepted to share nfc message on P2P UI
-        ///
-        /// @param window
-        /// Current window
+        /// Notify the parent process that user has accepted to share nfc message on P2P UI
         ///
         /// @param appId
         /// Application ID that is capable of handling NFC_EVENT_PEER_READY event
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyUserAcceptedP2P([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, uint appId);
+		void NotifyUserAcceptedP2P(uint appId);
 		
 		/// <summary>
-        /// Notify the status of sendFile operation to Chrome process
-        ///
-        /// @param window
-        /// Current window
+        /// Notify the status of sendFile operation to parent process
         ///
         /// @param status
         /// Status of sendFile operation
@@ -208,38 +382,43 @@ namespace Gecko
         /// Request ID of SendFile DOM Request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifySendFileStatus([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, System.IntPtr status, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase requestId);
+		void NotifySendFileStatus(System.IntPtr status, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase requestId);
 		
 		/// <summary>
-        /// Power on the NFC hardware and start polling for NFC tags or devices.
+        /// Change RF state.
+        ///
+        /// @param rfState. Possible values are 'idle', 'listen' and 'discovery'.
+        ///
+        /// @param callback
+        /// Called when request is finished
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest StartPoll([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		void ChangeRFState([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase rfState, [MarshalAs(UnmanagedType.Interface)] nsINfcRequestCallback callback);
 		
 		/// <summary>
-        /// Stop polling for NFC tags or devices. i.e. enter low power mode.
+        /// Notify parent process to call the default tagfound or peerfound event
+        /// handler.
+        ///
+        /// @param sessionToken
+        /// Session token of this event.
+        /// @param isP2P
+        /// Is this a P2P Session.
+        /// @param records
+        /// NDEF Records.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest StopPoll([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		void CallDefaultFoundHandler([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken, [MarshalAs(UnmanagedType.U1)] bool isP2P, [MarshalAs(UnmanagedType.Interface)] nsIVariant records);
 		
 		/// <summary>
-        /// Power off the NFC hardware.
+        /// Notify parent process to call the default taglost or peerlost event
+        /// handler.
+        ///
+        /// @param sessionToken
+        /// Session token of this event.
+        /// @param isP2P
+        /// Is this a P2P Session.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest PowerOff([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
-	}
-	
-	/// <summary>nsINfcContentHelperConsts </summary>
-	public class nsINfcContentHelperConsts
-	{
-		
-		// 
-		public const long NFC_EVENT_PEER_READY = 0x01;
-		
-		// 
-		public const long NFC_EVENT_PEER_LOST = 0x02;
+		void CallDefaultLostHandler([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sessionToken, [MarshalAs(UnmanagedType.U1)] bool isP2P);
 	}
 }

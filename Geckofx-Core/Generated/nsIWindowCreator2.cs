@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e28f810b-9b49-4927-a4be-62a74fadfe21")]
+	[Guid("b6c44689-f97e-4f32-a723-29eeddfbdc53")]
 	public interface nsIWindowCreator2 : nsIWindowCreator
 	{
 		
@@ -81,6 +81,16 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebBrowserChrome CreateChromeWindow2([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome parent, uint chromeFlags, uint contextFlags, [MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.Interface)] nsITabParent aOpeningTab, [MarshalAs(UnmanagedType.U1)] ref bool cancel);
+		
+		/// <summary>
+        /// B2G multi-screen support. When open another top-level window on b2g,
+        /// a screen ID is needed for identifying which screen this window is
+        /// opened to.
+        /// @param aScreenId Differentiate screens of windows. It is platform-
+        /// specific due to the hardware limitation for now.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetScreenId(uint aScreenId);
 	}
 	
 	/// <summary>nsIWindowCreator2Consts </summary>

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9e7ba3eb-a9cf-4861-93e0-82e93d836f7a")]
+	[Guid("0e33de3e-4faf-4a1a-b96e-24115b8bfd45")]
 	public interface nsIInputListAutoComplete
 	{
 		
@@ -41,6 +41,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAutoCompleteResult AutoCompleteSearch([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult aResult, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSearchString, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement aField);
+		nsIAutoCompleteResult AutoCompleteSearch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSearchString, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement aField);
 	}
 }

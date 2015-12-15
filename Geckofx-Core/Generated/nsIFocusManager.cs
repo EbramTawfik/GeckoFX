@@ -56,7 +56,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("51db277b-7ee7-4bce-9b84-fd2efcd2c8bd")]
+	[Guid("2487F9CA-D05F-4BD1-8F43-5964E746C482")]
 	public interface nsIFocusManager
 	{
 		
@@ -149,7 +149,8 @@ namespace Gecko
         /// MOVEFOCUS_CARET, then the focus is cleared. If aType is any other value,
         /// the focus is not changed.
         ///
-        /// Returns the element that was focused.
+        /// Returns the element that was focused. The return value may be null if focus
+        /// was moved into a child process.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -239,6 +240,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void FocusPlugin(System.IntPtr aPlugin);
+		
+		/// <summary>
+        /// Used in a child process to indicate that the parent window is now
+        /// active or deactive.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ParentActivated([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.U1)] bool active);
 	}
 	
 	/// <summary>nsIFocusManagerConsts </summary>
@@ -300,6 +308,12 @@ namespace Gecko
 		public const ulong FLAG_SHOWRING = 0x100000;
 		
 		// <summary>
+        // Focus is changing due to a touch operation that generated a mouse event.
+        // Normally used in conjunction with FLAG_BYMOUSE.
+        // </summary>
+		public const ulong FLAG_BYTOUCH = 0x200000;
+		
+		// <summary>
         //move focus forward one element, used when pressing TAB </summary>
 		public const ulong MOVEFOCUS_FORWARD = 1;
 		
@@ -332,5 +346,13 @@ namespace Gecko
         // focus links as the caret moves over them in caret browsing mode.
         // </summary>
 		public const ulong MOVEFOCUS_CARET = 8;
+		
+		// <summary>
+        //move focus to the first focusable document </summary>
+		public const ulong MOVEFOCUS_FIRSTDOC = 9;
+		
+		// <summary>
+        //move focus to the last focusable document </summary>
+		public const ulong MOVEFOCUS_LASTDOC = 10;
 	}
 }

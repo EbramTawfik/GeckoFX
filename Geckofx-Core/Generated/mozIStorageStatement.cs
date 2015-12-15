@@ -31,7 +31,7 @@ namespace Gecko
     /// purposes.
     /// </summary>
 	[ComImport()]
-	[Guid("b3c4476e-c490-4e3b-9db1-e2d3a6f0287c")]
+	[Guid("5f567c35-6c32-4140-828c-683ea49cfd3a")]
 	public interface mozIStorageStatement : mozIStorageBaseStatement
 	{
 		
@@ -87,6 +87,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void BindBlobParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] aValue, uint aValueSize);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void BindStringAsBlobParameter(uint aParamIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aValue);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void BindUTF8StringAsBlobParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void BindAdoptedBlobParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] aValue, uint aValueSize);
@@ -326,6 +332,30 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetBlob(uint aIndex, ref uint aDataSize, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref byte[] aData);
+		
+		/// <summary>
+        /// Retrieve the contents of a Blob column from the current result row as a
+        /// string.
+        ///
+        /// @param aIndex
+        /// 0-based colummn index.
+        /// @return The value for the result Blob column interpreted as a String.
+        /// No encoding conversion is performed.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBlobAsString(uint aIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		
+		/// <summary>
+        /// Retrieve the contents of a Blob column from the current result row as a
+        /// UTF8 string.
+        ///
+        /// @param aIndex
+        /// 0-based colummn index.
+        /// @return The value for the result Blob column interpreted as a UTF8 String.
+        /// No encoding conversion is performed.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBlobAsUTF8String(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// Check whether the given column in the current result row is NULL.

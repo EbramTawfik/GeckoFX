@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b1bea1bc-689b-4e07-8cbc-ef342725f9a6")]
+	[Guid("772c7069-3f7d-42cf-97ab-b32f1c0b83da")]
 	public interface nsIDOMAnimationEvent : nsIDOMEvent
 	{
 		
@@ -225,6 +225,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr InternalDOMEvent();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopCrossProcessForwarding();
 		
 		/// <summary>
         /// Animation events are defined in:

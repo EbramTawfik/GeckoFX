@@ -27,11 +27,31 @@ namespace Gecko
 	
 	
 	/// <summary>
+    /// nsIProtocolHandlerWithDynamicFlags
+    ///
+    /// Protocols that wish to return different flags depending on the URI should
+    /// implement this interface.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("65a8e823-0591-4fc0-a56a-03265e0a4ce8")]
+	public interface nsIProtocolHandlerWithDynamicFlags
+	{
+		
+		/// <summary>
+        /// Returns protocol flags for the given URI, which may be different from the
+        /// flags for another URI of the same scheme.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetFlagsForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+	}
+	
+	/// <summary>
     /// nsIProtocolHandler
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f5753fec-a051-4ddc-8891-11f1f1575072")]
+	[Guid("a87210e6-7c8c-41f7-864d-df809015193e")]
 	public interface nsIProtocolHandler
 	{
 		
@@ -83,6 +103,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
+		
+		/// <summary>
+        /// Constructs a new channel from the given URI for this protocol handler and
+        /// sets the loadInfo for the constructed channel.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIChannel NewChannel2([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsILoadInfo aLoadinfo);
 		
 		/// <summary>
         /// Constructs a new channel from the given URI for this protocol handler.
@@ -257,5 +285,12 @@ namespace Gecko
         // by nsMixedContentBlocker
         // </summary>
 		public const ulong URI_SAFE_TO_LOAD_IN_SECURE_CONTEXT = (1<<18);
+		
+		// <summary>
+        // This URI may be fetched and the contents are visible to anyone. This is
+        // semantically equivalent to the resource being served with all-access CORS
+        // headers.
+        // </summary>
+		public const ulong URI_FETCHABLE_BY_ANYONE = (1<<19);
 	}
 }

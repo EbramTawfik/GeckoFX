@@ -31,13 +31,16 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ca68c485-9db3-4c12-82a6-4fab7948e2d5")]
+	[Guid("fe2625ec-b884-4df1-b39c-9e830e47aa94")]
 	public interface nsINetUtil
 	{
 		
 		/// <summary>
-        /// Parse a content-type header and return the content type and
-        /// charset (if any).
+        /// Parse a Content-Type header value in strict mode.  This is a more
+        /// conservative parser that reject things that violate RFC 7231 section
+        /// 3.1.1.1.  This is typically useful for parsing Content-Type header values
+        /// that are used for HTTP requests, and those that are used to make security
+        /// decisions.
         ///
         /// @param aTypeHeader the header string to parse
         /// @param [out] aCharset the charset parameter specified in the
@@ -46,7 +49,26 @@ namespace Gecko
         /// @return the MIME type specified in the header, in lower-case.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParseContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aCharset, [MarshalAs(UnmanagedType.U1)] ref bool aHadCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		void ParseRequestContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aCharset, [MarshalAs(UnmanagedType.U1)] ref bool aHadCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		
+		/// <summary>
+        /// Parse a Content-Type header value in relaxed mode.  This is a more
+        /// permissive parser that ignores things that go against RFC 7231 section
+        /// 3.1.1.1.  This is typically useful for parsing Content-Type header values
+        /// received from web servers where we want to make a best effort attempt
+        /// at extracting a useful MIME type and charset.
+        ///
+        /// NOTE: DO NOT USE THIS if you're going to make security decisions
+        /// based on the result.
+        ///
+        /// @param aTypeHeader the header string to parse
+        /// @param [out] aCharset the charset parameter specified in the
+        /// header, if any.
+        /// @param [out] aHadCharset whether a charset was explicitly specified.
+        /// @return the MIME type specified in the header, in lower-case.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ParseResponseContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aCharset, [MarshalAs(UnmanagedType.U1)] ref bool aHadCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// Test whether the given URI's handler has the given protocol flags.
@@ -150,6 +172,19 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ExtractCharsetFromContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aCharset, ref int aCharsetStart, ref int aCharsetEnd);
+		
+		/// <summary>
+        /// Parse an attribute referrer policy string (no-referrer, origin, unsafe-url)
+        /// and return the according integer code (defined in nsIHttpChannel.idl)
+        ///
+        /// @param aPolicyString
+        /// the policy string given as attribute
+        /// @return aPolicyEnum
+        /// referrer policy code from nsIHttpChannel.idl, (see parser in
+        /// ReferrerPolicy.h for details)
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint ParseAttributePolicyString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aPolicyString);
 	}
 	
 	/// <summary>nsINetUtilConsts </summary>

@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("70905274-8494-4e39-b011-d559adde3733")]
+	[Guid("e795239e-9d3c-47c4-b063-9e600fb3b287")]
 	public interface nsIDocumentLoaderFactory
 	{
 		
@@ -48,7 +48,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIContentViewer CreateInstance([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup, [MarshalAs(UnmanagedType.LPStr)] string aContentType, [MarshalAs(UnmanagedType.Interface)] nsIDocShell aContainer, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraInfo, [MarshalAs(UnmanagedType.Interface)] ref nsIStreamListener aDocListenerResult);
+		nsIContentViewer CreateInstance([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType, [MarshalAs(UnmanagedType.Interface)] nsIDocShell aContainer, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraInfo, [MarshalAs(UnmanagedType.Interface)] ref nsIStreamListener aDocListenerResult);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

@@ -55,7 +55,7 @@ namespace Gecko
 	/// <summary>nsISearchEngine </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("65fd517b-6bda-4bac-bbe1-42de1b3a7df6")]
+	[Guid("620bd920-0491-48c8-99a8-d6047e64802d")]
 	public interface nsISearchEngine
 	{
 		
@@ -208,12 +208,6 @@ namespace Gecko
 		void GetSearchFormAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSearchForm);
 		
 		/// <summary>
-        /// The search engine type.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetTypeAttribute();
-		
-		/// <summary>
         /// An optional unique identifier for this search engine within the context of
         /// the distribution, as provided by the distributing entity.
         /// </summary>
@@ -235,28 +229,44 @@ namespace Gecko
 		void GetResultDomain([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase responseType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 	}
 	
-	/// <summary>nsISearchEngineConsts </summary>
-	public class nsISearchEngineConsts
+	/// <summary>nsISearchParseSubmissionResult </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("0dc93e51-a7bf-4a16-862d-4b3469ff6206")]
+	public interface nsISearchParseSubmissionResult
 	{
 		
-		// <summary>
-        // Supported search engine types.
-        // </summary>
-		public const ulong TYPE_MOZSEARCH = 1;
+		/// <summary>
+        /// The search engine associated with the URL passed in to
+        /// nsISearchEngine::parseSubmissionURL, or null if the URL does not represent
+        /// a search submission.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISearchEngine GetEngineAttribute();
 		
-		// 
-		public const ulong TYPE_SHERLOCK = 2;
+		/// <summary>
+        /// String containing the sought terms.  This can be an empty string in case no
+        /// terms were specified or the URL does not represent a search submission.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTermsAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTerms);
 		
-		// 
-		public const ulong TYPE_OPENSEARCH = 3;
+		/// <summary>
+        /// The offset of the string |terms| in the URL passed in to
+        /// nsISearchEngine::parseSubmissionURL, or -1 if the URL does not represent
+        /// a search submission.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetTermsOffsetAttribute();
 		
-		// <summary>
-        // Supported search engine data types.
-        // </summary>
-		public const ulong DATA_XML = 1;
-		
-		// 
-		public const ulong DATA_TEXT = 2;
+		/// <summary>
+        /// The length of the |terms| in the original encoding of the URL passed in to
+        /// nsISearchEngine::parseSubmissionURL. If the search term in the original
+        /// URL is encoded then this will be bigger than |terms.length|.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetTermsLengthAttribute();
 	}
 	
 	/// <summary>nsISearchInstallCallback </summary>
@@ -318,7 +328,7 @@ namespace Gecko
 	/// <summary>nsIBrowserSearchService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("939d74a4-5b01-463c-80c7-4301f0c0f9ef")]
+	[Guid("150ef720-bbe2-4169-b9f3-ef7ec0654ced")]
 	public interface nsIBrowserSearchService
 	{
 		
@@ -351,6 +361,12 @@ namespace Gecko
 		bool GetIsInitializedAttribute();
 		
 		/// <summary>
+        /// Resets the default engine to its original value.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ResetToOriginalDefaultEngine();
+		
+		/// <summary>
         /// Adds a new search engine from the file at the supplied URI, optionally
         /// asking the user for confirmation first.  If a confirmation dialog is
         /// shown, it will offer the option to begin using the newly added engine
@@ -360,8 +376,7 @@ namespace Gecko
         /// The URL to the search engine's description file.
         ///
         /// @param dataType
-        /// An integer representing the plugin file format. Must be one
-        /// of the supported search engine data types defined above.
+        /// Obsolete, the value is ignored.
         ///
         /// @param iconURL
         /// A URL string to an icon file to be used as the search engine's
@@ -379,8 +394,8 @@ namespace Gecko
         /// addition is complete, or if the addition fails. It will not be
         /// called if addEngine throws an exception.
         ///
-        /// @throws NS_ERROR_FAILURE if the type is invalid, or if the description
-        /// file cannot be successfully loaded.
+        /// @throws NS_ERROR_FAILURE if the description file cannot be successfully
+        /// loaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddEngine([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase engineURL, int dataType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase iconURL, [MarshalAs(UnmanagedType.U1)] bool confirm, [MarshalAs(UnmanagedType.Interface)] nsISearchInstallCallback callback);
@@ -410,9 +425,12 @@ namespace Gecko
         /// @param url
         /// The URL to which search queries should be sent.
         /// Must not be null.
+        ///
+        /// @param extensionID [optional]
+        /// Optional: The correct extensionID if called by an add-on.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEngineWithDetails([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase iconURL, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase alias, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase description, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase method, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase url);
+		void AddEngineWithDetails([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase iconURL, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase alias, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase description, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase method, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase url, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase extensionID);
 		
 		/// <summary>
         /// Un-hides all engines installed in the directory corresponding to
@@ -527,5 +545,33 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCurrentEngineAttribute([MarshalAs(UnmanagedType.Interface)] nsISearchEngine aCurrentEngine);
+		
+		/// <summary>
+        /// Gets a representation of the default engine in an anonymized JSON
+        /// string suitable for recording in the Telemetry environment.
+        ///
+        /// @return an object containing anonymized info about the default engine:
+        /// name, loadPath, submissionURL (for default engines).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetDefaultEngineInfo();
+		
+		/// <summary>
+        /// Determines if the provided URL represents results from a search engine, and
+        /// provides details about the match.
+        ///
+        /// The lookup mechanism checks whether the domain name and path of the
+        /// provided HTTP or HTTPS URL matches one of the known values for the visible
+        /// search engines.  The match does not depend on which of the schemes is used.
+        /// The expected URI parameter for the search terms must exist in the query
+        /// string, but other parameters are ignored.
+        ///
+        /// @param url
+        /// String containing the URL to parse, for example
+        /// "https://www.google.com/search?q=terms".
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISearchParseSubmissionResult ParseSubmissionURL([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase url);
 	}
 }

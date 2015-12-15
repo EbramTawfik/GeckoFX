@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3e923bf6-a974-4f3b-91c4-b4fd48b37732")]
+	[Guid("b3c4c0ae-bd5e-4cad-87e0-8d210dbb3f9f")]
 	public interface nsIContentSecurityPolicy : nsISerializable
 	{
 		
@@ -60,15 +60,6 @@ namespace Gecko
 		new void Write([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aOutputStream);
 		
 		/// <summary>
-        /// Set to true when the CSP has been read in and parsed and is ready to
-        /// enforce.  This is a barrier for the nsDocument so it doesn't load any
-        /// sub-content until either it knows that a CSP is ready or will not be used.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetIsInitializedAttribute();
-		
-		/// <summary>
         /// Accessor method for a read-only string version of the policy at a given
         /// index.
         /// </summary>
@@ -83,39 +74,60 @@ namespace Gecko
 		uint GetPolicyCountAttribute();
 		
 		/// <summary>
-        /// Remove a policy associated with this CSP context.
-        /// @throws NS_ERROR_FAILURE if the index is out of bounds or invalid.
+        /// Returns whether this policy uses the directive upgrade-insecure-requests.
+        /// Please note that upgrade-insecure-reqeusts also applies if the parent or
+        /// including document (context) makes use of the directive.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePolicy(uint index);
+		bool GetUpgradeInsecureRequestsAttribute();
+		
+		/// <summary>
+        /// Obtains the referrer policy (as integer) for this browsing context as
+        /// specified in CSP.  If there are multiple policies and...
+        /// - only one sets a referrer policy: that policy is returned
+        /// - more than one sets different referrer policies: no-referrer is returned
+        /// - more than one set equivalent policies: that policy is returned
+        /// For the enumeration of policies see ReferrerPolicy.h and nsIHttpChannel.
+        ///
+        /// @param aPolicy
+        /// The referrer policy to use for the protected resource.
+        /// @return
+        /// true if a referrer policy is specified, false if it's unspecified.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetReferrerPolicy(ref uint policy);
 		
 		/// <summary>
         /// Parse and install a CSP policy.
         /// @param aPolicy
-        /// String representation of the policy (e.g., header value)
-        /// @param selfURI
-        /// the URI of the protected document/principal
+        /// String representation of the policy
+        /// (e.g., header value, meta content)
         /// @param reportOnly
         /// Should this policy affect content, script and style processing or
         /// just send reports if it is violated?
+        /// @param deliveredViaMetaTag
+        /// Indicates whether the policy was delivered via the meta tag.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendPolicy([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase policyString, [MarshalAs(UnmanagedType.Interface)] nsIURI selfURI, [MarshalAs(UnmanagedType.U1)] bool reportOnly);
+		void AppendPolicy([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase policyString, [MarshalAs(UnmanagedType.U1)] bool reportOnly, [MarshalAs(UnmanagedType.U1)] bool deliveredViaMetaTag);
 		
 		/// <summary>
-        /// Whether this policy allows in-page script.
-        /// @param shouldReportViolations
-        /// Whether or not the use of inline script should be reported.
-        /// This function always returns "true" for report-only policies, but when
-        /// any policy (report-only or otherwise) is violated,
-        /// shouldReportViolations is true as well.
+        /// Whether this policy allows inline script or style.
+        /// @param aContentPolicyType Either TYPE_SCRIPT or TYPE_STYLESHEET
+        /// @param aNonce The nonce string to check against the policy
+        /// @param aContent  The content of the inline resource to hash
+        /// (and compare to the hashes listed in the policy)
+        /// @param aLineNumber The line number of the inline resource
+        /// (used for reporting)
         /// @return
-        /// Whether or not the effects of the inline script should be allowed
-        /// (block the compilation if false).
+        /// Whether or not the effects of the inline style should be allowed
+        /// (block the rules if false).
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAllowsInlineScript([MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolations);
+		bool GetAllowsInline(System.IntPtr aContentPolicyType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNonce, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aContent, uint aLineNumber);
 		
 		/// <summary>
         /// whether this policy allows eval and eval-like functions
@@ -132,61 +144,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowsEval([MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolations);
-		
-		/// <summary>
-        /// Whether this policy allows in-page styles.
-        /// This includes <style> tags with text content and style="" attributes in
-        /// HTML elements.
-        /// @param shouldReportViolations
-        /// Whether or not the use of inline style should be reported.
-        /// If there are report-only policies, this function may return true
-        /// (don't block), but one or more policy may still want to send
-        /// violation reports so shouldReportViolations will be true even if the
-        /// inline style should be permitted.
-        /// @return
-        /// Whether or not the effects of the inline style should be allowed
-        /// (block the rules if false).
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAllowsInlineStyle([MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolations);
-		
-		/// <summary>
-        /// Whether this policy accepts the given nonce
-        /// @param aNonce
-        /// The nonce string to check against the policy
-        /// @param aContentType
-        /// The type of element on which we encountered this nonce
-        /// @param shouldReportViolation
-        /// Whether or not the use of an incorrect nonce should be reported.
-        /// This function always returns "true" for report-only policies, but when
-        /// the report-only policy is violated, shouldReportViolation is true as
-        /// well.
-        /// @return
-        /// Whether or not this nonce is valid
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAllowsNonce([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNonce, uint aContentType, [MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolation);
-		
-		/// <summary>
-        /// Whether this policy accepts the given inline resource based on the hash
-        /// of its content.
-        /// @param aContent
-        /// The content of the inline resource to hash (and compare to the
-        /// hashes listed in the policy)
-        /// @param aContentType
-        /// The type of inline element (script or style)
-        /// @param shouldReportViolation
-        /// Whether this inline resource should be reported as a hash-source
-        /// violation. If there are no hash-sources in the policy, this is
-        /// always false.
-        /// @return
-        /// Whether or not this inline resource is whitelisted by a hash-source
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAllowsHash([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aContent, ushort aContentType, [MarshalAs(UnmanagedType.U1)] ref bool shouldReportViolation);
 		
 		/// <summary>
         /// For each violated policy (of type violationType), log policy violation on
@@ -216,15 +173,12 @@ namespace Gecko
 		
 		/// <summary>
         /// Called after the CSP object is created to fill in appropriate request
-        /// context and give it a reference to its owning principal for violation
-        /// report generation.
-        /// This will use whatever data is available, choosing earlier arguments first
-        /// if multiple are available.  Either way, it will attempt to obtain the URI,
-        /// referrer and the principal from whatever is available.  If the channel is
-        /// available, it'll also store that for processing policy-uri directives.
+        /// context. Either use
+        /// * aDocument (preferred), or if no document is available, then provide
+        /// * aPrincipal
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequestContext([MarshalAs(UnmanagedType.Interface)] nsIURI selfURI, [MarshalAs(UnmanagedType.Interface)] nsIURI referrer, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal documentPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
+		void SetRequestContext([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDocument, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal);
 		
 		/// <summary>
         /// Verifies ancestry as permitted by the policy.
@@ -244,6 +198,31 @@ namespace Gecko
 		bool PermitsAncestry([MarshalAs(UnmanagedType.Interface)] nsIDocShell docShell);
 		
 		/// <summary>
+        /// Checks if a specific directive permits loading of a URI.
+        ///
+        /// NOTE: Calls to this may trigger violation reports when queried, so the
+        /// return value should not be cached.
+        ///
+        /// @param aURI
+        /// The URI about to be loaded or used.
+        /// @param aDir
+        /// The CSPDirective to query (see above constants *_DIRECTIVE).
+        /// @param aSpecific
+        /// If "true" and the directive is specified to fall back to "default-src"
+        /// when it's not explicitly provided, directivePermits will NOT try
+        /// default-src when the specific directive is not used.  Setting this to
+        /// "false" allows CSP to fall back to default-src.  This function
+        /// behaves the same for both values of canUseDefault when querying
+        /// directives that don't fall-back.
+        /// @return
+        /// Whether or not the provided URI is allowed by CSP under the given
+        /// directive. (block the pending operation if false).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool Permits([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, System.IntPtr aDir, [MarshalAs(UnmanagedType.U1)] bool aSpecific);
+		
+		/// <summary>
         /// Delegate method called by the service when sub-elements of the protected
         /// document are being loaded.  Given a bit of information about the request,
         /// decides whether or not the policy is satisfied.
@@ -253,11 +232,82 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short ShouldLoad(System.IntPtr aContentType, [MarshalAs(UnmanagedType.Interface)] nsIURI aContentLocation, [MarshalAs(UnmanagedType.Interface)] nsIURI aRequestOrigin, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeTypeGuess, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtra);
+		
+		/// <summary>
+        /// Returns the CSP in JSON notation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ToJSON([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 	}
 	
 	/// <summary>nsIContentSecurityPolicyConsts </summary>
 	public class nsIContentSecurityPolicyConsts
 	{
+		
+		// <summary>
+        // Directives supported by Content Security Policy.  These are enums for
+        // the CSPDirective type.
+        // The NO_DIRECTIVE entry is  used for checking default permissions and
+        // returning failure when asking CSP which directive to check.
+        //
+        // NOTE: When implementing a new directive, you will need to add it here but also
+        // add it to the CSPStrDirectives array in nsCSPUtils.h.
+        // </summary>
+		public const ushort NO_DIRECTIVE = 0;
+		
+		// 
+		public const ushort DEFAULT_SRC_DIRECTIVE = 1;
+		
+		// 
+		public const ushort SCRIPT_SRC_DIRECTIVE = 2;
+		
+		// 
+		public const ushort OBJECT_SRC_DIRECTIVE = 3;
+		
+		// 
+		public const ushort STYLE_SRC_DIRECTIVE = 4;
+		
+		// 
+		public const ushort IMG_SRC_DIRECTIVE = 5;
+		
+		// 
+		public const ushort MEDIA_SRC_DIRECTIVE = 6;
+		
+		// 
+		public const ushort FRAME_SRC_DIRECTIVE = 7;
+		
+		// 
+		public const ushort FONT_SRC_DIRECTIVE = 8;
+		
+		// 
+		public const ushort CONNECT_SRC_DIRECTIVE = 9;
+		
+		// 
+		public const ushort REPORT_URI_DIRECTIVE = 10;
+		
+		// 
+		public const ushort FRAME_ANCESTORS_DIRECTIVE = 11;
+		
+		// 
+		public const ushort REFLECTED_XSS_DIRECTIVE = 12;
+		
+		// 
+		public const ushort BASE_URI_DIRECTIVE = 13;
+		
+		// 
+		public const ushort FORM_ACTION_DIRECTIVE = 14;
+		
+		// 
+		public const ushort REFERRER_DIRECTIVE = 15;
+		
+		// 
+		public const ushort WEB_MANIFEST_SRC_DIRECTIVE = 16;
+		
+		// 
+		public const ushort UPGRADE_IF_INSECURE_DIRECTIVE = 17;
+		
+		// 
+		public const ushort CHILD_SRC_DIRECTIVE = 18;
 		
 		// 
 		public const ushort VIOLATION_TYPE_INLINE_SCRIPT = 1;

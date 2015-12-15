@@ -32,15 +32,16 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1aed4c36-979e-4d20-9fa0-55139da8301e")]
+	[Guid("d8fae631-7ade-4024-b288-7efe75e6b091")]
 	public interface nsICellInfoListCallback
 	{
 		
 		/// <summary>
-        /// result is an array of nsICellInfo.
+        /// result is an array of nsICellInfo, which could be instances of
+        /// nsIGsmCellInfo, nsIWcdmaCellInfo, nsICdmaCellInfo or nsILteCellInfo.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyGetCellInfoList(ref Gecko.JsVal result);
+		void NotifyGetCellInfoList(uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] nsICellInfo[] result);
 		
 		/// <summary>
         /// Callback function with error message.
@@ -52,7 +53,7 @@ namespace Gecko
 	/// <summary>nsICellInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("86667898-c9ab-44ee-8a9a-026916b3183e")]
+	[Guid("a9a34341-5a33-4e0a-98e1-13e7ea4228be")]
 	public interface nsICellInfo
 	{
 		
@@ -112,12 +113,15 @@ namespace Gecko
 		
 		// 
 		public const long TIMESTAMP_TYPE_JAVA_RIL = 4;
+		
+		// 
+		public const long UNKNOWN_VALUE = 0x7FFFFFFF;
 	}
 	
 	/// <summary>nsIGsmCellInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6345967c-61fc-45a1-8362-39e9261df052")]
+	[Guid("cc476ded-350f-4c25-9a57-6a876e32f092")]
 	public interface nsIGsmCellInfo : nsICellInfo
 	{
 		
@@ -147,37 +151,38 @@ namespace Gecko
 		new long GetTimestampAttribute();
 		
 		/// <summary>
-        /// 3-digit Mobile Country Code, 0..999, INT_MAX if unknown.
+        /// 3-digit Mobile Country Code, 0..999, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetMccAttribute();
 		
 		/// <summary>
-        /// 2 or 3-digit Mobile Network Code, 0..999, INT_MAX if unknown.
+        /// 2 or 3-digit Mobile Network Code, 0..999, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetMncAttribute();
 		
 		/// <summary>
-        /// 16-bit Location Area Code, 0..65535, INT_MAX if unknown.
+        /// 16-bit Location Area Code, 0..65535, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetLacAttribute();
 		
 		/// <summary>
-        /// 16-bit GSM Cell Identity described in TS 27.007, 0..65535, INT_MAX if unknown.
+        /// 16-bit GSM Cell Identity described in TS 27.007, 0..65535,
+        /// UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetCidAttribute();
 		
 		/// <summary>
-        /// Valid values are 0-31 as defined in TS 27.007 8.5, 99 if unknown.
+        /// Valid values are 0-31 as defined in TS 27.007 8.5, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetSignalStrengthAttribute();
 		
 		/// <summary>
-        /// Bit error rate 0-7 as defined in TS 27.007 8.5, 99 if unknown.
+        /// Bit error rate 0-7 as defined in TS 27.007 8.5, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetBitErrorRateAttribute();
@@ -186,7 +191,7 @@ namespace Gecko
 	/// <summary>nsIWcdmaCellInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("19693f98-943d-45e7-a3e8-25373228ce6b")]
+	[Guid("aa52647b-38dd-487c-be36-b46ed2e99554")]
 	public interface nsIWcdmaCellInfo : nsICellInfo
 	{
 		
@@ -216,45 +221,45 @@ namespace Gecko
 		new long GetTimestampAttribute();
 		
 		/// <summary>
-        /// 2 or 3-digit Mobile Network Code, 0..999, INT_MAX if unknown.
+        /// 2 or 3-digit Mobile Network Code, 0..999, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetMccAttribute();
 		
 		/// <summary>
-        /// 2 or 3-digit Mobile Network Code, 0..999, INT_MAX if unknown.
+        /// 2 or 3-digit Mobile Network Code, 0..999, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetMncAttribute();
 		
 		/// <summary>
-        /// 16-bit Location Area Code, 0..65535, INT_MAX if unknown.
+        /// 16-bit Location Area Code, 0..65535, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetLacAttribute();
 		
 		/// <summary>
         /// 28-bit UMTS Cell Identity described in TS 25.331, 0..268435455,
-        /// INT_MAX if unknown.
+        /// UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetCidAttribute();
 		
 		/// <summary>
         /// 9-bit UMTS Primary Scrambling Code described in TS 25.331, 0..511,
-        /// INT_MAX if unknown.
+        /// UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetPscAttribute();
 		
 		/// <summary>
-        /// Valid values are 0-31 as defined in TS 27.007 8.5, 99 if unknown.
+        /// Valid values are 0-31 as defined in TS 27.007 8.5, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetSignalStrengthAttribute();
 		
 		/// <summary>
-        /// Bit error rate 0-7 as defined in TS 27.007 8.5, 99 if unknown.
+        /// Bit error rate 0-7 as defined in TS 27.007 8.5, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetBitErrorRateAttribute();
@@ -263,7 +268,7 @@ namespace Gecko
 	/// <summary>nsICdmaCellInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("76b4a35d-7e45-42bc-a2e0-bc07a6434db3")]
+	[Guid("60a38ca7-ca62-4384-aa07-eac7d4893786")]
 	public interface nsICdmaCellInfo : nsICellInfo
 	{
 		
@@ -293,19 +298,19 @@ namespace Gecko
 		new long GetTimestampAttribute();
 		
 		/// <summary>
-        /// Network Id, 0..65535, INT_MAX if unknown.
+        /// Network Id, 0..65535, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetNetworkIdAttribute();
 		
 		/// <summary>
-        /// CDMA System Id, 0..32767, INT_MAX if unknown.
+        /// CDMA System Id, 0..32767, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetSystemIdAttribute();
 		
 		/// <summary>
-        /// Base Station Id, 0..65535, INT_MAX if unknown.
+        /// Base Station Id, 0..65535, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetBaseStationIdAttribute();
@@ -313,7 +318,7 @@ namespace Gecko
 		/// <summary>
         /// Longitude is a decimal number as specified in 3GPP2 C.S0005-A v6.0.
         /// It is represented in units of 0.25 seconds and ranges from -2592000 to
-        /// 2592000, INT_MAX if unknown.
+        /// 2592000, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetLongitudeAttribute();
@@ -321,42 +326,42 @@ namespace Gecko
 		/// <summary>
         /// Latitude is a decimal number as specified in 3GPP2 C.S0005-A v6.0.
         /// It is represented in units of 0.25 seconds and ranges from -1296000 to
-        /// 1296000, INT_MAX if unknown.
+        /// 1296000, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetLatitudeAttribute();
 		
 		/// <summary>
-        /// Valid values are positive integers, INT_MAX if unknown. This value is the
-        /// actual RSSI value multiplied by -1.
+        /// Valid values are positive integers, UNKNOWN_VALUE if unknown. This value is
+        /// the actual RSSI value multiplied by -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetCdmaDbmAttribute();
 		
 		/// <summary>
-        /// Valid values are positive integers, INT_MAX if unknown. This value is the
-        /// actual Ec/Io multiplied by -10. -1 if unknown.
+        /// Valid values are positive integers, UNKNOWN_VALUE if unknown. This value is
+        /// the actual Ec/Io multiplied by -10.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetCdmaEcioAttribute();
 		
 		/// <summary>
-        /// Valid values are positive integers, INT_MAX if unknown. This value is the
-        /// actual Evdo RSSI value multiplied by -1.
+        /// Valid values are positive integers, UNKNOWN_VALUE if unknown. This value is
+        /// the actual Evdo RSSI value multiplied by -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetEvdoDbmAttribute();
 		
 		/// <summary>
-        /// Valid values are positive integers, INT_MAX if unknown. This value is the
-        /// actual Evdo Ec/Io multiplied by -10.
+        /// Valid values are positive integers, UNKNOWN_VALUE if unknown. This value is
+        /// the actual Evdo Ec/Io multiplied by -10.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetEvdoEcioAttribute();
 		
 		/// <summary>
-        /// Valid values are 0-8, INT_MAX if unknown. 8 is the highest signal to noise
-        /// ratio.
+        /// Valid values are 0-8, UNKNOWN_VALUE if unknown. 8 is the highest signal to
+        /// noise ratio.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetEvdoSnrAttribute();
@@ -365,7 +370,7 @@ namespace Gecko
 	/// <summary>nsILteCellInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("122937d9-1ee5-45e0-a360-5959d578bc31")]
+	[Guid("e7b3e826-bb85-49b2-a2f1-70af46c47733")]
 	public interface nsILteCellInfo : nsICellInfo
 	{
 		
@@ -395,64 +400,66 @@ namespace Gecko
 		new long GetTimestampAttribute();
 		
 		/// <summary>
-        /// 3-digit Mobile Country Code, 0..999, INT_MAX if unknown.
+        /// 3-digit Mobile Country Code, 0..999, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetMccAttribute();
 		
 		/// <summary>
-        /// 2 or 3-digit Mobile Network Code, 0..999, INT_MAX if unknown.
+        /// 2 or 3-digit Mobile Network Code, 0..999, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetMncAttribute();
 		
 		/// <summary>
-        /// 28-bit Cell Identity, 0..268435455, INT_MAX if unknown.
+        /// 28-bit Cell Identity, 0..268435455, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetCidAttribute();
 		
 		/// <summary>
-        /// Physical cell id, 0..503, INT_MAX if unknown.
+        /// Physical cell id, 0..503, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetPcidAttribute();
 		
 		/// <summary>
-        /// 16-bit tracking area code, 0..65535, INT_MAX if unknown.
+        /// 16-bit tracking area code, 0..65535, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetTacAttribute();
 		
 		/// <summary>
-        /// Valid values are 0-31 as defined in TS 27.007 8.5, 99 if unknown.
+        /// Valid values are 0-31 as defined in TS 27.007 8.5, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetSignalStrengthAttribute();
 		
 		/// <summary>
         /// The current Reference Signal Receive Power in dBm multipled by -1.
-        /// Range: 44 to 140 dBm, INT_MAX if unknown.
+        /// Range: 44 to 140 dBm, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetRsrpAttribute();
 		
 		/// <summary>
         /// The current Reference Signal Receive Quality in dB multiplied by -1.
-        /// Range: 3 to 20 dB, INT_MAX if unknown.
+        /// Range: 3 to 20 dB, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetRsrqAttribute();
 		
 		/// <summary>
         /// The current reference signal signal-to-noise ratio in 0.1 dB units.
-        /// Range: -200 to +300 (-200 = -20.0 dB, +300 = 30dB), INT_MAX if unknown.
+        /// Range: -200 to +300 (-200 = -20.0 dB, +300 = 30dB), UNKNOWN_VALUE if
+        /// unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetRssnrAttribute();
 		
 		/// <summary>
-        /// The current Channel Quality Indicator. Range: 0 to 15, INT_MAX if unknown.
+        /// The current Channel Quality Indicator. Range: 0 to 15, UNKNOWN_VALUE if
+        /// unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetCqiAttribute();
@@ -460,7 +467,7 @@ namespace Gecko
 		/// <summary>
         /// Timing advance in micro seconds for a one way trip from cell to device.
         /// Approximate distance can be calculated using 300m/us * timingAdvance.
-        /// Range: 0 to 0x7FFFFFFE, INT_MAX if unknown.
+        /// Range: 0 to 0x7FFFFFFE, UNKNOWN_VALUE if unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetTimingAdvanceAttribute();

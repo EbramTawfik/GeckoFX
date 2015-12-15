@@ -47,13 +47,14 @@ namespace Gecko
 	/// <summary>nsINetworkStatsServiceProxy </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("705c01d6-8574-464c-8ec9-ac1522a45546")]
+	[Guid("f4f3e901-e102-499d-9d37-dc9951f52df7")]
 	public interface nsINetworkStatsServiceProxy
 	{
 		
 		/// <summary>
         /// An interface used to record per-app traffic data.
         /// @param aAppId app id
+        /// @param aIsInBrowser true if the iframe element is mozbrowser
         /// @param aNetworkInterface network
         /// @param aTimeStamp time stamp
         /// @param aRxBytes received data amount
@@ -62,7 +63,7 @@ namespace Gecko
         /// @param aCallback an optional callback
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveAppStats(uint aAppId, [MarshalAs(UnmanagedType.Interface)] nsINetworkInterface aNetwork, ulong aTimeStamp, ulong aRxBytes, ulong aTxBytes, [MarshalAs(UnmanagedType.U1)] bool aIsAccumulative, [MarshalAs(UnmanagedType.Interface)] nsINetworkStatsServiceProxyCallback aCallback);
+		void SaveAppStats(uint aAppId, [MarshalAs(UnmanagedType.U1)] bool aIsInBrowser, [MarshalAs(UnmanagedType.Interface)] nsINetworkInfo aNetworkInfo, ulong aTimeStamp, ulong aRxBytes, ulong aTxBytes, [MarshalAs(UnmanagedType.U1)] bool aIsAccumulative, [MarshalAs(UnmanagedType.Interface)] nsINetworkStatsServiceProxyCallback aCallback);
 		
 		/// <summary>
         /// An interface used to record per-system service traffic data.
@@ -75,6 +76,6 @@ namespace Gecko
         /// @param aCallback an optional callback
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveServiceStats([MarshalAs(UnmanagedType.LPStr)] string aServiceType, [MarshalAs(UnmanagedType.Interface)] nsINetworkInterface aNetwork, ulong aTimeStamp, ulong aRxBytes, ulong aTxBytes, [MarshalAs(UnmanagedType.U1)] bool aIsAccumulative, [MarshalAs(UnmanagedType.Interface)] nsINetworkStatsServiceProxyCallback aCallback);
+		void SaveServiceStats([MarshalAs(UnmanagedType.LPStr)] string aServiceType, [MarshalAs(UnmanagedType.Interface)] nsINetworkInfo aNetworkInfo, ulong aTimeStamp, ulong aRxBytes, ulong aTxBytes, [MarshalAs(UnmanagedType.U1)] bool aIsAccumulative, [MarshalAs(UnmanagedType.Interface)] nsINetworkStatsServiceProxyCallback aCallback);
 	}
 }

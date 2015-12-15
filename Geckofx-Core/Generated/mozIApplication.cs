@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7bd62430-c374-49eb-be1b-ce821a180360")]
+	[Guid("e76aa5e0-80b2-404f-bccc-1067828bb6ed")]
 	public interface mozIApplication
 	{
 		
@@ -41,6 +41,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasPermission([MarshalAs(UnmanagedType.LPStr)] string permission);
+		
+		/// <summary>
+        /// Return true if this app can be a widget and
+        /// its |widgetPages| contains |page|
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool HasWidgetPage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase pageURL);
 		
 		/// <summary>
         ///Application status as defined in nsIPrincipal. </summary>
@@ -96,5 +104,16 @@ namespace Gecko
         ///role copied from the manifest </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetRoleAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aRole);
+		
+		/// <summary>
+        ///Returns the kind of the app. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetKindAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aKind);
+		
+		/// <summary>
+        ///Returns the app's principal </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIPrincipal GetPrincipalAttribute();
 	}
 }

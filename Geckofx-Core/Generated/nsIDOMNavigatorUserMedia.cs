@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1cbc6b7b-dbf4-41fb-96cb-ec52c84cf409")]
+	[Guid("cebcefca-2de1-460d-b253-d0582c50b40f")]
 	public interface nsIMediaDevice
 	{
 		
@@ -48,9 +48,6 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetIdAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aId);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFacingModeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aFacingMode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMediaSourceAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMediaSource);
@@ -78,7 +75,7 @@ namespace Gecko
 		
 		/// <summary>
         /// value must be a nsIDOMBlob if picture is true and a
-        /// nsIDOMLocalMediaStream if either audio or video are true.
+        /// DOMLocalMediaStream if either audio or video are true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnSuccess([MarshalAs(UnmanagedType.Interface)] nsISupports value);
@@ -87,13 +84,13 @@ namespace Gecko
 	/// <summary>nsIDOMGetUserMediaErrorCallback </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2614bbcf-85cc-43e5-8740-964f52bdc7ca")]
+	[Guid("39e96c61-2636-4f0e-918e-9bb64276492a")]
 	public interface nsIDOMGetUserMediaErrorCallback
 	{
 		
 		/// <summary>Member OnError </summary>
 		/// <param name='error'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase error);
+		void OnError([MarshalAs(UnmanagedType.Interface)] nsISupports error);
 	}
 }

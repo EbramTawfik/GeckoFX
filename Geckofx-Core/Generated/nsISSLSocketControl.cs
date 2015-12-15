@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ec72446c-8241-457f-ba75-83d214392289")]
+	[Guid("418265c8-654e-4fbb-ba62-4eed27de1f03")]
 	public interface nsISSLSocketControl
 	{
 		
@@ -95,22 +95,23 @@ namespace Gecko
 		bool JoinConnection([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase npnProtocol, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase hostname, int port);
 		
 		/// <summary>
+        ///Determine if existing connection should be trusted to convey information about
+        /// a hostname.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsAcceptableForHost([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase hostname);
+		
+		/// <summary>
         ///The Key Exchange Algorithm is used when determining whether or
-        ///       not to do false start and whether or not HTTP/2 can be used.
-        ///       After a handshake is complete it can be read from KEAUsed,
-        ///       before a handshake is started it may be set through KEAExpected.
+        ///       not HTTP/2 can be used.
+        ///       After a handshake is complete it can be read from KEAUsed.
         ///       The values correspond to the SSLKEAType enum in NSS or the
         ///       KEY_EXCHANGE_UNKNOWN constant defined below.
         ///       KEAKeyBits is the size/security-level used for the KEA.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short GetKEAUsedAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short GetKEAExpectedAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKEAExpectedAttribute(short aKEAExpected);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetKEAKeyBitsAttribute();
@@ -123,6 +124,46 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short GetSSLVersionUsedAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		short GetSSLVersionOfferedAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		short GetMACAlgorithmUsedAttribute();
+		
+		/// <summary>
+        /// If set before the server requests a client cert (assuming it does so at
+        /// all), then this cert will be presented to the server, instead of asking
+        /// the user or searching the set of rememebered user cert decisions.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIX509Cert GetClientCertAttribute();
+		
+		/// <summary>
+        /// If set before the server requests a client cert (assuming it does so at
+        /// all), then this cert will be presented to the server, instead of asking
+        /// the user or searching the set of rememebered user cert decisions.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetClientCertAttribute([MarshalAs(UnmanagedType.Interface)] nsIX509Cert aClientCert);
+		
+		/// <summary>
+        /// bypassAuthentication is true if the server certificate checks are
+        /// not be enforced. This is to enable non-secure transport over TLS.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetBypassAuthenticationAttribute();
+		
+		/// <summary>
+        /// failedVerification is true if any enforced certificate checks have failed.
+        /// Connections that have not yet tried to verify, have verifications bypassed,
+        /// or are using acceptable exceptions will all return false.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetFailedVerificationAttribute();
 	}
 	
 	/// <summary>nsISSLSocketControlConsts </summary>
@@ -147,5 +188,30 @@ namespace Gecko
 		
 		// 
 		public const short SSL_VERSION_UNKNOWN = -1;
+		
+		// <summary>
+        //These values match the NSS defined values in sslt.h </summary>
+		public const short SSL_MAC_UNKNOWN = -1;
+		
+		// 
+		public const short SSL_MAC_NULL = 0;
+		
+		// 
+		public const short SSL_MAC_MD5 = 1;
+		
+		// 
+		public const short SSL_MAC_SHA = 2;
+		
+		// 
+		public const short SSL_HMAC_MD5 = 3;
+		
+		// 
+		public const short SSL_HMAC_SHA = 4;
+		
+		// 
+		public const short SSL_HMAC_SHA256 = 5;
+		
+		// 
+		public const short SSL_MAC_AEAD = 6;
 	}
 }

@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("AF13EA3A-D488-4308-B843-526E055AB943")]
+	[Guid("35BE2D7E-F29B-48EC-BF7E-80A30A724DE3")]
 	public interface nsIContentViewerEdit
 	{
 		
@@ -77,6 +77,12 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanGetContentsAttribute();
+		
+		/// <summary>
+        /// Usually this will be the node that was context-clicked.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCommandNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 	}
 	
 	/// <summary>nsIContentViewerEditConsts </summary>

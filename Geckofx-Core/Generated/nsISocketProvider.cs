@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("00b3df92-e830-11d8-d48e-0004e22243f8")]
+	[Guid("508d5469-9e1e-4a08-b5b0-7cfebba1e51a")]
 	public interface nsISocketProvider
 	{
 		
@@ -41,9 +41,9 @@ namespace Gecko
         /// @param aFamily
         /// The address family for this socket (PR_AF_INET or PR_AF_INET6).
         /// @param aHost
-        /// The hostname for this connection.
+        /// The origin hostname for this connection.
         /// @param aPort
-        /// The port for this connection.
+        /// The origin port for this connection.
         /// @param aProxyHost
         /// If non-null, the proxy hostname for this connection.
         /// @param aProxyPort
@@ -57,7 +57,7 @@ namespace Gecko
         /// object typically implements nsITransportSecurityInfo.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NewSocket(int aFamily, [MarshalAs(UnmanagedType.LPStr)] string aHost, int aPort, [MarshalAs(UnmanagedType.LPStr)] string aProxyHost, int aProxyPort, uint aFlags, ref System.IntPtr aFileDesc, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aSecurityInfo);
+		void NewSocket(int aFamily, [MarshalAs(UnmanagedType.LPStr)] string aHost, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aProxy, uint aFlags, ref System.IntPtr aFileDesc, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aSecurityInfo);
 		
 		/// <summary>
         /// addToSocket
@@ -70,7 +70,7 @@ namespace Gecko
         /// which is an in-param instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddToSocket(int aFamily, [MarshalAs(UnmanagedType.LPStr)] string aHost, int aPort, [MarshalAs(UnmanagedType.LPStr)] string aProxyHost, int aProxyPort, uint aFlags, System.IntPtr aFileDesc, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aSecurityInfo);
+		void AddToSocket(int aFamily, [MarshalAs(UnmanagedType.LPStr)] string aHost, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aProxy, uint aFlags, System.IntPtr aFileDesc, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aSecurityInfo);
 	}
 	
 	/// <summary>nsISocketProviderConsts </summary>
@@ -104,5 +104,12 @@ namespace Gecko
         // connections to share state with each other.
         // </summary>
 		public const ulong NO_PERMANENT_STORAGE = 1<<2;
+		
+		// <summary>
+        // This flag is an explicit opt-in that allows a normally secure socket
+        // provider to use, at its discretion, an insecure algorithm. e.g.
+        // a TLS socket without authentication.
+        // </summary>
+		public const ulong MITM_OK = 1<<3;
 	}
 }

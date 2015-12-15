@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("833f30de-94c7-4630-a852-2300ef329d7b")]
+	[Guid("87ee993e-985f-4a43-a974-0d9512da2fb0")]
 	public interface nsIHTMLEditor
 	{
 		
@@ -586,13 +586,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetReturnInParagraphCreatesNewParagraphAttribute([MarshalAs(UnmanagedType.U1)] bool aReturnInParagraphCreatesNewParagraph);
-		
-		/// <summary>
-        /// Checks whether a BR node is visible to the user.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool BreakIsVisible([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 		
 		/// <summary>
         /// Get an active editor's editing host in DOM window.  If this editor isn't

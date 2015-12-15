@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("306ACF4D-C6DF-4EF6-BDA9-5CB92E83EDD9")]
+	[Guid("893e29fb-2e84-454e-afc7-41fadbe93fd9")]
 	public interface nsIHttpChannelChild
 	{
 		
@@ -44,9 +44,27 @@ namespace Gecko
 		void AddCookiesToRequest();
 		
 		/// <summary>
+        /// to the corresponding parent channel when a redirect occurs.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ForceIntercepted();
+		
+		/// <summary>
         /// Headers that the channel client has set via SetRequestHeader.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetClientSetRequestHeadersAttribute();
+		
+		/// <summary>
+        /// Headers that the channel client has set via SetRequestHeader.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetClientSetCorsPreflightParameters(System.IntPtr args);
+		
+		/// <summary>
+        /// an entry from the CORS preflight cache in the parent process.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveCorsPreflightCacheEntry([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aRequestingPrincipal);
 	}
 }

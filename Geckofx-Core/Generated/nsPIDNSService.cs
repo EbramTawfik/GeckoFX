@@ -94,6 +94,26 @@ namespace Gecko
 		new nsIDNSRecord Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHostName, uint aFlags);
 		
 		/// <summary>
+        /// kicks off an asynchronous host lookup.
+        ///
+        /// This function is identical to asyncResolve except an additional
+        /// parameter aNetwortInterface. If parameter aNetworkInterface is an empty
+        /// string function will return the same result as asyncResolve.
+        /// Setting aNetworkInterface value make only sense for gonk,because it
+        /// an per networking interface query is possible.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsICancelable AsyncResolveExtended([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHostName, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNetworkInterface, [MarshalAs(UnmanagedType.Interface)] nsIDNSListener aListener, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aListenerTarget);
+		
+		/// <summary>
+        /// Attempts to cancel a previously requested async DNS lookup
+        /// This is an extended versin with a additional parameter aNetworkInterface
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void CancelAsyncResolveExtended([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHostName, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNetworkInterface, [MarshalAs(UnmanagedType.Interface)] nsIDNSListener aListener, int aReason);
+		
+		/// <summary>
         /// The method takes a pointer to an nsTArray
         /// and fills it with cache entry data
         /// Called by the networking dashboard

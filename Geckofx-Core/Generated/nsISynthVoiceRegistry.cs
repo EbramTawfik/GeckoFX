@@ -32,21 +32,22 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("53dcc868-4193-4c3c-a1d9-fe5a0a6af2fb")]
+	[Guid("dac09c3a-156e-4025-a4ab-bc88b0ea92e7")]
 	public interface nsISynthVoiceRegistry
 	{
 		
 		/// <summary>
         /// Register a speech synthesis voice.
         ///
-        /// @param aService      the service that provides this voice.
-        /// @param aUri          a unique identifier for this voice.
-        /// @param aName         human-readable name for this voice.
-        /// @param aLang         a BCP 47 language tag.
-        /// @param aLocalService true if service does not require network.
+        /// @param aService          the service that provides this voice.
+        /// @param aUri              a unique identifier for this voice.
+        /// @param aName             human-readable name for this voice.
+        /// @param aLang             a BCP 47 language tag.
+        /// @param aLocalService     true if service does not require network.
+        /// @param aQueuesUtterances true if voice only speaks one utterance at a time
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddVoice([MarshalAs(UnmanagedType.Interface)] nsISpeechService aService, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUri, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aLang, [MarshalAs(UnmanagedType.U1)] bool aLocalService);
+		void AddVoice([MarshalAs(UnmanagedType.Interface)] nsISpeechService aService, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUri, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aLang, [MarshalAs(UnmanagedType.U1)] bool aLocalService, [MarshalAs(UnmanagedType.U1)] bool aQueuesUtterances);
 		
 		/// <summary>
         /// Remove a speech synthesis voice.

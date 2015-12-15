@@ -245,7 +245,7 @@ namespace Gecko
 	/// <summary>nsIMemoryReporterManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("51e17609-e98a-47cc-9f95-095ef3c3823e")]
+	[Guid("61de6dc7-ed11-4104-a577-79941f22f434")]
 	public interface nsIMemoryReporterManager
 	{
 		
@@ -264,6 +264,11 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RegisterStrongReporter([MarshalAs(UnmanagedType.Interface)] nsIMemoryReporter reporter);
 		
+		/// <summary>Member RegisterStrongAsyncReporter </summary>
+		/// <param name='reporter'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterStrongAsyncReporter([MarshalAs(UnmanagedType.Interface)] nsIMemoryReporter reporter);
+		
 		/// <summary>
         /// Like registerReporter, but the Manager service will hold a weak reference
         /// via a raw pointer to the given reporter.  The reporter should be
@@ -273,6 +278,11 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RegisterWeakReporter([MarshalAs(UnmanagedType.Interface)] nsIMemoryReporter reporter);
+		
+		/// <summary>Member RegisterWeakAsyncReporter </summary>
+		/// <param name='reporter'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterWeakAsyncReporter([MarshalAs(UnmanagedType.Interface)] nsIMemoryReporter reporter);
 		
 		/// <summary>
         /// Unregister the given memory reporter, which must have been registered with
@@ -335,18 +345,17 @@ namespace Gecko
 		void GetReportsExtended([MarshalAs(UnmanagedType.Interface)] nsIMemoryReporterCallback handleReport, [MarshalAs(UnmanagedType.Interface)] nsISupports handleReportData, [MarshalAs(UnmanagedType.Interface)] nsIFinishReportingCallback finishReporting, [MarshalAs(UnmanagedType.Interface)] nsISupports finishReportingData, [MarshalAs(UnmanagedType.U1)] bool anonymize, [MarshalAs(UnmanagedType.U1)] bool minimizeMemoryUsage, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase DMDDumpIdent);
 		
 		/// <summary>
-        /// Get memory reports in the current process only.  |handleReport| is called
-        /// for each report.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetReportsForThisProcess([MarshalAs(UnmanagedType.Interface)] nsIMemoryReporterCallback handleReport, [MarshalAs(UnmanagedType.Interface)] nsISupports handleReportData, [MarshalAs(UnmanagedType.U1)] bool anonymize);
-		
-		/// <summary>
         /// As above, but if DMD is enabled and |DMDFile| is non-null then
         /// write a DMD report to that file and close it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetReportsForThisProcessExtended([MarshalAs(UnmanagedType.Interface)] nsIMemoryReporterCallback handleReport, [MarshalAs(UnmanagedType.Interface)] nsISupports handleReportData, [MarshalAs(UnmanagedType.U1)] bool anonymize, System.IntPtr DMDFile);
+		void GetReportsForThisProcessExtended([MarshalAs(UnmanagedType.Interface)] nsIMemoryReporterCallback handleReport, [MarshalAs(UnmanagedType.Interface)] nsISupports handleReportData, [MarshalAs(UnmanagedType.U1)] bool anonymize, System.IntPtr DMDFile, [MarshalAs(UnmanagedType.Interface)] nsIFinishReportingCallback finishReporting, [MarshalAs(UnmanagedType.Interface)] nsISupports finishReportingData);
+		
+		/// <summary>
+        /// Called by an asynchronous memory reporter upon completion.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void EndReport();
 		
 		/// <summary>
         /// The memory reporter manager, for the most part, treats reporters
@@ -356,20 +365,14 @@ namespace Gecko
         /// interesting that we want external code (e.g. telemetry) to be able to rely
         /// on them.
         ///
-        /// Note that these are not reporters and so getReports() and
-        /// getReportsForThisProcess() do not look at them.  However, distinguished
-        /// amounts can be embedded in a reporter.
+        /// Note that these are not reporters and so getReports() does not look at
+        /// them.  However, distinguished amounts can be embedded in a reporter.
         ///
         /// Access to these attributes can fail.  In particular, some of them are not
         /// available on all platforms.
         ///
         /// If you add a new distinguished amount, please update
         /// toolkit/components/aboutmemory/tests/test_memoryReporters.xul.
-        ///
-        /// |explicit| (UNITS_BYTES)  The total size of explicit memory allocations,
-        /// both at the OS-level (eg. via mmap, VirtualAlloc) and at the heap level
-        /// (eg. via malloc, calloc, operator new).  It covers all heap allocations,
-        /// but will miss any OS-level ones not covered by memory reporters.
         ///
         /// |vsize| (UNITS_BYTES)  The virtual size, i.e. the amount of address space
         /// taken up.
@@ -384,6 +387,8 @@ namespace Gecko
         /// |resident| can purge pages, which is slow.  It also affects the result of
         /// |residentFast|, and so |resident| and |residentFast| should not be used
         /// together.
+        ///
+        /// |residentPeak| (UNITS_BYTES)  The peak resident size.
         ///
         /// |residentUnique| (UNITS_BYTES)  The unique set size (a.k.a. USS).
         ///
@@ -418,11 +423,6 @@ namespace Gecko
         /// major) page faults that have occurred since the process started.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		long GetExplicitAttribute();
-		
-		/// <summary>Member GetVsizeAttribute </summary>
-		/// <returns>A System.Int64</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetVsizeAttribute();
 		
 		/// <summary>Member GetVsizeMaxContiguousAttribute </summary>
@@ -439,6 +439,11 @@ namespace Gecko
 		/// <returns>A System.Int64</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetResidentFastAttribute();
+		
+		/// <summary>Member GetResidentPeakAttribute </summary>
+		/// <returns>A System.Int64</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetResidentPeakAttribute();
 		
 		/// <summary>Member GetResidentUniqueAttribute </summary>
 		/// <returns>A System.Int64</returns>

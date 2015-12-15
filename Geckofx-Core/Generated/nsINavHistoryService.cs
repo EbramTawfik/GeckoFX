@@ -217,7 +217,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5bac9734-c0ff-44eb-8d19-da88462ff6da")]
+	[Guid("3E9CC95F-0D93-45F1-894F-908EEB9866D7")]
 	public interface nsINavHistoryContainerResultNode : nsINavHistoryResultNode
 	{
 		
@@ -458,17 +458,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURIString, long aTime, long aItemId, [MarshalAs(UnmanagedType.U1)] bool aRecursive);
-		
-		/// <summary>
-        /// Returns false if this node's list of children can be modified
-        /// (adding or removing children, or reordering children), or true if
-        /// the UI should not allow the list of children to be modified.
-        /// This is false for bookmark folder nodes unless setFolderReadOnly() has
-        /// been called to override it, and true for non-folder nodes.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetChildrenReadOnlyAttribute();
 	}
 	
 	/// <summary>nsINavHistoryContainerResultNodeConsts </summary>
@@ -494,7 +483,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a4144c3e-8125-46d5-a719-831bec8095f4")]
+	[Guid("62817759-4FEE-44A3-B58C-3E2F5AFC9D0A")]
 	public interface nsINavHistoryQueryResultNode : nsINavHistoryContainerResultNode
 	{
 		
@@ -737,17 +726,6 @@ namespace Gecko
 		new nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURIString, long aTime, long aItemId, [MarshalAs(UnmanagedType.U1)] bool aRecursive);
 		
 		/// <summary>
-        /// Returns false if this node's list of children can be modified
-        /// (adding or removing children, or reordering children), or true if
-        /// the UI should not allow the list of children to be modified.
-        /// This is false for bookmark folder nodes unless setFolderReadOnly() has
-        /// been called to override it, and true for non-folder nodes.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetChildrenReadOnlyAttribute();
-		
-		/// <summary>
         /// Get the queries which build this node's children.
         /// Only valid for RESULT_TYPE_QUERY nodes.
         /// </summary>
@@ -763,11 +741,20 @@ namespace Gecko
 		nsINavHistoryQueryOptions GetQueryOptionsAttribute();
 		
 		/// <summary>
-        /// For both simple folder nodes and simple-folder-query nodes, this is set
-        /// to the concrete itemId of the folder. Otherwise, this is set to -1.
+        /// For both simple folder queries and folder shortcut queries, this is set to
+        /// the concrete itemId of the folder (i.e. for folder shortcuts it's the
+        /// target folder id).  Otherwise, this is set to -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetFolderItemIdAttribute();
+		
+		/// <summary>
+        /// For both simple folder queries and folder shortcut queries, this is set to
+        /// the concrete guid of the folder (i.e. for folder shortcuts it's the target
+        /// folder guid). Otherwise, this is set to an empty string.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTargetFolderGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aTargetFolderGuid);
 	}
 	
 	/// <summary>
@@ -1957,24 +1944,18 @@ namespace Gecko
 		void SetExcludeQueriesAttribute([MarshalAs(UnmanagedType.U1)] bool aExcludeQueries);
 		
 		/// <summary>
-        /// Set to true to exclude read-only folders from the query results. This is
-        /// designed for cases where you want to give the user the option of filing
-        /// something into a list of folders. It only affects cases where the actual
-        /// folder result node would appear in its parent folder and filters it out.
-        /// It doesn't affect the query at all, and doesn't affect more complex
-        /// queries (such as "folders with annotation X").
+        /// DO NOT USE THIS API. IT'LL BE REMOVED IN BUG 1072833.
+        ///
+        /// Set to true to exclude live bookmarks from the query results.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetExcludeReadOnlyFoldersAttribute();
 		
 		/// <summary>
-        /// Set to true to exclude read-only folders from the query results. This is
-        /// designed for cases where you want to give the user the option of filing
-        /// something into a list of folders. It only affects cases where the actual
-        /// folder result node would appear in its parent folder and filters it out.
-        /// It doesn't affect the query at all, and doesn't affect more complex
-        /// queries (such as "folders with annotation X").
+        /// DO NOT USE THIS API. IT'LL BE REMOVED IN BUG 1072833.
+        ///
+        /// Set to true to exclude live bookmarks from the query results.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetExcludeReadOnlyFoldersAttribute([MarshalAs(UnmanagedType.U1)] bool aExcludeReadOnlyFolders);
@@ -2261,7 +2242,7 @@ namespace Gecko
 	/// <summary>nsINavHistoryService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("baebc597-9daf-4103-a325-e41ef9e7608a")]
+	[Guid("8a1f527e-c9d7-4a51-bf0c-d86f0379b701")]
 	public interface nsINavHistoryService
 	{
 		
@@ -2316,27 +2297,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MarkPageAsFollowedLink([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
-		
-		/// <summary>
-        /// Gets the stored character-set for an URI.
-        ///
-        /// @param aURI
-        /// URI to retrieve character-set for
-        /// @return character-set, empty string if not found
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
-		
-		/// <summary>
-        /// Sets the character-set for an URI.
-        ///
-        /// @param aURI
-        /// URI to set the character-set for
-        /// @param aCharset
-        /// character-set to be set
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCharset);
 		
 		/// <summary>
         /// Returns true if this URI would be added to the history. You don't have to
@@ -2413,6 +2373,12 @@ namespace Gecko
 		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsINavHistoryObserver observer);
 		
 		/// <summary>
+        /// Gets an array of registered nsINavHistoryObserver objects.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetObservers(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsINavHistoryObserver[] observers);
+		
+		/// <summary>
         /// Runs the passed callback in batch mode. Use this when a lot of things
         /// are about to change. Calls can be nested, observers will only be
         /// notified when all batches begin/end.
@@ -2432,6 +2398,12 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHistoryDisabledAttribute();
+		
+		/// <summary>
+        /// Clear all TRANSITION_EMBED visits.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ClearEmbedVisits();
 	}
 	
 	/// <summary>nsINavHistoryServiceConsts </summary>
@@ -2513,7 +2485,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5143f2bb-be0a-4faf-9acb-b0ed3f82952c")]
+	[Guid("5a5a9154-95ac-4e3d-90df-558816297407")]
 	public interface nsINavHistoryBatchCallback
 	{
 		

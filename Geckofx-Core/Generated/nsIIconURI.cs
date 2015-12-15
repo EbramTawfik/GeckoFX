@@ -34,21 +34,25 @@ namespace Gecko
     ///
     /// What *is* a moz-icon URI you ask?  Well, it has the following syntax:
     ///
-    /// moz-icon:[<valid-url> | //<file-with-extension> | //stock/<stock-icon>]? ['?'[<parameter-value-pairs>]]
+    /// moz-icon:[<valid-url> | //<file-with-extension> | //stock/<stock-icon>]?
+    /// ['?'[<parameter-value-pairs>]]
     ///
     /// <valid-url> is a valid URL spec.
     ///
     /// <file-with-extension> is any filename with an extension, e.g. "dummy.html".
-    /// If the file you want an icon for isn't known to exist, you can use this instead of a URL and just
-    /// place a dummy file name with the extension or content type you want.
+    /// If the file you want an icon for isn't known to exist, you can use this
+    /// instead of a URL and just place a dummy file name with the extension or
+    /// content type you want.
     ///
     /// <stock-icon> is the name of a platform-dependant stock icon.
     ///
     /// Legal parameter value pairs are listed below:
     ///
     /// Parameter:   size
-    /// Values:      [<integer> | button | toolbar | toolbarsmall | menu | dialog]
-    /// Description: If integer, this is the desired size in square pixels of the icon
+    /// Values:      [<integer> | button | toolbar | toolbarsmall | menu |
+    /// dialog]
+    /// Description: If integer, this is the desired size in square pixels of
+    /// the icon
     /// Else, use the OS default for the specified keyword context.
     ///
     /// Parameter:   state
@@ -57,11 +61,12 @@ namespace Gecko
     ///
     /// Parameter:   contentType
     /// Values:      <mime-type>
-    /// Description: The mime type we want an icon for. This is ignored by stock images.
+    /// Description: The mime type we want an icon for. This is ignored by
+    /// stock images.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("da53adda-cbe3-41bc-a57d-fdd7a0ff448b")]
+	[Guid("f8fe5ef2-5f2b-43f3-857d-5b64d192c427")]
 	public interface nsIMozIconURI : nsIURI
 	{
 		
@@ -273,6 +278,14 @@ namespace Gecko
 		new void GetAsciiSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAsciiSpec);
 		
 		/// <summary>
+        /// The host:port (or simply the host, if port == -1), with an ASCII compatible
+        /// encoding.  Host portion follows the IDNA draft spec.  The result is strictly
+        /// ASCII.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetAsciiHostPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAsciiHostPort);
+		
+		/// <summary>
         /// The URI host with an ASCII compatible encoding.  Follows the IDNA
         /// draft spec for converting internationalized domain names (UTF-8) to
         /// ASCII for compatibility with existing internet infrasture.
@@ -342,82 +355,62 @@ namespace Gecko
 		new bool GetHasRefAttribute();
 		
 		/// <summary>
-        /// iconFile
-        ///
-        /// the file URL contained within this moz-icon url, or null.
+        /// iconFile: the file URL contained within this moz-icon url, or null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURL GetIconURLAttribute();
 		
 		/// <summary>
-        /// iconFile
-        ///
-        /// the file URL contained within this moz-icon url, or null.
+        /// iconFile: the file URL contained within this moz-icon url, or null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetIconURLAttribute([MarshalAs(UnmanagedType.Interface)] nsIURL aIconURL);
 		
 		/// <summary>
-        /// imageSize
-        ///
-        /// The image area in square pixels, defaulting to 16 if unspecified.
+        /// imageSize: The image area in square pixels, defaults to 16 if unspecified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetImageSizeAttribute();
 		
 		/// <summary>
-        /// imageSize
-        ///
-        /// The image area in square pixels, defaulting to 16 if unspecified.
+        /// imageSize: The image area in square pixels, defaults to 16 if unspecified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetImageSizeAttribute(uint aImageSize);
 		
 		/// <summary>
-        /// stockIcon
-        ///
-        /// The stock icon name requested from the OS.
+        /// stockIcon: The stock icon name requested from the OS.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetStockIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aStockIcon);
 		
 		/// <summary>
-        /// iconSize
-        ///
-        /// The stock icon size requested from the OS.
+        /// iconSize: The stock icon size requested from the OS.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetIconSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aIconSize);
 		
 		/// <summary>
-        /// iconState
-        ///
-        /// The stock icon state requested from the OS.
+        /// iconState: The stock icon state requested from the OS.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetIconStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aIconState);
 		
 		/// <summary>
-        /// contentType
-        ///
-        /// A valid mime type, or the empty string.
+        /// contentType: A valid mime type, or the empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType);
 		
 		/// <summary>
-        /// contentType
-        ///
-        /// A valid mime type, or the empty string.
+        /// contentType: A valid mime type, or the empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType);
 		
 		/// <summary>
-        /// fileExtension
-        ///
-        /// The file extension of the file which we are looking up.
+        /// fileExtension: The file extension of the file which we are looking up.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetFileExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFileExtension);

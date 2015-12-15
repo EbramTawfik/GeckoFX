@@ -33,13 +33,12 @@ namespace Gecko
     /// there is an nsIAccessibleDocument for each document
     /// whether it is XUL, HTML or whatever.
     /// You can QueryInterface to nsIAccessibleDocument from the nsIAccessible for
-    /// the root node of a document. You can also get one from
-    /// nsIAccessible::GetAccessibleDocument() or
-    /// nsIAccessibleEvent::GetAccessibleDocument()
+    /// the root node of a document or you can get one from
+    /// nsIAccessible::GetDocument().
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fe5b3886-2b6a-491a-80cd-a3e6342c451d")]
+	[Guid("2be938df-0210-4609-9ece-26b197a517e5")]
 	public interface nsIAccessibleDocument
 	{
 		
@@ -80,19 +79,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetWindowAttribute();
-		
-		/// <summary>
-        /// The namespace for each ID that is handed back.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameSpaceURIForID(short nameSpaceID, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
-		
-		/// <summary>
-        /// The window handle for the OS window the document is being displayed in.
-        /// For example, in Windows you can static cast it to an HWND.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetWindowHandleAttribute();
 		
 		/// <summary>
         /// Return the parent document accessible.

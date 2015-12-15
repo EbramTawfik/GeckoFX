@@ -27,20 +27,12 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// @deprecated Please consider using nsIContainerBoxObject.
+    /// @deprecated Please consider using ContainerBoxObject.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("db436f2f-c656-4754-b0fa-99bc353bd63f")]
 	public interface nsIBrowserBoxObject : nsIContainerBoxObject
 	{
-		
-		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this
-        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDocShell GetDocShellAttribute();
 	}
 }

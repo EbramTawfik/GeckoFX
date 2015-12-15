@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f0c5ca21-db71-4b32-993e-ab63054cc6f5")]
+	[Guid("38c7f6af-7df9-49c7-b558-2776b24e6cc1")]
 	public interface nsILoginManager
 	{
 		
@@ -229,17 +229,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AutoCompleteSearchAsync([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSearchString, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult aPreviousResult, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement aElement, [MarshalAs(UnmanagedType.Interface)] nsIFormAutoCompleteObserver aListener);
-		
-		/// <summary>
-        /// Fill a form with login information if we have it. This method will fill
-        /// aForm regardless of the signon.autofillForms preference.
-        ///
-        /// @param aForm
-        /// The form to fill
-        /// @return Promise that is resolved with whether or not the form was filled.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal FillForm([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLFormElement aForm);
 		
 		/// <summary>
         /// Search for logins in the login manager. An array is always returned;

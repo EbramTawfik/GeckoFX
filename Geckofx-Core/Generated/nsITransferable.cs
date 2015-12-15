@@ -59,7 +59,7 @@ namespace Gecko
 	/// <summary>nsITransferable </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5a611a60-e5b5-11e1-aff1-0800200c9a66")]
+	[Guid("97e0c418-1c1e-4106-bad1-9fcb11dff2fe")]
 	public interface nsITransferable
 	{
 		
@@ -196,6 +196,23 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetIsPrivateDataAttribute([MarshalAs(UnmanagedType.U1)] bool aIsPrivateData);
+		
+		/// <summary>
+        /// The source dom node this transferable was created from.
+        /// Note, currently only in use on Windows for network principal
+        /// information in drag operations.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMNode GetRequestingNodeAttribute();
+		
+		/// <summary>
+        /// The source dom node this transferable was created from.
+        /// Note, currently only in use on Windows for network principal
+        /// information in drag operations.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetRequestingNodeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRequestingNode);
 	}
 	
 	/// <summary>nsITransferableConsts </summary>

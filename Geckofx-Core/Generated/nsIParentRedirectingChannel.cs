@@ -89,6 +89,13 @@ namespace Gecko
 		new void SetParentListener(System.IntPtr listener);
 		
 		/// <summary>
+        /// Called to notify the HttpChannelChild that tracking protection was
+        /// disabled for this load.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void NotifyTrackingProtectionDisabled();
+		
+		/// <summary>
         /// Called to invoke deletion of the IPC protocol.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

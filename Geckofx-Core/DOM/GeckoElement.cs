@@ -142,6 +142,8 @@ namespace Gecko
 
 			nsString.Set(_domElement.RemoveAttribute,attributeName);
 		}
+
+
 		#endregion
 
 		#region Attribute Nodes
@@ -162,6 +164,8 @@ namespace Gecko
 			var ret = _domElement.RemoveAttributeNode(newAttr.DomAttr);
 			return ret == null ? null : new GeckoAttribute(ret);
 		}
+
+        public bool HasAttributes { get { return _domElement.HasAttributes(); } }
 		#endregion
 
 

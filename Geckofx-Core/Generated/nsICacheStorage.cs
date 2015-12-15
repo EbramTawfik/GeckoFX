@@ -147,5 +147,10 @@ namespace Gecko
         // asyncOpen has been called.
         // </summary>
 		public const long CHECK_MULTITHREADED = 1<<4;
+		
+		// <summary>
+        // Don't automatically update any 'last used' metadata of the entry.
+        // </summary>
+		public const long OPEN_SECRETLY = 1<<5;
 	}
 }

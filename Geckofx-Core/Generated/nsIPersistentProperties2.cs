@@ -60,7 +60,7 @@ namespace Gecko
 	/// <summary>nsIPersistentProperties </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1A180F60-93B2-11d2-9B8B-00805F8A16D9")]
+	[Guid("706867af-0400-4faa-beb1-0dae87308784")]
 	public interface nsIPersistentProperties : nsIProperties
 	{
 		
@@ -113,13 +113,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Save([MarshalAs(UnmanagedType.Interface)] nsIOutputStream output, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase header);
-		
-		/// <summary>
-        /// call subclass() to make future calls to load() set the properties
-        /// in this "superclass" instead
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Subclass([MarshalAs(UnmanagedType.Interface)] nsIPersistentProperties superclass);
 		
 		/// <summary>
         /// get an enumeration of nsIPropertyElement objects,

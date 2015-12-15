@@ -31,7 +31,7 @@ namespace Gecko
     /// License, v. 2.0. If a copy of the MPL was not distributed with this
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
-	[Guid("b1ff7faa-8097-431d-b7f1-b0615e3cd596")]
+	[Guid("3801c9d4-8e69-4bfc-9edb-b58278621f8f")]
 	public interface nsISelectionController : nsISelectionDisplay
 	{
 		
@@ -144,6 +144,19 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CharacterMove([MarshalAs(UnmanagedType.U1)] bool forward, [MarshalAs(UnmanagedType.U1)] bool extend);
+		
+		/// <summary>
+        ///PhysicalMove will move the selection one "unit" in a given direction
+        /// within the document.
+        /// this will also have the effect of collapsing the selection if the aExtend = PR_FALSE
+        /// the "point" of selection that is extended is considered the "focus" point.
+        /// or the last point adjusted by the selection.
+        /// @param aDirection
+        /// @param aAmount    character/line; word/lineBoundary
+        /// @param aExtend    should it collapse the selection of extend it?
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void PhysicalMove(short direction, short amount, [MarshalAs(UnmanagedType.U1)] bool extend);
 		
 		/// <summary>
         /// CharacterExtendForDelete will extend the selection one character cell
@@ -317,7 +330,10 @@ namespace Gecko
 		public const short SELECTION_URLSECONDARY = 256;
 		
 		// 
-		public const short NUM_SELECTIONTYPES = 10;
+		public const short SELECTION_URLSTRIKEOUT = 512;
+		
+		// 
+		public const short NUM_SELECTIONTYPES = 11;
 		
 		// 
 		public const short SELECTION_ANCHOR_REGION = 0;
@@ -359,5 +375,20 @@ namespace Gecko
 		
 		// 
 		public const short SCROLL_OVERFLOW_HIDDEN = 1<<5;
+		
+		// <summary>
+        // nsFrameSelection::PhysicalMove depends on the ordering of these values;
+        // do not change without checking there!
+        // </summary>
+		public const short MOVE_LEFT = 0;
+		
+		// 
+		public const short MOVE_RIGHT = 1;
+		
+		// 
+		public const short MOVE_UP = 2;
+		
+		// 
+		public const short MOVE_DOWN = 3;
 	}
 }

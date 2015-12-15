@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("225ab092-1554-423a-9492-606f6db3b4fb")]
+	[Guid("2ac3e1ca-049f-44c3-a519-f0681f51e9b1")]
 	public interface nsIForcePendingChannel
 	{
 		

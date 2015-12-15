@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("078f159c-28ee-4653-9cfe-633132152f47")]
+	[Guid("db0a945c-3883-424a-98d0-2ee0523b0255")]
 	public interface imgIRequest : nsIRequest
 	{
 		
@@ -184,6 +184,13 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI GetURIAttribute();
 		
+		/// <summary>
+        /// The URI of the resource we ended up loading after all redirects, etc.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIURI GetCurrentURIAttribute();
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		imgINotificationObserver GetNotificationObserverAttribute();
 		
@@ -233,17 +240,14 @@ namespace Gecko
 		void CancelAndForgetObserver(int aStatus);
 		
 		/// <summary>
-        /// Requests a decode for the image.
+        /// Requests a synchronous decode for the image.
         ///
-        /// imgIContainer has a requestDecode() method, but callers may want to request
+        /// imgIContainer has a startDecoding() method, but callers may want to request
         /// a decode before the container has necessarily been instantiated. Calling
-        /// requestDecode() on the imgIRequest simply forwards along the request if the
-        /// container already exists, or calls it once it gets OnStartContainer if the
-        /// container does not yet exist.
+        /// startDecoding() on the imgIRequest simply forwards along the request if the
+        /// container already exists, or calls it once the container becomes available
+        /// if it does not yet exist.
         /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RequestDecode();
-		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StartDecoding();
 		
@@ -286,7 +290,8 @@ namespace Gecko
 		/// <summary>
         /// Requests that the image animate (if it has an animation).
         ///
-        /// @see Image::IncrementAnimationConsumers for documentation of the underlying call.
+        /// @see Image::IncrementAnimationConsumers for documentation of the
+        /// underlying call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void IncrementAnimationConsumers();
@@ -294,7 +299,8 @@ namespace Gecko
 		/// <summary>
         /// Tell the image it can forget about a request that the image animate.
         ///
-        /// @see Image::DecrementAnimationConsumers for documentation of the underlying call.
+        /// @see Image::DecrementAnimationConsumers for documentation of the
+        /// underlying call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DecrementAnimationConsumers();
@@ -313,22 +319,22 @@ namespace Gecko
 		public const long STATUS_SIZE_AVAILABLE = 0x1;
 		
 		// 
-		public const long STATUS_LOAD_PARTIAL = 0x2;
+		public const long STATUS_LOAD_COMPLETE = 0x2;
 		
 		// 
-		public const long STATUS_LOAD_COMPLETE = 0x4;
+		public const long STATUS_ERROR = 0x4;
 		
 		// 
-		public const long STATUS_ERROR = 0x8;
+		public const long STATUS_FRAME_COMPLETE = 0x8;
 		
 		// 
-		public const long STATUS_DECODE_STARTED = 0x10;
+		public const long STATUS_DECODE_COMPLETE = 0x10;
 		
 		// 
-		public const long STATUS_FRAME_COMPLETE = 0x20;
+		public const long STATUS_IS_ANIMATED = 0x20;
 		
 		// 
-		public const long STATUS_DECODE_COMPLETE = 0x40;
+		public const long STATUS_HAS_TRANSPARENCY = 0x40;
 		
 		// <summary>
         //@{

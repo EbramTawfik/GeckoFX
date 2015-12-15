@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ee62158b-bb83-424b-a88d-d7d7f9cf460d")]
+	[Guid("de2869d9-563c-4943-996b-31a4daa4d097")]
 	public interface nsIAccessible
 	{
 		
@@ -138,19 +138,6 @@ namespace Gecko
 		void GetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName);
 		
 		/// <summary>
-        /// Accessible name -- the main text equivalent for this node. The name is
-        /// specified by ARIA or by native markup. Example of ARIA markup is
-        /// aria-labelledby attribute placed on element of this accessible. Example
-        /// of native markup is HTML label linked with HTML element of this accessible.
-        ///
-        /// Value can be string or null. A null value indicates that AT may attempt to
-        /// compute the name. Any string value, including the empty string, should be
-        /// considered author-intentional, and respected.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName);
-		
-		/// <summary>
         /// Accessible value -- a number or a secondary text equivalent for this node
         /// Widgets that use role attribute can force a value using the valuenow attribute
         /// </summary>
@@ -202,6 +189,8 @@ namespace Gecko
 		
 		/// <summary>
         /// Help text associated with node
+        ///
+        /// @note As of now, this just returns empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetHelpAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aHelp);
@@ -297,13 +286,6 @@ namespace Gecko
 		void SetSelected([MarshalAs(UnmanagedType.U1)] bool isSelected);
 		
 		/// <summary>
-        /// Extend the current selection from its current accessible anchor node
-        /// to this accessible
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ExtendSelection();
-		
-		/// <summary>
         /// Select this accessible node only
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -366,12 +348,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ScrollToPoint(uint coordinateType, int x, int y);
-		
-		/// <summary>
-        /// Get a pointer to accessibility interface for this node, which is specific
-        /// to the OS/accessibility toolkit we're running on.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNativeInterface(ref System.IntPtr aOutAccessible);
 	}
 }

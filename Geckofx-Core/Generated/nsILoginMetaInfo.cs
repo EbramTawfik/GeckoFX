@@ -92,15 +92,19 @@ namespace Gecko
 		void SetTimeLastUsedAttribute(ulong aTimeLastUsed);
 		
 		/// <summary>
-        /// The time, in Unix Epoch milliseconds, when the login's password was
-        /// last modified.
+        /// The time, in Unix Epoch milliseconds, when the login was last modified.
+        ///
+        /// Contrary to what the name may suggest, this attribute takes into account
+        /// not only the password but also the username attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ulong GetTimePasswordChangedAttribute();
 		
 		/// <summary>
-        /// The time, in Unix Epoch milliseconds, when the login's password was
-        /// last modified.
+        /// The time, in Unix Epoch milliseconds, when the login was last modified.
+        ///
+        /// Contrary to what the name may suggest, this attribute takes into account
+        /// not only the password but also the username attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTimePasswordChangedAttribute(ulong aTimePasswordChanged);

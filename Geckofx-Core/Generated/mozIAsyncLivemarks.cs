@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5B48E5A2-F07A-4E64-A935-C722A3D60B65")]
+	[Guid("672387b7-a75d-4e8f-9b49-5c1dcbfff46b")]
 	public interface mozIAsyncLivemarks
 	{
 		
@@ -42,18 +42,13 @@ namespace Gecko
         /// @param aLivemarkInfo
         /// mozILivemarkInfo object containing at least title, parentId,
         /// index and feedURI of the livemark to create.
-        /// @param [optional] aCallback
-        /// Invoked when the creation process is done.  In case of failure will
-        /// receive an error code.
+        ///
         /// @return {Promise}
         /// @throws NS_ERROR_INVALID_ARG if the supplied information is insufficient
         /// for the creation.
-        /// @deprecated passing a callback is deprecated. Moreover, for backwards
-        /// compatibility reasons, when a callback is provided this method
-        /// won't return a promise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal AddLivemark(ref Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
+		Gecko.JsVal AddLivemark(ref Gecko.JsVal aLivemarkInfo);
 		
 		/// <summary>
         /// Removes an existing livemark.
@@ -61,18 +56,12 @@ namespace Gecko
         /// @param aLivemarkInfo
         /// mozILivemarkInfo object containing either an id or a guid of the
         /// livemark to remove.
-        /// @param [optional] aCallback
-        /// Invoked when the removal process is done.  In case of failure will
-        /// receive an error code.
         ///
         /// @return {Promise}
         /// @throws NS_ERROR_INVALID_ARG if the id/guid is invalid.
-        /// @deprecated passing a callback is deprecated. Moreover, for backwards
-        /// compatibility reasons, when a callback is provided this method
-        /// won't return a promise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal RemoveLivemark(ref Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
+		Gecko.JsVal RemoveLivemark(ref Gecko.JsVal aLivemarkInfo);
 		
 		/// <summary>
         /// Gets an existing livemark.
@@ -80,19 +69,13 @@ namespace Gecko
         /// @param aLivemarkInfo
         /// mozILivemarkInfo object containing either an id or a guid of the
         /// livemark to retrieve.
-        /// @param [optional] aCallback
-        /// Invoked when the fetching process is done.  In case of failure will
-        /// receive an error code.
         ///
         /// @return {Promise}
         /// @throws NS_ERROR_INVALID_ARG if the id/guid is invalid or an invalid
         /// callback is provided.
-        /// @deprecated passing a callback is deprecated. Moreover, for backwards
-        /// compatibility reasons, when a callback is provided this method
-        /// won't return a promise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetLivemark(ref Gecko.JsVal aLivemarkInfo, mozILivemarkCallback aCallback);
+		Gecko.JsVal GetLivemark(ref Gecko.JsVal aLivemarkInfo);
 		
 		/// <summary>
         /// Reloads all livemarks if they are expired or if forced to do so.
@@ -107,35 +90,17 @@ namespace Gecko
 		void ReloadLivemarks([MarshalAs(UnmanagedType.U1)] bool aForceUpdate);
 	}
 	
-	/// <summary>mozILivemarkCallback </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("62a426f9-39a6-42f0-ad48-b7404d48188f")]
-	public interface mozILivemarkCallback
-	{
-		
-		/// <summary>
-        /// Invoked when a livemark is added, removed or retrieved.
-        ///
-        /// @param aStatus
-        /// Whether the request was completed successfully.
-        /// Use Components.isSuccessCode(aStatus) to check this.
-        /// @param aLivemark
-        /// A mozILivemark object representing the livemark, or null on removal.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCompletion(int aStatus, mozILivemark aLivemark);
-	}
-	
 	/// <summary>mozILivemarkInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6e40d5b1-ce48-4458-8b68-6bee17d30ef3")]
+	[Guid("3a3c5e8f-ec4a-4086-ae0a-d16420d30c9f")]
 	public interface mozILivemarkInfo
 	{
 		
 		/// <summary>
         /// Id of the bookmarks folder representing this livemark.
+        ///
+        /// @deprecated Use guid instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetIdAttribute();
@@ -154,15 +119,29 @@ namespace Gecko
 		
 		/// <summary>
         /// Id of the bookmarks parent folder containing this livemark.
+        ///
+        /// @deprecated Use parentGuid instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetParentIdAttribute();
+		
+		/// <summary>
+        /// Guid of the bookmarks parent folder containing this livemark.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetParentGuidAttribute();
 		
 		/// <summary>
         /// The position of this livemark in the bookmarks parent folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetIndexAttribute();
+		
+		/// <summary>
+        /// Time this livemark was created.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetDateAddedAttribute();
 		
 		/// <summary>
         /// Time this livemark's details were last modified.  Doesn't track changes to
@@ -195,6 +174,8 @@ namespace Gecko
 		
 		/// <summary>
         /// Id of the bookmarks folder representing this livemark.
+        ///
+        /// @deprecated Use guid instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new long GetIdAttribute();
@@ -213,15 +194,29 @@ namespace Gecko
 		
 		/// <summary>
         /// Id of the bookmarks parent folder containing this livemark.
+        ///
+        /// @deprecated Use parentGuid instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new long GetParentIdAttribute();
+		
+		/// <summary>
+        /// Guid of the bookmarks parent folder containing this livemark.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new long GetParentGuidAttribute();
 		
 		/// <summary>
         /// The position of this livemark in the bookmarks parent folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetIndexAttribute();
+		
+		/// <summary>
+        /// Time this livemark was created.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new long GetDateAddedAttribute();
 		
 		/// <summary>
         /// Time this livemark's details were last modified.  Doesn't track changes to

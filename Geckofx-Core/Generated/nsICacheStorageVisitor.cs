@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("946bd799-9410-4945-9085-79c7fe019e83")]
+	[Guid("6cc7c253-93b6-482b-8e9d-1e04d8e9d655")]
 	public interface nsICacheStorageVisitor
 	{
 		
@@ -42,7 +42,7 @@ namespace Gecko
 		
 		/// <summary> </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCacheEntryInfo([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aIdEnhance, long aDataSize, int aFetchCount, uint aLastModifiedTime, uint aExpirationTime);
+		void OnCacheEntryInfo([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aIdEnhance, long aDataSize, int aFetchCount, uint aLastModifiedTime, uint aExpirationTime, [MarshalAs(UnmanagedType.U1)] bool aPinned);
 		
 		/// <summary> </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

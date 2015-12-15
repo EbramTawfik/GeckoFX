@@ -31,13 +31,19 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("046db047-a1c1-4519-8ec7-99f3054bc9ac")]
+	[Guid("41e311d0-5894-4aaa-80b5-5b7099dfc404")]
 	public interface nsILoadInfo
 	{
 		
 		/// <summary>
-        /// loadingPrincipal is the principal that started the load.  Will
-        /// never be null.
+        /// The loadingPrincipal is the principal that is responsible for the load.
+        /// It is *NOT* the principal tied to the resource/URI that this
+        /// channel is loading, it's the principal of the resource's
+        /// caller or requester. For example, if this channel is loading
+        /// an image from http://b.com that is embedded in a document
+        /// who's origin is http://a.com, the loadingPrincipal is http://a.com.
+        ///
+        /// The loadingPrincipal will never be null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -49,6 +55,92 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrincipal BinaryLoadingPrincipal();
+		
+		/// <summary>
+        /// The triggeringPrincipal is the principal that triggerd the load.
+        /// Most likely the triggeringPrincipal and the loadingPrincipal are the same,
+        /// in which case triggeringPrincipal returns the loadingPrincipal.
+        /// In some cases the loadingPrincipal and the triggeringPrincipal are different
+        /// however, e.g. a stylesheet may import a subresource. In that case the
+        /// stylesheet principal is the triggeringPrincipal and the document that loads
+        /// the stylesheet provides a loadingContext and hence the loadingPrincipal.
+        ///
+        /// If triggeringPrincipal and loadingPrincipal are the same, then
+        /// triggeringPrincipal returns loadingPrincipal.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIPrincipal GetTriggeringPrincipalAttribute();
+		
+		/// <summary>
+        /// A C++-friendly version of triggeringPrincipal.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIPrincipal BinaryTriggeringPrincipal();
+		
+		/// <summary>
+        /// The loadingDocument of the channel.
+        ///
+        /// The loadingDocument of a channel is the document that requested the
+        /// load of the resource. It is *not* the resource itself, it's the
+        /// resource's caller or requester in which the load is happening.
+        ///
+        /// <script> example: Assume a document who's origin is http://a.com embeds
+        /// a script from http://b.com. The loadingDocument for the channel
+        /// associated with the http://b.com script load is the document with origin
+        /// http://a.com
+        ///
+        /// <iframe> example: Assume a document with origin http://a.com embeds
+        /// <iframe src="http://b.com">. The loadingDocument for the channel associated
+        /// with the http://b.com network request is the document who's origin is
+        /// http://a.com. Now assume the iframe to http://b.com then further embeds
+        /// <script src="http://c.com">. The loadingDocument for the channel associated
+        /// with the http://c.com network request is the iframe with origin http://b.com.
+        ///
+        /// Warning: The loadingDocument can be null!
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDocument GetLoadingDocumentAttribute();
+		
+		/// <summary>
+        /// A C++-friendly version of loadingDocument (loadingNode).
+        /// This is the node most proximally responsible for the load.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr BinaryLoadingNode();
+		
+		/// <summary>
+        /// The securityFlags of that channel.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetSecurityFlagsAttribute();
+		
+		/// <summary>
+        /// Allows to query only the security mode bits from above.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetSecurityModeAttribute();
+		
+		/// <summary>
+        /// True if this request is embedded in a context that can't be third-party
+        /// (i.e. an iframe embedded in a cross-origin parent window). If this is
+        /// false, then this request may be third-party if it's a third-party to
+        /// loadingPrincipal.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsInThirdPartyContextAttribute();
+		
+		/// <summary>
+        /// See the SEC_COOKIES_* flags above. This attribute will never return
+        /// SEC_COOKIES_DEFAULT, but will instead return what the policy resolves to.
+        /// I.e. SEC_COOKIES_SAME_ORIGIN for CORS mode, and SEC_COOKIES_INCLUDE
+        /// otherwise.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetCookiePolicyAttribute();
 		
 		/// <summary>
         /// If forceInheritPrincipal is true, the data coming from the channel should
@@ -68,5 +160,405 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLoadingSandboxedAttribute();
+		
+		/// <summary>
+        /// If aboutBlankInherits is true, then about:blank should inherit
+        /// the principal.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAboutBlankInheritsAttribute();
+		
+		/// <summary>
+        /// If allowChrome is true, then use nsIScriptSecurityManager::ALLOW_CHROME
+        /// when calling CheckLoadURIWithPrincipal().
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAllowChromeAttribute();
+		
+		/// <summary>
+        /// Returns true if SEC_DONT_FOLLOW_REDIRECTS is set.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetDontFollowRedirectsAttribute();
+		
+		/// <summary>
+        /// The external contentPolicyType of the channel, used for security checks
+        /// like Mixed Content Blocking and Content Security Policy.
+        ///
+        /// Specifically, content policy types with _INTERNAL_ in their name will
+        /// never get returned from this attribute.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetExternalContentPolicyTypeAttribute();
+		
+		/// <summary>
+        /// The internal contentPolicyType of the channel, used for constructing
+        /// RequestContext values when creating a fetch event for an intercepted
+        /// channel.
+        ///
+        /// This should not be used for the purposes of security checks, since
+        /// the content policy implementations cannot be expected to deal with
+        /// _INTERNAL_ values.  Please use the contentPolicyType attribute above
+        /// for that purpose.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr InternalContentPolicyType();
+		
+		/// <summary>
+        /// Returns true if document or any of the documents ancestors
+        /// up to the toplevel document make use of the CSP directive
+        /// 'upgrade-insecure-requests'. Used to identify upgrade
+        /// requests in e10s where the loadingDocument is not available.
+        ///
+        /// Warning: If the loadingDocument is null, then the
+        /// upgradeInsecureRequests is false.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetUpgradeInsecureRequestsAttribute();
+		
+		/// <summary>
+        /// Same as upgradeInsecureRequests but for preloads.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetUpgradeInsecurePreloadsAttribute();
+		
+		/// <summary>
+        /// Typically these are the window IDs of the window in which the element being
+        /// loaded lives. However, if the element being loaded is <frame
+        /// src="foo.html"> (or, more generally, if the element QIs to
+        /// nsIFrameLoaderOwner) then the window IDs are for the window containing the
+        /// foo.html document. In this case, parentOuterWindowID is the window ID of
+        /// the window containing the <frame> element.
+        ///
+        /// Note that these window IDs can be 0 if the window is not
+        /// available. parentOuterWindowID will be the same as outerWindowID if the
+        /// window has no parent.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetInnerWindowIDAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetOuterWindowIDAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetParentOuterWindowIDAttribute();
+		
+		/// <summary>
+        /// Customized NeckoOriginAttributes within LoadInfo to allow overwriting of the
+        /// default originAttributes from the loadingPrincipal.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOriginAttributesAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Customized NeckoOriginAttributes within LoadInfo to allow overwriting of the
+        /// default originAttributes from the loadingPrincipal.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOriginAttributesAttribute(Gecko.JsVal aOriginAttributes, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr BinaryGetOriginAttributes();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void BinarySetOriginAttributes(System.IntPtr aOriginAttrs);
+		
+		/// <summary>
+        /// Whenever a channel is openend by asyncOpen2() [or also open2()],
+        /// lets set this flag so that redirects of such channels are also
+        /// openend using asyncOpen2() [open2()].
+        ///
+        /// Please note, once the flag is set to true it must remain true
+        /// throughout the lifetime of the channel. Trying to set it
+        /// to anything else than true will be discareded.
+        ///
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetEnforceSecurityAttribute();
+		
+		/// <summary>
+        /// Whenever a channel is openend by asyncOpen2() [or also open2()],
+        /// lets set this flag so that redirects of such channels are also
+        /// openend using asyncOpen2() [open2()].
+        ///
+        /// Please note, once the flag is set to true it must remain true
+        /// throughout the lifetime of the channel. Trying to set it
+        /// to anything else than true will be discareded.
+        ///
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetEnforceSecurityAttribute([MarshalAs(UnmanagedType.U1)] bool aEnforceSecurity);
+		
+		/// <summary>
+        /// Whenever a channel is evaluated by the ContentSecurityManager
+        /// the first time, we set this flag to true to indicate that
+        /// subsequent calls of AsyncOpen2() do not have to enforce all
+        /// security checks again. E.g., after a redirect there is no
+        /// need to set up CORS again. We need this separate flag
+        /// because the redirectChain might also contain internal
+        /// redirects which might pollute the redirectChain so we can't
+        /// rely on the size of the redirectChain-array to query whether
+        /// a channel got redirected or not.
+        ///
+        /// Please note, once the flag is set to true it must remain true
+        /// throughout the lifetime of the channel. Trying to set it
+        /// to anything else than true will be discarded.
+        ///
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetInitialSecurityCheckDoneAttribute();
+		
+		/// <summary>
+        /// Whenever a channel is evaluated by the ContentSecurityManager
+        /// the first time, we set this flag to true to indicate that
+        /// subsequent calls of AsyncOpen2() do not have to enforce all
+        /// security checks again. E.g., after a redirect there is no
+        /// need to set up CORS again. We need this separate flag
+        /// because the redirectChain might also contain internal
+        /// redirects which might pollute the redirectChain so we can't
+        /// rely on the size of the redirectChain-array to query whether
+        /// a channel got redirected or not.
+        ///
+        /// Please note, once the flag is set to true it must remain true
+        /// throughout the lifetime of the channel. Trying to set it
+        /// to anything else than true will be discarded.
+        ///
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetInitialSecurityCheckDoneAttribute([MarshalAs(UnmanagedType.U1)] bool aInitialSecurityCheckDone);
+		
+		/// <summary>
+        /// Whenever a channel gets redirected, append the principal of the
+        /// channel [before the channels got redirected] to the loadinfo,
+        /// so that at every point this array lets us reason about all the
+        /// redirects this channel went through.
+        /// @param aPrincipal, the channelURIPrincipal before the channel
+        /// got redirected.
+        /// @param aIsInternalRedirect should be true if the channel is going
+        /// through an internal redirect, otherwise false.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AppendRedirectedPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.U1)] bool isInternalRedirect);
+		
+		/// <summary>
+        /// An array of nsIPrincipals which stores redirects associated with this
+        /// channel. This array is filled whether or not the channel has ever been
+        /// opened. The last element of the array is associated with the most recent
+        /// redirect. Please note, that this array *includes* internal redirects.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetRedirectChainIncludingInternalRedirectsAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// A C++-friendly version of redirectChain.
+        /// Please note that this array has the same lifetime as the
+        /// loadInfo object - use with caution!
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr BinaryRedirectChainIncludingInternalRedirects();
+		
+		/// <summary>
+        /// Same as RedirectChain but does *not* include internal redirects.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetRedirectChainAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// A C++-friendly version of redirectChain.
+        /// Please note that this array has the same lifetime as the
+        /// loadInfo object - use with caution!
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr BinaryRedirectChain();
+		
+		/// <summary>
+        /// Sets the list of unsafe headers according to CORS spec, as well as
+        /// potentially forces a preflight.
+        /// Note that you do not need to set the Content-Type header. That will be
+        /// automatically detected as needed.
+        ///
+        /// Only call this function when using the SEC_REQUIRE_CORS_DATA_INHERITS mode.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCorsPreflightInfo(System.IntPtr unsafeHeaders, [MarshalAs(UnmanagedType.U1)] bool forcePreflight);
+		
+		/// <summary>
+        /// A C++-friendly getter for the list of cors-unsafe headers.
+        /// Please note that this array has the same lifetime as the
+        /// loadInfo object - use with caution!
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr CorsUnsafeHeaders();
+		
+		/// <summary>
+        /// Returns value set through setCorsPreflightInfo.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetForcePreflightAttribute();
+		
+		/// <summary>
+        /// A C++ friendly getter for the forcePreflight flag.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsPreflightAttribute();
+		
+		/// <summary>
+        /// Determine the associated channel's current tainting.  Note, this can
+        /// change due to a service worker intercept, so it should be checked after
+        /// OnStartRequest() fires.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetTaintingAttribute();
+		
+		/// <summary>
+        /// Note a new tainting level and possibly increase the current tainting
+        /// to match.  If the tainting level is already greater than the given
+        /// value, then there is no effect.  It is not possible to reduce the tainting
+        /// level on an existing channel/loadinfo.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void MaybeIncreaseTainting(uint aTainting);
+	}
+	
+	/// <summary>nsILoadInfoConsts </summary>
+	public class nsILoadInfoConsts
+	{
+		
+		// <summary>
+        // No special security flags:
+        // </summary>
+		public const ulong SEC_NORMAL = 0;
+		
+		// <summary>
+        // Enforce the same origin policy where data: loads inherit
+        // the principal.
+        // </summary>
+		public const ulong SEC_REQUIRE_SAME_ORIGIN_DATA_INHERITS = (1<<0);
+		
+		// <summary>
+        // Enforce the same origin policy but data: loads are blocked.
+        // </summary>
+		public const ulong SEC_REQUIRE_SAME_ORIGIN_DATA_IS_BLOCKED = (1<<1);
+		
+		// <summary>
+        // Allow loads from other origins. Loads from data: will inherit
+        // the principal of the origin that triggered the load.
+        // Commonly used by plain <img>, <video>, <link rel=stylesheet> etc.
+        // </summary>
+		public const ulong SEC_ALLOW_CROSS_ORIGIN_DATA_INHERITS = (1<<2);
+		
+		// <summary>
+        // Allow loads from other origins. Loads from data: will be allowed,
+        // but the resulting resource will get a null principal.
+        // Used in blink/webkit for <iframe>s. Likely also the mode
+        // that should be used by most Chrome code.
+        // </summary>
+		public const ulong SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL = (1<<3);
+		
+		// <summary>
+        // Allow loads from any origin, but require CORS for cross-origin
+        // loads. Loads from data: are allowed and the result will inherit
+        // the principal of the origin that triggered the load.
+        // Commonly used by <img crossorigin>, <video crossorigin>,
+        // XHR, fetch(), etc.
+        // </summary>
+		public const ulong SEC_REQUIRE_CORS_DATA_INHERITS = (1<<4);
+		
+		// <summary>
+        // Choose cookie policy. The default policy is equivalent to "INCLUDE" for
+        // SEC_REQUIRE_SAME_ORIGIN_* and SEC_ALLOW_CROSS_ORIGIN_* modes, and
+        // equivalent to "SAME_ORIGIN" for SEC_REQUIRE_CORS_DATA_INHERITS mode.
+        //
+        // This means that if you want to perform a CORS load with credentials, pass
+        // SEC_COOKIES_INCLUDE.
+        //
+        // Note that these flags are still subject to the user's cookie policies.
+        // For example, if the user is blocking 3rd party cookies, those cookies
+        // will be blocked no matter which of these flags are set.
+        // </summary>
+		public const ulong SEC_COOKIES_DEFAULT = (0<<5);
+		
+		// 
+		public const ulong SEC_COOKIES_INCLUDE = (1<<5);
+		
+		// 
+		public const ulong SEC_COOKIES_SAME_ORIGIN = (2<<5);
+		
+		// 
+		public const ulong SEC_COOKIES_OMIT = (3<<5);
+		
+		// <summary>
+        // Force inheriting of the Principal. The resulting resource will use the
+        // principal of the document which is doing the load. Setting this flag
+        // will cause GetChannelResultPrincipal to return the same principal as
+        // the loading principal that's passed in when creating the channel.
+        //
+        // This will happen independently of the scheme of the URI that the
+        // channel is loading.
+        //
+        // So if the loading document comes from "http://a.com/", and the channel
+        // is loading the URI "http://b.com/whatever", GetChannelResultPrincipal
+        // will return a principal from "http://a.com/".
+        //
+        // This flag can not be used together with SEC_SANDBOXED.
+        // </summary>
+		public const ulong SEC_FORCE_INHERIT_PRINCIPAL = (1<<7);
+		
+		// <summary>
+        // Sandbox the load. The resulting resource will use a freshly created
+        // null principal. So GetChannelResultPrincipal will always return a
+        // null principal whenever this flag is set.
+        //
+        // This will happen independently of the scheme of the URI that the
+        // channel is loading.
+        //
+        // This flag can not be used together with SEC_FORCE_INHERIT_PRINCIPAL.
+        // </summary>
+		public const ulong SEC_SANDBOXED = (1<<8);
+		
+		// <summary>
+        // Inherit the Principal for about:blank.
+        // </summary>
+		public const ulong SEC_ABOUT_BLANK_INHERITS = (1<<9);
+		
+		// <summary>
+        // Allow access to chrome: packages that are content accessible.
+        // </summary>
+		public const ulong SEC_ALLOW_CHROME = (1<<10);
+		
+		// <summary>
+        // Don't follow redirects. Instead the redirect response is returned
+        // as a successful response for the channel.
+        //
+        // Redirects not initiated by a server response, i.e. REDIRECT_INTERNAL and
+        // REDIRECT_STS_UPGRADE, are still followed.
+        //
+        // Note: If this flag is set and the channel response is a redirect, then
+        // the response body might not be available.
+        // This can happen if the redirect was cached.
+        // </summary>
+		public const ulong SEC_DONT_FOLLOW_REDIRECTS = (1<<11);
+		
+		// <summary>
+        // Constants reflecting the channel tainting.  These are mainly defined here
+        // for script.  Internal C++ code should use the enum defined in LoadTainting.h.
+        // See LoadTainting.h for documentation.
+        // </summary>
+		public const ulong TAINTING_BASIC = 0;
+		
+		// 
+		public const ulong TAINTING_CORS = 1;
+		
+		// 
+		public const ulong TAINTING_OPAQUE = 2;
 	}
 }

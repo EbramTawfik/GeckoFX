@@ -80,13 +80,6 @@ namespace Gecko
 		new nsIStackFrame GetLocationAttribute();
 		
 		/// <summary>
-        /// An inner exception that triggered this, if available.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIException GetInnerAttribute();
-		
-		/// <summary>
         /// Arbitary data for the implementation.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]

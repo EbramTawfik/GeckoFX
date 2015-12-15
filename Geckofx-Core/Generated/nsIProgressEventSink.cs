@@ -47,7 +47,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("D974C99E-4148-4df9-8D98-DE834A2F6462")]
+	[Guid("87d55fba-cb7e-4f38-84c1-5c6c2b2a55e9")]
 	public interface nsIProgressEventSink
 	{
 		
@@ -65,10 +65,10 @@ namespace Gecko
         /// number of bytes transfered thus far.
         /// @param aProgressMax
         /// numeric value indicating maximum number of bytes that will be
-        /// transfered (or 0xFFFFFFFFFFFFFFFF if total is unknown).
+        /// transfered (or -1 if total is unknown).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProgress([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, ulong aProgress, ulong aProgressMax);
+		void OnProgress([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, long aProgress, long aProgressMax);
 		
 		/// <summary>
         /// Called to notify the event sink with a status message for the given

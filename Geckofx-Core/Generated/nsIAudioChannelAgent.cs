@@ -32,27 +32,21 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("194b55d9-39c0-45c6-b8ef-b8049f978ea5")]
+	[Guid("5fe83b24-38b9-4901-a4a1-d1bd57d3fe18")]
 	public interface nsIAudioChannelAgentCallback
 	{
-		
-		/// <summary>
-        /// Notified when the playable status of channel is changed.
-        ///
-        /// @param canPlay
-        /// Callback from agent to notify component of the playable status
-        /// of the channel. If canPlay is muted state, component SHOULD stop
-        /// playing media associated with this channel as soon as possible. if
-        /// it is faded state then the volume of media should be reduced.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CanPlayChanged(int canPlay);
 		
 		/// <summary>
         /// Notified when the window volume/mute is changed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WindowVolumeChanged();
+		void WindowVolumeChanged(float aVolume, [MarshalAs(UnmanagedType.U1)] bool aMuted);
+		
+		/// <summary>
+        /// Notified when the capture state is changed.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void WindowAudioCaptureChanged();
 	}
 	
 	/// <summary>
@@ -70,7 +64,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2b0222a5-8f7b-49d2-9ab8-cd01b744b23e")]
+	[Guid("18222148-1b32-463d-b050-b741f43a07ba")]
 	public interface nsIAudioChannelAgent
 	{
 		
@@ -110,20 +104,13 @@ namespace Gecko
 		void InitWithWeakCallback([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, int channelType, [MarshalAs(UnmanagedType.Interface)] nsIAudioChannelAgentCallback callback);
 		
 		/// <summary>
-        /// This method is just like init(), and specify the channel is associated
-        /// with video.
-        ///
-        /// @param weak
-        /// true if weak reference should be hold.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithVideo([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, int channelType, [MarshalAs(UnmanagedType.Interface)] nsIAudioChannelAgentCallback callback, [MarshalAs(UnmanagedType.U1)] bool weak);
-		
-		/// <summary>
         /// Notify the agent that we want to start playing.
         /// Note: Gecko component SHOULD call this function first then start to
         /// play audio stream only when return value is true.
         ///
+        /// @param notifyPlaying
+        /// Whether to send audio-playback notifications, one of AUDIO_CHANNEL_NOTIFY
+        /// or AUDIO_CHANNEL_DONT_NOTIFY.
         ///
         /// @return
         /// normal state: the agent has registered with audio channel service and
@@ -134,32 +121,18 @@ namespace Gecko
         /// component should start playback as well as reducing the volume.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int StartPlaying();
+		void NotifyStartedPlaying(uint notifyPlayback, ref float volume, [MarshalAs(UnmanagedType.U1)] ref bool muted);
 		
 		/// <summary>
         /// Notify the agent we no longer want to play.
         ///
-        /// Note : even if startPlaying() returned false, the agent would still be
-        /// registered with the audio channel service and receive callbacks for status changes.
-        /// So stopPlaying must still eventually be called to unregister the agent with the
-        /// channel service.
+        /// Note : even if notifyStartedPlaying() returned false, the agent would
+        /// still be registered with the audio channel service and receive callbacks
+        /// for status changes. So notifyStoppedPlaying must still eventually be
+        /// called to unregister the agent with the channel service.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StopPlaying();
-		
-		/// <summary>
-        /// Notify the agent of the visibility state of the window using this agent.
-        /// @param visible
-        /// True if the window associated with the agent is visible.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisibilityState([MarshalAs(UnmanagedType.U1)] bool visible);
-		
-		/// <summary>
-        /// Retrieve the volume from the window.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		float GetWindowVolumeAttribute();
+		void NotifyStoppedPlaying();
 	}
 	
 	/// <summary>nsIAudioChannelAgentConsts </summary>
@@ -200,6 +173,9 @@ namespace Gecko
 		public const long AUDIO_AGENT_CHANNEL_PUBLICNOTIFICATION = 6;
 		
 		// 
+		public const long AUDIO_AGENT_CHANNEL_SYSTEM = 7;
+		
+		// 
 		public const long AUDIO_AGENT_CHANNEL_ERROR = 1000;
 		
 		// 
@@ -210,5 +186,11 @@ namespace Gecko
 		
 		// 
 		public const long AUDIO_AGENT_STATE_FADED = 2;
+		
+		// 
+		public const long AUDIO_AGENT_DONT_NOTIFY = 0;
+		
+		// 
+		public const long AUDIO_AGENT_NOTIFY = 1;
 	}
 }

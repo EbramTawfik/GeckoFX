@@ -53,7 +53,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dfb5a307-7ecf-41dd-aee2-f1d623459c44")]
+	[Guid("2fa6884a-ae65-412a-9d4c-ce6e34544ba1")]
 	public interface nsIFile
 	{
 		
@@ -221,6 +221,9 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RenameTo([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase newName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RenameToNative([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase newName);
 		
 		/// <summary>
         /// This will try to delete this file.  The 'recursive' flag
@@ -602,7 +605,7 @@ namespace Gecko
         ///
         /// @param fromFile
         /// the file from which the descriptor is relative.
-        /// There is no defined result if this param is null.
+        /// Throws if fromFile is null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
@@ -620,6 +623,35 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase relativeDesc);
+		
+		/// <summary>
+        /// getRelativePath
+        ///
+        /// Returns a relative file from 'fromFile' to this file as a UTF-8 string.
+        /// Going up the directory tree is represented via "../".  '/' is used as
+        /// the path segment separator.  This is not a native path, since it's UTF-8
+        /// encoded.
+        ///
+        /// @param fromFile
+        /// the file from which the path is relative.
+        /// Throws if fromFile is null.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetRelativePath([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		
+		/// <summary>
+        /// setRelativePath
+        ///
+        /// Initializes the file to the location relative to fromFile using
+        /// a string returned by getRelativePath.
+        ///
+        /// @param fromFile
+        /// the file from which the path is relative
+        /// @param relative
+        /// the relative path obtained from getRelativePath
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetRelativePath([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase relativeDesc);
 	}
 	
 	/// <summary>nsIFileConsts </summary>

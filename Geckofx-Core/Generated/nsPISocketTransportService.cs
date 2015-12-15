@@ -32,8 +32,8 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bc5869e7-53a6-4195-8ab8-32e7116b87dd")]
-	public interface nsPISocketTransportService : nsISocketTransportService
+	[Guid("18f73bf1-b35b-4b7b-aa9a-11bcbdbc389c")]
+	public interface nsPISocketTransportService : nsIRoutedSocketTransportService
 	{
 		
 		/// <summary>
@@ -132,6 +132,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void NotifyWhenCanAttachSocket([MarshalAs(UnmanagedType.Interface)] nsIRunnable aEvent);
+		
+		/// <summary>
+        /// origin
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsISocketTransport CreateRoutedTransport([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] string[] aSocketTypes, uint aTypeCount, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHostRoute, int aPortRoute, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aProxyInfo);
 		
 		/// <summary>
         /// init/shutdown routines.

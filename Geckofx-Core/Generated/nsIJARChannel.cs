@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5a4f8df0-3bd9-45c2-9db9-67e74c3dd47d")]
+	[Guid("e72b179b-d5df-4d87-b5de-fd73a65c60f6")]
 	public interface nsIJARChannel : nsIChannel
 	{
 		
@@ -258,7 +258,16 @@ namespace Gecko
 		new void SetNotificationCallbacksAttribute([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aNotificationCallbacks);
 		
 		/// <summary>
-        /// Transport-level security information (if any) corresponding to the channel.
+        /// Transport-level security information (if any) corresponding to the
+        /// channel.
+        ///
+        /// NOTE: In some circumstances TLS information is propagated onto
+        /// non-nsIHttpChannel objects to indicate that their contents were likely
+        /// delivered over TLS all the same.  For example, document.open() may
+        /// create an nsWyciwygChannel to store the data that will be written to the
+        /// document.  In that case, if the caller has TLS information, we propagate
+        /// that info onto the nsWyciwygChannel given that it is likely that the
+        /// caller will be writing data that was delivered over TLS to the document.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -375,6 +384,13 @@ namespace Gecko
 		new nsIInputStream Open();
 		
 		/// <summary>
+        /// Performs content security check and calls open()
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIInputStream Open2();
+		
+		/// <summary>
         /// Asynchronously open this channel.  Data is fed to the specified stream
         /// listener as it becomes available.  The stream listener's methods are
         /// called on the thread that calls asyncOpen and are not called until
@@ -407,6 +423,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void AsyncOpen([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
+		
+		/// <summary>
+        /// Performs content security check and calls asyncOpen().
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AsyncOpen2([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aListener);
 		
 		/// <summary>
         /// Access to the type implied or stated by the Content-Disposition header
@@ -523,18 +545,18 @@ namespace Gecko
 		void SetAppURI([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 		
 		/// <summary>
-        /// Returns the JAR file.
+        /// Returns the JAR file.  May be null if the jar is remote.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIFile GetJarFileAttribute();
 		
 		/// <summary>
-        /// For child process, set this to make sure that a valid file descriptor of
-        /// JAR file is always provided when calling NSPRFileDesc().
-        /// Must be set before Open() or AsyncOpen() to be effective.
+        /// Returns the zip entry if the file is synchronously accessible.
+        /// This will work even without opening the channel.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnsureChildFd();
+		nsIZipEntry GetZipEntryAttribute();
 	}
 }

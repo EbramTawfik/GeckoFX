@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("729cfcad-11b4-4338-b97e-5c023ae295fa")]
+	[Guid("48d7f7fd-bb85-4c04-9b8b-5cd9131acdef")]
 	public interface nsIDOMCrypto
 	{
 		
@@ -41,6 +41,6 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		void Init(System.IntPtr parent);
 	}
 }

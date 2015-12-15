@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bc0cb41f-4924-4c69-a65b-e35225a8650f")]
+	[Guid("6621f6d5-6c04-4a0e-9e74-447db221484e")]
 	public interface nsIAppStartup
 	{
 		
@@ -58,10 +58,10 @@ namespace Gecko
         /// @returnCode NS_SUCCESS_RESTART_APP
         /// This return code indicates that the application should be
         /// restarted because quit was called with the eRestart flag.
-        /// @returnCode NS_SUCCESS_RESTART_METRO_APP
+        /// @returnCode NS_SUCCESS_RESTART_APP_NOT_SAME_PROFILE
         /// This return code indicates that the application should be
-        /// restarted in metro because quit was called with the
-        /// eRestartTouchEnviroment flag.
+        /// restarted without necessarily using the same profile because
+        /// quit was called with the eRestartNotSameProfile flag.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Run();
@@ -164,14 +164,6 @@ namespace Gecko
 		bool GetWasRestartedAttribute();
 		
 		/// <summary>
-        /// True if the application is being restarted in a touch-optimized
-        /// environment (such as Metro).
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetRestartingTouchEnvironmentAttribute();
-		
-		/// <summary>
         /// Returns an object with main, process, firstPaint, sessionRestored properties.
         /// Properties may not be available depending on platform or application
         /// </summary>
@@ -230,10 +222,10 @@ namespace Gecko
 		public const long eRestartx86_64 = 0x40;
 		
 		// <summary>
-        // Restart the application in a touch-optimized environment (such as Metro)
-        // after quitting. The application will be restarted with the same profile
-        // and an empty command line.
+        // Restart the application after quitting.  The application will be
+        // restarted with an empty command line and the normal profile selection
+        // process will take place on startup.
         // </summary>
-		public const long eRestartTouchEnvironment = 0x80;
+		public const long eRestartNotSameProfile = 0x100;
 	}
 }

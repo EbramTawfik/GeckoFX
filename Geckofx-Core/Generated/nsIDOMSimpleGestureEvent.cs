@@ -32,20 +32,25 @@ namespace Gecko
     ///
     /// The following events are generated:
     ///
-    /// MozSwipeGestureStart - Generated when the user starts a horizontal
-    /// swipe across the input device.  This event not only acts as a signal,
-    /// but also asks two questions:  Should a swipe really be started, and
+    /// MozSwipeGestureMayStart - Generated when the user starts a horizontal
+    /// swipe across the input device, but before we know whether the user
+    /// is actually scrolling past a scroll edge.
+    /// This event asks two questions:  Should a swipe really be started, and
     /// in which directions should the user be able to swipe?  The first
     /// question is answered by event listeners by calling or not calling
     /// preventDefault() on the event.  Since a swipe swallows all scroll
     /// events, the default action of the swipe start event is *not* to
     /// start a swipe. Call preventDefault() if you want a swipe to be
-    /// started.
+    /// started. Doing so won't necessarily result in a swipe being started,
+    /// it only communicates an intention. Once Gecko determines whether a
+    /// swipe should actually be started, it will send a MozSwipeGestureStart
+    /// event.
     /// The second question (swipe-able directions) is answered in the
     /// allowedDirections field.
-    /// If this event has preventDefault() called on it (and thus starts
-    /// a swipe), it guarantees a future MozSwipeGestureEnd event that
-    /// will signal the end of a swipe animation.
+    ///
+    /// MozSwipeGestureStart - This event signals the start of a swipe.
+    /// It guarantees a future MozSwipeGestureEnd event that will signal
+    /// the end of a swipe animation.
     ///
     /// MozSwipeGestureUpdate - Generated periodically while the user is
     /// continuing a horizontal swipe gesture.  The "delta" value represents
@@ -120,7 +125,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d78656ab-9d68-4f03-83f9-7c7bee071aa7")]
+	[Guid("1b9afbf0-2cf0-4a7b-99bc-cd35dbd5b637")]
 	public interface nsIDOMSimpleGestureEvent : nsIDOMMouseEvent
 	{
 		
@@ -313,6 +318,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr InternalDOMEvent();
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopCrossProcessForwarding();
+		
 		/// <summary>
         /// The nsIDOMUIEvent interface is the datatype for all UI events in the
         /// Document Object Model.
@@ -456,14 +464,14 @@ namespace Gecko
         /// Reports the directions that can be swiped to; multiple directions
         /// should be OR'ed together.
         ///
-        /// The allowedDirections field is designed to be set on SwipeGestureStart
+        /// The allowedDirections field is designed to be set on SwipeGestureMayStart
         /// events by event listeners.  Its value after event dispatch determines
-        /// the behavior of the swipe animation that is about to begin.
+        /// the behavior of the swipe animation that might be about to begin.
         /// Specifically, if the user swipes in a direction that can't be swiped
         /// to, the animation will have a bounce effect.
         /// Future SwipeGestureUpdate, SwipeGesture and SwipeGestureEnd events
-        /// will carry the allowDirections value that was set on the SwipeStart
-        /// event.  Changing this field on non-SwipeGestureStart events doesn't
+        /// will carry the allowDirections value that was set on the SwipeMayStart
+        /// event.  Changing this field on non-SwipeGestureMayStart events doesn't
         /// have any effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -475,14 +483,14 @@ namespace Gecko
         /// Reports the directions that can be swiped to; multiple directions
         /// should be OR'ed together.
         ///
-        /// The allowedDirections field is designed to be set on SwipeGestureStart
+        /// The allowedDirections field is designed to be set on SwipeGestureMayStart
         /// events by event listeners.  Its value after event dispatch determines
-        /// the behavior of the swipe animation that is about to begin.
+        /// the behavior of the swipe animation that might be about to begin.
         /// Specifically, if the user swipes in a direction that can't be swiped
         /// to, the animation will have a bounce effect.
         /// Future SwipeGestureUpdate, SwipeGesture and SwipeGestureEnd events
-        /// will carry the allowDirections value that was set on the SwipeStart
-        /// event.  Changing this field on non-SwipeGestureStart events doesn't
+        /// will carry the allowDirections value that was set on the SwipeMayStart
+        /// event.  Changing this field on non-SwipeGestureMayStart events doesn't
         /// have any effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

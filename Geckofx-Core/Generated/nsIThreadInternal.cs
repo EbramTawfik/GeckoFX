@@ -32,28 +32,9 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b24c5af3-43c2-4d17-be14-94d6648a305f")]
+	[Guid("9cc51754-2eb3-4b46-ae99-38a61881c622")]
 	public interface nsIThreadInternal : nsIThread
 	{
-		
-		/// <summary>
-        /// Dispatch an event to this event target.  This function may be called from
-        /// any thread, and it may be called re-entrantly.
-        ///
-        /// @param event
-        /// The event to dispatch.
-        /// @param flags
-        /// The flags modifying event dispatch.  The flags are described in detail
-        /// below.
-        ///
-        /// @throws NS_ERROR_INVALID_ARG
-        /// Indicates that event is null.
-        /// @throws NS_ERROR_UNEXPECTED
-        /// Indicates that the thread is shutting down and has finished processing
-        /// events, so this event would never run and has not been dispatched.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable @event, uint flags);
 		
 		/// <summary>
         /// Check to see if this event target is associated with the current thread.
@@ -66,6 +47,47 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsOnCurrentThread();
+		
+		/// <summary>
+        /// Dispatch an event to this event target.  This function may be called from
+        /// any thread, and it may be called re-entrantly.
+        ///
+        /// @param event
+        /// The alreadyAddRefed<> event to dispatch.
+        /// NOTE that the event will be leaked if it fails to dispatch. Also note
+        /// that if "flags" includes DISPATCH_SYNC, it may return error from Run()
+        /// after a successful dispatch. In that case, the event is not leaked.
+        /// @param flags
+        /// The flags modifying event dispatch.  The flags are described in detail
+        /// below.
+        ///
+        /// @throws NS_ERROR_INVALID_ARG
+        /// Indicates that event is null.
+        /// @throws NS_ERROR_UNEXPECTED
+        /// Indicates that the thread is shutting down and has finished processing
+        /// events, so this event would never run and has not been dispatched.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void DispatchFromC(System.IntPtr @event, uint flags);
+		
+		/// <summary>
+        /// Version of Dispatch to expose to JS, which doesn't require an alreadyAddRefed<>
+        /// (it will be converted to that internally)
+        ///
+        /// @param event
+        /// The (raw) event to dispatch.
+        /// @param flags
+        /// The flags modifying event dispatch.  The flags are described in detail
+        /// below.
+        ///
+        /// @throws NS_ERROR_INVALID_ARG
+        /// Indicates that event is null.
+        /// @throws NS_ERROR_UNEXPECTED
+        /// Indicates that the thread is shutting down and has finished processing
+        /// events, so this event would never run and has not been dispatched.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable @event, uint flags);
 		
 		/// <summary>
         /// @returns
@@ -137,6 +159,29 @@ namespace Gecko
 		new bool ProcessNextEvent([MarshalAs(UnmanagedType.U1)] bool mayWait);
 		
 		/// <summary>
+        /// Shutdown the thread asynchronously.  This method immediately prevents
+        /// further dispatch of events to the thread, and it causes any pending events
+        /// to run to completion before this thread joins with the current thread.
+        ///
+        /// UNLIKE shutdown() this does not process events on the current thread.
+        /// Instead it merely ensures that the current thread continues running until
+        /// this thread has shut down.
+        ///
+        /// This method MAY NOT be executed from the thread itself.  Instead, it is
+        /// meant to be executed from another thread (usually the thread that created
+        /// this thread or the main application thread).  When this function returns,
+        /// the thread will continue running until it exhausts its event queue.
+        ///
+        /// @throws NS_ERROR_UNEXPECTED
+        /// Indicates that this method was erroneously called when this thread was
+        /// the current thread, that this thread was not created with a call to
+        /// nsIThreadManager::NewThread, or if this method was called more than once
+        /// on the thread object.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AsyncShutdown();
+		
+		/// <summary>
         /// Get/set the current thread observer (may be null).  This attribute may be
         /// read from any thread, but must only be set on the thread corresponding to
         /// this thread object.  The observer will be released on the thread
@@ -156,14 +201,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetObserverAttribute([MarshalAs(UnmanagedType.Interface)] nsIThreadObserver aObserver);
-		
-		/// <summary>
-        /// The current recursion depth, 0 when no events are running, 1 when a single
-        /// event is running, and higher when nested events are running. Must only be
-        /// called on the target thread.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetRecursionDepthAttribute();
 		
 		/// <summary>
         /// Add an observer that will *only* receive onProcessNextEvent,
@@ -219,7 +256,7 @@ namespace Gecko
     /// onDispatchedEvent(thread) {
     /// NativeQueue.signal();
     /// }
-    /// onProcessNextEvent(thread, mayWait, recursionDepth) {
+    /// onProcessNextEvent(thread, mayWait) {
     /// if (NativeQueue.hasNextEvent())
     /// NativeQueue.processNextEvent();
     /// while (mayWait && !thread.hasPendingEvent()) {
@@ -240,7 +277,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("09b424c3-26b0-4128-9039-d66f85b02c63")]
+	[Guid("cc8da053-1776-44c2-9199-b5a629d0a19d")]
 	public interface nsIThreadObserver
 	{
 		
@@ -264,29 +301,23 @@ namespace Gecko
         /// @param mayWait
         /// Indicates whether or not the method is allowed to block the calling
         /// thread.  For example, this parameter is false during thread shutdown.
-        /// @param recursionDepth
-        /// Indicates the number of calls to ProcessNextEvent on the call stack in
-        /// addition to the current call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProcessNextEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal thread, [MarshalAs(UnmanagedType.U1)] bool mayWait, uint recursionDepth);
+		void OnProcessNextEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal thread, [MarshalAs(UnmanagedType.U1)] bool mayWait);
 		
 		/// <summary>
         /// This method is called (from nsIThread::ProcessNextEvent) after an event
         /// is processed.  It does not guarantee that an event was actually processed
         /// (depends on the value of |eventWasProcessed|.  This method is only called
-        /// on the target thread.
+        /// on the target thread.  DO NOT EVER RUN SCRIPT FROM THIS CALLBACK!!!
         ///
         /// @param thread
         /// The thread that processed another event.
-        /// @param recursionDepth
-        /// Indicates the number of calls to ProcessNextEvent on the call stack in
-        /// addition to the current call.
         /// @param eventWasProcessed
         /// Indicates whether an event was actually processed. May be false if the
         /// |mayWait| flag was false when calling nsIThread::ProcessNextEvent().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AfterProcessNextEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal thread, uint recursionDepth, [MarshalAs(UnmanagedType.U1)] bool eventWasProcessed);
+		void AfterProcessNextEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal thread, [MarshalAs(UnmanagedType.U1)] bool eventWasProcessed);
 	}
 }

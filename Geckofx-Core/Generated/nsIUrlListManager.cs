@@ -45,7 +45,7 @@ namespace Gecko
 	/// <summary>nsIUrlListManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5d5ed98f-72cd-46b6-a9fe-76418adfdfeb")]
+	[Guid("d60a08ee-5c83-4eb6-bdfb-79fd0716501e")]
 	public interface nsIUrlListManager
 	{
 		
@@ -61,12 +61,13 @@ namespace Gecko
         /// @param tableName A string of the format
         /// provider_name-semantic_type-table_type.  For example,
         /// goog-white-enchash or goog-black-url.
+        /// @param providerName The name of the entity providing the list.
         /// @param updateUrl The URL from which to fetch updates.
         /// @param gethashUrl The URL from which to fetch hash completions.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool RegisterTable([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tableName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase updateUrl, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase gethashUrl);
+		bool RegisterTable([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tableName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase providerName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase updateUrl, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase gethashUrl);
 		
 		/// <summary>
         /// Turn on update checking for a table. I.e., during the next server

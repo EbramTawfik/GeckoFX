@@ -52,8 +52,8 @@ namespace Gecko
         /// If the observer wants to take over responsibility for the
         /// data buffer (result), it returns NS_SUCCESS_ADOPTED_DATA
         /// in place of NS_OK as its success code. The loader will then
-        /// "forget" about the data and not moz_free() it after
-        /// onStreamComplete() returns; observer must call moz_free()
+        /// "forget" about the data and not free() it after
+        /// onStreamComplete() returns; observer must call free()
         /// when the data is no longer required.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -73,7 +73,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8ea7e890-8211-11d9-8bde-f66bad1e3f3a")]
+	[Guid("323bcff1-7513-4e1f-a541-1c9213c2ed1b")]
 	public interface nsIStreamLoader : nsIStreamListener
 	{
 		
@@ -127,11 +127,14 @@ namespace Gecko
 		/// <summary>
         /// Initialize this stream loader, and start loading the data.
         ///
-        /// @param aObserver
+        /// @param aStreamObserver
         /// An observer that will be notified when the data is complete.
+        /// @param aRequestObserver
+        /// An optional observer that will be notified when the request
+        /// has started or stopped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIStreamLoaderObserver aObserver);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIStreamLoaderObserver aStreamObserver, [MarshalAs(UnmanagedType.Interface)] nsIRequestObserver aRequestObserver);
 		
 		/// <summary>
         /// Gets the number of bytes read so far.

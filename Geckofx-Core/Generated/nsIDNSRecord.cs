@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("95ced6f3-44b4-4427-a149-c9a1e033d852")]
+	[Guid("f92228ae-c417-4188-a604-0830a95e7eb9")]
 	public interface nsIDNSRecord
 	{
 		
@@ -61,6 +61,16 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetNextAddr(ushort aPort);
+		
+		/// <summary>
+        /// this function copies the value of all working members of the RR
+        /// set into the output array.
+        ///
+        /// @param aAddressArray
+        /// The result set
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAddresses(ref System.IntPtr aAddressArray);
 		
 		/// <summary>
         /// this function returns the value of the next IP address as a

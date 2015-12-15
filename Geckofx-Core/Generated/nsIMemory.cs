@@ -31,7 +31,7 @@ namespace Gecko
     /// nsIMemory: interface to allocate and deallocate memory. Also provides
     /// for notifications in low-memory situations.
     ///
-    /// The frozen exported symbols NS_Alloc, NS_Realloc, and NS_Free
+    /// The frozen exported symbols moz_xmalloc, moz_xrealloc, and free
     /// provide a more efficient way to access XPCOM memory allocation. Using
     /// those symbols is preferred to using the methods on this interface.
     ///
@@ -39,7 +39,7 @@ namespace Gecko
     /// example, because the client maintains a large memory cache that
     /// could be released when memory is tight) should register with the
     /// observer service (see nsIObserverService) using the topic
-    /// "memory-pressure". There are three specific types of notications
+    /// "memory-pressure".  There are specific types of notications
     /// that can occur.  These types will be passed as the |aData|
     /// parameter of the of the "memory-pressure" notification:
     ///
@@ -66,48 +66,18 @@ namespace Gecko
     /// This will be passed as the extra data when the pressure
     /// observer has been asked to flush because a malloc() or
     /// realloc() has failed.
+    ///
+    /// "lowering-priority"
+    /// This will be passed as the extra data when the priority of a child
+    /// process is lowered. The pressure observers could take the chance to
+    /// clear caches that could be easily regenerated. This type of
+    /// notification only appears in child processes.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6aef11c4-8615-44a6-9711-98f43805693d")]
+	[Guid("1e004834-6d8f-425a-bc9c-a2812ed43bb7")]
 	public interface nsIMemory
 	{
-		
-		/// <summary>
-        /// Allocates a block of memory of a particular size. If the memory
-        /// cannot be allocated (because of an out-of-memory condition), the
-        /// process aborts.
-        ///
-        /// @param size - the size of the block to allocate
-        /// @result the block of memory
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr Alloc(uint size);
-		
-		/// <summary>
-        /// Reallocates a block of memory to a new size.
-        ///
-        /// @param ptr - the block of memory to reallocate
-        /// @param size - the new size
-        /// @result the reallocated block of memory
-        ///
-        /// If ptr is null, this function behaves like malloc.
-        /// If s is the size of the block to which ptr points, the first
-        /// min(s, size) bytes of ptr's block are copied to the new block.
-        /// If the allocation succeeds, ptr is freed and a pointer to the
-        /// new block returned.  If the allocation fails, the process aborts.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr Realloc(System.IntPtr ptr, uint newSize);
-		
-		/// <summary>
-        /// Frees a block of memory. Null is a permissible value, in which case
-        /// nothing happens.
-        ///
-        /// @param ptr - the block of memory to free
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Free(System.IntPtr ptr);
 		
 		/// <summary>
         /// Attempts to shrink the heap.

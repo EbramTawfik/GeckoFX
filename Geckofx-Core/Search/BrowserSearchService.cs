@@ -79,9 +79,10 @@ namespace Gecko.Search
 				native3 = new nsAString(alias),
 				native4 = new nsAString(description),
 				native5 = new nsAString(method),
-				native6=new nsAString(url))
+				native6 = new nsAString(url),
+                native7 = new nsAString(String.Empty))
 			{
-				_browserSearchService.Instance.AddEngineWithDetails(native1, native2, native3, native4, native5, native6);
+				_browserSearchService.Instance.AddEngineWithDetails(native1, native2, native3, native4, native5, native6, native7);
 			}
 		}
 

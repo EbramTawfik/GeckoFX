@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("408251b0-1d7b-4876-888f-718859ce8c9d")]
+	[Guid("c576de0c-8a3d-4570-be7e-9876d3e5bed2")]
 	public interface nsISpeechTaskCallback
 	{
 		
@@ -54,6 +54,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnCancel();
+		
+		/// <summary>
+        /// The user or application has changed the volume of this speech.
+        /// This is only used on indirect audio service type.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnVolumeChanged(float aVolume);
 	}
 	
 	/// <summary>
@@ -106,7 +113,7 @@ namespace Gecko
 		void DispatchEnd(float aElapsedTime, uint aCharIndex);
 		
 		/// <summary>
-        /// Dispatch pause event. Should not be called directly by service.
+        /// Dispatch pause event.
         ///
         /// @param aElapsedTime time in seconds since speech has started.
         /// @param aCharIndex   offset of spoken characters.
@@ -115,7 +122,7 @@ namespace Gecko
 		void DispatchPause(float aElapsedTime, uint aCharIndex);
 		
 		/// <summary>
-        /// Dispatch resume event. Should not be called directly by service.
+        /// Dispatch resume event.
         ///
         /// @param aElapsedTime time in seconds since speech has started.
         /// @param aCharIndex   offset of spoken characters.
@@ -168,7 +175,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3952d388-050c-47ba-a70f-5fc1cadf1db0")]
+	[Guid("9b7d59db-88ff-43d0-b6ee-9f63d042d08f")]
 	public interface nsISpeechService
 	{
 		
@@ -177,15 +184,16 @@ namespace Gecko
         /// W3C Speech API spec for information about pitch and rate.
         /// https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#utterance-attributes
         ///
-        /// @param aText  text to utter.
-        /// @param aUri   unique voice identifier.
-        /// @param aRate  rate to speak voice in.
-        /// @param aPitch pitch to speak voice in.
+        /// @param aText   text to utter.
+        /// @param aUri    unique voice identifier.
+        /// @param aVolume volume to speak voice in. Only relevant for indirect audio.
+        /// @param aRate   rate to speak voice in.
+        /// @param aPitch  pitch to speak voice in.
         /// @param aTask  task instance for utterance, used for sending events or audio
         /// data back to browser.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Speak([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aText, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUri, float aRate, float aPitch, [MarshalAs(UnmanagedType.Interface)] nsISpeechTask aTask);
+		void Speak([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aText, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUri, float aVolume, float aRate, float aPitch, [MarshalAs(UnmanagedType.Interface)] nsISpeechTask aTask);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		SpeechServiceType GetServiceTypeAttribute();

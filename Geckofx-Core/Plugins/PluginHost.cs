@@ -64,7 +64,7 @@ namespace Gecko.Plugins
 
 		public static void ClearSiteData(PluginTag tag, string domain, ulong flags, long maxAge)
 		{
-			nsString.Set(x => _pluginHost.Instance.ClearSiteData(tag._pluginTag, x, flags, maxAge), domain);
+			nsString.Set(x => _pluginHost.Instance.ClearSiteData(tag._pluginTag, x, flags, maxAge, null), domain);
 		}
 	}
 }

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8849feef-0ead-4e9b-b63b-8d862c42a736")]
+	[Guid("a9c81797-9133-4823-b55f-3646e67cfd41")]
 	public interface mozIAsyncFavicons
 	{
 		
@@ -73,11 +73,15 @@ namespace Gecko
         /// @param aCallback
         /// Once we're done setting and/or fetching the favicon, we invoke this
         /// callback.
+        /// @param aLoadingPrincipal
+        /// Principal of the page whose favicon is being set. If this argument
+        /// is omitted, the loadingPrincipal defaults to the systemPrincipal
+        /// and we cannot guarantee security checks anymore (see Bug 1227289)
         ///
         /// @see nsIFaviconDataCallback in nsIFaviconService.idl.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAndFetchFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.U1)] bool aForceReload, uint aFaviconLoadType, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback);
+		void SetAndFetchFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.U1)] bool aForceReload, uint aFaviconLoadType, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aLoadingPrincipal);
 		
 		/// <summary>
         /// Sets the data for a given favicon URI either by replacing existing data in
@@ -136,11 +140,15 @@ namespace Gecko
         /// @param aExpiration
         /// Time in microseconds since the epoch when this favicon expires.
         /// Until this time, we won't try to load it again.
+        /// @param aLoadingPrincipal
+        /// Principal of the page whose favicon is being set. If this argument
+        /// is omitted, the loadingPrincipal defaults to the systemPrincipal
+        /// and we cannot guarantee security checks anymore (see Bug 1227289)
         /// @throws NS_ERROR_FAILURE
         /// Thrown if the favicon is overbloated and won't be saved to the db.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceFaviconDataFromDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDataURL, long aExpiration);
+		void ReplaceFaviconDataFromDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDataURL, long aExpiration, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aLoadingPrincipal);
 		
 		/// <summary>
         /// Retrieves the favicon URI associated to the given page, if any.

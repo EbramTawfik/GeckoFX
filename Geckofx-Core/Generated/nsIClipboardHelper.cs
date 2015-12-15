@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c9d5a750-c3a8-11e1-9b21-0800200c9a66")]
+	[Guid("438307fd-0c68-4d79-922a-f6cc9550cd02")]
 	public interface nsIClipboardHelper
 	{
 		
@@ -39,20 +39,18 @@ namespace Gecko
         /// copy string to given clipboard
         ///
         /// @param aString, the string to copy to the clipboard
-        /// @param aDoc, the source document for the string, if available
         /// @param aClipboardID, the ID of the clipboard to copy to
         /// (eg. kSelectionClipboard -- see nsIClipboard.idl)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyStringToClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aString, int aClipboardID, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDoc);
+		void CopyStringToClipboard([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aString, int aClipboardID);
 		
 		/// <summary>
         /// copy string to (default) clipboard
         ///
         /// @param aString, the string to copy to the clipboard
-        /// @param aDoc, the source document for the string, if available
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aString, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDoc);
+		void CopyString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aString);
 	}
 }

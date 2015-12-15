@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bddeda3f-9020-4d12-8c70-984ee9f7935e")]
+	[Guid("4286de5a-b2ea-446f-8f70-e2a461f42694")]
 	public interface nsIIOService
 	{
 		
@@ -89,12 +89,92 @@ namespace Gecko
 		/// <summary>
         /// Creates a channel for a given URI.
         ///
+        /// @param aURI
+        /// nsIURI from which to make a channel
+        /// @param aLoadingNode
+        /// The loadingDocument of the channel.
+        /// The element or document where the result of this request will be
+        /// used. This is the document/element that will get access to the
+        /// result of this request. For example for an image load, it's the
+        /// document in which the image will be loaded. And for a CSS
+        /// stylesheet it's the document whose rendering will be affected by
+        /// the stylesheet.
+        /// If possible, pass in the element which is performing the load. But
+        /// if the load is coming from a JS API (such as XMLHttpRequest) or if
+        /// the load might be coalesced across multiple elements (such as
+        /// for <img>) then pass in the Document node instead.
+        /// For loads that are not related to any document, such as loads coming
+        /// from addons or internal browser features, use null here.
+        /// @param aLoadingPrincipal
+        /// The loadingPrincipal of the channel.
+        /// The principal of the document where the result of this request will
+        /// be used.
+        /// This defaults to the principal of aLoadingNode, so when aLoadingNode
+        /// is passed this can be left as null. However for loads where
+        /// aLoadingNode is null this argument must be passed.
+        /// For example for loads from a WebWorker, pass the principal
+        /// of that worker. For loads from an addon or from internal browser
+        /// features, pass the system principal.
+        /// This principal should almost always be the system principal if
+        /// aLoadingNode is null. The only exception to this is for loads
+        /// from WebWorkers since they don't have any nodes to be passed as
+        /// aLoadingNode.
+        /// Please note, aLoadingPrincipal is *not* the principal of the
+        /// resource being loaded. But rather the principal of the context
+        /// where the resource will be used.
+        /// @param aTriggeringPrincipal
+        /// The triggeringPrincipal of the load.
+        /// The triggeringPrincipal is the principal of the resource that caused
+        /// this particular URL to be loaded.
+        /// Most likely the triggeringPrincipal and the loadingPrincipal are
+        /// identical, in which case the triggeringPrincipal can be left out.
+        /// In some cases the loadingPrincipal and the triggeringPrincipal are
+        /// different however, e.g. a stylesheet may import a subresource. In
+        /// that case the principal of the stylesheet which contains the
+        /// import command is the triggeringPrincipal, and the principal of
+        /// the document whose rendering is affected is the loadingPrincipal.
+        /// @param aSecurityFlags
+        /// The securityFlags of the channel.
+        /// Any of the securityflags defined in nsILoadInfo.idl
+        /// @param aContentPolicyType
+        /// The contentPolicyType of the channel.
+        /// Any of the content types defined in nsIContentPolicy.idl
+        /// @return reference to the new nsIChannel object
+        ///
+        /// Please note, if you provide both a loadingNode and a loadingPrincipal,
+        /// then loadingPrincipal must be equal to loadingNode->NodePrincipal().
+        /// But less error prone is to just supply a loadingNode.
+        ///
+        /// Keep in mind that URIs coming from a webpage should *never* use the
+        /// systemPrincipal as the loadingPrincipal.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIChannel NewChannelFromURI2([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aLoadingNode, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aLoadingPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aTriggeringPrincipal, uint aSecurityFlags, uint aContentPolicyType);
+		
+		/// <summary>
+        /// Equivalent to newChannelFromURI2(aURI, aLoadingNode, ...)
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIChannel NewChannelFromURIWithLoadInfo([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsILoadInfo aLoadInfo);
+		
+		/// <summary>
+        /// Creates a channel for a given URI.
+        ///
         /// @param aURI nsIURI from which to make a channel
         /// @return reference to the new nsIChannel object
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIChannel NewChannelFromURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		
+		/// <summary>
+        /// Equivalent to newChannelFromURI2(newURI(...))
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIChannel NewChannel2([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aLoadingNode, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aLoadingPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aTriggeringPrincipal, uint aSecurityFlags, uint aContentPolicyType);
 		
 		/// <summary>
         /// Equivalent to newChannelFromURI(newURI(...))
@@ -129,6 +209,41 @@ namespace Gecko
 		void SetOfflineAttribute([MarshalAs(UnmanagedType.U1)] bool aOffline);
 		
 		/// <summary>
+        /// Returns false if there are no interfaces for a network request
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetConnectivityAttribute();
+		
+		/// <summary>
+        /// Set whether network appears to be offline for network connections from
+        /// a given appID.
+        ///
+        /// Calling this function may fire the "network:app-offline-status-changed"
+        /// notification, which is also sent to child processes containing this appId.
+        /// 'state' must one of nsIAppOfflineInfo::{ONLINE|OFFLINE|WIFI_ONLY}.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAppOffline(uint appId, int state);
+		
+		/// <summary>
+        /// Returns true if given appId is currently not allowed to make network
+        /// connections. It will return true if the app is in the wifi-only state
+        /// and we are currently on a 3G connection.
+        /// The returned value does not depend on the offline state of the browser.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsAppOffline(uint appId);
+		
+		/// <summary>
+        /// Returns the state of the app with the given appId.
+        /// returns nsIAppOfflineInfo::{ONLINE,OFFLINE,WIFI_ONLY}
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetAppOfflineState(uint appId);
+		
+		/// <summary>
         /// Checks if a port number is banned. This involves consulting a list of
         /// unsafe ports, corresponding to network services that may be easily
         /// exploitable. If the given port is considered unsafe, then the protocol
@@ -158,5 +273,60 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ExtractScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase urlString, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+	}
+	
+	/// <summary>nsIAppOfflineInfo </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("4ac296a0-ca1b-44f4-8787-117a88cb70fb")]
+	public interface nsIAppOfflineInfo
+	{
+		
+		/// <summary>Member GetAppIdAttribute </summary>
+		/// <returns>A System.UInt32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetAppIdAttribute();
+		
+		/// <summary>Member GetModeAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetModeAttribute();
+	}
+	
+	/// <summary>nsIAppOfflineInfoConsts </summary>
+	public class nsIAppOfflineInfoConsts
+	{
+		
+		// 
+		public const long ONLINE = 1;
+		
+		// 
+		public const long OFFLINE = 2;
+		
+		// 
+		public const long WIFI_ONLY = 3;
+	}
+	
+	/// <summary>nsIIOServiceInternal </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("6633c0bf-d97a-428f-8ece-cb6a655fb95a")]
+	public interface nsIIOServiceInternal
+	{
+		
+		/// <summary>
+        /// This is an internal method that should only be called from ContentChild
+        /// in order to pass the connectivity state from the chrome process to the
+        /// content process. It throws if called outside the content process.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetConnectivity([MarshalAs(UnmanagedType.U1)] bool connectivity);
+		
+		/// <summary>
+        /// An internal method to asynchronously run our notifications that happen
+        /// when we wake from sleep
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyWakeup();
 	}
 }

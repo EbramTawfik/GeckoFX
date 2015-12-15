@@ -117,14 +117,24 @@ namespace Gecko
 	    public uint GetProcessIDAttribute()
 	    {
 	        throw new NotImplementedException();
-	    }
-
-	    public bool GetBrowserTabsRemoteAttribute()
-		{
-			return backXulRuntime.GetBrowserTabsRemoteAttribute();
-		}
+	    }	    
 
 	    public bool GetBrowserTabsRemoteAutostartAttribute()
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    public bool GetAccessibilityEnabledAttribute()
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    public bool GetAccessibilityIsBlacklistedForE10SAttribute()
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    public bool GetIs64BitAttribute()
 	    {
 	        throw new NotImplementedException();
 	    }
@@ -165,6 +175,11 @@ namespace Gecko
 	    }
 
 	    public void GetDistributionIDAttribute(nsAUTF8StringBase aDistributionID)
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    public bool GetIsOfficialAttribute()
 	    {
 	        throw new NotImplementedException();
 	    }

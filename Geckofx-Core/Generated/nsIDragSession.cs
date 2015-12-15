@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fde41f6a-c710-46f8-a0a8-1ff76ca4ff57")]
+	[Guid("25bce737-73f0-43c7-bc20-c71044a73c5a")]
 	public interface nsIDragSession
 	{
 		
@@ -144,5 +144,17 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsDataFlavorSupported([MarshalAs(UnmanagedType.LPStr)] string aDataFlavor);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UserCancelled();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DragEventDispatchedToChildProcess();
+		
+		/// <summary>
+        /// NS_DRAGDROP_OVER sent from parent process to child process.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UpdateDragEffect();
 	}
 }

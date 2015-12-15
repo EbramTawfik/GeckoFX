@@ -30,7 +30,7 @@ namespace Gecko
     ///NOTE: this interface is completely undesigned, not stable and likely to change </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("27212e99-ed25-449b-b79f-32ecb88d251e")]
+	[Guid("4b5ea59e-af89-44f7-8c1c-2dea47a170d1")]
 	public interface nsIGfxInfo
 	{
 		
@@ -111,8 +111,19 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsGPU2ActiveAttribute();
 		
+		/// <summary>
+        /// Returns an array of objects describing each monitor. Guaranteed properties
+        /// are "screenWidth" and "screenHeight". This is only implemented on Desktop.
+        ///
+        /// Windows additionally supplies "refreshRate" and "pseudoDisplay".
+        ///
+        /// OS X additionally supplies "scale".
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFailures(ref uint failureCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] failures);
+		Gecko.JsVal GetMonitors(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFailures(ref uint failureCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref int[] indices, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] failures);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LogFailure([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase failure);
@@ -146,6 +157,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetInfo(System.IntPtr jsContext);
+		
+		/// <summary>
+        ///   }
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetFeatures(System.IntPtr jsContext);
 	}
 	
 	/// <summary>nsIGfxInfoConsts </summary>
@@ -185,19 +202,35 @@ namespace Gecko
 		public const long FEATURE_WEBGL_MSAA = 8;
 		
 		// <summary>
-        //Whether Stagefright is supported </summary>
+        //Whether Stagefright is supported, starting in 17. </summary>
 		public const long FEATURE_STAGEFRIGHT = 9;
 		
 		// <summary>
-        //Whether Webrtc Hardware acceleration is supported </summary>
+        //Whether Webrtc Hardware acceleration is supported, starting in 31. </summary>
 		public const long FEATURE_WEBRTC_HW_ACCELERATION = 10;
 		
 		// <summary>
-        //Whether Direct3D 11 is supported for layers. </summary>
+        //Whether Direct3D 11 is supported for layers, starting in 32. </summary>
 		public const long FEATURE_DIRECT3D_11_LAYERS = 11;
 		
 		// <summary>
-        //The driver is save to the best of our knowledge </summary>
+        //Whether hardware accelerated video decoding is supported, starting in 36. </summary>
+		public const long FEATURE_HARDWARE_VIDEO_DECODING = 12;
+		
+		// <summary>
+        //Whether Direct3D 11 is supported for ANGLE, starting in 38. </summary>
+		public const long FEATURE_DIRECT3D_11_ANGLE = 13;
+		
+		// <summary>
+        //Whether Webrtc Hardware acceleration is supported, starting in 42. </summary>
+		public const long FEATURE_WEBRTC_HW_ACCELERATION_ENCODE = 14;
+		
+		// <summary>
+        //Whether Webrtc Hardware acceleration is supported, starting in 42. </summary>
+		public const long FEATURE_WEBRTC_HW_ACCELERATION_DECODE = 15;
+		
+		// <summary>
+        //The driver is safe to the best of our knowledge </summary>
 		public const long FEATURE_STATUS_OK = 1;
 		
 		// <summary>
@@ -221,5 +254,9 @@ namespace Gecko
 		// <summary>
         //This feature is blocked on this OS version. </summary>
 		public const long FEATURE_BLOCKED_OS_VERSION = 6;
+		
+		// <summary>
+        //This feature is blocked because of mismatched driver versions. </summary>
+		public const long FEATURE_BLOCKED_MISMATCHED_VERSION = 7;
 	}
 }

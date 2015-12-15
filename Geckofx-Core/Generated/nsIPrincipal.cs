@@ -30,7 +30,7 @@ namespace Gecko
     ///Defines the abstract interface for a principal. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("204555e7-04ad-4cc8-9f0e-840615cc43e8")]
+	[Guid("188fc4a2-3157-4956-a7a2-d674991770da")]
 	public interface nsIPrincipal : nsISerializable
 	{
 		
@@ -87,8 +87,10 @@ namespace Gecko
 		
 		/// <summary>
         /// The domain URI to which this principal pertains.
-        /// This is congruent with HTMLDocument.domain, and may be null.
+        /// This is null unless script successfully sets document.domain to our URI
+        /// or a superdomain of our URI.
         /// Setting this has no effect on the URI.
+        /// See https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#Changing_origin
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -96,18 +98,13 @@ namespace Gecko
 		
 		/// <summary>
         /// The domain URI to which this principal pertains.
-        /// This is congruent with HTMLDocument.domain, and may be null.
+        /// This is null unless script successfully sets document.domain to our URI
+        /// or a superdomain of our URI.
         /// Setting this has no effect on the URI.
+        /// See https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#Changing_origin
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDomainAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aDomain);
-		
-		/// <summary>
-        /// with a chrome URI.  All of chrome should probably be the same.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetOriginAttribute();
 		
 		/// <summary>
         /// Returns whether the other principal is equal to or weaker than this
@@ -140,13 +137,9 @@ namespace Gecko
         /// located at the given URI under the same-origin policy. This means that
         /// codebase principals are only allowed to load resources from the same
         /// domain, the system principal is allowed to load anything, and null
-        /// principals are not allowed to load anything. This is changed slightly
-        /// by the optional flag allowIfInheritsPrincipal (which defaults to false)
-        /// which allows the load of a data: URI (which inherits the principal of
-        /// its loader) or a URI with the same principal as its loader (eg. a
-        /// Blob URI).
-        /// In these cases, with allowIfInheritsPrincipal set to true, the URI can
-        /// be loaded by a null principal.
+        /// principals can only load URIs where they are the principal. This is
+        /// changed by the optional flag allowIfInheritsPrincipal (which defaults to
+        /// false) which allows URIs that inherit their loader's principal.
         ///
         /// If the load is allowed this function does nothing. If the load is not
         /// allowed the function throws NS_ERROR_DOM_BAD_URI.
@@ -170,15 +163,65 @@ namespace Gecko
 		
 		/// <summary>
         /// A Content Security Policy associated with this principal.
+        ///
+        /// Please note that if a csp was already set on the
+        /// principal, then it should not be destroyed! Instead, the
+        /// current csp should be quried and extended by
+        /// calling AppendPolicy() on it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetCspAttribute();
 		
 		/// <summary>
         /// A Content Security Policy associated with this principal.
+        ///
+        /// Please note that if a csp was already set on the
+        /// principal, then it should not be destroyed! Instead, the
+        /// current csp should be quried and extended by
+        /// calling AppendPolicy() on it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCspAttribute(System.IntPtr aCsp);
+		
+		/// <summary>
+        /// A speculative Content Security Policy associated with this
+        /// principal. Set during speculative loading (preloading) and
+        /// used *only* for preloads.
+        ///
+        /// If you want to query the CSP associated with that principal,
+        /// then this is *not* what you want. Instead query 'csp'.
+        ///
+        /// Please note that if a preloadCSP was already set on the
+        /// principal, then it should not be destroyed! Instead, the
+        /// current preloadCSP should be quried and extended by
+        /// calling AppendPolicy() on it.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetPreloadCspAttribute();
+		
+		/// <summary>
+        /// A speculative Content Security Policy associated with this
+        /// principal. Set during speculative loading (preloading) and
+        /// used *only* for preloads.
+        ///
+        /// If you want to query the CSP associated with that principal,
+        /// then this is *not* what you want. Instead query 'csp'.
+        ///
+        /// Please note that if a preloadCSP was already set on the
+        /// principal, then it should not be destroyed! Instead, the
+        /// current preloadCSP should be quried and extended by
+        /// calling AppendPolicy() on it.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPreloadCspAttribute(System.IntPtr aPreloadCsp);
+		
+		/// <summary>
+        /// The CSP of the principal in JSON notation.
+        /// Note, that the CSP itself is not exposed to JS, but script
+        /// should be able to obtain a JSON representation of the CSP.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCspJSONAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCspJSON);
 		
 		/// <summary>
         /// Returns the jar prefix of the principal.
@@ -195,6 +238,58 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetJarPrefixAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aJarPrefix);
+		
+		/// <summary>
+        /// A dictionary of the non-default origin attributes associated with this
+        /// nsIPrincipal.
+        ///
+        /// Attributes are tokens that are taken into account when determining whether
+        /// two principals are same-origin - if any attributes differ, the principals
+        /// are cross-origin, even if the scheme, host, and port are the same.
+        /// Attributes should also be considered for all security and bucketing decisions,
+        /// even those which make non-standard comparisons (like cookies, which ignore
+        /// scheme, or quotas, which ignore subdomains).
+        ///
+        /// If you're looking for an easy-to-use canonical stringification of the origin
+        /// attributes, see |originSuffix| below.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOriginAttributesAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// A canonical representation of the origin for this principal. This
+        /// consists of a base string (which, for codebase principals, is of the
+        /// format scheme://host:port), concatenated with |originAttributes| (see
+        /// below).
+        ///
+        /// We maintain the invariant that principalA.equals(principalB) if and only
+        /// if principalA.origin == principalB.origin.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOrigin);
+		
+		/// <summary>
+        /// The base part of |origin| without the concatenation with |originSuffix|.
+        /// This doesn't have the important invariants described above with |origin|,
+        /// and as such should only be used for legacy situations.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetOriginNoSuffixAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOriginNoSuffix);
+		
+		/// <summary>
+        /// A string of the form !key1=value1&key2=value2, where each pair represents
+        /// an attribute with a non-default value. If all attributes have default
+        /// values, this is the empty string.
+        ///
+        /// The value of .originSuffix is automatically serialized into .origin, so any
+        /// consumers using that are automatically origin-attribute-aware. Consumers with
+        /// special requirements must inspect and compare .originSuffix manually.
+        ///
+        /// originsuffix are intended to be a replacement for jarPrefix, which will
+        /// eventually be removed.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetOriginSuffixAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aOriginSuffix);
 		
 		/// <summary>
         /// The base domain of the codebase URI to which this principal pertains
@@ -250,6 +345,14 @@ namespace Gecko
 		uint GetAppIdAttribute();
 		
 		/// <summary>
+        /// Gets the id of the user context this principal is inside.  If this
+        /// principal is inside the default userContext, this returns
+        /// nsIScriptSecurityManager::DEFAULT_USER_CONTEXT_ID.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetUserContextIdAttribute();
+		
+		/// <summary>
         /// Returns true iff the principal is inside a browser element.  (<iframe
         /// mozbrowser mozapp> does not count as a browser element.)
         /// </summary>
@@ -267,12 +370,44 @@ namespace Gecko
 		bool GetUnknownAppIdAttribute();
 		
 		/// <summary>
-        /// Returns true iff this principal is a null principal (corresponding to an
+        /// Returns true iff this is a null principal (corresponding to an
         /// unknown, hence assumed minimally privileged, security context).
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsNullPrincipalAttribute();
+		
+		/// <summary>
+        /// Returns true iff this principal corresponds to a codebase origin.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsCodebasePrincipalAttribute();
+		
+		/// <summary>
+        /// Returns true iff this is an expanded principal.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsExpandedPrincipalAttribute();
+		
+		/// <summary>
+        /// Returns true iff this is the system principal.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsSystemPrincipalAttribute();
+		
+		/// <summary>
+        /// Returns true if this principal's origin is recognized as being on the
+        /// whitelist of sites that can use the CSS Unprefixing Service.
+        ///
+        /// (This interface provides a trivial implementation, just returning false;
+        /// subclasses can implement something more complex as-needed.)
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsOnCSSUnprefixingWhitelist();
 	}
 	
 	/// <summary>nsIPrincipalConsts </summary>

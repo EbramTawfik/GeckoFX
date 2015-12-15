@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dc8013f2-4aed-47a8-bc4e-9fd7a6cc60fa")]
+	[Guid("12f60021-e14b-4020-99d1-ed2c795be66a")]
 	public interface nsINSSErrorsService
 	{
 		
@@ -102,15 +102,18 @@ namespace Gecko
 		// <summary>
         // The error codes within each module must fit in 16 bits. We want these
         // errors to fit in the same module as the NSS errors but not overlap with
-        // any of them. Converting an NSS SEC, NSS SSL, or PSM error to an NS error
-        // involves negating the value of the error and then synthesizing an error
-        // in the NS_ERROR_MODULE_SECURITY module. Hence, PSM errors will start at
-        // a negative value that both doesn't overlap with the current value
-        // ranges for NSS errors and that will fit in 16 bits when negated.
+        // any of them. Converting an NSS SEC, NSS SSL, or mozilla::pkix error to
+        // an NS error involves negating the value of the error and then
+        // synthesizing an error in the NS_ERROR_MODULE_SECURITY module. Hence,
+        // mozilla::pkix errors will start at a negative value that both doesn't
+        // overlap with the current value ranges for NSS errors and that will fit
+        // in 16 bits when negated.
+        //
+        // Keep these in sync with pkixnss.h.
         // </summary>
-		public const long PSM_ERROR_BASE = -(0x4000);
+		public const long MOZILLA_PKIX_ERROR_BASE = -(0x4000);
 		
 		// 
-		public const long PSM_ERROR_LIMIT = (PSM_ERROR_BASE+1000);
+		public const long MOZILLA_PKIX_ERROR_LIMIT = (MOZILLA_PKIX_ERROR_BASE+1000);
 	}
 }

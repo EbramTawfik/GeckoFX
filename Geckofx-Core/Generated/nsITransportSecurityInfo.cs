@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8813d03b-e76c-4240-9691-d327d9b91e88")]
+	[Guid("216112d3-28bc-4671-b057-f98cc09ba1ea")]
 	public interface nsITransportSecurityInfo
 	{
 		
@@ -50,5 +50,17 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetErrorMessageAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetErrorCodeAttribute();
+		
+		/// <summary>
+        /// If certificate verification failed, this will be the peer certificate
+        /// chain provided in the handshake, so it can be used for error reporting.
+        /// If verification succeeded, this will be null.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIX509CertList GetFailedCertChainAttribute();
 	}
 }

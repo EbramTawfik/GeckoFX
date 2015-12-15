@@ -40,7 +40,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("11911980-607c-4efd-aacc-de3b9005c058")]
+	[Guid("3f3f2bf4-d411-44b2-b2f7-dee5948c4763")]
 	public interface nsIDOMWindowUtils
 	{
 		
@@ -120,14 +120,10 @@ namespace Gecko
 		uint Redraw(uint aCount);
 		
 		/// <summary>
-        /// Set the CSS viewport to be |widthPx| x |heightPx| in units of CSS
-        /// pixels, regardless of the size of the enclosing widget/view.
-        /// This will trigger reflow.
-        ///
-        /// The caller of this method must have chrome privileges.
+        /// Force a synchronous layer transaction for this window if necessary.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCSSViewport(float aWidthPx, float aHeightPx);
+		void UpdateLayerTree();
 		
 		/// <summary>
         /// Information retrieved from the <meta name="viewport"> tag.
@@ -189,43 +185,48 @@ namespace Gecko
         /// that each edge is located at a multiple of the "alignment" value.
         ///
         /// Note that both the margin values and alignment are treated as values in
-        /// LayerPixels. Refer to layout/base/Units.h for a description of this unit.
+        /// ScreenPixels. Refer to layout/base/Units.h for a description of this unit.
         /// The base rect values are in app units.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDisplayPortMarginsForElement(float aLeftMargin, float aTopMargin, float aRightMargin, float aBottomMargin, uint aAlignmentX, uint aAlignmentY, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, uint aPriority);
+		void SetDisplayPortMarginsForElement(float aLeftMargin, float aTopMargin, float aRightMargin, float aBottomMargin, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, uint aPriority);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDisplayPortBaseForElement(int aX, int aY, int aWidth, int aHeight, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// Get/set the resolution at which rescalable web content is drawn.
-        /// Currently this is only (some) thebes content.
         ///
         /// Setting a new resolution does *not* trigger reflow.  This API is
         /// entirely separate from textZoom and fullZoom; a resolution scale
         /// can be applied together with both textZoom and fullZoom.
         ///
-        /// The effect of is API for gfx code to allocate more or fewer
+        /// The effect of this API is for gfx code to allocate more or fewer
         /// pixels for rescalable content by a factor of |resolution| in
-        /// either or both dimensions.  setResolution() together with
-        /// setDisplayport() can be used to implement a non-reflowing
-        /// scale-zoom in concert with another entity that can draw with a
-        /// scale.  For example, to scale a content |window| inside a
-        /// <browser> by a factor of 2.0
-        ///
-        /// window.setDisplayport(x, y, oldW / 2.0, oldH / 2.0);
-        /// window.setResolution(2.0, 2.0);
-        /// // elsewhere
-        /// browser.setViewportScale(2.0, 2.0);
+        /// both dimensions.  The scale at which the content is displayed does
+        /// not change; if that is desired, use setResolutionAndScaleTo() instead.
         ///
         /// The caller of this method must have chrome privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetResolution(float aXResolution, float aYResolution);
+		void SetResolution(float aResolution);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResolution(ref float aXResolution, ref float aYResolution);
+		void GetResolution(ref float aResolution);
+		
+		/// <summary>
+        /// Similar to setResolution(), but also scales the content by the
+        /// amount of the resolution, so that it is displayed at a
+        /// correspondingly larger or smaller size, without the need for
+        /// the caller to set an additional transform.
+        ///
+        /// This can be used to implement a non-reflowing scale-zoom, e.g.
+        /// for pinch-zoom on mobile platforms.
+        ///
+        /// The caller of this method must have chrome privileges.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetResolutionAndScaleTo(float aResolution);
 		
 		/// <summary>
         /// Whether the resolution has been set by the user.
@@ -265,7 +266,7 @@ namespace Gecko
 		/// <summary>
         ///Synthesize a mouse event. The event types supported are:
         /// mousedown, mouseup, mousemove, mouseover, mouseout, contextmenu,
-        /// MozMouseHitTest
+        /// MozMouseHittest
         ///
         /// Events are sent in coordinates offset by aX and aY from the window.
         ///
@@ -458,9 +459,13 @@ namespace Gecko
         /// Will throw a DOM security error if called without chrome privileges.
         ///
         /// When you use this for tests, use the constants defined in NativeKeyCodes.js
+        ///
+        /// NOTE: The synthesized native event will be fired asynchronously, and upon
+        /// completion the observer, if provided, will be notified with a "keyevent"
+        /// topic.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendNativeKeyEvent(int aNativeKeyboardLayout, int aNativeKeyCode, int aModifierFlags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCharacters, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUnmodifiedCharacters);
+		void SendNativeKeyEvent(int aNativeKeyboardLayout, int aNativeKeyCode, int aModifierFlags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCharacters, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aUnmodifiedCharacters, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
 		
 		/// <summary>
         /// See nsIWidget::SynthesizeNativeMouseEvent
@@ -468,9 +473,13 @@ namespace Gecko
         /// Will be called on the widget that contains aElement.
         /// Cannot be accessed from unprivileged context (not content-accessible)
         /// Will throw a DOM security error if called without chrome privileges.
+        ///
+        /// NOTE: The synthesized native event will be fired asynchronously, and upon
+        /// completion the observer, if provided, will be notified with a "mouseevent"
+        /// topic.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendNativeMouseEvent(int aScreenX, int aScreenY, int aNativeMessage, int aModifierFlags, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
+		void SendNativeMouseEvent(int aScreenX, int aScreenY, int aNativeMessage, int aModifierFlags, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
 		
 		/// <summary>
         /// See nsIWidget::SynthesizeNativeMouseScrollEvent
@@ -479,14 +488,16 @@ namespace Gecko
         /// Cannot be accessed from unprivileged context (not content-accessible)
         /// Will throw a DOM security error if called without chrome privileges.
         ///
-        /// NOTE: The synthesized native event may be fired asynchronously.
+        /// NOTE: The synthesized native event will be fired asynchronously, and upon
+        /// completion the observer, if provided, will be notified with a
+        /// "mousescrollevent" topic.
         ///
         /// @param aNativeMessage
         /// On Windows:  WM_MOUSEWHEEL (0x020A), WM_MOUSEHWHEEL(0x020E),
         /// WM_VSCROLL (0x0115) or WM_HSCROLL (0x114).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendNativeMouseScrollEvent(int aScreenX, int aScreenY, uint aNativeMessage, double aDeltaX, double aDeltaY, double aDeltaZ, uint aModifierFlags, uint aAdditionalFlags, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
+		void SendNativeMouseScrollEvent(int aScreenX, int aScreenY, uint aNativeMessage, double aDeltaX, double aDeltaY, double aDeltaZ, uint aModifierFlags, uint aAdditionalFlags, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
 		
 		/// <summary>
         /// Create a new or update an existing touch point on the digitizer.
@@ -497,8 +508,12 @@ namespace Gecko
         /// drag - msg1-n:TOUCH_CONTACT (moving), msgn+1:TOUCH_REMOVE
         /// hover drag - msg1-n:TOUCH_HOVER (moving), msgn+1:TOUCH_REMOVE
         ///
-        /// Widget support: Windows 8.0+, Winrt/Win32. Other widgets will
-        /// throw.
+        /// Widget support: Windows 8.0+, Winrt/Win32. Gonk supports CONTACT, REMOVE,
+        /// and CANCEL but no HOVER. Other widgets will throw.
+        ///
+        /// NOTE: The synthesized native event will be fired asynchronously, and upon
+        /// completion the observer, if provided, will be notified with a "touchpoint"
+        /// topic.
         ///
         /// @param aPointerId The touch point id to create or update.
         /// @param aTouchState one or more of the touch states listed above
@@ -508,7 +523,7 @@ namespace Gecko
         /// orientation of the pointer. Use 90 for normal taps.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendNativeTouchPoint(uint aPointerId, uint aTouchState, int aScreenX, int aScreenY, double aPressure, uint aOrientation);
+		void SendNativeTouchPoint(uint aPointerId, uint aTouchState, int aScreenX, int aScreenY, double aPressure, uint aOrientation, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
 		
 		/// <summary>
         /// Simulates native touch based taps on the input digitizer. Events
@@ -525,12 +540,16 @@ namespace Gecko
         /// Widget support: Windows 8.0+, Winrt/Win32. Other widgets will
         /// throw.
         ///
+        /// NOTE: The synthesized native event will be fired asynchronously, and upon
+        /// completion the observer, if provided, will be notified, with a "touchtap"
+        /// topic.
+        ///
         /// @param aScreenX, aScreenY screen coords of this event
         /// @param aLongTap true if the tap should be long, false for a short
         /// tap.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendNativeTouchTap(int aScreenX, int aScreenY, [MarshalAs(UnmanagedType.U1)] bool aLongTap);
+		void SendNativeTouchTap(int aScreenX, int aScreenY, [MarshalAs(UnmanagedType.U1)] bool aLongTap, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
 		
 		/// <summary>
         /// Cancel any existing touch points or long tap delays. Calling this is safe
@@ -538,9 +557,13 @@ namespace Gecko
         /// this when tests shut down to reset the digitizer driver. Not doing so can
         /// leave the digitizer in an undetermined state which can screw up subsequent
         /// tests and native input.
+        ///
+        /// NOTE: The synthesized native event will be fired asynchronously, and upon
+        /// completion the observer, if provided, will be notified with a "cleartouch"
+        /// topic.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearNativeTouchSequence();
+		void ClearNativeTouchSequence([MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
 		
 		/// <summary>
         /// See nsIWidget::ActivateNativeMenuItemAt
@@ -624,11 +647,11 @@ namespace Gecko
 		
 		/// <summary>
         ///Synthesize a simple gesture event for a window. The event types
-        /// supported are: MozSwipeGestureStart, MozSwipeGestureUpdate,
-        /// MozSwipeGestureEnd, MozSwipeGesture, MozMagnifyGestureStart,
-        /// MozMagnifyGestureUpdate, MozMagnifyGesture, MozRotateGestureStart,
-        /// MozRotateGestureUpdate, MozRotateGesture, MozPressTapGesture,
-        /// MozTapGesture, and MozEdgeUIGesture.
+        /// supported are: MozSwipeGestureMayStart, MozSwipeGestureStart,
+        /// MozSwipeGestureUpdate, MozSwipeGestureEnd, MozSwipeGesture,
+        /// MozMagnifyGestureStart, MozMagnifyGestureUpdate, MozMagnifyGesture,
+        /// MozRotateGestureStart, MozRotateGestureUpdate, MozRotateGesture,
+        /// MozPressTapGesture, MozTapGesture, and MozEdgeUIGesture.
         ///
         /// Cannot be accessed from unprivileged context (not
         /// content-accessible) Will throw a DOM security error if called
@@ -793,7 +816,7 @@ namespace Gecko
 		
 		/// <summary>
         /// Get the current zoom factor.
-        /// This is _approximately_ the same as nsIMarkupDocumentViewer.fullZoom,
+        /// This is _approximately_ the same as nsIContentViewer.fullZoom,
         /// but takes into account Gecko's quantization of the zoom factor, which is
         /// implemented by adjusting the (integer) number of appUnits per devPixel.
         /// </summary>
@@ -849,32 +872,6 @@ namespace Gecko
 		void SendContentCommandEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aType, [MarshalAs(UnmanagedType.Interface)] nsITransferable aTransferable);
 		
 		/// <summary>
-        /// Synthesize a composition event to the window.
-        ///
-        /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without chrome privileges.
-        ///
-        /// @param aType     The event type: "compositionstart", "compositionend" or
-        /// "compositionupdate".
-        /// @param aData     The data property value.  Note that this isn't applied
-        /// for compositionstart event because its value is the
-        /// selected text which is automatically computed.
-        /// @param aLocale   The locale property value.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendCompositionEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aData, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aLocale);
-		
-		/// <summary>
-        /// Creating synthesizer of composition string on the window.
-        ///
-        /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without chrome privileges.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICompositionStringSynthesizer CreateCompositionStringSynthesizer();
-		
-		/// <summary>
         /// Synthesize a query content event. Note that the result value returned here
         /// is in LayoutDevice pixels rather than CSS pixels.
         ///
@@ -890,11 +887,10 @@ namespace Gecko
         /// Called when the remote child frame has changed its fullscreen state,
         /// when entering fullscreen, and when the origin which is fullscreen changes.
         /// aFrameElement is the iframe element which contains the child-process
-        /// fullscreen document, and aNewOrigin is the origin of the new fullscreen
-        /// document.
+        /// fullscreen document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoteFrameFullscreenChanged([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aFrameElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNewOrigin);
+		void RemoteFrameFullscreenChanged([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aFrameElement);
 		
 		/// <summary>
         /// Called when the remote frame has popped all fullscreen elements off its
@@ -902,6 +898,17 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoteFrameFullscreenReverted();
+		
+		/// <summary>
+        /// Calls the document to handle any pending fullscreen requests.
+        /// It is called when the parent document has entered fullscreen, and
+        /// we want to put the current document into fullscreen as well.
+        /// The return value indicates whether there is any fullscreen request
+        /// handled by this call.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool HandleFullscreenRequests();
 		
 		/// <summary>
         /// Called when the child frame has fully exit fullscreen, so that the parent
@@ -960,15 +967,6 @@ namespace Gecko
 		void GetVisitedDependentComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aPseudoElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aPropertyName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
 		/// <summary>
-        /// Returns the parent of obj.
-        ///
-        /// @param obj The JavaScript object whose parent is to be gotten.
-        /// @return the parent.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetParent(ref Gecko.JsVal obj, System.IntPtr jsContext);
-		
-		/// <summary>
         /// Get the id of the outer window of this window.  This will never throw.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1003,6 +1001,12 @@ namespace Gecko
 		bool IsInModalState();
 		
 		/// <summary>
+        /// Request set internal desktopMode flag change.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDesktopModeViewport([MarshalAs(UnmanagedType.U1)] bool aDesktopModeViewport);
+		
+		/// <summary>
         /// Suspend/resume timeouts on this window and its descendant windows.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1027,6 +1031,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLayerManagerRemoteAttribute();
+		
+		/// <summary>
+        /// True if we can initialize a hardware-backed h264 decoder for a simple
+        /// test video, does not mean that all h264 video decoding will be done
+        /// in hardware.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSupportsHardwareH264DecodingAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSupportsHardwareH264Decoding);
 		
 		/// <summary>
         /// Returns a handle which represents current recording start position.
@@ -1111,12 +1123,42 @@ namespace Gecko
 		bool GetIsTestControllingRefreshesAttribute();
 		
 		/// <summary>
+        /// Reports whether APZ is enabled on the widget that this window is attached
+        /// to. If there is no widget it will report the default platform value of
+        /// whether or not APZ is enabled.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAsyncPanZoomEnabledAttribute();
+		
+		/// <summary>
         /// Set async scroll offset on an element. The next composite will render
         /// with that offset if async scrolling is enabled, and then the offset
         /// will be removed. Only call this while test-controlled refreshes is enabled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsyncScrollOffset([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, int aX, int aY);
+		void SetAsyncScrollOffset([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, float aX, float aY);
+		
+		/// <summary>
+        /// Set async zoom value. aRootElement should be the document element of our
+        /// document. The next composite will render with that zoom added to any
+        /// existing zoom if async scrolling is enabled, and then the zoom will be
+        /// removed. Only call this while test-controlled refreshes is enabled.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAsyncZoom([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRootElement, float aValue);
+		
+		/// <summary>
+        /// Do a round-trip to the compositor to ensure any pending APZ repaint requests
+        /// get flushed to the main thread. If the function returns true, the flush was
+        /// triggered and an "apz-repaints-flushed" notification will be dispatched via
+        /// the observer service once the flush is complete. If the function returns
+        /// false, an error occurred or a flush is not needed, and the notification
+        /// will not fire. This is intended to be used by test code only!
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool FlushApzRepaints();
 		
 		/// <summary>
         /// Method for testing StyleAnimationValue::ComputeDistance.
@@ -1129,11 +1171,12 @@ namespace Gecko
 		double ComputeAnimationDistance([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase property, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase value1, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase value2);
 		
 		/// <summary>
-        /// Wrap an nsIFile in an nsIDOMFile
+        /// Wrap an nsIFile in an DOM File
+        /// Returns a File object.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFile WrapDOMFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
+		nsISupports WrapDOMFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// Get the type of the currently focused html input, if any.
@@ -1169,19 +1212,31 @@ namespace Gecko
 		bool LeafLayersPartitionWindow();
 		
 		/// <summary>
-        /// true if the (current inner) window may have event listeners for touch events.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetMayHaveTouchEventListenersAttribute();
-		
-		/// <summary>
-        /// Check if any ThebesLayer painting has been done for this element,
+        /// Check if any PaintedLayer painting has been done for this element,
         /// clears the painted flags if they have.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CheckAndClearPaintedState([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
+		
+		/// <summary>
+        /// Check whether all display items of the primary frame of aElement have been
+        /// assigned to the same single PaintedLayer in the last paint. If that is the
+        /// case, returns whether that PaintedLayer is opaque; if it's not the case, an
+        /// exception is thrown.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsPartOfOpaqueLayer([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
+		
+		/// <summary>
+        /// Count the number of different PaintedLayers that the supplied elements have
+        /// been assigned to in the last paint. Throws an exception if any of the
+        /// elements doesn't have a primary frame, or if that frame's display items are
+        /// assigned to any other layers than just a single PaintedLayer per element.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint NumberOfAssignedPaintedLayers([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsIDOMElement[] aElements, uint count);
 		
 		/// <summary>
         /// Get internal id of the stored blob, file or file handle.
@@ -1190,12 +1245,23 @@ namespace Gecko
 		int GetFileId(ref Gecko.JsVal aFile, System.IntPtr jsContext);
 		
 		/// <summary>
+        /// Get internal file path of the stored file or file handle.
+        ///
+        /// TODO: File handle objects are actually not supported at the moment.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFilePath(ref Gecko.JsVal aFile, System.IntPtr jsContext, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		
+		/// <summary>
         /// Get file ref count info for given database and file id.
         ///
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFileReferences([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDatabaseName, long aId, ref Gecko.JsVal aOptions, ref int aRefCnt, ref int aDBRefCnt, ref int aSliceRefCnt, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void FlushPendingFileDeletions();
 		
 		/// <summary>
         /// Return whether incremental GC has been disabled due to a binary add-on.
@@ -1273,19 +1339,6 @@ namespace Gecko
 		void SetScrollPositionClampingScrollPortSize(float aWidth, float aHeight);
 		
 		/// <summary>
-        /// Set margins for the layout of fixed position elements in the content
-        /// document. These are used on mobile, where the viewable area can be
-        /// temporarily obscured by the browser chrome. In this situation, we're ok
-        /// with scrollable page content being obscured, but fixed position content
-        /// cannot be revealed without removing the obscuring chrome, so we use these
-        /// margins so that it can remain visible.
-        ///
-        /// The caller of this method must have chrome privileges.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentDocumentFixedPositionMargins(float aTop, float aRight, float aBottom, float aLeft);
-		
-		/// <summary>
         /// These are used to control whether dialogs (alert, prompt, confirm) are
         /// allowed.
         /// </summary>
@@ -1313,6 +1366,12 @@ namespace Gecko
 		void LoadSheet([MarshalAs(UnmanagedType.Interface)] nsIURI sheetURI, uint type);
 		
 		/// <summary>
+        /// Same as the above method but allows passing the URI as a string.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void LoadSheetUsingURIString([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase sheetURI, uint type);
+		
+		/// <summary>
         /// Adds a style sheet to the list of additional style sheets of the document.
         ///
         /// Style sheets can be preloaded with nsIStyleSheetService.preloadSheet.
@@ -1328,6 +1387,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveSheet([MarshalAs(UnmanagedType.Interface)] nsIURI sheetURI, uint type);
+		
+		/// <summary>
+        /// Same as the above method but allows passing the URI as a string.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveSheetUsingURIString([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase sheetURI, uint type);
 		
 		/// <summary>
         /// Returns true if a user input is being handled.
@@ -1381,38 +1446,25 @@ namespace Gecko
 		void SetPaintFlashingAttribute([MarshalAs(UnmanagedType.U1)] bool aPaintFlashing);
 		
 		/// <summary>
-        /// Allows running of a "synchronous section", in the form of an nsIRunnable
-        /// once the event loop has reached a "stable state". We've reached a stable
-        /// state when the currently executing task/event has finished, see:
-        /// http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#synchronous-section
-        /// In practice this runs aRunnable once the currently executing event
-        /// finishes. If called multiple times per task/event, all the runnables will
-        /// be executed, in the order in which runInStableState() was called.
-        ///
-        /// XXX - This can wreak havoc if you're not using this for very simple
-        /// purposes, eg testing or setting a flag.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RunInStableState([MarshalAs(UnmanagedType.Interface)] nsIRunnable runnable);
-		
-		/// <summary>
-        /// Run the given runnable before the next iteration of the event loop (this
-        /// includes native events too). If a nested loop is spawned within the current
-        /// event then the runnable will not be run until that loop has terminated.
-        ///
-        /// XXX - This can wreak havoc if you're not using this for very simple
-        /// purposes, eg testing or setting a flag.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RunBeforeNextEvent([MarshalAs(UnmanagedType.Interface)] nsIRunnable runnable);
-		
-		/// <summary>
         /// Returns the value of a given property animated on the compositor thread.
         /// If the property is NOT currently being animated on the compositor thread,
         /// returns an empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOMTAStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aProperty, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		void GetOMTAStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aProperty, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aPseudoElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		
+		/// <summary>
+        /// Special function that gets a property syncronously from the last composite
+        /// that occured.
+        ///
+        /// Supported properties:
+        /// "overdraw": Report a percentage between 0 and 999 indicate how many times
+        /// each pixels on the destination window have been touched.
+        /// "missed_hwc": Report a bool if hardware composer is supported but was
+        /// not used for the last frame.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float RequestCompositorProperty([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aProperty);
 		
 		/// <summary>
         /// If aHandlingInput is true, this informs the event state manager that
@@ -1434,6 +1486,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetCompositorAPZTestData(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Posts an eRestyle_Self restyle event for the given element.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void PostRestyleSelfEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// With this it's possible to mute all the MediaElements in this window.
@@ -1479,6 +1537,94 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AskPermission([MarshalAs(UnmanagedType.Interface)] nsIContentPermissionRequest aRequest);
+		
+		/// <summary>
+        /// Number of frames constructed (excluding breaking) for the curent
+        /// document.
+        ///
+        /// May throw NS_ERROR_NOT_AVAILABLE.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetFramesConstructedAttribute();
+		
+		/// <summary>
+        /// Number of frames reflowed for the curent document.
+        ///
+        /// May throw NS_ERROR_NOT_AVAILABLE.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetFramesReflowedAttribute();
+		
+		/// <summary>
+        /// Controls the amount of chrome that should be visible on each side of
+        /// the window. Works like the chromemargin xul:window attribute.
+        /// This should only be used with non-XUL windows.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetChromeMargin(int aTop, int aRight, int aBottom, int aLeft);
+		
+		/// <summary>
+        /// Enable some service workers testing features.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetServiceWorkersTestingEnabledAttribute();
+		
+		/// <summary>
+        /// Enable some service workers testing features.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetServiceWorkersTestingEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aServiceWorkersTestingEnabled);
+		
+		/// <summary>
+        /// Returns a JSObject which contains a list of frame uniformities
+        /// when the pref gfx.vsync.collect-scroll-data is enabled.
+        /// Every result contains a layer address and a frame uniformity for that layer.
+        /// A negative frame uniformity value indicates an invalid frame uniformity and an error has occured.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetFrameUniformityTestData(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Increase the chaos mode activation level. An equivalent number of
+        /// calls to leaveChaosMode must be made in order to restore the original
+        /// chaos mode state. If the activation level is nonzero all chaos mode
+        /// features are activated.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void EnterChaosMode();
+		
+		/// <summary>
+        /// Decrease the chaos mode activation level. See enterChaosMode().
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void LeaveChaosMode();
+		
+		/// <summary>
+        /// Returns whether the document's style set's rule processor for the
+        /// specified level of the cascade is shared by multiple style sets.
+        /// (Used by tests to ensure that certain optimizations do not regress.)
+        ///
+        /// @param aSheetType One of the nsIStyleSheetService.*_SHEET constants.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool HasRuleProcessorUsedByMultipleStyleSets(uint aSheetType);
+		
+		/// <summary>
+        /// Force the use counters for the node's associated document(s) to be
+        /// flushed to telemetry.  For example, a document node will flush its own
+        /// counters and an image node with an SVG source will flush the SVG
+        /// document's counters.  Normally, use counters are flushed to telemetry
+        /// upon document destruction, but as document destruction is somewhat
+        /// non-deterministic, we have this method here for more determinism when
+        /// running tests.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ForceUseCounterFlush([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetNextPaintSyncId(int aSyncId);
 	}
 	
 	/// <summary>nsIDOMWindowUtilsConsts </summary>
@@ -1512,16 +1658,22 @@ namespace Gecko
 		public const long MODIFIER_FN = 0x0040;
 		
 		// 
-		public const long MODIFIER_NUMLOCK = 0x0080;
+		public const long MODIFIER_FNLOCK = 0x0080;
 		
 		// 
-		public const long MODIFIER_SCROLLLOCK = 0x0100;
+		public const long MODIFIER_NUMLOCK = 0x0100;
 		
 		// 
-		public const long MODIFIER_SYMBOLLOCK = 0x0200;
+		public const long MODIFIER_SCROLLLOCK = 0x0200;
 		
 		// 
-		public const long MODIFIER_OS = 0x0400;
+		public const long MODIFIER_SYMBOL = 0x0400;
+		
+		// 
+		public const long MODIFIER_SYMBOLLOCK = 0x0800;
+		
+		// 
+		public const long MODIFIER_OS = 0x1000;
 		
 		// <summary>
         //Synthesize a wheel event for a window. The event types supported is only
@@ -1608,18 +1760,17 @@ namespace Gecko
 		// 
 		public const ulong KEY_FLAG_LOCATION_NUMPAD = 0x0080;
 		
-		// 
-		public const ulong KEY_FLAG_LOCATION_MOBILE = 0x0100;
-		
-		// 
-		public const ulong KEY_FLAG_LOCATION_JOYSTICK = 0x0200;
-		
 		// <summary>
         // If MOUSESCROLL_PREFER_WIDGET_AT_POINT is set, widget will dispatch
         // the event to a widget which is under the cursor.  Otherwise, dispatch to
         // a default target on the platform.  E.g., on Windows, it's focused window.
         // </summary>
 		public const ulong MOUSESCROLL_PREFER_WIDGET_AT_POINT = 0x00000001;
+		
+		// <summary>
+        // Interpret the scroll delta values as lines rather than pixels.
+        // </summary>
+		public const ulong MOUSESCROLL_SCROLL_LINES = 0x00000002;
 		
 		// <summary>
         // If MOUSESCROLL_WIN_SCROLL_LPARAM_NOT_NULL is set and aNativeMessage is

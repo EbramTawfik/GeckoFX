@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("df068636-9a5b-11e3-b71f-2c27d728e7f9")]
+	[Guid("dbebc4be-75c9-47ca-aee8-0a8b4ae14a87")]
 	public interface nsIDOMMouseEvent : nsIDOMUIEvent
 	{
 		
@@ -227,6 +227,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr InternalDOMEvent();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopCrossProcessForwarding();
 		
 		/// <summary>
         /// The nsIDOMUIEvent interface is the datatype for all UI events in the

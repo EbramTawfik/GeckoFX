@@ -27,38 +27,12 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///This Source Code Form is subject to the terms of the Mozilla Public
-    /// License, v. 2.0. If a copy of the MPL was not distributed with this
-    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+    /// see MenuBoxObject.webidl
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("689ebf3d-0184-450a-9bfa-5a26be0e7a8c")]
 	public interface nsIMenuBoxObject
 	{
-		
-		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this
-        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenMenu([MarshalAs(UnmanagedType.U1)] bool openFlag);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetActiveChildAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetActiveChildAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aActiveChild);
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HandleKeyPress([MarshalAs(UnmanagedType.Interface)] nsIDOMKeyEvent keyEvent);
-		
-		/// <summary>
-        /// true if the menu or menubar was opened via a keypress.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetOpenedWithKeyAttribute();
 	}
 }

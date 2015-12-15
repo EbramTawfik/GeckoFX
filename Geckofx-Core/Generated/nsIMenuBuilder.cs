@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("12724737-f7db-43b4-94ab-708a7b86e115")]
+	[Guid("93F4A48F-D043-4F45-97FD-9771EA1AF976")]
 	public interface nsIMenuBuilder
 	{
 		
@@ -72,5 +72,32 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CloseContainer();
+		
+		/// <summary>
+        /// Returns a JSON string representing the menu hierarchy. For a context menu,
+        /// it will be of the form:
+        /// {
+        /// type: "menu",
+        /// children: [
+        /// {
+        /// type: "menuitem",
+        /// label: "label",
+        /// icon: "image.png"
+        /// },
+        /// {
+        /// type: "separator",
+        /// },
+        /// ];
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ToJSONString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		
+		/// <summary>
+        /// Invoke the action of the menuitem with assigned id aGeneratedItemId.
+        ///
+        /// @param aGeneratedItemId the menuitem id
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Click([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aGeneratedItemId);
 	}
 }

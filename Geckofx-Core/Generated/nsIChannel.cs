@@ -42,7 +42,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3423767b-9f4e-430e-9859-67a83ffb689d")]
+	[Guid("2c389865-23db-4aa7-9fe5-60cc7b00697e")]
 	public interface nsIChannel : nsIRequest
 	{
 		
@@ -268,7 +268,16 @@ namespace Gecko
 		void SetNotificationCallbacksAttribute([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aNotificationCallbacks);
 		
 		/// <summary>
-        /// Transport-level security information (if any) corresponding to the channel.
+        /// Transport-level security information (if any) corresponding to the
+        /// channel.
+        ///
+        /// NOTE: In some circumstances TLS information is propagated onto
+        /// non-nsIHttpChannel objects to indicate that their contents were likely
+        /// delivered over TLS all the same.  For example, document.open() may
+        /// create an nsWyciwygChannel to store the data that will be written to the
+        /// document.  In that case, if the caller has TLS information, we propagate
+        /// that info onto the nsWyciwygChannel given that it is likely that the
+        /// caller will be writing data that was delivered over TLS to the document.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -385,6 +394,13 @@ namespace Gecko
 		nsIInputStream Open();
 		
 		/// <summary>
+        /// Performs content security check and calls open()
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIInputStream Open2();
+		
+		/// <summary>
         /// Asynchronously open this channel.  Data is fed to the specified stream
         /// listener as it becomes available.  The stream listener's methods are
         /// called on the thread that calls asyncOpen and are not called until
@@ -417,6 +433,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AsyncOpen([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
+		
+		/// <summary>
+        /// Performs content security check and calls asyncOpen().
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AsyncOpen2([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aListener);
 		
 		/// <summary>
         /// Access to the type implied or stated by the Content-Disposition header
@@ -580,12 +602,11 @@ namespace Gecko
 		public const ulong LOAD_CLASSIFY_URI = 1<<22;
 		
 		// <summary>
-        // If this flag is set and a server's response is Content-Type
-        // application/octet-steam, the server's Content-Type will be ignored and
-        // the channel content will be sniffed as though no Content-Type had been
-        // passed.
+        // If this flag is set, the media-type content sniffer will be allowed
+        // to override any server-set content-type. Otherwise it will only
+        // be allowed to override "no content type" and application/octet-stream.
         // </summary>
-		public const ulong LOAD_TREAT_APPLICATION_OCTET_STREAM_AS_UNKNOWN = 1<<23;
+		public const ulong LOAD_MEDIA_SNIFFER_OVERRIDES_CONTENT_TYPE = 1<<23;
 		
 		// <summary>
         // Set to let explicitely provided credentials be used over credentials
@@ -597,6 +618,11 @@ namespace Gecko
         // to override them for the same user name.
         // </summary>
 		public const ulong LOAD_EXPLICIT_CREDENTIALS = 1<<24;
+		
+		// <summary>
+        // Set to force bypass of any service worker interception of the channel.
+        // </summary>
+		public const ulong LOAD_BYPASS_SERVICE_WORKER = 1<<25;
 		
 		// 
 		public const ulong DISPOSITION_INLINE = 0;

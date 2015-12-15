@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("50db5e86-9a45-4637-a5c3-4ff148c33270")]
+	[Guid("da0c7824-147c-11e5-917c-60a44c717042")]
 	public interface nsIAccessibleRole
 	{
 	}
@@ -807,5 +807,192 @@ namespace Gecko
         // A keyboard or keypad key.
         // </summary>
 		public const ulong ROLE_KEY = 129;
+		
+		// <summary>
+        // A switch control widget.
+        // </summary>
+		public const ulong ROLE_SWITCH = 130;
+		
+		// <summary>
+        // A block of MathML code (math).
+        // </summary>
+		public const ulong ROLE_MATHML_MATH = 131;
+		
+		// <summary>
+        // A MathML identifier (mi in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_IDENTIFIER = 132;
+		
+		// <summary>
+        // A MathML number (mn in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_NUMBER = 133;
+		
+		// <summary>
+        // A MathML operator (mo in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_OPERATOR = 134;
+		
+		// <summary>
+        // A MathML text (mtext in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_TEXT = 135;
+		
+		// <summary>
+        // A MathML string literal (ms in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_STRING_LITERAL = 136;
+		
+		// <summary>
+        // A MathML glyph (mglyph in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_GLYPH = 137;
+		
+		// <summary>
+        // A MathML row (mrow in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_ROW = 138;
+		
+		// <summary>
+        // A MathML fraction (mfrac in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_FRACTION = 139;
+		
+		// <summary>
+        // A MathML square root (msqrt in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_SQUARE_ROOT = 140;
+		
+		// <summary>
+        // A MathML root (mroot in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_ROOT = 141;
+		
+		// <summary>
+        // A MathML fenced element (mfenced in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_FENCED = 142;
+		
+		// <summary>
+        // A MathML enclosed element (menclose in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_ENCLOSED = 143;
+		
+		// <summary>
+        // A MathML styling element (mstyle in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_STYLE = 144;
+		
+		// <summary>
+        // A MathML subscript (msub in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_SUB = 145;
+		
+		// <summary>
+        // A MathML superscript (msup in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_SUP = 146;
+		
+		// <summary>
+        // A MathML subscript and superscript (msubsup in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_SUB_SUP = 147;
+		
+		// <summary>
+        // A MathML underscript (munder in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_UNDER = 148;
+		
+		// <summary>
+        // A MathML overscript (mover in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_OVER = 149;
+		
+		// <summary>
+        // A MathML underscript and overscript (munderover in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_UNDER_OVER = 150;
+		
+		// <summary>
+        // A MathML multiple subscript and superscript element (mmultiscripts in
+        // MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_MULTISCRIPTS = 151;
+		
+		// <summary>
+        // A MathML table (mtable in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_TABLE = 152;
+		
+		// <summary>
+        // A MathML labelled table row (mlabeledtr in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_LABELED_ROW = 153;
+		
+		// <summary>
+        // A MathML table row (mtr in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_TABLE_ROW = 154;
+		
+		// <summary>
+        // A MathML table entry or cell (mtd in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_CELL = 155;
+		
+		// <summary>
+        // A MathML interactive element (maction in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_ACTION = 156;
+		
+		// <summary>
+        // A MathML error message (merror in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_ERROR = 157;
+		
+		// <summary>
+        // A MathML stacked (rows of numbers) element (mstack in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_STACK = 158;
+		
+		// <summary>
+        // A MathML long division element (mlongdiv in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_LONG_DIVISION = 159;
+		
+		// <summary>
+        // A MathML stack group (msgroup in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_STACK_GROUP = 160;
+		
+		// <summary>
+        // A MathML stack row (msrow in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_STACK_ROW = 161;
+		
+		// <summary>
+        // MathML carries, borrows, or crossouts for a row (mscarries in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_STACK_CARRIES = 162;
+		
+		// <summary>
+        // A MathML carry, borrow, or crossout for a column (mscarry in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_STACK_CARRY = 163;
+		
+		// <summary>
+        // A MathML line in a stack (msline in MathML).
+        // </summary>
+		public const ulong ROLE_MATHML_STACK_LINE = 164;
+		
+		// <summary>
+        // A group containing radio buttons
+        // </summary>
+		public const ulong ROLE_RADIO_GROUP = 165;
+		
+		// <summary>
+        // A text container exposing brief amount of information. See related
+        // TEXT_CONTAINER role.
+        // </summary>
+		public const ulong ROLE_TEXT = 166;
 	}
 }

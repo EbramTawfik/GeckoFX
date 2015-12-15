@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a0cda7e4-c6ca-11e0-b6a5-001320257da5")]
+	[Guid("a9df523b-efe2-421e-9d8e-3d7f807dda4c")]
 	public interface nsIWebProgressListener
 	{
 		
@@ -361,6 +361,23 @@ namespace Gecko
 		public const ulong STATE_LOADED_MIXED_DISPLAY_CONTENT = 0x00000200;
 		
 		// <summary>
+        // Tracking content flags
+        //
+        // May be set in addition to the State security Flags, to indicate that
+        // tracking content has been encountered.
+        //
+        // STATE_BLOCKED_TRACKING_CONTENT
+        // Tracking content has been blocked from loading.
+        //
+        // STATE_LOADED_TRACKING_CONTENT
+        // Tracking content has been loaded.
+        // </summary>
+		public const ulong STATE_BLOCKED_TRACKING_CONTENT = 0x00001000;
+		
+		// 
+		public const ulong STATE_LOADED_TRACKING_CONTENT = 0x00002000;
+		
+		// <summary>
         // Security Strength Flags
         //
         // These flags describe the security strength and accompany STATE_IS_SECURE
@@ -400,6 +417,22 @@ namespace Gecko
         // NOTE: Available since Gecko 1.9
         // </summary>
 		public const ulong STATE_IDENTITY_EV_TOPLEVEL = 0x00100000;
+		
+		// <summary>
+        // Broken state flags
+        //
+        // These flags describe the reason of the broken state.
+        //
+        // STATE_USES_SSL_3
+        // The topmost document uses SSL 3.0.
+        //
+        // STATE_USES_WEAK_CRYPTO
+        // The topmost document uses a weak cipher suite such as RC4.
+        // </summary>
+		public const ulong STATE_USES_SSL_3 = 0x01000000;
+		
+		// 
+		public const ulong STATE_USES_WEAK_CRYPTO = 0x02000000;
 		
 		// <summary>
         // Flags for onLocationChange

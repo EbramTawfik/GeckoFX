@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5677f36e-1842-4c6f-a39c-2e5576ab8b40")]
+	[Guid("70b9600e-8622-4c93-9ad8-22c28058dc44")]
 	public interface nsIDOMParser
 	{
 		

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2712a791-f720-484d-8820-c4085629f657")]
+	[Guid("5d0edcd3-c2f1-4946-aae5-06adcbdf0992")]
 	public interface nsIWifiCertService
 	{
 		
@@ -67,6 +67,16 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteCert(int id, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase certNickname);
+		
+		/// <summary>
+        /// Check if certificate has private key.
+        ///
+        /// @param certNickname
+        /// Certificate nickname to check for private key.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool HasPrivateKey([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase certNickname);
 	}
 	
 	/// <summary>nsIWifiCertServiceConsts </summary>

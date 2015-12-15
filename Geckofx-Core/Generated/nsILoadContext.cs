@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6ec837fa-af93-4350-bbb8-0985d54c74ca")]
+	[Guid("c71ef717-8fb9-425e-98ef-aef5894890f8")]
 	public interface nsILoadContext
 	{
 		
@@ -59,11 +59,14 @@ namespace Gecko
 		nsIDOMWindow GetTopWindowAttribute();
 		
 		/// <summary>
-        /// topFrameElement is the <iframe> or <frame> element which contains the
-        /// topWindow with which the load is associated.
+        /// topFrameElement is the <iframe>, <frame>, or <browser> element which
+        /// contains the topWindow with which the load is associated.
         ///
         /// Note that we may have a topFrameElement even when we don't have an
         /// associatedWindow, if the topFrameElement's content lives out of process.
+        /// topFrameElement is available in single-process and multiprocess contexts.
+        /// Note that topFrameElement may be in chrome even when the nsILoadContext is
+        /// associated with content.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -145,5 +148,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetAppIdAttribute();
+		
+		/// <summary>
+        /// A dictionary of the non-default origin attributes associated with this
+        /// nsILoadContext.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOriginAttributesAttribute();
 	}
 }

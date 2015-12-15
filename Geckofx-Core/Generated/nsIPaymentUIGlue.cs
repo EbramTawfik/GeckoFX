@@ -47,7 +47,7 @@ namespace Gecko
 	/// <summary>nsIPaymentUIGlue </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4dda9aa0-df88-4dcd-a583-199e516fa438")]
+	[Guid("4dc09e33-d395-4e1d-acb4-e85415181270")]
 	public interface nsIPaymentUIGlue
 	{
 		
@@ -64,8 +64,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ShowPaymentFlow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase requestId, [MarshalAs(UnmanagedType.Interface)] nsIPaymentFlowInfo paymentFlowInfo, [MarshalAs(UnmanagedType.Interface)] nsIPaymentUIGlueCallback errorCb);
 		
-		/// <summary>Member Cleanup </summary>
+		/// <summary>
+        ///Promise </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Cleanup();
+		Gecko.JsVal ClosePaymentFlow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase requestId);
 	}
 }

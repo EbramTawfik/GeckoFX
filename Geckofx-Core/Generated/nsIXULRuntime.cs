@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e652d3b8-c77c-4601-a84d-b0716d2b32c0")]
+	[Guid("ce9d05f4-0c20-4f52-87e1-3a425e61e2f3")]
 	public interface nsIXULRuntime
 	{
 		
@@ -106,20 +106,34 @@ namespace Gecko
 		uint GetProcessIDAttribute();
 		
 		/// <summary>
-        /// If true, browser tabs may be opened in a different process from the main
-        /// browser UI.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetBrowserTabsRemoteAttribute();
-		
-		/// <summary>
         /// If true, browser tabs may be opened by default in a different process
         /// from the main browser UI.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBrowserTabsRemoteAutostartAttribute();
+		
+		/// <summary>
+        /// If true, the accessibility service is running.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAccessibilityEnabledAttribute();
+		
+		/// <summary>
+        /// Indicates if the active accessibility client is blacklisted for e10s.
+        /// DO NOT USE! This is temporary and will be removed.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAccessibilityIsBlacklistedForE10SAttribute();
+		
+		/// <summary>
+        /// Indicates whether the current Firefox build is 64-bit.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIs64BitAttribute();
 		
 		/// <summary>
         /// Signal the apprunner to invalidate caches on the next restart.
@@ -179,6 +193,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDistributionIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDistributionID);
+		
+		/// <summary>
+        /// True if this is an official build (MOZILLA_OFFICIAL).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsOfficialAttribute();
 	}
 	
 	/// <summary>nsIXULRuntimeConsts </summary>

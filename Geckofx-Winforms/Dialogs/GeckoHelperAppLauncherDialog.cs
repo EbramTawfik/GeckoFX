@@ -89,17 +89,7 @@ namespace Gecko
 			{
 				aLauncher.Cancel(nsIHelperAppLauncherConstants.NS_BINDING_ABORTED);
 			}
-		}
-
-		#region nsIHelperAppLauncherDialog Members
-
-
-		nsIFile nsIHelperAppLauncherDialog.PromptForSaveToFile(nsIHelperAppLauncher aLauncher, nsISupports aWindowContext, string aDefaultFileName, string aSuggestedFileExtension, bool aForcePrompt)
-		{
-			throw new NotImplementedException();
-		}
-
-		#endregion
+		}	
 	}
 
 	[ContractID(LauncherDialogFactory.ContractID)]

@@ -32,188 +32,14 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6e0f45b8-410e-11e3-8c8e-b715b2cd0128")]
-	public interface nsIRilNetworkInterface : nsINetworkInterface
+	[Guid("3bc96351-53b0-47a1-a888-c74c64b60f25")]
+	public interface nsIRilSendWorkerMessageCallback
 	{
-		
-		/// <summary>
-        /// Current network state, one of the NETWORK_STATE_* constants.
-        ///
-        /// When this changes, network interface implementations notify the
-        /// 'network-interface-state-changed' observer notification.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetStateAttribute();
-		
-		/// <summary>
-        /// Network type. One of the NETWORK_TYPE_* constants.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetTypeAttribute();
-		
-		/// <summary>
-        /// Name of the network interface. This identifier is unique.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aName);
-		
-		/// <summary>
-        /// The host name of the http proxy server.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetHttpProxyHostAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aHttpProxyHost);
-		
-		/// <summary>
-        /// The port number of the http proxy server.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetHttpProxyPortAttribute();
-		
-		/// <summary>
-        /// Get the list of ip addresses and prefix lengths, ip address could be IPv4
-        /// or IPv6, typically 1 IPv4 or 1 IPv6 or one of each.
-        ///
-        /// @param ips
-        /// The list of ip addresses retrieved.
-        /// @param prefixLengths
-        /// The list of prefix lengths retrieved.
-        ///
-        /// @returns the length of the lists.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetAddresses([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref System.IntPtr[] ips, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref uint[] prefixLengths);
-		
-		/// <summary>
-        /// Get the list of gateways, could be IPv4 or IPv6, typically 1 IPv4 or 1
-        /// IPv6 or one of each.
-        ///
-        /// @param count
-        /// The length of the list of gateways
-        ///
-        /// @returns the list of gateways.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetGateways(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] gateways);
-		
-		/// <summary>
-        /// Get the list of dnses, could be IPv4 or IPv6.
-        ///
-        /// @param count
-        /// The length of the list of dnses.
-        ///
-        /// @returns the list of dnses.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDnses(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] dnses);
 		
 		/// <summary>
         ///This Source Code Form is subject to the terms of the Mozilla Public
         /// License, v. 2.0. If a copy of the MPL was not distributed with this
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetServiceIdAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIccIdAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aIccId);
-		
-		/// <summary>
-        ///The following attributes are for MMS proxy settings. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMmscAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMmsc);
-		
-		/// <summary>
-        /// Empty string if not set.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMmsProxyAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aMmsProxy);
-		
-		/// <summary>
-        /// Empty string if not set.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetMmsPortAttribute();
-	}
-	
-	/// <summary>
-    /// -1 if not set.
-    /// </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c0c5cb9f-6372-4b5a-b74c-baacc2da5e4f")]
-	public interface nsIVoicemailInfo
-	{
-		
-		/// <summary>
-        /// -1 if not set.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNumberAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNumber);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDisplayNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDisplayName);
-	}
-	
-	/// <summary>nsIRilContext </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8f33281f-b262-4bc6-9862-2cab897245ac")]
-	public interface nsIRilContext
-	{
-		
-		/// <summary>Member GetRadioStateAttribute </summary>
-		/// <param name='aRadioState'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRadioStateAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aRadioState);
-		
-		/// <summary>Member GetCardStateAttribute </summary>
-		/// <param name='aCardState'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCardStateAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCardState);
-		
-		/// <summary>Member GetRetryCountAttribute </summary>
-		/// <returns>A System.Int32</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetRetryCountAttribute();
-		
-		/// <summary>Member GetImsiAttribute </summary>
-		/// <param name='aImsi'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetImsiAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aImsi);
-		
-		/// <summary>Member GetNetworkSelectionModeAttribute </summary>
-		/// <param name='aNetworkSelectionMode'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNetworkSelectionModeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aNetworkSelectionMode);
-		
-		/// <summary>Member GetIccInfoAttribute </summary>
-		/// <returns>A nsIDOMMozIccInfo</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozIccInfo GetIccInfoAttribute();
-		
-		/// <summary>Member GetVoiceAttribute </summary>
-		/// <returns>A nsIMobileConnectionInfo</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMobileConnectionInfo GetVoiceAttribute();
-		
-		/// <summary>Member GetDataAttribute </summary>
-		/// <returns>A nsIMobileConnectionInfo</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMobileConnectionInfo GetDataAttribute();
-	}
-	
-	/// <summary>nsIRilSendWorkerMessageCallback </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3bc96351-53b0-47a1-a888-c74c64b60f25")]
-	public interface nsIRilSendWorkerMessageCallback
-	{
-		
-		/// <summary>Member HandleResponse </summary>
-		/// <param name='response'> </param>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HandleResponse(ref Gecko.JsVal response);
@@ -222,50 +48,34 @@ namespace Gecko
 	/// <summary>nsIRadioInterface </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c13a8890-797b-4557-b92f-6b959f56c1d8")]
+	[Guid("1a3ef88a-e4d1-11e4-8512-176220f2b32b")]
 	public interface nsIRadioInterface
 	{
 		
-		/// <summary>Member GetRilContextAttribute </summary>
-		/// <returns>A nsIRilContext</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRilContext GetRilContextAttribute();
-		
 		/// <summary>
         /// PDP APIs
+        ///
+        /// @param networkType
+        /// Mobile network type, that is, nsINetworkInterface.NETWORK_TYPE_MOBILE
+        /// or one of the nsINetworkInterface.NETWORK_TYPE_MOBILE_* values.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetupDataCallByType([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase apntype);
+		void SetupDataCallByType(int networkType);
 		
 		/// <summary>Member DeactivateDataCallByType </summary>
-		/// <param name='apntype'> </param>
+		/// <param name='networkType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeactivateDataCallByType([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase apntype);
+		void DeactivateDataCallByType(int networkType);
 		
 		/// <summary>Member GetDataCallStateByType </summary>
-		/// <param name='apntype'> </param>
+		/// <param name='networkType'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetDataCallStateByType([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase apntype);
+		int GetDataCallStateByType(int networkType);
 		
 		/// <summary>Member UpdateRILNetworkInterface </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UpdateRILNetworkInterface();
-		
-		/// <summary>
-        /// SMS-related functionality.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSegmentInfoForText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase text, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
-		
-		/// <summary>Member SendSMS </summary>
-		/// <param name='number'> </param>
-		/// <param name='message'> </param>
-		/// <param name='silent'> </param>
-		/// <param name='request'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendSMS([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase message, [MarshalAs(UnmanagedType.U1)] bool silent, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 		
 		/// <summary>Member SendWorkerMessage </summary>
 		/// <param name='type'> </param>
@@ -273,24 +83,6 @@ namespace Gecko
 		/// <param name='callback'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendWorkerMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, ref Gecko.JsVal message, [MarshalAs(UnmanagedType.Interface)] nsIRilSendWorkerMessageCallback callback);
-		
-		/// <summary>Member GetSmscAddress </summary>
-		/// <param name='request'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSmscAddress([MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
-		
-		/// <summary>
-        /// Request neighboring cell ids in GSM/UMTS network.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNeighboringCellIds([MarshalAs(UnmanagedType.Interface)] nsINeighboringCellIdsCallback callback);
-		
-		/// <summary>
-        /// Request all of the current cell information known to the radio, including
-        /// neighboring cells.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCellInfoList([MarshalAs(UnmanagedType.Interface)] nsICellInfoListCallback callback);
 	}
 	
 	/// <summary>nsIRadioInterfaceLayer </summary>

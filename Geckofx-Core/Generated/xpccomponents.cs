@@ -160,7 +160,7 @@ namespace Gecko
     /// interface of Components.utils </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1a6c4db7-4b90-4919-9cd8-161ac14a7189")]
+	[Guid("3ce3a6f8-2b59-439c-a57e-74e7b122fb3c")]
 	public interface nsIXPCComponents_Utils
 	{
 		
@@ -328,7 +328,7 @@ namespace Gecko
         /// Force an immediate cycle collection cycle.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ForceCC();
+		void ForceCC([MarshalAs(UnmanagedType.Interface)] nsICycleCollectorListener aListener);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -395,23 +395,21 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnlinkGhostWindows();
 		
-		/// <summary>
-        /// Return the keys in a weak map.  This operation is
-        /// non-deterministic because it is affected by the scheduling of the
-        /// garbage collector and the cycle collector.
-        ///
-        /// This should only be used to write tests of the interaction of
-        /// the GC and CC with weak maps.
-        ///
-        /// @param aMap weak map or other JavaScript value
-        /// @returns If aMap is a weak map object, return the keys of the weak
-        ///                map as an array.  Otherwise, return undefined.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal NondeterministicGetWeakMapKeys(ref Gecko.JsVal aMap, System.IntPtr jsContext);
-		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetJSTestingFunctions(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// To be called from JS only.
+        ///
+        /// Call 'function', using the provided stack as the async stack responsible
+        /// for the call, and propagate its return value or the exception it throws.
+        /// The function is called with no arguments, and 'this' is 'undefined'.
+        ///
+        /// The code in the function will see the given stack frame as the
+        /// asyncCaller of its own stack frame, instead of the current caller.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal CallFunctionWithAsyncStack(ref Gecko.JsVal function, [MarshalAs(UnmanagedType.Interface)] nsIStackFrame stack, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase asyncCause, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -433,16 +431,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsProxy(ref Gecko.JsVal vobject, System.IntPtr jsContext);
-		
-		/// <summary>
-        /// Similar to evalInSandbox except this one is used to eval a script in the
-        /// scope of a window. Also note, that the return value and the possible exceptions
-        /// in the script are structured cloned, unless they are natives (then they are just
-        /// wrapped).
-        /// Principal of the caller must subsume the target's.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal EvalInWindow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase source, ref Gecko.JsVal window, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -501,6 +489,16 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsCrossProcessWrapper(ref Gecko.JsVal obj);
+		
+		/// <summary>
+        /// CPOWs can have user data attached to them. This data originates
+        /// in the local process via the
+        /// nsIRemoteTagService.getRemoteObjectTag method. It's sent along
+        /// with the CPOW to the remote process, where it can be fetched
+        /// with this function, getCrossProcessWrapperTag.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCrossProcessWrapperTag(ref Gecko.JsVal obj, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// To be called from JS only. This is for Gecko internal use only, and may
@@ -743,8 +741,33 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrincipal GetObjectPrincipal(ref Gecko.JsVal obj, System.IntPtr jsContext);
 		
+		/// <summary>
+        /// Gets the URI or identifier string associated with an object's
+        /// compartment (the same one used by the memory reporter machinery).
+        ///
+        /// Unwraps cross-compartment wrappers first.
+        ///
+        /// The string formats and values may change at any time. Do not depend on
+        /// this from addon code.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCompartmentLocation(ref Gecko.JsVal obj, System.IntPtr jsContext, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAddonInterposition([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase addonId, [MarshalAs(UnmanagedType.Interface)] nsIAddonInterposition interposition, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Enables call interpositions from addon scopes to any functions in the scope of |target|.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAddonCallInterposition(ref Gecko.JsVal target, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Return a fractional number of milliseconds from process
+        /// startup, measured with a monotonic clock.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		double Now();
 	}
 	
 	/// <summary>
@@ -865,15 +888,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetLastResultAttribute(System.IntPtr jsContext);
 		
-		/// <summary>Member GetReturnCodeAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
+		/// <summary>
+        /// be returned without throwing an exception.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetReturnCodeAttribute(System.IntPtr jsContext);
 		
-		/// <summary>Member SetReturnCodeAttribute </summary>
-		/// <param name='aReturnCode'> </param>
-		/// <param name='jsContext'> </param>
+		/// <summary>
+        /// be returned without throwing an exception.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetReturnCodeAttribute(Gecko.JsVal aReturnCode, System.IntPtr jsContext);
 		

@@ -27,6 +27,38 @@ namespace Gecko
 	
 	
 	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("e774db14-79ac-4156-a7a3-aa3fd0a22c10")]
+	public interface nsIOpenURIInFrameParams
+	{
+		
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetReferrerAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aReferrer);
+		
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetReferrerAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aReferrer);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsPrivateAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsPrivateAttribute([MarshalAs(UnmanagedType.U1)] bool aIsPrivate);
+	}
+	
+	/// <summary>
     /// The C++ source has access to the browser script source through
     /// nsIBrowserDOMWindow. It is intended to be attached to the chrome DOMWindow
     /// of a toplevel browser window (a XUL window). A DOMWindow that does not
@@ -35,7 +67,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e420bd32-b8c4-4b47-8cca-09e0bddbb0c3")]
+	[Guid("31da1ce2-aec4-4c26-ac66-d622935c3bf4")]
 	public interface nsIBrowserDOMWindow
 	{
 		
@@ -56,11 +88,11 @@ namespace Gecko
 		
 		/// <summary>
         /// As above, but return the nsIFrameLoaderOwner for the new window.
-        ///   // XXXbz is this the right API? Do we really need the opener here?
+        ///   // XXXbz is this the right API?
         ///   // See bug 537428
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr OpenURIInFrame([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aOpener, short aWhere, short aContext);
+		System.IntPtr OpenURIInFrame([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIOpenURIInFrameParams @params, short aWhere, short aContext);
 		
 		/// <summary>
         /// @param  aWindow the window to test.
@@ -72,11 +104,14 @@ namespace Gecko
 		bool IsTabContentWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
-        /// The contentWindow property of the currently selected browser.
-        /// This is used to implement .content in remote-Firefox.
+        /// This function is responsible for calling
+        /// nsIContentViewer::PermitUnload on each frame in the window. It
+        /// returns true if closing the window is allowed. See canClose() in
+        /// BrowserUtils.jsm for a simple implementation of this method.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetContentWindowAttribute();
+		bool CanClose();
 	}
 	
 	/// <summary>nsIBrowserDOMWindowConsts </summary>

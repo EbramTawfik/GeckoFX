@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4b04e835-d131-42af-8bf0-74289f99374f")]
+	[Guid("4fefb490-5567-11e5-a837-0800200c9a66")]
 	public interface nsIMultiPartChannel
 	{
 		
@@ -58,5 +58,18 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsLastPartAttribute();
+		
+		/// <summary>
+        /// ASCII-encoding content prior to the first resource. Only valid for
+        /// content-type=application/package.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPreambleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPreamble);
+		
+		/// <summary>
+        /// The original http response header in each part.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetOriginalResponseHeaderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOriginalResponseHeader);
 	}
 }

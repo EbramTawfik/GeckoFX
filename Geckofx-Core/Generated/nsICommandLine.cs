@@ -34,7 +34,7 @@ namespace Gecko
     /// DEFINITIONS:
     /// "arguments" are any values found on the command line.
     /// "flags" are switches. In normalized form they are preceded by a single dash.
-    /// Some flags may take "parameters", e.g. "-url <param>" or "-install-xpi <param>"
+    /// Some flags may take "parameters", e.g. "--url <param>".
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

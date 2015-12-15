@@ -31,21 +31,25 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6296a314-2abf-4cd0-9097-5e81ee6832e2")]
+	[Guid("59b6beda-f911-4d47-a296-8c81e6abcfb9")]
 	public interface nsISystemMessagesInternal
 	{
 		
 		/// <summary>
-        /// Allow any internal user to broadcast a message of a given type.
+        /// Allow any internal user to send a message of a given type to a given page
+        /// of an app. The message will be sent to all the registered pages of the app
+        /// when |pageURI| is not specified.
         /// @param type        The type of the message to be sent.
         /// @param message     The message payload.
-        /// @param pageURI     The URI of the page that will be opened.
+        /// @param pageURI     The URI of the page that will be opened. Nullable.
         /// @param manifestURI The webapp's manifest URI.
         /// @param extra       Extra opaque information that will be passed around in the observer
         /// notification to open the page.
+        /// returns a Promise
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, ref Gecko.JsVal message, [MarshalAs(UnmanagedType.Interface)] nsIURI pageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI manifestURI, ref Gecko.JsVal extra);
+		nsISupports SendMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, ref Gecko.JsVal message, [MarshalAs(UnmanagedType.Interface)] nsIURI pageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI manifestURI, ref Gecko.JsVal extra);
 		
 		/// <summary>
         /// Allow any internal user to broadcast a message of a given type.
@@ -54,9 +58,11 @@ namespace Gecko
         /// @param message     The message payload.
         /// @param extra       Extra opaque information that will be passed around in the observer
         /// notification to open the page.
+        /// returns a Promise
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BroadcastMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, ref Gecko.JsVal message, ref Gecko.JsVal extra);
+		nsISupports BroadcastMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, ref Gecko.JsVal message, ref Gecko.JsVal extra);
 		
 		/// <summary>
         /// Registration of a page that wants to be notified of a message type.
@@ -66,6 +72,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RegisterPage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIURI pageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI manifestURI);
+		
+		/// <summary>
+        /// Refresh the system message cache in a content process.
+        /// @param manifestURI The webapp's manifest URI.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RefreshCache([MarshalAs(UnmanagedType.Interface)] nsIMessageSender childMM, [MarshalAs(UnmanagedType.Interface)] nsIURI manifestURI);
 	}
 	
 	/// <summary>nsISystemMessagesWrapper </summary>
@@ -89,7 +102,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a0e970f6-faa9-4605-89d6-fafae8b10a80")]
+	[Guid("31b78730-21c6-11e4-8c21-0800200c9a66")]
 	public interface nsISystemMessagesConfigurator
 	{
 		
@@ -100,5 +113,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMustShowRunningAppAttribute();
+		
+		/// <summary>
+        /// A broadcast filter for a specific message type.
+        ///
+        /// @return Promise which resolves with |true| or |false| to indicate if
+        /// we want to dispatch this message.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal ShouldDispatch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase manifestURL, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase pageURL, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type, ref Gecko.JsVal message, ref Gecko.JsVal extra);
 	}
 }

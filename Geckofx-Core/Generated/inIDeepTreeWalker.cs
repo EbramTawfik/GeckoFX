@@ -27,27 +27,24 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///This Source Code Form is subject to the terms of the Mozilla Public
-    /// License, v. 2.0. If a copy of the MPL was not distributed with this
-    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+    /// when a mutation occurs).
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5ba1ec15-e18f-46df-9558-c618429f3db3")]
+	[Guid("6657e8eb-b646-48e7-993e-cfa6e96415b4")]
 	public interface inIDeepTreeWalker
 	{
 		
 		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this
-        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+        /// when a mutation occurs).
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowAnonymousContentAttribute();
 		
 		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this
-        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+        /// when a mutation occurs).
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetShowAnonymousContentAttribute([MarshalAs(UnmanagedType.U1)] bool aShowAnonymousContent);
 		
@@ -58,11 +55,24 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetShowSubDocumentsAttribute([MarshalAs(UnmanagedType.U1)] bool aShowSubDocuments);
 		
+		/// <summary>
+        /// by setting this flag to true this behavior can be altered.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetShowDocumentsAsNodesAttribute();
+		
+		/// <summary>
+        /// by setting this flag to true this behavior can be altered.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetShowDocumentsAsNodesAttribute([MarshalAs(UnmanagedType.U1)] bool aShowDocumentsAsNodes);
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRoot, uint aWhatToShow);
 		
 		/// <summary>
-        /// Methods and attributes from nsIDOMTreeWalker, which is not scriptable.
+        /// limitation for the parentNode will work again.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -82,9 +92,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCurrentNodeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aCurrentNode);
 		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode ParentNode();

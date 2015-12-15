@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("65281BA2-988A-11d3-BDC7-0050040A9B44")]
+	[Guid("67dd0357-8372-4122-bff6-217435e8b7e4")]
 	public interface nsISHContainer
 	{
 		
@@ -62,5 +62,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISHEntry GetChildAt(int index);
+		
+		/// <summary>
+        /// Replaces a child which is for the same docshell as aNewChild
+        /// with aNewChild.
+        /// @throw if nothing was replaced.
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ReplaceChild([MarshalAs(UnmanagedType.Interface)] nsISHEntry aNewChild);
 	}
 }

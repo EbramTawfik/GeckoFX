@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0073d67c-a64f-4f45-8f36-02cd0abfeca1")]
+	[Guid("3e9800f8-edb7-4c9a-9285-09b4f045b019")]
 	public interface nsIViewSourceChannel : nsIChannel
 	{
 		
@@ -258,7 +258,16 @@ namespace Gecko
 		new void SetNotificationCallbacksAttribute([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aNotificationCallbacks);
 		
 		/// <summary>
-        /// Transport-level security information (if any) corresponding to the channel.
+        /// Transport-level security information (if any) corresponding to the
+        /// channel.
+        ///
+        /// NOTE: In some circumstances TLS information is propagated onto
+        /// non-nsIHttpChannel objects to indicate that their contents were likely
+        /// delivered over TLS all the same.  For example, document.open() may
+        /// create an nsWyciwygChannel to store the data that will be written to the
+        /// document.  In that case, if the caller has TLS information, we propagate
+        /// that info onto the nsWyciwygChannel given that it is likely that the
+        /// caller will be writing data that was delivered over TLS to the document.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -375,6 +384,13 @@ namespace Gecko
 		new nsIInputStream Open();
 		
 		/// <summary>
+        /// Performs content security check and calls open()
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIInputStream Open2();
+		
+		/// <summary>
         /// Asynchronously open this channel.  Data is fed to the specified stream
         /// listener as it becomes available.  The stream listener's methods are
         /// called on the thread that calls asyncOpen and are not called until
@@ -407,6 +423,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void AsyncOpen([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
+		
+		/// <summary>
+        /// Performs content security check and calls asyncOpen().
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AsyncOpen2([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aListener);
 		
 		/// <summary>
         /// Access to the type implied or stated by the Content-Disposition header

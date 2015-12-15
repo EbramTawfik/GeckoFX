@@ -55,7 +55,7 @@ namespace Gecko
 	/// <summary>nsIDocumentEncoder </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1158bd7e-a08b-4ff6-9417-6f99144cfccc")]
+	[Guid("21f112df-d96f-47da-bfcb-5331273003d1")]
 	public interface nsIDocumentEncoder
 	{
 		
@@ -395,5 +395,25 @@ namespace Gecko
         // Don't Strip ending spaces from a line (only for serializing to plaintext).
         // </summary>
 		public const ulong OutputDontRemoveLineEndingSpaces = (1<<24);
+		
+		// <summary>
+        // Serialize in a way that is suitable for copying a plaintext version of the
+        // document to the clipboard.  This can for example cause line endings to be
+        // injected at preformatted block element boundaries.
+        // </summary>
+		public const ulong OutputForPlainTextClipboardCopy = (1<<25);
+		
+		// <summary>
+        // Include ruby annotations and ruby parentheses in the output.
+        // PlainText output only.
+        // </summary>
+		public const ulong OutputRubyAnnotation = (1<<26);
+		
+		// <summary>
+        // Disallow breaking of long character strings. This is important
+        // for serializing e-mail which contains CJK strings. These must
+        // not be broken just as "normal" longs strings aren't broken.
+        // </summary>
+		public const ulong OutputDisallowLineBreaking = (1<<27);
 	}
 }

@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9ee5874c-ec39-4bc2-b2d7-194a4c98c9d2")]
+	[Guid("ce71d028-322a-4105-a947-a894689b52bf")]
 	public interface nsIWebSocketChannel
 	{
 		
@@ -78,17 +78,30 @@ namespace Gecko
 		nsISupports GetSecurityInfoAttribute();
 		
 		/// <summary>
-        /// The load group of the websockets code.
+        /// The load group of of the websocket
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsILoadGroup GetLoadGroupAttribute();
 		
 		/// <summary>
-        /// The load group of the websockets code.
+        /// The load group of of the websocket
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetLoadGroupAttribute([MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup);
+		
+		/// <summary>
+        /// The load info of the websocket
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsILoadInfo GetLoadInfoAttribute();
+		
+		/// <summary>
+        /// The load info of the websocket
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetLoadInfoAttribute([MarshalAs(UnmanagedType.Interface)] nsILoadInfo aLoadInfo);
 		
 		/// <summary>
         /// Sec-Websocket-Protocol value
@@ -109,6 +122,60 @@ namespace Gecko
 		void GetExtensionsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aExtensions);
 		
 		/// <summary>
+        /// Init the WebSocketChannel with LoadInfo arguments.
+        /// @param aLoadingNode
+        /// The loadingDocument of the channel.
+        /// The element or document where the result of this request will be
+        /// used. This is the document/element that will get access to the
+        /// result of this request. For example for an image load, it's the
+        /// document in which the image will be loaded. And for a CSS
+        /// stylesheet it's the document whose rendering will be affected by
+        /// the stylesheet.
+        /// For loads that are not related to any document, such as loads coming
+        /// from addons or internal browser features, use null here.
+        /// @param aLoadingPrincipal
+        /// The loadingPrincipal of the channel.
+        /// The principal of the document where the result of this request will
+        /// be used.
+        /// This defaults to the principal of aLoadingNode, so when aLoadingNode
+        /// is passed then aLoadingPrincipal can be left as null. However, for
+        /// loads where aLoadingNode is null this argument must be passed.
+        /// For example for loads from a WebWorker, pass the principal
+        /// of that worker. For loads from an addon or from internal browser
+        /// features, pass the system principal.
+        /// If aLoadingNode is null and the URI being loaded isn't coming from
+        /// a webpage, the principal should almost always be the systemPrincipal.
+        /// One exception to this is for loads from WebWorkers since they don't
+        /// have any nodes to be passed as aLoadingNode.
+        /// Please note, aLoadingPrincipal is *not* the principal of the
+        /// resource being loaded. But rather the principal of the context
+        /// where the resource will be used.
+        /// @param aTriggeringPrincipal
+        /// The triggeringPrincipal of the load.
+        /// The triggeringPrincipal is the principal of the resource that caused
+        /// this particular URL to be loaded.
+        /// For WebSockets, the loadingPrincipal and the triggeringPrincipal
+        /// are *always* identical.
+        /// @param aSecurityFlags
+        /// The securityFlags of the channel.
+        /// Any of the securityflags defined in nsILoadInfo.idl
+        /// @param aContentPolicyType
+        /// The contentPolicyType of the channel.
+        /// Any of the content types defined in nsIContentPolicy.idl
+        /// @return reference to the new nsIChannel object
+        ///
+        ///
+        /// Keep in mind that URIs coming from a webpage should *never* use the
+        /// systemPrincipal as the loadingPrincipal.
+        ///
+        /// Please note, if you provide both a loadingNode and a loadingPrincipal,
+        /// then loadingPrincipal must be equal to loadingNode->NodePrincipal().
+        /// But less error prone is to just supply a loadingNode.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitLoadInfo([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aLoadingNode, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aLoadingPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aTriggeringPrincipal, uint aSecurityFlags, uint aContentPolicyType);
+		
+		/// <summary>
         /// Asynchronously open the websocket connection.  Received messages are fed
         /// to the socket listener as they arrive.  The socket listener's methods
         /// are called on the thread that calls asyncOpen and are not called until
@@ -120,11 +187,12 @@ namespace Gecko
         ///
         /// @param aURI the uri of the websocket protocol - may be redirected
         /// @param aOrigin the uri of the originating resource
+        /// @param aInnerWindowID the inner window ID
         /// @param aListener the nsIWebSocketListener implementation
         /// @param aContext an opaque parameter forwarded to aListener's methods
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncOpen([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOrigin, [MarshalAs(UnmanagedType.Interface)] nsIWebSocketListener aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
+		void AsyncOpen([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOrigin, ulong aInnerWindowID, [MarshalAs(UnmanagedType.Interface)] nsIWebSocketListener aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
 		
 		/// <summary>
         /// Close the websocket connection for writing - no more calls to sendMsg
@@ -209,6 +277,20 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPingTimeoutAttribute(uint aPingTimeout);
+		
+		/// <summary>
+        /// Unique ID for this channel. It's not readonly because when the channel is
+        /// created via IPC, the serial number is received from the child process.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetSerialAttribute();
+		
+		/// <summary>
+        /// Unique ID for this channel. It's not readonly because when the channel is
+        /// created via IPC, the serial number is received from the child process.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSerialAttribute(uint aSerial);
 	}
 	
 	/// <summary>nsIWebSocketChannelConsts </summary>

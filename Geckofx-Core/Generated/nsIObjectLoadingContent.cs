@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("16c14177-52eb-49d3-9842-a1a0b92be11a")]
+	[Guid("2eb3195e-3eea-4083-bb1d-d2d70fa35ccb")]
 	public interface nsIObjectLoadingContent
 	{
 		
@@ -106,8 +106,7 @@ namespace Gecko
 		void PluginCrashed([MarshalAs(UnmanagedType.Interface)] nsIPluginTag pluginTag, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase pluginDumpID, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase browserDumpID, [MarshalAs(UnmanagedType.U1)] bool submittedCrashReport);
 		
 		/// <summary>
-        /// This method will play a plugin that has been stopped by the
-        /// click-to-play plugins or play-preview features.
+        /// This method will play a plugin that has been stopped by click-to-play.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PlayPlugin();
@@ -124,7 +123,7 @@ namespace Gecko
 		/// <summary>
         /// This attribute will return true if the current content type has been
         /// activated, either explicitly or by passing checks that would have it be
-        /// click-to-play or play-preview.
+        /// click-to-play.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -177,10 +176,13 @@ namespace Gecko
 		bool GetHasRunningPluginAttribute();
 		
 		/// <summary>
-        /// This method will disable the play-preview plugin state.
+        /// If this plugin runs out-of-process, it has a runID to differentiate
+        /// between different times the plugin process has been instantiated.
+        ///
+        /// This throws NS_ERROR_NOT_IMPLEMENTED for in-process plugins.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CancelPlayPreview();
+		uint GetRunIDAttribute();
 	}
 	
 	/// <summary>nsIObjectLoadingContentConsts </summary>
@@ -261,10 +263,5 @@ namespace Gecko
         // The plugin is vulnerable (no update available)
         // </summary>
 		public const ulong PLUGIN_VULNERABLE_NO_UPDATE = 10;
-		
-		// <summary>
-        // The plugin is in play preview mode
-        // </summary>
-		public const ulong PLUGIN_PLAY_PREVIEW = 11;
 	}
 }

@@ -33,9 +33,15 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c14c151b-5ea4-47ed-8e85-d392cdd3e154")]
+	[Guid("3aba9617-10e2-4839-83ae-2e6fc4df428b")]
 	public interface nsIConsoleMessage
 	{
+		
+		/// <summary>
+        /// The log level of this message.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetLogLevelAttribute();
 		
 		/// <summary>
         /// The time (in milliseconds from the Epoch) that the message instance
@@ -52,5 +58,23 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+	}
+	
+	/// <summary>nsIConsoleMessageConsts </summary>
+	public class nsIConsoleMessageConsts
+	{
+		
+		// <summary>
+        //Log level constants. </summary>
+		public const long debug = 0;
+		
+		// 
+		public const long info = 1;
+		
+		// 
+		public const long warn = 2;
+		
+		// 
+		public const long error = 3;
 	}
 }

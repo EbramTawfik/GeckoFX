@@ -37,28 +37,9 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9c889946-a73a-4af3-ae9a-ea64f7d4e3ca")]
+	[Guid("594feb13-6164-4054-b5a1-ad62e10ea15d")]
 	public interface nsIThread : nsIEventTarget
 	{
-		
-		/// <summary>
-        /// Dispatch an event to this event target.  This function may be called from
-        /// any thread, and it may be called re-entrantly.
-        ///
-        /// @param event
-        /// The event to dispatch.
-        /// @param flags
-        /// The flags modifying event dispatch.  The flags are described in detail
-        /// below.
-        ///
-        /// @throws NS_ERROR_INVALID_ARG
-        /// Indicates that event is null.
-        /// @throws NS_ERROR_UNEXPECTED
-        /// Indicates that the thread is shutting down and has finished processing
-        /// events, so this event would never run and has not been dispatched.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable @event, uint flags);
 		
 		/// <summary>
         /// Check to see if this event target is associated with the current thread.
@@ -71,6 +52,47 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsOnCurrentThread();
+		
+		/// <summary>
+        /// Dispatch an event to this event target.  This function may be called from
+        /// any thread, and it may be called re-entrantly.
+        ///
+        /// @param event
+        /// The alreadyAddRefed<> event to dispatch.
+        /// NOTE that the event will be leaked if it fails to dispatch. Also note
+        /// that if "flags" includes DISPATCH_SYNC, it may return error from Run()
+        /// after a successful dispatch. In that case, the event is not leaked.
+        /// @param flags
+        /// The flags modifying event dispatch.  The flags are described in detail
+        /// below.
+        ///
+        /// @throws NS_ERROR_INVALID_ARG
+        /// Indicates that event is null.
+        /// @throws NS_ERROR_UNEXPECTED
+        /// Indicates that the thread is shutting down and has finished processing
+        /// events, so this event would never run and has not been dispatched.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void DispatchFromC(System.IntPtr @event, uint flags);
+		
+		/// <summary>
+        /// Version of Dispatch to expose to JS, which doesn't require an alreadyAddRefed<>
+        /// (it will be converted to that internally)
+        ///
+        /// @param event
+        /// The (raw) event to dispatch.
+        /// @param flags
+        /// The flags modifying event dispatch.  The flags are described in detail
+        /// below.
+        ///
+        /// @throws NS_ERROR_INVALID_ARG
+        /// Indicates that event is null.
+        /// @throws NS_ERROR_UNEXPECTED
+        /// Indicates that the thread is shutting down and has finished processing
+        /// events, so this event would never run and has not been dispatched.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable @event, uint flags);
 		
 		/// <summary>
         /// @returns
@@ -140,5 +162,28 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ProcessNextEvent([MarshalAs(UnmanagedType.U1)] bool mayWait);
+		
+		/// <summary>
+        /// Shutdown the thread asynchronously.  This method immediately prevents
+        /// further dispatch of events to the thread, and it causes any pending events
+        /// to run to completion before this thread joins with the current thread.
+        ///
+        /// UNLIKE shutdown() this does not process events on the current thread.
+        /// Instead it merely ensures that the current thread continues running until
+        /// this thread has shut down.
+        ///
+        /// This method MAY NOT be executed from the thread itself.  Instead, it is
+        /// meant to be executed from another thread (usually the thread that created
+        /// this thread or the main application thread).  When this function returns,
+        /// the thread will continue running until it exhausts its event queue.
+        ///
+        /// @throws NS_ERROR_UNEXPECTED
+        /// Indicates that this method was erroneously called when this thread was
+        /// the current thread, that this thread was not created with a call to
+        /// nsIThreadManager::NewThread, or if this method was called more than once
+        /// on the thread object.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AsyncShutdown();
 	}
 }

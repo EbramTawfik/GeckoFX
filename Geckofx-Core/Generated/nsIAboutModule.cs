@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1d5992c3-28b0-4ec1-9dbb-f5fde7f72199")]
+	[Guid("c0c19db9-1b5a-4ac5-b656-ed6f8149fa48")]
 	public interface nsIAboutModule
 	{
 		
@@ -40,10 +40,11 @@ namespace Gecko
         /// Constructs a new channel for the about protocol module.
         ///
         /// @param aURI the uri of the new channel
+        /// @param aLoadInfo the loadinfo of the new channel
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChannel NewChannel([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		nsIChannel NewChannel([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsILoadInfo aLoadInfo);
 		
 		/// <summary>
         /// A method to get the flags that apply to a given about: URI.  The URI
@@ -69,10 +70,10 @@ namespace Gecko
 		// <summary>
         // A flag that indicates whether a URI is safe for untrusted
         // content.  If it is, web pages and so forth will be allowed to
-        // link to this about: URI, and the about: protocol handler will
-        // enforce that the principal of channels created for it be based
-        // on their originalURI or URI (depending on the channel flags),
-        // by setting their "owner" to null.
+        // link to this about: URI (unless MAKE_UNLINKABLE is also specified),
+        // and the about: protocol handler will enforce that the principal
+        // of channels created for it be based on their originalURI or URI
+        // (depending on the channel flags), by setting their "owner" to null.
         // Otherwise, only chrome will be able to link to it.
         // </summary>
 		public const ulong URI_SAFE_FOR_UNTRUSTED_CONTENT = (1<<0);
@@ -93,5 +94,21 @@ namespace Gecko
         // A flag that indicates whether this about: URI wants Indexed DB enabled.
         // </summary>
 		public const ulong ENABLE_INDEXED_DB = (1<<3);
+		
+		// <summary>
+        // A flag that indicates that this URI can be loaded in a child process
+        // </summary>
+		public const ulong URI_CAN_LOAD_IN_CHILD = (1<<4);
+		
+		// <summary>
+        // A flag that indicates that this URI must be loaded in a child process
+        // </summary>
+		public const ulong URI_MUST_LOAD_IN_CHILD = (1<<5);
+		
+		// <summary>
+        // A flag that indicates that this URI should be unlinkable despite being
+        // safe for untrusted content.
+        // </summary>
+		public const ulong MAKE_UNLINKABLE = (1<<6);
 	}
 }

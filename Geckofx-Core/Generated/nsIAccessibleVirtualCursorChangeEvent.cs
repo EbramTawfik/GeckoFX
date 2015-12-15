@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("370e8b9b-2bbc-4bff-a9c7-16ddc54aea21")]
+	[Guid("a58693b1-009e-4cc9-ae93-9c7d8f85cfdf")]
 	public interface nsIAccessibleVirtualCursorChangeEvent : nsIAccessibleEvent
 	{
 		

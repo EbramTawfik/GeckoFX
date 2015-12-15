@@ -6,6 +6,8 @@ using System.Text;
 
 namespace Gecko.Net
 {
+    // the interface nsIURIChecker no longer exists in gecko 45
+#if false
 	public sealed class UriChecker
 		: Request
 	{
@@ -25,4 +27,5 @@ namespace Gecko.Net
 			Marshal.ReleaseComObject( nsUri );
 		}
 	}
+#endif
 }

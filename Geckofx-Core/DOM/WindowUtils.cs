@@ -91,6 +91,7 @@ namespace Gecko.DOM
 			return _windowUtils.Instance.Redraw(aCount);
 		}
 
+#if NO_LONGER_EXISTS_IN_GECKO45
 		/// <summary>
         /// Set the CSS viewport to be |widthPx| x |heightPx| in units of CSS
         /// pixels, regardless of the size of the enclosing widget/view.
@@ -100,9 +101,10 @@ namespace Gecko.DOM
         /// privileges.
         /// </summary>		
 		public void SetCSSViewport(float aWidthPx, float aHeightPx)
-		{
+		{            
 			_windowUtils.Instance.SetCSSViewport( aWidthPx, aHeightPx );
 		}
+#endif
 
 		/// <summary>
         /// For any scrollable element, this allows you to override the
@@ -160,9 +162,9 @@ namespace Gecko.DOM
         /// The caller of this method must have UniversalXPConnect
         /// privileges.
         /// </summary>		
-		public void SetResolution(float aXResolution, float aYResolution)
+		public void SetResolution(float aResolution)
 		{
-			_windowUtils.Instance.SetResolution( aXResolution, aYResolution );
+			_windowUtils.Instance.SetResolution(aResolution);
 		}
 		
 		/// <summary>
@@ -258,7 +260,7 @@ namespace Gecko.DOM
 		{
 			using (nsAString characters = new nsAString(aCharacters), unmodifiedCharaters = new nsAString(aUnmodifiedCharacters))
 			{
-				_windowUtils.Instance.SendNativeKeyEvent( aNativeKeyboardLayout, aNativeKeyCode, aModifierFlags, characters, unmodifiedCharaters );
+				_windowUtils.Instance.SendNativeKeyEvent( aNativeKeyboardLayout, aNativeKeyCode, aModifierFlags, characters, unmodifiedCharaters, null );
 			}
 		}
 
@@ -272,7 +274,7 @@ namespace Gecko.DOM
         /// </summary>
 		public void SendNativeMouseEvent(int aScreenX, int aScreenY, int aNativeMessage, int aModifierFlags, GeckoElement aElement)
 		{
-			_windowUtils.Instance.SendNativeMouseEvent( aScreenX, aScreenY, aNativeMessage, aModifierFlags, ( nsIDOMElement ) aElement.DomObject );
+			_windowUtils.Instance.SendNativeMouseEvent( aScreenX, aScreenY, aNativeMessage, aModifierFlags, ( nsIDOMElement ) aElement.DomObject, null );
 		}
 
         /// <summary>
@@ -793,7 +795,9 @@ namespace Gecko.DOM
 		{
 			throw new NotImplementedException();
 		}
-		
+
+        // inteface nsIDOMFile not longer exists in gecko 45.
+#if PORT
 		/// <summary>
         /// Wrap an nsIFile in an nsIDOMFile
         /// </summary>		
@@ -801,6 +805,7 @@ namespace Gecko.DOM
 		{
 			throw new NotImplementedException();
 		}
+#endif
 		
 		/// <summary>
         /// Get the type of the currently focused html input, if any.

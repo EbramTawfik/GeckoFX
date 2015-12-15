@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("52629837-7b3f-4434-940d-a14de7ef9b7a")]
+	[Guid("0c9f4f74-ee7e-4fe9-be6b-0ba856368178")]
 	public interface nsISelectionPrivate : nsISelection
 	{
 		
@@ -203,6 +203,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetInterlinePositionAttribute([MarshalAs(UnmanagedType.U1)] bool aInterlinePosition);
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetAncestorLimiterAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAncestorLimiterAttribute(System.IntPtr aAncestorLimiter);
+		
 		/// <summary>
         ///startBatchChanges
         ///       match this up with endbatchChanges. will stop ui updates while multiple selection methods are called
@@ -261,9 +267,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCachedFrameOffset(System.IntPtr aFrame, int inOffset, System.IntPtr aPoint);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAncestorLimiter(System.IntPtr aContent);
 		
 		/// <summary>
         /// Set the painting style for the range. The range must be a range in

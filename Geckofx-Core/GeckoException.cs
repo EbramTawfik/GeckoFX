@@ -53,10 +53,13 @@ namespace Gecko
 		}
 
 
+// see firefox bug 1229664
+#if NO_LONGER_EXISTS_IN_GEKCO45
 		public GeckoNativeException Inner
 		{
 			get { return Create(_exception.GetInnerAttribute()); }
 		}
+#endif
 
 		internal static GeckoNativeException Create(nsIException exception)
 		{

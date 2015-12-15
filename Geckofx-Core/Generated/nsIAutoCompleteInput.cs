@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fadb2bb9-3e2e-4ca0-b0e0-0982b8dda9dc")]
+	[Guid("B068E70F-F82C-4C12-AD87-82E271C5C180")]
 	public interface nsIAutoCompleteInput
 	{
 		
@@ -289,5 +289,12 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInPrivateContextAttribute();
+		
+		/// <summary>
+        /// Don't rollup the popup when the caret is moved.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetNoRollupOnCaretMoveAttribute();
 	}
 }

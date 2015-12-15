@@ -64,12 +64,51 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetProfilesAttribute();
 		
+		/// <summary>
+        /// The currently selected profile (the one used or about to be used by the
+        /// browser).
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIToolkitProfile GetSelectedProfileAttribute();
 		
+		/// <summary>
+        /// The currently selected profile (the one used or about to be used by the
+        /// browser).
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSelectedProfileAttribute([MarshalAs(UnmanagedType.Interface)] nsIToolkitProfile aSelectedProfile);
+		
+		/// <summary>
+        /// The default profile (the one used or about to be used by the
+        /// browser if no other profile is specified at runtime). This is the profile
+        /// marked with Default=1 in profiles.ini and is usually the same as
+        /// selectedProfile, except on Developer Edition.
+        ///
+        /// Developer Edition uses a profile named "dev-edition-default" as the
+        /// default profile (which it creates if it doesn't exist), unless a special
+        /// empty file named "ignore-dev-edition-profile" is present next to
+        /// profiles.ini. In that case Developer Edition behaves the same as any
+        /// other build of Firefox.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIToolkitProfile GetDefaultProfileAttribute();
+		
+		/// <summary>
+        /// The default profile (the one used or about to be used by the
+        /// browser if no other profile is specified at runtime). This is the profile
+        /// marked with Default=1 in profiles.ini and is usually the same as
+        /// selectedProfile, except on Developer Edition.
+        ///
+        /// Developer Edition uses a profile named "dev-edition-default" as the
+        /// default profile (which it creates if it doesn't exist), unless a special
+        /// empty file named "ignore-dev-edition-profile" is present next to
+        /// profiles.ini. In that case Developer Edition behaves the same as any
+        /// other build of Firefox.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDefaultProfileAttribute([MarshalAs(UnmanagedType.Interface)] nsIToolkitProfile aDefaultProfile);
 		
 		/// <summary>
         /// Get a profile by name. This is mainly for use by the -P

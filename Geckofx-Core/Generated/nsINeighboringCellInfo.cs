@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("909f5972-c74e-44dd-b72a-7ddb62aae617")]
+	[Guid("0941cb79-36e5-41e0-b05f-cdb854c53f03")]
 	public interface nsINeighboringCellIdsCallback
 	{
 		
@@ -40,7 +40,7 @@ namespace Gecko
         /// result is an array of nsINeighboringCellInfo.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyGetNeighboringCellIds(ref Gecko.JsVal result);
+		void NotifyGetNeighboringCellIds(uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] nsINeighboringCellInfo[] result);
 		
 		/// <summary>
         /// Callback function with error message.
@@ -69,7 +69,7 @@ namespace Gecko
         /// Mobile Location Area Code (LAC) for GSM networks.
         ///
         /// Possible ranges from 0x0000 to 0xffff.
-        /// -1 if the LAC is unknown.
+        /// nsICellInfo.UNKNOWN_VALUE if the LAC is unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetGsmLocationAreaCodeAttribute();
@@ -77,8 +77,8 @@ namespace Gecko
 		/// <summary>
         /// Mobile Cell ID for GSM networks.
         ///
-        /// Possible ranges from 0x00000000 to 0xffffffff.
-        /// -1 if the cell id is unknown.
+        /// Possible ranges from 0x0000 to 0xffff.
+        /// nsICellInfo.UNKNOWN_VALUE if the cell id is unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetGsmCellIdAttribute();
@@ -87,7 +87,7 @@ namespace Gecko
         /// Primary Scrambling Code (PSC) for WCDMA networks.
         ///
         /// Possible ranges from 0x0000 to 0x01ff.
-        /// -1 if the psc is unknown.
+        /// nsICellInfo.UNKNOWN_VALUE if the psc is unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetWcdmaPscAttribute();
@@ -97,7 +97,7 @@ namespace Gecko
         /// For WCDMA networks, signalStrength is the CPICH Received Signal Code Power,
         /// ranging from -120 to -25.
         ///
-        /// 99 if signalStrength is unknown.
+        /// nsICellInfo.UNKNOWN_VALUE if signalStrength is unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetSignalStrengthAttribute();

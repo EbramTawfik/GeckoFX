@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("13caa69c-8f1f-11e3-8e36-10bf48d707fb")]
+	[Guid("EE752CB8-8FD7-11E4-A602-70221D5D46B0")]
 	public interface nsIVolume
 	{
 		
@@ -94,6 +94,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsFormattingAttribute();
 		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsUnmountingAttribute();
+		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVolumeStat GetStats();
@@ -122,6 +126,20 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsFakeAttribute();
+		
+		/// <summary>
+        /// Whether this is a removable volume
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsRemovableAttribute();
+		
+		/// <summary>
+        /// Whether this is a hot-swappable volume
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsHotSwappableAttribute();
 	}
 	
 	/// <summary>nsIVolumeConsts </summary>
@@ -129,7 +147,7 @@ namespace Gecko
 	{
 		
 		// <summary>
-        // These MUST match the states from android's system/vold/Volume.h header
+        //       NS_VolumeStateStr function found in Volume.cpp
         // </summary>
 		public const long STATE_INIT = -1;
 		
@@ -159,5 +177,11 @@ namespace Gecko
 		
 		// 
 		public const long STATE_SHAREDMNT = 8;
+		
+		// 
+		public const long STATE_CHECKMNT = 100;
+		
+		// 
+		public const long STATE_MOUNT_FAIL = 101;
 	}
 }

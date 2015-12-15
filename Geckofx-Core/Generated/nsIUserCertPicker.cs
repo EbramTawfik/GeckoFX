@@ -32,15 +32,15 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("06d018e0-d41b-4629-a4fc-daaa6029888e")]
+	[Guid("92396323-23f2-49e0-bf98-a25a725231ab")]
 	public interface nsIUserCertPicker
 	{
 		
 		/// <summary>
-        /// as defined by NSS enum SECCertUsage
+        /// include this specific one
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIX509Cert PickByUsage([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string selectedNickname, int certUsage, [MarshalAs(UnmanagedType.U1)] bool allowInvalid, [MarshalAs(UnmanagedType.U1)] bool allowDuplicateNicknames, [MarshalAs(UnmanagedType.U1)] ref bool canceled);
+		nsIX509Cert PickByUsage([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string selectedNickname, int certUsage, [MarshalAs(UnmanagedType.U1)] bool allowInvalid, [MarshalAs(UnmanagedType.U1)] bool allowDuplicateNicknames, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase emailAddress, [MarshalAs(UnmanagedType.U1)] ref bool canceled);
 	}
 }

@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("83f892cf-7ed3-490e-967a-62640f3158e1")]
+	[Guid("b1fdf3c4-74e3-4f7d-a14d-2b76bcf53482")]
 	public interface nsICommandParams
 	{
 		
@@ -114,31 +114,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveValue([MarshalAs(UnmanagedType.LPStr)] string name);
-		
-		/// <summary>
-        /// Enumeration methods
-        ///
-        /// Use these to enumerate over the contents of a parameter
-        /// list. For each name that getNext() returns, use
-        /// getValueType() and then getMumbleValue to get its
-        /// value.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasMoreElements();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void First();
-		
-		/// <summary>
-        /// GetNext()
-        ///
-        /// @return string pointer that will be allocated and is up
-        /// to the caller to free
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetNext();
 	}
 	
 	/// <summary>nsICommandParamsConsts </summary>

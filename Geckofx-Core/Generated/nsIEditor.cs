@@ -34,13 +34,19 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("65523eab-db1f-44aa-893e-dfe57ad306f0")]
+	[Guid("094be624-f0bf-400f-89e2-6a84baab9474")]
 	public interface nsIEditor
 	{
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISelection GetSelectionAttribute();
+		
+		/// <summary>
+        /// Finalizes selection and caret for the editor.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void FinalizeSelection();
 		
 		/// <summary>
         /// Init is to tell the implementation of nsIEditor to begin its services
@@ -397,6 +403,13 @@ namespace Gecko
 		bool CanCopy();
 		
 		/// <summary>
+        ///Can we delete? True if we have a non-collapsed selection.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool CanDelete();
+		
+		/// <summary>
         ///paste the text in the OS clipboard at the cursor position, replacing
         /// the selected text (if any)
         /// </summary>
@@ -661,6 +674,15 @@ namespace Gecko
         ///Set true if you want to suppress dispatching input event. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSuppressDispatchingInputEventAttribute([MarshalAs(UnmanagedType.U1)] bool aSuppressDispatchingInputEvent);
+		
+		/// <summary>
+        /// True if an edit action is being handled (in other words, between calls of
+        /// nsIEditorObserver::BeforeEditAction() and nsIEditorObserver::EditAction()
+        /// or nsIEditorObserver::CancelEditAction().  Otherwise, false.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsInEditActionAttribute();
 	}
 	
 	/// <summary>nsIEditorConsts </summary>

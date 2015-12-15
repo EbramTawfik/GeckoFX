@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("30d7ec3a-f376-4652-9276-3092ec57abb6")]
+	[Guid("29c29ce6-8ce4-45e6-8d60-36c8fa3e255b")]
 	public interface nsIEncodedChannel
 	{
 		
@@ -78,5 +78,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetApplyConversionAttribute([MarshalAs(UnmanagedType.U1)] bool aApplyConversion);
+		
+		/// <summary>
+        /// This function will start converters if they are available.
+        /// aNewNextListener will be nullptr if no converter is available.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DoApplyContentConversions([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aNextListener, [MarshalAs(UnmanagedType.Interface)] ref nsIStreamListener aNewNextListener, [MarshalAs(UnmanagedType.Interface)] nsISupports aCtxt);
 	}
 }

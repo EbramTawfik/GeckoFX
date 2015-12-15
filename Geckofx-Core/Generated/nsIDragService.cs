@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("82B58ADA-F490-4C3D-B737-1057C4F1D052")]
+	[Guid("ebd6b3a2-af16-43af-a698-3091a087dd62")]
 	public interface nsIDragService
 	{
 		
@@ -113,7 +113,7 @@ namespace Gecko
         /// Fire a drag event at the source of the drag
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FireDragEventAtSource(uint aMsg);
+		void FireDragEventAtSource(System.IntPtr aEventMessage);
 		
 		/// <summary>
         /// Increase/decrease dragging suppress level by one.
@@ -125,8 +125,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Unsuppress();
 		
+		/// <summary>
+        /// aX and aY are in LayoutDevice pixels.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DragMoved(int aX, int aY);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool MaybeAddChildProcess(System.IntPtr aChild);
 	}
 	
 	/// <summary>nsIDragServiceConsts </summary>

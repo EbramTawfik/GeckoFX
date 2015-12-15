@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("31738d2a-77d3-4359-84c9-4be2f38fb8c5")]
+	[Guid("be019e47-22fc-4355-9f16-9ab047d6742d")]
 	public interface nsICertOverrideService
 	{
 		
@@ -54,19 +54,19 @@ namespace Gecko
 		void RememberValidityOverride([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHostName, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert aCert, uint aOverrideBits, [MarshalAs(UnmanagedType.U1)] bool aTemporary);
 		
 		/// <summary>
-        /// The given cert should always be accepted for the given hostname:port,
-        /// regardless of errors verifying the cert.
-        /// Host:Port is a primary key, only one entry per host:port can exist.
-        /// The implementation will store a fingerprint of the cert.
-        /// The implementation will decide which fingerprint alg is used.
+        /// Return whether this host, port, cert triple has a stored override.
+        /// If so, the outparams will contain the specific errors that were
+        /// overridden, and whether the override is permanent, or only for the current
+        /// session.
         ///
         /// @param aHostName The host (punycode) this mapping belongs to
         /// @param aPort The port this mapping belongs to, if it is -1 then it
-        /// is internaly treated as 443
-        /// @param aCert The cert that should always be accepted
-        /// @param aOverrideBits The errors that are currently overriden
-        /// @return whether an override entry for aHostNameWithPort is currently on file
-        /// that matches the given certificate
+        /// is internally treated as 443
+        /// @param aCert The certificate this mapping belongs to
+        /// @param aOverrideBits The errors that are currently overridden
+        /// @param aIsTemporary Whether the stored override is session-only,
+        /// or permanent
+        /// @return Whether an override has been stored for this host+port+cert
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -100,15 +100,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearValidityOverride([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHostName, int aPort);
-		
-		/// <summary>
-        /// Obtain the full list of hostname:port for which overrides are known.
-        ///
-        /// @param aCount The number of host:port entries returned
-        /// @param aHostsWithPortsArray The array of host:port entries returned
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAllOverrideHostsWithPorts(ref uint aCount, ref System.IntPtr aHostsWithPortsArray);
 		
 		/// <summary>
         /// Is the given cert used in rules?

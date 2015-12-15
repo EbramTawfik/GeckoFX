@@ -32,7 +32,23 @@ namespace Gecko
 			return null;
 		}
 
-		public nsIDocShellTreeItem GetContentShellById(string ID)
+	    public nsITabParent GetPrimaryTabParentAttribute()
+	    {
+            Debug.WriteLine("GetPrimaryTabParentAttribute called");
+	        return null;
+	    }
+
+	    public void TabParentAdded(nsITabParent aTab, bool aPrimary)
+	    {
+            Debug.WriteLine("TabParentAdded called");
+	    }
+
+	    public void TabParentRemoved(nsITabParent aTab)
+	    {
+            Debug.WriteLine("TabParentRemoved called");
+	    }
+
+	    public nsIDocShellTreeItem GetContentShellById(string ID)
 		{
 			Debug.WriteLine("GetContentShellById called");
 			return null;

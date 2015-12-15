@@ -140,27 +140,29 @@ namespace Gecko
     ///
     /// Parent process                      Child processes
     /// ----------------                    -----------------
-    /// global PPMM
+    /// global (GPPMM)
     /// |
-    /// +<----> child PPMM
+    /// +-->parent in-process PIPMM<-->child in-process CIPPMM
     /// |
-    /// +-->parent PMM1<------------------>child process CMM1
+    /// +-->parent (PPMM1)<------------------>child (CPMM1)
     /// |
-    /// +-->parent PMM2<------------------>child process PMM2
+    /// +-->parent (PPMM2)<------------------>child (CPMM2)
     /// ...
     ///
-    /// For example: the parent-process PMM1 sends messages directly to
-    /// only the child-process CMM1.
+    /// Note, PIPMM and CIPPMM both run in the parent process.
     ///
-    /// For example: CMM1 sends messages directly to PMM1.  The global PPMM
+    /// For example: the parent-process PPMM1 sends messages to the
+    /// child-process CPMM1.
+    ///
+    /// For example: CPMM1 sends messages directly to PPMM1. The global GPPMM
     /// will also notify their message listeners when the message arrives.
     ///
-    /// For example: messages sent through the global PPMM will be
-    /// dispatched to the listeners of the same-process, "child PPMM".
-    /// They will also be broadcast to PPM1, PPM2, etc.
+    /// For example: messages sent through the global GPPMM will be
+    /// dispatched to the listeners of the same-process, CIPPMM, CPMM1,
+    /// CPMM2, etc.
     ///
     /// ***** PERFORMANCE AND SECURITY WARNING *****
-    /// Messages broadcast through the global PPMM can result in messages
+    /// Messages broadcast through the GPPMM can result in messages
     /// being dispatched across many OS processes, and to many processes
     /// with different permissions.  Great care should be taken when
     /// broadcasting.
@@ -220,7 +222,7 @@ namespace Gecko
 	/// <summary>nsIMessageListenerManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("aae827bd-acf1-45fe-a556-ea545d4c0804")]
+	[Guid("b949bfec-bb7d-47bc-b387-ac6a9b655072")]
 	public interface nsIMessageListenerManager
 	{
 		
@@ -233,9 +235,15 @@ namespace Gecko
         ///
         /// If the same listener registers twice for the same message, the
         /// second registration is ignored.
+        ///
+        /// Pass true for listenWhenClosed if you want to receive messages
+        /// during the short period after a frame has been removed from the
+        /// DOM and before its frame script has finished unloading. This
+        /// parameter only has an effect for frame message managers in
+        /// the main process. Default is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener, [MarshalAs(UnmanagedType.U1)] bool listenWhenClosed);
 		
 		/// <summary>
         /// Undo an |addMessageListener| call -- that is, calling this causes us to no
@@ -278,7 +286,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d6b0d851-43e6-426d-9f13-054bc0198175")]
+	[Guid("bb5d79e4-e73c-45e7-9651-4d718f4b994c")]
 	public interface nsIMessageSender : nsIMessageListenerManager
 	{
 		
@@ -291,9 +299,15 @@ namespace Gecko
         ///
         /// If the same listener registers twice for the same message, the
         /// second registration is ignored.
+        ///
+        /// Pass true for listenWhenClosed if you want to receive messages
+        /// during the short period after a frame has been removed from the
+        /// DOM and before its frame script has finished unloading. This
+        /// parameter only has an effect for frame message managers in
+        /// the main process. Default is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener, [MarshalAs(UnmanagedType.U1)] bool listenWhenClosed);
 		
 		/// <summary>
         /// Undo an |addMessageListener| call -- that is, calling this causes us to no
@@ -353,7 +367,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d36346b9-5d3b-497d-9c28-ffbc3e4f6d0d")]
+	[Guid("4d7d62ad-4725-4f39-86cf-8fb22bf9c1d8")]
 	public interface nsIMessageBroadcaster : nsIMessageListenerManager
 	{
 		
@@ -366,9 +380,15 @@ namespace Gecko
         ///
         /// If the same listener registers twice for the same message, the
         /// second registration is ignored.
+        ///
+        /// Pass true for listenWhenClosed if you want to receive messages
+        /// during the short period after a frame has been removed from the
+        /// DOM and before its frame script has finished unloading. This
+        /// parameter only has an effect for frame message managers in
+        /// the main process. Default is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener, [MarshalAs(UnmanagedType.U1)] bool listenWhenClosed);
 		
 		/// <summary>
         /// Undo an |addMessageListener| call -- that is, calling this causes us to no
@@ -428,7 +448,7 @@ namespace Gecko
 	/// <summary>nsISyncMessageSender </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7fda0941-9dcc-448b-bd39-16373c5b4003")]
+	[Guid("0e602c9e-1977-422a-a8e4-fe0d4a4f78d0")]
 	public interface nsISyncMessageSender : nsIMessageSender
 	{
 		
@@ -441,9 +461,15 @@ namespace Gecko
         ///
         /// If the same listener registers twice for the same message, the
         /// second registration is ignored.
+        ///
+        /// Pass true for listenWhenClosed if you want to receive messages
+        /// during the short period after a frame has been removed from the
+        /// DOM and before its frame script has finished unloading. This
+        /// parameter only has an effect for frame message managers in
+        /// the main process. Default is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener, [MarshalAs(UnmanagedType.U1)] bool listenWhenClosed);
 		
 		/// <summary>
         /// Undo an |addMessageListener| call -- that is, calling this causes us to no
@@ -516,11 +542,11 @@ namespace Gecko
 		Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 	}
 	
-	/// <summary>nsIContentFrameMessageManager </summary>
+	/// <summary>nsIMessageManagerGlobal </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("894ff2d4-39a3-4df8-9d76-8ee329975488")]
-	public interface nsIContentFrameMessageManager : nsISyncMessageSender
+	[Guid("13f3555f-769e-44ea-b607-5239230c3162")]
+	public interface nsIMessageManagerGlobal : nsISyncMessageSender
 	{
 		
 		/// <summary>
@@ -532,9 +558,15 @@ namespace Gecko
         ///
         /// If the same listener registers twice for the same message, the
         /// second registration is ignored.
+        ///
+        /// Pass true for listenWhenClosed if you want to receive messages
+        /// during the short period after a frame has been removed from the
+        /// DOM and before its frame script has finished unloading. This
+        /// parameter only has an effect for frame message managers in
+        /// the main process. Default is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener, [MarshalAs(UnmanagedType.U1)] bool listenWhenClosed);
 		
 		/// <summary>
         /// Undo an |addMessageListener| call -- that is, calling this causes us to no
@@ -605,20 +637,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
-		
-		/// <summary>
-        /// The current top level window in the frame or null.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow GetContentAttribute();
-		
-		/// <summary>
-        /// The top level docshell or null.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShell GetDocShellAttribute();
 		
 		/// <summary>
         /// Print a string to stdout.
@@ -646,11 +664,11 @@ namespace Gecko
 		void Btoa([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 	}
 	
-	/// <summary>nsIInProcessContentFrameMessageManager </summary>
+	/// <summary>nsIContentFrameMessageManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a2325927-9c0c-437d-9215-749c79235031")]
-	public interface nsIInProcessContentFrameMessageManager : nsIContentFrameMessageManager
+	[Guid("fff36099-9f84-4c7c-b69a-1cbf103d1708")]
+	public interface nsIContentFrameMessageManager : nsIMessageManagerGlobal
 	{
 		
 		/// <summary>
@@ -662,9 +680,15 @@ namespace Gecko
         ///
         /// If the same listener registers twice for the same message, the
         /// second registration is ignored.
+        ///
+        /// Pass true for listenWhenClosed if you want to receive messages
+        /// during the short period after a frame has been removed from the
+        /// DOM and before its frame script has finished unloading. This
+        /// parameter only has an effect for frame message managers in
+        /// the main process. Default is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener, [MarshalAs(UnmanagedType.U1)] bool listenWhenClosed);
 		
 		/// <summary>
         /// Undo an |addMessageListener| call -- that is, calling this causes us to no
@@ -737,18 +761,140 @@ namespace Gecko
 		new Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
+        /// Print a string to stdout.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Dump([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aStr);
+		
+		/// <summary>
+        /// If leak detection is enabled, print a note to the leak log that this
+        /// process will intentionally crash.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PrivateNoteIntentionalCrash();
+		
+		/// <summary>
+        /// Ascii base64 data to binary data and vice versa
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Atob([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aAsciiString, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		
+		/// <summary>Member Btoa </summary>
+		/// <param name='aBase64Data'> </param>
+		/// <param name='retval'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Btoa([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		
+		/// <summary>
         /// The current top level window in the frame or null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMWindow GetContentAttribute();
+		nsIDOMWindow GetContentAttribute();
 		
 		/// <summary>
         /// The top level docshell or null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDocShell GetDocShellAttribute();
+		nsIDocShell GetDocShellAttribute();
+	}
+	
+	/// <summary>nsIInProcessContentFrameMessageManager </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("9c6bd4d7-88d2-46d6-8606-f2d57d46f051")]
+	public interface nsIInProcessContentFrameMessageManager : nsIContentFrameMessageManager
+	{
+		
+		/// <summary>
+        /// Register |listener| to receive |messageName|.  All listener
+        /// callbacks for a particular message are invoked when that message
+        /// is received.
+        ///
+        /// The message manager holds a strong ref to |listener|.
+        ///
+        /// If the same listener registers twice for the same message, the
+        /// second registration is ignored.
+        ///
+        /// Pass true for listenWhenClosed if you want to receive messages
+        /// during the short period after a frame has been removed from the
+        /// DOM and before its frame script has finished unloading. This
+        /// parameter only has an effect for frame message managers in
+        /// the main process. Default is false.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener, [MarshalAs(UnmanagedType.U1)] bool listenWhenClosed);
+		
+		/// <summary>
+        /// Undo an |addMessageListener| call -- that is, calling this causes us to no
+        /// longer invoke |listener| when |messageName| is received.
+        ///
+        /// removeMessageListener does not remove a message listener added via
+        /// addWeakMessageListener; use removeWeakMessageListener for that.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This is just like addMessageListener, except the message manager holds a
+        /// weak ref to |listener|.
+        ///
+        /// If you have two weak message listeners for the same message, they may be
+        /// called in any order.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This undoes an |addWeakMessageListener| call.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>Member MarkForCC </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool MarkForCC();
+		
+		/// <summary>
+        /// Send |messageName| and |obj| to the "other side" of this message
+        /// manager.  This invokes listeners who registered for
+        /// |messageName|.
+        ///
+        /// See nsIMessageListener::receiveMessage() for the format of the
+        /// data delivered to listeners.
+        /// @throws NS_ERROR_NOT_INITIALIZED if the sender is not initialized.  For
+        /// example, we will throw NS_ERROR_NOT_INITIALIZED if we try to send
+        /// a message to a cross-process frame but the other process has not
+        /// yet been set up.
+        /// @throws NS_ERROR_FAILURE when the message receiver cannot be found.  For
+        /// example, we will throw NS_ERROR_FAILURE if we try to send a message
+        /// to a cross-process frame whose process has crashed.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		
+		/// <summary>
+        /// Like |sendAsyncMessage()|, except blocks the sender until all
+        /// listeners of the message have been invoked.  Returns an array
+        /// containing return values from each listener invoked.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		
+		/// <summary>
+        /// Like |sendSyncMessage()|, except re-entrant. New RPC messages may be
+        /// issued even if, earlier on the call stack, we are waiting for a reply
+        /// to an earlier sendRpcMessage() call.
+        ///
+        /// Both sendSyncMessage and sendRpcMessage will block until a reply is
+        /// received, but they may be temporarily interrupted to process an urgent
+        /// incoming message (such as a CPOW request).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Print a string to stdout.
@@ -775,16 +921,164 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Btoa([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
 		
+		/// <summary>
+        /// The current top level window in the frame or null.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindow GetContentAttribute();
+		
+		/// <summary>
+        /// The top level docshell or null.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDocShell GetDocShellAttribute();
+		
 		/// <summary>Member GetOwnerContent </summary>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetOwnerContent();
+		
+		/// <summary>Member CacheFrameLoader </summary>
+		/// <param name='aFrameLoader'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CacheFrameLoader(System.IntPtr aFrameLoader);
+	}
+	
+	/// <summary>nsIContentProcessMessageManager </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("6d12e467-2446-46db-9965-e4e93cb87ca5")]
+	public interface nsIContentProcessMessageManager : nsIMessageManagerGlobal
+	{
+		
+		/// <summary>
+        /// Register |listener| to receive |messageName|.  All listener
+        /// callbacks for a particular message are invoked when that message
+        /// is received.
+        ///
+        /// The message manager holds a strong ref to |listener|.
+        ///
+        /// If the same listener registers twice for the same message, the
+        /// second registration is ignored.
+        ///
+        /// Pass true for listenWhenClosed if you want to receive messages
+        /// during the short period after a frame has been removed from the
+        /// DOM and before its frame script has finished unloading. This
+        /// parameter only has an effect for frame message managers in
+        /// the main process. Default is false.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener, [MarshalAs(UnmanagedType.U1)] bool listenWhenClosed);
+		
+		/// <summary>
+        /// Undo an |addMessageListener| call -- that is, calling this causes us to no
+        /// longer invoke |listener| when |messageName| is received.
+        ///
+        /// removeMessageListener does not remove a message listener added via
+        /// addWeakMessageListener; use removeWeakMessageListener for that.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This is just like addMessageListener, except the message manager holds a
+        /// weak ref to |listener|.
+        ///
+        /// If you have two weak message listeners for the same message, they may be
+        /// called in any order.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>
+        /// This undoes an |addWeakMessageListener| call.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveWeakMessageListener([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, [MarshalAs(UnmanagedType.Interface)] nsIMessageListener listener);
+		
+		/// <summary>Member MarkForCC </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool MarkForCC();
+		
+		/// <summary>
+        /// Send |messageName| and |obj| to the "other side" of this message
+        /// manager.  This invokes listeners who registered for
+        /// |messageName|.
+        ///
+        /// See nsIMessageListener::receiveMessage() for the format of the
+        /// data delivered to listeners.
+        /// @throws NS_ERROR_NOT_INITIALIZED if the sender is not initialized.  For
+        /// example, we will throw NS_ERROR_NOT_INITIALIZED if we try to send
+        /// a message to a cross-process frame but the other process has not
+        /// yet been set up.
+        /// @throws NS_ERROR_FAILURE when the message receiver cannot be found.  For
+        /// example, we will throw NS_ERROR_FAILURE if we try to send a message
+        /// to a cross-process frame whose process has crashed.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		
+		/// <summary>
+        /// Like |sendAsyncMessage()|, except blocks the sender until all
+        /// listeners of the message have been invoked.  Returns an array
+        /// containing return values from each listener invoked.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		
+		/// <summary>
+        /// Like |sendSyncMessage()|, except re-entrant. New RPC messages may be
+        /// issued even if, earlier on the call stack, we are waiting for a reply
+        /// to an earlier sendRpcMessage() call.
+        ///
+        /// Both sendSyncMessage and sendRpcMessage will block until a reply is
+        /// received, but they may be temporarily interrupted to process an urgent
+        /// incoming message (such as a CPOW request).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new Gecko.JsVal SendRpcMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase messageName, ref Gecko.JsVal obj, ref Gecko.JsVal objects, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr jsContext, int argc);
+		
+		/// <summary>
+        /// Print a string to stdout.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Dump([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aStr);
+		
+		/// <summary>
+        /// If leak detection is enabled, print a note to the leak log that this
+        /// process will intentionally crash.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PrivateNoteIntentionalCrash();
+		
+		/// <summary>
+        /// Ascii base64 data to binary data and vice versa
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Atob([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aAsciiString, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		
+		/// <summary>Member Btoa </summary>
+		/// <param name='aBase64Data'> </param>
+		/// <param name='retval'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Btoa([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		
+		/// <summary>
+        /// Read out a copy of the object that was initialized in the parent
+        /// process via nsIProcessScriptLoader.initialProcessData.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetInitialProcessDataAttribute(System.IntPtr jsContext);
 	}
 	
 	/// <summary>nsIFrameScriptLoader </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6fb78110-45ae-11e3-8f96-0800200c9a66")]
+	[Guid("bf61446b-ba24-4b1d-88c7-4f94724b9ce1")]
 	public interface nsIFrameScriptLoader
 	{
 		
@@ -813,12 +1107,96 @@ namespace Gecko
 		Gecko.JsVal GetDelayedFrameScripts(System.IntPtr jsContext);
 	}
 	
+	/// <summary>nsIProcessScriptLoader </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("7e1e1a20-b24f-11e4-ab27-0800200c9a66")]
+	public interface nsIProcessScriptLoader
+	{
+		
+		/// <summary>
+        /// Load a script in the (possibly remote) process. aURL must be the absolute URL.
+        /// data: URLs are also supported. For example data:,dump("foo\n");
+        /// If aAllowDelayedLoad is true, script will be loaded when the
+        /// remote frame becomes available. Otherwise the script will be loaded
+        /// only if the frame is already available.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void LoadProcessScript([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aURL, [MarshalAs(UnmanagedType.U1)] bool aAllowDelayedLoad);
+		
+		/// <summary>
+        /// Removes aURL from the list of scripts which support delayed load.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveDelayedProcessScript([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aURL);
+		
+		/// <summary>
+        /// Returns all delayed scripts that will be loaded once a (remote)
+        /// frame becomes available. The return value is a list of URLs.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetDelayedProcessScripts(System.IntPtr jsContext);
+	}
+	
+	/// <summary>nsIGlobalProcessScriptLoader </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("5b390753-abb3-49b0-ae3b-b803dab58144")]
+	public interface nsIGlobalProcessScriptLoader : nsIProcessScriptLoader
+	{
+		
+		/// <summary>
+        /// Load a script in the (possibly remote) process. aURL must be the absolute URL.
+        /// data: URLs are also supported. For example data:,dump("foo\n");
+        /// If aAllowDelayedLoad is true, script will be loaded when the
+        /// remote frame becomes available. Otherwise the script will be loaded
+        /// only if the frame is already available.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void LoadProcessScript([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aURL, [MarshalAs(UnmanagedType.U1)] bool aAllowDelayedLoad);
+		
+		/// <summary>
+        /// Removes aURL from the list of scripts which support delayed load.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveDelayedProcessScript([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aURL);
+		
+		/// <summary>
+        /// Returns all delayed scripts that will be loaded once a (remote)
+        /// frame becomes available. The return value is a list of URLs.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new Gecko.JsVal GetDelayedProcessScripts(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Allows the parent process to set the initial process data for
+        /// new, not-yet-created child processes. This attribute should only
+        /// be used by the global parent process message manager. When a new
+        /// process is created, it gets a copy of this data (via structured
+        /// cloning). It can access the data via the initialProcessData
+        /// attribute of its childprocessmessagemanager.
+        ///
+        /// This value will always be a JS object. Different users are
+        /// expected to set properties on this object. The property name
+        /// should be unique enough that other Gecko consumers won't
+        /// accidentally choose it.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetInitialProcessDataAttribute(System.IntPtr jsContext);
+	}
+	
 	/// <summary>nsIProcessChecker </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ad57800b-ff21-4e2f-91d3-e68615ae8afe")]
+	[Guid("637e8538-4f8f-4a3d-8510-e74386233e19")]
 	public interface nsIProcessChecker
 	{
+		
+		/// <summary>Member KillChild </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool KillChild();
 		
 		/// <summary>
         /// Return true if the "remote" process has |aPermission|.  This is

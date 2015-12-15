@@ -33,7 +33,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("df517997-ed52-4ea2-b310-2f8e0fe64572")]
+	[Guid("9fb3a8a4-d254-43d3-80a5-20e171d52b21")]
 	public interface nsIAccessibleTableChangeEvent : nsIAccessibleEvent
 	{
 		

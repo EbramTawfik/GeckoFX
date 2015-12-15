@@ -50,7 +50,7 @@ namespace Gecko
 	/// <summary>nsINetworkStatsCallback </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e079aa2a-ec0a-4bbd-b1a4-d81a9faae464")]
+	[Guid("9c128e68-5e4b-4626-bb88-84ec54cce5d8")]
 	public interface nsINetworkStatsCallback
 	{
 		
@@ -58,9 +58,9 @@ namespace Gecko
 		/// <param name='success'> </param>
 		/// <param name='rxBytes'> </param>
 		/// <param name='txBytes'> </param>
-		/// <param name='date'> </param>
+		/// <param name='timestamp'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NetworkStatsAvailable([MarshalAs(UnmanagedType.U1)] bool success, uint rxBytes, uint txBytes, ref Gecko.JsVal date);
+		void NetworkStatsAvailable([MarshalAs(UnmanagedType.U1)] bool success, uint rxBytes, uint txBytes, ulong timestamp);
 	}
 	
 	/// <summary>nsINetworkUsageAlarmCallback </summary>
@@ -168,12 +168,81 @@ namespace Gecko
 		void UpdateUpStreamResult([MarshalAs(UnmanagedType.U1)] bool success, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase externalIfname);
 	}
 	
+	/// <summary>nsISetDnsCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("eedca6c0-1310-11e4-9191-0800200c9a66")]
+	public interface nsISetDnsCallback
+	{
+		
+		/// <summary>
+        /// Callback function used to report the result of setting DNS server.
+        ///
+        /// @param error
+        /// An error message if the operation wasn't successful,
+        /// or `null` if it was.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDnsResult(ref Gecko.JsVal error);
+	}
+	
+	/// <summary>nsINativeCommandCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("5d0e1a60-1187-11e4-9191-0800200c9a66")]
+	public interface nsINativeCommandCallback
+	{
+		
+		/// <summary>
+        /// Callback function used to report the result of a network native command.
+        ///
+        /// @param success
+        /// Boolean to indicate the operation is successful or not.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NativeCommandResult([MarshalAs(UnmanagedType.U1)] bool success);
+	}
+	
+	/// <summary>nsIDhcpRequestCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("694abb80-1187-11e4-9191-0800200c9a66")]
+	public interface nsIDhcpRequestCallback
+	{
+		
+		/// <summary>
+        /// Callback function used to report the result of DHCP client request.
+        ///
+        /// @param success
+        /// Boolean to indicate the operation is successful or not.
+        ///
+        /// @param dhcpInfo
+        /// An object to represent the successful DHCP request:
+        ///
+        /// - gateway_str: string
+        /// - dns1_str:    string
+        /// - dns2_str:    string
+        /// - mask_str:    string
+        /// - server_str:  string
+        /// - vendor_str:  string
+        /// - lease:       long
+        /// - mask:        long
+        /// - ipaddr:      long
+        /// - gateway:     long
+        /// - dns1:        long
+        /// - dns2:        long
+        /// - server:      long
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DhcpRequestResult([MarshalAs(UnmanagedType.U1)] bool success, ref Gecko.JsVal dhcpInfo);
+	}
+	
 	/// <summary>
     /// Provide network services.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f96461fa-e844-45d2-a6c3-8cd23ab0916b")]
+	[Guid("bb929ae3-4a42-4a63-8388-97c4de69200e")]
 	public interface nsINetworkService
 	{
 		
@@ -241,7 +310,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SetNetworkInterfaceAlarm([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase networkName, int threshold, [MarshalAs(UnmanagedType.Interface)] nsINetworkUsageAlarmCallback callback);
+		bool SetNetworkInterfaceAlarm([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase networkName, long threshold, [MarshalAs(UnmanagedType.Interface)] nsINetworkUsageAlarmCallback callback);
 		
 		/// <summary>
         /// Reload Wifi firmware to specific operation mode.
@@ -261,16 +330,6 @@ namespace Gecko
 		void SetWifiOperationMode([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase mode, [MarshalAs(UnmanagedType.Interface)] nsIWifiOperationModeCallback callback);
 		
 		/// <summary>
-        /// Set http proxy for specific network
-        ///
-        /// @param networkInterface
-        /// The network interface which contains the http proxy host/port
-        /// we want to set.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNetworkProxy([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface networkInterface);
-		
-		/// <summary>
         /// Set USB tethering.
         ///
         /// @param enabled
@@ -286,89 +345,89 @@ namespace Gecko
 		/// <summary>
         /// Reset routing table.
         ///
-        /// @param networkInterface
-        /// The network interface we want remove from the routing table.
+        /// @param interfaceName
+        /// The name of the network interface we want to remove from the routing
+        /// table.
+        ///
+        /// @param callback
+        /// Callback to notify the result of resetting routing table.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResetRoutingTable([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface networkInterface);
+		void ResetRoutingTable([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, [MarshalAs(UnmanagedType.Interface)] nsINativeCommandCallback callback);
 		
 		/// <summary>
         /// Set DNS.
         ///
-        /// @param networkInterface
-        /// The network interface which contains the DNS we want to set.
+        /// @param interfaceName
+        /// The network interface name of the DNS we want to set.
+        /// @param dnsesCount
+        /// Number of elements in dnses.
+        /// @param dnses
+        /// Dnses to set.
+        /// @param gatewaysCount
+        /// Number of elements in gateways.
+        /// @param gateways
+        /// Gateways for the dnses, the most suitable, usually the one with the
+        /// same address family, will be selected for each dns.
+        ///
+        /// @param callback
+        /// Callback to notify the result of setting DNS server.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDNS([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface networkInterface);
+		void SetDNS([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, uint dnsesCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] dnses, uint gatewaysCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] System.IntPtr[] gateways, [MarshalAs(UnmanagedType.Interface)] nsISetDnsCallback callback);
 		
 		/// <summary>
-        /// Set default route and DNS.
+        /// Set default route.
         ///
-        /// @param networkInterface
-        /// The network interface we want to set to the default route and dns.
-        /// @param oldInterface
-        /// The previous network interface.
+        /// @param interfaceName
+        /// The network interface name of the default route we want to set.
+        /// @param count
+        /// Number of elements in gateways.
+        /// @param gateways
+        /// Default gateways for setting default route.
+        ///
+        /// @param callback
+        /// Callback to notify the result of setting default route.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultRouteAndDNS([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface networkInterface, [MarshalAs(UnmanagedType.Interface)] nsINetworkInterface oldInterface);
+		void SetDefaultRoute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] gateways, [MarshalAs(UnmanagedType.Interface)] nsINativeCommandCallback callback);
 		
 		/// <summary>
         /// Remove default route.
         ///
-        /// @param networkInterface
-        /// The network interface we want remove from the default route.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDefaultRoute([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface networkInterface);
-		
-		/// <summary>
-        /// Add host route.
-        ///
-        /// @param networkInterface
-        /// The network interface we want to add to the host route.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddHostRoute([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface networkInterface);
-		
-		/// <summary>
-        /// Remove host route.
-        ///
-        /// @param network
-        /// The network interface we want to remove from the host route.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveHostRoute([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface network);
-		
-		/// <summary>
-        /// Remove all host routes.
-        ///
         /// @param interfaceName
-        /// The interface name we want remove from the routing table.
+        /// The network interface name of the default route we want to remove.
+        /// @param count
+        /// Number of elements in gateways.
+        /// @param gatways
+        /// Default gateways for removing default route.
+        ///
+        /// @param callback
+        /// Callback to notify the result of removing default route.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveHostRoutes([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName);
+		void RemoveDefaultRoute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] gateways, [MarshalAs(UnmanagedType.Interface)] nsINativeCommandCallback callback);
 		
 		/// <summary>
-        /// Add host route with resolve.
+        /// Modify route.
         ///
-        /// @param network
-        /// The network interface we want to add to the host route.
-        /// @param hosts
-        /// The array of host names we want to add.
+        /// @param action
+        /// nsINetworkService.MODIFY_ROUTE_ADD to add route and
+        /// nsINetworkService.MODIFY_ROUTE_REMOVE to remove.
+        /// @param interfaceName
+        /// Network interface name for the output of the host route.
+        /// @param host
+        /// Host ip we want to remove route for.
+        /// @param prefixLength
+        /// The prefix length of the route we'd like to modify.
+        /// @param [optional] gateway
+        /// Gateway ip for the output of the host route.
+        ///
+        /// @return A deferred promise that resolves on success or rejects with a
+        /// specified reason otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddHostRouteWithResolve([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface network, ref Gecko.JsVal hosts);
-		
-		/// <summary>
-        /// Remove host route with resolve.
-        ///
-        /// @param network
-        /// The network interface we want to remove from the host route.
-        /// @param hosts
-        /// The array of host names we want to remove.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveHostRouteWithResolve([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface network, ref Gecko.JsVal hosts);
+		Gecko.JsVal ModifyRoute(int action, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase host, int prefixLength, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase gateway);
 		
 		/// <summary>
         /// Add route to secondary routing table.
@@ -382,7 +441,7 @@ namespace Gecko
         /// .gateway: gateway ip address
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddSecondaryRoute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, ref Gecko.JsVal route);
+		void AddSecondaryRoute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, ref Gecko.JsVal route, [MarshalAs(UnmanagedType.Interface)] nsINativeCommandCallback callback);
 		
 		/// <summary>
         /// Remove route from secondary routing table.
@@ -396,7 +455,7 @@ namespace Gecko
         /// .gateway: gateway ip address
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveSecondaryRoute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, ref Gecko.JsVal route);
+		void RemoveSecondaryRoute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, ref Gecko.JsVal route, [MarshalAs(UnmanagedType.Interface)] nsINativeCommandCallback callback);
 		
 		/// <summary>
         /// Enable or disable usb rndis.
@@ -421,5 +480,149 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UpdateUpStream(ref Gecko.JsVal previous, ref Gecko.JsVal current, [MarshalAs(UnmanagedType.Interface)] nsIUpdateUpStreamCallback callback);
+		
+		/// <summary>
+        /// Configure a network interface.
+        ///
+        /// @param config
+        /// An object containing the detail that we want to configure the interface:
+        ///
+        /// - ifname:  string
+        /// - ipaddr:  long
+        /// - mask:    long
+        /// - gateway: long
+        /// - dns1:    long
+        /// - dns2:    long
+        ///
+        /// @param callback
+        /// Callback to notify the result of configurating network interface.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ConfigureInterface(ref Gecko.JsVal config, [MarshalAs(UnmanagedType.Interface)] nsINativeCommandCallback callback);
+		
+		/// <summary>
+        /// Issue a DHCP client request.
+        ///
+        /// @param networkInterface
+        /// The network interface which we wnat to do the DHCP request on.
+        ///
+        /// @param callback
+        /// Callback to notify the result of the DHCP request.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DhcpRequest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, [MarshalAs(UnmanagedType.Interface)] nsIDhcpRequestCallback callback);
+		
+		/// <summary>
+        /// Stop Dhcp daemon.
+        ///
+        /// @param ifname
+        /// Target interface.
+        ///
+        /// @param callback
+        /// Callback to notify the result of stopping dhcp request.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void StopDhcp([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase ifname, [MarshalAs(UnmanagedType.Interface)] nsINativeCommandCallback callback);
+		
+		/// <summary>
+        /// Enable a network interface.
+        ///
+        /// @param networkInterface
+        /// The network interface name which we want to enable.
+        ///
+        /// @param callback
+        /// Callback to notify the result of disabling network interface.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void EnableInterface([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, [MarshalAs(UnmanagedType.Interface)] nsINativeCommandCallback callback);
+		
+		/// <summary>
+        /// Disable a network interface.
+        ///
+        /// @param networkInterface
+        /// The network interface name which we want to disable.
+        ///
+        /// @param callback
+        /// Callback to notify the result of disabling network interface.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DisableInterface([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, [MarshalAs(UnmanagedType.Interface)] nsINativeCommandCallback callback);
+		
+		/// <summary>
+        /// Reset all connections on a specified network interface.
+        ///
+        /// @param interfaceName
+        /// The network interface name which we want to reset.
+        ///
+        /// @param callback
+        /// Callback to notify the result of resetting connections.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ResetConnections([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, [MarshalAs(UnmanagedType.Interface)] nsINativeCommandCallback callback);
+		
+		/// <summary>
+        /// Create network (required to call prior to any networking operation).
+        ///
+        /// @param interfaceName
+        /// The network interface name which we want to create network for.
+        ///
+        /// @param callback
+        /// Callback to notify the result of creating network.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CreateNetwork([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, [MarshalAs(UnmanagedType.Interface)] nsINativeCommandCallback callback);
+		
+		/// <summary>
+        /// Destroy network.
+        ///
+        /// @param interfaceName
+        /// The network interface name of the network we want to destroy.
+        ///
+        /// @param callback
+        /// Callback to notify the result of destroying network.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DestroyNetwork([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, [MarshalAs(UnmanagedType.Interface)] nsINativeCommandCallback callback);
+		
+		/// <summary>
+        /// Query the netId associated with given network interface name.
+        ///
+        /// @param interfaceName
+        /// The network interface name which we want to query.
+        ///
+        /// @return A deferred promise that resolves with a string to indicate.
+        /// the queried netId on success and rejects if the interface name
+        /// is invalid.
+        ///
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetNetId([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName);
+		
+		/// <summary>
+        /// Set maximum transmission unit on a network interface.
+        ///
+        /// @param interfaceName
+        /// The name of the network interface that we want to set mtu.
+        /// @param mtu
+        /// Size of maximum tranmission unit.
+        ///
+        /// @param callback
+        /// Callback to notify the result of setting mtu.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMtu([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase interfaceName, int mtu, [MarshalAs(UnmanagedType.Interface)] nsINativeCommandCallback callback);
+	}
+	
+	/// <summary>nsINetworkServiceConsts </summary>
+	public class nsINetworkServiceConsts
+	{
+		
+		// <summary>
+        // Provide network services.
+        // </summary>
+		public const long MODIFY_ROUTE_ADD = 0;
+		
+		// 
+		public const long MODIFY_ROUTE_REMOVE = 1;
 	}
 }

@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("980f70bc-0487-4b22-a4c1-bf1185c8ae1f")]
+	[Guid("acc88e7c-3f39-42c7-ac31-6377c2c3d73e")]
 	public interface nsINetworkPredictor
 	{
 		
@@ -101,13 +101,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Reset();
-		
-		/// <summary>
-        /// @deprecated THIS API IS FOR TESTING ONLY. IF YOU DON'T KNOW WHAT IT DOES,
-        /// DON'T USE IT
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrepareForDnsTest(long timestamp, [MarshalAs(UnmanagedType.LPStr)] string uri);
 	}
 	
 	/// <summary>nsINetworkPredictorConsts </summary>

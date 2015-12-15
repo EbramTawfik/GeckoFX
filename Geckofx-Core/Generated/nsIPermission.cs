@@ -33,28 +33,16 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cfb08e46-193c-4be7-a467-d7775fb2a31e")]
+	[Guid("bb409a51-2371-4fea-9dc9-b7286a458b8c")]
 	public interface nsIPermission
 	{
 		
 		/// <summary>
-        /// The name of the host for which the permission is set
+        /// The principal for which this permission applies.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost);
-		
-		/// <summary>
-        /// The id of the app for which the permission is set.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetAppIdAttribute();
-		
-		/// <summary>
-        /// Whether the permission has been set to a page inside a browser element.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetIsInBrowserElementAttribute();
+		nsIPrincipal GetPrincipalAttribute();
 		
 		/// <summary>
         /// a case-sensitive ASCII string, indicating the type of permission
@@ -86,5 +74,32 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetExpireTimeAttribute();
+		
+		/// <summary>
+        /// Test whether a principal would be affected by this permission.
+        ///
+        /// @param principal  the principal to test
+        /// @param exactHost  If true, only the specific host will be matched,
+        /// @see nsIPermissionManager::testExactPermission.
+        /// If false, subdomains will also be searched,
+        /// @see nsIPermissionManager::testPermission.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool Matches([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.U1)] bool exactHost);
+		
+		/// <summary>
+        /// Test whether a URI would be affected by this permission.
+        /// This performs a matches with a NO_APP_ID identifier.
+        ///
+        /// @param uri        the uri to test
+        /// @param exactHost  If true, only the specific host will be matched,
+        /// @see nsIPermissionManager::testExactPermission.
+        /// If false, subdomains will also be searched,
+        /// @see nsIPermissionManager::testPermission.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool MatchesURI([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.U1)] bool exactHost);
 	}
 }

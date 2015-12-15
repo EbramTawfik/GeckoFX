@@ -32,29 +32,21 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f89e7679-0adf-4a30-bda9-1afe1ee270d6")]
-	public interface nsIPluginPlayPreviewInfo
+	[Guid("9c311778-7c2c-4ad8-b439-b8a2786a20dd")]
+	public interface nsIClearSiteDataCallback
 	{
 		
 		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this
-        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+        /// callback with the result from a call to clearSiteData
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMimeTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType);
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetIgnoreCTPAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRedirectURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aRedirectURL);
+		void Callback(int rv);
 	}
 	
 	/// <summary>nsIPluginHost </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e8fe94f0-b877-46d0-931a-090967fb1e83")]
+	[Guid("f938f5ba-7093-42cd-a559-af8039d99204")]
 	public interface nsIPluginHost
 	{
 		
@@ -92,7 +84,7 @@ namespace Gecko
         /// general or for that particular site and/or flag combination.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearSiteData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase domain, ulong flags, long maxAge);
+		void ClearSiteData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase domain, ulong flags, long maxAge, [MarshalAs(UnmanagedType.Interface)] nsIClearSiteDataCallback callback);
 		
 		/// <summary>
         /// Determine if a plugin has stored data for a given site.
@@ -109,58 +101,80 @@ namespace Gecko
 		bool SiteHasData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase domain);
 		
 		/// <summary>
-        /// Registers the play preview plugin mode for specific mime type
+        /// Get the "permission string" for the plugin.  This is a string that can be
+        /// passed to the permission manager to see whether the plugin is allowed to
+        /// run, for example.  This will typically be based on the plugin's "nice name"
+        /// and its blocklist state.
         ///
-        /// @param mimeType: specifies plugin mime type.
-        /// @param ignoreCTP: if true, the play preview ignores CTP rules, e.g.
-        ///                       whitelisted websites, will not notify about plugin
-        ///                       presence in the address bar.
-        /// @param redirectURL: specifies url for the overlay iframe
+        /// @mimeType The MIME type we're interested in.
+        /// @excludeFlags Set of the EXCLUDE_* flags above, defaulting to EXCLUDE_NONE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterPlayPreviewMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType, [MarshalAs(UnmanagedType.U1)] bool ignoreCTP, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase redirectURL);
-		
-		/// <summary>Member UnregisterPlayPreviewMimeType </summary>
-		/// <param name='mimeType'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterPlayPreviewMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
-		
-		/// <summary>Member GetPlayPreviewInfo </summary>
-		/// <param name='mimeType'> </param>
-		/// <returns>A nsIPluginPlayPreviewInfo</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPluginPlayPreviewInfo GetPlayPreviewInfo([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
-		
-		/// <summary>Member GetPermissionStringForType </summary>
-		/// <param name='mimeType'> </param>
-		/// <param name='retval'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPermissionStringForType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void GetPermissionStringForType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType, uint excludeFlags, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Get the nsIPluginTag for this MIME type. This method works with both
         /// enabled and disabled/blocklisted plugins, but an enabled plugin will
         /// always be returned if available.
         ///
+        /// A fake plugin tag, if one exists and is available, will be returned in
+        /// preference to NPAPI plugin tags unless excluded by the excludeFlags.
+        ///
+        /// @mimeType The MIME type we're interested in.
+        /// @excludeFlags Set of the EXCLUDE_* flags above, defaulting to EXCLUDE_NONE.
+        ///
         /// @throws NS_ERROR_NOT_AVAILABLE if no plugin is available for this MIME
         /// type.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPluginTag GetPluginTagForType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
+		nsIPluginTag GetPluginTagForType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType, uint excludeFlags);
 		
 		/// <summary>
-        /// Get the nsIPluginTag state for this MIME type.
+        /// Get the nsIPluginTag enabled state for this MIME type.  See
+        /// nsIPluginTag.enabledState.
+        ///
+        /// @mimeType The MIME type we're interested in.
+        /// @excludeFlags Set of the EXCLUDE_* flags above, defaulting to EXCLUDE_NONE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetStateForType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
+		uint GetStateForType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType, uint excludeFlags);
 		
 		/// <summary>
-        /// Get the blocklist state for a MIME type.
+        /// Get the blocklist state for a MIME type.  See nsIPluginTag.blocklistState.
+        ///
+        /// @mimeType The MIME type we're interested in.
+        /// @excludeFlags Set of the EXCLUDE_* flags above, defaulting to EXCLUDE_NONE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetBlocklistStateForType([MarshalAs(UnmanagedType.LPStr)] string aMimeType);
+		uint GetBlocklistStateForType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType, uint excludeFlags);
+		
+		/// <summary>
+        /// Create a fake plugin tag, register it, and return it.  The argument is a
+        /// FakePluginTagInit dictionary.  See documentation in
+        /// FakePluginTagInit.webidl for what it should look like.  Will throw
+        /// NS_ERROR_UNEXPECTED if there is already a fake plugin registered with the
+        /// given handler URI.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIFakePluginTag RegisterFakePlugin(ref Gecko.JsVal initDictionary, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Get a reference to an existing fake plugin tag for the given MIME type, if
+        /// any.  Can return null.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIFakePluginTag GetFakePlugin([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
+		
+		/// <summary>
+        /// Unregister a fake plugin.  The argument can be the .handlerURI.spec of an
+        /// existing nsIFakePluginTag, or just a known handler URI string that was
+        /// passed in the FakePluginTagInit when registering.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnregisterFakePlugin([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase handlerURI);
 	}
 	
 	/// <summary>nsIPluginHostConsts </summary>
@@ -179,5 +193,16 @@ namespace Gecko
 		
 		// 
 		public const long FLAG_CLEAR_CACHE = 1;
+		
+		// <summary>
+        // For use with Get*ForType functions
+        // </summary>
+		public const long EXCLUDE_NONE = 0;
+		
+		// 
+		public const long EXCLUDE_DISABLED = 1<<0;
+		
+		// 
+		public const long EXCLUDE_FAKE = 1<<1;
 	}
 }

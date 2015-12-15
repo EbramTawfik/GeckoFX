@@ -119,7 +119,7 @@ namespace Gecko
 		/// Create a AutoJSContext using the SafeJSContext.
 		/// </summary>		
 		public AutoJSContext()
-            : this(GlobalJSContextHolder.BackstageJSContext)
+            : this(GlobalJSContextHolder.SafeJSContext)
 		{
 		}
 
@@ -168,10 +168,14 @@ namespace Gecko
                     if (GetComponentsObject().GetUtilsAttribute().IsXrayWrapper(ref windowJsVal))
                         windowJsVal = GetComponentsObject().GetUtilsAttribute().WaiveXrays(ref windowJsVal, _cx);
 
+// TODO: this is a major problem if we can't find a replacement..                    
+#if PORT
                     using (nsAStringBase b = new nsAString(javascript))
                     {
                         return GetComponentsObject().GetUtilsAttribute().EvalInWindow(b, ref windowJsVal, _cx);
                     }
+#endif
+                    return default(JsVal);
                 }
                 finally
                 {
@@ -380,13 +384,18 @@ namespace Gecko
 			Guid guid = typeof(nsISupports).GUID;
 
 			IntPtr globalObject = GetGlobalObject();
-            
+         
+            // In geckofx 45 the WrapNative not longer returns a 'holder'
+#if false
 			using (var holder = new ComPtr<nsIXPConnectJSObjectHolder>(Xpcom.XPConnect.Instance.WrapNative(_cx, globalObject, (nsISupports)obj, ref guid)))
 			{
 				int slot = holder.GetSlotOfComMethod(new Func<IntPtr>(holder.Instance.GetJSObject));
 				var getJSObject = holder.GetComMethod<Xpcom.GetJSObjectFromHolderDelegate>(slot);
 				return getJSObject(holder.Instance);
 			}
+#else
+		    return Xpcom.XPConnect.Instance.WrapNative(_cx, globalObject, obj, ref guid);
+#endif
 
 		}
 

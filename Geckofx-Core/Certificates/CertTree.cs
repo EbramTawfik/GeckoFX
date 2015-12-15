@@ -17,8 +17,9 @@ namespace Gecko.Certificates
 		{
 			_certTree.LoadCerts( type );
 		}
-		
 
+        // CertCache not longer exists in gecko 45
+#if false
 		/// <summary>Member LoadCertsFromCache </summary>
 		/// <param name='cache'> </param>
 		/// <param name='type'> </param>
@@ -26,6 +27,7 @@ namespace Gecko.Certificates
 		{
 			_certTree.LoadCertsFromCache( cache._certCache.Instance, type );
 		}
+#endif
 
 		/// <summary>Member GetCert </summary>
 		/// <param name='index'> </param>

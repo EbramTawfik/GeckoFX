@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f9348014-0239-11e2-b029-3d38e719eb2d")]
+	[Guid("3dfb2f54-378d-4d3c-a9f9-95dd2673248c")]
 	public interface nsISHistoryInternal
 	{
 		
@@ -54,17 +54,10 @@ namespace Gecko
 		nsISHTransaction GetRootTransactionAttribute();
 		
 		/// <summary>
-        /// The toplevel docshell object to which this SHistory object belongs to.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShell GetRootDocShellAttribute();
-		
-		/// <summary>
-        /// The toplevel docshell object to which this SHistory object belongs to.
+        /// Sets the toplevel docshell object to which this SHistory object belongs to.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRootDocShellAttribute([MarshalAs(UnmanagedType.Interface)] nsIDocShell aRootDocShell);
+		void SetRootDocShell([MarshalAs(UnmanagedType.Interface)] nsIDocShell rootDocShell);
 		
 		/// <summary>
         /// Update the index maintained by sessionHistory

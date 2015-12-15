@@ -28,10 +28,14 @@ namespace Gecko
 	
 	/// <summary>
     /// A load group maintains a collection of nsIRequest objects.
+    /// This is used in lots of places where groups of requests need to be tracked.
+    /// For example, nsIDocument::mDocumentLoadGroup is used to track all requests
+    /// made for subdocuments in order to track page load progress and allow all
+    /// requests made on behalf of the document to be stopped, etc.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("afb57ac2-bce5-4ee3-bb34-385089a9ba5c")]
+	[Guid("f0c87725-7a35-463c-9ceb-2c07f23406cc")]
 	public interface nsILoadGroup : nsIRequest
 	{
 		
@@ -241,12 +245,11 @@ namespace Gecko
 		void SetNotificationCallbacksAttribute([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aNotificationCallbacks);
 		
 		/// <summary>
-        /// Connection information for managing things like js/css
-        /// connection blocking, and per-tab connection grouping
+        /// Context for managing things like js/css connection blocking,
+        /// and per-tab connection grouping.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILoadGroupConnectionInfo GetConnectionInfoAttribute();
+		System.IntPtr GetSchedulingContextIDAttribute();
 		
 		/// <summary>
         /// The set of load flags that will be added to all new requests added to
@@ -275,55 +278,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDefaultLoadFlagsAttribute(uint aDefaultLoadFlags);
-	}
-	
-	/// <summary>
-    /// Used to maintain state about the connections of a load group and
-    /// how they interact with blocking items like HEAD css/js loads.
-    /// </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fdc9659c-b597-4ac0-9c9e-14b04dbb682f")]
-	public interface nsILoadGroupConnectionInfo
-	{
-		
-		/// <summary>
-        /// Number of active blocking transactions associated with this load group
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetBlockingTransactionCountAttribute();
-		
-		/// <summary>
-        /// Increase the number of active blocking transactions associated
-        /// with this load group by one.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddBlockingTransaction();
-		
-		/// <summary>
-        /// Decrease the number of active blocking transactions associated
-        /// with this load group by one. The return value is the number of remaining
-        /// blockers.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint RemoveBlockingTransaction();
-		
-		/// <summary>
-        ///reading this attribute gives out weak pointers to the push
-        /// cache. The nsILoadGroupConnectionInfo implemenation owns the cache
-        /// and will destroy it when overwritten or when the load group
-        /// ends.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetSpdyPushCacheAttribute();
-		
-		/// <summary>
-        ///reading this attribute gives out weak pointers to the push
-        /// cache. The nsILoadGroupConnectionInfo implemenation owns the cache
-        /// and will destroy it when overwritten or when the load group
-        /// ends.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSpdyPushCacheAttribute(System.IntPtr aSpdyPushCache);
 	}
 }

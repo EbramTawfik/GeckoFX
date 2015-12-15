@@ -73,7 +73,9 @@ namespace Gecko
         // </summary>
 		public const ulong transliterate = 8;
 		
-		// 
+		// <summary>
+        // Obsolete
+        // </summary>
 		public const ulong mathml20 = 16;
 		
 		// 

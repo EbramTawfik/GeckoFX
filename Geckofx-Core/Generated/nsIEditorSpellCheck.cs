@@ -32,17 +32,9 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dd32ef3b-a7d8-43d1-9617-5f2dddbe29eb")]
+	[Guid("a171c25f-e4a8-4d08-adef-b797e6377bdc")]
 	public interface nsIEditorSpellCheck
 	{
-		
-		/// <summary>
-        /// Call this on any change in installed dictionaries to ensure that the spell
-        /// checker is not using a current dictionary which is no longer available.
-        /// If the current dictionary is no longer available, then pick another one.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckCurrentDictionary();
 		
 		/// <summary>
         /// Returns true if we can enable spellchecking. If there are no available

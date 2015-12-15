@@ -49,4 +49,25 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnLookupComplete([MarshalAs(UnmanagedType.Interface)] nsICancelable aRequest, [MarshalAs(UnmanagedType.Interface)] nsIDNSRecord aRecord, int aStatus);
 	}
+	
+	/// <summary>
+    /// nsIDNSListenerProxy:
+    ///
+    /// Must be implemented by classes that wrap the original listener passed to
+    /// nsIDNSService.AsyncResolve, so we have access to original listener for
+    /// comparison purposes.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("60eff0e4-6f7c-493c-add9-1cbea59063ad")]
+	public interface nsIDNSListenerProxy
+	{
+		
+		/// <summary>
+        /// The original nsIDNSListener which requested hostname resolution.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDNSListener GetOriginalListenerAttribute();
+	}
 }

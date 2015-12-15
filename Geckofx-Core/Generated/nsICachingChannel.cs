@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a77b664e-e707-4017-9c03-47bcedcb5b05")]
+	[Guid("dd1d6122-5ecf-4fe4-8f0f-995e7ab3121a")]
 	public interface nsICachingChannel : nsICacheInfoChannel
 	{
 		
@@ -73,6 +73,47 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsFromCache();
+		
+		/// <summary>
+        /// Set/get the cache key... uniquely identifies the data in the cache
+        /// for this channel.  Holding a reference to this key does NOT prevent
+        /// the cached data from being removed.
+        ///
+        /// A cache key retrieved from a particular instance of nsICacheInfoChannel
+        /// could be set on another instance of nsICacheInfoChannel provided the
+        /// underlying implementations are compatible and provided the new
+        /// channel instance was created with the same URI.  The implementation of
+        /// nsICacheInfoChannel would be expected to use the cache entry identified
+        /// by the cache token.  Depending on the value of nsIRequest::loadFlags,
+        /// the cache entry may be validated, overwritten, or simply read.
+        ///
+        /// The cache key may be NULL indicating that the URI of the channel is
+        /// sufficient to locate the same cache entry.  Setting a NULL cache key
+        /// is likewise valid.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsISupports GetCacheKeyAttribute();
+		
+		/// <summary>
+        /// Set/get the cache key... uniquely identifies the data in the cache
+        /// for this channel.  Holding a reference to this key does NOT prevent
+        /// the cached data from being removed.
+        ///
+        /// A cache key retrieved from a particular instance of nsICacheInfoChannel
+        /// could be set on another instance of nsICacheInfoChannel provided the
+        /// underlying implementations are compatible and provided the new
+        /// channel instance was created with the same URI.  The implementation of
+        /// nsICacheInfoChannel would be expected to use the cache entry identified
+        /// by the cache token.  Depending on the value of nsIRequest::loadFlags,
+        /// the cache entry may be validated, overwritten, or simply read.
+        ///
+        /// The cache key may be NULL indicating that the URI of the channel is
+        /// sufficient to locate the same cache entry.  Setting a NULL cache key
+        /// is likewise valid.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetCacheKeyAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aCacheKey);
 		
 		/// <summary>
         /// Set/get the cache token... uniquely identifies the data in the cache.
@@ -131,45 +172,36 @@ namespace Gecko
 		void SetOfflineCacheTokenAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aOfflineCacheToken);
 		
 		/// <summary>
-        /// Set/get the cache key... uniquely identifies the data in the cache
-        /// for this channel.  Holding a reference to this key does NOT prevent
-        /// the cached data from being removed.
-        ///
-        /// A cache key retrieved from a particular instance of nsICachingChannel
-        /// could be set on another instance of nsICachingChannel provided the
-        /// underlying implementations are compatible and provided the new
-        /// channel instance was created with the same URI.  The implementation of
-        /// nsICachingChannel would be expected to use the cache entry identified
-        /// by the cache token.  Depending on the value of nsIRequest::loadFlags,
-        /// the cache entry may be validated, overwritten, or simply read.
-        ///
-        /// The cache key may be NULL indicating that the URI of the channel is
-        /// sufficient to locate the same cache entry.  Setting a NULL cache key
-        /// is likewise valid.
+        /// Instructs the channel to only store the metadata of the entry, and not
+        /// the content. When reading an existing entry, this automatically sets
+        /// LOAD_ONLY_IF_MODIFIED flag.
+        /// Must be called before asyncOpen().
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetCacheKeyAttribute();
+		bool GetCacheOnlyMetadataAttribute();
 		
 		/// <summary>
-        /// Set/get the cache key... uniquely identifies the data in the cache
-        /// for this channel.  Holding a reference to this key does NOT prevent
-        /// the cached data from being removed.
-        ///
-        /// A cache key retrieved from a particular instance of nsICachingChannel
-        /// could be set on another instance of nsICachingChannel provided the
-        /// underlying implementations are compatible and provided the new
-        /// channel instance was created with the same URI.  The implementation of
-        /// nsICachingChannel would be expected to use the cache entry identified
-        /// by the cache token.  Depending on the value of nsIRequest::loadFlags,
-        /// the cache entry may be validated, overwritten, or simply read.
-        ///
-        /// The cache key may be NULL indicating that the URI of the channel is
-        /// sufficient to locate the same cache entry.  Setting a NULL cache key
-        /// is likewise valid.
+        /// Instructs the channel to only store the metadata of the entry, and not
+        /// the content. When reading an existing entry, this automatically sets
+        /// LOAD_ONLY_IF_MODIFIED flag.
+        /// Must be called before asyncOpen().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCacheKeyAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aCacheKey);
+		void SetCacheOnlyMetadataAttribute([MarshalAs(UnmanagedType.U1)] bool aCacheOnlyMetadata);
+		
+		/// <summary>
+        /// Tells the channel to use the pinning storage.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetPinAttribute();
+		
+		/// <summary>
+        /// Tells the channel to use the pinning storage.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPinAttribute([MarshalAs(UnmanagedType.U1)] bool aPin);
 	}
 	
 	/// <summary>nsICachingChannelConsts </summary>
@@ -231,6 +263,6 @@ namespace Gecko
         // cache, then the OnDataAvailable events will be skipped.  The listener
         // will only see OnStartRequest followed by OnStopRequest.
         // </summary>
-		public const ulong LOAD_ONLY_IF_MODIFIED = (ulong)1<<31;
+        public const ulong LOAD_ONLY_IF_MODIFIED = (ulong)1 << 31;
 	}
 }

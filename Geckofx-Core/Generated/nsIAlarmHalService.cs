@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9f3ed2c0-aed9-11e1-8c3d-5310bd393466")]
+	[Guid("53dec7f9-bb51-4c3a-98ab-80d5d750c9dd")]
 	public interface nsIAlarmFiredCb
 	{
 		
@@ -47,7 +47,7 @@ namespace Gecko
 	/// <summary>nsITimezoneChangedCb </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0ca52e84-ba8f-11e1-87e8-63235527db9e")]
+	[Guid("e6662911-c066-4358-9388-8661065c65a2")]
 	public interface nsITimezoneChangedCb
 	{
 		
@@ -57,10 +57,23 @@ namespace Gecko
 		void OnTimezoneChanged(int aTimezoneOffset);
 	}
 	
+	/// <summary>nsISystemClockChangedCb </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("46ece987-a3ec-4124-906f-d99c83296ac6")]
+	public interface nsISystemClockChangedCb
+	{
+		
+		/// <summary>Member OnSystemClockChanged </summary>
+		/// <param name='aClockDeltaMS'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnSystemClockChanged(int aClockDeltaMS);
+	}
+	
 	/// <summary>nsIAlarmHalService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("057b1ee4-f696-486d-bd55-205e21e88fab")]
+	[Guid("35074214-f50d-4f9a-b173-8d564dfa657d")]
 	public interface nsIAlarmHalService
 	{
 		
@@ -81,5 +94,10 @@ namespace Gecko
 		/// <param name='aTimezoneChangedCb'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTimezoneChangedCb([MarshalAs(UnmanagedType.Interface)] nsITimezoneChangedCb aTimezoneChangedCb);
+		
+		/// <summary>Member SetSystemClockChangedCb </summary>
+		/// <param name='aSystemClockChangedCb'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSystemClockChangedCb([MarshalAs(UnmanagedType.Interface)] nsISystemClockChangedCb aSystemClockChangedCb);
 	}
 }

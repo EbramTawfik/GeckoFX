@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("62aac1e0-3da8-4920-bd1b-a54fc2e2eb24")]
+	[Guid("4819f183-b532-4932-ac09-b309cd853be7")]
 	public interface nsIURIFixupInfo
 	{
 		
@@ -68,11 +68,18 @@ namespace Gecko
 		nsIURI GetFixedURIAttribute();
 		
 		/// <summary>
-        /// Whether the preferred option ended up using a keyword search.
+        /// The name of the keyword search provider used to provide a keyword search;
+        /// empty string if no keyword search was done.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetFixupUsedKeywordAttribute();
+		void GetKeywordProviderNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aKeywordProviderName);
+		
+		/// <summary>
+        /// The keyword as used for the search (post trimming etc.)
+        /// empty string if no keyword search was done.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetKeywordAsSentAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aKeywordAsSent);
 		
 		/// <summary>
         /// Whether we changed the protocol instead of using one from the input as-is.
@@ -103,7 +110,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("80d4932e-bb2e-4afb-98e0-de9cc9ea7d82")]
+	[Guid("1da7e9d4-620b-4949-849a-1cd6077b1b2d")]
 	public interface nsIURIFixup
 	{
 		
@@ -163,7 +170,21 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI KeywordToURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aKeyword, [MarshalAs(UnmanagedType.Interface)] ref nsIInputStream aPostData);
+		nsIURIFixupInfo KeywordToURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aKeyword, [MarshalAs(UnmanagedType.Interface)] ref nsIInputStream aPostData);
+		
+		/// <summary>
+        /// Returns true if the specified domain is whitelisted and false otherwise.
+        /// A whitelisted domain is relevant when we have a single word and can't be
+        /// sure whether to treat the word as a host name or should instead be
+        /// treated as a search term.
+        ///
+        /// @param aDomain A domain name to query.
+        /// @param aDotPos The position of the first '.' character in aDomain, or
+        /// -1 if no '.' character exists.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsDomainWhitelisted([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDomain, uint aDotPos);
 	}
 	
 	/// <summary>nsIURIFixupConsts </summary>

@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("89a0fe71-c1d9-46bd-b76b-47f51fd935ff")]
+	[Guid("92584002-d0e2-4b88-9af9-fa6ff59ee002")]
 	public interface nsIDOMXPathEvaluator
 	{
 		
@@ -40,10 +40,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMXPathNSResolver CreateNSResolver([MarshalAs(UnmanagedType.Interface)] nsIDOMNode nodeResolver);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports Evaluate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase expression, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode contextNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMXPathNSResolver resolver, ushort type, [MarshalAs(UnmanagedType.Interface)] nsISupports result);
+		nsISupports Evaluate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase expression, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode contextNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode resolver, ushort type, [MarshalAs(UnmanagedType.Interface)] nsISupports result);
 	}
 }

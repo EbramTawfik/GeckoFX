@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("160e87e1-d57d-456b-b6ea-17826f6ea7a8")]
+	[Guid("9d0284bf-db40-42da-8f0d-c2769dbde7aa")]
 	public interface nsIAlertsService
 	{
 		
@@ -61,12 +61,16 @@ namespace Gecko
         /// platforms.
         /// @param lang           Language of title and text of the alert. Only available
         /// on supported platforms.
+        /// @param inPrivateBrowsing If set to true, imageUrl will be loaded in private
+        /// browsing mode.
         /// @throws NS_ERROR_NOT_AVAILABLE If the notification cannot be displayed.
         ///
         /// The following arguments will be passed to the alertListener's observe()
         /// method:
         /// subject - null
         /// topic   - "alertfinished" when the alert goes away
+        /// "alertdisablecallback" when alerts should be disabled for the principal
+        /// "alertsettingscallback" when alert settings should be opened
         /// "alertclickcallback" when the text is clicked
         /// "alertshow" when the alert is shown
         /// data    - the value of the cookie parameter passed to showAlertNotification.
@@ -77,7 +81,7 @@ namespace Gecko
         /// "alertfinished" notification immediately.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowAlertNotification([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase imageUrl, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase title, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase text, [MarshalAs(UnmanagedType.U1)] bool textClickable, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase cookie, [MarshalAs(UnmanagedType.Interface)] nsIObserver alertListener, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase dir, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase lang, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
+		void ShowAlertNotification([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase imageUrl, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase title, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase text, [MarshalAs(UnmanagedType.U1)] bool textClickable, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase cookie, [MarshalAs(UnmanagedType.Interface)] nsIObserver alertListener, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase dir, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase lang, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase data, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.U1)] bool inPrivateBrowsing);
 		
 		/// <summary>
         /// Close alerts created by the service.
@@ -88,6 +92,39 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CloseAlert([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
+	}
+	
+	/// <summary>nsIAlertsDoNotDisturb </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("c5d63e3a-259d-45a8-b964-8377967cb4d2")]
+	public interface nsIAlertsDoNotDisturb
+	{
+		
+		/// <summary>
+        /// Toggles a manual Do Not Disturb mode for the service to reduce the amount
+        /// of disruption that alerts cause the user.
+        /// This may mean only displaying them in a notification tray/center or not
+        /// displaying them at all. If a system backend already supports a similar
+        /// feature controlled by the user, enabling this may not have any impact on
+        /// code to show an alert. e.g. on OS X, the system will take care not
+        /// disrupting a user if we simply create a notification like usual.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetManualDoNotDisturbAttribute();
+		
+		/// <summary>
+        /// Toggles a manual Do Not Disturb mode for the service to reduce the amount
+        /// of disruption that alerts cause the user.
+        /// This may mean only displaying them in a notification tray/center or not
+        /// displaying them at all. If a system backend already supports a similar
+        /// feature controlled by the user, enabling this may not have any impact on
+        /// code to show an alert. e.g. on OS X, the system will take care not
+        /// disrupting a user if we simply create a notification like usual.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetManualDoNotDisturbAttribute([MarshalAs(UnmanagedType.U1)] bool aManualDoNotDisturb);
 	}
 	
 	/// <summary>nsIAlertsProgressListener </summary>

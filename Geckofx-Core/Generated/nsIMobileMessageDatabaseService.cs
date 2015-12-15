@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8439916f-abc1-4c67-aa45-8a276a0a7855")]
+	[Guid("18672be2-c185-4f9c-8af6-2e6ea004de73")]
 	public interface nsIMobileMessageDatabaseService
 	{
 		
@@ -48,7 +48,7 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICursorContinueCallback CreateMessageCursor([MarshalAs(UnmanagedType.Interface)] nsIDOMMozSmsFilter filter, [MarshalAs(UnmanagedType.U1)] bool reverse, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCursorCallback callback);
+		nsICursorContinueCallback CreateMessageCursor([MarshalAs(UnmanagedType.U1)] bool hasStartDate, ulong startDate, [MarshalAs(UnmanagedType.U1)] bool hasEndDate, ulong endDate, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] numbers, uint numbersCount, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase delivery, [MarshalAs(UnmanagedType.U1)] bool hasRead, [MarshalAs(UnmanagedType.U1)] bool read, [MarshalAs(UnmanagedType.U1)] bool hasThreadId, ulong threadId, [MarshalAs(UnmanagedType.U1)] bool reverse, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCursorCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MarkMessageRead(int messageId, [MarshalAs(UnmanagedType.U1)] bool value, [MarshalAs(UnmanagedType.U1)] bool sendReadReport, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);

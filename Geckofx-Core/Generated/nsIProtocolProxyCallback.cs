@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a9967200-f95e-45c2-beb3-9b060d874bfd")]
+	[Guid("fbb6eff6-0cc2-4d99-8d6f-0a12b462bdeb")]
 	public interface nsIProtocolProxyCallback
 	{
 		
@@ -42,8 +42,8 @@ namespace Gecko
         ///
         /// @param aRequest
         /// The value returned from asyncResolve.
-        /// @param aURI
-        /// The URI passed to asyncResolve.
+        /// @param aChannel
+        /// The channel passed to asyncResolve.
         /// @param aProxyInfo
         /// The resulting proxy info or null if there is no associated proxy
         /// info for aURI.  As with the result of nsIProtocolProxyService's
@@ -55,6 +55,6 @@ namespace Gecko
         /// indicates the reason for the failure and aProxyInfo will be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProxyAvailable([MarshalAs(UnmanagedType.Interface)] nsICancelable aRequest, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aProxyInfo, int aStatus);
+		void OnProxyAvailable([MarshalAs(UnmanagedType.Interface)] nsICancelable aRequest, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aProxyInfo, int aStatus);
 	}
 }

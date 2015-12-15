@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("929AED00-3E15-49B7-8CA2-75003715B7E7")]
+	[Guid("0c0a862c-1a47-43c0-ae9e-d51835e3e1a6")]
 	public interface nsIMozBrowserFrame : nsIDOMMozBrowserFrame
 	{
 		
@@ -84,12 +84,27 @@ namespace Gecko
         /// Gets whether this frame really is an app frame.
         ///
         /// In order to really be an app frame, this frame must really be a browser
-        /// frame (this requirement will go away eventually), and the frame's mozapp
-        /// attribute must point to the manifest of a valid app.
+        /// frame (this requirement will go away eventually), and must satisfy one
+        /// and only one of the following conditions:
+        /// 1. the frame's mozapp attribute must point to the manifest of a valid app
+        /// 2. the frame's mozwidget attribute must point to the manifest of a valid
+        /// app, and the src should be in the |widgetPages| specified by the manifest.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetReallyIsAppAttribute();
+		
+		/// <summary>
+        /// Gets whether this frame really is a widget frame.
+        ///
+        /// In order to really be a frame, this frame must really be a browser
+        /// frame (this requirement will go away eventually), the frame's mozwidget
+        /// attribute must point to the manifest of a valid app, and the src should
+        /// be in the |widgetPages| specified by the manifest.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetReallyIsWidgetAttribute();
 		
 		/// <summary>
         /// This corresponds to the expecting-system-message attribute, which tells us
@@ -104,7 +119,8 @@ namespace Gecko
 		bool GetIsExpectingSystemMessageAttribute();
 		
 		/// <summary>
-        /// Gets this frame's app manifest URL, if the frame really is an app frame.
+        /// Gets this frame's app manifest URL or widget manifest URL, if the frame
+        /// really is an app frame.
         /// Otherwise, returns the empty string.
         ///
         /// This method is guaranteed not to fail.
@@ -139,5 +155,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CreateRemoteFrameLoader([MarshalAs(UnmanagedType.Interface)] nsITabParent aTabParent);
+		
+		/// <summary>
+        /// Initialize the API, and add frame message listener to listen to API
+        /// invocations.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitializeBrowserAPI();
 	}
 }

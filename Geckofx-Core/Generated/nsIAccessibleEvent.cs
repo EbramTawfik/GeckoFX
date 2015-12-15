@@ -40,7 +40,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7f66a33a-9ed7-4fd4-87a8-e431b0f43368")]
+	[Guid("20c69a40-6c2c-42a3-a578-6f4473aab9dd")]
 	public interface nsIAccessibleEvent
 	{
 		
@@ -136,7 +136,7 @@ namespace Gecko
 		public const ulong EVENT_DESCRIPTION_CHANGE = 0x0009;
 		
 		// <summary>
-        // An object's Value property has changed.
+        // An object's numeric Value has changed.
         // </summary>
 		public const ulong EVENT_VALUE_CHANGE = 0x000A;
 		
@@ -500,8 +500,13 @@ namespace Gecko
 		public const ulong EVENT_VIRTUALCURSOR_CHANGED = 0x0056;
 		
 		// <summary>
+        // An object's text Value has changed.
+        // </summary>
+		public const ulong EVENT_TEXT_VALUE_CHANGE = 0x0057;
+		
+		// <summary>
         // Help make sure event map does not get out-of-line.
         // </summary>
-		public const ulong EVENT_LAST_ENTRY = 0x0057;
+		public const ulong EVENT_LAST_ENTRY = 0x0058;
 	}
 }

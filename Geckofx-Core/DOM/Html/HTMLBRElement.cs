@@ -6,7 +6,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Gecko.DOM
-{	
+{
+    // interface nsIDOMHTMLBRElement no longer exists in gecko 45
+#if false
 	public class GeckoBRElement : GeckoHtmlElement
 	{
 		private nsIDOMHTMLBRElement _domHtmlBrElement;
@@ -28,5 +30,6 @@ namespace Gecko.DOM
 		}
 
 	}
+#endif
 }
 

@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c2938033-e240-4fe5-9cb6-e7ad649ccd10")]
+	[Guid("81fe5144-059b-42db-bd3a-f6ce3158d5e9")]
 	public interface nsIAccessiblePivot
 	{
 		
@@ -86,99 +86,114 @@ namespace Gecko
 		/// <summary>
         /// Set the pivot's text range in a text accessible.
         ///
-        /// @param aTextAccessible [in] the text accessible that contains the desired
+        /// @param aTextAccessible  [in] the text accessible that contains the desired
         /// range.
-        /// @param aStartOffset    [in] the start offset to set.
-        /// @param aEndOffset      [in] the end offset to set.
+        /// @param aStartOffset     [in] the start offset to set.
+        /// @param aEndOffset       [in] the end offset to set.
+        /// @param aIsFromUserInput [in] the pivot changed because of direct user input
+        /// (default is true).
         /// @throws NS_ERROR_INVALID_ARG when the offset exceeds the accessible's
         /// character count.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextRange([MarshalAs(UnmanagedType.Interface)] nsIAccessibleText aTextAccessible, int aStartOffset, int aEndOffset);
+		void SetTextRange([MarshalAs(UnmanagedType.Interface)] nsIAccessibleText aTextAccessible, int aStartOffset, int aEndOffset, [MarshalAs(UnmanagedType.U1)] bool aIsFromUserInput, int argc);
 		
 		/// <summary>
         /// Move pivot to next object, from current position or given anchor,
         /// complying to given traversal rule.
         ///
-        /// @param aRule         [in] traversal rule to use.
-        /// @param aAnchor       [in] accessible to start search from, if not provided,
+        /// @param aRule            [in] traversal rule to use.
+        /// @param aAnchor          [in] accessible to start search from, if not provided,
         /// current position will be used.
-        /// @param aIncludeStart [in] include anchor accessible in search.
+        /// @param aIncludeStart    [in] include anchor accessible in search.
+        /// @param aIsFromUserInput [in] the pivot changed because of direct user input
+        /// (default is true).
         /// @return true on success, false if there are no new nodes to traverse to.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MoveNext([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule, [MarshalAs(UnmanagedType.Interface)] nsIAccessible aAnchor, [MarshalAs(UnmanagedType.U1)] bool aIncludeStart, int argc);
+		bool MoveNext([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule, [MarshalAs(UnmanagedType.Interface)] nsIAccessible aAnchor, [MarshalAs(UnmanagedType.U1)] bool aIncludeStart, [MarshalAs(UnmanagedType.U1)] bool aIsFromUserInput, int argc);
 		
 		/// <summary>
         /// Move pivot to previous object, from current position or given anchor,
         /// complying to given traversal rule.
         ///
-        /// @param aRule         [in] traversal rule to use.
-        /// @param aAnchor       [in] accessible to start search from, if not provided,
+        /// @param aRule            [in] traversal rule to use.
+        /// @param aAnchor          [in] accessible to start search from, if not provided,
         /// current position will be used.
-        /// @param aIncludeStart [in] include anchor accessible in search.
+        /// @param aIncludeStart    [in] include anchor accessible in search.
+        /// @param aIsFromUserInput [in] the pivot changed because of direct user input
+        /// (default is true).
         /// @return true on success, false if there are no new nodes to traverse to.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MovePrevious([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule, [MarshalAs(UnmanagedType.Interface)] nsIAccessible aAnchor, [MarshalAs(UnmanagedType.U1)] bool aIncludeStart, int argc);
+		bool MovePrevious([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule, [MarshalAs(UnmanagedType.Interface)] nsIAccessible aAnchor, [MarshalAs(UnmanagedType.U1)] bool aIncludeStart, [MarshalAs(UnmanagedType.U1)] bool aIsFromUserInput, int argc);
 		
 		/// <summary>
         /// Move pivot to first object in subtree complying to given traversal rule.
         ///
-        /// @param aRule [in] traversal rule to use.
+        /// @param aRule            [in] traversal rule to use.
+        /// @param aIsFromUserInput [in] the pivot changed because of direct user input
+        /// (default is true).
         /// @return true on success, false if there are no new nodes to traverse to.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MoveFirst([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule);
+		bool MoveFirst([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule, [MarshalAs(UnmanagedType.U1)] bool aIsFromUserInput, int argc);
 		
 		/// <summary>
         /// Move pivot to last object in subtree complying to given traversal rule.
         ///
-        /// @param aRule [in] traversal rule to use.
-        /// @return true on success, false if there are no new nodes to traverse to.
+        /// @param aRule            [in] traversal rule to use.
+        /// @param aIsFromUserInput [in] the pivot changed because of direct user input
+        /// (default is true).
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MoveLast([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule);
+		bool MoveLast([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule, [MarshalAs(UnmanagedType.U1)] bool aIsFromUserInput, int argc);
 		
 		/// <summary>
         /// Move pivot to next text range.
         ///
-        /// @param aBoundary [in] type of boundary for next text range, character, word,
-        /// etc.
+        /// @param aBoundary        [in] type of boundary for next text range,
+        /// character, word, etc.
+        /// @param aIsFromUserInput [in] the pivot changed because of direct user input
+        /// (default is true).
         /// @return true on success, false if there are is no more text.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MoveNextByText(TextBoundaryType aBoundary);
+		bool MoveNextByText(TextBoundaryType aBoundary, [MarshalAs(UnmanagedType.U1)] bool aIsFromUserInput, int argc);
 		
 		/// <summary>
         /// Move pivot to previous text range.
         ///
-        /// @param aBoundary [in] type of boundary for previous text range, character,
-        /// word, etc.
+        /// @param aBoundary        [in] type of boundary for next text range,
+        /// character, word, etc.
+        /// @param aIsFromUserInput [in] the pivot changed because of direct user input
+        /// (default is true).
         /// @return true on success, false if there are is no more text.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MovePreviousByText(TextBoundaryType aBoundary);
+		bool MovePreviousByText(TextBoundaryType aBoundary, [MarshalAs(UnmanagedType.U1)] bool aIsFromUserInput, int argc);
 		
 		/// <summary>
         /// Move pivot to given coordinate in screen pixels.
         ///
-        /// @param aRule          [in]  raversal rule to use.
-        /// @param aX             [in]  screen's x coordinate
-        /// @param aY             [in]  screen's y coordinate
-        /// @param aIgnoreNoMatch [in]  don't unset position if no object was found at
-        /// point.
+        /// @param aRule            [in]  raversal rule to use.
+        /// @param aX               [in]  screen's x coordinate
+        /// @param aY               [in]  screen's y coordinate
+        /// @param aIgnoreNoMatch   [in]  don't unset position if no object was found
+        /// at point.
+        /// @param aIsFromUserInput [in] the pivot changed because of direct user input
+        /// (default is true).
         /// @return true on success, false if the pivot has not been moved.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MoveToPoint([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule, int aX, int aY, [MarshalAs(UnmanagedType.U1)] bool aIgnoreNoMatch);
+		bool MoveToPoint([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule, int aX, int aY, [MarshalAs(UnmanagedType.U1)] bool aIgnoreNoMatch, [MarshalAs(UnmanagedType.U1)] bool aIsFromUserInput, int argc);
 		
 		/// <summary>
         /// Add an observer for pivot changes.
@@ -245,27 +260,30 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b6508c5e-c081-467d-835c-613eedf9ee9b")]
+	[Guid("6006e502-3861-49bd-aba1-fa6d2e74e237")]
 	public interface nsIAccessiblePivotObserver
 	{
 		
 		/// <summary>
         /// Called when the pivot changes.
         ///
-        /// @param aPivot         [in] the pivot that has changed.
-        /// @param aOldAccessible [in] the old pivot position before the change, or null.
-        /// @param aOldStart      [in] the old start offset, or -1.
-        /// @param aOldEnd        [in] the old end offset, or -1.
-        /// @param aReason        [in] the reason for the pivot change.
+        /// @param aPivot           [in] the pivot that has changed.
+        /// @param aOldAccessible   [in] the old pivot position before the change,
+        /// or null.
+        /// @param aOldStart        [in] the old start offset, or -1.
+        /// @param aOldEnd          [in] the old end offset, or -1.
+        /// @param aReason          [in] the reason for the pivot change.
+        /// @param aIsFromUserInput [in] the pivot changed because of direct user input
+        /// (default is true).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPivotChanged([MarshalAs(UnmanagedType.Interface)] nsIAccessiblePivot aPivot, [MarshalAs(UnmanagedType.Interface)] nsIAccessible aOldAccessible, int aOldStart, int aOldEnd, PivotMoveReason aReason);
+		void OnPivotChanged([MarshalAs(UnmanagedType.Interface)] nsIAccessiblePivot aPivot, [MarshalAs(UnmanagedType.Interface)] nsIAccessible aOldAccessible, int aOldStart, int aOldEnd, PivotMoveReason aReason, [MarshalAs(UnmanagedType.U1)] bool aIsFromUserInput);
 	}
 	
 	/// <summary>nsIAccessibleTraversalRule </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4d9c4352-20f5-4c54-9580-0c77bb6b1115")]
+	[Guid("e197460d-1eff-4247-b4bb-a43be1840dae")]
 	public interface nsIAccessibleTraversalRule
 	{
 		

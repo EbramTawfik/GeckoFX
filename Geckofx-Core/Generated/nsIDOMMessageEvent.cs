@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bb869a03-5fc0-4a1b-838a-342e5025fc05")]
+	[Guid("4408a2f5-614f-40a3-8786-e16bd3f74e32")]
 	public interface nsIDOMMessageEvent : nsIDOMEvent
 	{
 		
@@ -227,6 +227,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr InternalDOMEvent();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopCrossProcessForwarding();
 		
 		/// <summary>
         /// Custom string data associated with this event.

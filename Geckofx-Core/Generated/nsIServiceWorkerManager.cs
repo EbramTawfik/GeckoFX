@@ -32,32 +32,186 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6e1382f4-3cbc-435f-8ce0-70175f6eb400")]
+	[Guid("52ee2c9d-ee87-4caf-9588-23ae77ff8798")]
+	public interface nsIServiceWorkerUnregisterCallback
+	{
+		
+		/// <summary>
+        /// It's false if this ServiceWorkerRegistration doesn't exist.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnregisterSucceeded([MarshalAs(UnmanagedType.U1)] bool aState);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnregisterFailed();
+	}
+	
+	/// <summary>nsIServiceWorkerInfo </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("76e357ed-208d-4e4c-9165-1c4059707879")]
+	public interface nsIServiceWorkerInfo
+	{
+		
+		/// <summary>Member GetScriptSpecAttribute </summary>
+		/// <param name='aScriptSpec'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetScriptSpecAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aScriptSpec);
+		
+		/// <summary>Member GetCacheNameAttribute </summary>
+		/// <param name='aCacheName'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCacheNameAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aCacheName);
+		
+		/// <summary>Member GetDebuggerAttribute </summary>
+		/// <returns>A nsIWorkerDebugger</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIWorkerDebugger GetDebuggerAttribute();
+		
+		/// <summary>Member AttachDebugger </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AttachDebugger();
+		
+		/// <summary>Member DetachDebugger </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DetachDebugger();
+	}
+	
+	/// <summary>nsIServiceWorkerRegistrationInfoListener </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("87e63548-d440-4b8a-b158-65ad1de0211E")]
+	public interface nsIServiceWorkerRegistrationInfoListener
+	{
+		
+		/// <summary>Member OnChange </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnChange();
+	}
+	
+	/// <summary>nsIServiceWorkerRegistrationInfo </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("72faba24-0a1b-4284-bad3-d44c044d6d95")]
+	public interface nsIServiceWorkerRegistrationInfo
+	{
+		
+		/// <summary>Member GetPrincipalAttribute </summary>
+		/// <returns>A nsIPrincipal</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIPrincipal GetPrincipalAttribute();
+		
+		/// <summary>Member GetScopeAttribute </summary>
+		/// <param name='aScope'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetScopeAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aScope);
+		
+		/// <summary>Member GetScriptSpecAttribute </summary>
+		/// <param name='aScriptSpec'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetScriptSpecAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aScriptSpec);
+		
+		/// <summary>Member GetInstallingWorkerAttribute </summary>
+		/// <returns>A nsIServiceWorkerInfo</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIServiceWorkerInfo GetInstallingWorkerAttribute();
+		
+		/// <summary>Member GetWaitingWorkerAttribute </summary>
+		/// <returns>A nsIServiceWorkerInfo</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIServiceWorkerInfo GetWaitingWorkerAttribute();
+		
+		/// <summary>Member GetActiveWorkerAttribute </summary>
+		/// <returns>A nsIServiceWorkerInfo</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIServiceWorkerInfo GetActiveWorkerAttribute();
+		
+		/// <summary>Member AddListener </summary>
+		/// <param name='listener'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddListener([MarshalAs(UnmanagedType.Interface)] nsIServiceWorkerRegistrationInfoListener listener);
+		
+		/// <summary>Member RemoveListener </summary>
+		/// <param name='listener'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIServiceWorkerRegistrationInfoListener listener);
+	}
+	
+	/// <summary>nsIServiceWorkerManagerListener </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("9e523e7c-ad6f-4df0-8077-c74aebbc679d")]
+	public interface nsIServiceWorkerManagerListener
+	{
+		
+		/// <summary>Member OnRegister </summary>
+		/// <param name='aInfo'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnRegister([MarshalAs(UnmanagedType.Interface)] nsIServiceWorkerRegistrationInfo aInfo);
+		
+		/// <summary>Member OnUnregister </summary>
+		/// <param name='aInfo'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnUnregister([MarshalAs(UnmanagedType.Interface)] nsIServiceWorkerRegistrationInfo aInfo);
+	}
+	
+	/// <summary>nsIServiceWorkerManager </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("a03f2b64-7aaf-423a-97b0-e1f733cce0f6")]
 	public interface nsIServiceWorkerManager
 	{
 		
 		/// <summary>
-        /// Returns a Promise
+        /// Registers a ServiceWorker with script loaded from `aScriptURI` to act as
+        /// the ServiceWorker for aScope.  Requires a valid entry settings object on
+        /// the stack. This means you must call this from content code 'within'
+        /// a window.
+        ///
+        /// Returns a Promise.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports Register([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aScope, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aScriptURI);
+		nsISupports Register([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aScope, [MarshalAs(UnmanagedType.Interface)] nsIURI aScriptURI);
+		
+		/// <summary>
+        /// Unregister an existing ServiceWorker registration for `aScope`.
+        /// It keeps aCallback alive until the operation is concluded.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Unregister([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIServiceWorkerUnregisterCallback aCallback, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aScope);
 		
 		/// <summary>
         /// Returns a Promise
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports Unregister([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aScope);
+		nsISupports GetRegistrations([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
-        /// aTarget MUST be a ServiceWorkerContainer.
+        /// Returns a Promise
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports GetRegistration([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aScope);
+		
+		/// <summary>
+        /// Returns a Promise
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports GetReadyPromise([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
+		
+		/// <summary>
+        /// Remove ready pending Promise
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddContainerEventListener([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aTarget);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveContainerEventListener([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aTarget);
+		void RemoveReadyPromise([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Call this to request that document `aDoc` be controlled by a ServiceWorker
@@ -66,7 +220,7 @@ namespace Gecko
         /// This MUST only be called once per document!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MaybeStartControlling(System.IntPtr aDoc);
+		void MaybeStartControlling(System.IntPtr aDoc, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDocumentId);
 		
 		/// <summary>
         /// Documents that have called MaybeStartControlling() should call this when
@@ -77,9 +231,122 @@ namespace Gecko
 		void MaybeStopControlling(System.IntPtr aDoc);
 		
 		/// <summary>
+        /// Returns a ServiceWorker.
+        /// window is the window of the caller. scope is the registration's scope and must be
+        /// a valid entry that window is allowed to load, otherwise this will return nullptr.
+        /// These are only meant to be called from ServiceWorkerRegistration instances.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports GetInstalling([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aScope);
+		
+		/// <summary>Member GetWaiting </summary>
+		/// <param name='aWindow'> </param>
+		/// <param name='aScope'> </param>
+		/// <returns>A nsISupports</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports GetWaiting([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aScope);
+		
+		/// <summary>Member GetActive </summary>
+		/// <param name='aWindow'> </param>
+		/// <param name='aScope'> </param>
+		/// <returns>A nsISupports</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports GetActive([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aScope);
+		
+		/// <summary>
+        /// Returns a ServiceWorker object representing the active worker controlling this
+        /// window.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports GetDocumentController([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
+		
+		/// <summary>
+        /// Clears ServiceWorker registrations from memory and disk for the specified
+        /// host.
+        /// - All ServiceWorker instances change their state to redundant.
+        /// - Existing ServiceWorker instances handling fetches will keep running.
+        /// - All documents will immediately stop being controlled.
+        /// - Unregister jobs will be queued for all registrations.
+        /// This eventually results in the registration being deleted from disk too.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveAndPropagate([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost);
+		
+		/// <summary>
         /// Testing
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetScopeForUrl([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase path, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		void GetScopeForUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aPath, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		
+		/// <summary>
+        /// It returns an array of nsIServiceWorkerRegistrationInfos.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIArray GetAllRegistrations();
+		
+		/// <summary>
+        /// It calls softUpdate() for each child process.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void PropagateSoftUpdate(ref Gecko.JsVal aOriginAttributes, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aScope, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// inform when unregister() is completed on the current process.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void PropagateUnregister([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIServiceWorkerUnregisterCallback aCallback, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aScope);
+		
+		/// <summary>Member SendNotificationClickEvent </summary>
+		/// <param name='aOriginSuffix'> </param>
+		/// <param name='scope'> </param>
+		/// <param name='aID'> </param>
+		/// <param name='aTitle'> </param>
+		/// <param name='aDir'> </param>
+		/// <param name='aLang'> </param>
+		/// <param name='aBody'> </param>
+		/// <param name='aTag'> </param>
+		/// <param name='aIcon'> </param>
+		/// <param name='aData'> </param>
+		/// <param name='aBehavior'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendNotificationClickEvent([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOriginSuffix, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase scope, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aID, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTitle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDir, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aLang, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aBody, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aTag, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aIcon, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aData, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aBehavior);
+		
+		/// <summary>Member SendPushEvent </summary>
+		/// <param name='aOriginAttributes'> </param>
+		/// <param name='aScope'> </param>
+		/// <param name='aDataLength'> </param>
+		/// <param name='aDataBytes'> </param>
+		/// <param name='argc'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendPushEvent([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOriginAttributes, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScope, uint aDataLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] aDataBytes, int argc);
+		
+		/// <summary>Member SendPushSubscriptionChangeEvent </summary>
+		/// <param name='aOriginAttributes'> </param>
+		/// <param name='scope'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendPushSubscriptionChangeEvent([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOriginAttributes, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase scope);
+		
+		/// <summary>Member AddListener </summary>
+		/// <param name='aListener'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddListener([MarshalAs(UnmanagedType.Interface)] nsIServiceWorkerManagerListener aListener);
+		
+		/// <summary>Member RemoveListener </summary>
+		/// <param name='aListener'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIServiceWorkerManagerListener aListener);
+		
+		/// <summary>Member ShouldReportToWindow </summary>
+		/// <param name='aWindow'> </param>
+		/// <param name='aScope'> </param>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool ShouldReportToWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScope);
 	}
 }

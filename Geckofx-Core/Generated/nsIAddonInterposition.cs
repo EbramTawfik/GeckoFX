@@ -42,7 +42,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e5453950-d95a-11e3-9c1a-0800200c9a66")]
+	[Guid("d05cc5fd-ad88-41a6-854c-36fd94d69ddb")]
 	public interface nsIAddonInterposition
 	{
 		
@@ -59,6 +59,31 @@ namespace Gecko
         /// @return A property descriptor or null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal Interpose(ref Gecko.JsVal addonId, ref Gecko.JsVal target, System.Guid iface, ref Gecko.JsVal prop);
+		Gecko.JsVal InterposeProperty(ref Gecko.JsVal addonId, ref Gecko.JsVal target, System.Guid iface, ref Gecko.JsVal prop);
+		
+		/// <summary>
+        /// We're intercepting calls from add-ons scopes into non-addon scopes.
+        ///
+        /// @param addonId The ID of the add-on accessing the property.
+        /// @param originalFunc The function object being intercepted.
+        /// @param originalThis The |this| value for the intercepted call.
+        /// @param args The arguments of the original call in an array.
+        /// @return The result of the call. NOTE: after the call interception,
+        /// the original function will not be called automatically, so the
+        /// implementer has to do that.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal InterposeCall(ref Gecko.JsVal addonId, ref Gecko.JsVal originalFunc, ref Gecko.JsVal originalThis, ref Gecko.JsVal args);
+		
+		/// <summary>
+        /// For the first time when the interposition is registered the engine
+        /// calls getWhitelist and expects an array of strings. The strings are
+        /// the name of properties the interposition wants interposeProperty
+        /// to be called. It can be an empty array.
+        /// Note: for CPOWs interposeProperty is always called regardless if
+        /// the name of the property is on the whitelist or not.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetWhitelist();
 	}
 }

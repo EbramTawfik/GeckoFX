@@ -776,9 +776,8 @@ namespace Gecko
 		/// <summary>
         /// Whether or not a different instance is handling updates of this
         /// installation.  This currently only ever returns true on Windows
-        /// when 2 instances of an application are open or when both the Metro
-        /// and Desktop browsers are open.  Only one of the instances will actually
-        /// handle updates for the installation.
+        /// when 2 instances of an application are open. Only one of the instances
+        /// will actually handle updates for the installation.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -820,7 +819,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c5df56de-919d-406b-aaf9-106dfa9b685b")]
+	[Guid("f8371237-10a6-46a5-b23f-f6f7684e9d71")]
 	public interface nsIUpdateManager
 	{
 		
@@ -863,7 +862,7 @@ namespace Gecko
         /// Refresh the update status based on the information in update.status.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RefreshUpdateStatus([MarshalAs(UnmanagedType.Interface)] nsIUpdate update);
+		void RefreshUpdateStatus();
 	}
 	
 	/// <summary>

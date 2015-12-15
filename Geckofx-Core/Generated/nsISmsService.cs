@@ -32,34 +32,203 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cb7d7b60-01f1-4241-a0ae-2ff035c3fbe5")]
+	[Guid("c8ca5f06-ad76-44b0-a324-9e2910fd37da")]
 	public interface nsISmsService
 	{
 		
 		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
-        /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+        /// The default RIL service ID used for SMS.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetSmsDefaultServiceIdAttribute();
 		
+		/// <summary>
+        /// Get the information necessary to create a multi-part SMS for a given text.
+        ///
+        /// @param text
+        /// The text message content.
+        /// @param request
+        /// The callback object to use. It invokes
+        /// |notifySegmentInfoForTextGot| on success, or
+        /// |notifyGetSegmentInfoForTextFailed| on failure.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSegmentInfoForText([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase text, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 		
+		/// <summary>
+        /// Send a SMS.
+        ///
+        /// @param serviceId
+        /// The ID of RIL service to use.
+        /// @param number
+        /// Destination number in string.
+        /// @param message
+        /// The text message content.
+        /// @param silent
+        /// |true| to send a silent message. It's used to make a SMS based
+        /// authentication for some services such as mobile billing.
+        /// @param request
+        /// The callback object to use. It invokes |notifyMessageSent| on
+        /// success, or |notifySendMessageFailed| on failure.
+        /// @throws NS_ERROR_INVALID_ARG
+        /// If |serviceId| exceeds the max value of available IDs.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Send(uint serviceId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase message, [MarshalAs(UnmanagedType.U1)] bool silent, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
 		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsSilentNumber([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number);
-		
+		/// <summary>
+        /// Add a number to the list of silent message originators. When receiving a
+        /// SMS sent from one of the numbers in the list, |SmsService| will notify
+        /// observers through the topic "silent-sms-received".
+        ///
+        /// It's used when a SMS based authentication has been initiated and the client
+        /// is waiting for an incoming silent message containing the authentication
+        /// result.
+        ///
+        /// @param number
+        /// Originator number in string.
+        /// @throw NS_ERROR_UNEXPECTED
+        /// If the given number has already been added before.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddSilentNumber([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number);
 		
+		/// <summary>
+        /// Remove a number from the silent message originator list.
+        ///
+        /// @param number
+        /// Originator number in string.
+        /// @throws NS_ERROR_INVALID_ARG
+        /// If the number doesn't exist in the list.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveSilentNumber([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number);
 		
+		/// <summary>
+        /// Get the short message service center address of given |serviceId|.
+        ///
+        /// @param serviceId
+        /// The ID of RIL service to use.
+        /// @param request
+        /// The callback object to use. It invokes |notifyGetSmscAddress| on
+        /// success, or |notifyGetSmscAddressFailed| on failure.
+        /// @throws NS_ERROR_INVALID_ARG
+        /// If |serviceId| exceeds the max value of available IDs.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSmscAddress(uint serviceId, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
+		
+		/// <summary>
+        /// Set the short message service center address of given |serviceId|.
+        ///
+        /// @param serviceId
+        /// The ID of RIL service to use.
+        /// @param number
+        /// Number part of the SMSC address.
+        /// @param typeOfNumber
+        /// Type of number of the SMSC address.
+        /// @param numberPlanIdentification
+        /// Number plan identification of the SMSC address.
+        /// @param request
+        /// The callback object to use. It invokes |notifySetSmscAddress| on
+        /// success, or |notifySetSmscAddressFailed| on failure.
+        /// @throws NS_ERROR_INVALID_ARG
+        /// If |serviceId| exceeds the max value of available IDs.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSmscAddress(uint serviceId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number, uint typeOfNumber, uint numberPlanIdentification, [MarshalAs(UnmanagedType.Interface)] nsIMobileMessageCallback request);
+	}
+	
+	/// <summary>nsISmsServiceConsts </summary>
+	public class nsISmsServiceConsts
+	{
+		
+		// <summary>
+        // Constant definitions of predefined GSM Message Class
+        // See 3GPP TS 23.038 clause 4 SMS Data Coding Scheme
+        // </summary>
+		public const ushort MESSAGE_CLASS_TYPE_CLASS_0 = 0;
+		
+		// 
+		public const ushort MESSAGE_CLASS_TYPE_CLASS_1 = 1;
+		
+		// 
+		public const ushort MESSAGE_CLASS_TYPE_CLASS_2 = 2;
+		
+		// 
+		public const ushort MESSAGE_CLASS_TYPE_CLASS_3 = 3;
+		
+		// 
+		public const ushort MESSAGE_CLASS_TYPE_NORMAL = 6;
+		
+		// <summary>
+        // Constant definitions of SMS Delivery
+        // </summary>
+		public const ushort DELIVERY_TYPE_RECEIVED = 0;
+		
+		// 
+		public const ushort DELIVERY_TYPE_SENDING = 1;
+		
+		// 
+		public const ushort DELIVERY_TYPE_SENT = 2;
+		
+		// 
+		public const ushort DELIVERY_TYPE_ERROR = 3;
+		
+		// <summary>
+        // Constant definitions of SMS Delivery Status
+        // </summary>
+		public const ushort DELIVERY_STATUS_TYPE_NOT_APPLICABLE = 0;
+		
+		// 
+		public const ushort DELIVERY_STATUS_TYPE_SUCCESS = 1;
+		
+		// 
+		public const ushort DELIVERY_STATUS_TYPE_PENDING = 2;
+		
+		// 
+		public const ushort DELIVERY_STATUS_TYPE_ERROR = 3;
+		
+		// <summary>
+        // Constant definitions of SM-RP type of number as defined in
+        // |Table 10.5.118: Called party BCD number| of 3GPP TS 24.008.
+        // </summary>
+		public const ushort TYPE_OF_NUMBER_UNKNOWN = 0;
+		
+		// 
+		public const ushort TYPE_OF_NUMBER_INTERNATIONAL = 1;
+		
+		// 
+		public const ushort TYPE_OF_NUMBER_NATIONAL = 2;
+		
+		// 
+		public const ushort TYPE_OF_NUMBER_NETWORK_SPECIFIC = 3;
+		
+		// 
+		public const ushort TYPE_OF_NUMBER_DEDICATED_ACCESS_SHORT_CODE = 4;
+		
+		// <summary>
+        // Constant definitions of SM-RP number plan identification as defined in
+        // |Table 10.5.118: Called party BCD number| of 3GPP TS 24.008. These values
+        // do not represent the actual protocol values defined in the 3GPP standard,
+        // but rather the corresponding enum values of NumberPlanIdentification in
+        // MozMobileMessageManager.
+        // </summary>
+		public const ushort NUMBER_PLAN_IDENTIFICATION_UNKNOWN = 0;
+		
+		// 
+		public const ushort NUMBER_PLAN_IDENTIFICATION_ISDN = 1;
+		
+		// 
+		public const ushort NUMBER_PLAN_IDENTIFICATION_DATA = 2;
+		
+		// 
+		public const ushort NUMBER_PLAN_IDENTIFICATION_TELEX = 3;
+		
+		// 
+		public const ushort NUMBER_PLAN_IDENTIFICATION_NATIONAL = 4;
+		
+		// 
+		public const ushort NUMBER_PLAN_IDENTIFICATION_PRIVATE = 5;
 	}
 }

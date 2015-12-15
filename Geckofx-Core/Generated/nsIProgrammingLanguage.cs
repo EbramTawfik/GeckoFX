@@ -27,11 +27,17 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// Enumeration of Programming Languages
+    /// Legacy constants for specifying programming languages.
+    ///
+    /// JAVASCRIPT is needed to avoid breaking addons that use it in nsIClassInfo
+    /// to define fields that are no longer needed.
+    ///
+    /// UNKNOWN and JAVASCRIPT are also used in implementations of
+    /// nsIStackFrame::language.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ea604e90-40ba-11d5-90bb-0010a4e73d9a")]
+	[Guid("02ad9f22-3c98-46f3-be4e-2f5c9299e29a")]
 	public interface nsIProgrammingLanguage
 	{
 	}
@@ -41,45 +47,19 @@ namespace Gecko
 	{
 		
 		// <summary>
-        // Identifiers for programming languages.
+        // Legacy constants for specifying programming languages.
+        //
+        // JAVASCRIPT is needed to avoid breaking addons that use it in nsIClassInfo
+        // to define fields that are no longer needed.
+        //
+        // UNKNOWN and JAVASCRIPT are also used in implementations of
+        // nsIStackFrame::language.
         // </summary>
 		public const long UNKNOWN = 0;
 		
-		// 
-		public const long CPLUSPLUS = 1;
-		
-		// 
+		// <summary>
+        // 1 is unused.
+        // </summary>
 		public const long JAVASCRIPT = 2;
-		
-		// 
-		public const long PYTHON = 3;
-		
-		// 
-		public const long PERL = 4;
-		
-		// 
-		public const long JAVA = 5;
-		
-		// 
-		public const long ZX81_BASIC = 6;
-		
-		// <summary>
-        // it could happen :)
-        // </summary>
-		public const long JAVASCRIPT2 = 7;
-		
-		// 
-		public const long RUBY = 8;
-		
-		// 
-		public const long PHP = 9;
-		
-		// 
-		public const long TCL = 10;
-		
-		// <summary>
-        // This list can grow indefinitely. Just don't ever change an existing item.
-        // </summary>
-		public const long MAX = 10;
 	}
 }

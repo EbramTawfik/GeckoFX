@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("92597c2b-109b-40bb-8f93-9b9acfa31de8")]
+	[Guid("2ac74034-700e-40fd-8059-81d33223af58")]
 	public interface nsIPrintOptions
 	{
 		
@@ -67,6 +67,38 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetNativeData(short aDataType);
+		
+		/// <summary>
+        /// Given some nsIPrintSettings and (optionally) an nsIWebBrowserPrint, populates
+        /// a PrintData representing them which can be sent over IPC. Values are only
+        /// ever read from aSettings and aWBP.
+        ///
+        /// @param aSettings
+        /// An nsIPrintSettings for a print job.
+        /// @param aWBP (optional)
+        /// The nsIWebBrowserPrint for the print job.
+        /// @param data
+        /// Pointer to a pre-existing PrintData to populate.
+        ///
+        /// @return nsresult
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SerializeToPrintData([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings, [MarshalAs(UnmanagedType.Interface)] nsIWebBrowserPrint aWebBrowserPrint, System.IntPtr data);
+		
+		/// <summary>
+        /// This function is the opposite of SerializeToPrintData, in that it takes
+        /// a PrintData, and populates a pre-existing nsIPrintSettings with the data
+        /// from PrintData.
+        ///
+        /// @param PrintData
+        /// Printing information sent through IPC.
+        /// @param settings
+        /// A pre-existing nsIPrintSettings to populate with the PrintData.
+        ///
+        /// @return nsresult
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DeserializeToPrintSettings(System.IntPtr data, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings);
 	}
 	
 	/// <summary>nsIPrintOptionsConsts </summary>

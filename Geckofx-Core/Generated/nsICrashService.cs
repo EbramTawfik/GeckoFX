@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a1845b69-28f4-43db-be6e-02eb15a45481")]
+	[Guid("f60d76e5-62c3-4f58-89f6-b726c2b7bc20")]
 	public interface nsICrashService
 	{
 		
@@ -62,6 +62,9 @@ namespace Gecko
 		
 		// 
 		public const long PROCESS_TYPE_PLUGIN = 2;
+		
+		// 
+		public const long PROCESS_TYPE_GMPLUGIN = 3;
 		
 		// 
 		public const long CRASH_TYPE_CRASH = 0;

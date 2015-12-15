@@ -113,6 +113,24 @@ namespace Gecko
 		new bool AllowContentToAccess([MarshalAs(UnmanagedType.Interface)] nsIURI url);
 		
 		/// <summary>
+        /// Returns true if the passed chrome URL is allowed to be loaded in a remote
+        /// process. This reflects the remoteenabled flag on packages.
+        /// Do not pass non-chrome URIs to this method.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool CanLoadURLRemotely([MarshalAs(UnmanagedType.Interface)] nsIURI url);
+		
+		/// <summary>
+        /// Returns true if the passed chrome URL must be loaded in a remote process.
+        /// This reflects the remoterequired flag on packages.
+        /// Do not pass non-chrome URIs to this method.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool MustLoadURLRemotely([MarshalAs(UnmanagedType.Interface)] nsIURI url);
+		
+		/// <summary>
         /// If the OS has a "high-visibility" or "disabled-friendly" theme set,
         /// we want to force mozilla into the classic theme, which (for the most part
         /// obeys the system color/font settings. We cannot do this at initialization,

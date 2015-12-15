@@ -57,7 +57,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("193fc37a-8aa4-4d29-aa57-1acd87c26b66")]
+	[Guid("3de4b105-363c-482c-a409-baac83a01bfc")]
 	public interface nsITimer
 	{
 		
@@ -112,6 +112,33 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Cancel();
+		
+		/// <summary>
+        /// Like initWithFuncCallback, but also takes a name for the timer; the name
+        /// will be used when timer profiling is enabled via the "TimerFirings" log
+        /// module.
+        ///
+        /// @param aFunc      The function to invoke
+        /// @param aClosure   An opaque pointer to pass to that function
+        /// @param aDelay     The millisecond interval
+        /// @param aType      Timer type per TYPE* consts defined above
+        /// @param aName      The timer's name
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitWithNamedFuncCallback(System.IntPtr aCallback, System.IntPtr aClosure, uint aDelay, uint aType, [MarshalAs(UnmanagedType.LPStr)] string aName);
+		
+		/// <summary>
+        /// Like initWithNamedFuncCallback, but instead of a timer name it takes a
+        /// callback that will provide a name when the timer fires.
+        ///
+        /// @param aFunc      The function to invoke
+        /// @param aClosure   An opaque pointer to pass to that function
+        /// @param aDelay     The millisecond interval
+        /// @param aType      Timer type per TYPE* consts defined above
+        /// @param aNameCallback  The callback function
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitWithNameableFuncCallback(System.IntPtr aCallback, System.IntPtr aClosure, uint aDelay, uint aType, System.IntPtr aNameCallback);
 		
 		/// <summary>
         /// The millisecond delay of the timeout.
@@ -198,23 +225,10 @@ namespace Gecko
 		public const short TYPE_REPEATING_SLACK = 1;
 		
 		// <summary>
-        // An TYPE_REPEATING_PRECISE repeating timer aims to have constant period
-        // between firings.  The processing time for each timer callback should not
-        // influence the timer period.  However, if the processing for the last
-        // timer firing could not be completed until just before the next firing
-        // occurs, then you could have two timer notification routines being
-        // executed in quick succession.  Furthermore, if your callback processing
-        // time is longer than the timer period, then the timer will post more
-        // notifications while your callback is running.  For example, if a
-        // REPEATING_PRECISE timer has a 10ms period and a callback takes 50ms,
-        // then by the time the callback is done there will be 5 events to run the
-        // timer callback in the event queue.  Furthermore, the next scheduled time
-        // will always advance by exactly the delay every time the timer fires.
-        // This means that if the clock increments without the timer thread running
-        // (e.g. the computer is asleep) when the timer thread gets to run again it
-        // will post all the events that it "missed" while it wasn't running.  Use
-        // this timer type with extreme caution.  Chances are, this is not what you
-        // want.
+        // TYPE_REPEATING_PRECISE is just a synonym for
+        // TYPE_REPEATING_PRECISE_CAN_SKIP. They used to be distinct, but the old
+        // TYPE_REPEATING_PRECISE kind was similar to TYPE_REPEATING_PRECISE_CAN_SKIP
+        // while also being less useful. So the distinction was removed.
         // </summary>
 		public const short TYPE_REPEATING_PRECISE = 2;
 		
@@ -225,8 +239,7 @@ namespace Gecko
         // guarantees that it will not queue up new events to fire the callback
         // until the previous callback event finishes firing.  If the callback
         // takes a long time, then the next callback will be scheduled immediately
-        // afterward, but only once, unlike TYPE_REPEATING_PRECISE.  If you want a
-        // non-slack timer, you probably want this one.
+        // afterward, but only once.  This is the only non-slack timer available.
         // </summary>
 		public const short TYPE_REPEATING_PRECISE_CAN_SKIP = 3;
 	}

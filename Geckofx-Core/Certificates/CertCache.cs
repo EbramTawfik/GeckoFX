@@ -2,6 +2,8 @@ using Gecko.Interop;
 
 namespace Gecko.Certificates
 {
+    // the inteface nsINSSCertCache no longer exists in gecko 45
+#if false 
 	public sealed class CertCache
 	{
 		internal ComPtr<nsINSSCertCache> _certCache;
@@ -46,4 +48,5 @@ namespace Gecko.Certificates
 		}
 
 	}
+#endif
 }

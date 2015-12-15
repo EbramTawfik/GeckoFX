@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c9bd1257-45fb-4ea6-a669-6da212479191")]
+	[Guid("a8dbee24-ff86-4755-b40e-51175caf31af")]
 	public interface imgIContainer
 	{
 		
@@ -62,23 +62,36 @@ namespace Gecko
 		uint GetIntrinsicSizeAttribute();
 		
 		/// <summary>
-        /// The (dimensionless) intrinsic ratio of this image. In the case of any error,
-        /// an exception will be thrown.
+        /// The (dimensionless) intrinsic ratio of this image. In the case of any
+        /// error, an exception will be thrown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetIntrinsicRatioAttribute();
+		
+		/// <summary>
+        /// Given a size at which this image will be displayed, and the drawing
+        /// parameters affecting how it will be drawn, returns the image size which
+        /// should be used to draw to produce the highest quality result. This is the
+        /// appropriate size, for example, to use as an input to the pixel snapping
+        /// algorithm.
+        ///
+        /// For best results the size returned by this method should not be cached. It
+        /// can change over time due to changes in the internal state of the image.
+        ///
+        /// @param aDest The size of the destination rect into which this image will be
+        /// drawn, in device pixels.
+        /// @param aWhichFrame Frame specifier of the FRAME_* variety.
+        /// @param aFilter The filter to be used if we're scaling the image.
+        /// @param aFlags Flags of the FLAG_* variety
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint OptimalImageSizeForDest(gfxSize aDest, uint aWhichFrame, System.IntPtr aFilter, uint aFlags);
 		
 		/// <summary>
         /// The type of this image (one of the TYPE_* values above).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetTypeAttribute();
-		
-		/// <summary>
-        /// Direct C++ accessor for 'type' attribute, for convenience.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetType();
 		
 		/// <summary>
         /// Whether this image is animated. You can only be guaranteed that querying
@@ -102,76 +115,185 @@ namespace Gecko
 		System.IntPtr GetFrame(uint aWhichFrame, uint aFlags);
 		
 		/// <summary>
-        /// Whether the given frame is opaque; that is, needs the background painted
-        /// behind it.
+        /// Get a surface for the given frame at the specified size. Matching the
+        /// requested size is best effort; it's not guaranteed that the surface you get
+        /// will be a perfect match. (Some reasons you may get a surface of a different
+        /// size include: if you requested upscaling, if downscale-during-decode is
+        /// disabled, or if you didn't request the first frame.)
         ///
-        /// @param aWhichFrame Frame specifier of the FRAME_* variety.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool FrameIsOpaque(uint aWhichFrame);
-		
-		/// <summary>
-        /// Attempts to create an ImageContainer (and Image) containing the current
-        /// frame. Only valid for RASTER type images.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetImageContainer(System.IntPtr aManager);
-		
-		/// <summary>
-        /// Draw a frame onto the context specified.
-        ///
-        /// @param aContext The Thebes context to draw the image to.
-        /// @param aFilter The filter to be used if we're scaling the image.
-        /// @param aUserSpaceToImageSpace The transformation from user space (e.g.,
-        /// appunits) to image space.
-        /// @param aFill The area in the context to draw pixels to. When aFlags includes
-        /// FLAG_CLAMP, the image will be extended to this area by clampling
-        /// image sample coordinates. Otherwise, the image will be
-        /// automatically tiled as necessary.
-        /// @param aSubimage The area of the image, in pixels, that we are allowed to
-        /// sample from.
-        /// @param aViewportSize
-        /// The size (in CSS pixels) of the viewport that would be available
-        /// for the full image to occupy, if we were drawing the full image.
-        /// (Note that we might not actually be drawing the full image -- we
-        /// might be restricted by aSubimage -- but we still need the full
-        /// image's viewport-size in order for SVG images with the "viewBox"
-        /// attribute to position their content correctly.)
-        /// @param aSVGContext If non-null, SVG-related rendering context such as
-        /// overridden attributes on the image document's root <svg>
-        /// node. Ignored for raster images.
+        /// @param aSize The desired size.
         /// @param aWhichFrame Frame specifier of the FRAME_* variety.
         /// @param aFlags Flags of the FLAG_* variety
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Draw(gfxContext aContext, gfxGraphicsFilter aFilter, gfxMatrix aUserSpaceToImageSpace, gfxRect aFill, [MarshalAs(UnmanagedType.Interface)] nsIntRect aSubimage, uint aViewportSize, System.IntPtr aSVGContext, uint aWhichFrame, uint aFlags);
+		System.IntPtr GetFrameAtSize(uint aSize, uint aWhichFrame, uint aFlags);
+		
+		/// <summary>
+        /// Whether this image is opaque (i.e., needs a background painted behind it).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsOpaque();
+		
+		/// <summary>
+        /// @return true if getImageContainer() is expected to return a valid
+        /// ImageContainer when passed the given @Manager and @Flags
+        /// parameters.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsImageContainerAvailable(System.IntPtr aManager, uint aFlags);
+		
+		/// <summary>
+        /// Attempts to create an ImageContainer (and Image) containing the current
+        /// frame.
+        ///
+        /// Avoid calling this unless you're actually going to layerize this image.
+        ///
+        /// @param aManager The LayerManager which will be used to create the
+        /// ImageContainer.
+        /// @param aFlags Decoding / drawing flags (in other words, FLAG_* flags).
+        /// Currently only FLAG_SYNC_DECODE and FLAG_SYNC_DECODE_IF_FAST
+        /// are supported.
+        /// @return An ImageContainer for the current frame, or nullptr if one could
+        /// not be created.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetImageContainer(System.IntPtr aManager, uint aFlags);
+		
+		/// <summary>
+        /// Draw the requested frame of this image onto the context specified.
+        ///
+        /// Drawing an image involves scaling it to a certain size (which may be
+        /// implemented as a "smart" scale by substituting an HQ-scaled frame or
+        /// rendering at a high DPI), and then selecting a region of that image to
+        /// draw. That region is drawn onto the graphics context and in the process
+        /// transformed by the context matrix, which determines the final area that is
+        /// filled. The basic process looks like this:
+        ///
+        /// +------------------+
+        /// |      Image       |
+        /// |                  |
+        /// | intrinsic width  |
+        /// |        X         |
+        /// | intrinsic height |
+        /// +------------------+
+        /// /                    \
+        /// /                      \
+        /// /    (scale to aSize)    \
+        /// /                          \
+        /// +----------------------------+
+        /// |                            |
+        /// |        Scaled Image        |
+        /// | aSize.width X aSize.height |
+        /// |                            |
+        /// |       +---------+          |
+        /// |       | aRegion |          |
+        /// |       +---------+          |
+        /// +-------(---------(----------+
+        /// |         |
+        /// /           \
+        /// |  (transform |
+        /// /  by aContext  \
+        /// |     matrix)     |
+        /// /                   \
+        /// +---------------------+
+        /// |                     |
+        /// |      Fill Rect      |
+        /// |                     |
+        /// +---------------------+
+        ///
+        /// The region may extend outside of the scaled image's boundaries. It's
+        /// actually a region in tiled image space, which is formed by tiling the
+        /// scaled image infinitely in every direction. Drawing with a region larger
+        /// than the scaled image thus causes the filled area to contain multiple tiled
+        /// copies of the image, which looks like this:
+        ///
+        /// ....................................................
+        /// :                :                :                :
+        /// :      Tile      :      Tile      :      Tile      :
+        /// :        +------------[aRegion]------------+       :
+        /// :........|.......:................:........|.......:
+        /// :        |       :                :        |       :
+        /// :      Ti|le     :  Scaled Image  :      Ti|le     :
+        /// :        |       :                :        |       :
+        /// :........|.......:................:........|.......:
+        /// :        +---------------------------------+       :
+        /// :      Ti|le     :      Tile      :      Ti|le     :
+        /// :       /        :                :         \      :
+        /// :......(.........:................:..........).....:
+        /// |                                     |
+        /// /                                       \
+        /// |      (transform by aContext matrix)     |
+        /// /                                           \
+        /// +---------------------------------------------+
+        /// |     :                                 :     |
+        /// |.....:.................................:.....|
+        /// |     :                                 :     |
+        /// |     :           Tiled Fill            :     |
+        /// |     :                                 :     |
+        /// |.....:.................................:.....|
+        /// |     :                                 :     |
+        /// +---------------------------------------------+
+        ///
+        ///
+        /// @param aContext The Thebes context to draw the image to.
+        /// @param aSize The size to which the image should be scaled before drawing.
+        /// This requirement may be satisfied using HQ scaled frames,
+        /// selecting from different resolution layers, drawing at a
+        /// higher DPI, or just performing additional scaling on the
+        /// graphics context. Callers can use optimalImageSizeForDest()
+        /// to determine the best choice for this parameter if they have
+        /// no special size requirements.
+        /// @param aRegion The region in tiled image space which will be drawn onto the
+        /// graphics context. aRegion is in the coordinate space of the
+        /// image after it has been scaled to aSize - that is, the image
+        /// is scaled first, and then aRegion is applied. When aFlags
+        /// includes FLAG_CLAMP, the image will be extended to this area
+        /// by clamping image sample coordinates. Otherwise, the image
+        /// will be automatically tiled as necessary. aRegion can also
+        /// optionally contain a second region which restricts the set
+        /// of pixels we're allowed to sample from when drawing; this
+        /// is only of use to callers which need to draw with pixel
+        /// snapping.
+        /// @param aWhichFrame Frame specifier of the FRAME_* variety.
+        /// @param aFilter The filter to be used if we're scaling the image.
+        /// @param aSVGContext If specified, SVG-related rendering context, such as
+        /// overridden attributes on the image document's root <svg>
+        /// node, and the size of the viewport that the full image
+        /// would occupy. Ignored for raster images.
+        /// @param aFlags Flags of the FLAG_* variety
+        /// @return A DrawResult value indicating whether and to what degree the
+        /// drawing operation was successful.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr Draw(gfxContext aContext, uint aSize, System.IntPtr aRegion, uint aWhichFrame, System.IntPtr aFilter, System.IntPtr aSVGContext, uint aFlags);
 		
 		/// <summary>
         /// Ensures that an image is decoding. Calling this function guarantees that
-        /// the image will at some point fire off decode notifications. Calling draw()
-        /// or getFrame() triggers the same mechanism internally. Thus, if you want to
-        /// be sure that the image will be decoded but don't want to access it until
-        /// then, you must call requestDecode().
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RequestDecode();
-		
-		/// <summary>
-        /// This is equivalent to requestDecode() but it also decodes some of the image.
+        /// the image will at some point fire off decode notifications. Images that
+        /// can be decoded "quickly" according to some heuristic will be decoded
+        /// synchronously.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StartDecoding();
 		
 		/// <summary>
-        /// Returns true if no more decoding can be performed on this image. Images
-        /// with errors return true since they cannot be decoded any further. Note that
-        /// because decoded images may be discarded, isDecoded() may return false even
-        /// if it has returned true in the past.
+        /// This method triggers decoding for an image, but unlike startDecoding() it
+        /// enables the caller to provide more detailed information about the decode
+        /// request.
+        ///
+        /// @param aSize The size to which the image should be scaled while decoding,
+        /// if possible. If the image cannot be scaled to this size while
+        /// being decoded, it will be decoded at its intrinsic size.
+        /// @param aFlags Flags of the FLAG_* variety. Only the decode flags
+        /// (FLAG_DECODE_*) and FLAG_SYNC_DECODE (which will
+        /// synchronously decode images that can be decoded "quickly",
+        /// just like startDecoding() does) are accepted; others will be
+        /// ignored.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsDecoded();
+		void RequestDecodeForSize(uint aSize, uint aFlags);
 		
 		/// <summary>
         /// Increments the lock count on the image. An image will not be discarded
@@ -284,6 +406,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr Unwrap();
+		
+		/// <summary>
+        /// Propagate the use counters (if any) from this container to the passed in
+        /// document.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void PropagateUseCounters(System.IntPtr aDocument);
 	}
 	
 	/// <summary>imgIContainerConsts </summary>
@@ -303,19 +432,23 @@ namespace Gecko
         //
         // Meanings:
         //
-        // FLAG_NONE: Lack of flags
+        // FLAG_NONE: Lack of flags.
         //
         // FLAG_SYNC_DECODE: Forces synchronous/non-progressive decode of all
-        // available data before the call returns. It is an error to pass this flag
-        // from a call stack that originates in a decoder (ie, from a decoder
-        // observer event).
+        // available data before the call returns.
+        //
+        // FLAG_SYNC_DECODE_IF_FAST: Like FLAG_SYNC_DECODE, but requests a sync decode
+        // be performed only if ImageLib estimates it can be completed very quickly.
+        //
+        // FLAG_ASYNC_NOTIFY: Send notifications asynchronously, even if we decode
+        // synchronously beause of FLAG_SYNC_DECODE or FLAG_SYNC_DECODE_IF_FAST.
         //
         // FLAG_DECODE_NO_PREMULTIPLY_ALPHA: Do not premultiply alpha if
         // it's not already premultiplied in the image data.
         //
         // FLAG_DECODE_NO_COLORSPACE_CONVERSION: Do not do any colorspace conversion;
-        // ignore any embedded profiles, and don't convert to any particular destination
-        // space.
+        // ignore any embedded profiles, and don't convert to any particular
+        // destination space.
         //
         // FLAG_CLAMP: Extend the image to the fill area by clamping image sample
         // coordinates instead of by tiling. This only affects 'draw'.
@@ -323,39 +456,51 @@ namespace Gecko
         // FLAG_HIGH_QUALITY_SCALING: A hint as to whether this image should be
         // scaled using the high quality scaler. Do not set this if not drawing to
         // a window or not listening to invalidations.
+        //
+        // FLAG_WANT_DATA_SURFACE: Can be passed to GetFrame when the caller wants a
+        // DataSourceSurface instead of a hardware accelerated surface. This can be
+        // important for performance (by avoiding an upload to/readback from the GPU)
+        // when the caller knows they want a SourceSurface of type DATA.
+        //
+        // FLAG_BYPASS_SURFACE_CACHE: Forces drawing to happen rather than taking
+        // cached rendering from the surface cache. This is used when we are printing,
+        // for example, where we want the vector commands from VectorImages to end up
+        // in the PDF output rather than a cached rendering at screen resolution.
         // </summary>
-		public const long FLAG_NONE = 0x0;
+		public const ulong FLAG_NONE = 0x0;
 		
 		// 
-		public const long FLAG_SYNC_DECODE = 0x1;
+		public const ulong FLAG_SYNC_DECODE = 0x1;
 		
 		// 
-		public const long FLAG_DECODE_NO_PREMULTIPLY_ALPHA = 0x2;
+		public const ulong FLAG_SYNC_DECODE_IF_FAST = 0x2;
 		
 		// 
-		public const long FLAG_DECODE_NO_COLORSPACE_CONVERSION = 0x4;
+		public const ulong FLAG_ASYNC_NOTIFY = 0x4;
 		
 		// 
-		public const long FLAG_CLAMP = 0x8;
+		public const ulong FLAG_DECODE_NO_PREMULTIPLY_ALPHA = 0x8;
 		
 		// 
-		public const long FLAG_HIGH_QUALITY_SCALING = 0x10;
+		public const ulong FLAG_DECODE_NO_COLORSPACE_CONVERSION = 0x10;
+		
+		// 
+		public const ulong FLAG_CLAMP = 0x20;
+		
+		// 
+		public const ulong FLAG_HIGH_QUALITY_SCALING = 0x40;
+		
+		// 
+		public const ulong FLAG_WANT_DATA_SURFACE = 0x80;
+		
+		// 
+		public const ulong FLAG_BYPASS_SURFACE_CACHE = 0x100;
 		
 		// <summary>
-        // Can be passed to GetFrame when the caller wants a DataSourceSurface
-        // instead of a hardware accelerated surface. This can be important for
-        // performance (by avoiding an upload to/readback from the GPU) when the
-        // caller knows they want a SourceSurface of type DATA.
+        // A constant specifying the default set of decode flags (i.e., the default
+        // values for FLAG_DECODE_*).
         // </summary>
-		public const long FLAG_WANT_DATA_SURFACE = 0x20;
-		
-		// <summary>
-        // Forces drawing to happen rather than taking cached rendering from the
-        // surface cache. This is used when we are printing, for example, where we
-        // want the vector commands from VectorImages to end up in the PDF output
-        // rather than a cached rendering at screen resolution.
-        // </summary>
-		public const long FLAG_BYPASS_SURFACE_CACHE = 0x40;
+		public const ulong DECODE_FLAGS_DEFAULT = 0;
 		
 		// <summary>
         // Constants for specifying various "special" frames.

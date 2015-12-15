@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using Gecko.Interop;
+using Gecko.WebIDL;
 
 namespace Gecko
 {
@@ -24,10 +25,14 @@ namespace Gecko
 			{
 				if (_runtime == IntPtr.Zero)
 				{
+#if false
 					using (var runtimeService = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1").AsComPtr())
 					{
 						_runtime = runtimeService.Instance.GetRuntimeAttribute();
 					}
+#else
+                    throw new NotImplementedException("nsIJSRuntimeService no longer exists in ");
+#endif
 				}
 				return _runtime;
 			}
@@ -130,7 +135,7 @@ namespace Gecko
 		internal static IntPtr GetJSContextForDomWindow(nsIDOMWindow window)
 		{
 			IntPtr context = IntPtr.Zero;
-			nsIDOMEventTarget eventTarget = window.GetWindowRootAttribute();
+            nsIDOMEventTarget eventTarget = new WebIDL.Window((nsISupports)window).WindowRoot;
 			try
 			{
 				context = eventTarget.GetJSContextForEventHandlers();
@@ -163,7 +168,7 @@ namespace Gecko
 											{
 												try
 												{
-													IntPtr pUnkTest = Marshal.GetIUnknownForObject(domWindow.GetWindowAttribute());
+                                                    IntPtr pUnkTest = Marshal.GetIUnknownForObject(new WebIDL.Window((nsISupports)domWindow).WindowAttribute);
 													Marshal.Release(pUnkTest);
 
 													if (pUnk == pUnkTest)

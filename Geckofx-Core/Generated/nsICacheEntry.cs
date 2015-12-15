@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("972dc51d-df01-4b1e-b7f3-76dbcc603b1e")]
+	[Guid("607c2a2c-0a48-40b9-a956-8cf2bb9857cf")]
 	public interface nsICacheEntry
 	{
 		
@@ -80,6 +80,31 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetExpirationTime(uint expirationTime);
+		
+		/// <summary>
+        /// This method is intended to override the per-spec cache validation
+        /// decisions for a duration specified in seconds. The current state can
+        /// be examined with isForcedValid (see below). This value is not persisted,
+        /// so it will not survive session restart. Cache entries that are forced valid
+        /// will not be evicted from the cache for the duration of forced validity.
+        /// This means that there is a potential problem if the number of forced valid
+        /// entries grows to take up more space than the cache size allows.
+        ///
+        /// @param aSecondsToTheFuture
+        /// the number of seconds the default cache validation behavior will be
+        /// overridden before it returns to normal
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ForceValidFor(uint aSecondsToTheFuture);
+		
+		/// <summary>
+        /// The state variable for whether this entry is currently forced valid.
+        /// Defaults to false for normal cache validation behavior, and will return
+        /// true if the number of seconds set by forceValidFor() has yet to be reached.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsForcedValidAttribute();
 		
 		/// <summary>
         /// Open blocking input stream to cache data.  Use the stream transport

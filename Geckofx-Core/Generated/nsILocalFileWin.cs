@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c7b3fd13-30f2-46e5-a0d9-7a79a9b73c5b")]
+	[Guid("e7a3a954-384b-4aeb-a5f7-55626b0de9be")]
 	public interface nsILocalFileWin : nsILocalFile
 	{
 		
@@ -202,6 +202,9 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void RenameTo([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase newName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RenameToNative([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase newName);
 		
 		/// <summary>
         /// This will try to delete this file.  The 'recursive' flag
@@ -583,7 +586,7 @@ namespace Gecko
         ///
         /// @param fromFile
         /// the file from which the descriptor is relative.
-        /// There is no defined result if this param is null.
+        /// Throws if fromFile is null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
@@ -601,6 +604,35 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase relativeDesc);
+		
+		/// <summary>
+        /// getRelativePath
+        ///
+        /// Returns a relative file from 'fromFile' to this file as a UTF-8 string.
+        /// Going up the directory tree is represented via "../".  '/' is used as
+        /// the path segment separator.  This is not a native path, since it's UTF-8
+        /// encoded.
+        ///
+        /// @param fromFile
+        /// the file from which the path is relative.
+        /// Throws if fromFile is null.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetRelativePath([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		
+		/// <summary>
+        /// setRelativePath
+        ///
+        /// Initializes the file to the location relative to fromFile using
+        /// a string returned by getRelativePath.
+        ///
+        /// @param fromFile
+        /// the file from which the path is relative
+        /// @param relative
+        /// the relative path obtained from getRelativePath
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetRelativePath([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase relativeDesc);
 		
 		/// <summary>
         /// getVersionInfoValue
@@ -678,6 +710,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetShortcut([MarshalAs(UnmanagedType.Interface)] nsIFile targetFile, [MarshalAs(UnmanagedType.Interface)] nsIFile workingDir, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string args, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string description, [MarshalAs(UnmanagedType.Interface)] nsIFile iconFile, int iconIndex);
+		
+		/// <summary>
+        /// Identical to nsIFile::openNSPRFileDesc except it also uses the
+        /// FILE_SHARE_DELETE flag.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr OpenNSPRFileDescShareDelete(int flags, int mode);
 	}
 	
 	/// <summary>nsILocalFileWinConsts </summary>

@@ -47,7 +47,7 @@ namespace Gecko
 	/// <summary>nsIDOMNavigatorSystemMessages </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("091e90dd-0e8b-463d-8cdc-9225d3a6ff90")]
+	[Guid("d04d3c11-26aa-46eb-a981-353af101f9cf")]
 	public interface nsIDOMNavigatorSystemMessages
 	{
 		
@@ -63,5 +63,17 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool MozHasPendingMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase type);
+		
+		/// <summary>
+        /// the parameter is a promise object.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void MozSetMessageHandlerPromise([MarshalAs(UnmanagedType.Interface)] nsISupports promise);
+		
+		/// <summary>Member MozIsHandlingMessage </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool MozIsHandlingMessage();
 	}
 }

@@ -21,20 +21,23 @@ namespace Gecko.Cache
 			
 		}
 
-		public static Properties FindEntryProperties(string url)
+		public static Properties FindEntryProperties(string url, GeckoDocument document)
 		{
 			var xpComUri = IOService.CreateNsIUri(url);
-			var ret= _imgCache.Instance.FindEntryProperties( xpComUri ).Wrap( ( x ) => new Properties( x ) );
+            var ret = _imgCache.Instance.FindEntryProperties(xpComUri, document._domDocument).Wrap((x) => new Properties(x));
 			Xpcom.FreeComObject( ref xpComUri );
 			return ret;
 		}
 
+// Remove entry method does not exist in gecko 45
+#if false
 		public static void RemoveEntry(string url)
 		{
 			var xpComUri = IOService.CreateNsIUri(url);
 			_imgCache.Instance.RemoveEntry(xpComUri);
 			Xpcom.FreeComObject(ref xpComUri);
 		}
+#endif
 
 
 	}

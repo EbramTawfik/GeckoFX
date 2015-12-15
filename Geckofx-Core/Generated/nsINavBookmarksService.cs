@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8ab925f8-af9b-4837-afa0-ffed507212ce")]
+	[Guid("cff3efcc-e144-490d-9f23-8b6f6dd09e7f")]
 	public interface nsINavBookmarkObserver
 	{
 		
@@ -73,13 +73,13 @@ namespace Gecko
         /// The title of the added item.
         /// @param aDateAdded
         /// The stored date added value, in microseconds from the epoch.
-        /// @param aGUID
+        /// @param aGuid
         /// The unique ID associated with the item.
-        /// @param aParentGUID
+        /// @param aParentGuid
         /// The unique ID associated with the item's parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemAdded(long aItemId, long aParentId, int aIndex, ushort aItemType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle, long aDateAdded, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGUID);
+		void OnItemAdded(long aItemId, long aParentId, int aIndex, ushort aItemType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle, long aDateAdded, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGuid, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGuid);
 		
 		/// <summary>
         /// Notifies that an item was removed.  Called after the actual remove took
@@ -98,13 +98,13 @@ namespace Gecko
         /// The type of the item to be removed (see TYPE_* constants below).
         /// @param aURI
         /// The URI of the added item if it was TYPE_BOOKMARK, null otherwise.
-        /// @param aGUID
+        /// @param aGuid
         /// The unique ID associated with the item.
-        /// @param aParentGUID
+        /// @param aParentGuid
         /// The unique ID associated with the item's parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemRemoved(long aItemId, long aParentId, int aIndex, ushort aItemType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGUID);
+		void OnItemRemoved(long aItemId, long aParentId, int aIndex, ushort aItemType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGuid, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGuid);
 		
 		/// <summary>
         /// Notifies that an item's information has changed.  This will be called
@@ -122,30 +122,42 @@ namespace Gecko
         /// For certain properties, this is set to the new value of the
         /// property (see the list below).
         /// @param aLastModified
-        /// If lastModified changed, this parameter is the new value, otherwise
-        /// it's set to 0.
+        /// The updated last-modified value.
         /// @param aItemType
         /// The type of the item to be removed (see TYPE_* constants below).
         /// @param aParentId
         /// The id of the folder containing the item.
-        /// @param aGUID
+        /// @param aGuid
         /// The unique ID associated with the item.
-        /// @param aParentGUID
+        /// @param aParentGuid
         /// The unique ID associated with the item's parent.
+        /// @param aOldValue
+        /// For certain properties, this is set to the new value of the
+        /// property (see the list below).
         ///
         /// @note List of values that may be associated with properties:
         /// aProperty     | aNewValue
         /// =====================================================================
-        /// cleartime      | Empty string (all visits to this item were removed).
+        /// cleartime     | Empty string (all visits to this item were removed).
         /// title         | The new title.
         /// favicon       | The "moz-anno" URL of the new favicon.
         /// uri           | new URL.
         /// tags          | Empty string (tags for this item changed)
         /// dateAdded     | PRTime (as string) when the item was first added.
         /// lastModified  | PRTime (as string) when the item was last modified.
+        ///
+        /// aProperty     | aOldValue
+        /// =====================================================================
+        /// cleartime     | Empty string (currently unused).
+        /// title         | Empty string (currently unused).
+        /// favicon       | Empty string (currently unused).
+        /// uri           | old URL.
+        /// tags          | Empty string (currently unused).
+        /// dateAdded     | Empty string (currently unused).
+        /// lastModified  | Empty string (currently unused).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemChanged(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProperty, [MarshalAs(UnmanagedType.U1)] bool aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNewValue, long aLastModified, ushort aItemType, long aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGUID);
+		void OnItemChanged(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProperty, [MarshalAs(UnmanagedType.U1)] bool aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNewValue, long aLastModified, ushort aItemType, long aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGuid, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGuid, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aOldValue);
 		
 		/// <summary>
         /// Notifies that the item was visited.  Can be invoked only for TYPE_BOOKMARK
@@ -164,9 +176,9 @@ namespace Gecko
         /// The nsIURI for this bookmark.
         /// @param aParentId
         /// The id of the folder containing the item.
-        /// @param aGUID
+        /// @param aGuid
         /// The unique ID associated with the item.
-        /// @param aParentGUID
+        /// @param aParentGuid
         /// The unique ID associated with the item's parent.
         ///
         /// @see onItemChanged with property = "cleartime" for when all visits to an
@@ -178,7 +190,7 @@ namespace Gecko
         /// recent visit for that page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemVisited(long aItemId, long aVisitId, long aTime, uint aTransitionType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGUID);
+		void OnItemVisited(long aItemId, long aVisitId, long aTime, uint aTransitionType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGuid, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGuid);
 		
 		/// <summary>
         /// Notifies that an item has been moved.
@@ -195,15 +207,15 @@ namespace Gecko
         /// The index inside the new parent.
         /// @param aItemType
         /// The type of the item to be removed (see TYPE_* constants below).
-        /// @param aGUID
+        /// @param aGuid
         /// The unique ID associated with the item.
-        /// @param aOldParentGUID
+        /// @param aOldParentGuid
         /// The unique ID associated with the old item's parent.
-        /// @param aNewParentGUID
+        /// @param aNewParentGuid
         /// The unique ID associated with the new item's parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemMoved(long aItemId, long aOldParentId, int aOldIndex, long aNewParentId, int aNewIndex, ushort aItemType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOldParentGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aNewParentGUID);
+		void OnItemMoved(long aItemId, long aOldParentId, int aOldIndex, long aNewParentId, int aNewIndex, ushort aItemType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGuid, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOldParentGuid, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aNewParentGuid);
 	}
 	
 	/// <summary>
@@ -213,7 +225,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("A78EA368-E28E-462E-897A-26606D4DDCE6")]
+	[Guid("24533891-afa6-4663-b72d-3143d03f1b04")]
 	public interface nsINavBookmarksService
 	{
 		
@@ -258,7 +270,7 @@ namespace Gecko
         /// The index to insert at, or DEFAULT_INDEX to append
         /// @param aTitle
         /// The title for the new bookmark
-        /// @param [optional] aGUID
+        /// @param [optional] aGuid
         /// The GUID to be set for the new item.  If not set, a new GUID is
         /// generated.  Unless you've a very sound reason, such as an undo
         /// manager implementation, do not pass this argument.
@@ -266,10 +278,10 @@ namespace Gecko
         ///
         /// @note aTitle will be truncated to TITLE_LENGTH_MAX and
         /// aURI will be truncated to URI_LENGTH_MAX.
-        /// @throws if aGUID is malformed.
+        /// @throws if aGuid is malformed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int InsertBookmark(long aParentId, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
+		int InsertBookmark(long aParentId, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGuid);
 		
 		/// <summary>
         /// Removes a child item. Used to delete a bookmark or separator.
@@ -287,15 +299,15 @@ namespace Gecko
         /// The name of the new folder
         /// @param aIndex
         /// The index to insert at, or DEFAULT_INDEX to append
-        /// @param [optional] aGUID
+        /// @param [optional] aGuid
         /// The GUID to be set for the new item.  If not set, a new GUID is
         /// generated.  Unless you've a very sound reason, such as an undo
         /// manager implementation, do not pass this argument.
         /// @return The ID of the newly-inserted folder.
-        /// @throws if aGUID is malformed.
+        /// @throws if aGuid is malformed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CreateFolder(long aParentFolder, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase name, int index, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
+		int CreateFolder(long aParentFolder, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase name, int index, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGuid);
 		
 		/// <summary>
         /// Gets an undo-able transaction for removing a folder from the bookmarks
@@ -349,15 +361,15 @@ namespace Gecko
         /// The id of the parent folder
         /// @param aIndex
         /// The separator's index under folder, or DEFAULT_INDEX to append
-        /// @param [optional] aGUID
+        /// @param [optional] aGuid
         /// The GUID to be set for the new item.  If not set, a new GUID is
         /// generated.  Unless you've a very sound reason, such as an undo
         /// manager implementation, do not pass this argument.
         /// @return The ID of the new separator.
-        /// @throws if aGUID is malformed.
+        /// @throws if aGuid is malformed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int InsertSeparator(long aParentId, int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
+		int InsertSeparator(long aParentId, int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGuid);
 		
 		/// <summary>
         /// Get the itemId given the containing folder and the index.
@@ -397,18 +409,35 @@ namespace Gecko
 		
 		/// <summary>
         /// Set the date added time for an item.
+        ///
+        /// @param aItemId
+        /// the id of the item whose date added time should be updated.
+        /// @param aDateAdded
+        /// the new date added value in microseconds.  Note that it is rounded
+        /// down to milliseconds precision.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetItemDateAdded(long aItemId, long aDateAdded);
 		
 		/// <summary>
         /// Get the date added time for an item.
+        ///
+        /// @param aItemId
+        /// the id of the item whose date added time should be retrieved.
+        ///
+        /// @return the date added value in microseconds.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetItemDateAdded(long aItemId);
 		
 		/// <summary>
         /// Set the last modified time for an item.
+        ///
+        /// @param aItemId
+        /// the id of the item whose last modified time should be updated.
+        /// @param aLastModified
+        /// the new last modified value in microseconds.  Note that it is
+        /// rounded down to milliseconds precision.
         ///
         /// @note This is the only method that will send an itemChanged notification
         /// for the property.  lastModified will still be updated in
@@ -420,6 +449,11 @@ namespace Gecko
 		
 		/// <summary>
         /// Get the last modified time for an item.
+        ///
+        /// @param aItemId
+        /// the id of the item whose last modified time should be retrieved.
+        ///
+        /// @return the date added value in microseconds.
         ///
         /// @note When an item is added lastModified is set to the same value as
         /// dateAdded.
@@ -464,33 +498,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetItemType(long aItemId);
-		
-		/// <summary>
-        /// Checks whether a folder is marked as read-only.
-        /// If this is set to true, UI will not allow the user to add, remove,
-        /// or reorder children in this folder. The default for all folders is false.
-        /// Note: This does not restrict API calls, only UI actions.
-        ///
-        /// @param aItemId
-        /// the item-id of the folder.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetFolderReadonly(long aItemId);
-		
-		/// <summary>
-        /// Sets or unsets the readonly flag from a folder.
-        /// If this is set to true, UI will not allow the user to add, remove,
-        /// or reorder children in this folder. The default for all folders is false.
-        /// Note: This does not restrict API calls, only UI actions.
-        ///
-        /// @param aFolder
-        /// the item-id of the folder.
-        /// @param aReadOnly
-        /// the read-only state (boolean).
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFolderReadonly(long aFolder, [MarshalAs(UnmanagedType.U1)] bool aReadOnly);
 		
 		/// <summary>
         /// Returns true if the given URI is in any bookmark folder. If you want the
@@ -542,20 +549,17 @@ namespace Gecko
         ///
         /// Use an empty keyword to clear the keyword associated with the URI.
         /// In both of these cases, succeeds but does nothing if the URL/keyword is not found.
+        ///
+        /// @deprecated Use PlacesUtils.keywords.insert() API instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetKeywordForBookmark(long aItemId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aKeyword);
 		
 		/// <summary>
-        /// Retrieves the keyword for the given URI. Will be void string
-        /// (null in JS) if no such keyword is found.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeywordForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
-		
-		/// <summary>
         /// Retrieves the keyword for the given bookmark. Will be void string
         /// (null in JS) if no such keyword is found.
+        ///
+        /// @deprecated Use PlacesUtils.keywords.fetch() API instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetKeywordForBookmark(long aItemId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
@@ -563,6 +567,8 @@ namespace Gecko
 		/// <summary>
         /// Returns the URI associated with the given keyword. Empty if no such
         /// keyword is found.
+        ///
+        /// @deprecated Use PlacesUtils.keywords.fetch() API instead.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -582,6 +588,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsINavBookmarkObserver observer);
+		
+		/// <summary>
+        /// Gets an array of registered nsINavBookmarkObserver objects.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetObservers(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsINavBookmarkObserver[] observers);
 		
 		/// <summary>
         /// Runs the passed callback inside of a database transaction.

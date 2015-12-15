@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8bf3aa90-ec5d-4977-bd03-197274befc78")]
+	[Guid("e0fc4801-6030-4653-a59f-1fb282bd1a04")]
 	public interface nsIParentChannel : nsIStreamListener
 	{
 		
@@ -87,6 +87,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetParentListener(System.IntPtr listener);
+		
+		/// <summary>
+        /// Called to notify the HttpChannelChild that tracking protection was
+        /// disabled for this load.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyTrackingProtectionDisabled();
 		
 		/// <summary>
         /// Called to invoke deletion of the IPC protocol.

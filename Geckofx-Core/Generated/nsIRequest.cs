@@ -166,8 +166,9 @@ namespace Gecko
 		public const ulong LOAD_NORMAL = 0;
 		
 		// <summary>
-        // Don't deliver status notifications to the nsIProgressEventSink, or keep
-        // this load from completing the nsILoadGroup it may belong to.
+        // Do not deliver status notifications to the nsIProgressEventSink and
+        // do not block the loadgroup from completing (should this load belong to one).
+        // Note: Progress notifications will still be delivered.
         // </summary>
 		public const ulong LOAD_BACKGROUND = 1<<0;
 		

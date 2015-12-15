@@ -27,31 +27,25 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///This Source Code Form is subject to the terms of the Mozilla Public
-    /// License, v. 2.0. If a copy of the MPL was not distributed with this
-    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+    /// DO NOT USE! For compat with legacy extension code only.
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("33B87F70-7A9C-11d3-915C-006008A6EDF6")]
+	[Guid("b3b8124f-0abb-460e-88ac-3cf1a0134b2d")]
 	public interface nsISaveAsCharset
 	{
 		
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetCharsetAttribute();
+		void GetCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aCharset);
 		
 		/// <summary>
-        /// see nsIEntityConverter.idl for possible value of entityVersion (entityNone for plain text).
+        /// charset used for the conversion
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.LPStr)] string charset, uint attr, uint entityVersion);
+		void Init([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase charset, uint ignored, uint alsoIgnored);
 		
-		/// <summary>
-        /// if the attribute does not specify any fall back (e.g. attrPlainTextDefault)
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string Convert([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string inString);
+		void Convert([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase inString, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 	}
 	
 	/// <summary>nsISaveAsCharsetConsts </summary>
@@ -79,42 +73,42 @@ namespace Gecko
 		public const ulong attr_FallbackNone = 0;
 		
 		// <summary>
-        // no fall back for unconverted chars (skipped)
+        // IGNORED
         // </summary>
 		public const ulong attr_FallbackQuestionMark = 1;
 		
 		// <summary>
-        // unconverted chars are replaced by '?'
+        // IGNORED
         // </summary>
 		public const ulong attr_FallbackEscapeU = 2;
 		
 		// <summary>
-        // unconverted chars are escaped as \uxxxx
+        // IGNORED
         // </summary>
 		public const ulong attr_FallbackDecimalNCR = 3;
 		
 		// <summary>
-        // unconverted chars are replaced by decimal NCR
+        // IGNORED
         // </summary>
 		public const ulong attr_FallbackHexNCR = 4;
 		
 		// <summary>
-        // unconverted chars are replaced by hex NCR
+        // IGNORED
         // </summary>
 		public const ulong attr_EntityNone = 0;
 		
 		// <summary>
-        // generate no Named Entity
+        // IGNORED
         // </summary>
 		public const ulong attr_EntityBeforeCharsetConv = 0x00000100;
 		
 		// <summary>
-        // generate Named Entity before charset conversion
+        // IGNORED
         // </summary>
 		public const ulong attr_EntityAfterCharsetConv = 0x00000200;
 		
 		// <summary>
-        // generate Named Entity after charset conversion
+        // IGNORED
         // </summary>
 		public const ulong attr_CharsetFallback = 0x00000400;
 		

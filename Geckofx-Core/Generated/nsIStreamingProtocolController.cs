@@ -96,13 +96,13 @@ namespace Gecko
 		void SetHeightAttribute(uint aHeight);
 		
 		/// <summary>
-        /// The duration of the media stream.
+        /// The duration of the media stream in units of microseconds.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ulong GetDurationAttribute();
 		
 		/// <summary>
-        /// The duration of the media stream.
+        /// The duration of the media stream in units of microseconds.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDurationAttribute(ulong aDuration);

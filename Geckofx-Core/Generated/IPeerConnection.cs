@@ -66,7 +66,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c9c31639-1a49-4533-8429-f6a348c4d8c3")]
+	[Guid("14afc8e7-e421-4d0c-99a5-69308d871481")]
 	public interface IPeerConnection
 	{
 	}
@@ -98,6 +98,9 @@ namespace Gecko
 		
 		// 
 		public const long kActionPRAnswer = 2;
+		
+		// 
+		public const long kActionRollback = 3;
 		
 		// 
 		public const long kIceGathering = 0;
@@ -147,10 +150,7 @@ namespace Gecko
 		// <summary>
         // Test driver only
         // </summary>
-		public const ulong kInvalidConstraintsType = 1;
-		
-		// 
-		public const ulong kInvalidCandidateType = 2;
+		public const ulong kInvalidCandidate = 2;
 		
 		// 
 		public const ulong kInvalidMediastreamTrack = 3;
@@ -163,9 +163,6 @@ namespace Gecko
 		
 		// 
 		public const ulong kIncompatibleSessionDescription = 6;
-		
-		// 
-		public const ulong kIncompatibleConstraints = 7;
 		
 		// 
 		public const ulong kIncompatibleMediaStreamTrack = 8;

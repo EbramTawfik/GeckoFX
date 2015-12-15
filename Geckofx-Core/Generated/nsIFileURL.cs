@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7750029c-1b0a-414e-8359-a77f24a2a0a6")]
+	[Guid("e91ac988-27c2-448b-b1a1-3822e1ef1987")]
 	public interface nsIFileURL : nsIURL
 	{
 		
@@ -243,6 +243,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetAsciiSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAsciiSpec);
+		
+		/// <summary>
+        /// The host:port (or simply the host, if port == -1), with an ASCII compatible
+        /// encoding.  Host portion follows the IDNA draft spec.  The result is strictly
+        /// ASCII.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetAsciiHostPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAsciiHostPort);
 		
 		/// <summary>
         /// The URI host with an ASCII compatible encoding.  Follows the IDNA

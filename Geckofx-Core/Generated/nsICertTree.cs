@@ -55,7 +55,7 @@ namespace Gecko
 	/// <summary>nsICertTree </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a8cd1c89-a901-4735-831b-7198b7b8b6b1")]
+	[Guid("55d5ad6b-5572-47fe-941c-f01fe723659e")]
 	public interface nsICertTree : nsITreeView
 	{
 		
@@ -306,7 +306,7 @@ namespace Gecko
 		/// <param name='cache'> </param>
 		/// <param name='type'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadCertsFromCache([MarshalAs(UnmanagedType.Interface)] nsINSSCertCache cache, uint type);
+		void LoadCertsFromCache([MarshalAs(UnmanagedType.Interface)] nsIX509CertList cache, uint type);
 		
 		/// <summary>Member GetCert </summary>
 		/// <param name='index'> </param>

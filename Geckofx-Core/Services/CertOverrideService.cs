@@ -209,12 +209,7 @@ namespace Gecko
 		void nsICertOverrideService.ClearValidityOverride(nsACStringBase aHostName, int aPort)
 		{
 			Instance.ClearValidityOverride(aHostName, aPort);
-		}
-
-		void nsICertOverrideService.GetAllOverrideHostsWithPorts(ref uint aCount, ref IntPtr aHostsWithPortsArray)
-		{
-			Instance.GetAllOverrideHostsWithPorts(ref aCount, ref aHostsWithPortsArray);
-		}
+		}		
 
 		uint nsICertOverrideService.IsCertUsedForOverrides(nsIX509Cert aCert, bool aCheckTemporaries, bool aCheckPermanents)
 		{

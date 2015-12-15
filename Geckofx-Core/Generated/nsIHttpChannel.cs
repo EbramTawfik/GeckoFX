@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("22816a32-2179-4b81-9b29-e31d6f9a36c2")]
+	[Guid("b2596105-3d0d-4e6a-824f-0539713bb879")]
 	public interface nsIHttpChannel : nsIChannel
 	{
 		
@@ -261,7 +261,16 @@ namespace Gecko
 		new void SetNotificationCallbacksAttribute([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aNotificationCallbacks);
 		
 		/// <summary>
-        /// Transport-level security information (if any) corresponding to the channel.
+        /// Transport-level security information (if any) corresponding to the
+        /// channel.
+        ///
+        /// NOTE: In some circumstances TLS information is propagated onto
+        /// non-nsIHttpChannel objects to indicate that their contents were likely
+        /// delivered over TLS all the same.  For example, document.open() may
+        /// create an nsWyciwygChannel to store the data that will be written to the
+        /// document.  In that case, if the caller has TLS information, we propagate
+        /// that info onto the nsWyciwygChannel given that it is likely that the
+        /// caller will be writing data that was delivered over TLS to the document.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -378,6 +387,13 @@ namespace Gecko
 		new nsIInputStream Open();
 		
 		/// <summary>
+        /// Performs content security check and calls open()
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIInputStream Open2();
+		
+		/// <summary>
         /// Asynchronously open this channel.  Data is fed to the specified stream
         /// listener as it becomes available.  The stream listener's methods are
         /// called on the thread that calls asyncOpen and are not called until
@@ -410,6 +426,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void AsyncOpen([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
+		
+		/// <summary>
+        /// Performs content security check and calls asyncOpen().
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AsyncOpen2([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aListener);
 		
 		/// <summary>
         /// Access to the type implied or stated by the Content-Disposition header
@@ -579,6 +601,49 @@ namespace Gecko
 		void SetReferrerAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
 		
 		/// <summary>
+        /// Get the HTTP referrer policy.  The policy is retrieved from the meta
+        /// referrer tag, which can be one of many values (see ReferrerPolicy.h for
+        /// more details).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetReferrerPolicyAttribute();
+		
+		/// <summary>
+        /// Set the HTTP referrer URI with a referrer policy.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetReferrerWithPolicy([MarshalAs(UnmanagedType.Interface)] nsIURI referrer, uint referrerPolicy);
+		
+		/// <summary>
+        /// Returns the network protocol used to fetch the resource as identified
+        /// by the ALPN Protocol ID.
+        ///
+        /// @throws NS_ERROR_NOT_AVAILABLE if called before the response
+        /// has been received (before onStartRequest).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetProtocolVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProtocolVersion);
+		
+		/// <summary>
+        /// size consumed by the response header fields and the response payload body
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetTransferSizeAttribute();
+		
+		/// <summary>
+        /// The size of the message body received by the client,
+        /// after removing any applied content-codings
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetDecodedBodySizeAttribute();
+		
+		/// <summary>
+        /// The size in octets of the payload body, prior to removing content-codings
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetEncodedBodySizeAttribute();
+		
+		/// <summary>
         /// Get the value of a particular request header.
         ///
         /// @param aHeader
@@ -622,6 +687,24 @@ namespace Gecko
 		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aValue, [MarshalAs(UnmanagedType.U1)] bool aMerge);
 		
 		/// <summary>
+        /// Set a request header with empty value.
+        ///
+        /// This should be used with caution in the cases where the behavior of
+        /// setRequestHeader ignoring empty header values is undesirable.
+        ///
+        /// This method may only be called before the channel is opened.
+        ///
+        /// @param aHeader
+        /// The case-insensitive name of the request header to set (e.g.,
+        /// "Cookie").
+        ///
+        /// @throws NS_ERROR_IN_PROGRESS if called after the channel has been
+        /// opened.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetEmptyRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeader);
+		
+		/// <summary>
         /// Call this method to visit all request headers.  Calling setRequestHeader
         /// while visiting request headers has undefined behavior.  Don't do it!
         ///
@@ -630,6 +713,17 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VisitRequestHeaders([MarshalAs(UnmanagedType.Interface)] nsIHttpHeaderVisitor aVisitor);
+		
+		/// <summary>
+        /// Call this method to visit all non-default (UA-provided) request headers.
+        /// Calling setRequestHeader while visiting request headers has undefined
+        /// behavior. Don't do it!
+        ///
+        /// @param aVisitor
+        /// the header visitor instance.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void VisitNonDefaultRequestHeaders([MarshalAs(UnmanagedType.Interface)] nsIHttpHeaderVisitor aVisitor);
 		
 		/// <summary>
         /// This attribute is a hint to the channel to indicate whether or not
@@ -767,6 +861,23 @@ namespace Gecko
 		bool GetRequestSucceededAttribute();
 		
 		/// <summary>
+        ///Indicates whether channel should be treated as the main one for the
+        /// current document.  If manually set to true, will always remain true.  Otherwise,
+        /// will be true iff LOAD_DOCUMENT_URI is set in the channel's loadflags.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsMainDocumentChannelAttribute();
+		
+		/// <summary>
+        ///Indicates whether channel should be treated as the main one for the
+        /// current document.  If manually set to true, will always remain true.  Otherwise,
+        /// will be true iff LOAD_DOCUMENT_URI is set in the channel's loadflags.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsMainDocumentChannelAttribute([MarshalAs(UnmanagedType.U1)] bool aIsMainDocumentChannel);
+		
+		/// <summary>
         /// Get the value of a particular response header.
         ///
         /// @param aHeader
@@ -851,6 +962,17 @@ namespace Gecko
 		bool IsNoCacheResponse();
 		
 		/// <summary>
+        /// Returns true if the server sent a "Cache-Control: private" response
+        /// header.
+        ///
+        /// @throws NS_ERROR_NOT_AVAILABLE if called before the response
+        /// has been received (before onStartRequest).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsPrivateResponse();
+		
+		/// <summary>
         /// Instructs the channel to immediately redirect to a new destination.
         /// Can only be called on channels not yet opened.
         ///
@@ -862,5 +984,46 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RedirectTo([MarshalAs(UnmanagedType.Interface)] nsIURI aNewURI);
+		
+		/// <summary>
+        /// Identifies the scheduling context for this load.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetSchedulingContextIDAttribute();
+		
+		/// <summary>
+        /// Identifies the scheduling context for this load.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSchedulingContextIDAttribute(System.IntPtr aSchedulingContextID);
+	}
+	
+	/// <summary>nsIHttpChannelConsts </summary>
+	public class nsIHttpChannelConsts
+	{
+		
+		// <summary>
+        //default state, a shorter name for no-referrer-when-downgrade </summary>
+		public const ulong REFERRER_POLICY_DEFAULT = 0;
+		
+		// <summary>
+        //default state, doesn't send referrer from https->http </summary>
+		public const ulong REFERRER_POLICY_NO_REFERRER_WHEN_DOWNGRADE = 0;
+		
+		// <summary>
+        //sends no referrer </summary>
+		public const ulong REFERRER_POLICY_NO_REFERRER = 1;
+		
+		// <summary>
+        //only sends the origin of the referring URL </summary>
+		public const ulong REFERRER_POLICY_ORIGIN = 2;
+		
+		// <summary>
+        //same as default, but reduced to ORIGIN when cross-origin. </summary>
+		public const ulong REFERRER_POLICY_ORIGIN_WHEN_XORIGIN = 3;
+		
+		// <summary>
+        //always sends the referrer, even on downgrade. </summary>
+		public const ulong REFERRER_POLICY_UNSAFE_URL = 4;
 	}
 }

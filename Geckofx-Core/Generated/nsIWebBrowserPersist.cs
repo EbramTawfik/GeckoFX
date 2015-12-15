@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("35c1f231-582b-4315-a26c-a1227e3539b4")]
+	[Guid("8cd752a4-60b1-42c3-a819-65c7a1138a28")]
 	public interface nsIWebBrowserPersist : nsICancelable
 	{
 		
@@ -115,6 +115,10 @@ namespace Gecko
         /// nsIWebPageDescriptor.
         /// @param aReferrer  The referrer URI to pass with an HTTP request or
         /// <CODE>nullptr</CODE>.
+        /// @param aReferrerPolicy  The referrer policy for when and what to send via
+        /// HTTP Referer header.  Ignored if aReferrer is
+        /// <CODE>nullptr</CODE>.  Taken from REFERRER_POLICY
+        /// constants in nsIHttpChannel.
         /// @param aPostData  Post data to pass with an HTTP request or
         /// <CODE>nullptr</CODE>.
         /// @param aExtraHeaders Additional headers to supply with an HTTP request
@@ -135,7 +139,7 @@ namespace Gecko
         /// @throws NS_ERROR_INVALID_ARG One or more arguments was invalid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsISupports aCacheKey, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostData, [MarshalAs(UnmanagedType.LPStr)] string aExtraHeaders, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aPrivacyContext);
+		void SaveURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsISupports aCacheKey, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, uint aReferrerPolicy, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostData, [MarshalAs(UnmanagedType.LPStr)] string aExtraHeaders, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aPrivacyContext);
 		
 		/// <summary>
         /// @param aIsPrivate Treat the save operation as private (ie. with
@@ -144,7 +148,7 @@ namespace Gecko
         /// @see saveURI for all other parameter descriptions
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SavePrivacyAwareURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsISupports aCacheKey, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostData, [MarshalAs(UnmanagedType.LPStr)] string aExtraHeaders, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile, [MarshalAs(UnmanagedType.U1)] bool aIsPrivate);
+		void SavePrivacyAwareURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsISupports aCacheKey, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, uint aReferrerPolicy, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostData, [MarshalAs(UnmanagedType.LPStr)] string aExtraHeaders, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile, [MarshalAs(UnmanagedType.U1)] bool aIsPrivate);
 		
 		/// <summary>
         /// Save a channel to a file. It must not be opened yet.
@@ -160,7 +164,8 @@ namespace Gecko
         ///
         /// @param aDocument          Document to save to file. Some implementations of
         /// this interface may also support <CODE>nullptr</CODE>
-        /// to imply the currently loaded document.
+        /// to imply the currently loaded document.  Can be an
+        /// nsIWebBrowserPersistDocument or nsIDOMDocument.
         /// @param aFile              Target local file. This may be a nsIFile object or an
         /// nsIURI object with a file scheme or a scheme that
         /// supports uploading (e.g. ftp).
@@ -176,13 +181,15 @@ namespace Gecko
         /// wrap text at. Parameter is ignored if wrapping is not
         /// specified by the encoding flags.
         ///
+        /// @see nsIWebBrowserPersistDocument
+        /// @see nsIWebBrowserPersistable
         /// @see nsIFile
         /// @see nsIURI
         ///
         /// @throws NS_ERROR_INVALID_ARG One or more arguments was invalid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDocument, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile, [MarshalAs(UnmanagedType.Interface)] nsISupports aDataPath, [MarshalAs(UnmanagedType.LPStr)] string aOutputContentType, uint aEncodingFlags, uint aWrapColumn);
+		void SaveDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aDocument, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile, [MarshalAs(UnmanagedType.Interface)] nsISupports aDataPath, [MarshalAs(UnmanagedType.LPStr)] string aOutputContentType, uint aEncodingFlags, uint aWrapColumn);
 		
 		/// <summary>
         /// Cancels the current operation. The caller is responsible for cleaning up

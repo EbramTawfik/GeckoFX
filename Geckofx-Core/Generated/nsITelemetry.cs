@@ -47,7 +47,7 @@ namespace Gecko
 	/// <summary>nsITelemetry </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4e4bfc35-dac6-4b28-ade4-7e45760051d5")]
+	[Guid("fabde631-c128-41c3-b7cb-9eb96f1276ff")]
 	public interface nsITelemetry
 	{
 		
@@ -57,7 +57,8 @@ namespace Gecko
         /// where data is consists of the following properties:
         /// min - Minimal bucket size
         /// max - Maximum bucket size
-        /// histogram_type - HISTOGRAM_EXPONENTIAL, HISTOGRAM_LINEAR, or HISTOGRAM_BOOLEAN
+        /// histogram_type - HISTOGRAM_EXPONENTIAL, HISTOGRAM_LINEAR, HISTOGRAM_BOOLEAN
+        /// or HISTOGRAM_COUNT
         /// counts - array representing contents of the buckets in the histogram
         /// ranges -  an array with calculated bucket sizes
         /// sum - sum of the bucket contents
@@ -65,6 +66,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetHistogramSnapshotsAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Get a snapshot of the internally duplicated subsession histograms.
+        /// @param clear Whether to clear out the subsession histograms after snapshotting.
+        /// @return An object as histogramSnapshots, except this contains the internally duplicated histograms for subsession telemetry.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal SnapshotSubsessionHistograms([MarshalAs(UnmanagedType.U1)] bool clear, System.IntPtr jsContext);
 		
 		/// <summary>
         /// The amount of time, in milliseconds, that the last session took
@@ -112,6 +121,14 @@ namespace Gecko
 		Gecko.JsVal GetDebugSlowSQLAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
+        /// An object containing information about Webrtc related stats. For now it
+        /// only contains local and remote ICE candidates avaiable when a Webrtc
+        /// PeerConnection gets terminated.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetWebrtcStatsAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
         /// A number representing the highest number of concurrent threads
         /// reached during this session.
         /// </summary>
@@ -136,7 +153,7 @@ namespace Gecko
         /// <time> represents a histogram of time intervals in milliseconds,
         /// with the same format as histogramSnapshots
         /// <hang> represents a particular hang,
-        /// {"stack": <stack>, "histogram": <time>}
+        /// {"stack": <stack>, "nativeStack": <stack>, "histogram": <time>}
         /// <stack> represents the hang's stack,
         /// ["<frame_0>", "<frame_1>", ...]
         /// </summary>
@@ -158,26 +175,29 @@ namespace Gecko
 		/// <summary>
         /// Returns an array whose values are the names of histograms defined
         /// in Histograms.json.
+        ///
+        /// @param dataset - DATASET_RELEASE_CHANNEL_OPTOUT or DATASET_RELEASE_CHANNEL_OPTIN
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisteredHistograms(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] histograms);
+		void RegisteredHistograms(uint dataset, ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref string[] histograms);
 		
 		/// <summary>
         /// Create and return a histogram.  Parameters:
         ///
         /// @param name Unique histogram name
         /// @param expiration Expiration version
+        /// @param type - HISTOGRAM_EXPONENTIAL, HISTOGRAM_LINEAR or HISTOGRAM_BOOLEAN
         /// @param min - Minimal bucket size
         /// @param max - Maximum bucket size
         /// @param bucket_count - number of buckets in the histogram.
-        /// @param type - HISTOGRAM_EXPONENTIAL, HISTOGRAM_LINEAR or HISTOGRAM_BOOLEAN
         /// The returned object has the following functions:
         /// add(int) - Adds an int value to the appropriate bucket
         /// snapshot() - Returns a snapshot of the histogram with the same data fields as in histogramSnapshots()
         /// clear() - Zeros out the histogram's buckets and sum
+        /// dataset() - identifies what dataset this is in: DATASET_RELEASE_CHANNEL_OPTOUT or ...OPTIN
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal NewHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase expiration, uint min, uint max, uint bucket_count, uint histogram_type, System.IntPtr jsContext);
+		Gecko.JsVal NewHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase expiration, uint histogram_type, uint min, uint max, uint bucket_count, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Create a histogram using the current state of an existing histogram.  The
@@ -199,24 +219,104 @@ namespace Gecko
 		Gecko.JsVal GetHistogramById([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase id, System.IntPtr jsContext);
 		
 		/// <summary>
-        /// Set this to false to disable gathering of telemetry statistics.
+        /// An object containing a snapshot from all of the currently registered keyed histograms.
+        /// { name1: {histogramData1}, name2:{histogramData2}...}
+        /// where the histogramData is as described in histogramSnapshots.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetKeyedHistogramSnapshotsAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Create and return a keyed histogram.  Parameters:
+        ///
+        /// @param name Unique histogram name
+        /// @param expiration Expiration version
+        /// @param type - HISTOGRAM_EXPONENTIAL, HISTOGRAM_LINEAR, HISTOGRAM_BOOLEAN, HISTOGRAM_FLAG or HISTOGRAM_COUNT
+        /// @param min - Minimal bucket size
+        /// @param max - Maximum bucket size
+        /// @param bucket_count - number of buckets in the histogram.
+        /// The returned object has the following functions:
+        /// add(string key, [optional] int) - Add an int value to the histogram for that key. If no histogram for that key exists yet, it is created.
+        /// snapshot([optional] string key) - If key is provided, returns a snapshot for the histogram with that key or null. If key is not provided, returns the snapshots of all the registered keys in the form {key1: snapshot1, key2: snapshot2, ...}.
+        /// keys() - Returns an array with the string keys of the currently registered histograms
+        /// clear() - Clears the registered histograms from this.
+        /// dataset() - identifies what dataset this is in: DATASET_RELEASE_CHANNEL_OPTOUT or ...OPTIN
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal NewKeyedHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase expiration, uint histogram_type, uint min, uint max, uint bucket_count, System.IntPtr jsContext, int argc);
+		
+		/// <summary>
+        /// Returns an array whose values are the names of histograms defined
+        /// in Histograms.json.
+        ///
+        /// @param dataset - DATASET_RELEASE_CHANNEL_OPTOUT or ...OPTIN
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisteredKeyedHistograms(uint dataset, ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref string[] histograms);
+		
+		/// <summary>
+        /// Same as newKeyedHistogram above, but for histograms registered in TelemetryHistograms.h.
+        ///
+        /// @param id - unique identifier from TelemetryHistograms.h
+        /// The returned object has the same functions as a histogram returned from newKeyedHistogram.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetKeyedHistogramById([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase id, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// A flag indicating if Telemetry can record base data (FHR data). This is true if the
+        /// FHR data reporting service or self-support are enabled.
+        ///
+        /// In the unlikely event that adding a new base probe is needed, please check the data
+        /// collection wiki at https://wiki.mozilla.org/Firefox/Data_Collection and talk to the
+        /// Telemetry team.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetCanRecordAttribute();
+		bool GetCanRecordBaseAttribute();
 		
 		/// <summary>
-        /// Set this to false to disable gathering of telemetry statistics.
+        /// A flag indicating if Telemetry can record base data (FHR data). This is true if the
+        /// FHR data reporting service or self-support are enabled.
+        ///
+        /// In the unlikely event that adding a new base probe is needed, please check the data
+        /// collection wiki at https://wiki.mozilla.org/Firefox/Data_Collection and talk to the
+        /// Telemetry team.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanRecordAttribute([MarshalAs(UnmanagedType.U1)] bool aCanRecord);
+		void SetCanRecordBaseAttribute([MarshalAs(UnmanagedType.U1)] bool aCanRecordBase);
 		
 		/// <summary>
-        /// A flag indicating whether Telemetry can submit official results.
+        /// A flag indicating if Telemetry is allowed to record extended data. Returns false if
+        /// the user hasn't opted into "extended Telemetry" on the Release channel, when the
+        /// user has explicitly opted out of Telemetry on Nightly/Aurora/Beta or if manually
+        /// set to false during tests.
+        ///
+        /// Set this to false in tests to disable gathering of extended telemetry statistics.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetCanSendAttribute();
+		bool GetCanRecordExtendedAttribute();
+		
+		/// <summary>
+        /// A flag indicating if Telemetry is allowed to record extended data. Returns false if
+        /// the user hasn't opted into "extended Telemetry" on the Release channel, when the
+        /// user has explicitly opted out of Telemetry on Nightly/Aurora/Beta or if manually
+        /// set to false during tests.
+        ///
+        /// Set this to false in tests to disable gathering of extended telemetry statistics.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCanRecordExtendedAttribute([MarshalAs(UnmanagedType.U1)] bool aCanRecordExtended);
+		
+		/// <summary>
+        /// A flag indicating whether Telemetry can submit official results (for base or extended
+        /// data). This is true on official builds with built in support for Mozilla Telemetry
+        /// reporting.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsOfficialTelemetryAttribute();
 		
 		/// <summary>
         /// Register a histogram for an addon.  Throws an error if the
@@ -224,14 +324,14 @@ namespace Gecko
         ///
         /// @param addon_id - Unique ID of the addon
         /// @param name - Unique histogram name
+        /// @param histogram_type - HISTOGRAM_EXPONENTIAL, HISTOGRAM_LINEAR,
+        /// HISTOGRAM_BOOLEAN or HISTOGRAM_COUNT
         /// @param min - Minimal bucket size
         /// @param max - Maximum bucket size
         /// @param bucket_count - number of buckets in the histogram
-        /// @param histogram_type - HISTOGRAM_EXPONENTIAL, HISTOGRAM_LINEAR, or
-        /// HISTOGRAM_BOOLEAN
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterAddonHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase addon_id, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, uint min, uint max, uint bucket_count, uint histogram_type);
+		void RegisterAddonHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase addon_id, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, uint histogram_type, uint min, uint max, uint bucket_count, int argc);
 		
 		/// <summary>
         /// Return a histogram previously registered via
@@ -306,6 +406,7 @@ namespace Gecko
         // HISTOGRAM_LINEAR - buckets increase linearly
         // HISTOGRAM_BOOLEAN - For storing 0/1 values
         // HISTOGRAM_FLAG - For storing a single value; its count is always == 1.
+        // HISTOGRAM_COUNT - For storing counter values without bucketing.
         // </summary>
 		public const ulong HISTOGRAM_EXPONENTIAL = 0;
 		
@@ -317,5 +418,19 @@ namespace Gecko
 		
 		// 
 		public const ulong HISTOGRAM_FLAG = 3;
+		
+		// 
+		public const ulong HISTOGRAM_COUNT = 4;
+		
+		// <summary>
+        // Dataset types:
+        // DATASET_RELEASE_CHANNEL_OPTOUT - the basic dataset that is on-by-default on all channels
+        // DATASET_RELEASE_CHANNEL_OPTIN - the extended dataset that is opt-in on release,
+        // opt-out on pre-release channels.
+        // </summary>
+		public const ulong DATASET_RELEASE_CHANNEL_OPTOUT = 0;
+		
+		// 
+		public const ulong DATASET_RELEASE_CHANNEL_OPTIN = 1;
 	}
 }

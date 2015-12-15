@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bc4dbb34-b148-11e2-b82c-08002734a811")]
+	[Guid("2df8b475-f536-4a1a-afea-b39843df8005")]
 	public interface nsIPrefetchService
 	{
 		
@@ -49,10 +49,10 @@ namespace Gecko
 		void PrefetchURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSource, [MarshalAs(UnmanagedType.U1)] bool aExplicit);
 		
 		/// <summary>
-        /// Enumerate the items in the prefetch queue.
+        /// Find out if there are any prefetches running or queued
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator EnumerateQueue();
+		bool HasMoreElements();
 	}
 }

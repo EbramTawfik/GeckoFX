@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a430d870-df77-4502-9570-d46a8de33154")]
+	[Guid("0197720d-37ed-4e75-8956-d0d296e4d8a6")]
 	public interface nsIChannelEventSink
 	{
 		
@@ -114,5 +114,12 @@ namespace Gecko
         // The new URI may be identical to the old one.
         // </summary>
 		public const ulong REDIRECT_INTERNAL = 1<<2;
+		
+		// <summary>
+        // This is a special-cased redirect coming from hitting HSTS upgrade
+        // redirect from http to https only.  In some cases this type of redirect
+        // may be considered as safe despite not being the-same-origin redirect.
+        // </summary>
+		public const ulong REDIRECT_STS_UPGRADE = 1<<3;
 	}
 }

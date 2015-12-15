@@ -29,7 +29,7 @@ namespace Gecko
 	/// <summary> </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("909e8641-7c54-4dff-9b94-ba631f057b33")]
+	[Guid("73e6ff4a-ab99-4d99-ac00-ba39ccb8e4d7")]
 	public interface nsIXPConnectJSObjectHolder
 	{
 		
@@ -41,7 +41,7 @@ namespace Gecko
 	/// <summary>nsIXPConnectWrappedNative </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("675b01ba-397b-472a-9b80-5716376a2ec6")]
+	[Guid("e787be29-db5d-4a45-a3d6-1de1d6b85c30")]
 	public interface nsIXPConnectWrappedNative : nsIXPConnectJSObjectHolder
 	{
 		
@@ -85,15 +85,6 @@ namespace Gecko
 		/// <param name='depth'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DebugDump(short depth);
-		
-		/// <summary>
-        /// This finishes initializing a wrapped global, doing the parts that we
-        /// couldn't do while the global and window were being simultaneously
-        /// bootstrapped. This should be called exactly once, and only for wrapped
-        /// globals.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FinishInitForWrappedGlobal();
 	}
 	
 	/// <summary>
@@ -103,7 +94,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("BED52030-BCA6-11d2-BA79-00805F8A5DD7")]
+	[Guid("3a01b0d6-074b-49ed-bac3-08c76366cae4")]
 	public interface nsIXPConnectWrappedJS : nsIXPConnectJSObjectHolder
 	{
 		
@@ -367,7 +358,7 @@ namespace Gecko
 	/// <summary> </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9ec7367c-0dde-4b7a-963c-5a590ee3ee42")]
+	[Guid("f339ea52-10ce-4103-b1f2-fd9659040e3c")]
 	public interface nsIXPConnect
 	{
 		
@@ -393,13 +384,6 @@ namespace Gecko
 		/// <summary>
         /// wrapNative will create a new JSObject or return an existing one.
         ///
-        /// The JSObject is returned inside a refcounted nsIXPConnectJSObjectHolder.
-        /// As long as this holder is held the JSObject will be protected from
-        /// collection by JavaScript's garbage collector. It is a good idea to
-        /// transfer the JSObject to some equally protected place before releasing
-        /// the holder (i.e. use JS_SetProperty to make this object a property of
-        /// some other JSObject).
-        ///
         /// This method now correctly deals with cases where the passed in xpcom
         /// object already has an associated JSObject for the cases:
         /// 1) The xpcom object has already been wrapped for use in the same scope
@@ -422,9 +406,15 @@ namespace Gecko
         /// NS_ERROR_XPC_CANT_GET_JSOBJECT_OF_DOM_OBJECT
         /// NS_ERROR_FAILURE
         /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr WrapNative(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, ref System.Guid aIID);
+		
+		/// <summary>
+        /// Same as wrapNative, but it returns the JSObject in an nsIXPConnectJSObjectHolder.
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPConnectJSObjectHolder WrapNative(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, ref System.Guid aIID);
+		nsIXPConnectJSObjectHolder WrapNativeHolder(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, ref System.Guid aIID);
 		
 		/// <summary>
         /// Same as wrapNative, but it returns the JSObject in aVal. C++ callers
@@ -487,10 +477,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetNativeOfWrapper(System.IntPtr aJSContext, System.IntPtr aJSObj);
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStackFrame CreateStackFrameLocation(uint aLanguage, [MarshalAs(UnmanagedType.LPStr)] string aFilename, [MarshalAs(UnmanagedType.LPStr)] string aFunctionName, int aLineNumber, [MarshalAs(UnmanagedType.Interface)] nsIStackFrame aCaller);
-		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetCurrentJSContext();
 		
@@ -512,9 +498,6 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DebugDumpJSStack([MarshalAs(UnmanagedType.U1)] bool showArgs, [MarshalAs(UnmanagedType.U1)] bool showLocals, [MarshalAs(UnmanagedType.U1)] bool showThisProps);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DebugDumpEvalInJSStackFrame(uint aFrameNumber, [MarshalAs(UnmanagedType.LPStr)] string aSourceText);
 		
 		/// <summary>
         /// wrapJSAggregatedToNative is just like wrapJS except it is used in cases
@@ -545,14 +528,7 @@ namespace Gecko
 		void SetFunctionThisTranslator(ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsIXPCFunctionThisTranslator aTranslator);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReparentWrappedNativeIfFound(System.IntPtr aJSContext, System.IntPtr aScope, System.IntPtr aNewParent, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RescueOrphansInScope(System.IntPtr aJSContext, System.IntPtr aScope);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPConnectJSObjectHolder GetWrappedNativePrototype(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo);
+		System.IntPtr GetWrappedNativePrototype(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal VariantToJS(System.IntPtr ctx, System.IntPtr scope, [MarshalAs(UnmanagedType.Interface)] nsIVariant value);
@@ -569,9 +545,8 @@ namespace Gecko
         /// @param principal The principal (or NULL to use the null principal)
         /// to use when evaluating code in this sandbox.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPConnectJSObjectHolder CreateSandbox(System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
+		System.IntPtr CreateSandbox(System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
 		
 		/// <summary>
         /// Evaluate script in a sandbox, completely isolated from all
@@ -583,13 +558,15 @@ namespace Gecko
         /// the script. The actual evaluation will happen on a new
         /// temporary context.
         /// @param sandbox The sandbox object to evaluate the script in.
+        /// @param version The JavaScript version to use for evaluating the script.
+        /// Should be a valid JSVersion from jspubtd.h.
         /// @return The result of the evaluation as a jsval. If the caller
         /// intends to use the return value from this call the caller
         /// is responsible for rooting the jsval before making a call
         /// to this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal EvalInSandboxObject([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase source, [MarshalAs(UnmanagedType.LPStr)] string filename, System.IntPtr cx, System.IntPtr sandbox);
+		Gecko.JsVal EvalInSandboxObject([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase source, [MarshalAs(UnmanagedType.LPStr)] string filename, System.IntPtr cx, System.IntPtr sandbox, int version);
 		
 		/// <summary>
         /// Whether or not XPConnect should report all JS exceptions when returning
@@ -614,14 +591,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyDidPaint();
 		
-		/// <summary>
-        /// Creates a JS object holder around aObject that will hold the object
-        /// alive for as long as the holder stays alive.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPConnectJSObjectHolder HoldObject(System.IntPtr aJSContext, System.IntPtr aObject);
-		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void WriteScript([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aStream, System.IntPtr aJSContext, System.IntPtr aJSScript);
 		
@@ -633,14 +602,6 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr ReadFunction([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream aStream, System.IntPtr aJSContext);
-		
-		/// <summary>
-        /// This function should be called in JavaScript error reporters
-        /// to signal that they are ignoring the error. In this case,
-        /// XPConnect can print a warning to the console.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MarkErrorUnreported(System.IntPtr aJSContext);
 	}
 	
 	/// <summary>nsIXPConnectConsts </summary>

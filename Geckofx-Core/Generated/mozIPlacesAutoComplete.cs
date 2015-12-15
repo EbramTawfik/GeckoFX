@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3bf895a0-d6d9-4ba7-b8db-f2f0e0f32d23")]
+	[Guid("61b6348a-09e1-4810-8057-f8cb3cec6ef8")]
 	public interface mozIPlacesAutoComplete
 	{
 		
@@ -142,5 +142,16 @@ namespace Gecko
         // in a tabbrowser.
         // </summary>
 		public const long BEHAVIOR_OPENPAGE = 1<<7;
+		
+		// <summary>
+        // Use intersection between history, typed, bookmark, tag and openpage
+        // instead of union, when the restrict bit is set.
+        // </summary>
+		public const long BEHAVIOR_RESTRICT = 1<<8;
+		
+		// <summary>
+        // Include search suggestions from the currently selected search provider.
+        // </summary>
+		public const long BEHAVIOR_SEARCHES = 1<<9;
 	}
 }

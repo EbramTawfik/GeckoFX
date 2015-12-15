@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f816b4df-f733-4dbd-964d-8bfc92a475b2")]
+	[Guid("9759bd0e-78e2-4421-9ed1-c676e1af3513")]
 	public interface nsITaggingService
 	{
 		
@@ -101,5 +101,16 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHasTagsAttribute();
+	}
+	
+	/// <summary>nsITaggingServiceConsts </summary>
+	public class nsITaggingServiceConsts
+	{
+		
+		// <summary>
+        // Defines the maximal length of a tag. Related to the bug 407821
+        // (https://bugzilla.mozilla.org/show_bug.cgi?id=407821)
+        // </summary>
+		public const ulong MAX_TAG_LENGTH = 100;
 	}
 }

@@ -89,7 +89,7 @@ namespace Gecko
 	/// <summary>nsISettingsService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0505acf0-8e76-11e3-baa8-0800200c9a66")]
+	[Guid("d1ed155c-9f90-47bb-91c2-7eac54d69f4b")]
 	public interface nsISettingsService
 	{
 		
@@ -99,5 +99,10 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISettingsServiceLock CreateLock([MarshalAs(UnmanagedType.Interface)] nsISettingsTransactionCompleteCallback aCallback);
+		
+		/// <summary>Member ReceiveMessage </summary>
+		/// <param name='aMessage'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ReceiveMessage(ref Gecko.JsVal aMessage);
 	}
 }

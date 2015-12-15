@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3F41704C-CD5D-4537-8C4C-7B2EBFC5D972")]
+	[Guid("79221831-85e2-43a8-8152-05d77d6fde31")]
 	public interface nsISocketTransport : nsITransport
 	{
 		
@@ -150,6 +150,22 @@ namespace Gecko
 		int GetPortAttribute();
 		
 		/// <summary>
+        /// The platform-specific network interface id that this socket
+        /// associated with. Note that this attribute can be only accessed
+        /// in the socket thread.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetNetworkInterfaceIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aNetworkInterfaceId);
+		
+		/// <summary>
+        /// The platform-specific network interface id that this socket
+        /// associated with. Note that this attribute can be only accessed
+        /// in the socket thread.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetNetworkInterfaceIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aNetworkInterfaceId);
+		
+		/// <summary>
         /// Returns the IP address of the socket connection peer. This
         /// attribute is defined only once a connection has been established.
         /// </summary>
@@ -162,6 +178,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetSelfAddr();
+		
+		/// <summary>
+        /// Bind to a specific local address.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Bind(System.IntPtr aLocalAddr);
 		
 		/// <summary>
         /// Returns a scriptable version of getPeerAddr. This attribute is defined
@@ -285,6 +307,8 @@ namespace Gecko
 		
 		/// <summary>
         /// TCP keepalive configuration (support varies by platform).
+        /// Note that the attribute as well as the setter can only accessed
+        /// in the socket thread.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -292,6 +316,8 @@ namespace Gecko
 		
 		/// <summary>
         /// TCP keepalive configuration (support varies by platform).
+        /// Note that the attribute as well as the setter can only accessed
+        /// in the socket thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetKeepaliveEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aKeepaliveEnabled);
@@ -396,5 +422,12 @@ namespace Gecko
         // resolves to an RFC1918 address or IPv6 equivalent.
         // </summary>
 		public const ulong DISABLE_RFC1918 = (1<<5);
+		
+		// <summary>
+        // This flag is an explicit opt-in that allows a normally secure socket
+        // provider to use, at its discretion, an insecure algorithm. e.g.
+        // a TLS socket without authentication.
+        // </summary>
+		public const ulong MITM_OK = (1<<6);
 	}
 }

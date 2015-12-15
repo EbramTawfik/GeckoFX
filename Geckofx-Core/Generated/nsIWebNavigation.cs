@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b7568a50-4c50-442c-a6be-3a340a48d89a")]
+	[Guid("3ade79d4-8cb9-4952-b18d-4f9b63ca0d31")]
 	public interface nsIWebNavigation
 	{
 		
@@ -129,11 +129,8 @@ namespace Gecko
         /// in the object implementing this interface.  If it can't be loaded here
         /// however, the URI dispatcher will go through its normal process of content
         /// loading.
-        /// Behaves like loadURI, except an additional parameter is provided to supply
-        /// a base URI to be used in specific situations where one cannot be inferred
-        /// by other means, for example when this is called to view selection source.
-        /// Outside of these situations, the behaviour of this function is no
-        /// different to loadURI.
+        ///
+        /// Behaves like loadURI, but allows passing of additional parameters.
         ///
         /// @param aURI
         /// The URI string to load.  For HTTP and FTP URLs and possibly others,
@@ -147,6 +144,9 @@ namespace Gecko
         /// @param aReferrer
         /// The referring URI.  If this argument is null, then the referring
         /// URI will be inferred internally.
+        /// @param aReferrerPolicy
+        /// One of the REFERRER_POLICY_* constants from nsIHttpChannel.
+        /// Normal case is REFERRER_POLICY_DEFAULT.
         /// @param aPostData
         /// If the URI corresponds to a HTTP request, then this stream is
         /// appended directly to the HTTP request headers.  It may be prefixed
@@ -166,7 +166,7 @@ namespace Gecko
         /// This parameter is optional and may be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadURIWithBase([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aURI, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostData, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aHeaders, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
+		void LoadURIWithOptions([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aURI, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, uint aReferrerPolicy, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostData, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aHeaders, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 		
 		/// <summary>
         /// Tells the Object to reload the current page.  There may be cases where the
@@ -343,6 +343,12 @@ namespace Gecko
         // Prevent the owner principal from being inherited for this load.
         // </summary>
 		public const ulong LOAD_FLAGS_DISALLOW_INHERIT_OWNER = 0x40000;
+		
+		// <summary>
+        // Overwrite the returned error code with a specific result code
+        // when an error page is displayed.
+        // </summary>
+		public const ulong LOAD_FLAGS_ERROR_LOAD_CHANGES_RV = 0x80000;
 		
 		// <summary>
         // This flag specifies that the URI may be submitted to a third-party

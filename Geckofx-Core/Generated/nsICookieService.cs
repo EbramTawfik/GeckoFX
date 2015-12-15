@@ -90,7 +90,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2aaa897a-293c-4d2b-a657-8c9b7136996d")]
+	[Guid("1e94e283-2811-4f43-b947-d22b1549d824")]
 	public interface nsICookieService
 	{
 		
@@ -201,5 +201,45 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCookieStringFromHttp([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFirstURI, [MarshalAs(UnmanagedType.Interface)] nsIPrompt aPrompt, [MarshalAs(UnmanagedType.LPStr)] string aCookie, [MarshalAs(UnmanagedType.LPStr)] string aServerTime, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
+	}
+	
+	/// <summary>nsICookieServiceConsts </summary>
+	public class nsICookieServiceConsts
+	{
+		
+		// <summary>
+        // Possible values for the "network.cookie.cookieBehavior" preference.
+        // </summary>
+		public const long BEHAVIOR_ACCEPT = 0;
+		
+		// <summary>
+        // allow all cookies
+        // </summary>
+		public const long BEHAVIOR_REJECT_FOREIGN = 1;
+		
+		// <summary>
+        // reject all third-party cookies
+        // </summary>
+		public const long BEHAVIOR_REJECT = 2;
+		
+		// <summary>
+        // reject all cookies
+        // </summary>
+		public const long BEHAVIOR_LIMIT_FOREIGN = 3;
+		
+		// <summary>
+        // Possible values for the "network.cookie.lifetimePolicy" preference.
+        // </summary>
+		public const long ACCEPT_NORMALLY = 0;
+		
+		// <summary>
+        // Value = 1 is considered the same as 0 (See Bug 606655).
+        // </summary>
+		public const long ACCEPT_SESSION = 2;
+		
+		// <summary>
+        // downgrade to session
+        // </summary>
+		public const long ACCEPT_FOR_N_DAYS = 3;
 	}
 }

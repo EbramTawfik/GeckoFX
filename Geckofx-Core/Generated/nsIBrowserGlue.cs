@@ -44,7 +44,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("781df699-17dc-4237-b3d7-876ddb7085e3")]
+	[Guid("b0e7c156-d00c-4605-a77d-27c7418f23ae")]
 	public interface nsIBrowserGlue
 	{
 		
@@ -57,18 +57,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Sanitize([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParentWindow);
-		
-		/// <summary>
-        /// Add Smart Bookmarks special queries to bookmarks menu and toolbar folder.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnsurePlacesDefaultQueriesInitialized();
-		
-		/// <summary>
-        /// Gets the most recent window that's a browser (but not a popup)
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow GetMostRecentBrowserWindow();
 	}
 }

@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dd250248-2586-4ec1-a68f-8d14ef452517")]
+	[Guid("875e6645-e762-4da6-9ec8-bf19ab0050df")]
 	public interface nsIXPCException : nsIException
 	{
 		
@@ -82,13 +82,6 @@ namespace Gecko
 		new nsIStackFrame GetLocationAttribute();
 		
 		/// <summary>
-        /// An inner exception that triggered this, if available.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIException GetInnerAttribute();
-		
-		/// <summary>
         /// Arbitary data for the implementation.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -105,6 +98,6 @@ namespace Gecko
         /// inherits methods from nsIException
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Initialize([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMessage, int aResult, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIStackFrame aLocation, [MarshalAs(UnmanagedType.Interface)] nsISupports aData, [MarshalAs(UnmanagedType.Interface)] nsIException aInner);
+		void Initialize([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMessage, int aResult, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIStackFrame aLocation, [MarshalAs(UnmanagedType.Interface)] nsISupports aData);
 	}
 }

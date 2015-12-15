@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("986c11d0-f340-11d4-9075-0010a4e73d9a")]
+	[Guid("a60569d7-d401-4677-ba63-2aa5971af25d")]
 	public interface nsIClassInfo
 	{
 		
@@ -49,20 +49,12 @@ namespace Gecko
 		void GetInterfaces(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.Guid[] array);
 		
 		/// <summary>
-        /// Get a language mapping specific helper object that may assist in using
-        /// objects of this class in a specific lanaguage. For instance, if asked
-        /// for the helper for nsIProgrammingLanguage::JAVASCRIPT this might return
-        /// an object that can be QI'd into the nsIXPCScriptable interface to assist
-        /// XPConnect in supplying JavaScript specific behavior to callers of the
-        /// instance object.
-        ///
-        /// see: nsIProgrammingLanguage.idl
-        ///
-        /// Should return null if no helper available for given language.
+        /// Return an object to assist XPConnect in supplying JavaScript-specific
+        /// behavior to callers of the instance object, or null if not needed.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetHelperForLanguage(uint language);
+		nsIXPCScriptable GetScriptableHelper();
 		
 		/// <summary>
         /// A contract ID through which an instance of this class can be created
@@ -85,12 +77,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetClassIDAttribute();
-		
-		/// <summary>
-        /// Return language type from list in nsIProgrammingLanguage
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetImplementationLanguageAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetFlagsAttribute();

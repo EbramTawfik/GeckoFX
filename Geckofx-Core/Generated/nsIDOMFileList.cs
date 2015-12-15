@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("283aa7b2-da81-4c72-aea2-9797b440fe34")]
+	[Guid("57128a85-34de-42db-a252-84dd57724a59")]
 	public interface nsIDOMFileList
 	{
 		
@@ -43,8 +43,11 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetLengthAttribute();
 		
+		/// <summary>
+        /// returns a DOM File object
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFile Item(uint index);
+		nsISupports Item(uint index);
 	}
 }

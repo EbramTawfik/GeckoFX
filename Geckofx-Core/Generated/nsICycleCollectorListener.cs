@@ -27,26 +27,56 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// The interface JS code should implement to receive annotations logged by an
-    /// @mozilla.org/cycle-collector-logger;1 instance. Pass an instance of this to
-    /// the logger's 'processNext' method.
+    /// nsICycleCollectorHandler is the interface JS code should implement to
+    /// receive the results logged by a @mozilla.org/cycle-collector-logger;1
+    /// instance. Pass an instance of this to the logger's 'processNext' method
+    /// after the collection has run. This will describe the objects the cycle
+    /// collector visited, the edges it found, and the conclusions it reached
+    /// about the liveness of objects.
     ///
-    /// The methods are a subset of those in nsICycleCollectorListener; see the
-    /// descriptions there.
+    /// In more detail:
+    /// - For each node in the graph:
+    /// - a call is made to either |noteRefCountedObject| or |noteGCedObject|, to
+    /// describe the node itself; and
+    /// - for each edge starting at that node, a call is made to |noteEdge|.
+    ///
+    /// - Then, a series of calls are made to:
+    /// - |describeRoot|, for reference-counted nodes that the CC has identified as
+    /// being alive because there are unknown references to those nodes.
+    /// - |describeGarbage|, for nodes the cycle collector has identified as garbage.
+    ///
+    /// Any node not mentioned in a call to |describeRoot| or |describeGarbage| is
+    /// neither a root nor garbage. The cycle collector was able to find all of the
+    /// edges implied by the node's reference count.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("39a8f80e-7eee-4141-b9ef-6e2a7d6e466d")]
+	[Guid("7f093367-1492-4b89-87af-c01dbc831246")]
 	public interface nsICycleCollectorHandler
 	{
 		
 		/// <summary>
-        /// The interface JS code should implement to receive annotations logged by an
-        /// @mozilla.org/cycle-collector-logger;1 instance. Pass an instance of this to
-        /// the logger's 'processNext' method.
+        /// nsICycleCollectorHandler is the interface JS code should implement to
+        /// receive the results logged by a @mozilla.org/cycle-collector-logger;1
+        /// instance. Pass an instance of this to the logger's 'processNext' method
+        /// after the collection has run. This will describe the objects the cycle
+        /// collector visited, the edges it found, and the conclusions it reached
+        /// about the liveness of objects.
         ///
-        /// The methods are a subset of those in nsICycleCollectorListener; see the
-        /// descriptions there.
+        /// In more detail:
+        /// - For each node in the graph:
+        /// - a call is made to either |noteRefCountedObject| or |noteGCedObject|, to
+        /// describe the node itself; and
+        /// - for each edge starting at that node, a call is made to |noteEdge|.
+        ///
+        /// - Then, a series of calls are made to:
+        /// - |describeRoot|, for reference-counted nodes that the CC has identified as
+        /// being alive because there are unknown references to those nodes.
+        /// - |describeGarbage|, for nodes the cycle collector has identified as garbage.
+        ///
+        /// Any node not mentioned in a call to |describeRoot| or |describeGarbage| is
+        /// neither a root nor garbage. The cycle collector was able to find all of the
+        /// edges implied by the node's reference count.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NoteRefCountedObject([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAddress, uint aRefCount, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aObjectDescription);
@@ -129,44 +159,11 @@ namespace Gecko
 	}
 	
 	/// <summary>
-    /// Given an instance of this interface, the cycle collector calls the instance's
-    /// methods to report the objects it visits, the edges between them, and its
-    /// conclusions about which objects are roots and which are garbage.
+    /// This interface is used to configure some reporting options for the cycle
+    /// collector. This interface cannot be implemented by JavaScript code, as it
+    /// is called while the cycle collector is running.
     ///
-    /// For a single cycle collection pass, the cycle collector calls this
-    /// interface's methods in the following order:
-    ///
-    /// - First, |begin|. If |begin| returns an error, none of the listener's other
-    /// methods will be called.
-    ///
-    /// - Then, for each node in the graph:
-    /// - a call to either |noteRefCountedObject| or |noteGCedObject|, to describe
-    /// the node itself; and
-    /// - for each edge starting at that node, a call to |noteEdge|.
-    ///
-    /// - Then, zero or more calls to |noteIncrementalRoot|; an "incremental
-    /// root" is an object that may have had a new reference to it created
-    /// during an incremental collection, and must therefore be treated as
-    /// live for safety.
-    ///
-    /// - After all the nodes have been described, a call to |beginResults|.
-    ///
-    /// - A series of calls to:
-    /// - |describeRoot|, for reference-counted nodes that the CC has identified as
-    /// roots of collection. (The cycle collector didn't find enough incoming
-    /// edges to account for these nodes' reference counts, so there must be code
-    /// holding on to them that the cycle collector doesn't know about.)
-    /// - |describeGarbage|, for nodes the cycle collector has identified as garbage.
-    ///
-    /// Any node not mentioned in a call to |describeRoot| or |describeGarbage| is
-    /// neither a root nor garbage. (The cycle collector was able to find all the
-    /// edges implied by the node's reference count.)
-    ///
-    /// - Finally, a call to |end|.
-    ///
-    ///
-    /// This interface cannot be implemented by JavaScript code, as it is called
-    /// while the cycle collector is running. To analyze cycle collection data in JS:
+    /// To analyze cycle collection data in JS:
     ///
     /// - Create an instance of @mozilla.org/cycle-collector-logger;1, which
     /// implements this interface.
@@ -190,7 +187,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c7d55656-e0d8-4986-88bb-cb28cb55b993")]
+	[Guid("703b53b6-24f6-40c6-9ea9-aeb2dc53d170")]
 	public interface nsICycleCollectorListener
 	{
 		
@@ -247,41 +244,17 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetWantAfterProcessingAttribute([MarshalAs(UnmanagedType.U1)] bool aWantAfterProcessing);
 		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Begin();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteRefCountedObject(ulong aAddress, uint aRefCount, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteGCedObject(ulong aAddress, [MarshalAs(UnmanagedType.U1)] bool aMarked, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription, ulong aCompartmentAddress);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteEdge(ulong aToAddress, [MarshalAs(UnmanagedType.LPStr)] string aEdgeName);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteWeakMapEntry(ulong aMap, ulong aKey, ulong aKeyDelegate, ulong aValue);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteIncrementalRoot(ulong aAddress);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginResults();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DescribeRoot(ulong aAddress, uint aKnownEdges);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DescribeGarbage(ulong aAddress);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void End();
-		
 		/// <summary>
         /// |wantAfterProcessing| property is true.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ProcessNext([MarshalAs(UnmanagedType.Interface)] nsICycleCollectorHandler aHandler);
+		
+		/// <summary>
+        /// concrete implementation type to help the GC rooting analysis.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr AsLogger();
 	}
 }

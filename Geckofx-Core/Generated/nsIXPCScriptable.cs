@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9bae4ff5-5618-4ccd-b106-8e21e3fb64d3")]
+	[Guid("19b70b26-7c3f-437f-a04a-2a8f9e28b617")]
 	public interface nsIXPCScriptable
 	{
 		
@@ -48,25 +48,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PreCreate([MarshalAs(UnmanagedType.Interface)] nsISupports nativeObj, System.IntPtr cx, System.IntPtr globalObj, ref System.IntPtr parentObj);
 		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Create([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj);
-		
-		/// <summary>
-        /// compartment.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PostCreate([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PostTransplant([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj);
-		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool AddProperty([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr id, System.IntPtr vp);
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DelProperty([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr id);
+		bool AddProperty([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr id, ref Gecko.JsVal val);
 		
 		/// <summary>
         /// this method does something.
@@ -88,15 +72,11 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool NewEnumerate([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, uint enum_op, System.IntPtr statep, ref System.IntPtr idp);
+		bool NewEnumerate([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr properties);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool NewResolve([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr id, ref System.IntPtr objp);
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Convert([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, uint type, System.IntPtr vp);
+		bool Resolve([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr id, [MarshalAs(UnmanagedType.U1)] ref bool resolvedp);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Finalize([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr fop, System.IntPtr obj);
@@ -114,9 +94,6 @@ namespace Gecko
 		bool HasInstance([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, ref Gecko.JsVal val, [MarshalAs(UnmanagedType.U1)] ref bool bp);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr OuterObject([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PostCreatePrototype(System.IntPtr cx, System.IntPtr proto);
 	}
 	
@@ -128,19 +105,14 @@ namespace Gecko
         //bitflags used for 'flags' (only 32 bits available!) </summary>
 		public const long WANT_PRECREATE = 1<<0;
 		
-		// 
-		public const long WANT_CREATE = 1<<1;
-		
-		// 
-		public const long WANT_POSTCREATE = 1<<2;
-		
-		// 
+		// <summary>
+        // unused bit here
+        // </summary>
 		public const long WANT_ADDPROPERTY = 1<<3;
 		
-		// 
-		public const long WANT_DELPROPERTY = 1<<4;
-		
-		// 
+		// <summary>
+        // unused bit here
+        // </summary>
 		public const long WANT_GETPROPERTY = 1<<5;
 		
 		// 
@@ -153,12 +125,11 @@ namespace Gecko
 		public const long WANT_NEWENUMERATE = 1<<8;
 		
 		// 
-		public const long WANT_NEWRESOLVE = 1<<9;
+		public const long WANT_RESOLVE = 1<<9;
 		
-		// 
-		public const long WANT_CONVERT = 1<<10;
-		
-		// 
+		// <summary>
+        // unused bit here
+        // </summary>
 		public const long WANT_FINALIZE = 1<<11;
 		
 		// <summary>
@@ -183,10 +154,9 @@ namespace Gecko
 		// 
 		public const long USE_JSSTUB_FOR_SETPROPERTY = 1<<19;
 		
-		// 
-		public const long DONT_ENUM_STATIC_PROPS = 1<<20;
-		
-		// 
+		// <summary>
+        // Unused bit here!
+        // </summary>
 		public const long DONT_ENUM_QUERY_INTERFACE = 1<<21;
 		
 		// 
@@ -206,11 +176,6 @@ namespace Gecko
 		
 		// 
 		public const long DONT_REFLECT_INTERFACE_NAMES = 1<<27;
-		
-		// <summary>
-        // Unused bit here!
-        // </summary>
-		public const long WANT_OUTER_OBJECT = 1<<29;
 		
 		// <summary>
         // with this bit set.

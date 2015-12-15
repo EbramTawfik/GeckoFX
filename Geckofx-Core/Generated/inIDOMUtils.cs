@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1f5b7f08-fa80-49e9-b881-888f081240da")]
+	[Guid("ec3dc3d5-41d1-4d08-ace5-7e944de6614d")]
 	public interface inIDOMUtils
 	{
 		
@@ -46,11 +46,37 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupportsArray GetCSSStyleRules([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aPseudo);
 		
+		/// <summary>
+        /// Get the line number of a rule.
+        ///
+        /// @param nsIDOMCSSRule aRule The rule.
+        /// @return The rule's line number.  Line numbers are 1-based.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetRuleLine([MarshalAs(UnmanagedType.Interface)] nsIDOMCSSRule aRule);
 		
+		/// <summary>
+        /// Get the column number of a rule.
+        ///
+        /// @param nsIDOMCSSRule aRule The rule.
+        /// @return The rule's column number.  Column numbers are 1-based.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetRuleColumn([MarshalAs(UnmanagedType.Interface)] nsIDOMCSSRule aRule);
+		
+		/// <summary>
+        /// Like getRuleLine, but if the rule is in a <style> element,
+        /// returns a line number relative to the start of the element.
+        ///
+        /// @param nsIDOMCSSRule aRule the rule to examine
+        /// @return the line number of the rule, possibly relative to the
+        /// <style> element
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetRelativeRuleLine([MarshalAs(UnmanagedType.Interface)] nsIDOMCSSRule aRule);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetCSSLexer([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aText, System.IntPtr jsContext);
 		
 		/// <summary>
         /// should consider using [ChromeOnly] APIs on that.
@@ -175,6 +201,17 @@ namespace Gecko
 		nsIDOMFontFaceList GetUsedFontFaces([MarshalAs(UnmanagedType.Interface)] nsIDOMRange aRange);
 		
 		/// <summary>
+        /// Get the names of all the supported pseudo-elements.
+        /// Pseudo-elements which are only accepted in UA style sheets are
+        /// not included.
+        ///
+        /// @param {unsigned long} aCount the number of items returned
+        /// @param {wstring[]} aNames the names
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCSSPseudoElementNames(ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] aNames);
+		
+		/// <summary>
         /// pseudo-classes are ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -223,7 +260,7 @@ namespace Gecko
 		public const ulong INCLUDE_ALIASES = (1<<1);
 		
 		// <summary>
-        // parsing functions instead of table-driven parsing.
+        // unknown types.
         // </summary>
 		public const ulong TYPE_LENGTH = 0;
 		

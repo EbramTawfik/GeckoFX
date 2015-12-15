@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ee7b8943-440e-4cc3-b25e-c17c8a821d8b")]
+	[Guid("96abf41b-32a8-4ff6-a0d6-4ade4ddebf89")]
 	public interface nsIDOMBeforeUnloadEvent : nsIDOMEvent
 	{
 		
@@ -229,6 +229,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr InternalDOMEvent();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopCrossProcessForwarding();
 		
 		/// <summary>
         /// Attribute used to pass back a return value from a beforeunload

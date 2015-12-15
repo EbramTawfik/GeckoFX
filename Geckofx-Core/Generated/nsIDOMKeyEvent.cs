@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d2b3e35f-8627-4732-a92d-cda54c8f8054")]
+	[Guid("f4082a63-73c0-49ad-86e0-c406a54573f7")]
 	public interface nsIDOMKeyEvent : nsIDOMUIEvent
 	{
 		
@@ -224,6 +224,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr InternalDOMEvent();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopCrossProcessForwarding();
 		
 		/// <summary>
         /// The nsIDOMUIEvent interface is the datatype for all UI events in the
@@ -912,11 +915,5 @@ namespace Gecko
 		
 		// 
 		public const ulong DOM_KEY_LOCATION_NUMPAD = 0x03;
-		
-		// 
-		public const ulong DOM_KEY_LOCATION_MOBILE = 0x04;
-		
-		// 
-		public const ulong DOM_KEY_LOCATION_JOYSTICK = 0x05;
 	}
 }

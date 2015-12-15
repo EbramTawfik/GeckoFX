@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0e56f04d-cda4-4a55-ab83-e5e29ddd370e")]
+	[Guid("5daa99d5-265a-4397-b429-c943803e2619")]
 	public interface nsIPluginTag
 	{
 		
@@ -52,11 +52,37 @@ namespace Gecko
 		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
-        /// true only if this plugin is "hardblocked" and cannot be enabled.
+        /// The 'nice' name of this plugin, e.g. 'flash' 'java'
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetNiceNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNiceName);
+		
+		/// <summary>
+        /// FIXME-jsplugins implement missing + tests (whatever that means)
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBlocklistedAttribute();
+		
+		/// <summary>
+        /// true if the state is non-default and locked, false otherwise.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsEnabledStateLockedAttribute();
+		
+		/// <summary>
+        /// If this plugin is capable of being used (not disabled, blocklisted, etc)
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetActiveAttribute();
+		
+		/// <summary>
+        /// Get a specific nsIBlocklistService::STATE_*
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetBlocklistStateAttribute();
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -66,9 +92,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetClicktoplayAttribute();
 		
+		/// <summary>
+        /// See the STATE_* values above.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetEnabledStateAttribute();
 		
+		/// <summary>
+        /// See the STATE_* values above.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEnabledStateAttribute(uint aEnabledState);
 		
@@ -99,5 +131,104 @@ namespace Gecko
 		
 		// 
 		public const ulong STATE_ENABLED = 2;
+	}
+	
+	/// <summary>
+    /// An interface representing a "fake" plugin: one implemented in JavaScript, not
+    /// as a NPAPI plug-in.  See nsIPluginHost.registerFakePlugin and the
+    /// documentation for the FakePluginTagInit dictionary.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("6d22c968-226d-4156-b230-da6ad6bbf6e8")]
+	public interface nsIFakePluginTag : nsIPluginTag
+	{
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDescription);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFilename);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetFullpathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFullpath);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aVersion);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
+		
+		/// <summary>
+        /// The 'nice' name of this plugin, e.g. 'flash' 'java'
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetNiceNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNiceName);
+		
+		/// <summary>
+        /// FIXME-jsplugins implement missing + tests (whatever that means)
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetBlocklistedAttribute();
+		
+		/// <summary>
+        /// true if the state is non-default and locked, false otherwise.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetIsEnabledStateLockedAttribute();
+		
+		/// <summary>
+        /// If this plugin is capable of being used (not disabled, blocklisted, etc)
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetActiveAttribute();
+		
+		/// <summary>
+        /// Get a specific nsIBlocklistService::STATE_*
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new uint GetBlocklistStateAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetDisabledAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetClicktoplayAttribute();
+		
+		/// <summary>
+        /// See the STATE_* values above.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new uint GetEnabledStateAttribute();
+		
+		/// <summary>
+        /// See the STATE_* values above.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetEnabledStateAttribute(uint aEnabledState);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new long GetLastModifiedTimeAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetMimeTypes(ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] aResults);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetMimeDescriptions(ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] aResults);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetExtensions(ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] aResults);
+		
+		/// <summary>
+        /// and will need to be requested by the handler via XHR or similar if desired.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIURI GetHandlerURIAttribute();
 	}
 }

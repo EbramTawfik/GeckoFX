@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("30e5a7ec-f71e-4f41-9dbd-7429c02132ec")]
+	[Guid("22b56ffc-3149-43c5-b5a9-b3a6b678de93")]
 	public interface nsIBrowserProfileMigrator
 	{
 		
@@ -78,6 +78,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSourceHomePageURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSourceHomePageURL);
+		
+		/// <summary>
+        /// Whether the source browser data is locked/in-use meaning migration likely
+        /// won't succeed and the user should be warned.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetSourceLockedAttribute();
 	}
 	
 	/// <summary>nsIBrowserProfileMigratorConsts </summary>

@@ -86,6 +86,14 @@ namespace Gecko
 		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 		
 		/// <summary>
+        /// Constructs a new channel from the given URI for this protocol handler and
+        /// sets the loadInfo for the constructed channel.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIChannel NewChannel2([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsILoadInfo aLoadinfo);
+		
+		/// <summary>
         /// Constructs a new channel from the given URI for this protocol handler.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]

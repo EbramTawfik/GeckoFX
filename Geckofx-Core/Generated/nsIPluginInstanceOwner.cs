@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("59BE4CA5-3CB0-40E6-A111-9A88C8477610")]
+	[Guid("7d65452e-c167-4cba-a0e3-ddc61bdde8c3")]
 	public interface nsIPluginInstanceOwner
 	{
 		
@@ -69,12 +69,6 @@ namespace Gecko
 		void CreateWidget();
 		
 		/// <summary>
-        /// Show a status message in the host environment.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowStatus([MarshalAs(UnmanagedType.LPStr)] string aStatusMsg);
-		
-		/// <summary>
         /// Get the associated document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -105,7 +99,7 @@ namespace Gecko
 		void GetNetscapeWindow(System.IntPtr aValue);
 		
 		/// <summary>
-        /// Show native context menu
+        /// Convert between plugin, window, and screen coordinate spaces.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEventModel(int eventModel);

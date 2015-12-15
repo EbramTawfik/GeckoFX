@@ -84,7 +84,7 @@ namespace Gecko
 	/// <summary>nsIAutoCompleteSearchDescriptor </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("02314d6e-b730-40cc-a215-221554d77064")]
+	[Guid("4c3e7462-fbfb-4310-8f4b-239238392b75")]
 	public interface nsIAutoCompleteSearchDescriptor
 	{
 		
@@ -95,6 +95,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetSearchTypeAttribute();
+		
+		/// <summary>
+        /// Whether a new search should be triggered when the user deletes the
+        /// autofilled part.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetClearingAutoFillSearchesAgainAttribute();
 	}
 	
 	/// <summary>nsIAutoCompleteSearchDescriptorConsts </summary>

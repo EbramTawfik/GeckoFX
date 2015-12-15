@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a68a40b9-f7df-47ff-a874-2af3df7eb888")]
+	[Guid("d6d7a014-e28d-4c9d-8727-1cf6d870619b")]
 	public interface nsIXULWindow
 	{
 		
@@ -69,6 +69,20 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDocShellTreeItem GetPrimaryContentShellAttribute();
+		
+		/// <summary>
+        /// In multiprocess case we may not have primaryContentShell but
+        /// primaryTabParent.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsITabParent GetPrimaryTabParentAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void TabParentAdded([MarshalAs(UnmanagedType.Interface)] nsITabParent aTab, [MarshalAs(UnmanagedType.U1)] bool aPrimary);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void TabParentRemoved([MarshalAs(UnmanagedType.Interface)] nsITabParent aTab);
 		
 		/// <summary>
         /// The content shell specified by the supplied id.

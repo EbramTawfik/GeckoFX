@@ -51,7 +51,7 @@ namespace Gecko
 	/// <summary>nsIFilePicker </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f93509a0-0434-11e3-8ffd-0800200c9a66")]
+	[Guid("9840d564-42c8-4d78-9a4d-71002343c918")]
 	public interface nsIFilePicker
 	{
 		
@@ -185,19 +185,19 @@ namespace Gecko
 		nsISimpleEnumerator GetFilesAttribute();
 		
 		/// <summary>
-        /// Get the nsIDOMFile for the file.
+        /// Get the DOM File for the file.
         ///
-        /// @return Returns the file currently selected as DOMFile
+        /// @return Returns the file currently selected as File
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFile GetDomfileAttribute();
+		nsISupports GetDomfileAttribute();
 		
 		/// <summary>
         /// Get the enumerator for the selected files
         /// only works in the modeOpenMultiple mode
         ///
-        /// @return Returns the files currently selected as DOMFiles
+        /// @return Returns the files currently selected as Files
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

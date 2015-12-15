@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6701600a-17ca-417e-98f9-4ceb175dd15d")]
+	[Guid("9e32a7b6-c4d1-4d9a-87b9-1ef6b75c27a9")]
 	public interface nsIConsoleAPIStorage
 	{
 		
@@ -56,11 +56,14 @@ namespace Gecko
         /// @param string aId
         /// The ID of the inner window for which the event occurred or "jsm" for
         /// messages logged from JavaScript modules..
+        /// @param string aOuterId
+        /// This ID is used as 3rd parameters for the console-api-log-event
+        /// notification.
         /// @param object aEvent
         /// A JavaScript object you want to store.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RecordEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aId, ref Gecko.JsVal aEvent);
+		void RecordEvent([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aOuterId, ref Gecko.JsVal aEvent);
 		
 		/// <summary>
         /// Clear storage data for the given window.

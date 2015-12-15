@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f6e1e37e-14d0-44fa-a9bb-712bfad6c5f7")]
+	[Guid("b7ae2310-576e-11e5-a837-0800200c9a66")]
 	public interface nsIScriptSecurityManager
 	{
 		
@@ -117,6 +117,8 @@ namespace Gecko
         /// @param appId is the app id of the principal. It can't be UNKNOWN_APP_ID.
         /// @param inMozBrowser is true if the principal has to be considered as
         /// inside a mozbrowser frame.
+        ///
+        /// @deprecated use createCodebasePrincipal instead.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -144,26 +146,63 @@ namespace Gecko
         /// Returns a principal with that has the same origin as uri and is not part
         /// of an appliction.
         /// The returned principal will have appId = NO_APP_ID.
+        ///
+        /// @deprecated use createCodebasePrincipal instead.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrincipal GetNoAppCodebasePrincipal([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 		
 		/// <summary>
-        /// Legacy name for getNoAppCodebasePrincipal.
+        /// Legacy method for getting a principal with no origin attributes.
         ///
-        /// @deprecated use getNoAppCodebasePrincipal instead.
+        /// @deprecated use createCodebasePrincipal instead.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrincipal GetCodebasePrincipal([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 		
 		/// <summary>
-        /// Returns OK if aJSContext and target have the same "origin"
-        /// (scheme, host, and port).
+        /// Returns a principal whose origin is composed of |uri| and |originAttributes|.
+        /// See nsIPrincipal.idl for a description of origin attributes, and
+        /// ChromeUtils.webidl for a list of origin attributes and their defaults.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckSameOrigin(System.IntPtr aJSContext, [MarshalAs(UnmanagedType.Interface)] nsIURI aTargetURI);
+		nsIPrincipal CreateCodebasePrincipal([MarshalAs(UnmanagedType.Interface)] nsIURI uri, ref Gecko.JsVal originAttributes, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Returns a principal whose origin is the one we pass in.
+        /// See nsIPrincipal.idl for a description of origin attributes, and
+        /// ChromeUtils.webidl for a list of origin attributes and their defaults.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIPrincipal CreateCodebasePrincipalFromOrigin([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase origin);
+		
+		/// <summary>
+        /// Returns a unique nonce principal with |originAttributes|.
+        /// See nsIPrincipal.idl for a description of origin attributes, and
+        /// ChromeUtils.webidl for a list of origin attributes and their defaults.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIPrincipal CreateNullPrincipal(ref Gecko.JsVal originAttributes, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Creates an expanded principal whose capabilities are the union of the
+        /// given principals. An expanded principal has an asymmetric privilege
+        /// relationship with its sub-principals (that is to say, it subsumes the
+        /// sub-principals, but the sub-principals do not subsume it), even if
+        /// there's only one. This presents a legitimate use-case for making an
+        /// expanded principal around a single sub-principal, which we do frequently.
+        ///
+        /// Expanded principals cannot have origin attributes themselves, but rather
+        /// have them through their sub-principals - so we don't accept them here.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIPrincipal CreateExpandedPrincipal([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsIPrincipal[] aPrincipalArray, uint aLength);
 		
 		/// <summary>
         /// Returns OK if aSourceURI and target have the same "origin"
@@ -181,7 +220,15 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetChannelPrincipal([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
+		nsIPrincipal GetChannelResultPrincipal([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
+		
+		/// <summary>
+        /// Get the codebase principal for the channel's URI.
+        /// aChannel must not be null.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIPrincipal GetChannelURIPrincipal([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
 		
 		/// <summary>
         /// Check whether a given principal is a system principal.  This allows us
@@ -219,6 +266,25 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDomainPolicyActiveAttribute();
+		
+		/// <summary>
+        /// Only the parent process can directly access domain policies, child
+        /// processes only have a read-only mirror to the one in the parent.
+        /// For child processes the mirror is updated via messages
+        /// and ContentChild will hold the DomainPolicy by calling
+        /// ActivateDomainPolicyInternal directly. New consumer to this
+        /// function should not be addded.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDomainPolicy ActivateDomainPolicyInternal();
+		
+		/// <summary>
+        /// This function is for internal use only. Every time a child process is spawned, we
+        /// must clone any active domain policies in the parent to the new child.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CloneDomainPolicy(System.IntPtr aClone);
 		
 		/// <summary>
         /// Query mechanism for the above policy.
@@ -281,5 +347,10 @@ namespace Gecko
         // UINT32_MAX
         // </summary>
 		public const ulong SAFEBROWSING_APP_ID = 4294967294;
+		
+		// <summary>
+        // UINT32_MAX - 1
+        // </summary>
+		public const ulong DEFAULT_USER_CONTEXT_ID = 0;
 	}
 }

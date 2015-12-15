@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a539759b-e22d-462f-94ea-2915b11b33e8")]
+	[Guid("ae74cda5-cd2f-473f-96f5-f0b7fff62c68")]
 	public interface nsIX509CertList
 	{
 		
@@ -56,5 +56,15 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetRawCertList();
+		
+		/// <summary>
+        /// Test whether two certificate list instances represent the same
+        /// certificate list.
+        ///
+        /// @return Whether the certificate lists are equal
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIX509CertList other);
 	}
 }

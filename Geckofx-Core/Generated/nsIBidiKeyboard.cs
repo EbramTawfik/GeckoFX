@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0d53579c-8f40-4bcf-9b87-61979c09f924")]
+	[Guid("288dae24-76e2-43a3-befe-9d9fabe8014e")]
 	public interface nsIBidiKeyboard
 	{
 		

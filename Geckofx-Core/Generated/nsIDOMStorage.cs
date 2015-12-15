@@ -27,72 +27,13 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// Interface for client side storage. See
-    /// http://www.whatwg.org/specs/web-apps/current-work/multipage/structured.html#storage0
-    /// for more information.
-    ///
-    /// A storage object stores an arbitrary set of key-value pairs, which
-    /// may be retrieved, modified and removed as needed. A key may only
-    /// exist once within a storage object, and only one value may be
-    /// associated with a particular key. Keys are stored in a particular
-    /// order with the condition that this order not change by merely changing
-    /// the value associated with a key, but the order may change when a
-    /// key is added or removed.
+    /// Empty interface for client side storage. DOMStorage is now ported to WebIDL
+    /// but we still need an XPConnect interface for casting.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("43E5EDAD-1E02-42c4-9D99-C3D9DEE22A20")]
+	[Guid("425a33f0-e0e9-45e7-a95f-9908bd6ae988")]
 	public interface nsIDOMStorage
 	{
-		
-		/// <summary>
-        /// The number of keys stored.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetLengthAttribute();
-		
-		/// <summary>
-        /// Retrieve the name of the key at a particular index.
-        ///
-        /// @param index index of the item to retrieve
-        /// @returns the key at index, null if there is no key at that index
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Key(uint index, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
-		
-		/// <summary>
-        /// Retrieve an item with a given key
-        ///
-        /// @param key key to retrieve
-        /// @returns found data or empty string if the key was not found
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetItem([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
-		
-		/// <summary>
-        /// Assign a value with a key. If the key does not exist already, a new
-        /// key is added associated with that value. If the key already exists,
-        /// then the existing value is replaced with a new value.
-        ///
-        /// @param key key to set
-        /// @param data data to associate with the key
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItem([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase data);
-		
-		/// <summary>
-        /// Remove a key and its corresponding value.
-        ///
-        /// @param key key to remove
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveItem([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase key);
-		
-		/// <summary>
-        /// Clear the content of this storage bound to a domain
-        /// or an origin.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Clear();
 	}
 }

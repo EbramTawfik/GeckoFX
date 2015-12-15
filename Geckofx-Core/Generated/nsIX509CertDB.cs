@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5984db62-d0e5-4671-a082-799cf7271e24")]
+	[Guid("fc2b60e5-9a07-47c2-a2cd-b83b68a660ac")]
 	public interface nsIOpenSignedAppFileCallback
 	{
 		
@@ -48,13 +48,41 @@ namespace Gecko
 		void OpenSignedAppFileFinished(int rv, [MarshalAs(UnmanagedType.Interface)] nsIZipReader aZipReader, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert aSignerCert);
 	}
 	
+	/// <summary>nsIVerifySignedDirectoryCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("d5f97827-622a-488f-be08-d850432ac8ec")]
+	public interface nsIVerifySignedDirectoryCallback
+	{
+		
+		/// <summary>Member VerifySignedDirectoryFinished </summary>
+		/// <param name='rv'> </param>
+		/// <param name='aSignerCert'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void VerifySignedDirectoryFinished(int rv, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert aSignerCert);
+	}
+	
+	/// <summary>nsIVerifySignedManifestCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("3d6a9c87-5c5f-46fc-9410-96da6092f0f2")]
+	public interface nsIVerifySignedManifestCallback
+	{
+		
+		/// <summary>Member VerifySignedManifestFinished </summary>
+		/// <param name='rv'> </param>
+		/// <param name='aSignerCert'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void VerifySignedManifestFinished(int rv, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert aSignerCert);
+	}
+	
 	/// <summary>
     /// This represents a service to access and manipulate
     /// X.509 certificates stored in a database.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dd6e4af8-23bb-41d9-a1e3-9ce925429f2f")]
+	[Guid("a36c45fb-f7b5-423e-a0f7-ea1eb4fd60b5")]
 	public interface nsIX509CertDB
 	{
 		
@@ -301,6 +329,35 @@ namespace Gecko
 		void OpenSignedAppFileAsync(uint trustedRoot, [MarshalAs(UnmanagedType.Interface)] nsIFile aJarFile, [MarshalAs(UnmanagedType.Interface)] nsIOpenSignedAppFileCallback callback);
 		
 		/// <summary>
+        /// Verifies the signature on a directory representing an unpacked signed
+        /// JAR file. To be considered valid, there must be exactly one signature
+        /// on the directory structure and that signature must have signed every
+        /// entry. Further, the signature must come from a certificate that
+        /// is trusted for code signing.
+        ///
+        /// On success NS_OK and the trusted certificate that signed the
+        /// unpacked JAR are returned.
+        ///
+        /// On failure, an error code is returned.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void VerifySignedDirectoryAsync(uint trustedRoot, [MarshalAs(UnmanagedType.Interface)] nsIFile aUnpackedDir, [MarshalAs(UnmanagedType.Interface)] nsIVerifySignedDirectoryCallback callback);
+		
+		/// <summary>
+        /// Given streams containing a signature and a manifest file, verifies
+        /// that the signature is valid for the manifest. The signature must
+        /// come from a certificate that is trusted for code signing and that
+        /// was issued by the given trusted root.
+        ///
+        /// On success, NS_OK and the trusted certificate that signed the
+        /// Manifest are returned.
+        ///
+        /// On failure, an error code is returned.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void VerifySignedManifestAsync(uint trustedRoot, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aManifestStream, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aSignatureStream, [MarshalAs(UnmanagedType.Interface)] nsIVerifySignedManifestCallback callback);
+		
+		/// <summary>
         /// Add a cert to a cert DB from a binary string.
         ///
         /// @param certDER The raw DER encoding of a certificate.
@@ -314,7 +371,12 @@ namespace Gecko
 		/// <summary>
         ///SECCertificateUsage </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int VerifyCertNow([MarshalAs(UnmanagedType.Interface)] nsIX509Cert aCert, long aUsage, uint aFlags, [MarshalAs(UnmanagedType.Interface)] ref nsIX509CertList verifiedChain, [MarshalAs(UnmanagedType.U1)] ref bool aHasEVPolicy);
+		int VerifyCertAtTime([MarshalAs(UnmanagedType.Interface)] nsIX509Cert aCert, long aUsage, uint aFlags, [MarshalAs(UnmanagedType.LPStr)] string aHostname, ulong aTime, [MarshalAs(UnmanagedType.Interface)] ref nsIX509CertList aVerifiedChain, [MarshalAs(UnmanagedType.U1)] ref bool aHasEVPolicy);
+		
+		/// <summary>
+        ///SECCertificateUsage </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int VerifyCertNow([MarshalAs(UnmanagedType.Interface)] nsIX509Cert aCert, long aUsage, uint aFlags, [MarshalAs(UnmanagedType.LPStr)] string aHostname, [MarshalAs(UnmanagedType.Interface)] ref nsIX509CertList aVerifiedChain, [MarshalAs(UnmanagedType.U1)] ref bool aHasEVPolicy);
 		
 		/// <summary>
         /// implementation.
@@ -389,7 +451,28 @@ namespace Gecko
 		public const long AppMarketplaceDevReviewersRoot = 4;
 		
 		// 
-		public const long AppXPCShellRoot = 5;
+		public const long AppMarketplaceStageRoot = 5;
+		
+		// 
+		public const long AppXPCShellRoot = 6;
+		
+		// 
+		public const long AddonsPublicRoot = 7;
+		
+		// 
+		public const long AddonsStageRoot = 8;
+		
+		// 
+		public const long PrivilegedPackageRoot = 9;
+		
+		// <summary>
+        // If DeveloperImportedRoot is set as trusted root, a CA from local file
+        // system will be imported. Only used when preference
+        // "network.http.packaged-apps-developer-mode" is set.
+        // The path of the CA is specified by preference
+        // "network.http.packaged-apps-developer-trusted-root".
+        // </summary>
+		public const long DeveloperImportedRoot = 10;
 		
 		// <summary>
         // Prevent network traffic. Doesn't work with classic verification.

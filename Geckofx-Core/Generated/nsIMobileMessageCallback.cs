@@ -32,12 +32,12 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0e6f8ace-cc59-11e3-aad5-e32847abfda1")]
+	[Guid("19b24f93-7c02-4acf-addd-2f53bbb4e3fd")]
 	public interface nsIMobileMessageCallback
 	{
 		
 		/// <summary>
-        /// |message| can be nsIDOMMoz{Mms,Sms}Message.
+        /// |message| can be nsI{Mms,Sms}Message.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyMessageSent([MarshalAs(UnmanagedType.Interface)] nsISupports message);
@@ -46,7 +46,7 @@ namespace Gecko
 		void NotifySendMessageFailed(int error, [MarshalAs(UnmanagedType.Interface)] nsISupports message);
 		
 		/// <summary>
-        /// |message| can be nsIDOMMoz{Mms,Sms}Message.
+        /// |message| can be nsI{Mms,Sms}Message.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyMessageGot([MarshalAs(UnmanagedType.Interface)] nsISupports message);
@@ -67,7 +67,7 @@ namespace Gecko
 		void NotifyMarkMessageReadFailed(int error);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifySegmentInfoForTextGot([MarshalAs(UnmanagedType.Interface)] nsIDOMMozSmsSegmentInfo info);
+		void NotifySegmentInfoForTextGot(int segments, int charsPerSegment, int charsAvailableInLastSegment);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyGetSegmentInfoForTextFailed(int error);
@@ -76,10 +76,16 @@ namespace Gecko
         /// SMSC Address get/set result
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyGetSmscAddress([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSmscAddress);
+		void NotifyGetSmscAddress([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aSmscAddress, uint aTypeOfNumber, uint aNumberPlanIdentification);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyGetSmscAddressFailed(int error);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifySetSmscAddress();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifySetSmscAddressFailed(int error);
 	}
 	
 	/// <summary>nsIMobileMessageCallbackConsts </summary>
@@ -89,7 +95,7 @@ namespace Gecko
 		// <summary>
         // All SMS related errors.
         // Make sure to keep this list in sync with the list in:
-        // embedding/android/GeckoSmsManager.java
+        // mobile/android/base/GeckoSmsManager.java
         // </summary>
 		public const ushort SUCCESS_NO_ERROR = 0;
 		
@@ -125,5 +131,23 @@ namespace Gecko
 		
 		// 
 		public const ushort SIM_NOT_MATCHED_ERROR = 11;
+		
+		// 
+		public const ushort NETWORK_PROBLEMS_ERROR = 12;
+		
+		// 
+		public const ushort GENERAL_PROBLEMS_ERROR = 13;
+		
+		// 
+		public const ushort SERVICE_NOT_AVAILABLE_ERROR = 14;
+		
+		// 
+		public const ushort MESSAGE_TOO_LONG_FOR_NETWORK_ERROR = 15;
+		
+		// 
+		public const ushort SERVICE_NOT_SUPPORTED_ERROR = 16;
+		
+		// 
+		public const ushort RETRY_REQUIRED_ERROR = 17;
 	}
 }

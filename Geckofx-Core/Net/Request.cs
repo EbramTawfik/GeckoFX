@@ -135,10 +135,14 @@ namespace Gecko.Net
 			{
 
 			}
+            
+            // This interface no longer exists in gecko 45
+#if false
 			if ( request is nsIURIChecker )
 			{
 				return new UriChecker( ( nsIURIChecker ) request );
 			}
+#endif
 			return new Request( request );
 		}
 	}

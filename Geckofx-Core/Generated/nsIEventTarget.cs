@@ -32,28 +32,9 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4e8febe4-6631-49dc-8ac9-308c1cb9b09c")]
+	[Guid("f9d60700-e6dc-4a72-9537-689058655472")]
 	public interface nsIEventTarget
 	{
-		
-		/// <summary>
-        /// Dispatch an event to this event target.  This function may be called from
-        /// any thread, and it may be called re-entrantly.
-        ///
-        /// @param event
-        /// The event to dispatch.
-        /// @param flags
-        /// The flags modifying event dispatch.  The flags are described in detail
-        /// below.
-        ///
-        /// @throws NS_ERROR_INVALID_ARG
-        /// Indicates that event is null.
-        /// @throws NS_ERROR_UNEXPECTED
-        /// Indicates that the thread is shutting down and has finished processing
-        /// events, so this event would never run and has not been dispatched.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable @event, uint flags);
 		
 		/// <summary>
         /// Check to see if this event target is associated with the current thread.
@@ -66,6 +47,47 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsOnCurrentThread();
+		
+		/// <summary>
+        /// Dispatch an event to this event target.  This function may be called from
+        /// any thread, and it may be called re-entrantly.
+        ///
+        /// @param event
+        /// The alreadyAddRefed<> event to dispatch.
+        /// NOTE that the event will be leaked if it fails to dispatch. Also note
+        /// that if "flags" includes DISPATCH_SYNC, it may return error from Run()
+        /// after a successful dispatch. In that case, the event is not leaked.
+        /// @param flags
+        /// The flags modifying event dispatch.  The flags are described in detail
+        /// below.
+        ///
+        /// @throws NS_ERROR_INVALID_ARG
+        /// Indicates that event is null.
+        /// @throws NS_ERROR_UNEXPECTED
+        /// Indicates that the thread is shutting down and has finished processing
+        /// events, so this event would never run and has not been dispatched.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DispatchFromC(System.IntPtr @event, uint flags);
+		
+		/// <summary>
+        /// Version of Dispatch to expose to JS, which doesn't require an alreadyAddRefed<>
+        /// (it will be converted to that internally)
+        ///
+        /// @param event
+        /// The (raw) event to dispatch.
+        /// @param flags
+        /// The flags modifying event dispatch.  The flags are described in detail
+        /// below.
+        ///
+        /// @throws NS_ERROR_INVALID_ARG
+        /// Indicates that event is null.
+        /// @throws NS_ERROR_UNEXPECTED
+        /// Indicates that the thread is shutting down and has finished processing
+        /// events, so this event would never run and has not been dispatched.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable @event, uint flags);
 	}
 	
 	/// <summary>nsIEventTargetConsts </summary>

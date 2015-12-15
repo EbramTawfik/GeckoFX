@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3f1fcd83-c5a9-4cd1-a250-7676ca7c7e34")]
+	[Guid("fa9ba95b-ca3b-498a-b889-7c79cf28fee8")]
 	public interface nsISSLStatus
 	{
 		
@@ -48,15 +48,17 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIX509Cert GetServerCertAttribute();
 		
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetCipherNameAttribute();
+		void GetCipherNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCipherName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetKeyLengthAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetSecretKeyLengthAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetProtocolVersionAttribute();
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -84,5 +86,22 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsExtendedValidationAttribute();
+	}
+	
+	/// <summary>nsISSLStatusConsts </summary>
+	public class nsISSLStatusConsts
+	{
+		
+		// 
+		public const short SSL_VERSION_3 = 0;
+		
+		// 
+		public const short TLS_VERSION_1 = 1;
+		
+		// 
+		public const short TLS_VERSION_1_1 = 2;
+		
+		// 
+		public const short TLS_VERSION_1_2 = 3;
 	}
 }

@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b6ed093c-6ea0-4141-a8eb-f99645162651")]
+	[Guid("c03ec4ed-8a7e-40e7-99da-c609f1760d0c")]
 	public interface nsIGamepadServiceTest
 	{
 		
@@ -43,6 +43,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NewButtonEvent(uint index, uint button, [MarshalAs(UnmanagedType.U1)] bool pressed);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NewButtonValueEvent(uint index, uint button, [MarshalAs(UnmanagedType.U1)] bool pressed, double value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NewAxisMoveEvent(uint index, uint axis, double value);

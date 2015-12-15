@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a37171e0-9f43-41ea-a25c-0b78a3329683")]
+	[Guid("acb69403-0dcb-4db0-9ffc-8a22cc56c4eb")]
 	public interface nsIDOMTransitionEvent : nsIDOMEvent
 	{
 		
@@ -225,6 +225,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr InternalDOMEvent();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopCrossProcessForwarding();
 		
 		/// <summary>
         /// Transition events are defined in:

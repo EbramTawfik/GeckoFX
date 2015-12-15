@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("E94AB245-B40D-4154-8B7F-B6E0F2461031")]
+	[Guid("ca63784d-959c-4c3a-9a59-234a2a520de0")]
 	public interface nsITimedChannel
 	{
 		
@@ -132,6 +132,26 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAllRedirectsSameOriginAttribute([MarshalAs(UnmanagedType.U1)] bool aAllRedirectsSameOrigin);
+		
+		/// <summary>
+        /// This flag is set to false if the timing allow check fails
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAllRedirectsPassTimingAllowCheckAttribute();
+		
+		/// <summary>
+        /// This flag is set to false if the timing allow check fails
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAllRedirectsPassTimingAllowCheckAttribute([MarshalAs(UnmanagedType.U1)] bool aAllRedirectsPassTimingAllowCheck);
+		
+		/// <summary>
+        /// timing info for the resourceTiming object.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool TimingAllowCheck([MarshalAs(UnmanagedType.Interface)] nsIPrincipal origin);
 		
 		/// <summary>
         /// cache

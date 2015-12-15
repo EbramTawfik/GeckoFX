@@ -31,7 +31,7 @@ namespace Gecko
     /// structured clone algorithm.
     ///
     /// You can copy an object into an nsIStructuredCloneContainer using
-    /// initFromVariant or initFromBase64.  It's an error to initialize an
+    /// initFromJSVal or initFromBase64.  It's an error to initialize an
     /// nsIStructuredCloneContainer more than once.
     ///
     /// Once you've initialized the container, you can get a copy of the object it
@@ -41,7 +41,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c8852f01-4c05-47c3-acca-253a958f39f6")]
+	[Guid("c664aae7-0d67-4155-a2dd-a3861778626f")]
 	public interface nsIStructuredCloneContainer
 	{
 		
@@ -61,8 +61,16 @@ namespace Gecko
 		void InitFromBase64([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aData, uint aFormatVersion, System.IntPtr jsContext);
 		
 		/// <summary>
-        /// Deserialize the object this conatiner holds, returning it wrapped as
+        /// Deserializes this structured clone container returning it as a jsval.
+        /// Can be called on main and worker threads.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal DeserializeToJsval(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Deserialize the object this container holds, returning it wrapped as
         /// an nsIVariant.
+        /// Main thread only!
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

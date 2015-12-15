@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9e456297-ba3e-42b1-92bd-b7db014268cb")]
+	[Guid("1E4F3AE1-B737-431F-A95D-31FA8DA70199")]
 	public interface nsIExternalHelperAppService
 	{
 		
@@ -43,16 +43,19 @@ namespace Gecko
         /// with this data.
         /// @param aMimeContentType The content type of the incoming data
         /// @param aRequest The request corresponding to the incoming data
-        /// @param aWindowContext Use GetInterface to retrieve properties like the
-        /// dom window or parent window...
-        /// The service might need this in order to bring up dialogs.
+        /// @param aContentContext Used in processing content document refresh
+        /// headers after target content is downloaded. Note in e10s land
+        /// this is likely a CPOW that points to a window in the child process.
         /// @param aForceSave True to always save this content to disk, regardless of
         /// nsIMIMEInfo and other such influences.
+        /// @param aWindowContext Used in parenting helper app dialogs, usually
+        /// points to the parent browser window. This parameter may be null,
+        /// in which case dialogs will be parented to aContentContext.
         /// @return A nsIStreamListener which the caller should pump the data into.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStreamListener DoContent([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeContentType, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext, [MarshalAs(UnmanagedType.U1)] bool aForceSave);
+		nsIStreamListener DoContent([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeContentType, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aContentContext, [MarshalAs(UnmanagedType.U1)] bool aForceSave, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>
         /// Returns true if data from a URL with this extension combination

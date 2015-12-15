@@ -35,15 +35,19 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c8126129-8dac-43cd-b1ba-3896fba2dd01")]
+	[Guid("e61377d2-910e-4c65-a64b-428d150e1fd1")]
 	public interface imgILoader
 	{
 		
 		/// <summary>
         /// Start the load and decode of an image.
         /// @param aURI the URI to load
-        /// @param aInitialDocumentURI the URI that 'initiated' the load -- used for 3rd party cookie blocking
+        /// @param aInitialDocumentURI the URI that 'initiated' the load -- used for
+        /// 3rd party cookie blocking
         /// @param aReferrerURI the 'referring' URI
+        /// @param aReferrerPolicy the policy to apply to sending referrers.
+        /// examples: "default", "never", "always", "origin"
+        /// (see W3C referrer-policy spec for valid policy strings)
         /// @param aLoadingPrincipal the principal of the loading document
         /// @param aLoadGroup Loadgroup to put the image load into
         /// @param aObserver the observer (may be null)
@@ -51,13 +55,16 @@ namespace Gecko
         /// @param aLoadFlags Load flags for the request
         /// @param aCacheKey cache key to use for a load if the original
         /// image came from a request that had post data
-        /// libpr0n does NOT keep a strong ref to the observer; this prevents
+        /// @param aContentPolicyType [optional] the nsContentPolicyType to
+        /// use for this load. Defaults to
+        /// nsIContentPolicy::TYPE_IMAGE
+        /// ImageLib does NOT keep a strong ref to the observer; this prevents
         /// reference cycles.  This means that callers of loadImage should
         /// make sure to Cancel() the resulting request before the observer
         /// goes away.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIRequest LoadImageXPCOM([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aInitialDocumentURL, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aLoadingPrincipal, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup, imgINotificationObserver aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports aCX, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISupports cacheKey, [MarshalAs(UnmanagedType.Interface)] nsIChannelPolicy channelPolicy);
+		imgIRequest LoadImageXPCOM([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aInitialDocumentURL, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aReferrerPolicy, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aLoadingPrincipal, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup, imgINotificationObserver aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports aCX, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISupports cacheKey, System.IntPtr aContentPolicyType);
 		
 		/// <summary>
         /// Start the load and decode of an image.
@@ -67,12 +74,12 @@ namespace Gecko
         /// @param aObserver the observer (may be null)
         /// @param cx some random data
         /// @param aListener [out]
-        /// A listener that you must send the channel's notifications and data to.
-        /// Can be null, in which case imagelib has found a cached image and is
-        /// not interested in the data. @aChannel will be canceled for you in
-        /// this case.
+        /// A listener that you must send the channel's notifications and data
+        /// to.  Can be null, in which case imagelib has found a cached image
+        /// and is not interested in the data. @aChannel will be canceled for
+        /// you in this case.
         ///
-        /// libpr0n does NOT keep a strong ref to the observer; this prevents
+        /// ImageLib does NOT keep a strong ref to the observer; this prevents
         /// reference cycles.  This means that callers of loadImageWithChannel should
         /// make sure to Cancel() the resulting request before the observer goes away.
         /// </summary>

@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4a5a5fa6-2783-4171-b8bb-cae4ab06e6ff")]
+	[Guid("7a1dc95e-2c05-4171-8bde-275f094dda1d")]
 	public interface nsIDOMTimeEvent : nsIDOMEvent
 	{
 		
@@ -227,6 +227,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr InternalDOMEvent();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopCrossProcessForwarding();
 		
 		/// <summary>
         /// The SMIL TimeEvent interface.

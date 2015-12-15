@@ -31,9 +31,15 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cac9d8e8-0d53-4fa8-9903-bb367e4fa1fe")]
+	[Guid("18bdefde-e57b-11e4-832a-000c29a57fff")]
 	public interface nsIScriptError : nsIConsoleMessage
 	{
+		
+		/// <summary>
+        /// The log level of this message.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new uint GetLogLevelAttribute();
 		
 		/// <summary>
         /// The time (in milliseconds from the Epoch) that the message instance
@@ -102,6 +108,12 @@ namespace Gecko
 		bool GetIsFromPrivateWindowAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetStackAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetStackAttribute(Gecko.JsVal aStack);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase message, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sourceName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase sourceLine, uint lineNumber, uint columnNumber, uint flags, [MarshalAs(UnmanagedType.LPStr)] string category);
 		
 		/// <summary>
@@ -131,5 +143,9 @@ namespace Gecko
 		// <summary>
         //error or warning is due to strict option </summary>
 		public const ulong strictFlag = 0x4;
+		
+		// <summary>
+        //just a log message </summary>
+		public const ulong infoFlag = 0x8;
 	}
 }

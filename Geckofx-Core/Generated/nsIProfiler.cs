@@ -27,51 +27,156 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///This Source Code Form is subject to the terms of the Mozilla Public
-    /// License, v. 2.0. If a copy of the MPL was not distributed with this
-    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+    /// Start-up parameters for subprocesses are passed through nsIObserverService,
+    /// which, unfortunately, means we need to implement nsISupports in order to
+    /// go through it.
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f7f3709c-04a9-45c6-8e34-40f762654a78")]
-	public interface nsIProfiler
+	[Guid("0a175ba7-8fcf-4ce9-9c4b-ccc6272f4425")]
+	public interface nsIProfilerStartParams
 	{
 		
 		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this
-        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+        /// Start-up parameters for subprocesses are passed through nsIObserverService,
+        /// which, unfortunately, means we need to implement nsISupports in order to
+        /// go through it.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetEntriesAttribute();
+		
+		/// <summary>
+        /// Start-up parameters for subprocesses are passed through nsIObserverService,
+        /// which, unfortunately, means we need to implement nsISupports in order to
+        /// go through it.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetEntriesAttribute(uint aEntries);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		double GetIntervalAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIntervalAttribute(double aInterval);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetFeatures();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetThreadFilterNames();
+	}
+	
+	/// <summary>nsIProfiler </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("ead3f75c-0e0e-4fbb-901c-1e5392ef5b2a")]
+	public interface nsIProfiler
+	{
+		
+		/// <summary>Member CanProfile </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool CanProfile();
+		
+		/// <summary>Member StartProfiler </summary>
+		/// <param name='aEntries'> </param>
+		/// <param name='aInterval'> </param>
+		/// <param name='aFeatures'> </param>
+		/// <param name='aFeatureCount'> </param>
+		/// <param name='aThreadNameFilters'> </param>
+		/// <param name='aFilterCount'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StartProfiler(uint aEntries, double aInterval, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] string[] aFeatures, uint aFeatureCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] string[] aThreadNameFilters, uint aFilterCount);
 		
+		/// <summary>Member StopProfiler </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StopProfiler();
 		
+		/// <summary>Member IsPaused </summary>
+		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsPaused();
 		
+		/// <summary>Member PauseSampling </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PauseSampling();
 		
+		/// <summary>Member ResumeSampling </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResumeSampling();
 		
+		/// <summary>Member AddMarker </summary>
+		/// <param name='aMarker'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddMarker([MarshalAs(UnmanagedType.LPStr)] string aMarker);
 		
+		/// <summary>
+        /// Returns the JSON string of the profile. If aSinceTime is passed, only
+        /// report samples taken at >= aSinceTime.
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.StringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetProfile();
+		string GetProfile(double aSinceTime);
 		
+		/// <summary>
+        /// Returns a JS object of the profile. If aSinceTime is passed, only report
+        /// samples taken at >= aSinceTime.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetProfileData(System.IntPtr jsContext);
+		Gecko.JsVal GetProfileData(double aSinceTime, System.IntPtr jsContext);
 		
+		/// <summary>Member GetProfileDataAsync </summary>
+		/// <param name='aSinceTime'> </param>
+		/// <param name='jsContext'> </param>
+		/// <returns>A nsISupports</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports GetProfileDataAsync(double aSinceTime, System.IntPtr jsContext);
+		
+		/// <summary>Member IsActive </summary>
+		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsActive();
 		
+		/// <summary>Member GetFeatures </summary>
+		/// <param name='aCount'> </param>
+		/// <param name='aFeatures'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetFeatures(ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] aFeatures);
+		
+		/// <summary>
+        /// The starting parameters that were sent to the profiler for sampling.
+        /// If the profiler is not currently sampling, this will return null.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIProfilerStartParams GetStartParamsAttribute();
+		
+		/// <summary>
+        /// The profileGatherer will be null if the profiler is not currently
+        /// active.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports GetProfileGathererAttribute();
+		
+		/// <summary>Member GetBufferInfo </summary>
+		/// <param name='aCurrentPosition'> </param>
+		/// <param name='aTotalSize'> </param>
+		/// <param name='aGeneration'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBufferInfo(ref uint aCurrentPosition, ref uint aTotalSize, ref uint aGeneration);
+		
+		/// <summary>
+        /// Returns the elapsed time, in milliseconds, since the profiler's epoch.
+        /// The epoch is guaranteed to be constant for the duration of the
+        /// process, but is otherwise arbitrary.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		double GetElapsedTime();
 		
 		/// <summary>
         /// Returns a JSON string of an array of shared library objects.
@@ -85,5 +190,11 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSharedLibraryInformation([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		
+		/// <summary>
+        /// Dump the collected profile to a file.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DumpProfileToFile([MarshalAs(UnmanagedType.LPStr)] string aFilename);
 	}
 }

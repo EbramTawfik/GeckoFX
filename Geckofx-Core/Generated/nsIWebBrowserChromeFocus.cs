@@ -33,20 +33,22 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d2206418-1dd1-11b2-8e55-acddcd2bcfb8")]
+	[Guid("947B2EE6-51ED-4C2B-9F45-426C27CA84C6")]
 	public interface nsIWebBrowserChromeFocus
 	{
 		
 		/// <summary>
-        /// Set the focus at the next focusable element in the chrome.
+        /// Set the focus at the next focusable element in the chrome. If
+        /// aForDocumentNavigation is true, this was a document navigation, so
+        /// focus the parent window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FocusNextElement();
+		void FocusNextElement([MarshalAs(UnmanagedType.U1)] bool aForDocumentNavigation);
 		
 		/// <summary>
         /// Set the focus at the previous focusable element in the chrome.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FocusPrevElement();
+		void FocusPrevElement([MarshalAs(UnmanagedType.U1)] bool aForDocumentNavigation);
 	}
 }

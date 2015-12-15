@@ -43,7 +43,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d8786c64-eb49-4a0b-b42c-0936a745fbe8")]
+	[Guid("2a8c6334-a5e6-4ec3-9865-1256541446fb")]
 	public interface nsITransport
 	{
 		
@@ -188,9 +188,9 @@ namespace Gecko
         /// of the status code.  this value is relative to aProgressMax.
         /// @param aProgressMax
         /// the maximum amount of data that will be read or written.  if
-        /// unknown, 0xFFFFFFFF will be passed.
+        /// unknown, -1 will be passed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnTransportStatus([MarshalAs(UnmanagedType.Interface)] nsITransport aTransport, int aStatus, ulong aProgress, ulong aProgressMax);
+		void OnTransportStatus([MarshalAs(UnmanagedType.Interface)] nsITransport aTransport, int aStatus, long aProgress, long aProgressMax);
 	}
 }

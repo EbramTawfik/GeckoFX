@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8790e2cc-2c68-4ce9-90dc-f68e1b6e4886")]
+	[Guid("8653d76b-6805-41d2-8ea5-3b14fb4e682d")]
 	public interface nsIGonkTelephonyService : nsITelephonyService
 	{
 		
@@ -61,10 +61,10 @@ namespace Gecko
         /// Functionality for making and managing phone calls.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Dial(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number, [MarshalAs(UnmanagedType.U1)] bool isEmergency, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
+		new void Dial(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number, [MarshalAs(UnmanagedType.U1)] bool isEmergency, [MarshalAs(UnmanagedType.Interface)] nsITelephonyDialCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void HangUp(uint clientId, uint callIndex);
+		new void SendTones(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase dtmfChars, uint pauseDuration, uint toneDuration, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StartTone(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase dtmfChar);
@@ -73,28 +73,53 @@ namespace Gecko
 		new void StopTone(uint clientId);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AnswerCall(uint clientId, uint callIndex);
+		new void AnswerCall(uint clientId, uint callIndex, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RejectCall(uint clientId, uint callIndex);
+		new void RejectCall(uint clientId, uint callIndex, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void HoldCall(uint clientId, uint callIndex);
+		new void HangUpCall(uint clientId, uint callIndex, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ResumeCall(uint clientId, uint callIndex);
+		new void HoldCall(uint clientId, uint callIndex, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ConferenceCall(uint clientId);
+		new void ResumeCall(uint clientId, uint callIndex, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SeparateCall(uint clientId, uint callIndex);
+		new void ConferenceCall(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void HoldConference(uint clientId);
+		new void SeparateCall(uint clientId, uint callIndex, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ResumeConference(uint clientId);
+		new void HangUpConference(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void HoldConference(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ResumeConference(uint clientId, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
+		
+		/// <summary>
+        /// Send an USSD on existing session. It results in error if the session is
+        /// not existed.
+        ///
+        /// If successful, callback.notifySuccess() will be called.
+        /// Otherwise, callback.notifyError() will be called.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SendUSSD(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase ussd, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
+		
+		/// <summary>
+        /// Cancel an existing USSD session.
+        ///
+        /// If successful, callback.notifySuccess() will be called.
+        /// Otherwise, callback.notifyError() will be called.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void CancelUSSD(uint cliendId, [MarshalAs(UnmanagedType.Interface)] nsITelephonyCallback callback);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -115,21 +140,18 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyCallDisconnected(uint clientId, ref Gecko.JsVal call);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyCallRing();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyCallStateChanged(uint clientId, ref Gecko.JsVal call, [MarshalAs(UnmanagedType.U1)] bool skipStateConversion);
+		void NotifyCurrentCalls(uint clientId, ref Gecko.JsVal calls);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyCdmaCallWaiting(uint clientId, ref Gecko.JsVal waitingCall);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifySupplementaryService(uint clientId, int callIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase notification);
+		void NotifySupplementaryService(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase number, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase notification);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyConferenceCallStateChanged(short state);
+		void NotifyUssdReceived(uint clientId, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase message, [MarshalAs(UnmanagedType.U1)] bool sessionEnded);
 	}
 }

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("871cf229-2b21-4f04-b24d-e08061f14815")]
+	[Guid("f35733bc-114b-49ce-a8dd-a423f19318bc")]
 	public interface nsIParentalControlsService
 	{
 		
@@ -51,6 +51,17 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBlockFileDownloadsEnabledAttribute();
+		
+		/// <summary>
+        /// Check if the user can do the prescibed action for this uri.
+        ///
+        /// @param aAction             Action being performed
+        /// @param aUri                The uri requesting this action
+        /// @param aWindow             The window generating this event.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsAllowed(short aAction, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri);
 		
 		/// <summary>
         /// Request that blocked URI(s) be allowed through parental
@@ -97,6 +108,96 @@ namespace Gecko
 	/// <summary>nsIParentalControlsServiceConsts </summary>
 	public class nsIParentalControlsServiceConsts
 	{
+		
+		// <summary>
+        // Action types that can be blocked for users.
+        // </summary>
+		public const short DOWNLOAD = 1;
+		
+		// <summary>
+        // Downloading files
+        // </summary>
+		public const short INSTALL_EXTENSION = 2;
+		
+		// <summary>
+        // Installing extensions
+        // </summary>
+		public const short INSTALL_APP = 3;
+		
+		// <summary>
+        // Installing webapps
+        // </summary>
+		public const short BROWSE = 4;
+		
+		// <summary>
+        // Opening specific urls
+        // </summary>
+		public const short SHARE = 5;
+		
+		// <summary>
+        // Sharing
+        // </summary>
+		public const short BOOKMARK = 6;
+		
+		// <summary>
+        // Creating bookmarks
+        // </summary>
+		public const short ADD_CONTACT = 7;
+		
+		// <summary>
+        // Add contacts to the system database
+        // </summary>
+		public const short SET_IMAGE = 8;
+		
+		// <summary>
+        // Setting images as wall paper
+        // </summary>
+		public const short MODIFY_ACCOUNTS = 9;
+		
+		// <summary>
+        // Modifying system accounts
+        // </summary>
+		public const short REMOTE_DEBUGGING = 10;
+		
+		// <summary>
+        // Remote debugging
+        // </summary>
+		public const short IMPORT_SETTINGS = 11;
+		
+		// <summary>
+        // Importing settings from other apps
+        // </summary>
+		public const short PRIVATE_BROWSING = 12;
+		
+		// <summary>
+        // Disallow usage of private browsing
+        // </summary>
+		public const short DATA_CHOICES = 13;
+		
+		// <summary>
+        // Choose whether or not to send usage information
+        // </summary>
+		public const short CLEAR_HISTORY = 14;
+		
+		// <summary>
+        // Clear browsing history
+        // </summary>
+		public const short MASTER_PASSWORD = 15;
+		
+		// <summary>
+        // Setting master password for logins
+        // </summary>
+		public const short GUEST_BROWSING = 16;
+		
+		// <summary>
+        // Disallow usage of guest browsing
+        // </summary>
+		public const short ADVANCED_SETTINGS = 17;
+		
+		// <summary>
+        // Advanced settings
+        // </summary>
+		public const short CAMERA_MICROPHONE = 18;
 		
 		// <summary>
         // Log entry types. Additional types can be defined and implemented

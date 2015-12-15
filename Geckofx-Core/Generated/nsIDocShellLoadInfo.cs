@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c8d3b1e1-565a-427e-9d68-b109910ce9b7")]
+	[Guid("e7570e5a-f1d6-452d-b4f8-b35fdc63aa03")]
 	public interface nsIDocShellLoadInfo
 	{
 		
@@ -46,6 +46,32 @@ namespace Gecko
         ///This is the referrer for the load. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetReferrerAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
+		
+		/// <summary>
+        /// The originalURI to be passed to nsIDocShell.internalLoad. May be null.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIURI GetOriginalURIAttribute();
+		
+		/// <summary>
+        /// The originalURI to be passed to nsIDocShell.internalLoad. May be null.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOriginalURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aOriginalURI);
+		
+		/// <summary>
+        /// loadReplace flag to be passed to nsIDocShell.internalLoad.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetLoadReplaceAttribute();
+		
+		/// <summary>
+        /// loadReplace flag to be passed to nsIDocShell.internalLoad.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetLoadReplaceAttribute([MarshalAs(UnmanagedType.U1)] bool aLoadReplace);
 		
 		/// <summary>
         ///The owner of the load, that is, the entity responsible for
@@ -166,6 +192,20 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSendReferrerAttribute([MarshalAs(UnmanagedType.U1)] bool aSendReferrer);
+		
+		/// <summary>
+        ///Referrer policy for the load. This attribute holds one of
+        /// the values (REFERRER_POLICY_*) defined in nsIHttpChannel.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetReferrerPolicyAttribute();
+		
+		/// <summary>
+        ///Referrer policy for the load. This attribute holds one of
+        /// the values (REFERRER_POLICY_*) defined in nsIHttpChannel.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetReferrerPolicyAttribute(System.IntPtr aReferrerPolicy);
 		
 		/// <summary>
         ///True if the docshell has been created to load an iframe where the

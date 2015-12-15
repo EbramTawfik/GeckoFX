@@ -52,7 +52,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c9fec678-f194-43c9-96b0-7bd9dbdd6bb0")]
+	[Guid("a15cd7ef-f7a0-43d2-be86-8bf488dc760b")]
 	public interface nsIPermissionManager
 	{
 		
@@ -95,18 +95,17 @@ namespace Gecko
 		void AddFromPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string typed, uint permission, uint expireType, long expireTime);
 		
 		/// <summary>
-        /// Remove permission information for a given host string and permission type.
-        /// The host string represents the exact entry in the permission list (such as
-        /// obtained from the enumerator), not a URI which that permission might apply
-        /// to.
+        /// Remove permission information for a given URI and permission type. This will
+        /// remove the permission for the entire host described by the uri, acting as the
+        /// opposite operation to the add() method.
         ///
-        /// @param host   the host to remove the permission for
+        /// @param uri    the uri to remove the permission for
         /// @param type   a case-sensitive ASCII string, identifying the consumer.
         /// The type must have been previously registered using the
         /// add() method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase host, [MarshalAs(UnmanagedType.LPStr)] string type);
+		void Remove([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.LPStr)] string type);
 		
 		/// <summary>
         /// Remove permission information for a given principal.
@@ -118,10 +117,24 @@ namespace Gecko
 		void RemoveFromPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string type);
 		
 		/// <summary>
+        /// Remove the given permission from the permission manager.
+        ///
+        /// @param perm   a permission obtained from the permission manager.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemovePermission([MarshalAs(UnmanagedType.Interface)] nsIPermission perm);
+		
+		/// <summary>
         /// Clear permission information for all websites.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveAll();
+		
+		/// <summary>
+        /// Clear all permission information added since the specified time.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveAllSince(long since);
 		
 		/// <summary>
         /// Test whether a website has permission to perform the given action.
@@ -219,13 +232,10 @@ namespace Gecko
 		nsISimpleEnumerator GetEnumeratorAttribute();
 		
 		/// <summary>
-        /// Remove all permissions associated with a given app id.
-        /// @param aAppId       The appId of the app
-        /// @param aBrowserOnly Whether we should remove permissions associated with
-        /// a browser element (true) or all permissions (false).
+        /// Remove all permissions that will match the origin pattern.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePermissionsForApp(uint appId, [MarshalAs(UnmanagedType.U1)] bool browserOnly);
+		void RemovePermissionsWithAttributes([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase patternAsJSON);
 		
 		/// <summary>
         /// If the current permission is set to expire, reset the expiration time. If
@@ -243,6 +253,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UpdateExpireTime([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string type, [MarshalAs(UnmanagedType.U1)] bool exactHost, ulong sessionExpireTime, ulong persistentExpireTime);
+		
+		/// <summary>
+        /// Remove all current permission settings and get permission settings from
+        /// chrome process.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RefreshPermission();
 	}
 	
 	/// <summary>nsIPermissionManagerConsts </summary>

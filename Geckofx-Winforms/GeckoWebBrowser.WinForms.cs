@@ -161,7 +161,7 @@ namespace Gecko
 
     				{
     					var domWindow = WebBrowser.GetContentDOMWindowAttribute();
-    					EventTarget = domWindow.GetWindowRootAttribute().AsComPtr();
+                        EventTarget = new WebIDL.Window((nsISupports)domWindow).WindowRoot.AsComPtr();    					
     					Marshal.ReleaseComObject(domWindow);
     				}
 
@@ -226,7 +226,13 @@ namespace Gecko
 						{
 							try
 							{
+#if false
 								if (!window.GetClosedAttribute()) window.Close();
+#else
+							    var w = new WebIDL.Window((nsISupports) window);
+							    if (!w.Closed)
+							        w.Close();
+#endif
 							}
 							finally
 							{

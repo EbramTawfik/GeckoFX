@@ -99,6 +99,14 @@ namespace Gecko
         // so it might be deleted before we try to read from it.
         // </summary>
 		public const long DEFER_OPEN = 1<<4;
+		
+		// <summary>
+        // This flag has no effect and is totally ignored on any platform except
+        // Windows since this is the default behavior on POSIX systems. On Windows
+        // if this flag is set then the stream is opened in a special mode that
+        // allows the OS to delete the file from disk just like POSIX.
+        // </summary>
+		public const long SHARE_DELETE = 1<<5;
 	}
 	
 	/// <summary>

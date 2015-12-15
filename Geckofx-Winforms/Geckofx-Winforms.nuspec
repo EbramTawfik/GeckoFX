@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Geckofx</id>
+    <version>$version$</version>
+    <title>geckofx-45</title>
+    <authors>Tom Hindle</authors>
+    <owners>Tom Hindle</owners>
+    <projectUrl>https://bitbucket.org/geckofx/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>library that allows embeding gecko in C# applications.</description>
+    <copyright>Copyright 2015</copyright>
+    <tags>Firefox Gecko Geckofx</tags>
+  </metadata>
+</package>

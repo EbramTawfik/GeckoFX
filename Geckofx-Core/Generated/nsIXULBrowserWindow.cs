@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e4ee85a0-645d-11e3-949a-0800200c9a66")]
+	[Guid("a8675fa9-c8b4-4350-9803-c38f344a9e38")]
 	public interface nsIXULBrowserWindow
 	{
 		
@@ -55,6 +55,30 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnBeforeLinkTraversal([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase originalTarget, [MarshalAs(UnmanagedType.Interface)] nsIURI linkURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode linkNode, [MarshalAs(UnmanagedType.U1)] bool isAppTab, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase retval);
+		
+		/// <summary>
+        /// Find the initial browser of the window and set its remote attribute.
+        /// This can be used to ensure that there is a remote browser in a new
+        /// window when it first spawns.
+        ///
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsITabParent ForceInitialBrowserRemote();
+		
+		/// <summary>
+        /// Determines whether a load should continue.
+        ///
+        /// @param aDocShell
+        /// The docshell performing the load.
+        /// @param aURI
+        /// The URI being loaded.
+        /// @param aReferrer
+        /// The referrer of the load.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool ShouldLoadURI([MarshalAs(UnmanagedType.Interface)] nsIDocShell aDocShell, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
 		
 		/// <summary>
         /// Show/hide a tooltip (when the user mouses over a link, say).

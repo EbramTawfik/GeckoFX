@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ceb874cd-cc1a-4e65-b404-cc2d3e42425f")]
+	[Guid("72c4e583-389d-4d1b-9424-702feabb6055")]
 	public interface nsIDOMMozNetworkStatsManager
 	{
 		
@@ -46,7 +46,7 @@ namespace Gecko
         ///NetworkStatsAlarmOptions </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest AddAlarm([MarshalAs(UnmanagedType.Interface)] nsISupports network, int threshold, ref Gecko.JsVal options);
+		nsIDOMDOMRequest AddAlarm([MarshalAs(UnmanagedType.Interface)] nsISupports network, long threshold, ref Gecko.JsVal options);
 		
 		/// <summary>
         /// Obtain all alarms for those networks returned by getAvailableNetworks().

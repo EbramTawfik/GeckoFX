@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e52a09fd-d33a-4f85-be0a-fbd348f0fa27")]
+	[Guid("f3ee57a6-890c-4ce0-a584-8a84bba0292e")]
 	public interface nsIEditorObserver
 	{
 		
@@ -44,5 +44,19 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EditAction();
+		
+		/// <summary>
+        /// Called when editor starts to handle a user action.  I.e., This must be
+        /// called before the first DOM change.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void BeforeEditAction();
+		
+		/// <summary>
+        /// Called after BeforeEditAction() is called but EditorAction() won't be
+        /// called.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CancelEditAction();
 	}
 }

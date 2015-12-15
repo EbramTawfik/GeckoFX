@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3240F793-80FA-4088-987A-9C7378F0AC88")]
+	[Guid("e0377f7b-34a9-4d0f-8191-7e0cba77a52f")]
 	public interface nsIUDPSocket
 	{
 		
@@ -50,9 +50,14 @@ namespace Gecko
         /// local loopback interface.  Otherwise, it will accept connections
         /// from any interface.  To specify a particular network interface,
         /// use initWithAddress.
+        /// @param aPrincipal
+        /// The principal connected to this socket.
+        /// @param aAddressReuse
+        /// If true, the socket is allowed to be bound to an address that is
+        /// already in use. Default is true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(int aPort, [MarshalAs(UnmanagedType.U1)] bool aLoopbackOnly);
+		void Init(int aPort, [MarshalAs(UnmanagedType.U1)] bool aLoopbackOnly, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.U1)] bool aAddressReuse, int argc);
 		
 		/// <summary>
         /// initWithAddress
@@ -62,9 +67,14 @@ namespace Gecko
         ///
         /// @param aAddr
         /// The address to which this UDP socket should be bound.
+        /// @param aPrincipal
+        /// The principal connected to this socket.
+        /// @param aAddressReuse
+        /// If true, the socket is allowed to be bound to an address that is
+        /// already in use. Default is true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithAddress(System.IntPtr aAddr);
+		void InitWithAddress(System.IntPtr aAddr, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.U1)] bool aAddressReuse, int argc);
 		
 		/// <summary>
         /// close
@@ -94,6 +104,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AsyncListen([MarshalAs(UnmanagedType.Interface)] nsIUDPSocketListener aListener);
+		
+		/// <summary>
+        /// Returns the local address of this UDP socket
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsINetAddr GetLocalAddrAttribute();
 		
 		/// <summary>
         /// Returns the port of this UDP socket.
@@ -153,6 +170,29 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint SendWithAddress(System.IntPtr addr, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] data, uint dataLength);
+		
+		/// <summary>
+        /// sendBinaryStream
+        ///
+        /// Send out the datagram to specified remote address and port.
+        ///
+        /// @param host The remote host name.
+        /// @param port The remote port.
+        /// @param stream The input stream to be sent. This must be a buffered stream implementation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendBinaryStream([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase host, ushort port, [MarshalAs(UnmanagedType.Interface)] nsIInputStream stream);
+		
+		/// <summary>
+        /// sendBinaryStreamWithAddress
+        ///
+        /// Send out the datagram to specified remote address and port.
+        ///
+        /// @param addr The remote host address.
+        /// @param stream The input stream to be sent. This must be a buffered stream implementation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendBinaryStreamWithAddress(System.IntPtr addr, [MarshalAs(UnmanagedType.Interface)] nsIInputStream stream);
 		
 		/// <summary>
         /// joinMulticast

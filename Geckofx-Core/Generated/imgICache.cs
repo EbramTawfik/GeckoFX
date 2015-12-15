@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b06e0fa5-d6e2-4fa3-8fc0-7775aed96522")]
+	[Guid("bfdf23ff-378e-402e-8a6c-840f0c82b6c3")]
 	public interface imgICache
 	{
 		
@@ -49,37 +49,37 @@ namespace Gecko
 		void ClearCache([MarshalAs(UnmanagedType.U1)] bool chrome);
 		
 		/// <summary>
-        /// Evict images from the cache.
-        ///
-        /// @param uri The URI to remove.
-        /// @throws NS_ERROR_NOT_AVAILABLE if \a uri was unable to be removed from the cache.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveEntry([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
-		
-		/// <summary>
         /// Find Properties
         /// Used to get properties such as 'type' and 'content-disposition'
-        /// 'type' is a nsISupportsCString containing the images' mime type such as 'image/png'
+        /// 'type' is a nsISupportsCString containing the images' mime type such as
+        /// 'image/png'
         /// 'content-disposition' will be a nsISupportsCString containing the header
-        /// If you call this before any data has been loaded from a URI, it will succeed,
-        /// but come back empty.
+        /// If you call this before any data has been loaded from a URI, it will
+        /// succeed, but come back empty.
         ///
         /// Hopefully this will be removed with bug 805119
         ///
         /// @param uri The URI to look up.
+        /// @param doc Optional pointer to the document that the cache entry belongs to.
         /// @returns NULL if the URL was not found in the cache
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIProperties FindEntryProperties([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
+		nsIProperties FindEntryProperties([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument doc);
 		
 		/// <summary>
-        /// Make this cache instance respect private browsing notifications. This entails clearing
-        /// the chrome and content caches whenever the last-pb-context-exited notification is
-        /// observed.
+        /// Make this cache instance respect private browsing notifications. This
+        /// entails clearing the chrome and content caches whenever the
+        /// last-pb-context-exited notification is observed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RespectPrivacyNotifications();
+		
+		/// <summary>
+        /// Clear the image cache for a document.  Controlled documents are responsible
+        /// for doing this manually when they get destroyed.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ClearCacheForControlledDocument(System.IntPtr doc);
 	}
 }

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("64BA5199-C4F4-4498-BBDC-F8E4C369086C")]
+	[Guid("f3da0c5e-51f5-45f0-b2cd-6be3ab6847ae")]
 	public interface nsITreeBoxObject
 	{
 		
@@ -219,13 +219,13 @@ namespace Gecko
         /// document this boxObject lives in, and the units are CSS pixels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCellAt(int x, int y, ref int row, [MarshalAs(UnmanagedType.Interface)] ref nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase childElt);
+		void GetCellAt(int x, int y, ref int row, [MarshalAs(UnmanagedType.Interface)] ref nsITreeColumn col, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase childElt);
 		
 		/// <summary>
         /// Find the coordinates of an element within a specific cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCoordsForCellItem(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase element, ref int x, ref int y, ref int width, ref int height);
+		void GetCoordsForCellItem(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase element, ref int x, ref int y, ref int width, ref int height);
 		
 		/// <summary>
         /// Determine if the text of a cell is being cropped or not.

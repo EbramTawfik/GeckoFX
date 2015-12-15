@@ -22,7 +22,10 @@ namespace Gecko.Images
 
 		public void Draw(gfxContext context, gfxGraphicsFilter filter, gfxMatrix matrix, gfxRect fill, nsIntRect subImage, uint viewportSize, IntPtr aSVGContext, uint aWhichFrame, uint flags)
 		{
+#if PORT
 			_container.Instance.Draw(context, filter, matrix, fill, subImage, viewportSize, aSVGContext, aWhichFrame, flags);
+#endif
+            throw new NotImplementedException("Need to implement for gecko 45");
 		}
 
 		public IntPtr GetFrame(uint whichFrame, uint flags)
@@ -38,10 +41,13 @@ namespace Gecko.Images
 			_container.Instance.LockImage();
 		}
 
+        // RequestDecode does not exist on inteface in gecko 45
+#if false
 		public void RequestDecode()
 		{
 			_container.Instance.RequestDecode();
 		}
+#endif
 
 		public void RequestDiscard()
 		{
@@ -89,6 +95,7 @@ namespace Gecko.Images
 		{
 			get
 			{
+#if PORT_GECKO45
 				// type1 getter may be faster (C++ vs scriptable)
 				var type1 = _container.Instance.GetType();
 				var type2=_container.Instance.GetTypeAttribute();
@@ -97,6 +104,9 @@ namespace Gecko.Images
 					Console.WriteLine("Warning ImgContainter Type1!=Type2");
 				}
 				return type1;
+#else
+                return _container.Instance.GetTypeAttribute();
+#endif
 			}
 		}
 

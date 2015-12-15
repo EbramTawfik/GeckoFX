@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a9ea96a0-407d-11e3-aa6e-0800200c9a66")]
+	[Guid("4984b669-0ee0-4809-ae96-3358a325a6b0")]
 	public interface nsISystemWorkerManager
 	{
 		
@@ -40,8 +40,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RegisterRilWorker(uint aClientId, ref Gecko.JsVal aWorker, System.IntPtr jsContext);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterNfcWorker(ref Gecko.JsVal aWorker, System.IntPtr jsContext);
 	}
 }

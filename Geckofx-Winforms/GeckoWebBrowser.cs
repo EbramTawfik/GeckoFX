@@ -272,7 +272,12 @@ namespace Gecko
 		        nsITabParent aOpeningTab, ref bool cancel)
 		    {
                 return DoCreateChromeWindow(parent, chromeFlags, contextFlags, uri, ref cancel);
-		    }		    
+		    }
+
+		    public void SetScreenId(uint aScreenId)
+		    {
+                Debug.WriteLine("SetScreenId called");
+		    }
 		}
 
 		#region Navigation
@@ -996,17 +1001,18 @@ namespace Gecko
 			{
 				if (WebBrowser == null)
 					return null;
+                var domDocument = new WebIDL.Window((nsISupports)Window.DomWindow).Document;
 
-				if (_Document != null)
-				{
-					var domDocument = Window.DomWindow.GetDocumentAttribute();
-					if (_Document.NativeDomDocument == domDocument)
-						return _Document;
-					// In some situations when ajax is used dom document wrapper is 1 per page,
-					// therefore we have to create a new one.
-					_Document.Dispose();
-				}
-				_Document = GeckoDomDocument.CreateDomDocumentWraper(Window.DomWindow.GetDocumentAttribute());
+			    if (_Document != null)
+			    {
+                    
+			        if (_Document.NativeDomDocument == domDocument)
+			            return _Document;
+			        // In some situations when ajax is used dom document wrapper is 1 per page,
+			        // therefore we have to create a new one.
+			        _Document.Dispose();
+			    }
+			    _Document = GeckoDomDocument.CreateDomDocumentWraper(domDocument);
 				return _Document;
 			}
 		}
@@ -1090,7 +1096,7 @@ namespace Gecko
 			nsIWebBrowserPersist persist = Xpcom.QueryInterface<nsIWebBrowserPersist>(WebBrowser);
 			if (persist != null)
 			{
-				persist.SaveDocument(DomDocument._domDocument, (nsISupports)Xpcom.NewNativeLocalFile(path), null,
+				persist.SaveDocument((nsISupports)DomDocument._domDocument, (nsISupports)Xpcom.NewNativeLocalFile(path), null,
 					outputMimeType, 0, 0);
 			}
 			else
@@ -1115,6 +1121,7 @@ namespace Gecko
 		}
 		GeckoSessionHistory _History;
 
+#if NO_LONGER_EXISTS_GECKO45
 		public GeckoMarkupDocumentViewer GetMarkupDocumentViewer()
 		{
 			if (WebNav == null)
@@ -1126,6 +1133,7 @@ namespace Gecko
 			
 			return new GeckoMarkupDocumentViewer((nsIMarkupDocumentViewer)contentViewer);
 		}
+#endif
 		
 		#region nsIWebBrowserChrome Members
 
@@ -1438,7 +1446,7 @@ namespace Gecko
 				}
 				else if (uuid == typeof(nsIDOMDocument).GUID)
 				{
-					obj = this.WebBrowser.GetContentDOMWindowAttribute().GetDocumentAttribute();
+					obj = new WebIDL.Window((nsISupports)this.WebBrowser.GetContentDOMWindowAttribute()).Document;
 				}
 			}
 			
@@ -2177,7 +2185,7 @@ namespace Gecko
 		/// <example>AddMessageEventListener("callMe", (message=>MessageBox.Show(message)));</example>
 		public void AddMessageEventListener(string eventName, Action<string> action, bool useCapture)
 		{
-			nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMEventTarget>(Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute());
+			nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMEventTarget>(new WebIDL.Window((nsISupports)Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute())).WindowRoot);
 			if (target != null) {
 				// the argc parameter is the number of optionial argumetns we are passing. 
 				// (useCapture and wantsUntrusted are specified as optional so we always pass 2 when calling interface from C#)
@@ -2204,7 +2212,7 @@ namespace Gecko
 		/// <example>AddMessageEventListener("callMe", (message=>MessageBox.Show(message)));</example>
 		public void RemoveMessageEventListener(string eventName, bool useCapture)
 		{
-			nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMEventTarget>(Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute());
+			nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMEventTarget>(new WebIDL.Window((nsISupports)Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute())).WindowRoot);
 			if (target != null)
 			{
 				target.RemoveEventListener(new nsAString(eventName), this, useCapture);

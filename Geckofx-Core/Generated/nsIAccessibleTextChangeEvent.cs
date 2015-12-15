@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("21e0f8bd-5638-4964-870b-3c8e944ac4c4")]
+	[Guid("1fcc0dfa-93e6-48f4-bbd4-f80eb1d9f2e6")]
 	public interface nsIAccessibleTextChangeEvent : nsIAccessibleEvent
 	{
 		

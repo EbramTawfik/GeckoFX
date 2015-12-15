@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fa580a8d-f4a4-47c5-8ade-4f9786e8d1de")]
+	[Guid("d74a17ac-5b8a-4824-a309-b1f04a3c4aed")]
 	public interface nsISpeculativeConnect
 	{
 		
@@ -52,6 +52,9 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SpeculativeConnect([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aCallbacks);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SpeculativeAnonymousConnect([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aCallbacks);
 	}
 	
 	/// <summary>
@@ -61,7 +64,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a9cdd875-2ef8-4d53-95d6-e4e18f65e0db")]
+	[Guid("f6a0d1e5-369f-4abc-81ae-d370d36e4006")]
 	public interface nsISpeculativeConnectionOverrider
 	{
 		
@@ -97,5 +100,12 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsFromPredictorAttribute();
+		
+		/// <summary>
+        /// by default speculative connections are not made to RFC 1918 addresses
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAllow1918Attribute();
 	}
 }

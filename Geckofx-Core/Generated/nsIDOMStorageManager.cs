@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8096f9ea-fa61-4960-b5d7-fb30ac42c8d8")]
+	[Guid("a15f7ebd-4f35-4e73-a2d8-255d27fd14ee")]
 	public interface nsIDOMStorageManager
 	{
 		
@@ -49,6 +49,8 @@ namespace Gecko
         /// A new object is always returned and it is ensured there is
         /// a storage for the scope created.
         ///
+        /// @param aWindow
+        /// The parent window.
         /// @param aPrincipal
         /// Principal to bound storage to.
         /// @param aDocumentURI
@@ -58,7 +60,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorage CreateStorage([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDocumentURI, [MarshalAs(UnmanagedType.U1)] bool aPrivate);
+		nsIDOMStorage CreateStorage([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aDocumentURI, [MarshalAs(UnmanagedType.U1)] bool aPrivate);
 		
 		/// <summary>
         /// Returns instance of DOM storage object for given principal.
@@ -66,6 +68,8 @@ namespace Gecko
         /// no object is created.  Otherwise, an object (new) for the existing storage
         /// scope is returned.
         ///
+        /// @param aWindow
+        /// The parent window.
         /// @param aPrincipal
         /// Principal to bound storage to.
         /// @param aPrivate
@@ -73,7 +77,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorage GetStorage([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.U1)] bool aPrivate);
+		nsIDOMStorage GetStorage([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.U1)] bool aPrivate);
 		
 		/// <summary>
         /// Clones given storage into this storage manager.

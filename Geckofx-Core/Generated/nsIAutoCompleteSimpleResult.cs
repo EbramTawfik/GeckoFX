@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fe8802f9-c2b7-4141-8e5b-280df3f62251")]
+	[Guid("23de9c96-becb-4d0d-a9bb-1d131ce361b5")]
 	public interface nsIAutoCompleteSimpleResult : nsIAutoCompleteResult
 	{
 		
@@ -158,6 +158,26 @@ namespace Gecko
 		void SetTypeAheadResult([MarshalAs(UnmanagedType.U1)] bool aHidden);
 		
 		/// <summary>
+        /// Inserts a match consisting of the given value, comment, image, style and
+        /// the value to use for defaultIndex completion at a given position.
+        /// @param aIndex
+        /// The index to insert at
+        /// @param aValue
+        /// The value to autocomplete to
+        /// @param aComment
+        /// Comment shown in the autocomplete widget to describe this match
+        /// @param aImage
+        /// Image shown in the autocomplete widget for this match.
+        /// @param aStyle
+        /// Describes how to style the match in the autocomplete widget
+        /// @param aFinalCompleteValue
+        /// Value used when the user confirms selecting this match. If not
+        /// provided, aValue will be used.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InsertMatchAt(int aIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aValue, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aComment, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aImage, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aStyle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aFinalCompleteValue, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aLabel);
+		
+		/// <summary>
         /// Appends a match consisting of the given value, comment, image, style and
         /// the value to use for defaultIndex completion.
         /// @param aValue
@@ -173,7 +193,14 @@ namespace Gecko
         /// provided, aValue will be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendMatch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aValue, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aComment, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aImage, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aStyle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aFinalCompleteValue);
+		void AppendMatch([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aValue, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aComment, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aImage, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aStyle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aFinalCompleteValue, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase aLabel);
+		
+		/// <summary>
+        /// Gets the listener for changes in the result.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAutoCompleteSimpleResultListener GetListener();
 		
 		/// <summary>
         /// Sets a listener for changes in the result.
