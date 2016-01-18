@@ -2,6 +2,25 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.1 ==
+
+This build is an Alpha version.
+
+1. Initial version supporting firefox v45.0
+This version has some fairly major changes.
+
+Rather than publising via a .zip file this version is going to be published via a nuget package.
+This is because, geckofx 45.0 requires a slightly modified firefox build.
+The nuget package will include both geckofx files and the required firefox binary files.
+
+This version is also makes use of a webidl compiler to allow access to apis provided by webidl files.
+This is needed because an increasing number of firefox apis have moved from IDL to webidl.
+The compiler can be found here: https://bitbucket.org/geckofx/webidltogeckofxbindings
+
+The nuget package can be found here:
+https://www.nuget.org/packages/Geckofx45/
+
+
 == v33.0-0.8 ==
 
 1. Using only one context menu for the life of the GeckoBrowser.

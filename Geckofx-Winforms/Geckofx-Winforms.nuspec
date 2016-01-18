@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Geckofx</id>
+    <id>Geckofx45</id>
     <version>$version$</version>
     <title>geckofx-45</title>
     <authors>Tom Hindle</authors>
@@ -11,13 +11,21 @@
     <description>library that allows embeding gecko in C# applications.</description>
     <copyright>Copyright 2015</copyright>
     <tags>Firefox Gecko Geckofx</tags>
+	<references>
+		<reference file="Geckofx-Core.dll" />
+		<reference file="Geckofx-Winforms.dll" />
+	</references>
+	<frameworkAssemblies>
+		<frameworkAssembly assemblyName="System.Windows.Forms"/>
+		<frameworkAssembly assemblyName="System.Drawing"/>
+	</frameworkAssemblies>
   </metadata>
   <files>
-   <file src="bin\Debug\*.dll" target="lib" />
-   <file src="bin\Debug\*.pdb" target="lib" />
+   <file src="bin\Debug\*.dll" target="lib\net35" />
+   <file src="bin\Debug\*.pdb" target="lib\net35" />
    <file src="bin\Debug\*.config" target="lib" />
    <file src="..\PutXulRunnerFolderHere\Firefox\*.dll" target="content\Firefox" />
    <file src="..\PutXulRunnerFolderHere\Firefox\*.ja" target="content\Firefox" />
-   <file src="Geckofx.targets" target="build" />
+   <file src="Geckofx45.targets" target="build" />
   </files>
 </package>
