@@ -67,6 +67,60 @@ namespace GeckofxUnitTests
 		{       
 			Assert.IsNotNull(_domWindow.Navigator);
 		}
+
+        [Test]
+        public void ScrollMaxX()
+        {
+
+            Assert.LessOrEqual(_domWindow.ScrollMaxX, 50, "Expected 45 - but be flexable because of pixel pos");
+            Assert.LessOrEqual(browser.Window.ScrollMaxX, 50, "Expected 45 - but be flexable because of pixel pos");            
+        }
+
+	    [Test]
+	    public void ScrollMaxY()
+	    {
+	        Assert.LessOrEqual(_domWindow.ScrollMaxY, 60, "Expected 56 - but be flexable because of pixel pos");
+            Assert.LessOrEqual(browser.Window.ScrollMaxY, 60, "Expected 56 - but be flexable because of pixel pos");
+	    }
+
+        [Test]
+        public void ScrollMinX()
+        {
+            Assert.AreEqual(0, _domWindow.ScrollMinX);
+            Assert.AreEqual(0, browser.Window.ScrollMinX);
+        }
+
+        [Test]
+        public void ScrollMinY()
+        {
+            Assert.AreEqual(0, _domWindow.ScrollMinY);
+            Assert.AreEqual(0, browser.Window.ScrollMinY);
+        }
+
+	    [Test]
+	    public void MozPaintCount()
+	    {
+            Assert.AreEqual(0, _domWindow.MozPaintCount);
+            Assert.AreEqual(0, browser.Window.MozPaintCount);
+	    }
+
+	    [Test]
+	    public void Content_CanCastToWebBrowserPrintType()
+	    {
+	        var content = _domWindow.Content;
+            Assert.NotNull(Xpcom.QueryInterface<nsIWebBrowserPrint>(content));
+
+            content = browser.Window.Content;
+            Assert.NotNull(Xpcom.QueryInterface<nsIWebBrowserPrint>(content));            
+	    }
+
+        [Ignore("Find always seems to show window even though I pass false as showDialog param.")]
+	    [Test]
+	    public void Find()
+	    {
+            Assert.IsFalse(browser.Window.Find("wordNotFound", false, false, true, false, true, false));            
+	    }
+        
 	}
 }
 

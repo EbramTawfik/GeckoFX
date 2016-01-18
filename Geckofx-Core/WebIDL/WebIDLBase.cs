@@ -72,6 +72,10 @@ namespace Gecko.WebIDL
                     // Replaced CallFunctionName 'valueOf' method with 'managed convert' (for speed reasons)
                     val = JsVal.FromPtr(jsObject);
                 }
+                else if (p is bool)
+                {
+                    SpiderMonkey.JS_ExecuteScript(context.ContextPointer, ((bool)p) ? "true;" : "false;", out val);
+                }
                 else
                     SpiderMonkey.JS_ExecuteScript(context.ContextPointer, p.ToString(), out val);
                 collection.Add(val);

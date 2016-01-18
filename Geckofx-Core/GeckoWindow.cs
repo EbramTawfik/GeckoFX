@@ -79,6 +79,26 @@ namespace Gecko
             get { return new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).ScrollY; }
 		}
 
+	    public int ScrollMinX
+	    {
+            get { return new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).ScrollMinX; }
+	    }
+
+        public int ScrollMinY
+        {
+            get { return new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).ScrollMinY; }
+        }
+
+        public int ScrollMaxX
+        {
+            get { return new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).ScrollMaxX; }
+        }
+
+        public int ScrollMaxY
+        {
+            get { return new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).ScrollMaxY; }
+        }
+
 		public void ScrollTo(int xScroll, int yScroll)
 		{
             new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).ScrollTo(xScroll, yScroll);
@@ -120,6 +140,25 @@ namespace Gecko
 		    }
 			set { nsString.Set((s) => { new WebIDL.Window(_domWindow.Instance, (nsISupports) _domWindow.Instance).Name = s; }, value ); }
 		}
+
+	    public ulong MozPaintCount
+	    {
+            get { return new WebIDL.Window(_domWindow.Instance, (nsISupports) _domWindow.Instance).MozPaintCount; }
+	    }
+
+	    public object Content
+	    {
+            get { return new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).Content; }
+	    }
+
+	    public bool Find(string str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord, bool searchInFrames, bool showDialog)
+	    {
+	        using (var nsStr = new nsAString(str))
+	        {
+	            return new WebIDL.Window(_domWindow.Instance, (nsISupports) _domWindow.Instance).Find(nsStr, caseSensitive,
+	                backwards, wrapAround, wholeWord, searchInFrames, showDialog);
+	        }
+	    }
 		
 		public void Print()
 		{
