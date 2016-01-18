@@ -161,7 +161,7 @@ namespace Gecko
 
     				{
                         var domWindow = WebBrowser.GetContentDOMWindowAttribute();
-                        EventTarget = ((nsIDOMEventTarget)domWindow).AsComPtr();  
+                        EventTarget = ((nsIDOMEventTarget)domWindow).AsComPtr();
     				}
 
     				foreach (string sEventName in this.DefaultEvents)

@@ -39,29 +39,8 @@ namespace Gecko.WebIDL
             using (var context = new AutoJSContext(_globalWindow))
             {
                 var jsObject = context.ConvertCOMObjectToJSObject(_thisObject);
-
-                // TODO: convert paramObjects into jsVal array
-                var collection = new List<JsVal>();
-                // TODO: remove code dup with CallMethod
-#if true
-                foreach (var p in paramObjects)
-                {
-                    JsVal val;
-                    if (p is string)
-                        SpiderMonkey.JS_ExecuteScript(context.ContextPointer, '"' + p.ToString() + '"', out val);
-                    else
-                        SpiderMonkey.JS_ExecuteScript(context.ContextPointer, p.ToString(), out val);
-                    collection.Add(val);                    
-                }                
-#else
-                //var val = SpiderMonkey.JS_GetNegativeInfinityValue(context.ContextPointer);
-                //var val = SpiderMonkey.JS_ParseJSON(context.ContextPointer, "something");
-                JsVal val;
-                SpiderMonkey.JS_ExecuteScript(context.ContextPointer, "1", out val);
-
-                collection.Add(val);
                 
-#endif
+                var collection = ConvertTypes(paramObjects, context, jsObject);
                 SpiderMonkey.JS_CallFunctionName(context.ContextPointer, jsObject, methodName, collection.ToArray() );
             }
         }
@@ -72,24 +51,32 @@ namespace Gecko.WebIDL
             {
                 var jsObject = context.ConvertCOMObjectToJSObject(_thisObject);
 
-                var collection = new List<JsVal>();
-                foreach (var p in paramObjects)
-                {
-                    JsVal val;
-                    if (p is nsAString || p is nsACString || p is nsAUTF8String)
-                        SpiderMonkey.JS_ExecuteScript(context.ContextPointer, '"' + p.ToString() + '"', out val);
-                    else if (p is nsISupports)
-                    {
-                        // This returns a  [xpconnect wrapped nsISupports] - why may or may not be good enought - if not could try and access the objects wrappedJSObject property?
-                        val = SpiderMonkey.JS_CallFunctionName(context.ContextPointer, jsObject, "valueOf");
-                    }
-                    else
-                        SpiderMonkey.JS_ExecuteScript(context.ContextPointer, p.ToString(), out val);
-                    collection.Add(val);
-                }      
+                var collection = ConvertTypes(paramObjects, context, jsObject);
                 var retObject = SpiderMonkey.JS_CallFunctionName(context.ContextPointer, jsObject, methodName, collection.ToArray()).ToObject();
                 return ConvertObject<T>(retObject);
             }
+        }
+
+        private static List<JsVal> ConvertTypes(object[] paramObjects, AutoJSContext context, IntPtr jsObject)
+        {
+            var collection = new List<JsVal>();
+            foreach (var p in paramObjects)
+            {
+                JsVal val;
+                if (p is nsAString || p is nsACString || p is nsAUTF8String)
+                    SpiderMonkey.JS_ExecuteScript(context.ContextPointer, '"' + p.ToString() + '"', out val);
+                else if (p is nsISupports)
+                {
+                    // This returns a  [xpconnect wrapped nsISupports] - why may or may not be good enought - if not could try and access the objects wrappedJSObject property?
+                    // val = SpiderMonkey.JS_CallFunctionName(context.ContextPointer, jsObject, "valueOf");
+                    // Replaced CallFunctionName 'valueOf' method with 'managed convert' (for speed reasons)
+                    val = JsVal.FromPtr(jsObject);
+                }
+                else
+                    SpiderMonkey.JS_ExecuteScript(context.ContextPointer, p.ToString(), out val);
+                collection.Add(val);
+            }
+            return collection;
         }
 
         private T ConvertObject<T>(object o)

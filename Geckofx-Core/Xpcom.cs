@@ -475,10 +475,6 @@ namespace Gecko
 		[UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.ThisCall)]
 		internal delegate IntPtr GetSafeJSContextDelegate([MarshalAs(UnmanagedType.Interface)] nsIXPConnect @this);
 
-        // TODO: move this to appropate place...
-        [UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.ThisCall)]
-        internal delegate IntPtr GetGlobalJSObject([MarshalAs(UnmanagedType.Interface)] nsIGlobalObject @this);
-
 		#endregion
 
 		public static object NewNativeLocalFile(string filename)
@@ -796,9 +792,6 @@ namespace Gecko
 				else if (uuid == typeof(nsIDOMDocument).GUID)
 				{
 				    obj = new WebIDL.Window(instance.GetContentDOMWindowAttribute(), (nsISupports) instance.GetContentDOMWindowAttribute()).Document;
-#if PORTING_TOWEBIDL
-					obj = instance.GetContentDOMWindowAttribute().GetDocumentAttribute();
-#endif
 				}
 			}
 

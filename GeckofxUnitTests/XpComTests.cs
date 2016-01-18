@@ -151,7 +151,7 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.CreateInstance<nsIXMLHttpRequest>("@mozilla.org/xmlextras/xmlhttprequest;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
-		}		
+		}
 
 		[Test]
 		public void CreateInstance_CreatingCspService_ReturnsValidInstance()
@@ -869,7 +869,7 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.CreateInstance<nsISAXXMLReader>("@mozilla.org/saxparser/xmlreader;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
-		}		
+		}
 
 		[Test]
 		public void CreateInstance_CreatingASN1Tree_ReturnsValidInstance()
@@ -1000,7 +1000,7 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.CreateInstance<nsIPrefetchService>("@mozilla.org/prefetch-service;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
-		}		
+		}
 
 		[Test]
 		public void CreateInstance_CreatingConsoleService_ReturnsValidInstance()
@@ -1314,7 +1314,7 @@ namespace GeckofxUnitTests
 		{
 			var instance = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1");
 			Assert.IsNotNull(instance);
-		}		
+		}
 
 		[Test]
 		public void GetScriptSecurityManager_CleanXpComInstance_ReturnsValidInstance()

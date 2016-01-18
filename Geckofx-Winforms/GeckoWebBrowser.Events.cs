@@ -1442,7 +1442,14 @@ namespace Gecko
 	{
 		public readonly Uri Uri;
 		public readonly GeckoWindow DomWindow;
-		public readonly Boolean DomWindowTopLevel;
+	    public bool DomWindowTopLevel
+	    {
+	        get
+	        {
+                return DomWindow.IsTopWindow();
+	        }
+	    }
+
 
 		/// <summary>Creates a new instance of a <see cref="GeckoRedirectingEventArgs"/> object.</summary>
 		/// <param name="value"></param>
@@ -1450,9 +1457,6 @@ namespace Gecko
 		{
 			Uri = value;
 			DomWindow = domWind;
-#if PORT
-			DomWindowTopLevel = ((domWind == null) ? true : DomWindow.DomWindow.Equals(DomWindow.Top.DomWindow));
-#endif
 		}
 	}
 	#endregion

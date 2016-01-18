@@ -96,7 +96,7 @@ namespace Gecko
             using (var xpc = new ComPtr<nsIGlobalObject>(go, false))
             {
                 int slot = xpc.GetSlotOfComMethod(new Func<IntPtr>(go.GetGlobalJSObject));
-                var getGlobalJSObject = xpc.GetComMethod<Xpcom.GetGlobalJSObject>(Xpcom.IsLinux ? -1 : slot);
+                var getGlobalJSObject = xpc.GetComMethod<GetGlobalJSObject>(Xpcom.IsLinux ? -1 : slot);
                 _globalJSObject = getGlobalJSObject(go);
                 if (_globalJSObject == IntPtr.Zero)
                     throw new ArgumentException(

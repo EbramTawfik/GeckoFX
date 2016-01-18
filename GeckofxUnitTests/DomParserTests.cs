@@ -12,7 +12,7 @@ using Gecko.DOM;
 namespace GeckofxUnitTests
 {
     [Ignore("These tests is currently broken as we need to use JS to convert a COMPtr to a JSObject in order to call WebIDL methods. " +
-            "In order to do this we need a Global scrope Object which we currently get from the nsIDOMWindow - but the document in these tests do not ave a Window")]
+            "In order to do this we need a Global scrope Object which we currently get from the nsIDOMWindow - but the document in these tests do not have a Window")]
 	[TestFixture]
 	internal class DomParserTests
 	{

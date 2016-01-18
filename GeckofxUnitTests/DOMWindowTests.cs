@@ -64,7 +64,7 @@ namespace GeckofxUnitTests
 
 		[Test]
 		public void GetNavigatorAttribute_ReadOnlyDocument_ReturnsValidDomNaviagator()
-		{            
+		{       
 			Assert.IsNotNull(_domWindow.Navigator);
 		}
 	}
