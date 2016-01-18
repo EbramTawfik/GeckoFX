@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMPoint : WebIDLBase
     {
         
-        public DOMPoint(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMPoint(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

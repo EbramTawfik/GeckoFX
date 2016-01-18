@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WebGLRenderbuffer : WebIDLBase
     {
         
-        public WebGLRenderbuffer(nsISupports thisObject) : 
-                base(thisObject)
+        public WebGLRenderbuffer(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

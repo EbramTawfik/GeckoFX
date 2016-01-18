@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BiquadFilterNode : WebIDLBase
     {
         
-        public BiquadFilterNode(nsISupports thisObject) : 
-                base(thisObject)
+        public BiquadFilterNode(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

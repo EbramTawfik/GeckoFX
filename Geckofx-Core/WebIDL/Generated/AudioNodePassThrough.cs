@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AudioNodePassThrough : WebIDLBase
     {
         
-        public AudioNodePassThrough(nsISupports thisObject) : 
-                base(thisObject)
+        public AudioNodePassThrough(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

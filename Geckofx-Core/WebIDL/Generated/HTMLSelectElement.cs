@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLSelectElement : WebIDLBase
     {
         
-        public HTMLSelectElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLSelectElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -190,6 +190,11 @@ namespace Gecko.WebIDL
         public nsISupports NamedItem(nsAString name)
         {
             return this.CallMethod<nsISupports>("namedItem", name);
+        }
+        
+        public void Add(WebIDLUnion<nsISupports,nsISupports> element)
+        {
+            this.CallVoidMethod("add", element);
         }
         
         public void Add(WebIDLUnion<nsISupports,nsISupports> element, WebIDLUnion<nsISupports,System.Int32> before)

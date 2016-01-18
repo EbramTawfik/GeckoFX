@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMApplicationsRegistry : WebIDLBase
     {
         
-        public DOMApplicationsRegistry(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMApplicationsRegistry(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -19,9 +19,19 @@ namespace Gecko.WebIDL
             }
         }
         
+        public nsISupports Install(nsAString url)
+        {
+            return this.CallMethod<nsISupports>("install", url);
+        }
+        
         public nsISupports Install(nsAString url, object @params)
         {
             return this.CallMethod<nsISupports>("install", url, @params);
+        }
+        
+        public nsISupports InstallPackage(nsAString url)
+        {
+            return this.CallMethod<nsISupports>("installPackage", url);
         }
         
         public nsISupports InstallPackage(nsAString url, object @params)

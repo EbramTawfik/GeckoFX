@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class RequestSyncManager : WebIDLBase
     {
         
-        public RequestSyncManager(nsISupports thisObject) : 
-                base(thisObject)
+        public RequestSyncManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

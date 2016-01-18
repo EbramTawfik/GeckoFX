@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMApplication : WebIDLBase
     {
         
-        public DOMApplication(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMApplication(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -165,6 +165,11 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("cancelDownload");
         }
         
+        public nsISupports Launch()
+        {
+            return this.CallMethod<nsISupports>("launch");
+        }
+        
         public nsISupports Launch(nsAString url)
         {
             return this.CallMethod<nsISupports>("launch", url);
@@ -180,6 +185,11 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("checkForUpdate");
         }
         
+        public Promise < nsISupports > Connect(nsAString keyword)
+        {
+            return this.CallMethod<Promise < nsISupports >>("connect", keyword);
+        }
+        
         public Promise < nsISupports > Connect(nsAString keyword, object rules)
         {
             return this.CallMethod<Promise < nsISupports >>("connect", keyword, rules);
@@ -190,14 +200,34 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise < nsISupports[] >>("getConnections");
         }
         
+        public nsISupports AddReceipt()
+        {
+            return this.CallMethod<nsISupports>("addReceipt");
+        }
+        
         public nsISupports AddReceipt(nsAString receipt)
         {
             return this.CallMethod<nsISupports>("addReceipt", receipt);
         }
         
+        public nsISupports RemoveReceipt()
+        {
+            return this.CallMethod<nsISupports>("removeReceipt");
+        }
+        
         public nsISupports RemoveReceipt(nsAString receipt)
         {
             return this.CallMethod<nsISupports>("removeReceipt", receipt);
+        }
+        
+        public nsISupports ReplaceReceipt()
+        {
+            return this.CallMethod<nsISupports>("replaceReceipt");
+        }
+        
+        public nsISupports ReplaceReceipt(nsAString oldReceipt)
+        {
+            return this.CallMethod<nsISupports>("replaceReceipt", oldReceipt);
         }
         
         public nsISupports ReplaceReceipt(nsAString oldReceipt, nsAString newReceipt)
@@ -208,6 +238,11 @@ namespace Gecko.WebIDL
         public Promise < nsIDOMBlob > Export()
         {
             return this.CallMethod<Promise < nsIDOMBlob >>("export");
+        }
+        
+        public Promise < nsAString > GetLocalizedValue(nsAString property, nsAString locale)
+        {
+            return this.CallMethod<Promise < nsAString >>("getLocalizedValue", property, locale);
         }
         
         public Promise < nsAString > GetLocalizedValue(nsAString property, nsAString locale, nsAString entryPoint)

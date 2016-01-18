@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLParagraphElement : WebIDLBase
     {
         
-        public HTMLParagraphElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLParagraphElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

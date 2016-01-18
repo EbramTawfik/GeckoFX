@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BluetoothObexAuthEvent : WebIDLBase
     {
         
-        public BluetoothObexAuthEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public BluetoothObexAuthEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

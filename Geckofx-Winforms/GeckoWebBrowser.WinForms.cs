@@ -160,9 +160,8 @@ namespace Gecko
     				// var domEventListener = new GeckoDOMEventListener(this);
 
     				{
-    					var domWindow = WebBrowser.GetContentDOMWindowAttribute();
-                        EventTarget = new WebIDL.Window((nsISupports)domWindow).WindowRoot.AsComPtr();    					
-    					Marshal.ReleaseComObject(domWindow);
+                        var domWindow = WebBrowser.GetContentDOMWindowAttribute();
+                        EventTarget = ((nsIDOMEventTarget)domWindow).AsComPtr();  
     				}
 
     				foreach (string sEventName in this.DefaultEvents)
@@ -226,13 +225,9 @@ namespace Gecko
 						{
 							try
 							{
-#if false
-								if (!window.GetClosedAttribute()) window.Close();
-#else
-							    var w = new WebIDL.Window((nsISupports) window);
+                                var w = new WebIDL.Window(window, (nsISupports)window);
 							    if (!w.Closed)
 							        w.Close();
-#endif
 							}
 							finally
 							{

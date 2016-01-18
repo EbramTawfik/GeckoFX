@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SubtleCrypto : WebIDLBase
     {
         
-        public SubtleCrypto(nsISupports thisObject) : 
-                base(thisObject)
+        public SubtleCrypto(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MediaKeyError : WebIDLBase
     {
         
-        public MediaKeyError(nsISupports thisObject) : 
-                base(thisObject)
+        public MediaKeyError(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

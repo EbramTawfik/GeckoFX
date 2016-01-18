@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CharacterData : WebIDLBase
     {
         
-        public CharacterData(nsISupports thisObject) : 
-                base(thisObject)
+        public CharacterData(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLInputElement : WebIDLBase
     {
         
-        public HTMLInputElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLInputElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -491,9 +491,19 @@ namespace Gecko.WebIDL
             }
         }
         
+        public void StepUp()
+        {
+            this.CallVoidMethod("stepUp");
+        }
+        
         public void StepUp(int n)
         {
             this.CallVoidMethod("stepUp", n);
+        }
+        
+        public void StepDown()
+        {
+            this.CallVoidMethod("stepDown");
         }
         
         public void StepDown(int n)
@@ -519,6 +529,11 @@ namespace Gecko.WebIDL
         public void SetRangeText(nsAString replacement)
         {
             this.CallVoidMethod("setRangeText", replacement);
+        }
+        
+        public void SetRangeText(nsAString replacement, uint start, uint end)
+        {
+            this.CallVoidMethod("setRangeText", replacement, start, end);
         }
         
         public void SetRangeText(nsAString replacement, uint start, uint end, SelectionMode selectionMode)
@@ -572,6 +587,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<nsISupports>("ownerNumberControl");
             }
+        }
+        
+        public void SetSelectionRange(int start, int end)
+        {
+            this.CallVoidMethod("setSelectionRange", start, end);
         }
         
         public void SetSelectionRange(int start, int end, nsAString direction)

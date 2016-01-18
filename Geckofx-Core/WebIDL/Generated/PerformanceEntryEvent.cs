@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PerformanceEntryEvent : WebIDLBase
     {
         
-        public PerformanceEntryEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public PerformanceEntryEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

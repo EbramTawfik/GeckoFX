@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TextMetrics : WebIDLBase
     {
         
-        public TextMetrics(nsISupports thisObject) : 
-                base(thisObject)
+        public TextMetrics(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

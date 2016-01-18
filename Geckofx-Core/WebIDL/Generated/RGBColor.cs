@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class RGBColor : WebIDLBase
     {
         
-        public RGBColor(nsISupports thisObject) : 
-                base(thisObject)
+        public RGBColor(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

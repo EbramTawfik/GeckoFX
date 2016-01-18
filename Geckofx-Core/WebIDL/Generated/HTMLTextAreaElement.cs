@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLTextAreaElement : WebIDLBase
     {
         
-        public HTMLTextAreaElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLTextAreaElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -259,9 +259,19 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("setRangeText", replacement);
         }
         
+        public void SetRangeText(nsAString replacement, uint start, uint end)
+        {
+            this.CallVoidMethod("setRangeText", replacement, start, end);
+        }
+        
         public void SetRangeText(nsAString replacement, uint start, uint end, SelectionMode selectionMode)
         {
             this.CallVoidMethod("setRangeText", replacement, start, end, selectionMode);
+        }
+        
+        public void SetSelectionRange(uint start, uint end)
+        {
+            this.CallVoidMethod("setSelectionRange", start, end);
         }
         
         public void SetSelectionRange(uint start, uint end, nsAString direction)

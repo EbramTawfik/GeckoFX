@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Comment : WebIDLBase
     {
         
-        public Comment(nsISupports thisObject) : 
-                base(thisObject)
+        public Comment(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ThreadSafeChromeUtils : WebIDLBase
     {
         
-        public ThreadSafeChromeUtils(nsISupports thisObject) : 
-                base(thisObject)
+        public ThreadSafeChromeUtils(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WebrtcGlobalInformation : WebIDLBase
     {
         
-        public WebrtcGlobalInformation(nsISupports thisObject) : 
-                base(thisObject)
+        public WebrtcGlobalInformation(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

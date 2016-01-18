@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DataStore : WebIDLBase
     {
         
-        public DataStore(nsISupports thisObject) : 
-                base(thisObject)
+        public DataStore(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -48,9 +48,24 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise <object>>("get", id);
         }
         
+        public Promise Put(object obj, WebIDLUnion<nsAString,UInt32> id)
+        {
+            return this.CallMethod<Promise>("put", obj, id);
+        }
+        
         public Promise Put(object obj, WebIDLUnion<nsAString,UInt32> id, nsAString revisionId)
         {
             return this.CallMethod<Promise>("put", obj, id, revisionId);
+        }
+        
+        public Promise < WebIDLUnion<nsAString,UInt32>> Add(object obj)
+        {
+            return this.CallMethod<Promise < WebIDLUnion<nsAString,UInt32>>>("add", obj);
+        }
+        
+        public Promise < WebIDLUnion<nsAString,UInt32>> Add(object obj, WebIDLUnion<nsAString,UInt32> id)
+        {
+            return this.CallMethod<Promise < WebIDLUnion<nsAString,UInt32>>>("add", obj, id);
         }
         
         public Promise < WebIDLUnion<nsAString,UInt32>> Add(object obj, WebIDLUnion<nsAString,UInt32> id, nsAString revisionId)
@@ -58,9 +73,19 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise < WebIDLUnion<nsAString,UInt32>>>("add", obj, id, revisionId);
         }
         
+        public Promise <bool> Remove(WebIDLUnion<nsAString,UInt32> id)
+        {
+            return this.CallMethod<Promise <bool>>("remove", id);
+        }
+        
         public Promise <bool> Remove(WebIDLUnion<nsAString,UInt32> id, nsAString revisionId)
         {
             return this.CallMethod<Promise <bool>>("remove", id, revisionId);
+        }
+        
+        public Promise Clear()
+        {
+            return this.CallMethod<Promise>("clear");
         }
         
         public Promise Clear(nsAString revisionId)
@@ -71,6 +96,11 @@ namespace Gecko.WebIDL
         public Promise <uint> GetLength()
         {
             return this.CallMethod<Promise <uint>>("getLength");
+        }
+        
+        public nsISupports Sync()
+        {
+            return this.CallMethod<nsISupports>("sync");
         }
         
         public nsISupports Sync(nsAString revisionId)

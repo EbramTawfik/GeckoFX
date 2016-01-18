@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DataStoreCursor : WebIDLBase
     {
         
-        public DataStoreCursor(nsISupports thisObject) : 
-                base(thisObject)
+        public DataStoreCursor(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

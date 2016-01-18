@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BluetoothVCardPullingEvent : WebIDLBase
     {
         
-        public BluetoothVCardPullingEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public BluetoothVCardPullingEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PaintRequest : WebIDLBase
     {
         
-        public PaintRequest(nsISupports thisObject) : 
-                base(thisObject)
+        public PaintRequest(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

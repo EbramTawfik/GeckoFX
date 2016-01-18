@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class OffscreenCanvas : WebIDLBase
     {
         
-        public OffscreenCanvas(nsISupports thisObject) : 
-                base(thisObject)
+        public OffscreenCanvas(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -33,6 +33,11 @@ namespace Gecko.WebIDL
             {
                 this.SetProperty("height", value);
             }
+        }
+        
+        public nsISupports GetContext(nsAString contextId)
+        {
+            return this.CallMethod<nsISupports>("getContext", contextId);
         }
         
         public nsISupports GetContext(nsAString contextId, object contextOptions)

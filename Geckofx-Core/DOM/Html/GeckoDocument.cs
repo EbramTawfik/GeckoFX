@@ -20,7 +20,12 @@ namespace Gecko
 		{
 			return (document == null) ? null : new GeckoDocument(document);
 		}
-		
+
+        public override GeckoDocument OwnerDocument
+        {
+            get { return this; }
+        }
+
 		/// <summary>
 		/// Gets the HTML head element.
 		/// </summary>

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DocumentFragment : WebIDLBase
     {
         
-        public DocumentFragment(nsISupports thisObject) : 
-                base(thisObject)
+        public DocumentFragment(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

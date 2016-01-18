@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CanvasPattern : WebIDLBase
     {
         
-        public CanvasPattern(nsISupports thisObject) : 
-                base(thisObject)
+        public CanvasPattern(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

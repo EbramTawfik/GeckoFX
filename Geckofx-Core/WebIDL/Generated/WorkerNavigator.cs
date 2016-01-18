@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WorkerNavigator : WebIDLBase
     {
         
-        public WorkerNavigator(nsISupports thisObject) : 
-                base(thisObject)
+        public WorkerNavigator(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TextDecoder : WebIDLBase
     {
         
-        public TextDecoder(nsISupports thisObject) : 
-                base(thisObject)
+        public TextDecoder(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -25,6 +25,16 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<bool>("fatal");
             }
+        }
+        
+        public USVString Decode()
+        {
+            return this.CallMethod<USVString>("decode");
+        }
+        
+        public USVString Decode(IntPtr input)
+        {
+            return this.CallMethod<USVString>("decode", input);
         }
         
         public USVString Decode(IntPtr input, object options)

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class UDPMessageEvent : WebIDLBase
     {
         
-        public UDPMessageEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public UDPMessageEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozIcc : WebIDLBase
     {
         
-        public MozIcc(nsISupports thisObject) : 
-                base(thisObject)
+        public MozIcc(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -52,9 +52,19 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getCardLock", lockType);
         }
         
+        public nsISupports UnlockCardLock()
+        {
+            return this.CallMethod<nsISupports>("unlockCardLock");
+        }
+        
         public nsISupports UnlockCardLock(object info)
         {
             return this.CallMethod<nsISupports>("unlockCardLock", info);
+        }
+        
+        public nsISupports SetCardLock()
+        {
+            return this.CallMethod<nsISupports>("setCardLock");
         }
         
         public nsISupports SetCardLock(object info)
@@ -70,6 +80,11 @@ namespace Gecko.WebIDL
         public nsISupports ReadContacts(IccContactType contactType)
         {
             return this.CallMethod<nsISupports>("readContacts", contactType);
+        }
+        
+        public nsISupports UpdateContact(IccContactType contactType, nsISupports contact)
+        {
+            return this.CallMethod<nsISupports>("updateContact", contactType, contact);
         }
         
         public nsISupports UpdateContact(IccContactType contactType, nsISupports contact, nsAString pin2)

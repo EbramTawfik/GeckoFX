@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MmsMessage : WebIDLBase
     {
         
-        public MmsMessage(nsISupports thisObject) : 
-                base(thisObject)
+        public MmsMessage(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

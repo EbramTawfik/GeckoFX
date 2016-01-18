@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WebGLTimerQueryEXT : WebIDLBase
     {
         
-        public WebGLTimerQueryEXT(nsISupports thisObject) : 
-                base(thisObject)
+        public WebGLTimerQueryEXT(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

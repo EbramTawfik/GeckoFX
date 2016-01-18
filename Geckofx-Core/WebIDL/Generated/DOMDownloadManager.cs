@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMDownloadManager : WebIDLBase
     {
         
-        public DOMDownloadManager(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMDownloadManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -24,6 +24,11 @@ namespace Gecko.WebIDL
         public void ClearAllDone()
         {
             this.CallVoidMethod("clearAllDone");
+        }
+        
+        public Promise < nsISupports > AdoptDownload()
+        {
+            return this.CallMethod<Promise < nsISupports >>("adoptDownload");
         }
         
         public Promise < nsISupports > AdoptDownload(object download)

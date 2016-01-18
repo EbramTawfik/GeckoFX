@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SettingsManager : WebIDLBase
     {
         
-        public SettingsManager(nsISupports thisObject) : 
-                base(thisObject)
+        public SettingsManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

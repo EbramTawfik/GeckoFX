@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CallGroupErrorEvent : WebIDLBase
     {
         
-        public CallGroupErrorEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public CallGroupErrorEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

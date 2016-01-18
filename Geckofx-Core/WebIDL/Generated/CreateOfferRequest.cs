@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CreateOfferRequest : WebIDLBase
     {
         
-        public CreateOfferRequest(nsISupports thisObject) : 
-                base(thisObject)
+        public CreateOfferRequest(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

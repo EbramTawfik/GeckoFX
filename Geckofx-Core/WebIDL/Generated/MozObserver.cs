@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozObserver : WebIDLBase
     {
         
-        public MozObserver(nsISupports thisObject) : 
-                base(thisObject)
+        public MozObserver(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

@@ -18,4 +18,20 @@ namespace Gecko
 			get { return _ptr; }
 		}
 	}
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct MutableHandleValue
+    {
+        private ulong _ptr;
+
+        public MutableHandleValue(ulong ptr)
+        {
+            _ptr = ptr;
+        }
+
+        public ulong Handle
+        {
+            get { return _ptr; }
+        }
+    }
 }

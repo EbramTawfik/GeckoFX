@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CanvasCaptureMediaStream : WebIDLBase
     {
         
-        public CanvasCaptureMediaStream(nsISupports thisObject) : 
-                base(thisObject)
+        public CanvasCaptureMediaStream(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

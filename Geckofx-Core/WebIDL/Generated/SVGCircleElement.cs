@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGCircleElement : WebIDLBase
     {
         
-        public SVGCircleElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGCircleElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

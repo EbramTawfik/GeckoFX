@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WebGLUniformLocation : WebIDLBase
     {
         
-        public WebGLUniformLocation(nsISupports thisObject) : 
-                base(thisObject)
+        public WebGLUniformLocation(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

@@ -210,26 +210,32 @@ namespace Gecko
 			
 			GeckoStyleSheet StyleSheet;
 			nsIDOMCSSRuleList List;
-			private IntPtr _cx;
+			private nsIDOMWindow _window;
 			
 			nsIDOMCSSRuleList GetRuleList()
 			{
-				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
+				using (AutoJSContext context = new AutoJSContext(GetGlobalWindow()))
 				{
-				    var window = StyleSheet._DomStyleSheet.GetOwnerNodeAttribute().GetOwnerDocumentAttribute().GetDefaultViewAttribute();
-				    var val = context.EvaluateScript("this.document.styleSheets[0].cssRules;", window);
-					return (nsIDOMCSSRuleList)val.ToObject();
+				    var window = GetGlobalWindow();
+                    var val = context.EvaluateScript("this.document.styleSheets[0].cssRules;", window);
+#if false
+                    var val = context.EvaluateScript("this.document.styleSheets[0];", window);
+
+				    var ss = new Gecko.WebIDL.CSSStyleSheet(GetGlobalWindow(), (nsISupports) val.ToObject());
+				    ss.InsertRule(new nsAString("a { };"), 0);
+				    return (nsIDOMCSSRuleList) ss.CssRules;
+#endif
+				    return (nsIDOMCSSRuleList)val.ToObject();
 				}
 			}
 
-			private IntPtr GetJSContext()
+			private nsIDOMWindow GetGlobalWindow()
 			{
-				if (_cx == IntPtr.Zero)
+				if (_window == null)
 				{
-					_cx = GlobalJSContextHolder.GetJSContextForDomWindow(StyleSheet._DomStyleSheet
-							.GetOwnerNodeAttribute().GetOwnerDocumentAttribute().GetDefaultViewAttribute());
+					_window = StyleSheet._DomStyleSheet.GetOwnerNodeAttribute().GetOwnerDocumentAttribute().GetDefaultViewAttribute();
 				}
-				return _cx;
+				return _window;
 			}
 
 			/// <summary>
@@ -298,7 +304,7 @@ namespace Gecko
 				
 				const int NS_ERROR_DOM_SYNTAX_ERR = unchecked((int)0x8053000c);
 
-				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
+				using (AutoJSContext context = new AutoJSContext(GetGlobalWindow()))
 				{
                     var window = StyleSheet._DomStyleSheet.GetOwnerNodeAttribute().GetOwnerDocumentAttribute().GetDefaultViewAttribute();
                     var val = context.EvaluateScript(String.Format("this.document.styleSheets[0].insertRule('{0}',{1});", rule, index), window);
@@ -319,7 +325,7 @@ namespace Gecko
 				else if (index < 0 || index >= Count)
 					throw new ArgumentOutOfRangeException("index");
 
-				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
+				using (AutoJSContext context = new AutoJSContext(GetGlobalWindow()))
 				{					
                     var window = StyleSheet._DomStyleSheet.GetOwnerNodeAttribute().GetOwnerDocumentAttribute().GetDefaultViewAttribute();
                     context.EvaluateScript(String.Format("this.document.styleSheets[0].deleteRule({0});", index), window);
@@ -334,7 +340,7 @@ namespace Gecko
 				if (IsReadOnly && Count > 0)
 					throw new InvalidOperationException("This collection is read-only.");
 
-				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
+				using (AutoJSContext context = new AutoJSContext(GetGlobalWindow()))
 				{
                     var window = StyleSheet._DomStyleSheet.GetOwnerNodeAttribute().GetOwnerDocumentAttribute().GetDefaultViewAttribute();
 					for (int i = Count - 1; i >= 0; i--)

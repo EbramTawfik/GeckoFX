@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WEBGL_debug_shaders : WebIDLBase
     {
         
-        public WEBGL_debug_shaders(nsISupports thisObject) : 
-                base(thisObject)
+        public WEBGL_debug_shaders(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

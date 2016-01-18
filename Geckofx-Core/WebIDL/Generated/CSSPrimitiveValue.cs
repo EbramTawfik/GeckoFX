@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CSSPrimitiveValue : WebIDLBase
     {
         
-        public CSSPrimitiveValue(nsISupports thisObject) : 
-                base(thisObject)
+        public CSSPrimitiveValue(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class XMLHttpRequestUpload : WebIDLBase
     {
         
-        public XMLHttpRequestUpload(nsISupports thisObject) : 
-                base(thisObject)
+        public XMLHttpRequestUpload(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

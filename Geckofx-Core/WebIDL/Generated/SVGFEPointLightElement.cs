@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGFEPointLightElement : WebIDLBase
     {
         
-        public SVGFEPointLightElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGFEPointLightElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

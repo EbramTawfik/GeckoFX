@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozWifiP2pGroupOwner : WebIDLBase
     {
         
-        public MozWifiP2pGroupOwner(nsISupports thisObject) : 
-                base(thisObject)
+        public MozWifiP2pGroupOwner(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

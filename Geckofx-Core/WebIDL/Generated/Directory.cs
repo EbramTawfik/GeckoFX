@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Directory : WebIDLBase
     {
         
-        public Directory(nsISupports thisObject) : 
-                base(thisObject)
+        public Directory(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -17,6 +17,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<nsAString>("name");
             }
+        }
+        
+        public Promise < nsISupports > CreateFile(nsAString path)
+        {
+            return this.CallMethod<Promise < nsISupports >>("createFile", path);
         }
         
         public Promise < nsISupports > CreateFile(nsAString path, object options)

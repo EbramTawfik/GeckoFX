@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class URLSearchParams : WebIDLBase
     {
         
-        public URLSearchParams(nsISupports thisObject) : 
-                base(thisObject)
+        public URLSearchParams(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

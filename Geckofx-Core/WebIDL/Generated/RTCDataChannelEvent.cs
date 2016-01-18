@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class RTCDataChannelEvent : WebIDLBase
     {
         
-        public RTCDataChannelEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public RTCDataChannelEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

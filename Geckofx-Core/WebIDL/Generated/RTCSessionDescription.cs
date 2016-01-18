@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class RTCSessionDescription : WebIDLBase
     {
         
-        public RTCSessionDescription(nsISupports thisObject) : 
-                base(thisObject)
+        public RTCSessionDescription(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

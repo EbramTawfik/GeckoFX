@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGLineElement : WebIDLBase
     {
         
-        public SVGLineElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGLineElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

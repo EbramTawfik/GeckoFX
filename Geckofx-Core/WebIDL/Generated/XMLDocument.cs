@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class XMLDocument : WebIDLBase
     {
         
-        public XMLDocument(nsISupports thisObject) : 
-                base(thisObject)
+        public XMLDocument(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class StorageEvent : WebIDLBase
     {
         
-        public StorageEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public StorageEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

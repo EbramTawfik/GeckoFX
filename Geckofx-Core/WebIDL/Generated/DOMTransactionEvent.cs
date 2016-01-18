@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMTransactionEvent : WebIDLBase
     {
         
-        public DOMTransactionEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMTransactionEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

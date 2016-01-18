@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class NetworkStatsData : WebIDLBase
     {
         
-        public NetworkStatsData(nsISupports thisObject) : 
-                base(thisObject)
+        public NetworkStatsData(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

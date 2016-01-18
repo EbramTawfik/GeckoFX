@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MediaKeySession : WebIDLBase
     {
         
-        public MediaKeySession(nsISupports thisObject) : 
-                base(thisObject)
+        public MediaKeySession(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

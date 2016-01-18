@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ValidityState : WebIDLBase
     {
         
-        public ValidityState(nsISupports thisObject) : 
-                base(thisObject)
+        public ValidityState(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

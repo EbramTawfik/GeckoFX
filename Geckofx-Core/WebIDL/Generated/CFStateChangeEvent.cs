@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CFStateChangeEvent : WebIDLBase
     {
         
-        public CFStateChangeEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public CFStateChangeEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

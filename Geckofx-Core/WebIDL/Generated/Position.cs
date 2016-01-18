@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Position : WebIDLBase
     {
         
-        public Position(nsISupports thisObject) : 
-                base(thisObject)
+        public Position(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

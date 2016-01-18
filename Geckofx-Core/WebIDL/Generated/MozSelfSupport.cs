@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozSelfSupport : WebIDLBase
     {
         
-        public MozSelfSupport(nsISupports thisObject) : 
-                base(thisObject)
+        public MozSelfSupport(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

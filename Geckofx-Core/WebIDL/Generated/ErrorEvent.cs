@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ErrorEvent : WebIDLBase
     {
         
-        public ErrorEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public ErrorEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

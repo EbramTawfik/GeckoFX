@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AutocompleteErrorEvent : WebIDLBase
     {
         
-        public AutocompleteErrorEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public AutocompleteErrorEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

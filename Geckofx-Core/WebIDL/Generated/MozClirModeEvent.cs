@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozClirModeEvent : WebIDLBase
     {
         
-        public MozClirModeEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public MozClirModeEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

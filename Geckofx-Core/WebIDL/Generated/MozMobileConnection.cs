@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozMobileConnection : WebIDLBase
     {
         
-        public MozMobileConnection(nsISupports thisObject) : 
-                base(thisObject)
+        public MozMobileConnection(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -120,6 +120,11 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getVoicePrivacyMode");
         }
         
+        public nsISupports SetCallForwardingOption()
+        {
+            return this.CallMethod<nsISupports>("setCallForwardingOption");
+        }
+        
         public nsISupports SetCallForwardingOption(object options)
         {
             return this.CallMethod<nsISupports>("setCallForwardingOption", options);
@@ -130,14 +135,29 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getCallForwardingOption", reason);
         }
         
+        public nsISupports SetCallBarringOption()
+        {
+            return this.CallMethod<nsISupports>("setCallBarringOption");
+        }
+        
         public nsISupports SetCallBarringOption(object options)
         {
             return this.CallMethod<nsISupports>("setCallBarringOption", options);
         }
         
+        public nsISupports GetCallBarringOption()
+        {
+            return this.CallMethod<nsISupports>("getCallBarringOption");
+        }
+        
         public nsISupports GetCallBarringOption(object options)
         {
             return this.CallMethod<nsISupports>("getCallBarringOption", options);
+        }
+        
+        public nsISupports ChangeCallBarringPassword()
+        {
+            return this.CallMethod<nsISupports>("changeCallBarringPassword");
         }
         
         public nsISupports ChangeCallBarringPassword(object options)

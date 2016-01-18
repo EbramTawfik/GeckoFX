@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class StyleRuleChangeEvent : WebIDLBase
     {
         
-        public StyleRuleChangeEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public StyleRuleChangeEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

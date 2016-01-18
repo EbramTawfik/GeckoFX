@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ResourceStatsAlarm : WebIDLBase
     {
         
-        public ResourceStatsAlarm(nsISupports thisObject) : 
-                base(thisObject)
+        public ResourceStatsAlarm(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

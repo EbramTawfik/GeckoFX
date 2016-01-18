@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AudioParam : WebIDLBase
     {
         
-        public AudioParam(nsISupports thisObject) : 
-                base(thisObject)
+        public AudioParam(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

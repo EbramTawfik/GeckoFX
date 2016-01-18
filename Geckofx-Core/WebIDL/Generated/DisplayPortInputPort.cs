@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DisplayPortInputPort : WebIDLBase
     {
         
-        public DisplayPortInputPort(nsISupports thisObject) : 
-                base(thisObject)
+        public DisplayPortInputPort(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SettingsLock : WebIDLBase
     {
         
-        public SettingsLock(nsISupports thisObject) : 
-                base(thisObject)
+        public SettingsLock(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

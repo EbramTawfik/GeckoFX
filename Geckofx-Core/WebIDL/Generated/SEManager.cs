@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SEManager : WebIDLBase
     {
         
-        public SEManager(nsISupports thisObject) : 
-                base(thisObject)
+        public SEManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SpeechSynthesisErrorEvent : WebIDLBase
     {
         
-        public SpeechSynthesisErrorEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public SpeechSynthesisErrorEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class nsIDocShell : WebIDLBase
     {
         
-        public nsIDocShell(nsISupports thisObject) : 
-                base(thisObject)
+        public nsIDocShell(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

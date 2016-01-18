@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozChannel : WebIDLBase
     {
         
-        public MozChannel(nsISupports thisObject) : 
-                base(thisObject)
+        public MozChannel(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

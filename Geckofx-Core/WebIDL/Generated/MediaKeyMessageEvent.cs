@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MediaKeyMessageEvent : WebIDLBase
     {
         
-        public MediaKeyMessageEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public MediaKeyMessageEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

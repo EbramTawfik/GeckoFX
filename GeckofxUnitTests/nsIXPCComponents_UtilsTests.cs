@@ -22,7 +22,7 @@ namespace GeckofxUnitTests
             Assert.IsNotNull(_browser);
             _browser.LoadHtml("hi");
             _browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
-            _context = new AutoJSContext(_browser.Window.JSContext);
+            _context = new AutoJSContext(_browser.Window);
         }
 
         [TearDown]
@@ -32,6 +32,7 @@ namespace GeckofxUnitTests
             _browser.Dispose();
         }
 
+        [Ignore("I think this needs backstagepass access.")]
         [Test]
         public void GetWerrorAttribute_DoesNotCrash()
         {

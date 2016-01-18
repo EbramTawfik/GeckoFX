@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PointerEvent : WebIDLBase
     {
         
-        public PointerEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public PointerEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

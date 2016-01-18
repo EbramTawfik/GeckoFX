@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Client : WebIDLBase
     {
         
-        public Client(nsISupports thisObject) : 
-                base(thisObject)
+        public Client(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -33,6 +33,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<nsAString>("id");
             }
+        }
+        
+        public void PostMessage(object message)
+        {
+            this.CallVoidMethod("postMessage", message);
         }
         
         public void PostMessage(object message, Object[] transfer)

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MediaSource : WebIDLBase
     {
         
-        public MediaSource(nsISupports thisObject) : 
-                base(thisObject)
+        public MediaSource(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -63,6 +63,11 @@ namespace Gecko.WebIDL
         public void RemoveSourceBuffer(nsISupports sourceBuffer)
         {
             this.CallVoidMethod("removeSourceBuffer", sourceBuffer);
+        }
+        
+        public void EndOfStream()
+        {
+            this.CallVoidMethod("endOfStream");
         }
         
         public void EndOfStream(MediaSourceEndOfStreamError error)

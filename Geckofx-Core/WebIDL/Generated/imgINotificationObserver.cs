@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class imgINotificationObserver : WebIDLBase
     {
         
-        public imgINotificationObserver(nsISupports thisObject) : 
-                base(thisObject)
+        public imgINotificationObserver(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

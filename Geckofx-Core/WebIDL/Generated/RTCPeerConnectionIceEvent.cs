@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class RTCPeerConnectionIceEvent : WebIDLBase
     {
         
-        public RTCPeerConnectionIceEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public RTCPeerConnectionIceEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

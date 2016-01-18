@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class EngineeringMode : WebIDLBase
     {
         
-        public EngineeringMode(nsISupports thisObject) : 
-                base(thisObject)
+        public EngineeringMode(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

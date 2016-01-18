@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DataChannel : WebIDLBase
     {
         
-        public DataChannel(nsISupports thisObject) : 
-                base(thisObject)
+        public DataChannel(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,9 +6,19 @@ namespace Gecko.WebIDL
     public class PhoneNumberService : WebIDLBase
     {
         
-        public PhoneNumberService(nsISupports thisObject) : 
-                base(thisObject)
+        public PhoneNumberService(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
+        }
+        
+        public nsISupports FuzzyMatch()
+        {
+            return this.CallMethod<nsISupports>("fuzzyMatch");
+        }
+        
+        public nsISupports FuzzyMatch(nsAString number1)
+        {
+            return this.CallMethod<nsISupports>("fuzzyMatch", number1);
         }
         
         public nsISupports FuzzyMatch(nsAString number1, nsAString number2)

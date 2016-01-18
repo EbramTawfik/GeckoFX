@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class RTCStatsReport : WebIDLBase
     {
         
-        public RTCStatsReport(nsISupports thisObject) : 
-                base(thisObject)
+        public RTCStatsReport(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

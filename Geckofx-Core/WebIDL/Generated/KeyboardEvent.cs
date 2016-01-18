@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class KeyboardEvent : WebIDLBase
     {
         
-        public KeyboardEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public KeyboardEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

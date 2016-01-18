@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Animatable : WebIDLBase
     {
         
-        public Animatable(nsISupports thisObject) : 
-                base(thisObject)
+        public Animatable(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

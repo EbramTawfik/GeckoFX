@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGTransform : WebIDLBase
     {
         
-        public SVGTransform(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGTransform(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

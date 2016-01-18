@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Attr : WebIDLBase
     {
         
-        public Attr(nsISupports thisObject) : 
-                base(thisObject)
+        public Attr(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

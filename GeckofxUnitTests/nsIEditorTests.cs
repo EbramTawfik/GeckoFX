@@ -135,9 +135,10 @@ namespace GeckofxUnitTests
 		[Test]
 		public void SelectAll_DocumentIsEditable_SelectionShouldNotBeCollapsed()
 		{
-			Assert.IsFalse(_editor.CanCopy(), "Selection should be insertion point");
+            Assert.IsTrue(_browser.Window.Selection.IsCollapsed, "Selection should be collapsed");
 			_editor.SelectAll();
 			Assert.True(_editor.CanCopy(), "Selection should not be collapsed");
+            Assert.IsFalse(_browser.Window.Selection.IsCollapsed, "Selection should not be collapsed");
 		}
 
 	}

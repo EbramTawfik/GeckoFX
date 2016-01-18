@@ -122,7 +122,7 @@ namespace GeckofxUnitTests
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 			File.Delete(tempfilename);
 
-			using (var context = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
+            using (var context = new AutoJSContext(AutoJSContext.SafeJSContext))
 			{
 				string result = String.Empty;
 				bool success = context.EvaluateScript(initialjavascript, out result);				
@@ -280,11 +280,11 @@ namespace GeckofxUnitTests
 			browser.Navigate(tempfilename);
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 
-			using (var context = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
+            using (var context = new AutoJSContext(AutoJSContext.SafeJSContext))
 			{
 				string result = String.Empty;				
 				var success = context.EvaluateScript(initialjavascript, out result);				
-				Console.WriteLine("success = {0} result = {1}", success, result);				
+				Console.WriteLine("success = {0} result = {1}", success, result);
 			}		
 
 			File.Delete(tempfilename);

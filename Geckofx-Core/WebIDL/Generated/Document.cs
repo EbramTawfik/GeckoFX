@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Document : WebIDLBase
     {
         
-        public Document(nsISupports thisObject) : 
-                base(thisObject)
+        public Document(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -141,6 +141,11 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("createProcessingInstruction", target, data);
         }
         
+        public nsIDOMNode ImportNode(nsIDOMNode node)
+        {
+            return this.CallMethod<nsIDOMNode>("importNode", node);
+        }
+        
         public nsIDOMNode ImportNode(nsIDOMNode node, bool deep)
         {
             return this.CallMethod<nsIDOMNode>("importNode", node, deep);
@@ -161,9 +166,29 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("createRange");
         }
         
+        public nsISupports CreateNodeIterator(nsIDOMNode root)
+        {
+            return this.CallMethod<nsISupports>("createNodeIterator", root);
+        }
+        
+        public nsISupports CreateNodeIterator(nsIDOMNode root, uint whatToShow)
+        {
+            return this.CallMethod<nsISupports>("createNodeIterator", root, whatToShow);
+        }
+        
         public nsISupports CreateNodeIterator(nsIDOMNode root, uint whatToShow, nsISupports filter)
         {
             return this.CallMethod<nsISupports>("createNodeIterator", root, whatToShow, filter);
+        }
+        
+        public nsISupports CreateTreeWalker(nsIDOMNode root)
+        {
+            return this.CallMethod<nsISupports>("createTreeWalker", root);
+        }
+        
+        public nsISupports CreateTreeWalker(nsIDOMNode root, uint whatToShow)
+        {
+            return this.CallMethod<nsISupports>("createTreeWalker", root, whatToShow);
         }
         
         public nsISupports CreateTreeWalker(nsIDOMNode root, uint whatToShow, nsISupports filter)
@@ -345,6 +370,11 @@ namespace Gecko.WebIDL
         public void MozExitPointerLock()
         {
             this.CallVoidMethod("mozExitPointerLock");
+        }
+        
+        public object RegisterElement(nsAString name)
+        {
+            return this.CallMethod<object>("registerElement", name);
         }
         
         public object RegisterElement(nsAString name, object options)
@@ -533,6 +563,71 @@ namespace Gecko.WebIDL
         public void LoadBindingDocument(nsAString documentURL)
         {
             this.CallVoidMethod("loadBindingDocument", documentURL);
+        }
+        
+        public nsISupports CreateTouch()
+        {
+            return this.CallMethod<nsISupports>("createTouch");
+        }
+        
+        public nsISupports CreateTouch(nsIDOMWindow view)
+        {
+            return this.CallMethod<nsISupports>("createTouch", view);
+        }
+        
+        public nsISupports CreateTouch(nsIDOMWindow view, nsISupports target)
+        {
+            return this.CallMethod<nsISupports>("createTouch", view, target);
+        }
+        
+        public nsISupports CreateTouch(nsIDOMWindow view, nsISupports target, int identifier)
+        {
+            return this.CallMethod<nsISupports>("createTouch", view, target, identifier);
+        }
+        
+        public nsISupports CreateTouch(nsIDOMWindow view, nsISupports target, int identifier, int pageX)
+        {
+            return this.CallMethod<nsISupports>("createTouch", view, target, identifier, pageX);
+        }
+        
+        public nsISupports CreateTouch(nsIDOMWindow view, nsISupports target, int identifier, int pageX, int pageY)
+        {
+            return this.CallMethod<nsISupports>("createTouch", view, target, identifier, pageX, pageY);
+        }
+        
+        public nsISupports CreateTouch(nsIDOMWindow view, nsISupports target, int identifier, int pageX, int pageY, int screenX)
+        {
+            return this.CallMethod<nsISupports>("createTouch", view, target, identifier, pageX, pageY, screenX);
+        }
+        
+        public nsISupports CreateTouch(nsIDOMWindow view, nsISupports target, int identifier, int pageX, int pageY, int screenX, int screenY)
+        {
+            return this.CallMethod<nsISupports>("createTouch", view, target, identifier, pageX, pageY, screenX, screenY);
+        }
+        
+        public nsISupports CreateTouch(nsIDOMWindow view, nsISupports target, int identifier, int pageX, int pageY, int screenX, int screenY, int clientX)
+        {
+            return this.CallMethod<nsISupports>("createTouch", view, target, identifier, pageX, pageY, screenX, screenY, clientX);
+        }
+        
+        public nsISupports CreateTouch(nsIDOMWindow view, nsISupports target, int identifier, int pageX, int pageY, int screenX, int screenY, int clientX, int clientY)
+        {
+            return this.CallMethod<nsISupports>("createTouch", view, target, identifier, pageX, pageY, screenX, screenY, clientX, clientY);
+        }
+        
+        public nsISupports CreateTouch(nsIDOMWindow view, nsISupports target, int identifier, int pageX, int pageY, int screenX, int screenY, int clientX, int clientY, int radiusX)
+        {
+            return this.CallMethod<nsISupports>("createTouch", view, target, identifier, pageX, pageY, screenX, screenY, clientX, clientY, radiusX);
+        }
+        
+        public nsISupports CreateTouch(nsIDOMWindow view, nsISupports target, int identifier, int pageX, int pageY, int screenX, int screenY, int clientX, int clientY, int radiusX, int radiusY)
+        {
+            return this.CallMethod<nsISupports>("createTouch", view, target, identifier, pageX, pageY, screenX, screenY, clientX, clientY, radiusX, radiusY);
+        }
+        
+        public nsISupports CreateTouch(nsIDOMWindow view, nsISupports target, int identifier, int pageX, int pageY, int screenX, int screenY, int clientX, int clientY, int radiusX, int radiusY, float rotationAngle)
+        {
+            return this.CallMethod<nsISupports>("createTouch", view, target, identifier, pageX, pageY, screenX, screenY, clientX, clientY, radiusX, radiusY, rotationAngle);
         }
         
         public nsISupports CreateTouch(nsIDOMWindow view, nsISupports target, int identifier, int pageX, int pageY, int screenX, int screenY, int clientX, int clientY, int radiusX, int radiusY, float rotationAngle, float force)

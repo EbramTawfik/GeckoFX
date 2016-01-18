@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Location : WebIDLBase
     {
         
-        public Location(nsISupports thisObject) : 
-                base(thisObject)
+        public Location(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -123,6 +123,11 @@ namespace Gecko.WebIDL
         public void Replace(USVString url)
         {
             this.CallVoidMethod("replace", url);
+        }
+        
+        public void Reload()
+        {
+            this.CallVoidMethod("reload");
         }
         
         public void Reload(bool forceget)

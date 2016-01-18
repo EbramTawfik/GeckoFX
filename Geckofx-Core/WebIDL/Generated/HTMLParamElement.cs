@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLParamElement : WebIDLBase
     {
         
-        public HTMLParamElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLParamElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

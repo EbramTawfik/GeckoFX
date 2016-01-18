@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AnimationEffectReadOnly : WebIDLBase
     {
         
-        public AnimationEffectReadOnly(nsISupports thisObject) : 
-                base(thisObject)
+        public AnimationEffectReadOnly(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

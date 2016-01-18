@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLCanvasElement : WebIDLBase
     {
         
-        public HTMLCanvasElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLCanvasElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -35,9 +35,24 @@ namespace Gecko.WebIDL
             }
         }
         
+        public nsISupports GetContext(nsAString contextId)
+        {
+            return this.CallMethod<nsISupports>("getContext", contextId);
+        }
+        
         public nsISupports GetContext(nsAString contextId, object contextOptions)
         {
             return this.CallMethod<nsISupports>("getContext", contextId, contextOptions);
+        }
+        
+        public nsAString ToDataURL()
+        {
+            return this.CallMethod<nsAString>("toDataURL");
+        }
+        
+        public nsAString ToDataURL(nsAString type)
+        {
+            return this.CallMethod<nsAString>("toDataURL", type);
         }
         
         public nsAString ToDataURL(nsAString type, object encoderOptions)
@@ -57,6 +72,11 @@ namespace Gecko.WebIDL
             }
         }
         
+        public nsISupports MozGetAsFile(nsAString name)
+        {
+            return this.CallMethod<nsISupports>("mozGetAsFile", name);
+        }
+        
         public nsISupports MozGetAsFile(nsAString name, nsAString type)
         {
             return this.CallMethod<nsISupports>("mozGetAsFile", name, type);
@@ -65,6 +85,11 @@ namespace Gecko.WebIDL
         public nsISupports MozGetIPCContext(nsAString contextId)
         {
             return this.CallMethod<nsISupports>("MozGetIPCContext", contextId);
+        }
+        
+        public nsISupports CaptureStream()
+        {
+            return this.CallMethod<nsISupports>("captureStream");
         }
         
         public nsISupports CaptureStream(double frameRate)

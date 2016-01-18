@@ -6,9 +6,14 @@ namespace Gecko.WebIDL
     public class GlobalFetch : WebIDLBase
     {
         
-        public GlobalFetch(nsISupports thisObject) : 
-                base(thisObject)
+        public GlobalFetch(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
+        }
+        
+        public Promise < nsISupports > Fetch(WebIDLUnion<nsISupports,USVString> input)
+        {
+            return this.CallMethod<Promise < nsISupports >>("fetch", input);
         }
         
         public Promise < nsISupports > Fetch(WebIDLUnion<nsISupports,USVString> input, object init)

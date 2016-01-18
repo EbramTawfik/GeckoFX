@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGPathSegLinetoRel : WebIDLBase
     {
         
-        public SVGPathSegLinetoRel(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGPathSegLinetoRel(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

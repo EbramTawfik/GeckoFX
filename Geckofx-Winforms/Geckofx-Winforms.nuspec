@@ -12,4 +12,12 @@
     <copyright>Copyright 2015</copyright>
     <tags>Firefox Gecko Geckofx</tags>
   </metadata>
+  <files>
+   <file src="bin\Debug\*.dll" target="lib" />
+   <file src="bin\Debug\*.pdb" target="lib" />
+   <file src="bin\Debug\*.config" target="lib" />
+   <file src="..\PutXulRunnerFolderHere\Firefox\*.dll" target="content\Firefox" />
+   <file src="..\PutXulRunnerFolderHere\Firefox\*.ja" target="content\Firefox" />
+   <file src="Geckofx.targets" target="build" />
+  </files>
 </package>

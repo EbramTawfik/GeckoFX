@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGPathSegClosePath : WebIDLBase
     {
         
-        public SVGPathSegClosePath(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGPathSegClosePath(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

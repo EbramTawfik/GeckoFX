@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGPathSegLinetoHorizontalAbs : WebIDLBase
     {
         
-        public SVGPathSegLinetoHorizontalAbs(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGPathSegLinetoHorizontalAbs(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

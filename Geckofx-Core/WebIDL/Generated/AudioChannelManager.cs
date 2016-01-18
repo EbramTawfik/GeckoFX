@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AudioChannelManager : WebIDLBase
     {
         
-        public AudioChannelManager(nsISupports thisObject) : 
-                base(thisObject)
+        public AudioChannelManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

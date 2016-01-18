@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozAbortablePromise : WebIDLBase
     {
         
-        public MozAbortablePromise(nsISupports thisObject) : 
-                base(thisObject)
+        public MozAbortablePromise(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

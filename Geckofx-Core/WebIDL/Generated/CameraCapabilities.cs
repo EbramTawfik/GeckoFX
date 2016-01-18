@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CameraCapabilities : WebIDLBase
     {
         
-        public CameraCapabilities(nsISupports thisObject) : 
-                base(thisObject)
+        public CameraCapabilities(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

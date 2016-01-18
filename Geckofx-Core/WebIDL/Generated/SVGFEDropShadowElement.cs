@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGFEDropShadowElement : WebIDLBase
     {
         
-        public SVGFEDropShadowElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGFEDropShadowElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

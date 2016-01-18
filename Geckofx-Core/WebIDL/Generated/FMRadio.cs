@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class FMRadio : WebIDLBase
     {
         
-        public FMRadio(nsISupports thisObject) : 
-                base(thisObject)
+        public FMRadio(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

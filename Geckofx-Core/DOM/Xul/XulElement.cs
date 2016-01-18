@@ -45,7 +45,7 @@ namespace Gecko.DOM.Xul
 					using (var nullString = new nsAString())
 					{
 						nullString.SetData(null);
-					    var window = new WebIDL.Window((nsISupports)OwnerDocument.DefaultView.DomWindow);
+					    var window = new WebIDL.Window(OwnerDocument.DefaultView.DomWindow, (nsISupports)OwnerDocument.DefaultView.DomWindow);
                         style =  window.GetComputedStyle(element.Instance, nullString);
 					}
 				}

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class VTTCue : WebIDLBase
     {
         
-        public VTTCue(nsISupports thisObject) : 
-                base(thisObject)
+        public VTTCue(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

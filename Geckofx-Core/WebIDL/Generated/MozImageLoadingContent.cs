@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozImageLoadingContent : WebIDLBase
     {
         
-        public MozImageLoadingContent(nsISupports thisObject) : 
-                base(thisObject)
+        public MozImageLoadingContent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -62,6 +62,11 @@ namespace Gecko.WebIDL
         public nsISupports LoadImageWithChannel(nsISupports aChannel)
         {
             return this.CallMethod<nsISupports>("loadImageWithChannel", aChannel);
+        }
+        
+        public void ForceReload()
+        {
+            this.CallVoidMethod("forceReload");
         }
         
         public void ForceReload(bool aNotify)

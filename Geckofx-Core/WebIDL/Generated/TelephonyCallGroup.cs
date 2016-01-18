@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TelephonyCallGroup : WebIDLBase
     {
         
-        public TelephonyCallGroup(nsISupports thisObject) : 
-                base(thisObject)
+        public TelephonyCallGroup(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

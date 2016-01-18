@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SpeechGrammarList : WebIDLBase
     {
         
-        public SpeechGrammarList(nsISupports thisObject) : 
-                base(thisObject)
+        public SpeechGrammarList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -19,9 +19,19 @@ namespace Gecko.WebIDL
             }
         }
         
+        public void AddFromURI(nsAString src)
+        {
+            this.CallVoidMethod("addFromURI", src);
+        }
+        
         public void AddFromURI(nsAString src, float weight)
         {
             this.CallVoidMethod("addFromURI", src, weight);
+        }
+        
+        public void AddFromString(nsAString @string)
+        {
+            this.CallVoidMethod("addFromString", @string);
         }
         
         public void AddFromString(nsAString @string, float weight)

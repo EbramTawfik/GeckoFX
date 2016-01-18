@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozTreeView : WebIDLBase
     {
         
-        public MozTreeView(nsISupports thisObject) : 
-                base(thisObject)
+        public MozTreeView(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

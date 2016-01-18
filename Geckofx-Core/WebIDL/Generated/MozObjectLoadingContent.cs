@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozObjectLoadingContent : WebIDLBase
     {
         
-        public MozObjectLoadingContent(nsISupports thisObject) : 
-                base(thisObject)
+        public MozObjectLoadingContent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

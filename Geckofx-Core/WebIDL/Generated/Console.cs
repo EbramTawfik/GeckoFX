@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Console : WebIDLBase
     {
         
-        public Console(nsISupports thisObject) : 
-                base(thisObject)
+        public Console(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -76,14 +76,29 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("groupEnd", data);
         }
         
+        public void Time()
+        {
+            this.CallVoidMethod("time");
+        }
+        
         public void Time(object time)
         {
             this.CallVoidMethod("time", time);
         }
         
+        public void TimeEnd()
+        {
+            this.CallVoidMethod("timeEnd");
+        }
+        
         public void TimeEnd(object time)
         {
             this.CallVoidMethod("timeEnd", time);
+        }
+        
+        public void TimeStamp()
+        {
+            this.CallVoidMethod("timeStamp");
         }
         
         public void TimeStamp(object data)

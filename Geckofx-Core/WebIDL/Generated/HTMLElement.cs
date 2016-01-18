@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLElement : WebIDLBase
     {
         
-        public HTMLElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

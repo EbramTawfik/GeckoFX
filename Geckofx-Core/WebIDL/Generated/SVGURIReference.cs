@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGURIReference : WebIDLBase
     {
         
-        public SVGURIReference(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGURIReference(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

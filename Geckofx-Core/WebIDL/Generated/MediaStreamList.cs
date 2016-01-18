@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MediaStreamList : WebIDLBase
     {
         
-        public MediaStreamList(nsISupports thisObject) : 
-                base(thisObject)
+        public MediaStreamList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

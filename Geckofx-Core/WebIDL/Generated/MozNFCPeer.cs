@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozNFCPeer : WebIDLBase
     {
         
-        public MozNFCPeer(nsISupports thisObject) : 
-                base(thisObject)
+        public MozNFCPeer(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

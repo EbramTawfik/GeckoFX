@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ArchiveReader : WebIDLBase
     {
         
-        public ArchiveReader(nsISupports thisObject) : 
-                base(thisObject)
+        public ArchiveReader(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

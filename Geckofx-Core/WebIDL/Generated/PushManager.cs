@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PushManager : WebIDLBase
     {
         
-        public PushManager(nsISupports thisObject) : 
-                base(thisObject)
+        public PushManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

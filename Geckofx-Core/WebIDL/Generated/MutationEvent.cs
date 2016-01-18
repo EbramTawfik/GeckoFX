@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MutationEvent : WebIDLBase
     {
         
-        public MutationEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public MutationEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

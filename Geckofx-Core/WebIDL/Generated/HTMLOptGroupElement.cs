@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLOptGroupElement : WebIDLBase
     {
         
-        public HTMLOptGroupElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLOptGroupElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

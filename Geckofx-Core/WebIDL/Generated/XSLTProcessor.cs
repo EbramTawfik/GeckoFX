@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class XSLTProcessor : WebIDLBase
     {
         
-        public XSLTProcessor(nsISupports thisObject) : 
-                base(thisObject)
+        public XSLTProcessor(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

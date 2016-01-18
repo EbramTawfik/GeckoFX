@@ -12,7 +12,14 @@ namespace Gecko.Events
 		: EventArgs
 	{
 		public readonly GeckoWindow DomWindow;
-		public readonly Boolean DomWindowTopLevel;
+        public bool DomWindowTopLevel
+        {
+            get
+            {
+                return DomWindow.IsTopWindow();
+            }
+        }
+
 		/// <summary>
 		/// Values are usually defined in <see cref="Gecko.GeckoError"/>.
 		/// Typical values are:
@@ -34,8 +41,7 @@ namespace Gecko.Events
 		internal GeckoNavigationErrorEventArgs(string uri, GeckoWindow domWind, int errorCode)
 		{
 			Uri = uri;
-			DomWindow = domWind;
-			DomWindowTopLevel = (domWind == null) || domWind.IsTopWindow();
+			DomWindow = domWind;			
 			ErrorCode = errorCode;
 		}
 	}

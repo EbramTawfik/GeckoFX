@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PromiseDebugging : WebIDLBase
     {
         
-        public PromiseDebugging(nsISupports thisObject) : 
-                base(thisObject)
+        public PromiseDebugging(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

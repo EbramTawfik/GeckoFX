@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMApplicationsManager : WebIDLBase
     {
         
-        public DOMApplicationsManager(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMApplicationsManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -44,6 +44,11 @@ namespace Gecko.WebIDL
         public void SetEnabled(nsISupports app, bool state)
         {
             this.CallVoidMethod("setEnabled", app, state);
+        }
+        
+        public Promise < nsIDOMBlob > GetIcon(nsISupports app, nsAString iconID)
+        {
+            return this.CallMethod<Promise < nsIDOMBlob >>("getIcon", app, iconID);
         }
         
         public Promise < nsIDOMBlob > GetIcon(nsISupports app, nsAString iconID, nsAString entryPoint)

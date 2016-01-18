@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WebGLShader : WebIDLBase
     {
         
-        public WebGLShader(nsISupports thisObject) : 
-                base(thisObject)
+        public WebGLShader(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

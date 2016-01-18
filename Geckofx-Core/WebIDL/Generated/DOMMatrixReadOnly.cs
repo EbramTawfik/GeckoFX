@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMMatrixReadOnly : WebIDLBase
     {
         
-        public DOMMatrixReadOnly(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMMatrixReadOnly(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -203,9 +203,24 @@ namespace Gecko.WebIDL
             }
         }
         
+        public nsISupports Translate(double tx, double ty)
+        {
+            return this.CallMethod<nsISupports>("translate", tx, ty);
+        }
+        
         public nsISupports Translate(double tx, double ty, double tz)
         {
             return this.CallMethod<nsISupports>("translate", tx, ty, tz);
+        }
+        
+        public nsISupports Scale(double scale)
+        {
+            return this.CallMethod<nsISupports>("scale", scale);
+        }
+        
+        public nsISupports Scale(double scale, double originX)
+        {
+            return this.CallMethod<nsISupports>("scale", scale, originX);
         }
         
         public nsISupports Scale(double scale, double originX, double originY)
@@ -213,14 +228,64 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("scale", scale, originX, originY);
         }
         
+        public nsISupports Scale3d(double scale)
+        {
+            return this.CallMethod<nsISupports>("scale3d", scale);
+        }
+        
+        public nsISupports Scale3d(double scale, double originX)
+        {
+            return this.CallMethod<nsISupports>("scale3d", scale, originX);
+        }
+        
+        public nsISupports Scale3d(double scale, double originX, double originY)
+        {
+            return this.CallMethod<nsISupports>("scale3d", scale, originX, originY);
+        }
+        
         public nsISupports Scale3d(double scale, double originX, double originY, double originZ)
         {
             return this.CallMethod<nsISupports>("scale3d", scale, originX, originY, originZ);
         }
         
+        public nsISupports ScaleNonUniform(double scaleX)
+        {
+            return this.CallMethod<nsISupports>("scaleNonUniform", scaleX);
+        }
+        
+        public nsISupports ScaleNonUniform(double scaleX, double scaleY)
+        {
+            return this.CallMethod<nsISupports>("scaleNonUniform", scaleX, scaleY);
+        }
+        
+        public nsISupports ScaleNonUniform(double scaleX, double scaleY, double scaleZ)
+        {
+            return this.CallMethod<nsISupports>("scaleNonUniform", scaleX, scaleY, scaleZ);
+        }
+        
+        public nsISupports ScaleNonUniform(double scaleX, double scaleY, double scaleZ, double originX)
+        {
+            return this.CallMethod<nsISupports>("scaleNonUniform", scaleX, scaleY, scaleZ, originX);
+        }
+        
+        public nsISupports ScaleNonUniform(double scaleX, double scaleY, double scaleZ, double originX, double originY)
+        {
+            return this.CallMethod<nsISupports>("scaleNonUniform", scaleX, scaleY, scaleZ, originX, originY);
+        }
+        
         public nsISupports ScaleNonUniform(double scaleX, double scaleY, double scaleZ, double originX, double originY, double originZ)
         {
             return this.CallMethod<nsISupports>("scaleNonUniform", scaleX, scaleY, scaleZ, originX, originY, originZ);
+        }
+        
+        public nsISupports Rotate(double angle)
+        {
+            return this.CallMethod<nsISupports>("rotate", angle);
+        }
+        
+        public nsISupports Rotate(double angle, double originX)
+        {
+            return this.CallMethod<nsISupports>("rotate", angle, originX);
         }
         
         public nsISupports Rotate(double angle, double originX, double originY)
@@ -266,6 +331,11 @@ namespace Gecko.WebIDL
         public nsISupports Inverse()
         {
             return this.CallMethod<nsISupports>("inverse");
+        }
+        
+        public nsISupports TransformPoint()
+        {
+            return this.CallMethod<nsISupports>("transformPoint");
         }
         
         public nsISupports TransformPoint(object point)

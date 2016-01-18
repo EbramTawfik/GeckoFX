@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGAltGlyphElement : WebIDLBase
     {
         
-        public SVGAltGlyphElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGAltGlyphElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLUListElement : WebIDLBase
     {
         
-        public HTMLUListElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLUListElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

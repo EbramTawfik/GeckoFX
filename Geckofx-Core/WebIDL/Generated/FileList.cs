@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class FileList : WebIDLBase
     {
         
-        public FileList(nsISupports thisObject) : 
-                base(thisObject)
+        public FileList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

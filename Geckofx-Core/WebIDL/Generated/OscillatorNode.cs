@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class OscillatorNode : WebIDLBase
     {
         
-        public OscillatorNode(nsISupports thisObject) : 
-                base(thisObject)
+        public OscillatorNode(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -39,9 +39,19 @@ namespace Gecko.WebIDL
             }
         }
         
+        public void Start()
+        {
+            this.CallVoidMethod("start");
+        }
+        
         public void Start(double when)
         {
             this.CallVoidMethod("start", when);
+        }
+        
+        public void Stop()
+        {
+            this.CallVoidMethod("stop");
         }
         
         public void Stop(double when)

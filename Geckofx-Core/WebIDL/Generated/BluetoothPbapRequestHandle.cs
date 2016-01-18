@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BluetoothPbapRequestHandle : WebIDLBase
     {
         
-        public BluetoothPbapRequestHandle(nsISupports thisObject) : 
-                base(thisObject)
+        public BluetoothPbapRequestHandle(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

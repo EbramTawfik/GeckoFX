@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ExternalAppEvent : WebIDLBase
     {
         
-        public ExternalAppEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public ExternalAppEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

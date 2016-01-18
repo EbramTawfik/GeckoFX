@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozEmergencyCbModeEvent : WebIDLBase
     {
         
-        public MozEmergencyCbModeEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public MozEmergencyCbModeEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

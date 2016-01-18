@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGAnimatedPreserveAspectRatio : WebIDLBase
     {
         
-        public SVGAnimatedPreserveAspectRatio(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGAnimatedPreserveAspectRatio(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

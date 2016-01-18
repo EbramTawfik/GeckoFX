@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMQuad : WebIDLBase
     {
         
-        public DOMQuad(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMQuad(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

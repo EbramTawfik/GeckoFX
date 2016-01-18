@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozInterAppMessagePort : WebIDLBase
     {
         
-        public MozInterAppMessagePort(nsISupports thisObject) : 
-                base(thisObject)
+        public MozInterAppMessagePort(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

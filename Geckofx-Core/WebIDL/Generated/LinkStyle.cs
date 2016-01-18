@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class LinkStyle : WebIDLBase
     {
         
-        public LinkStyle(nsISupports thisObject) : 
-                base(thisObject)
+        public LinkStyle(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

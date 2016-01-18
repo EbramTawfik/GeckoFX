@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGFESpotLightElement : WebIDLBase
     {
         
-        public SVGFESpotLightElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGFESpotLightElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

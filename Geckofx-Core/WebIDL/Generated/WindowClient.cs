@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WindowClient : WebIDLBase
     {
         
-        public WindowClient(nsISupports thisObject) : 
-                base(thisObject)
+        public WindowClient(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

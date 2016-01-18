@@ -6,9 +6,14 @@ namespace Gecko.WebIDL
     public class MozTetheringManager : WebIDLBase
     {
         
-        public MozTetheringManager(nsISupports thisObject) : 
-                base(thisObject)
+        public MozTetheringManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
+        }
+        
+        public Promise <object> SetTetheringEnabled(bool enabled, TetheringType type)
+        {
+            return this.CallMethod<Promise <object>>("setTetheringEnabled", enabled, type);
         }
         
         public Promise <object> SetTetheringEnabled(bool enabled, TetheringType type, object config)

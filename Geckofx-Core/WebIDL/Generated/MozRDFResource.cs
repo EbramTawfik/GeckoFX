@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozRDFResource : WebIDLBase
     {
         
-        public MozRDFResource(nsISupports thisObject) : 
-                base(thisObject)
+        public MozRDFResource(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

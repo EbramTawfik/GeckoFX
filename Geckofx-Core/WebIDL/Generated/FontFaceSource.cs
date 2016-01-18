@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class FontFaceSource : WebIDLBase
     {
         
-        public FontFaceSource(nsISupports thisObject) : 
-                base(thisObject)
+        public FontFaceSource(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

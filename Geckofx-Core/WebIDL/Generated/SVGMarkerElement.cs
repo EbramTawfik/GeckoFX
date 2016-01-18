@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGMarkerElement : WebIDLBase
     {
         
-        public SVGMarkerElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGMarkerElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

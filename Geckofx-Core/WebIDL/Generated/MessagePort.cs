@@ -6,9 +6,14 @@ namespace Gecko.WebIDL
     public class MessagePort : WebIDLBase
     {
         
-        public MessagePort(nsISupports thisObject) : 
-                base(thisObject)
+        public MessagePort(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
+        }
+        
+        public void PostMessage(object message)
+        {
+            this.CallVoidMethod("postMessage", message);
         }
         
         public void PostMessage(object message, Object[] transferable)

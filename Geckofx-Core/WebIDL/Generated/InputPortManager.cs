@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class InputPortManager : WebIDLBase
     {
         
-        public InputPortManager(nsISupports thisObject) : 
-                base(thisObject)
+        public InputPortManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

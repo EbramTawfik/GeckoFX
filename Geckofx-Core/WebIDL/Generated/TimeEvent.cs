@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TimeEvent : WebIDLBase
     {
         
-        public TimeEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public TimeEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

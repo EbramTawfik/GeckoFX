@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TextTrackCue : WebIDLBase
     {
         
-        public TextTrackCue(nsISupports thisObject) : 
-                base(thisObject)
+        public TextTrackCue(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

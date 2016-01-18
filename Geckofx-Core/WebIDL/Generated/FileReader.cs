@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class FileReader : WebIDLBase
     {
         
-        public FileReader(nsISupports thisObject) : 
-                base(thisObject)
+        public FileReader(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -38,6 +38,11 @@ namespace Gecko.WebIDL
         public void ReadAsArrayBuffer(nsIDOMBlob blob)
         {
             this.CallVoidMethod("readAsArrayBuffer", blob);
+        }
+        
+        public void ReadAsText(nsIDOMBlob blob)
+        {
+            this.CallVoidMethod("readAsText", blob);
         }
         
         public void ReadAsText(nsIDOMBlob blob, nsAString label)

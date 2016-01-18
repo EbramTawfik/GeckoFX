@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BluetoothAdapter : WebIDLBase
     {
         
-        public BluetoothAdapter(nsISupports thisObject) : 
-                base(thisObject)
+        public BluetoothAdapter(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -127,9 +127,19 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getConnectedDevices", serviceUuid);
         }
         
+        public nsISupports Connect(nsISupports device)
+        {
+            return this.CallMethod<nsISupports>("connect", device);
+        }
+        
         public nsISupports Connect(nsISupports device, ushort serviceUuid)
         {
             return this.CallMethod<nsISupports>("connect", device, serviceUuid);
+        }
+        
+        public nsISupports Disconnect(nsISupports device)
+        {
+            return this.CallMethod<nsISupports>("disconnect", device);
         }
         
         public nsISupports Disconnect(nsISupports device, ushort serviceUuid)
@@ -182,9 +192,19 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("toggleCalls");
         }
         
+        public nsISupports SendMediaMetaData()
+        {
+            return this.CallMethod<nsISupports>("sendMediaMetaData");
+        }
+        
         public nsISupports SendMediaMetaData(object mediaMetaData)
         {
             return this.CallMethod<nsISupports>("sendMediaMetaData", mediaMetaData);
+        }
+        
+        public nsISupports SendMediaPlayStatus()
+        {
+            return this.CallMethod<nsISupports>("sendMediaPlayStatus");
         }
         
         public nsISupports SendMediaPlayStatus(object mediaPlayStatus)

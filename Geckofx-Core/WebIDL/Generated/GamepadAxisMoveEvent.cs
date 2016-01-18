@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class GamepadAxisMoveEvent : WebIDLBase
     {
         
-        public GamepadAxisMoveEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public GamepadAxisMoveEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

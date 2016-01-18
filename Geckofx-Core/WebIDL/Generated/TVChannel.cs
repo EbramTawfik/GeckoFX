@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TVChannel : WebIDLBase
     {
         
-        public TVChannel(nsISupports thisObject) : 
-                base(thisObject)
+        public TVChannel(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -81,6 +81,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<bool>("isFree");
             }
+        }
+        
+        public Promise < nsISupports[] > GetPrograms()
+        {
+            return this.CallMethod<Promise < nsISupports[] >>("getPrograms");
         }
         
         public Promise < nsISupports[] > GetPrograms(object options)

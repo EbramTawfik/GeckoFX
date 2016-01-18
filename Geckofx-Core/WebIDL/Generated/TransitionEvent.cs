@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TransitionEvent : WebIDLBase
     {
         
-        public TransitionEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public TransitionEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

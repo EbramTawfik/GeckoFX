@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class KeyframeEffectReadOnly : WebIDLBase
     {
         
-        public KeyframeEffectReadOnly(nsISupports thisObject) : 
-                base(thisObject)
+        public KeyframeEffectReadOnly(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

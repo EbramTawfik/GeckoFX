@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WebGLActiveInfo : WebIDLBase
     {
         
-        public WebGLActiveInfo(nsISupports thisObject) : 
-                base(thisObject)
+        public WebGLActiveInfo(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

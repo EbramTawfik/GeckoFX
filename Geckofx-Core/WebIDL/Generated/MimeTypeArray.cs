@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MimeTypeArray : WebIDLBase
     {
         
-        public MimeTypeArray(nsISupports thisObject) : 
-                base(thisObject)
+        public MimeTypeArray(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

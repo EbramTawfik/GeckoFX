@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MediaKeys : WebIDLBase
     {
         
-        public MediaKeys(nsISupports thisObject) : 
-                base(thisObject)
+        public MediaKeys(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -17,6 +17,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<nsAString>("keySystem");
             }
+        }
+        
+        public nsISupports CreateSession()
+        {
+            return this.CallMethod<nsISupports>("createSession");
         }
         
         public nsISupports CreateSession(SessionType sessionType)

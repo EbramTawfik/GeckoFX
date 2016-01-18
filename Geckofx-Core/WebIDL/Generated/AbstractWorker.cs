@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AbstractWorker : WebIDLBase
     {
         
-        public AbstractWorker(nsISupports thisObject) : 
-                base(thisObject)
+        public AbstractWorker(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

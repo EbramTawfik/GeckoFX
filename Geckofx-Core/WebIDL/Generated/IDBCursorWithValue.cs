@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class IDBCursorWithValue : WebIDLBase
     {
         
-        public IDBCursorWithValue(nsISupports thisObject) : 
-                base(thisObject)
+        public IDBCursorWithValue(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BrowserElementCommon : WebIDLBase
     {
         
-        public BrowserElementCommon(nsISupports thisObject) : 
-                base(thisObject)
+        public BrowserElementCommon(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

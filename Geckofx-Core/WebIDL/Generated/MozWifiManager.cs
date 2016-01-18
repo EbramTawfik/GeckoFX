@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozWifiManager : WebIDLBase
     {
         
-        public MozWifiManager(nsISupports thisObject) : 
-                base(thisObject)
+        public MozWifiManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -76,6 +76,11 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("forget", network);
         }
         
+        public nsISupports Wps()
+        {
+            return this.CallMethod<nsISupports>("wps");
+        }
+        
         public nsISupports Wps(object detail)
         {
             return this.CallMethod<nsISupports>("wps", detail);
@@ -84,6 +89,11 @@ namespace Gecko.WebIDL
         public nsISupports SetPowerSavingMode(bool enabled)
         {
             return this.CallMethod<nsISupports>("setPowerSavingMode", enabled);
+        }
+        
+        public nsISupports SetStaticIpMode(nsISupports network)
+        {
+            return this.CallMethod<nsISupports>("setStaticIpMode", network);
         }
         
         public nsISupports SetStaticIpMode(nsISupports network, object info)

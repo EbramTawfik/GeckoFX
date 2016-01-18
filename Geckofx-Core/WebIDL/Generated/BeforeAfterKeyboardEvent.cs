@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BeforeAfterKeyboardEvent : WebIDLBase
     {
         
-        public BeforeAfterKeyboardEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public BeforeAfterKeyboardEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

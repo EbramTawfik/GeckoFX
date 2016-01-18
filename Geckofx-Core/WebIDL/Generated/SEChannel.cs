@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SEChannel : WebIDLBase
     {
         
-        public SEChannel(nsISupports thisObject) : 
-                base(thisObject)
+        public SEChannel(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -41,6 +41,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<SEChannelType>("type");
             }
+        }
+        
+        public Promise < nsISupports > Transmit()
+        {
+            return this.CallMethod<Promise < nsISupports >>("transmit");
         }
         
         public Promise < nsISupports > Transmit(object command)

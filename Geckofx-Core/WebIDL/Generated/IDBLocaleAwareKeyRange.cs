@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class IDBLocaleAwareKeyRange : WebIDLBase
     {
         
-        public IDBLocaleAwareKeyRange(nsISupports thisObject) : 
-                base(thisObject)
+        public IDBLocaleAwareKeyRange(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

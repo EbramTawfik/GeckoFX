@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozNFC : WebIDLBase
     {
         
-        public MozNFC(nsISupports thisObject) : 
-                base(thisObject)
+        public MozNFC(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

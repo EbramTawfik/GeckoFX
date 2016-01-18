@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozNDEFRecord : WebIDLBase
     {
         
-        public MozNDEFRecord(nsISupports thisObject) : 
-                base(thisObject)
+        public MozNDEFRecord(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

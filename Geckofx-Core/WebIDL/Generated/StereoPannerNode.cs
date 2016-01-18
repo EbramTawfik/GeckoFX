@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class StereoPannerNode : WebIDLBase
     {
         
-        public StereoPannerNode(nsISupports thisObject) : 
-                base(thisObject)
+        public StereoPannerNode(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

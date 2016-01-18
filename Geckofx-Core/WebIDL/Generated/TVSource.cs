@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TVSource : WebIDLBase
     {
         
-        public TVSource(nsISupports thisObject) : 
-                base(thisObject)
+        public TVSource(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -51,6 +51,11 @@ namespace Gecko.WebIDL
         public Promise SetCurrentChannel(nsAString channelNumber)
         {
             return this.CallMethod<Promise>("setCurrentChannel", channelNumber);
+        }
+        
+        public Promise StartScanning()
+        {
+            return this.CallMethod<Promise>("startScanning");
         }
         
         public Promise StartScanning(object options)

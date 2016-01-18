@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Screen : WebIDLBase
     {
         
-        public Screen(nsISupports thisObject) : 
-                base(thisObject)
+        public Screen(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TouchList : WebIDLBase
     {
         
-        public TouchList(nsISupports thisObject) : 
-                base(thisObject)
+        public TouchList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

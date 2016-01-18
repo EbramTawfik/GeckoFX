@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PaymentProvider : WebIDLBase
     {
         
-        public PaymentProvider(nsISupports thisObject) : 
-                base(thisObject)
+        public PaymentProvider(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -27,9 +27,19 @@ namespace Gecko.WebIDL
             }
         }
         
+        public void PaymentSuccess()
+        {
+            this.CallVoidMethod("paymentSuccess");
+        }
+        
         public void PaymentSuccess(nsAString result)
         {
             this.CallVoidMethod("paymentSuccess", result);
+        }
+        
+        public void PaymentFailed()
+        {
+            this.CallVoidMethod("paymentFailed");
         }
         
         public void PaymentFailed(nsAString error)

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLVideoElement : WebIDLBase
     {
         
-        public HTMLVideoElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLVideoElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

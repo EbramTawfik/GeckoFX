@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class OnErrorEventHandlerForWindow : WebIDLBase
     {
         
-        public OnErrorEventHandlerForWindow(nsISupports thisObject) : 
-                base(thisObject)
+        public OnErrorEventHandlerForWindow(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

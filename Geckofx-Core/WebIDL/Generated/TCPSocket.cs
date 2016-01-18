@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TCPSocket : WebIDLBase
     {
         
-        public TCPSocket(nsISupports thisObject) : 
-                base(thisObject)
+        public TCPSocket(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -82,6 +82,16 @@ namespace Gecko.WebIDL
         public bool Send(ByteString data)
         {
             return this.CallMethod<bool>("send", data);
+        }
+        
+        public bool Send(IntPtr data)
+        {
+            return this.CallMethod<bool>("send", data);
+        }
+        
+        public bool Send(IntPtr data, uint byteOffset)
+        {
+            return this.CallMethod<bool>("send", data, byteOffset);
         }
         
         public bool Send(IntPtr data, uint byteOffset, uint byteLength)

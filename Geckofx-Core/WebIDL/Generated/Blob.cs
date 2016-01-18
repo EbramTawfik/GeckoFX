@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Blob : WebIDLBase
     {
         
-        public Blob(nsISupports thisObject) : 
-                base(thisObject)
+        public Blob(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -25,6 +25,21 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<nsAString>("type");
             }
+        }
+        
+        public nsIDOMBlob Slice()
+        {
+            return this.CallMethod<nsIDOMBlob>("slice");
+        }
+        
+        public nsIDOMBlob Slice(long start)
+        {
+            return this.CallMethod<nsIDOMBlob>("slice", start);
+        }
+        
+        public nsIDOMBlob Slice(long start, long end)
+        {
+            return this.CallMethod<nsIDOMBlob>("slice", start, end);
         }
         
         public nsIDOMBlob Slice(long start, long end, nsAString contentType)

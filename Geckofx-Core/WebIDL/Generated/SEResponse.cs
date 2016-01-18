@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SEResponse : WebIDLBase
     {
         
-        public SEResponse(nsISupports thisObject) : 
-                base(thisObject)
+        public SEResponse(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

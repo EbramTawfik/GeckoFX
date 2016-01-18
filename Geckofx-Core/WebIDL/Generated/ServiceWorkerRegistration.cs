@@ -6,14 +6,24 @@ namespace Gecko.WebIDL
     public class ServiceWorkerRegistration : WebIDLBase
     {
         
-        public ServiceWorkerRegistration(nsISupports thisObject) : 
-                base(thisObject)
+        public ServiceWorkerRegistration(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
+        }
+        
+        public Promise ShowNotification(nsAString title)
+        {
+            return this.CallMethod<Promise>("showNotification", title);
         }
         
         public Promise ShowNotification(nsAString title, object options)
         {
             return this.CallMethod<Promise>("showNotification", title, options);
+        }
+        
+        public Promise < nsISupports[] > GetNotifications()
+        {
+            return this.CallMethod<Promise < nsISupports[] >>("getNotifications");
         }
         
         public Promise < nsISupports[] > GetNotifications(object filter)

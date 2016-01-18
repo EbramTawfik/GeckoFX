@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ShadowRoot : WebIDLBase
     {
         
-        public ShadowRoot(nsISupports thisObject) : 
-                base(thisObject)
+        public ShadowRoot(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

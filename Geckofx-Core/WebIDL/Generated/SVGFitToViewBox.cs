@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGFitToViewBox : WebIDLBase
     {
         
-        public SVGFitToViewBox(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGFitToViewBox(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

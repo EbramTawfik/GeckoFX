@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Navigator : WebIDLBase
     {
         
-        public Navigator(nsISupports thisObject) : 
-                base(thisObject)
+        public Navigator(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -218,6 +218,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<nsISupports>("serviceWorker");
             }
+        }
+        
+        public bool SendBeacon(nsAString url)
+        {
+            return this.CallMethod<bool>("sendBeacon", url);
         }
         
         public bool SendBeacon(nsAString url, WebIDLUnion<IntPtr,nsIDOMBlob,nsAString,nsIDOMFormData> data)

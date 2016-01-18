@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class InputEvent : WebIDLBase
     {
         
-        public InputEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public InputEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

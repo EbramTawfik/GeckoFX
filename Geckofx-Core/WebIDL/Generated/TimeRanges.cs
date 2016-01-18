@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TimeRanges : WebIDLBase
     {
         
-        public TimeRanges(nsISupports thisObject) : 
-                base(thisObject)
+        public TimeRanges(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

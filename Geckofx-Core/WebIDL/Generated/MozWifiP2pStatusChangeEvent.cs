@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozWifiP2pStatusChangeEvent : WebIDLBase
     {
         
-        public MozWifiP2pStatusChangeEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public MozWifiP2pStatusChangeEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

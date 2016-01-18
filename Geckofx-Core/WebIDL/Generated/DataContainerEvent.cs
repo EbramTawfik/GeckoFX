@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DataContainerEvent : WebIDLBase
     {
         
-        public DataContainerEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public DataContainerEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

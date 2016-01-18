@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozInputMethod : WebIDLBase
     {
         
-        public MozInputMethod(nsISupports thisObject) : 
-                base(thisObject)
+        public MozInputMethod(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

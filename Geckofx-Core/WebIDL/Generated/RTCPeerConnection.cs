@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class RTCPeerConnection : WebIDLBase
     {
         
-        public RTCPeerConnection(nsISupports thisObject) : 
-                base(thisObject)
+        public RTCPeerConnection(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -79,6 +79,16 @@ namespace Gecko.WebIDL
             }
         }
         
+        public void SetIdentityProvider(nsAString provider)
+        {
+            this.CallVoidMethod("setIdentityProvider", provider);
+        }
+        
+        public void SetIdentityProvider(nsAString provider, nsAString protocol)
+        {
+            this.CallVoidMethod("setIdentityProvider", provider, protocol);
+        }
+        
         public void SetIdentityProvider(nsAString provider, nsAString protocol, nsAString username)
         {
             this.CallVoidMethod("setIdentityProvider", provider, protocol, username);
@@ -89,9 +99,19 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise < nsAString >>("getIdentityAssertion");
         }
         
+        public Promise < nsISupports > CreateOffer()
+        {
+            return this.CallMethod<Promise < nsISupports >>("createOffer");
+        }
+        
         public Promise < nsISupports > CreateOffer(object options)
         {
             return this.CallMethod<Promise < nsISupports >>("createOffer", options);
+        }
+        
+        public Promise < nsISupports > CreateAnswer()
+        {
+            return this.CallMethod<Promise < nsISupports >>("createAnswer");
         }
         
         public Promise < nsISupports > CreateAnswer(object options)
@@ -107,6 +127,11 @@ namespace Gecko.WebIDL
         public Promise SetRemoteDescription(nsISupports description)
         {
             return this.CallMethod<Promise>("setRemoteDescription", description);
+        }
+        
+        public void UpdateIce()
+        {
+            this.CallVoidMethod("updateIce");
         }
         
         public void UpdateIce(object configuration)
@@ -174,9 +199,19 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("close");
         }
         
+        public Promise < nsISupports > GetStats()
+        {
+            return this.CallMethod<Promise < nsISupports >>("getStats");
+        }
+        
         public Promise < nsISupports > GetStats(nsISupports selector)
         {
             return this.CallMethod<Promise < nsISupports >>("getStats", selector);
+        }
+        
+        public nsISupports CreateDataChannel(nsAString label)
+        {
+            return this.CallMethod<nsISupports>("createDataChannel", label);
         }
         
         public nsISupports CreateDataChannel(nsAString label, object dataChannelDict)

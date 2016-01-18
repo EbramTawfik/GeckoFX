@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MediaDevices : WebIDLBase
     {
         
-        public MediaDevices(nsISupports thisObject) : 
-                base(thisObject)
+        public MediaDevices(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -19,6 +19,11 @@ namespace Gecko.WebIDL
         public Promise < nsISupports[] > EnumerateDevices()
         {
             return this.CallMethod<Promise < nsISupports[] >>("enumerateDevices");
+        }
+        
+        public Promise < nsISupports > GetUserMedia()
+        {
+            return this.CallMethod<Promise < nsISupports >>("getUserMedia");
         }
         
         public Promise < nsISupports > GetUserMedia(object constraints)

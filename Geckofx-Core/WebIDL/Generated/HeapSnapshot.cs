@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HeapSnapshot : WebIDLBase
     {
         
-        public HeapSnapshot(nsISupports thisObject) : 
-                base(thisObject)
+        public HeapSnapshot(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

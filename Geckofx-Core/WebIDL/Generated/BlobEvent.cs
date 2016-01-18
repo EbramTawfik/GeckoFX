@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BlobEvent : WebIDLBase
     {
         
-        public BlobEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public BlobEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

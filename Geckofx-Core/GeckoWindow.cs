@@ -14,10 +14,10 @@ namespace Gecko
 		private ComPtr<nsIDOMWindow> _domWindow;
 
 		#region ctor & dtor
-		public GeckoWindow(nsIDOMWindow window)
+		public GeckoWindow(nsIDOMWindow window, bool ownRCW = true)
 		{
 			//Interop.ComDebug.WriteDebugInfo( window );
-			_domWindow = new ComPtr<nsIDOMWindow>( window );
+			_domWindow = new ComPtr<nsIDOMWindow>( window, ownRCW );
 		}
 
 		~GeckoWindow()
@@ -57,7 +57,7 @@ namespace Gecko
 		{
 			get
 			{
-                return new WebIDL.Window((nsISupports)_domWindow.Instance).Document.Wrap(GeckoDomDocument.CreateDomDocumentWraper);
+                return new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).Document.Wrap(GeckoDomDocument.CreateDomDocumentWraper);
 			}
 		}
 		
@@ -66,42 +66,42 @@ namespace Gecko
 		/// </summary>
 		public GeckoWindow Parent
 		{
-			get { return new WebIDL.Window((nsISupports)_domWindow.Instance).Parent.Wrap( x => new GeckoWindow( x ) ); }
+            get { return new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).Parent.Wrap(x => new GeckoWindow(x)); }
 		}
 
 		public int ScrollX
 		{
-			get { return new WebIDL.Window((nsISupports)_domWindow.Instance).ScrollX; }
+			get { return new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).ScrollX; }
 		}
 		
 		public int ScrollY
 		{
-            get { return new WebIDL.Window((nsISupports)_domWindow.Instance).ScrollY; }
+            get { return new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).ScrollY; }
 		}
 
 		public void ScrollTo(int xScroll, int yScroll)
 		{
-            new WebIDL.Window((nsISupports)_domWindow.Instance).ScrollTo(xScroll, yScroll);
+            new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).ScrollTo(xScroll, yScroll);
 		}
 
 		public void ScrollBy(int xScrollDif, int yScrollDif)
 		{
-            new WebIDL.Window((nsISupports)_domWindow.Instance).ScrollBy(xScrollDif, yScrollDif);
+            new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).ScrollBy(xScrollDif, yScrollDif);
 		}
 
 		public void ScrollByLines(int numLines)
 		{
-            new WebIDL.Window((nsISupports)_domWindow.Instance).ScrollByLines(numLines, null);
+            new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).ScrollByLines(numLines);
 		}
 
 		public void ScrollByPages(int numPages)
 		{
-            new WebIDL.Window((nsISupports)_domWindow.Instance).ScrollByPages(numPages, null);
+            new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).ScrollByPages(numPages);
 		}
 
 		public void SizeToContent()
 		{
-            new WebIDL.Window((nsISupports)_domWindow.Instance).SizeToContent();
+            new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).SizeToContent();
 		}
 
 // prop no longer exist in gecko 45        
@@ -115,16 +115,19 @@ namespace Gecko
 		
 		public GeckoWindow Top
 		{
-			get { return new WebIDL.Window((nsISupports)_domWindow.Instance).Top.Wrap( x => new GeckoWindow( x ) ); }
+		    get
+		    {
+                return new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).Top.Wrap(x => new GeckoWindow(x));
+		    }
 		}
 		
 		public string Name
 		{
 		    get
 		    {
-		        return new WebIDL.Window((nsISupports) _domWindow.Instance).Name.ToString();
+		        return new WebIDL.Window(_domWindow.Instance, (nsISupports) _domWindow.Instance).Name.ToString();
 		    }
-			set { nsString.Set((s) => { new WebIDL.Window((nsISupports) _domWindow.Instance).Name = s; }, value ); }
+			set { nsString.Set((s) => { new WebIDL.Window(_domWindow.Instance, (nsISupports) _domWindow.Instance).Name = s; }, value ); }
 		}
 		
 		public void Print()
@@ -147,7 +150,7 @@ namespace Gecko
 		
 		public GeckoSelection Selection
 		{
-            get { return GeckoSelection.Create(new WebIDL.Window((nsISupports)_domWindow.Instance).GetSelection()); }
+            get { return GeckoSelection.Create(new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).GetSelection()); }
 		}
 
         // The WebIDL Window interfaces doesn't seem to have a Frames apptribute that returns a WindowCollection (rather just a window proxy? is it QI-able?)
@@ -162,7 +165,7 @@ namespace Gecko
 		{
 			get
 			{
-				return GlobalJSContextHolder.GetJSContextForDomWindow(_domWindow.Instance);
+			    return AutoJSContext.GetJsContextForWindow(_domWindow.Instance);
 			}
 		}
 

@@ -14,7 +14,7 @@ namespace GeckofxUnitTests
 	internal class DomWindowTests
 	{
 		private GeckoWebBrowser browser;
-		private nsIDOMWindow _domWindow;
+		private Gecko.WebIDL.Window _domWindow;
 
 		[SetUp]
 		public void BeforeEachTestSetup()
@@ -26,7 +26,7 @@ namespace GeckofxUnitTests
 
 			LoadHtml("<div>hello world</div>");
 
-			_domWindow = browser.Window.DomWindow;
+			_domWindow = new Gecko.WebIDL.Window(browser.Window.DomWindow, (nsISupports)browser.Window.DomWindow);
 		}
 
 		[TearDown]
@@ -64,8 +64,8 @@ namespace GeckofxUnitTests
 
 		[Test]
 		public void GetNavigatorAttribute_ReadOnlyDocument_ReturnsValidDomNaviagator()
-		{
-			Assert.IsNotNull(_domWindow.GetNavigatorAttribute());
+		{            
+			Assert.IsNotNull(_domWindow.Navigator);
 		}
 	}
 }

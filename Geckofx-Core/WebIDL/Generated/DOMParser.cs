@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMParser : WebIDLBase
     {
         
-        public DOMParser(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMParser(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -29,6 +29,21 @@ namespace Gecko.WebIDL
         public nsIDOMDocument ParseFromStream(nsISupports stream, nsAString charset, int contentLength, SupportedType type)
         {
             return this.CallMethod<nsIDOMDocument>("parseFromStream", stream, charset, contentLength, type);
+        }
+        
+        public void Init()
+        {
+            this.CallVoidMethod("init");
+        }
+        
+        public void Init(nsISupports principal)
+        {
+            this.CallVoidMethod("init", principal);
+        }
+        
+        public void Init(nsISupports principal, nsISupports documentURI)
+        {
+            this.CallVoidMethod("init", principal, documentURI);
         }
         
         public void Init(nsISupports principal, nsISupports documentURI, nsISupports baseURI)

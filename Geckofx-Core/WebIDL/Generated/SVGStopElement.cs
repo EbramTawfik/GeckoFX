@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGStopElement : WebIDLBase
     {
         
-        public SVGStopElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGStopElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

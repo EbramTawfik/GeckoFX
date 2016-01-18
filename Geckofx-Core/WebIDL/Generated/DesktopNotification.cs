@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DesktopNotification : WebIDLBase
     {
         
-        public DesktopNotification(nsISupports thisObject) : 
-                base(thisObject)
+        public DesktopNotification(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozNFCManager : WebIDLBase
     {
         
-        public MozNFCManager(nsISupports thisObject) : 
-                base(thisObject)
+        public MozNFCManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

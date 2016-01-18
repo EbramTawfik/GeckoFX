@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGSymbolElement : WebIDLBase
     {
         
-        public SVGSymbolElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGSymbolElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class nsIVariant : WebIDLBase
     {
         
-        public nsIVariant(nsISupports thisObject) : 
-                base(thisObject)
+        public nsIVariant(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

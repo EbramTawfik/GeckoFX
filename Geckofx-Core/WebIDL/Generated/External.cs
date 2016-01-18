@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class External : WebIDLBase
     {
         
-        public External(nsISupports thisObject) : 
-                base(thisObject)
+        public External(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

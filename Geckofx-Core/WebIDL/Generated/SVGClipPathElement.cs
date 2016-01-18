@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGClipPathElement : WebIDLBase
     {
         
-        public SVGClipPathElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGClipPathElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

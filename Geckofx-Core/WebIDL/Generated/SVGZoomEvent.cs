@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGZoomEvent : WebIDLBase
     {
         
-        public SVGZoomEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGZoomEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

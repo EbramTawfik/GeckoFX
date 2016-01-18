@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PeerConnectionImpl : WebIDLBase
     {
         
-        public PeerConnectionImpl(nsISupports thisObject) : 
-                base(thisObject)
+        public PeerConnectionImpl(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -106,6 +106,11 @@ namespace Gecko.WebIDL
         public void Initialize(nsISupports observer, nsIDOMWindow window, object iceServers, nsISupports thread)
         {
             this.CallVoidMethod("initialize", observer, window, iceServers, thread);
+        }
+        
+        public void CreateOffer()
+        {
+            this.CallVoidMethod("createOffer");
         }
         
         public void CreateOffer(object options)

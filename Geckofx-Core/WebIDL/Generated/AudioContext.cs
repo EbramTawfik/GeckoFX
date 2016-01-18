@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AudioContext : WebIDLBase
     {
         
-        public AudioContext(nsISupports thisObject) : 
-                base(thisObject)
+        public AudioContext(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -71,6 +71,11 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("createBuffer", numberOfChannels, length, sampleRate);
         }
         
+        public Promise < nsISupports > DecodeAudioData(IntPtr audioData)
+        {
+            return this.CallMethod<Promise < nsISupports >>("decodeAudioData", audioData);
+        }
+        
         public nsISupports CreateBufferSource()
         {
             return this.CallMethod<nsISupports>("createBufferSource");
@@ -79,6 +84,21 @@ namespace Gecko.WebIDL
         public nsISupports CreateMediaStreamDestination()
         {
             return this.CallMethod<nsISupports>("createMediaStreamDestination");
+        }
+        
+        public nsISupports CreateScriptProcessor()
+        {
+            return this.CallMethod<nsISupports>("createScriptProcessor");
+        }
+        
+        public nsISupports CreateScriptProcessor(uint bufferSize)
+        {
+            return this.CallMethod<nsISupports>("createScriptProcessor", bufferSize);
+        }
+        
+        public nsISupports CreateScriptProcessor(uint bufferSize, uint numberOfInputChannels)
+        {
+            return this.CallMethod<nsISupports>("createScriptProcessor", bufferSize, numberOfInputChannels);
         }
         
         public nsISupports CreateScriptProcessor(uint bufferSize, uint numberOfInputChannels, uint numberOfOutputChannels)
@@ -111,6 +131,11 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("createGain");
         }
         
+        public nsISupports CreateDelay()
+        {
+            return this.CallMethod<nsISupports>("createDelay");
+        }
+        
         public nsISupports CreateDelay(double maxDelayTime)
         {
             return this.CallMethod<nsISupports>("createDelay", maxDelayTime);
@@ -136,9 +161,19 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("createConvolver");
         }
         
+        public nsISupports CreateChannelSplitter()
+        {
+            return this.CallMethod<nsISupports>("createChannelSplitter");
+        }
+        
         public nsISupports CreateChannelSplitter(uint numberOfOutputs)
         {
             return this.CallMethod<nsISupports>("createChannelSplitter", numberOfOutputs);
+        }
+        
+        public nsISupports CreateChannelMerger()
+        {
+            return this.CallMethod<nsISupports>("createChannelMerger");
         }
         
         public nsISupports CreateChannelMerger(uint numberOfInputs)

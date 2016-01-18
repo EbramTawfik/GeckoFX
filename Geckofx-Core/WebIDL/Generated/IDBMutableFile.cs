@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class IDBMutableFile : WebIDLBase
     {
         
-        public IDBMutableFile(nsISupports thisObject) : 
-                base(thisObject)
+        public IDBMutableFile(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -33,6 +33,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<nsISupports>("database");
             }
+        }
+        
+        public nsISupports Open()
+        {
+            return this.CallMethod<nsISupports>("open");
         }
         
         public nsISupports Open(FileMode mode)

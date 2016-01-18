@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class nsIEditor : WebIDLBase
     {
         
-        public nsIEditor(nsISupports thisObject) : 
-                base(thisObject)
+        public nsIEditor(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

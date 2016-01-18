@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AudioProcessingEvent : WebIDLBase
     {
         
-        public AudioProcessingEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public AudioProcessingEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BluetoothGatt : WebIDLBase
     {
         
-        public BluetoothGatt(nsISupports thisObject) : 
-                base(thisObject)
+        public BluetoothGatt(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

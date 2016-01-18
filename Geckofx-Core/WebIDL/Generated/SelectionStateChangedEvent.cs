@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SelectionStateChangedEvent : WebIDLBase
     {
         
-        public SelectionStateChangedEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public SelectionStateChangedEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

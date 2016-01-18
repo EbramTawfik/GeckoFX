@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DownloadEvent : WebIDLBase
     {
         
-        public DownloadEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public DownloadEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

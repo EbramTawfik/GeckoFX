@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Performance : WebIDLBase
     {
         
-        public Performance(nsISupports thisObject) : 
-                base(thisObject)
+        public Performance(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -47,6 +47,11 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports[]>("getEntriesByType", entryType);
         }
         
+        public nsISupports[] GetEntriesByName(nsAString name)
+        {
+            return this.CallMethod<nsISupports[]>("getEntriesByName", name);
+        }
+        
         public nsISupports[] GetEntriesByName(nsAString name, nsAString entryType)
         {
             return this.CallMethod<nsISupports[]>("getEntriesByName", name, entryType);
@@ -75,14 +80,34 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("mark", markName);
         }
         
+        public void ClearMarks()
+        {
+            this.CallVoidMethod("clearMarks");
+        }
+        
         public void ClearMarks(nsAString markName)
         {
             this.CallVoidMethod("clearMarks", markName);
         }
         
+        public void Measure(nsAString measureName)
+        {
+            this.CallVoidMethod("measure", measureName);
+        }
+        
+        public void Measure(nsAString measureName, nsAString startMark)
+        {
+            this.CallVoidMethod("measure", measureName, startMark);
+        }
+        
         public void Measure(nsAString measureName, nsAString startMark, nsAString endMark)
         {
             this.CallVoidMethod("measure", measureName, startMark, endMark);
+        }
+        
+        public void ClearMeasures()
+        {
+            this.CallVoidMethod("clearMeasures");
         }
         
         public void ClearMeasures(nsAString measureName)

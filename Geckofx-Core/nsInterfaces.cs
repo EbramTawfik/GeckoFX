@@ -70,34 +70,34 @@ namespace Gecko
 	public static class nsIWebProgressListenerConstants
 	{
 		// State transition flags
-		public const ulong STATE_START = 0x1;
-		public const ulong STATE_REDIRECTING = 0x2;
-		public const ulong STATE_TRANSFERRING = 0x4;
-		public const ulong STATE_NEGOTIATING = 0x8;
-		public const ulong STATE_STOP = 0x10;
+		public const ulong STATE_START = nsIWebProgressListenerConsts.STATE_START;
+		public const ulong STATE_REDIRECTING = nsIWebProgressListenerConsts.STATE_REDIRECTING;
+		public const ulong STATE_TRANSFERRING = nsIWebProgressListenerConsts.STATE_TRANSFERRING;
+		public const ulong STATE_NEGOTIATING = nsIWebProgressListenerConsts.STATE_NEGOTIATING;
+		public const ulong STATE_STOP = nsIWebProgressListenerConsts.STATE_STOP;
 
 		// State type flags
-		public const ulong STATE_IS_REQUEST = 0x10000;
-		public const ulong STATE_IS_DOCUMENT = 0x20000;
-		public const ulong STATE_IS_NETWORK = 0x40000;
-		public const ulong STATE_IS_WINDOW = 0x80000;
+		public const ulong STATE_IS_REQUEST = nsIWebProgressListenerConsts.STATE_IS_REQUEST;
+		public const ulong STATE_IS_DOCUMENT = nsIWebProgressListenerConsts.STATE_IS_DOCUMENT;
+		public const ulong STATE_IS_NETWORK = nsIWebProgressListenerConsts.STATE_IS_NETWORK;
+		public const ulong STATE_IS_WINDOW = nsIWebProgressListenerConsts.STATE_IS_WINDOW;
 
 		// State modifier flags
-		public const int STATE_RESTORING = 0x1000000;
+		public const ulong STATE_RESTORING = nsIWebProgressListenerConsts.STATE_RESTORING;
 
 		// State security flags
-		public const ulong STATE_IS_INSECURE = 0x4;
-		public const ulong STATE_IS_BROKEN = 0x1;
-		public const ulong STATE_IS_SECURE = 0x2;
+		public const ulong STATE_IS_INSECURE = nsIWebProgressListenerConsts.STATE_IS_INSECURE;
+		public const ulong STATE_IS_BROKEN = nsIWebProgressListenerConsts.STATE_IS_BROKEN;
+		public const ulong STATE_IS_SECURE = nsIWebProgressListenerConsts.STATE_IS_SECURE;
 
 		// Security strength flags
-		public const ulong STATE_SECURE_HIGH = 0x40000;
-		public const ulong STATE_SECURE_MED = 0x10000;
-		public const ulong STATE_SECURE_LOW = 0x20000;
+		public const ulong STATE_SECURE_HIGH = nsIWebProgressListenerConsts.STATE_SECURE_HIGH;
+		public const ulong STATE_SECURE_MED = nsIWebProgressListenerConsts.STATE_SECURE_MED;
+		public const ulong STATE_SECURE_LOW = nsIWebProgressListenerConsts.STATE_SECURE_LOW;
 
 		// State identity flags
-		public const ulong LOCATION_CHANGE_SAME_DOCUMENT = 0x00000001;
-		public const ulong LOCATION_CHANGE_ERROR_PAGE = 0x00000002;
+		public const ulong LOCATION_CHANGE_SAME_DOCUMENT = nsIWebProgressListenerConsts.LOCATION_CHANGE_SAME_DOCUMENT;
+		public const ulong LOCATION_CHANGE_ERROR_PAGE = nsIWebProgressListenerConsts.LOCATION_CHANGE_ERROR_PAGE;
 	}
 
 	public static class nsIPromptServiceConstants

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class XULElement : WebIDLBase
     {
         
-        public XULElement(nsISupports thisObject) : 
-                base(thisObject)
+        public XULElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGPathElement : WebIDLBase
     {
         
-        public SVGPathElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGPathElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

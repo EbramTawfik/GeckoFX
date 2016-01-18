@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGTSpanElement : WebIDLBase
     {
         
-        public SVGTSpanElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGTSpanElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

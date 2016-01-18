@@ -6,14 +6,29 @@ namespace Gecko.WebIDL
     public class EventTarget : WebIDLBase
     {
         
-        public EventTarget(nsISupports thisObject) : 
-                base(thisObject)
+        public EventTarget(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
+        }
+        
+        public void AddEventListener(nsAString type, nsISupports listener)
+        {
+            this.CallVoidMethod("addEventListener", type, listener);
+        }
+        
+        public void AddEventListener(nsAString type, nsISupports listener, bool capture)
+        {
+            this.CallVoidMethod("addEventListener", type, listener, capture);
         }
         
         public void AddEventListener(nsAString type, nsISupports listener, bool capture, System.Nullable<bool> wantsUntrusted)
         {
             this.CallVoidMethod("addEventListener", type, listener, capture, wantsUntrusted);
+        }
+        
+        public void RemoveEventListener(nsAString type, nsISupports listener)
+        {
+            this.CallVoidMethod("removeEventListener", type, listener);
         }
         
         public void RemoveEventListener(nsAString type, nsISupports listener, bool capture)

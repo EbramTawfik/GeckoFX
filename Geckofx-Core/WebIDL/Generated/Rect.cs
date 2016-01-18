@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Rect : WebIDLBase
     {
         
-        public Rect(nsISupports thisObject) : 
-                base(thisObject)
+        public Rect(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

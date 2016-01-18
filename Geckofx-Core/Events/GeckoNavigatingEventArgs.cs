@@ -13,7 +13,15 @@ namespace Gecko.Events
 	{
 		public readonly Uri Uri;
 		public readonly GeckoWindow DomWindow;
-		public readonly bool DomWindowTopLevel;
+
+        public bool DomWindowTopLevel
+        {
+            get
+            {
+                return DomWindow.IsTopWindow();
+            }
+        }
+
 
 		/// <summary>Creates a new instance of a <see cref="GeckoNavigatingEventArgs"/> object.</summary>
 		/// <param name="value"></param>
@@ -21,7 +29,6 @@ namespace Gecko.Events
 		{
 			Uri = value;
 			DomWindow = domWind;
-			DomWindowTopLevel = domWind.IsTopWindow();
 		}
 	}
 	#endregion

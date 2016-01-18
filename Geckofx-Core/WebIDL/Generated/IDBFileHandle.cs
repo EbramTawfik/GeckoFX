@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class IDBFileHandle : WebIDLBase
     {
         
-        public IDBFileHandle(nsISupports thisObject) : 
-                base(thisObject)
+        public IDBFileHandle(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -55,6 +55,11 @@ namespace Gecko.WebIDL
             }
         }
         
+        public nsISupports GetMetadata()
+        {
+            return this.CallMethod<nsISupports>("getMetadata");
+        }
+        
         public nsISupports GetMetadata(object parameters)
         {
             return this.CallMethod<nsISupports>("getMetadata", parameters);
@@ -63,6 +68,11 @@ namespace Gecko.WebIDL
         public nsISupports ReadAsArrayBuffer(ulong size)
         {
             return this.CallMethod<nsISupports>("readAsArrayBuffer", size);
+        }
+        
+        public nsISupports ReadAsText(ulong size)
+        {
+            return this.CallMethod<nsISupports>("readAsText", size);
         }
         
         public nsISupports ReadAsText(ulong size, nsAString encoding)
@@ -78,6 +88,11 @@ namespace Gecko.WebIDL
         public nsISupports Append(WebIDLUnion<nsAString,IntPtr,IntPtr,nsIDOMBlob> value)
         {
             return this.CallMethod<nsISupports>("append", value);
+        }
+        
+        public nsISupports Truncate()
+        {
+            return this.CallMethod<nsISupports>("truncate");
         }
         
         public nsISupports Truncate(ulong size)

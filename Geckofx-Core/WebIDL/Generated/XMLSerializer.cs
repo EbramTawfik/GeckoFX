@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class XMLSerializer : WebIDLBase
     {
         
-        public XMLSerializer(nsISupports thisObject) : 
-                base(thisObject)
+        public XMLSerializer(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

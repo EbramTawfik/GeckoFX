@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ContainerBoxObject : WebIDLBase
     {
         
-        public ContainerBoxObject(nsISupports thisObject) : 
-                base(thisObject)
+        public ContainerBoxObject(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

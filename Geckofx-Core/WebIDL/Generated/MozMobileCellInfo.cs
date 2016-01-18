@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozMobileCellInfo : WebIDLBase
     {
         
-        public MozMobileCellInfo(nsISupports thisObject) : 
-                base(thisObject)
+        public MozMobileCellInfo(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class UDPSocket : WebIDLBase
     {
         
-        public UDPSocket(nsISupports thisObject) : 
-                base(thisObject)
+        public UDPSocket(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -96,6 +96,16 @@ namespace Gecko.WebIDL
         public void LeaveMulticastGroup(nsAString multicastGroupAddress)
         {
             this.CallVoidMethod("leaveMulticastGroup", multicastGroupAddress);
+        }
+        
+        public bool Send(WebIDLUnion<nsAString,nsIDOMBlob,IntPtr,IntPtr> data)
+        {
+            return this.CallMethod<bool>("send", data);
+        }
+        
+        public bool Send(WebIDLUnion<nsAString,nsIDOMBlob,IntPtr,IntPtr> data, nsAString remoteAddress)
+        {
+            return this.CallMethod<bool>("send", data, remoteAddress);
         }
         
         public bool Send(WebIDLUnion<nsAString,nsIDOMBlob,IntPtr,IntPtr> data, nsAString remoteAddress, System.Nullable<ushort> remotePort)

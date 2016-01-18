@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ChromeNotifications : WebIDLBase
     {
         
-        public ChromeNotifications(nsISupports thisObject) : 
-                base(thisObject)
+        public ChromeNotifications(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

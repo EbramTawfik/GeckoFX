@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLQuoteElement : WebIDLBase
     {
         
-        public HTMLQuoteElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLQuoteElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ChromeWindow : WebIDLBase
     {
         
-        public ChromeWindow(nsISupports thisObject) : 
-                base(thisObject)
+        public ChromeWindow(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -77,6 +77,11 @@ namespace Gecko.WebIDL
         public nsISupports GetGroupMessageManager(nsAString aGroup)
         {
             return this.CallMethod<nsISupports>("getGroupMessageManager", aGroup);
+        }
+        
+        public void BeginWindowMove(nsIDOMEvent mouseDownEvent)
+        {
+            this.CallVoidMethod("beginWindowMove", mouseDownEvent);
         }
         
         public void BeginWindowMove(nsIDOMEvent mouseDownEvent, nsIDOMElement panel)

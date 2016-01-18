@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DeviceStorage : WebIDLBase
     {
         
-        public DeviceStorage(nsISupports thisObject) : 
-                base(thisObject)
+        public DeviceStorage(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -97,9 +97,19 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("delete", aName);
         }
         
+        public nsISupports Enumerate()
+        {
+            return this.CallMethod<nsISupports>("enumerate");
+        }
+        
         public nsISupports Enumerate(object options)
         {
             return this.CallMethod<nsISupports>("enumerate", options);
+        }
+        
+        public nsISupports Enumerate(nsAString path)
+        {
+            return this.CallMethod<nsISupports>("enumerate", path);
         }
         
         public nsISupports Enumerate(nsAString path, object options)
@@ -107,9 +117,19 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("enumerate", path, options);
         }
         
+        public nsISupports EnumerateEditable()
+        {
+            return this.CallMethod<nsISupports>("enumerateEditable");
+        }
+        
         public nsISupports EnumerateEditable(object options)
         {
             return this.CallMethod<nsISupports>("enumerateEditable", options);
+        }
+        
+        public nsISupports EnumerateEditable(nsAString path)
+        {
+            return this.CallMethod<nsISupports>("enumerateEditable", path);
         }
         
         public nsISupports EnumerateEditable(nsAString path, object options)

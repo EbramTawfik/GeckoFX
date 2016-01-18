@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DeviceMotionEvent : WebIDLBase
     {
         
-        public DeviceMotionEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public DeviceMotionEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class nsILoadGroup : WebIDLBase
     {
         
-        public nsILoadGroup(nsISupports thisObject) : 
-                base(thisObject)
+        public nsILoadGroup(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

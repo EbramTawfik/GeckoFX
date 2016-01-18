@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Selection : WebIDLBase
     {
         
-        public Selection(nsISupports thisObject) : 
-                base(thisObject)
+        public Selection(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

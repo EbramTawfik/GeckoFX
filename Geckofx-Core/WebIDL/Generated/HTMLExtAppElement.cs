@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLExtAppElement : WebIDLBase
     {
         
-        public HTMLExtAppElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLExtAppElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

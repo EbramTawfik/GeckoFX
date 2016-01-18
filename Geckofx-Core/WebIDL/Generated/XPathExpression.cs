@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class XPathExpression : WebIDLBase
     {
         
-        public XPathExpression(nsISupports thisObject) : 
-                base(thisObject)
+        public XPathExpression(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

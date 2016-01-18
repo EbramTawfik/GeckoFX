@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLMeterElement : WebIDLBase
     {
         
-        public HTMLMeterElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLMeterElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

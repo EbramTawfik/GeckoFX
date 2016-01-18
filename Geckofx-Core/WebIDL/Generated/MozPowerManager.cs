@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozPowerManager : WebIDLBase
     {
         
-        public MozPowerManager(nsISupports thisObject) : 
-                base(thisObject)
+        public MozPowerManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -67,6 +67,11 @@ namespace Gecko.WebIDL
         public void Reboot()
         {
             this.CallVoidMethod("reboot");
+        }
+        
+        public void FactoryReset()
+        {
+            this.CallVoidMethod("factoryReset");
         }
         
         public void FactoryReset(FactoryResetReason reason)

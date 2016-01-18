@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozContactChangeEvent : WebIDLBase
     {
         
-        public MozContactChangeEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public MozContactChangeEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

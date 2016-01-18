@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozWifiStationInfoEvent : WebIDLBase
     {
         
-        public MozWifiStationInfoEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public MozWifiStationInfoEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

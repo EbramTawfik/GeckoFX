@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class GamepadButton : WebIDLBase
     {
         
-        public GamepadButton(nsISupports thisObject) : 
-                base(thisObject)
+        public GamepadButton(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

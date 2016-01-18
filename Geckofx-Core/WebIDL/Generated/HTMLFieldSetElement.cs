@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLFieldSetElement : WebIDLBase
     {
         
-        public HTMLFieldSetElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLFieldSetElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

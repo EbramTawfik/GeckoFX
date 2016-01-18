@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TCPServerSocket : WebIDLBase
     {
         
-        public TCPServerSocket(nsISupports thisObject) : 
-                base(thisObject)
+        public TCPServerSocket(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PerformanceTiming : WebIDLBase
     {
         
-        public PerformanceTiming(nsISupports thisObject) : 
-                base(thisObject)
+        public PerformanceTiming(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

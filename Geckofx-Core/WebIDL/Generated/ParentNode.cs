@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ParentNode : WebIDLBase
     {
         
-        public ParentNode(nsISupports thisObject) : 
-                base(thisObject)
+        public ParentNode(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

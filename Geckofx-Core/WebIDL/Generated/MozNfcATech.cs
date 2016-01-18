@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozNfcATech : WebIDLBase
     {
         
-        public MozNfcATech(nsISupports thisObject) : 
-                base(thisObject)
+        public MozNfcATech(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

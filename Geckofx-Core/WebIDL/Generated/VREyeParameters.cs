@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class VREyeParameters : WebIDLBase
     {
         
-        public VREyeParameters(nsISupports thisObject) : 
-                base(thisObject)
+        public VREyeParameters(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

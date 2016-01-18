@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMMobileMessageError : WebIDLBase
     {
         
-        public DOMMobileMessageError(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMMobileMessageError(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

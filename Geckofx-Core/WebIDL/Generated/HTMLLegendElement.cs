@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLLegendElement : WebIDLBase
     {
         
-        public HTMLLegendElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLLegendElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

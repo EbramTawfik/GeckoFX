@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WaveShaperNode : WebIDLBase
     {
         
-        public WaveShaperNode(nsISupports thisObject) : 
-                base(thisObject)
+        public WaveShaperNode(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

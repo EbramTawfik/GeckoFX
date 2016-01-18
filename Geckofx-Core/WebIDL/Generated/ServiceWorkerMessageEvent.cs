@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ServiceWorkerMessageEvent : WebIDLBase
     {
         
-        public ServiceWorkerMessageEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public ServiceWorkerMessageEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

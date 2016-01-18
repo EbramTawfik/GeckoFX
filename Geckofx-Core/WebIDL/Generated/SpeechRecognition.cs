@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SpeechRecognition : WebIDLBase
     {
         
-        public SpeechRecognition(nsISupports thisObject) : 
-                base(thisObject)
+        public SpeechRecognition(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -81,6 +81,11 @@ namespace Gecko.WebIDL
             {
                 this.SetProperty("serviceURI", value);
             }
+        }
+        
+        public void Start()
+        {
+            this.CallVoidMethod("start");
         }
         
         public void Start(nsISupports stream)

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class IDBVersionChangeEvent : WebIDLBase
     {
         
-        public IDBVersionChangeEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public IDBVersionChangeEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

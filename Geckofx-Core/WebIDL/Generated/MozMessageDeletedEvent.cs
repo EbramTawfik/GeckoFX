@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozMessageDeletedEvent : WebIDLBase
     {
         
-        public MozMessageDeletedEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public MozMessageDeletedEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CanvasDrawingStyles : WebIDLBase
     {
         
-        public CanvasDrawingStyles(nsISupports thisObject) : 
-                base(thisObject)
+        public CanvasDrawingStyles(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

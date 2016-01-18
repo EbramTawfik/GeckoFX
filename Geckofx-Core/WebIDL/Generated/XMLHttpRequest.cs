@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class XMLHttpRequest : WebIDLBase
     {
         
-        public XMLHttpRequest(nsISupports thisObject) : 
-                base(thisObject)
+        public XMLHttpRequest(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -162,6 +162,16 @@ namespace Gecko.WebIDL
         public void Open(ByteString method, nsAString url)
         {
             this.CallVoidMethod("open", method, url);
+        }
+        
+        public void Open(ByteString method, nsAString url, bool async)
+        {
+            this.CallVoidMethod("open", method, url, async);
+        }
+        
+        public void Open(ByteString method, nsAString url, bool async, nsAString user)
+        {
+            this.CallVoidMethod("open", method, url, async, user);
         }
         
         public void Open(ByteString method, nsAString url, bool async, nsAString user, nsAString password)

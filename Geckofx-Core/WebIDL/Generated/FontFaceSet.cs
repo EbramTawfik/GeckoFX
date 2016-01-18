@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class FontFaceSet : WebIDLBase
     {
         
-        public FontFaceSet(nsISupports thisObject) : 
-                base(thisObject)
+        public FontFaceSet(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -65,9 +65,19 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("values");
         }
         
+        public Promise < nsISupports[] > Load(nsAString font)
+        {
+            return this.CallMethod<Promise < nsISupports[] >>("load", font);
+        }
+        
         public Promise < nsISupports[] > Load(nsAString font, nsAString text)
         {
             return this.CallMethod<Promise < nsISupports[] >>("load", font, text);
+        }
+        
+        public bool Check(nsAString font)
+        {
+            return this.CallMethod<bool>("check", font);
         }
         
         public bool Check(nsAString font, nsAString text)

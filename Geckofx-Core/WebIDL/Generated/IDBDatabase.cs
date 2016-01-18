@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class IDBDatabase : WebIDLBase
     {
         
-        public IDBDatabase(nsISupports thisObject) : 
-                base(thisObject)
+        public IDBDatabase(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -35,6 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
+        public nsISupports CreateObjectStore(nsAString name)
+        {
+            return this.CallMethod<nsISupports>("createObjectStore", name);
+        }
+        
         public nsISupports CreateObjectStore(nsAString name, object optionalParameters)
         {
             return this.CallMethod<nsISupports>("createObjectStore", name, optionalParameters);
@@ -43,6 +48,11 @@ namespace Gecko.WebIDL
         public void DeleteObjectStore(nsAString name)
         {
             this.CallVoidMethod("deleteObjectStore", name);
+        }
+        
+        public nsISupports Transaction(WebIDLUnion<nsAString,nsAString[]> storeNames)
+        {
+            return this.CallMethod<nsISupports>("transaction", storeNames);
         }
         
         public nsISupports Transaction(WebIDLUnion<nsAString,nsAString[]> storeNames, IDBTransactionMode mode)
@@ -63,9 +73,19 @@ namespace Gecko.WebIDL
             }
         }
         
+        public nsISupports CreateMutableFile(nsAString name)
+        {
+            return this.CallMethod<nsISupports>("createMutableFile", name);
+        }
+        
         public nsISupports CreateMutableFile(nsAString name, nsAString type)
         {
             return this.CallMethod<nsISupports>("createMutableFile", name, type);
+        }
+        
+        public nsISupports MozCreateFileHandle(nsAString name)
+        {
+            return this.CallMethod<nsISupports>("mozCreateFileHandle", name);
         }
         
         public nsISupports MozCreateFileHandle(nsAString name, nsAString type)

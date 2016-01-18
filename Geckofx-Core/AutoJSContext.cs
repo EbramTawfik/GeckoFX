@@ -48,16 +48,104 @@ namespace Gecko
 	/// which prevent methods on nsIDOMCSSStyleSheet from working outside of javascript.
 	/// </summary>
 	public class AutoJSContext : IDisposable
-	{
-		private IntPtr _cx;
+    {
+        #region fields
+
+        private readonly IntPtr _cx;
+        private readonly nsIDOMWindow _window;
 		private JSAutoCompartment _defaultCompartment;
+        Stack<JSAutoCompartment> _compartmentStack = new Stack<JSAutoCompartment>();
+        private nsIXPCComponents _nsIXPCComponents;
+	    private IntPtr _globalJSObject;
 
-		public IntPtr ContextPointer { get { return _cx; } }
+        /// <summary>
+        /// These static fields allow AutoJSContext(IntPtr context) to work.
+        /// </summary>
+        static Dictionary<IntPtr, IntPtr> _contextToGlobalDictionary = new Dictionary<IntPtr, IntPtr>();
+        static Dictionary<nsIDOMWindow, IntPtr> _windowToJsContextDictionary = new Dictionary<nsIDOMWindow, IntPtr>();
 
-		Stack<JSAutoCompartment> _compartmentStack = new Stack<JSAutoCompartment>();
-	    private nsIXPCComponents _nsIXPCComponents;
+        private static IntPtr _safeContext;	
 
-	    public void PushCompartmentScope(nsISupports obj)
+        #endregion
+
+        #region Properties
+
+        public IntPtr ContextPointer { get { return _cx; } }
+
+	    #endregion
+
+        #region Connstructors
+
+        public AutoJSContext(GeckoWindow window) :
+            this(window.DomWindow)
+        {
+
+        }
+
+        public AutoJSContext(nsISupports window) :
+            this((nsIDOMWindow)window)
+        {
+
+        }
+
+        public AutoJSContext(nsIDOMWindow window)
+        {
+            var context = SafeJSContext;
+            var go = (nsIGlobalObject)window;
+
+            using (var xpc = new ComPtr<nsIGlobalObject>(go, false))
+            {
+                int slot = xpc.GetSlotOfComMethod(new Func<IntPtr>(go.GetGlobalJSObject));
+                var getGlobalJSObject = xpc.GetComMethod<Xpcom.GetGlobalJSObject>(Xpcom.IsLinux ? -1 : slot);
+                _globalJSObject = getGlobalJSObject(go);
+                if (_globalJSObject == IntPtr.Zero)
+                    throw new ArgumentException(
+                        "Window does not have a global JSObject. Purhaps the window doesn't have an initalized document?");
+
+                _contextToGlobalDictionary[context] = _globalJSObject;
+                _windowToJsContextDictionary[window] = _globalJSObject;
+                _defaultCompartment = new JSAutoCompartment(SafeJSContext, _globalJSObject);
+                _cx = context;
+                _window = window;
+            }
+        }
+        
+        /// <summary>
+        /// Create a AutoJSContext using the SafeJSContext.
+        /// If context is IntPtr.Zero use the SafeJSContext
+        /// (but SafeJSContext doesn't contain a Global object then try the BackstageJSContext instead)
+        /// </summary>
+        /// <param name="context"></param>
+        [ObsoleteAttribute("This constructor only works if a AutoJSContext(window) has previously been use for the same context.")]
+        public AutoJSContext(IntPtr context)
+        {
+            // We can't just use nsIXPConnect::GetSafeJSContext(); because its marked as [noxpcom, nostdcall]
+            // TODO: Enhance IDL compiler to not generate methods for noxpcom, nostdcall tagged methods.
+            if (context == IntPtr.Zero)
+                context = SafeJSContext;
+
+            _globalJSObject = GetGlobalFromContext(context);
+            if (_globalJSObject == IntPtr.Zero)
+                throw new InvalidOperationException("JSContext don't store their default compartment object on the cx.");
+
+            _defaultCompartment = new JSAutoCompartment(context, _globalJSObject);
+            _cx = context;
+        }
+        
+        /// <summary>
+        /// Create a AutoJSContext using the SafeJSContext.
+        /// </summary>
+        [ObsoleteAttribute("This constructor only works if a AutoJSContext(window) has previously been use for the SafeJSContext")]
+        public AutoJSContext()
+            : this(SafeJSContext)
+        {
+        }
+
+        #endregion
+
+        #region CompartmentScopeMethods
+
+        public void PushCompartmentScope(nsISupports obj)
 		{
 			_compartmentStack.Push(new JSAutoCompartment(this, obj));
 		}
@@ -66,7 +154,6 @@ namespace Gecko
 		{
 			if (_compartmentStack.Count <= 0)
 				throw new InvalidOperationException("The Compartment stack is empty.");
-
 
 			var autoCompartment = _compartmentStack.Pop();
 			IntPtr ret = autoCompartment.ScopeObject;
@@ -88,350 +175,274 @@ namespace Gecko
 			return _defaultCompartment.ScopeObject;
 		}
 
-		/// <summary>
-		/// Create a AutoJSContext using the SafeJSContext.
-		/// If context is IntPtr.Zero use the SafeJSContext
-        /// (but SafeJSContext doesn't contain a Global object then try the BackstageJSContext instead)
-		/// </summary>
-		/// <param name="context"></param>
-		public AutoJSContext(IntPtr context)
-		{
-			// We can't just use nsIXPConnect::GetSafeJSContext(); because its marked as [noxpcom, nostdcall]
-			// TODO: Enhance IDL compiler to not generate methods for noxpcom, nostdcall tagged methods.
-			if (context == IntPtr.Zero)
-				context = GlobalJSContextHolder.SafeJSContext;			
+        #endregion
 
-            IntPtr globalObject = GetGlobalFromContext(context);
-            if (globalObject == IntPtr.Zero && context == GlobalJSContextHolder.SafeJSContext)
-		    {
-		        context = GlobalJSContextHolder.BackstageJSContext;
-                globalObject = GetGlobalFromContext(context);
-		    }
-            
-            if (globalObject == IntPtr.Zero)
-                throw new InvalidOperationException("JSContext don't store their default compartment object on the cx.");
-		  
-            _defaultCompartment = new JSAutoCompartment(context, globalObject);
-			_cx = context;
-		}
+        #region EvaluateScriptMethods
 
-		/// <summary>
-		/// Create a AutoJSContext using the SafeJSContext.
-		/// </summary>		
-		public AutoJSContext()
-            : this(GlobalJSContextHolder.SafeJSContext)
-		{
-		}
-
-		/// <summary>
-		/// Evaluate javascript in the current context.
-		/// </summary>
-		/// <param name="jsScript"></param>
-		/// <param name="jsval"></param>
-		/// <returns></returns>
-		public bool EvaluateScript(string jsScript, out string result)
+        /// <summary>
+	    /// Evaluate javascript in the current context, in the global scope.
+	    /// </summary>
+	    /// <param name="jsScript"></param>
+	    /// <param name="result"></param>
+	    /// <returns>result of javascript as string.</returns>
+	    public bool EvaluateScript(string jsScript, out string result)
 		{
 			var ptr = new JsVal();
-			bool ret = SpiderMonkey.JS_EvaluateScript(_cx, GetGlobalObject(), jsScript, (uint)jsScript.Length, "script", 1, ref ptr);			
+			bool ret = SpiderMonkey.JS_EvaluateScript(ContextPointer, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);			
 
 			result = ret ? ConvertValueToString(ptr) : null;
 			return ret;
 		}
 
         /// <summary>
-        /// Evaluate JavaScript in specified window.
-        /// Will throw a GeckoJavaScriptException if unable to convert window into a JsVal
+        /// Evaluate javascript in specified window.
+        /// Throws GeckoJavaScriptException on error.
         /// </summary>
-        /// <param name="javascript">The javascript to run.</param>
-        /// <param name="window">The window to execuate javascript in.</param>
-        /// <returns>The return value of the script as a JsVal</returns>
-	    public JsVal EvaluateScript(string javascript, nsIDOMWindow window)
+        /// <param name="javascript"></param>
+        /// <param name="window"></param>
+        /// <returns>result of javascript as JsVal</returns>
+        public JsVal EvaluateScript(string javascript, nsIDOMWindow window)
+        {
+            return EvaluateScript(javascript, (nsISupports)window, (nsISupports)window);
+        }       
+
+	    /// <summary>
+	    /// Evaluate JavaScript in specified window, and with specified scope.
+        /// Throws GeckoJavaScriptException on error.
+	    /// </summary>
+	    /// <param name="javascript">The javascript to run.</param>
+	    /// <param name="window">The window to execuate javascript in. (ie. the global object)</param>
+	    /// <param name="scope">object to use as scope.</param>
+	    /// <returns>The return value of the script as a JsVal</returns>
+	    public JsVal EvaluateScript(string javascript, nsISupports window, nsISupports scope)
 	    {
             string msg = String.Empty;
-            IntPtr globalObject = ConvertCOMObjectToJSObject((nsISupports)window);
-            
-            using (new JSAutoCompartment(_cx, globalObject))
+
+            IntPtr globalObject = ConvertCOMObjectToJSObject(window);
+
+            using (new JSAutoCompartment(ContextPointer, globalObject))
             {
-                var old = SpiderMonkey.JS_SetErrorReporter(_cx, (cx, message, report) => { msg = message; });
+                var old = SpiderMonkey.JS_SetErrorReporter(SpiderMonkey.JS_GetRuntime(ContextPointer), (cx, message, report) => { msg = message; });
                 try
                 {
-                    var windowJsVal = new JsVal();
-                    string jsScript = "this";
-                    bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length,
-                        "script", 1, ref windowJsVal);
+                    var retJsVal = new JsVal();
+                    bool ret;
+                    // If not running in window scope.
+                    if (window != scope)
+                    {
+                        var scopeJSVal = JsVal.FromPtr(ConvertCOMObjectToJSObject(scope));
+                        if (!SpiderMonkey.JS_SetProperty(ContextPointer, globalObject, "__RequestedScope", scopeJSVal))
+                            throw new GeckoException("Failed to set __RequestedScope Property.");
+
+                        javascript = InsertReturnStatement(javascript);
+                        string s = "(function() { " + javascript + " }).call(this.__RequestedScope)";
+
+                        ret = SpiderMonkey.JS_EvaluateScript(ContextPointer, s, (uint)s.Length, "script", 1,
+                            ref retJsVal);
+                    }
+                    else
+                    {
+                        ret = SpiderMonkey.JS_EvaluateScript(ContextPointer, javascript, (uint)javascript.Length,
+                            "script", 1, ref retJsVal);
+                    }
 
                     if (!ret)
-                    {
                         throw new GeckoJavaScriptException(String.Format("JSError : {0}", msg));
-                    }
 
-                    if (GetComponentsObject().GetUtilsAttribute().IsXrayWrapper(ref windowJsVal))
-                        windowJsVal = GetComponentsObject().GetUtilsAttribute().WaiveXrays(ref windowJsVal, _cx);
-
-// TODO: this is a major problem if we can't find a replacement..                    
-#if PORT
-                    using (nsAStringBase b = new nsAString(javascript))
-                    {
-                        return GetComponentsObject().GetUtilsAttribute().EvalInWindow(b, ref windowJsVal, _cx);
-                    }
-#endif
-                    return default(JsVal);
+                    return retJsVal;
                 }
                 finally
                 {
-                    SpiderMonkey.JS_SetErrorReporter(_cx, old);
+                    SpiderMonkey.JS_SetErrorReporter(SpiderMonkey.JS_GetRuntime(ContextPointer), old);
                 }
             }
 	    }
 
+        /// <summary>
+        /// Evaluate JavaScript in the current context, in the global scope.
+        /// Throws GeckoJavaScriptException on error.
+        /// </summary>
+        /// <param name="javaScript"></param>
+        /// <returns></returns>
 		public JsVal EvaluateScript(string javaScript)
 		{
-            string msg = String.Empty;
-            var old = SpiderMonkey.JS_SetErrorReporter(_cx, (cx, message, report) => { msg = message; });
-            try
-            {
-                var jsValue = new JsVal();
-                var ret = SpiderMonkey.JS_EvaluateScript(_cx, PeekCompartmentScope(), javaScript, (uint)javaScript.Length, "script",
-                    1, ref jsValue);
-
-                if (!ret)
-                {
-                    throw new GeckoJavaScriptException(String.Format("JSError : {0}", msg));
-                }
-
-                return jsValue;
-            }
-            finally
-            {
-                SpiderMonkey.JS_SetErrorReporter(_cx, old);
-            }
+            return EvaluateScript(javaScript, _window);
 		}
-
-		/// <summary>
-		/// EvaluateScript Bypassing some Security Restrictions. 
-		/// This comes at a performance and complexity cost, so only use if really neccessary.
-		/// </summary>
-		/// <param name="javaScript"></param>
-		/// <returns></returns>
-		public JsVal EvaluateScriptBypassingSomeSecurityRestrictions(string javaScript)
-		{
-			EvaluateScript(String.Format("parentthis = this; GeckoFxHandler = function GeckoFxHandler() {{ function geckofxInner() {{ GeckofxEvalScriptEventResult = {0}; }}; geckofxInner.call(parentthis); }}", javaScript));
-			EvaluateScript("document.addEventListener('geckofxEvalScriptEvent', GeckoFxHandler, false);");
-			EvaluateScript("var evt = document.createEvent('Event'); evt.initEvent('geckofxEvalScriptEvent',true,true); document.dispatchEvent(evt);");
-			var result = EvaluateScript("GeckofxEvalScriptEventResult;");
-			EvaluateScript("document.removeEventListener('geckofxEvalScriptEvent', GeckoFxHandler, false);");
-			return result;
-		}		
+		
 		
 		/// <summary>
-		/// Evaluate javascript in the current context.
+		/// Evaluate javascript in the current context, using specified scope.
 		/// </summary>
 		/// <param name="jsScript"></param>
-		/// <param name="thisObject">a nsISupports com object that this is set too.</param>
-		/// <param name="result"></param>
-		/// <returns></returns>
+		/// <param name="thisObject">a nsISupports com object that this (the scope) is set too.</param>
+		/// <param name="result">The result of the operation as a string.</param>
+		/// <returns>true on success, false on failure.</returns>
 		public bool EvaluateScript(string jsScript, nsISupports thisObject, out string result)
 		{
-			try
-			{				
-				var ptr = new JsVal();
-				IntPtr globalObject = ConvertCOMObjectToJSObject(thisObject);
+             result = null;
+             try
+             {
+                 result = ConvertValueToString(EvaluateScript(jsScript, (nsISupports)_window, thisObject));
+             }
+             catch (GeckoJavaScriptException exception)
+             {
+                 return false;
+             }
 
-			    using (new JSAutoCompartment(_cx, globalObject))
-				{
-					bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
-
-                    if (GetComponentsObject().GetUtilsAttribute().IsXrayWrapper(ref ptr))
-                        ptr = GetComponentsObject().GetUtilsAttribute().WaiveXrays(ref ptr, _cx);
-
-				    result = ret ? ConvertValueToString(ptr) : null;
-
-					return ret;
-				}
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine("Exception {0}", e);
-				result = String.Empty;
-				return false;
-			}
+             return true;
 		}
 
-		/// <summary>
-		/// Evaluate javascript in the current context with system privileges.
-		/// </summary>
-		/// <param name="jsScript"></param>
-		/// <param name="jsval"></param>
-		/// <returns></returns>
-		[Obsolete]
-		public bool EvaluateTrustedScript(string jsScript, out string result)
-		{
-			throw new NotImplementedException();
+        #endregion
 
-			var ptr = new JsVal();
-			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
-			bool ret;
-			IntPtr systemGlobalObject = SpiderMonkey.JS_GetGlobalForScopeChain(GlobalJSContextHolder.BackstageJSContext);
-			// Compartments have to be entered and left in LIFO order.
-			bool inSystemCompartment = false;
-			IntPtr oldCompartment = IntPtr.Zero;
-			try
-			{
-				// Allow access to any object on page.
-				oldCompartment = SpiderMonkey.JS_EnterCompartment(_cx, systemGlobalObject);
-				// At any time, a JSContext has a current (possibly-NULL) compartment.
-				inSystemCompartment = true;
-				ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
-				result = ConvertValueToString(ptr);
-			}
-			finally
-			{
-				if (inSystemCompartment)
-					SpiderMonkey.JS_LeaveCompartment(_cx, oldCompartment);
-			}
-			return ret;
-		}
+        #region static methods
 
-	    /// <summary>
-	    /// Helper method which attempts to find the global object in a Context.
-	    /// </summary>
-	    /// <returns>the Global object ptr or Null/Zero ptr if not found.</returns>
-	    private IntPtr GetGlobalFromContext(IntPtr context)
-	    {
-            IntPtr globalObject = SpiderMonkey.CurrentGlobalOrNull(context);
+        public static IntPtr SafeJSContext
+        {
+            get
+            {
+                if (_safeContext == IntPtr.Zero)
+                {
+                    // On mono - Marshal.GetComSlotForMethodInfo always return 3 as the the slot of the delegate isn't initalized (default value 0)
+                    // So, regrettably we have to hard code the slot value.
+                    // If this crashes on a gecko upgrade, then its likely that nsIXPConnect ABI has changed, and the slot number has to be adjusted.
+                    const int GetSafeJSContextSlotPosition = 12;
+
+                    ComPtr<nsIXPConnect> xpc = Xpcom.XPConnect;
+                    int slot = xpc.GetSlotOfComMethod(new Func<IntPtr>(xpc.Instance.GetSafeJSContext));
+                    var getSafeJSContext = xpc.GetComMethod<Xpcom.GetSafeJSContextDelegate>(Xpcom.IsLinux ? GetSafeJSContextSlotPosition : slot);
+                    _safeContext = getSafeJSContext(xpc.Instance);
+                }
+                return _safeContext;
+            }
+        }
+
+        /// <summary>
+        /// Return the JSContext for the specified DOMWindow.
+        /// </summary>
+        /// <param name="window"></param>
+        /// <returns></returns>
+        public static IntPtr GetJsContextForWindow(nsIDOMWindow window)
+        {
+            if (_windowToJsContextDictionary.ContainsKey(window))
+                return _windowToJsContextDictionary[window];
+
+            // Side affect - causes _windowToJsContextDictionary to be populate with the context of the window.
+            using (new AutoJSContext(window))
+                ;
+
+            return _windowToJsContextDictionary[window];
+        }
+        
+        /// <summary>
+        /// Helper method which attempts to find the global object in a Context.
+        /// </summary>
+        /// <returns>the Global object ptr or Null/Zero ptr if not found.</returns>
+        internal static IntPtr GetGlobalFromContext(IntPtr context)
+        {
+            IntPtr globalObject = IntPtr.Zero;
             if (globalObject == IntPtr.Zero)
             {
-                globalObject = SpiderMonkey.DefaultObjectForContextOrNull(context);
-                if (globalObject == IntPtr.Zero)
-                    return IntPtr.Zero;
+                if (_contextToGlobalDictionary.ContainsKey(context))
+                    return _contextToGlobalDictionary[context];
             }
 
             return globalObject;
-	    }
+        }
 
-		private IntPtr GetGlobalObject()
-		{
-			IntPtr globalObject = SpiderMonkey.CurrentGlobalOrNull(_cx);
-			if (globalObject == IntPtr.Zero)
-				throw new ObjectDisposedException(this.GetType().Name);
-			return globalObject;
-		}
+        #endregion        
 
-		public ComPtr<nsISupports> GetGlobalNsObject()
-		{
-			IntPtr globalObject = SpiderMonkey.CurrentGlobalOrNull(_cx);
-			if (globalObject != IntPtr.Zero)
-			{
-				Guid guid = typeof(nsISupports).GUID;
+        #region Non Public methods
 
-				IntPtr pUnk = IntPtr.Zero;
-				try
-				{
-					pUnk = Xpcom.XPConnect.Instance.WrapJS(_cx, globalObject, ref guid);
-					object comObj = Xpcom.GetObjectForIUnknown(pUnk);
-					try
-					{
-						return Xpcom.QueryInterface<nsISupports>(comObj).AsComPtr();
-					}
-					finally
-					{
-						Xpcom.FreeComObject(ref comObj);
-					}
-				}
-				finally
-				{
-					if (pUnk != IntPtr.Zero)
-						Marshal.Release(pUnk);
-				}
-			}
-			return null;
-		}
+        /// <summary>
+        /// Helper method for EvaluateScript.
+        /// Tries to insert a return statement into a set of js statements that are going to be embeded into a function.
+        /// </summary>
+        /// <param name="js"></param>
+        private string InsertReturnStatement(string js)
+        {
+            js = js.TrimEnd(' ', ';');
+            var semiColons = js.Count(x => x == ';');
+            if (semiColons == 0 && !js.Contains("return"))
+                return "return " + js + ";";
 
-		internal string ConvertValueToString(JsVal value)
-		{
-		    if (value.IsString)
-		    {		        
-		        var v = Xpcom.XPConnect.Instance.JSValToVariant(_cx, ref value);
-		        return nsString.Get(v.GetAsAString);
-		    }
+            var index = Math.Max(js.LastIndexOf(';'), js.LastIndexOf('}'));
+            var sub = js.Substring(index + 1);
+            if (sub.Contains("return"))
+                return js;
+
+            return js.Substring(0, index + 1) + " return " + js.Substring(index + 1) + ";";
+        }
+
+        internal string ConvertValueToString(JsVal value)
+        {
+            if (value.IsString)
+            {
+                var v = Xpcom.XPConnect.Instance.JSValToVariant(ContextPointer, ref value);
+                return nsString.Get(v.GetAsAString);
+            }
 
             // Fallback for non string JsVal's
             // If the JsVal is not a string convert it to a JSString
-		    // then convert the JSString to a utf8 string.
-		    // NOTE: This fallback isn't ideal and may cause unicode replacement chars to appear.
-                
-		    IntPtr jsp = SpiderMonkey.JS_ValueToString(_cx, value);
-		    var utf8StrPtr = SpiderMonkey.JS_EncodeStringToUTF8(_cx, jsp);
-		    if (utf8StrPtr != IntPtr.Zero)
-		    {
-		        try
-		        {
-		            var length = SpiderMonkey.JS_GetStringEncodingLength(_cx, jsp);
-		            byte[] result = new byte[length];
-		            Marshal.Copy(utf8StrPtr, result, 0, length);
-		            return Encoding.UTF8.GetString(result, 0, length);
-		        }
-		        finally
-		        {
-		            SpiderMonkey.JS_Free(_cx, utf8StrPtr);
-		        }
-		    }
-		    return null;
-		}
+            // then convert the JSString to a utf8 string.
+            // NOTE: This fallback isn't ideal and may cause unicode replacement chars to appear.
 
-		public IntPtr ConvertCOMObjectToJSObject(nsISupports obj)
-		{
-			Guid guid = typeof(nsISupports).GUID;
+            IntPtr jsp = SpiderMonkey.ToStringSlow(ContextPointer, value);
+            var utf8StrPtr = SpiderMonkey.JS_EncodeStringToUTF8(ContextPointer, jsp);
+            if (utf8StrPtr != IntPtr.Zero)
+            {
+                try
+                {
+                    var length = SpiderMonkey.JS_GetStringEncodingLength(ContextPointer, jsp);
+                    byte[] result = new byte[length];
+                    Marshal.Copy(utf8StrPtr, result, 0, length);
+                    return Encoding.UTF8.GetString(result, 0, length);
+                }
+                finally
+                {
+                    SpiderMonkey.JS_Free(ContextPointer, utf8StrPtr);
+                }
+            }
+            return null;
+        }
 
-			IntPtr globalObject = GetGlobalObject();
-         
-            // In geckofx 45 the WrapNative not longer returns a 'holder'
-#if false
-			using (var holder = new ComPtr<nsIXPConnectJSObjectHolder>(Xpcom.XPConnect.Instance.WrapNative(_cx, globalObject, (nsISupports)obj, ref guid)))
-			{
-				int slot = holder.GetSlotOfComMethod(new Func<IntPtr>(holder.Instance.GetJSObject));
-				var getJSObject = holder.GetComMethod<Xpcom.GetJSObjectFromHolderDelegate>(slot);
-				return getJSObject(holder.Instance);
-			}
-#else
-		    return Xpcom.XPConnect.Instance.WrapNative(_cx, globalObject, obj, ref guid);
-#endif
+        internal IntPtr ConvertCOMObjectToJSObject(nsISupports obj)
+        {
+            Guid guid = typeof(nsISupports).GUID;
 
-		}
+            IntPtr globalObject = GetGlobalFromContext(ContextPointer);
 
-		public JsVal ConvertCOMObjectToJSVal(IntPtr globalObject, nsISupports thisObject)
-		{
-			var writableVariant = Xpcom.CreateInstance2<nsIWritableVariant>(Contracts.WritableVariant);
-			writableVariant.Instance.SetAsISupports(thisObject);
-			return Xpcom.XPConnect.Instance.VariantToJS(_cx, globalObject, writableVariant.Instance);
-		}
+            // In geckofx 45 the WrapNative no longer returns a 'holder'
+            return Xpcom.XPConnect.Instance.WrapNative(ContextPointer, globalObject, obj, ref guid);
+        }
 
         /// <summary>
         /// Gets the nsIXPCComponents which is the javascript 'Components' objects
         /// The Components objects is the main object XPConnect object.        
         /// </summary>
         /// <returns></returns>
-	    public nsIXPCComponents GetComponentsObject()
-	    {
-	        if (_nsIXPCComponents == null)
-	        {
-	            string javaScript = "Components";
+        internal nsIXPCComponents GetComponentsObject()
+        {
+            if (_nsIXPCComponents == null)
+            {
+                var jsValue = new JsVal();
+                SpiderMonkey.JS_ExecuteScript(ContextPointer, "this.myfunc = function(p1) { return Components; };", out jsValue);
 
-	            var jsValue = new JsVal();
-	            var ret = SpiderMonkey.JS_EvaluateScript(_cx, PeekCompartmentScope(), javaScript, (uint) javaScript.Length,
-	                "script",
-	                1, ref jsValue);
+                jsValue = SpiderMonkey.JS_CallFunctionName(ContextPointer, _globalJSObject, "myfunc", new[] { jsValue });
 
-	            if (!ret || !jsValue.IsObject)
-	                return null;
+                _nsIXPCComponents = Xpcom.QueryInterface<nsIXPCComponents>(jsValue.ToObject());
+                if (_nsIXPCComponents == null)
+                    throw new GeckoException(String.Format("Components object does not implement nsIXPCComponents. {0}", jsValue));
+            }
 
-                _nsIXPCComponents = jsValue.ToObject() as nsIXPCComponents;
-	        }
+            return _nsIXPCComponents;
+        }
 
-	        return _nsIXPCComponents;
-	    }
+        #endregion
 
-		public void Dispose()
+
+        #region IDisposable implementation.
+
+        public void Dispose()
 		{
 			if (_compartmentStack != null)
 			{
@@ -445,6 +456,7 @@ namespace Gecko
 			_defaultCompartment = null;
 
 			GC.SuppressFinalize(this);
-		}
-	}
+        }
+        #endregion
+    }
 }

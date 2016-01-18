@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ArchiveRequest : WebIDLBase
     {
         
-        public ArchiveRequest(nsISupports thisObject) : 
-                base(thisObject)
+        public ArchiveRequest(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class EXT_disjoint_timer_query : WebIDLBase
     {
         
-        public EXT_disjoint_timer_query(nsISupports thisObject) : 
-                base(thisObject)
+        public EXT_disjoint_timer_query(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

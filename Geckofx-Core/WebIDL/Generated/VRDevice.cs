@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class VRDevice : WebIDLBase
     {
         
-        public VRDevice(nsISupports thisObject) : 
-                base(thisObject)
+        public VRDevice(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

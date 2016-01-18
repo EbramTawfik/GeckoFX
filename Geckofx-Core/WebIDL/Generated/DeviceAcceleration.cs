@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DeviceAcceleration : WebIDLBase
     {
         
-        public DeviceAcceleration(nsISupports thisObject) : 
-                base(thisObject)
+        public DeviceAcceleration(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

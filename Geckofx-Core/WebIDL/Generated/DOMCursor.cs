@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMCursor : WebIDLBase
     {
         
-        public DOMCursor(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMCursor(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

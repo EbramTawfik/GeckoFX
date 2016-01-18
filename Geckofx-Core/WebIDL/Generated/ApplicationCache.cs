@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ApplicationCache : WebIDLBase
     {
         
-        public ApplicationCache(nsISupports thisObject) : 
-                base(thisObject)
+        public ApplicationCache(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

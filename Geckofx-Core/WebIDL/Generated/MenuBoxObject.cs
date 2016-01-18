@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MenuBoxObject : WebIDLBase
     {
         
-        public MenuBoxObject(nsISupports thisObject) : 
-                base(thisObject)
+        public MenuBoxObject(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

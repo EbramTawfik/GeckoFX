@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMRequestShared : WebIDLBase
     {
         
-        public DOMRequestShared(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMRequestShared(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

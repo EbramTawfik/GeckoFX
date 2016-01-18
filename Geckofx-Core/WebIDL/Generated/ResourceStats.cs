@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ResourceStats : WebIDLBase
     {
         
-        public ResourceStats(nsISupports thisObject) : 
-                base(thisObject)
+        public ResourceStats(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ChromeWorker : WebIDLBase
     {
         
-        public ChromeWorker(nsISupports thisObject) : 
-                base(thisObject)
+        public ChromeWorker(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

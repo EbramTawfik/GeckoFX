@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class History : WebIDLBase
     {
         
-        public History(nsISupports thisObject) : 
-                base(thisObject)
+        public History(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -27,6 +27,11 @@ namespace Gecko.WebIDL
             }
         }
         
+        public void Go()
+        {
+            this.CallVoidMethod("go");
+        }
+        
         public void Go(int delta)
         {
             this.CallVoidMethod("go", delta);
@@ -42,9 +47,19 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("forward");
         }
         
+        public void PushState(object data, nsAString title)
+        {
+            this.CallVoidMethod("pushState", data, title);
+        }
+        
         public void PushState(object data, nsAString title, nsAString url)
         {
             this.CallVoidMethod("pushState", data, title, url);
+        }
+        
+        public void ReplaceState(object data, nsAString title)
+        {
+            this.CallVoidMethod("replaceState", data, title);
         }
         
         public void ReplaceState(object data, nsAString title, nsAString url)

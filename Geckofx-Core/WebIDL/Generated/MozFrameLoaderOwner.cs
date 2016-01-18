@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozFrameLoaderOwner : WebIDLBase
     {
         
-        public MozFrameLoaderOwner(nsISupports thisObject) : 
-                base(thisObject)
+        public MozFrameLoaderOwner(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

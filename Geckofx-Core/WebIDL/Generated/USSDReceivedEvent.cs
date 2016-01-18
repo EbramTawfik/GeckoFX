@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class USSDReceivedEvent : WebIDLBase
     {
         
-        public USSDReceivedEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public USSDReceivedEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

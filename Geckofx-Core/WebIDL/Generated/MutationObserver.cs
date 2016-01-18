@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MutationObserver : WebIDLBase
     {
         
-        public MutationObserver(nsISupports thisObject) : 
-                base(thisObject)
+        public MutationObserver(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -21,6 +21,11 @@ namespace Gecko.WebIDL
             {
                 this.SetProperty("mergeAttributeRecords", value);
             }
+        }
+        
+        public void Observe(nsIDOMNode target)
+        {
+            this.CallVoidMethod("observe", target);
         }
         
         public void Observe(nsIDOMNode target, object options)

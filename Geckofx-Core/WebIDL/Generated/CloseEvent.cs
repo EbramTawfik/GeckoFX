@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CloseEvent : WebIDLBase
     {
         
-        public CloseEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public CloseEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

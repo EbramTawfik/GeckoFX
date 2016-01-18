@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLPictureElement : WebIDLBase
     {
         
-        public HTMLPictureElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLPictureElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

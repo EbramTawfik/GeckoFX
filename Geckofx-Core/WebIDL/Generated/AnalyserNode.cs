@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AnalyserNode : WebIDLBase
     {
         
-        public AnalyserNode(nsISupports thisObject) : 
-                base(thisObject)
+        public AnalyserNode(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

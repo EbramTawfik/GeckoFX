@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WebGLShaderPrecisionFormat : WebIDLBase
     {
         
-        public WebGLShaderPrecisionFormat(nsISupports thisObject) : 
-                base(thisObject)
+        public WebGLShaderPrecisionFormat(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class NetworkInformation : WebIDLBase
     {
         
-        public NetworkInformation(nsISupports thisObject) : 
-                base(thisObject)
+        public NetworkInformation(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

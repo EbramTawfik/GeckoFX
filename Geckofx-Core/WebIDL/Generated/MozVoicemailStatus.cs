@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozVoicemailStatus : WebIDLBase
     {
         
-        public MozVoicemailStatus(nsISupports thisObject) : 
-                base(thisObject)
+        public MozVoicemailStatus(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

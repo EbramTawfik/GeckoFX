@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Geolocation : WebIDLBase
     {
         
-        public Geolocation(nsISupports thisObject) : 
-                base(thisObject)
+        public Geolocation(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

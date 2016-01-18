@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMImplementation : WebIDLBase
     {
         
-        public DOMImplementation(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMImplementation(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -21,9 +21,19 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("createDocumentType", qualifiedName, publicId, systemId);
         }
         
+        public nsIDOMDocument CreateDocument(nsAString @namespace, nsAString qualifiedName)
+        {
+            return this.CallMethod<nsIDOMDocument>("createDocument", @namespace, qualifiedName);
+        }
+        
         public nsIDOMDocument CreateDocument(nsAString @namespace, nsAString qualifiedName, nsISupports doctype)
         {
             return this.CallMethod<nsIDOMDocument>("createDocument", @namespace, qualifiedName, doctype);
+        }
+        
+        public nsIDOMDocument CreateHTMLDocument()
+        {
+            return this.CallMethod<nsIDOMDocument>("createHTMLDocument");
         }
         
         public nsIDOMDocument CreateHTMLDocument(nsAString title)

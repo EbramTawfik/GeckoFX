@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PeerConnectionObserver : WebIDLBase
     {
         
-        public PeerConnectionObserver(nsISupports thisObject) : 
-                base(thisObject)
+        public PeerConnectionObserver(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -69,6 +69,11 @@ namespace Gecko.WebIDL
         public void OnNegotiationNeeded()
         {
             this.CallVoidMethod("onNegotiationNeeded");
+        }
+        
+        public void OnGetStatsSuccess()
+        {
+            this.CallVoidMethod("onGetStatsSuccess");
         }
         
         public void OnGetStatsSuccess(object report)

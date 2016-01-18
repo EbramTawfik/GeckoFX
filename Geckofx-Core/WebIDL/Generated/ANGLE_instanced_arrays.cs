@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ANGLE_instanced_arrays : WebIDLBase
     {
         
-        public ANGLE_instanced_arrays(nsISupports thisObject) : 
-                base(thisObject)
+        public ANGLE_instanced_arrays(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

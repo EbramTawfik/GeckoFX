@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class InstallTriggerImpl : WebIDLBase
     {
         
-        public InstallTriggerImpl(nsISupports thisObject) : 
-                base(thisObject)
+        public InstallTriggerImpl(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -21,9 +21,19 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("updateEnabled");
         }
         
+        public bool Install(MozMap < WebIDLUnion<nsAString,System.Object>> installs)
+        {
+            return this.CallMethod<bool>("install", installs);
+        }
+        
         public bool InstallChrome(ushort type, nsAString url, nsAString skin)
         {
             return this.CallMethod<bool>("installChrome", type, url, skin);
+        }
+        
+        public bool StartSoftwareUpdate(nsAString url)
+        {
+            return this.CallMethod<bool>("startSoftwareUpdate", url);
         }
         
         public bool StartSoftwareUpdate(nsAString url, ushort flags)

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ImageBitmapFactories : WebIDLBase
     {
         
-        public ImageBitmapFactories(nsISupports thisObject) : 
-                base(thisObject)
+        public ImageBitmapFactories(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

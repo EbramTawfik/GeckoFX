@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SimpleGestureEvent : WebIDLBase
     {
         
-        public SimpleGestureEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public SimpleGestureEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

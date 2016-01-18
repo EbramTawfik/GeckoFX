@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BatteryManager : WebIDLBase
     {
         
-        public BatteryManager(nsISupports thisObject) : 
-                base(thisObject)
+        public BatteryManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

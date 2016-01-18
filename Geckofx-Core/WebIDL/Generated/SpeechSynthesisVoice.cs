@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SpeechSynthesisVoice : WebIDLBase
     {
         
-        public SpeechSynthesisVoice(nsISupports thisObject) : 
-                base(thisObject)
+        public SpeechSynthesisVoice(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

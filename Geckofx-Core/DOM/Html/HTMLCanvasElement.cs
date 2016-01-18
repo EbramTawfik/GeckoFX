@@ -30,7 +30,7 @@ namespace Gecko.DOM
 
 		public string ToDataURL(string type)
 		{
-			using (var context = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
+            using (var context = new AutoJSContext(AutoJSContext.SafeJSContext))
 			using (nsAString retval = new nsAString(), param = new nsAString(type))
 			{
 				JsVal js = default(JsVal);

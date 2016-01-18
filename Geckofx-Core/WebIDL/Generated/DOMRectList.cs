@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMRectList : WebIDLBase
     {
         
-        public DOMRectList(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMRectList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

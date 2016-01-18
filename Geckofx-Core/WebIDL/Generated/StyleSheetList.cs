@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class StyleSheetList : WebIDLBase
     {
         
-        public StyleSheetList(nsISupports thisObject) : 
-                base(thisObject)
+        public StyleSheetList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

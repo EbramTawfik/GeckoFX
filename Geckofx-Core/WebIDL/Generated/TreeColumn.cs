@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TreeColumn : WebIDLBase
     {
         
-        public TreeColumn(nsISupports thisObject) : 
-                base(thisObject)
+        public TreeColumn(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

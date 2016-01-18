@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class UndoManager : WebIDLBase
     {
         
-        public UndoManager(nsISupports thisObject) : 
-                base(thisObject)
+        public UndoManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

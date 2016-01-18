@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PannerNode : WebIDLBase
     {
         
-        public PannerNode(nsISupports thisObject) : 
-                base(thisObject)
+        public PannerNode(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

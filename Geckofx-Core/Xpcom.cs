@@ -346,7 +346,6 @@ namespace Gecko
 				directoryService.RegisterProvider(new DirectoryServiceProvider());
 
 			_IsInitialized = true;
-			GlobalJSContextHolder.Initialize();
 
             // On Linux calling CreateWindowlessBrowser too early crashes with passing null to gdk_window_enable_synchronized_configure()
             // the gdkwidgets window is null.
@@ -475,6 +474,10 @@ namespace Gecko
 
 		[UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.ThisCall)]
 		internal delegate IntPtr GetSafeJSContextDelegate([MarshalAs(UnmanagedType.Interface)] nsIXPConnect @this);
+
+        // TODO: move this to appropate place...
+        [UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.ThisCall)]
+        internal delegate IntPtr GetGlobalJSObject([MarshalAs(UnmanagedType.Interface)] nsIGlobalObject @this);
 
 		#endregion
 
@@ -792,7 +795,7 @@ namespace Gecko
 				}
 				else if (uuid == typeof(nsIDOMDocument).GUID)
 				{
-				    obj = new WebIDL.Window((nsISupports) instance.GetContentDOMWindowAttribute()).Document;
+				    obj = new WebIDL.Window(instance.GetContentDOMWindowAttribute(), (nsISupports) instance.GetContentDOMWindowAttribute()).Document;
 #if PORTING_TOWEBIDL
 					obj = instance.GetContentDOMWindowAttribute().GetDocumentAttribute();
 #endif

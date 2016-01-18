@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TVEITBroadcastedEvent : WebIDLBase
     {
         
-        public TVEITBroadcastedEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public TVEITBroadcastedEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

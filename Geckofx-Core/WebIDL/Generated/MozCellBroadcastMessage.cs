@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozCellBroadcastMessage : WebIDLBase
     {
         
-        public MozCellBroadcastMessage(nsISupports thisObject) : 
-                base(thisObject)
+        public MozCellBroadcastMessage(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGTextContentElement : WebIDLBase
     {
         
-        public SVGTextContentElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGTextContentElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

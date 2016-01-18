@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DeviceOrientationEvent : WebIDLBase
     {
         
-        public DeviceOrientationEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public DeviceOrientationEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MobileMessageThread : WebIDLBase
     {
         
-        public MobileMessageThread(nsISupports thisObject) : 
-                base(thisObject)
+        public MobileMessageThread(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

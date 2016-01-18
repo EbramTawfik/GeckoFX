@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PositionError : WebIDLBase
     {
         
-        public PositionError(nsISupports thisObject) : 
-                base(thisObject)
+        public PositionError(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

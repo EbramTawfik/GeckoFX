@@ -6,9 +6,14 @@ namespace Gecko.WebIDL
     public class CacheStorage : WebIDLBase
     {
         
-        public CacheStorage(nsISupports thisObject) : 
-                base(thisObject)
+        public CacheStorage(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
+        }
+        
+        public Promise < nsISupports > Match(WebIDLUnion<nsISupports,USVString> request)
+        {
+            return this.CallMethod<Promise < nsISupports >>("match", request);
         }
         
         public Promise < nsISupports > Match(WebIDLUnion<nsISupports,USVString> request, object options)

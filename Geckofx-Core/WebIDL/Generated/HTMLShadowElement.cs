@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLShadowElement : WebIDLBase
     {
         
-        public HTMLShadowElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLShadowElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

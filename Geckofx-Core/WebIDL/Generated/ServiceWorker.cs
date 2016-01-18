@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ServiceWorker : WebIDLBase
     {
         
-        public ServiceWorker(nsISupports thisObject) : 
-                base(thisObject)
+        public ServiceWorker(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -25,6 +25,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<ServiceWorkerState>("state");
             }
+        }
+        
+        public void PostMessage(object message)
+        {
+            this.CallVoidMethod("postMessage", message);
         }
         
         public void PostMessage(object message, Object[] transferable)

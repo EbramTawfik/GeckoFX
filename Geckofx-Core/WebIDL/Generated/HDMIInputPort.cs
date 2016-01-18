@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HDMIInputPort : WebIDLBase
     {
         
-        public HDMIInputPort(nsISupports thisObject) : 
-                base(thisObject)
+        public HDMIInputPort(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Request : WebIDLBase
     {
         
-        public Request(nsISupports thisObject) : 
-                base(thisObject)
+        public Request(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

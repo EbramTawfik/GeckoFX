@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLFormControlsCollection : WebIDLBase
     {
         
-        public HTMLFormControlsCollection(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLFormControlsCollection(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

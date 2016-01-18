@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class NodeIterator : WebIDLBase
     {
         
-        public NodeIterator(nsISupports thisObject) : 
-                base(thisObject)
+        public NodeIterator(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

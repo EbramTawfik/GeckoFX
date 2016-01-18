@@ -251,7 +251,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("");
 
-			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window))
 			{				
 				string result;
 				Assert.IsTrue(context.EvaluateScript("3 + 2;", out result));
@@ -267,7 +267,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("");
 
-			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window))
 			{
 				string result;
 
@@ -286,7 +286,7 @@ namespace GeckofxUnitTests
 		[Test]
 		public void EvaluateScript_SimpleJavascriptWithoutNormalDocumentSetup_ScriptExecutesAndReturnsExpectedResult()
 		{		
-			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window))
 			{
 				string result;
 				Assert.IsTrue(context.EvaluateScript("3 + 2;", out result));
@@ -302,7 +302,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("hello world");
 			
-			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window))
 			{
 				string result;
 				Assert.IsTrue(context.EvaluateScript("this", (nsISupports)browser.Window.DomWindow, out result));
@@ -317,8 +317,8 @@ namespace GeckofxUnitTests
 				Assert.IsTrue(context.EvaluateScript("this.body.innerHTML;", (nsISupports)browser.Document.DomObject, out result));
 				Assert.AreEqual("hello world", result);
 
-				Assert.IsTrue(context.EvaluateScript("body.innerHTML = 'hi';", (nsISupports)browser.Document.DomObject, out result));
-				Assert.IsTrue(context.EvaluateScript("body.innerHTML;", (nsISupports)browser.Document.DomObject, out result));
+				Assert.IsTrue(context.EvaluateScript("this.body.innerHTML = 'hi';", (nsISupports)browser.Document.DomObject, out result));
+				Assert.IsTrue(context.EvaluateScript("this.body.innerHTML;", (nsISupports)browser.Document.DomObject, out result));
 				Assert.AreEqual("hi", result);
 
 				Assert.IsTrue(context.EvaluateScript("x=10;y=20;x*y;", out result));
@@ -329,52 +329,17 @@ namespace GeckofxUnitTests
 		[Test]
 		public void EvaluateScript_JavascriptAccessExistingGlobalObjectsWithoutNormalDocumentSetup_ScriptExecutesAndReturnsExpectedResult()
 		{
-			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window))
 			{
 				string result;
-				Assert.IsTrue(context.EvaluateScript("this", (nsISupports)browser.Window.DomWindow, out result));
-				Assert.AreEqual("[object Window]", result);
+			    var ret = context.EvaluateScript("this", browser.Window.DomWindow);
+				Assert.IsFalse(ret.IsUndefined);
+                Assert.AreEqual("[object Window]", ret.ToString());
 
-				Assert.IsTrue(context.EvaluateScript("body.innerHTML;", (nsISupports)browser.Document.DomObject, out result));
-				Assert.AreEqual(String.Empty, result);
-
-				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML = 'hi';", (nsISupports)browser.Window.DomWindow, out result));
-				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", (nsISupports)browser.Window.DomWindow, out result));
-				Assert.AreEqual("hi", result);
-
+                Assert.Throws<GeckoException>( () => context.EvaluateScript("body.innerHTML;", browser.Window.DomWindow));
+				
 				Assert.IsTrue(context.EvaluateScript("x=10;y=20;x*y;", out result));
 				Assert.AreEqual("200", result);
-			}
-		}
-		
-		[Test]
-		[Ignore("Disabled in Gecko for security")]
-		public void EvaluateScript_JavascriptIncreasePriviligesCrossFrameAccess_ScriptExecutesAndReturnsExpectedResult()
-		{
-			string result;
-			string aboutBlank;
-			using (var page = new GeckoWebBrowser())
-			{
-				IntPtr unused = page.Handle;			
-				page.CreateWindow += (s, e) => { e.WebBrowser = browser; };				
-				using (AutoJSContext context = new AutoJSContext(page.Window.JSContext))
-				{
-					Assert.IsTrue(context.EvaluateScript("window.open('http://www.google.com'); window.location.href", out aboutBlank));
-				}				
-				browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
-
-				using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
-				{
-					Assert.IsTrue(context.EvaluateScript("window.location.href", out result));
-					Assert.AreNotEqual(aboutBlank, result);
-					
-					// cross frame access
-					Assert.IsFalse(context.EvaluateScript("opener.location.href", out result));
-					Assert.IsTrue(context.EvaluateTrustedScript("opener.location.href", out result));
-					Assert.AreEqual(aboutBlank, result);
-				}
-
-				page.Stop();
 			}
 		}
 
@@ -383,7 +348,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("hello world");
 
-			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window))
 			{
 				string result;
 				context.EvaluateScript("this;", (nsISupports)browser.Document.Body.DomObject, out result);
@@ -397,7 +362,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("hello <span>world</span>");
 
-			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window))
 			{
 				string result;
 				context.EvaluateScript("function dosomthing(node) { return node.textContent; } dosomthing(this);", (nsISupports)browser.Document.Body.FirstChild.DomObject, out result);
@@ -411,7 +376,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("");
 
-			using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
+			using (AutoJSContext context = new AutoJSContext(browser.Window))
 			{
 				for (int i = 0; i < 500; i++)
 				{
@@ -429,7 +394,7 @@ namespace GeckofxUnitTests
 
 			for (int i = 0; i < 500; i++)
 			{
-				using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
+				using (AutoJSContext context = new AutoJSContext(browser.Window))
 				{
 					string result;
 					context.EvaluateScript("2+3;", out result);
@@ -459,7 +424,7 @@ namespace GeckofxUnitTests
 			{
 				browser.TestLoadHtml(String.Format("{0}", i));
 
-				using (AutoJSContext context = new AutoJSContext(browser.Window.JSContext))
+				using (AutoJSContext context = new AutoJSContext(browser.Window))
 				{
 					string result;
 					context.EvaluateScript("2+3;", out result);
@@ -471,13 +436,33 @@ namespace GeckofxUnitTests
 		[Test]
 		public void EvaluateScript_ReturingJsVal_ScriptExecutesAndReturnsJsValOfExpectedTypeAndContainingExpectedResult()
 		{
-			using (var context = new AutoJSContext(browser.Window.JSContext))
+			using (var context = new AutoJSContext(browser.Window))
 			{				
 				var jsVal = context.EvaluateScript("3 + 2;");
 				Assert.IsTrue(jsVal.IsInt);
 				Assert.AreEqual(5, jsVal.ToInteger());
 			}
 		}
+
+        [Test]
+        public void EvaluateScript_SyntacticallyInvalidJavascript_GeckoExceptionIsThrown()
+        {
+            using (var context = new AutoJSContext(browser.Window))
+            {
+                var exception = Assert.Throws<GeckoException>(() => context.EvaluateScript("2 + _---;"));
+                Assert.AreEqual("Failed to compile script.", exception.Message);
+            }
+        }
+
+        [Test]
+        public void EvaluateScript_JavascriptThatCallsMethodThatDoesNotExist_GeckoExceptionIsThrown()
+        {
+            using (var context = new AutoJSContext(browser.Window))
+            {
+                var exception = Assert.Throws<GeckoException>(() => context.EvaluateScript("this.mymethodthatdontexist(3);"));
+                Assert.AreEqual("Failed to execute script.", exception.Message);
+            }
+        }
 		
 		#region JQueryExecutor
 
@@ -536,15 +521,7 @@ namespace GeckofxUnitTests
 			}
 		}
 
-		#endregion
-
-		[Test]
-		public void GetMarkupDocumentViewer_InitalizedDocument_ValidGeckoMarkupDocumentViewerReturned()
-		{
-			browser.TestLoadHtml("hello world.");
-
-			Assert.NotNull(browser.GetMarkupDocumentViewer());
-		}
+		#endregion		
 
 		[Test]
 		public void Navigating_FrameDocumentLoaded_NavigatigAndFrameNavigatingEventIsCalled()

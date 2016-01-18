@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLAnchorElement : WebIDLBase
     {
         
-        public HTMLAnchorElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLAnchorElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

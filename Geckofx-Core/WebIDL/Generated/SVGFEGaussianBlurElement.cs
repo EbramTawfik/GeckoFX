@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGFEGaussianBlurElement : WebIDLBase
     {
         
-        public SVGFEGaussianBlurElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGFEGaussianBlurElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

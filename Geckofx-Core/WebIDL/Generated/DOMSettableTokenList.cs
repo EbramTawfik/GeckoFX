@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMSettableTokenList : WebIDLBase
     {
         
-        public DOMSettableTokenList(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMSettableTokenList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

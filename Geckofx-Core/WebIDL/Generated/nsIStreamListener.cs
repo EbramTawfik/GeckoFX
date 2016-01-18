@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class nsIStreamListener : WebIDLBase
     {
         
-        public nsIStreamListener(nsISupports thisObject) : 
-                base(thisObject)
+        public nsIStreamListener(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

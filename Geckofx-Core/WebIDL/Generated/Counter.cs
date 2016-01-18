@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Counter : WebIDLBase
     {
         
-        public Counter(nsISupports thisObject) : 
-                base(thisObject)
+        public Counter(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

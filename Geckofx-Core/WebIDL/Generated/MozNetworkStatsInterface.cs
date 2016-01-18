@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozNetworkStatsInterface : WebIDLBase
     {
         
-        public MozNetworkStatsInterface(nsISupports thisObject) : 
-                base(thisObject)
+        public MozNetworkStatsInterface(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

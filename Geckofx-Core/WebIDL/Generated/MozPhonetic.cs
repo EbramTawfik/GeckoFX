@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozPhonetic : WebIDLBase
     {
         
-        public MozPhonetic(nsISupports thisObject) : 
-                base(thisObject)
+        public MozPhonetic(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

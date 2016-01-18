@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WebGLQuery : WebIDLBase
     {
         
-        public WebGLQuery(nsISupports thisObject) : 
-                base(thisObject)
+        public WebGLQuery(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

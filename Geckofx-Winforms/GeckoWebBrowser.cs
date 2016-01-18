@@ -1001,7 +1001,7 @@ namespace Gecko
 			{
 				if (WebBrowser == null)
 					return null;
-                var domDocument = new WebIDL.Window((nsISupports)Window.DomWindow).Document;
+                var domDocument = new WebIDL.Window(Window.DomWindow, (nsISupports)Window.DomWindow).Document;
 
 			    if (_Document != null)
 			    {
@@ -1120,20 +1120,6 @@ namespace Gecko
 			}
 		}
 		GeckoSessionHistory _History;
-
-#if NO_LONGER_EXISTS_GECKO45
-		public GeckoMarkupDocumentViewer GetMarkupDocumentViewer()
-		{
-			if (WebNav == null)
-				return null;
-
-			nsIDocShell shell = Xpcom.QueryInterface<nsIDocShell>(WebNav);
-			nsIContentViewer contentViewer = shell.GetContentViewerAttribute();
-			Marshal.ReleaseComObject(shell);
-			
-			return new GeckoMarkupDocumentViewer((nsIMarkupDocumentViewer)contentViewer);
-		}
-#endif
 		
 		#region nsIWebBrowserChrome Members
 
@@ -1446,7 +1432,7 @@ namespace Gecko
 				}
 				else if (uuid == typeof(nsIDOMDocument).GUID)
 				{
-					obj = new WebIDL.Window((nsISupports)this.WebBrowser.GetContentDOMWindowAttribute()).Document;
+					obj = new WebIDL.Window(this.WebBrowser.GetContentDOMWindowAttribute(), (nsISupports)this.WebBrowser.GetContentDOMWindowAttribute()).Document;
 				}
 			}
 			
@@ -1638,8 +1624,7 @@ namespace Gecko
 				 */
 				if ((aStateFlags & nsIWebProgressListenerConstants.STATE_START) != 0)
 				{
-					// TODO: replace to aWebProgress.GetIsTopLevelAttribute() // Gecko 24+
-					if (stateIsNetwork && domWindow.IsTopWindow())
+					if (stateIsNetwork && aWebProgress.GetIsTopLevelAttribute())
 					{
 						IsBusy = true;
 
@@ -2174,25 +2159,25 @@ namespace Gecko
 			AddMessageEventListener(eventName, action, true);
 		}
 
-		/// <summary>
-		/// Register a listener for a custom jscrip-initiated MessageEvent
-		/// https://developer.mozilla.org/en/DOM/document.createEvent
-		/// http://help.dottoro.com/ljknkjqd.php
-		/// </summary>
-		/// <param name="eventName"></param>
-		/// <param name="action"></param>
-		/// <param name="useCapture"></param>
-		/// <example>AddMessageEventListener("callMe", (message=>MessageBox.Show(message)));</example>
-		public void AddMessageEventListener(string eventName, Action<string> action, bool useCapture)
-		{
-			nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMEventTarget>(new WebIDL.Window((nsISupports)Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute())).WindowRoot);
-			if (target != null) {
-				// the argc parameter is the number of optionial argumetns we are passing. 
-				// (useCapture and wantsUntrusted are specified as optional so we always pass 2 when calling interface from C#)
-				target.AddEventListener(new nsAString(eventName), this, /*Review*/ useCapture, true, 2);
-				_messageEventListeners.Add(eventName, action);
-			}
-		}
+        /// <summary>
+        /// Register a listener for a custom jscrip-initiated MessageEvent
+        /// https://developer.mozilla.org/en/DOM/document.createEvent
+        /// http://help.dottoro.com/ljknkjqd.php
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <param name="action"></param>
+        /// <param name="useCapture"></param>
+        /// <example>AddMessageEventListener("callMe", (message=>MessageBox.Show(message)));</example>
+        public void AddMessageEventListener(string eventName, Action<string> action, bool useCapture)
+        {
+            var target = Xpcom.QueryInterface<nsIDOMEventTarget>(Window.DomWindow);
+	        if (target != null) {
+		        // the argc parameter is the number of optionial argumetns we are passing. 
+		        // (useCapture and wantsUntrusted are specified as optional so we always pass 2 when calling interface from C#)
+		        target.AddEventListener(new nsAString(eventName), this, /*Review*/ useCapture, true, 2);
+		        _messageEventListeners.Add(eventName, action);
+	        }
+        }
 
 		/// <summary>
 		/// Unregister a listener for a custom jscrip-initiated MessageEvent
@@ -2212,7 +2197,8 @@ namespace Gecko
 		/// <example>AddMessageEventListener("callMe", (message=>MessageBox.Show(message)));</example>
 		public void RemoveMessageEventListener(string eventName, bool useCapture)
 		{
-			nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMEventTarget>(new WebIDL.Window((nsISupports)Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute())).WindowRoot);
+		    var window = Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute());
+            nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMEventTarget>(new WebIDL.Window(window, (nsISupports)window).WindowRoot);
 			if (target != null)
 			{
 				target.RemoveEventListener(new nsAString(eventName), this, useCapture);

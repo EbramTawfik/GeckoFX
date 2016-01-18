@@ -24,6 +24,24 @@ namespace Gecko
 			return new JsVal() { AsBits = value };
 		}
 
+        /// <summary>
+        /// Construct a JSVal from a JSObject pointer
+        /// This is platform specific (I did this after trying very hard to find gecko45 apis that would allow me do this and failng.)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+	    public static JsVal FromPtr(IntPtr value)
+	    {
+            if (Xpcom.Is32Bit)
+            {
+                return new JsVal() { AsPtr = value, tag = (uint)ValueTag32Bit.Object  };
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+	    }
+
 		[FieldOffset(0)]
 		public ulong AsBits;
 		[FieldOffset(0)]
@@ -40,7 +58,7 @@ namespace Gecko
 		public ulong Ptr;
 		[FieldOffset(4)]
 		public uint tag;
-		
+
 		public enum ValueTag64Bit : uint
 		{		
             Clear = 0x1FFF0,
@@ -53,7 +71,7 @@ namespace Gecko
             Null = Clear | 7,
             Object = Clear | 8
 		}
-
+        
 		public enum ValueTag32Bit : uint
 		{
 			Clear = 0xFFFFFF80,

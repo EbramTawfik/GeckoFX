@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class NavigatorStorageUtils : WebIDLBase
     {
         
-        public NavigatorStorageUtils(nsISupports thisObject) : 
-                base(thisObject)
+        public NavigatorStorageUtils(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

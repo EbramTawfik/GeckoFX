@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozStkCommandEvent : WebIDLBase
     {
         
-        public MozStkCommandEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public MozStkCommandEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

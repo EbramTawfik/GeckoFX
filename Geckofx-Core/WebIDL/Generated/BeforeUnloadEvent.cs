@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BeforeUnloadEvent : WebIDLBase
     {
         
-        public BeforeUnloadEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public BeforeUnloadEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

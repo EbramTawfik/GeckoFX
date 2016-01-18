@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AudioNode : WebIDLBase
     {
         
-        public AudioNode(nsISupports thisObject) : 
-                base(thisObject)
+        public AudioNode(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -71,14 +71,24 @@ namespace Gecko.WebIDL
             }
         }
         
+        public nsISupports Connect(nsISupports destination)
+        {
+            return this.CallMethod<nsISupports>("connect", destination);
+        }
+        
+        public nsISupports Connect(nsISupports destination, uint output)
+        {
+            return this.CallMethod<nsISupports>("connect", destination, output);
+        }
+        
         public nsISupports Connect(nsISupports destination, uint output, uint input)
         {
             return this.CallMethod<nsISupports>("connect", destination, output, input);
         }
         
-        public void Connect(nsISupports destination, uint output)
+        public void Disconnect()
         {
-            this.CallVoidMethod("connect", destination, output);
+            this.CallVoidMethod("disconnect");
         }
         
         public void Disconnect(uint output)

@@ -18,7 +18,9 @@ namespace GeckofxUnitTests
 		static void Main(string[] args)
 		{
 			// Needed when single unittests are run
-			 Xpcom.Initialize(XpComTests.XulRunnerLocation);
+		    var xulrunnerPath = XpComTests.XulRunnerLocation;
+            //xulrunnerPath = @"C:\mozilla-central\obj-i686-pc-mingw32\dist\bin";
+            Xpcom.Initialize(xulrunnerPath);
 			OverrideX11ErrorHandler();
 						
 			string prefix = Xpcom.IsLinux ? "--" : "/";
@@ -26,7 +28,7 @@ namespace GeckofxUnitTests
 			string domain = prefix + "domain=None";
             string labels = prefix + "labels";
 
-            string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain, labels, /*"--fixture=GeckofxUnitTests.MemoryTests"*/ };
+            string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain, labels, /*"--run=GeckofxUnitTests.GeckoWebBrowserTests.EvaluateScript_Run500TimesNavigatingToANewDocumentEachTime_DoesNotCrash"*/ };
 
 			int returnCode = NUnit.ConsoleRunner.Runner.Main(my_args); 
 

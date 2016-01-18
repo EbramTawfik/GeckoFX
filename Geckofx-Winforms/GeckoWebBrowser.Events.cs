@@ -1195,68 +1195,6 @@ namespace Gecko
 
 		#endregion
 
-		#region event JavascriptErrorEventHandler JavascriptError
-
-#if PORT
-		internal class JSErrorHandler : jsdIErrorHook
-		{
-			GeckoWebBrowser m_browser;
-
-			internal JSErrorHandler(GeckoWebBrowser browser)
-			{
-				m_browser = browser;
-			}
-
-			public bool OnError(nsAUTF8StringBase message, nsAUTF8StringBase fileName, uint line, uint pos, uint flags, uint errnum, jsdIValue exc)
-			{
-				if (m_browser.IsDisposed) return true;
-				var eventArgs = new JavascriptErrorEventArgs(message.ToString(), fileName.ToString(), line, pos, flags, errnum);
-				m_browser.OnJavascriptError(eventArgs);
-				return true;
-			}
-		}
-
-		public void EnableJavascriptDebugger()
-		{
-			if (m_javascriptDebuggingEnabled)
-				return;
-
-			//using (var a = new AutoJSContext(JSContext))
-			{
-				using (var jsd = Xpcom.GetService2<jsdIDebuggerService>(Contracts.DebuggerService))
-				{
-					jsd.Instance.SetErrorHookAttribute( new JSErrorHandler( this ) );
-					using (var runtime = Xpcom.GetService2<nsIJSRuntimeService>(Contracts.RuntimeService))
-					{
-						jsd.Instance.ActivateDebugger( runtime.Instance.GetRuntimeAttribute() );
-					}
-				}
-			}
-			m_javascriptDebuggingEnabled = true;
-		}
-
-		public delegate void JavascriptErrorEventHandler(object sender, JavascriptErrorEventArgs e);
-
-		private JavascriptErrorEventHandler _JavascriptError;
-
-		public event JavascriptErrorEventHandler JavascriptError
-		{
-			add
-			{
-				EnableJavascriptDebugger();
-				_JavascriptError += value;
-			}
-			remove { _JavascriptError -= value; }
-		}
-
-		protected virtual void OnJavascriptError(JavascriptErrorEventArgs e)
-		{
-			if (_JavascriptError != null)
-				_JavascriptError(this, e);
-		}
-#endif
-		#endregion
-
 		#region event EventHandler<ConsoleMessageEventArgs> ConsoleMessage
 
 		public sealed class ConsoleListener
@@ -1456,11 +1394,21 @@ namespace Gecko
 		: EventArgs
 	{
 		// Wrapper is not often needed, so store only nsIRequest
-		private nsIRequest _response;
+		private readonly nsIRequest _response;
 		private GeckoResponse _wrapper;
 
 		public readonly GeckoWindow DomWindow;
-		public readonly Boolean DomWindowTopLevel;
+
+	    public bool DomWindowTopLevel
+	    {
+	        get
+	        {
+                using (var topWindow = DomWindow.Top)
+                {
+                    return ((DomWindow == null) || DomWindow.DomWindow.Equals(topWindow.DomWindow));
+                }
+	        }
+	    }
 
 		public readonly Uri Uri;
 
@@ -1475,14 +1423,9 @@ namespace Gecko
 			Uri = value;
 			_response = response;
 			DomWindow = domWind;
-
-			using (var topWindow = DomWindow.Top)
-			{
-				DomWindowTopLevel = ((domWind == null) ? true : DomWindow.DomWindow.Equals(topWindow.DomWindow));
-			}
-
-			IsSameDocument = _sameDocument;
+            IsSameDocument = _sameDocument;
 			IsErrorPage = _errorPage;
+
 		}
 
 		public GeckoResponse Response
@@ -1507,7 +1450,9 @@ namespace Gecko
 		{
 			Uri = value;
 			DomWindow = domWind;
+#if PORT
 			DomWindowTopLevel = ((domWind == null) ? true : DomWindow.DomWindow.Equals(DomWindow.Top.DomWindow));
+#endif
 		}
 	}
 	#endregion
@@ -1518,9 +1463,15 @@ namespace Gecko
 		: EventArgs
 	{
 		public readonly Uri Uri;
-		public readonly GeckoWindow DomWindow;
-		public readonly bool DomWindowTopLevel;
+		public readonly GeckoWindow DomWindow;		
 		public readonly Request Request;
+        public bool DomWindowTopLevel
+        {
+            get
+            {
+                return DomWindow.IsTopWindow();
+            }
+        }
 
 		/// <summary>Creates a new instance of a <see cref="GeckoRetargetedEventArgs"/> object.</summary>
 		/// <param name="uri"></param>
@@ -1528,7 +1479,6 @@ namespace Gecko
 		{
 			Uri = uri;
 			DomWindow = domWind;
-			DomWindowTopLevel = domWind.IsTopWindow();
 			Request = req;
 		}
 	}

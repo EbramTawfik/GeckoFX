@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ChromeNodeList : WebIDLBase
     {
         
-        public ChromeNodeList(nsISupports thisObject) : 
-                base(thisObject)
+        public ChromeNodeList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class IccChangeEvent : WebIDLBase
     {
         
-        public IccChangeEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public IccChangeEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class KillSwitch : WebIDLBase
     {
         
-        public KillSwitch(nsISupports thisObject) : 
-                base(thisObject)
+        public KillSwitch(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

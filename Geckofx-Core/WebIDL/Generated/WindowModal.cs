@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WindowModal : WebIDLBase
     {
         
-        public WindowModal(nsISupports thisObject) : 
-                base(thisObject)
+        public WindowModal(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

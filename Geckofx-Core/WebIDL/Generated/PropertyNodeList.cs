@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PropertyNodeList : WebIDLBase
     {
         
-        public PropertyNodeList(nsISupports thisObject) : 
-                base(thisObject)
+        public PropertyNodeList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

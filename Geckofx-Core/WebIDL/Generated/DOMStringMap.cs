@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMStringMap : WebIDLBase
     {
         
-        public DOMStringMap(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMStringMap(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

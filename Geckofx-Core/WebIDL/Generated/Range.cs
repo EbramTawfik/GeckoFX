@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Range : WebIDLBase
     {
         
-        public Range(nsISupports thisObject) : 
-                base(thisObject)
+        public Range(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -87,6 +87,11 @@ namespace Gecko.WebIDL
         public void SetEndAfter(nsIDOMNode refNode)
         {
             this.CallVoidMethod("setEndAfter", refNode);
+        }
+        
+        public void Collapse()
+        {
+            this.CallVoidMethod("collapse");
         }
         
         public void Collapse(bool toStart)

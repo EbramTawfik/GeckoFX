@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WorkerGlobalScope : WebIDLBase
     {
         
-        public WorkerGlobalScope(nsISupports thisObject) : 
-                base(thisObject)
+        public WorkerGlobalScope(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -67,6 +67,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<nsISupports>("performance");
             }
+        }
+        
+        public void Dump()
+        {
+            this.CallVoidMethod("dump");
         }
         
         public void Dump(nsAString str)

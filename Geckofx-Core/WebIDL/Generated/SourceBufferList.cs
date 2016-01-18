@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SourceBufferList : WebIDLBase
     {
         
-        public SourceBufferList(nsISupports thisObject) : 
-                base(thisObject)
+        public SourceBufferList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

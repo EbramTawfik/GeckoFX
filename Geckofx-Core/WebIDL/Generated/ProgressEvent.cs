@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ProgressEvent : WebIDLBase
     {
         
-        public ProgressEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public ProgressEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

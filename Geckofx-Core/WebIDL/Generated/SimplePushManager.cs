@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SimplePushManager : WebIDLBase
     {
         
-        public SimplePushManager(nsISupports thisObject) : 
-                base(thisObject)
+        public SimplePushManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

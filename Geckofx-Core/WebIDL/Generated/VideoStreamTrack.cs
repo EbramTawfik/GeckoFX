@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class VideoStreamTrack : WebIDLBase
     {
         
-        public VideoStreamTrack(nsISupports thisObject) : 
-                base(thisObject)
+        public VideoStreamTrack(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

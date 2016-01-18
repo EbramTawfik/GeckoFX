@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ImageBitmap : WebIDLBase
     {
         
-        public ImageBitmap(nsISupports thisObject) : 
-                base(thisObject)
+        public ImageBitmap(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

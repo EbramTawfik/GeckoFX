@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLProgressElement : WebIDLBase
     {
         
-        public HTMLProgressElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLProgressElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

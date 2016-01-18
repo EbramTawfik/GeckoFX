@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SystemUpdateManager : WebIDLBase
     {
         
-        public SystemUpdateManager(nsISupports thisObject) : 
-                base(thisObject)
+        public SystemUpdateManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

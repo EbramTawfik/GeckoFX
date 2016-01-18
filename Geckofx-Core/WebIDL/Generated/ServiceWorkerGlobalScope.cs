@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ServiceWorkerGlobalScope : WebIDLBase
     {
         
-        public ServiceWorkerGlobalScope(nsISupports thisObject) : 
-                base(thisObject)
+        public ServiceWorkerGlobalScope(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

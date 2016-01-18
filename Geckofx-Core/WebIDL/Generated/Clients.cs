@@ -6,14 +6,19 @@ namespace Gecko.WebIDL
     public class Clients : WebIDLBase
     {
         
-        public Clients(nsISupports thisObject) : 
-                base(thisObject)
+        public Clients(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
         public Promise <object> Get(nsAString id)
         {
             return this.CallMethod<Promise <object>>("get", id);
+        }
+        
+        public Promise < nsISupports[] > MatchAll()
+        {
+            return this.CallMethod<Promise < nsISupports[] >>("matchAll");
         }
         
         public Promise < nsISupports[] > MatchAll(object options)

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class GetUserMediaRequest : WebIDLBase
     {
         
-        public GetUserMediaRequest(nsISupports thisObject) : 
-                base(thisObject)
+        public GetUserMediaRequest(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

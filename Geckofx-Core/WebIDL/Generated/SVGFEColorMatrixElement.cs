@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGFEColorMatrixElement : WebIDLBase
     {
         
-        public SVGFEColorMatrixElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGFEColorMatrixElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

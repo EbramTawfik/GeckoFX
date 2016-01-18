@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGFEComponentTransferElement : WebIDLBase
     {
         
-        public SVGFEComponentTransferElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGFEComponentTransferElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

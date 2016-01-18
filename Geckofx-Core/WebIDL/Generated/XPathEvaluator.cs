@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class XPathEvaluator : WebIDLBase
     {
         
-        public XPathEvaluator(nsISupports thisObject) : 
-                base(thisObject)
+        public XPathEvaluator(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

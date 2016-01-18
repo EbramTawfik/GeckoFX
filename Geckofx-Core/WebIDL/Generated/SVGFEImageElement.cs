@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGFEImageElement : WebIDLBase
     {
         
-        public SVGFEImageElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGFEImageElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

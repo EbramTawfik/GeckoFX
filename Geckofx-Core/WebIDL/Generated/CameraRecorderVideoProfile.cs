@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CameraRecorderVideoProfile : WebIDLBase
     {
         
-        public CameraRecorderVideoProfile(nsISupports thisObject) : 
-                base(thisObject)
+        public CameraRecorderVideoProfile(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

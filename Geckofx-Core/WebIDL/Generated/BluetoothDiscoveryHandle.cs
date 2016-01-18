@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BluetoothDiscoveryHandle : WebIDLBase
     {
         
-        public BluetoothDiscoveryHandle(nsISupports thisObject) : 
-                base(thisObject)
+        public BluetoothDiscoveryHandle(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

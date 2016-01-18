@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DeviceStorageAreaListener : WebIDLBase
     {
         
-        public DeviceStorageAreaListener(nsISupports thisObject) : 
-                base(thisObject)
+        public DeviceStorageAreaListener(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AnimationTimeline : WebIDLBase
     {
         
-        public AnimationTimeline(nsISupports thisObject) : 
-                base(thisObject)
+        public AnimationTimeline(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

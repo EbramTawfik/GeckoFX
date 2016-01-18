@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CallsList : WebIDLBase
     {
         
-        public CallsList(nsISupports thisObject) : 
-                base(thisObject)
+        public CallsList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

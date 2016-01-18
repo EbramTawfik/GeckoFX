@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGRectElement : WebIDLBase
     {
         
-        public SVGRectElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGRectElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

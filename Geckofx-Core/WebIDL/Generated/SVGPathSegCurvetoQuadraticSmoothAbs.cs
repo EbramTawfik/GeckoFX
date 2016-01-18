@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGPathSegCurvetoQuadraticSmoothAbs : WebIDLBase
     {
         
-        public SVGPathSegCurvetoQuadraticSmoothAbs(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGPathSegCurvetoQuadraticSmoothAbs(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

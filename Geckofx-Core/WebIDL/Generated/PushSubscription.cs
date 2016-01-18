@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PushSubscription : WebIDLBase
     {
         
-        public PushSubscription(nsISupports thisObject) : 
-                base(thisObject)
+        public PushSubscription(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

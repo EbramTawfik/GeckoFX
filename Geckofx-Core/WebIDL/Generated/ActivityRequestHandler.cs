@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ActivityRequestHandler : WebIDLBase
     {
         
-        public ActivityRequestHandler(nsISupports thisObject) : 
-                base(thisObject)
+        public ActivityRequestHandler(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

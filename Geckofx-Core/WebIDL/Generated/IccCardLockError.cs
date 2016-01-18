@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class IccCardLockError : WebIDLBase
     {
         
-        public IccCardLockError(nsISupports thisObject) : 
-                base(thisObject)
+        public IccCardLockError(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

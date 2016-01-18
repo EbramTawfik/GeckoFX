@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BrowserElementPrivileged : WebIDLBase
     {
         
-        public BrowserElementPrivileged(nsISupports thisObject) : 
-                base(thisObject)
+        public BrowserElementPrivileged(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -31,6 +31,11 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("goForward");
         }
         
+        public void Reload()
+        {
+            this.CallVoidMethod("reload");
+        }
+        
         public void Reload(bool hardReload)
         {
             this.CallVoidMethod("reload", hardReload);
@@ -41,6 +46,11 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("stop");
         }
         
+        public nsISupports Download(nsAString url)
+        {
+            return this.CallMethod<nsISupports>("download", url);
+        }
+        
         public nsISupports Download(nsAString url, object options)
         {
             return this.CallMethod<nsISupports>("download", url, options);
@@ -49,6 +59,11 @@ namespace Gecko.WebIDL
         public nsISupports PurgeHistory()
         {
             return this.CallMethod<nsISupports>("purgeHistory");
+        }
+        
+        public nsISupports GetScreenshot(uint width, uint height)
+        {
+            return this.CallMethod<nsISupports>("getScreenshot", width, height);
         }
         
         public nsISupports GetScreenshot(uint width, uint height, nsAString mimeType)
@@ -99,6 +114,11 @@ namespace Gecko.WebIDL
         public void ClearMatch()
         {
             this.CallVoidMethod("clearMatch");
+        }
+        
+        public nsISupports ExecuteScript(nsAString script)
+        {
+            return this.CallMethod<nsISupports>("executeScript", script);
         }
         
         public nsISupports ExecuteScript(nsAString script, object options)

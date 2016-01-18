@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMMatrix : WebIDLBase
     {
         
-        public DOMMatrix(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMMatrix(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -285,9 +285,24 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("preMultiplySelf", other);
         }
         
+        public nsISupports TranslateSelf(double tx, double ty)
+        {
+            return this.CallMethod<nsISupports>("translateSelf", tx, ty);
+        }
+        
         public nsISupports TranslateSelf(double tx, double ty, double tz)
         {
             return this.CallMethod<nsISupports>("translateSelf", tx, ty, tz);
+        }
+        
+        public nsISupports ScaleSelf(double scale)
+        {
+            return this.CallMethod<nsISupports>("scaleSelf", scale);
+        }
+        
+        public nsISupports ScaleSelf(double scale, double originX)
+        {
+            return this.CallMethod<nsISupports>("scaleSelf", scale, originX);
         }
         
         public nsISupports ScaleSelf(double scale, double originX, double originY)
@@ -295,14 +310,64 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("scaleSelf", scale, originX, originY);
         }
         
+        public nsISupports Scale3dSelf(double scale)
+        {
+            return this.CallMethod<nsISupports>("scale3dSelf", scale);
+        }
+        
+        public nsISupports Scale3dSelf(double scale, double originX)
+        {
+            return this.CallMethod<nsISupports>("scale3dSelf", scale, originX);
+        }
+        
+        public nsISupports Scale3dSelf(double scale, double originX, double originY)
+        {
+            return this.CallMethod<nsISupports>("scale3dSelf", scale, originX, originY);
+        }
+        
         public nsISupports Scale3dSelf(double scale, double originX, double originY, double originZ)
         {
             return this.CallMethod<nsISupports>("scale3dSelf", scale, originX, originY, originZ);
         }
         
+        public nsISupports ScaleNonUniformSelf(double scaleX)
+        {
+            return this.CallMethod<nsISupports>("scaleNonUniformSelf", scaleX);
+        }
+        
+        public nsISupports ScaleNonUniformSelf(double scaleX, double scaleY)
+        {
+            return this.CallMethod<nsISupports>("scaleNonUniformSelf", scaleX, scaleY);
+        }
+        
+        public nsISupports ScaleNonUniformSelf(double scaleX, double scaleY, double scaleZ)
+        {
+            return this.CallMethod<nsISupports>("scaleNonUniformSelf", scaleX, scaleY, scaleZ);
+        }
+        
+        public nsISupports ScaleNonUniformSelf(double scaleX, double scaleY, double scaleZ, double originX)
+        {
+            return this.CallMethod<nsISupports>("scaleNonUniformSelf", scaleX, scaleY, scaleZ, originX);
+        }
+        
+        public nsISupports ScaleNonUniformSelf(double scaleX, double scaleY, double scaleZ, double originX, double originY)
+        {
+            return this.CallMethod<nsISupports>("scaleNonUniformSelf", scaleX, scaleY, scaleZ, originX, originY);
+        }
+        
         public nsISupports ScaleNonUniformSelf(double scaleX, double scaleY, double scaleZ, double originX, double originY, double originZ)
         {
             return this.CallMethod<nsISupports>("scaleNonUniformSelf", scaleX, scaleY, scaleZ, originX, originY, originZ);
+        }
+        
+        public nsISupports RotateSelf(double angle)
+        {
+            return this.CallMethod<nsISupports>("rotateSelf", angle);
+        }
+        
+        public nsISupports RotateSelf(double angle, double originX)
+        {
+            return this.CallMethod<nsISupports>("rotateSelf", angle, originX);
         }
         
         public nsISupports RotateSelf(double angle, double originX, double originY)

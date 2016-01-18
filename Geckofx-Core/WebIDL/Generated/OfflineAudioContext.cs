@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class OfflineAudioContext : WebIDLBase
     {
         
-        public OfflineAudioContext(nsISupports thisObject) : 
-                base(thisObject)
+        public OfflineAudioContext(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

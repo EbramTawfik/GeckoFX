@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMPointReadOnly : WebIDLBase
     {
         
-        public DOMPointReadOnly(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMPointReadOnly(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

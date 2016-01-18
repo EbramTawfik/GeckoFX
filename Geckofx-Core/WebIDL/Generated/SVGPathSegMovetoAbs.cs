@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGPathSegMovetoAbs : WebIDLBase
     {
         
-        public SVGPathSegMovetoAbs(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGPathSegMovetoAbs(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

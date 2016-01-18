@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozWakeLock : WebIDLBase
     {
         
-        public MozWakeLock(nsISupports thisObject) : 
-                base(thisObject)
+        public MozWakeLock(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

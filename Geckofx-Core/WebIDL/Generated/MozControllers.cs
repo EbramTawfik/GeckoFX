@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozControllers : WebIDLBase
     {
         
-        public MozControllers(nsISupports thisObject) : 
-                base(thisObject)
+        public MozControllers(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

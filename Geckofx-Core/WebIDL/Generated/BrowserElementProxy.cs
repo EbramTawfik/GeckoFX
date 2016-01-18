@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BrowserElementProxy : WebIDLBase
     {
         
-        public BrowserElementProxy(nsISupports thisObject) : 
-                base(thisObject)
+        public BrowserElementProxy(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

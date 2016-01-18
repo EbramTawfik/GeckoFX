@@ -6,14 +6,29 @@ namespace Gecko.WebIDL
     public class LegacyMozTCPSocket : WebIDLBase
     {
         
-        public LegacyMozTCPSocket(nsISupports thisObject) : 
-                base(thisObject)
+        public LegacyMozTCPSocket(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
+        }
+        
+        public nsISupports Open(nsAString host, ushort port)
+        {
+            return this.CallMethod<nsISupports>("open", host, port);
         }
         
         public nsISupports Open(nsAString host, ushort port, object options)
         {
             return this.CallMethod<nsISupports>("open", host, port, options);
+        }
+        
+        public nsISupports Listen(ushort port)
+        {
+            return this.CallMethod<nsISupports>("listen", port);
+        }
+        
+        public nsISupports Listen(ushort port, object options)
+        {
+            return this.CallMethod<nsISupports>("listen", port, options);
         }
         
         public nsISupports Listen(ushort port, object options, ushort backlog)

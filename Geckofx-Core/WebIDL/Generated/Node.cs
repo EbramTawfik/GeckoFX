@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Node : WebIDLBase
     {
         
-        public Node(nsISupports thisObject) : 
-                base(thisObject)
+        public Node(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -191,6 +191,11 @@ namespace Gecko.WebIDL
         public void Normalize()
         {
             this.CallVoidMethod("normalize");
+        }
+        
+        public nsIDOMNode CloneNode()
+        {
+            return this.CallMethod<nsIDOMNode>("cloneNode");
         }
         
         public nsIDOMNode CloneNode(bool deep)

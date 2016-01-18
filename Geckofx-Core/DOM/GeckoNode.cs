@@ -126,7 +126,7 @@ namespace Gecko
 		public GeckoNode PreviousSibling { get { return _domNode.Instance.GetPreviousSiblingAttribute().Wrap(Create); } }
 		public bool HasChildNodes { get { return _domNode.Instance.HasChildNodes(); } }		
 
-		public GeckoDocument OwnerDocument
+		public virtual GeckoDocument OwnerDocument
 		{
 			get { return GeckoDocument.Create(Xpcom.QueryInterface<nsIDOMHTMLDocument>(_domNode.Instance.GetOwnerDocumentAttribute())); }
 		}
@@ -226,20 +226,12 @@ namespace Gecko
 
         private nsIXPathResult EvaluateXPathInternal(string xpath)
 		{
-            nsIXPathResult result = null;
+            nsIXPathResult result;
             using (var evaluator = Xpcom.CreateInstance2<nsIDOMXPathEvaluator>(Contracts.XPathEvaluator))
 			{
 				var node = DomObject;
-                // Attempt to port for geckofx 45
-#if false
-				nsIDOMXPathNSResolver resolver = evaluator.Instance.CreateNSResolver(node);
+                var resolver = new WebIDL.XPathEvaluator(this.OwnerDocument.DefaultView.DomWindow, (nsISupports)node).CreateNSResolver(node);
                 result = (nsIXPathResult)evaluator.Instance.Evaluate(new nsAString(xpath), node, resolver, 0, null);
-                Xpcom.FreeComObject( ref resolver );
-#else
-                var resolver = new WebIDL.XPathEvaluator((nsISupports) evaluator).CreateNSResolver(node);
-                result = (nsIXPathResult)evaluator.Instance.Evaluate(new nsAString(xpath), node, resolver, 0, null);
-#endif
-				
 			}
 
 			return result;

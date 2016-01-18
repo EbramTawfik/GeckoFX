@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozOtaStatusEvent : WebIDLBase
     {
         
-        public MozOtaStatusEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public MozOtaStatusEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

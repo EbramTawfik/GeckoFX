@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TCPServerSocketEvent : WebIDLBase
     {
         
-        public TCPServerSocketEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public TCPServerSocketEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

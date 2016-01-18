@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TVTuner : WebIDLBase
     {
         
-        public TVTuner(nsISupports thisObject) : 
-                base(thisObject)
+        public TVTuner(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

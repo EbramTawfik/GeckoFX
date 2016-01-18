@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TVProgram : WebIDLBase
     {
         
-        public TVProgram(nsISupports thisObject) : 
-                base(thisObject)
+        public TVProgram(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

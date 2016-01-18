@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMDownload : WebIDLBase
     {
         
-        public DOMDownload(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMDownload(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

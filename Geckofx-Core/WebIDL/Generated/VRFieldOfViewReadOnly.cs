@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class VRFieldOfViewReadOnly : WebIDLBase
     {
         
-        public VRFieldOfViewReadOnly(nsISupports thisObject) : 
-                base(thisObject)
+        public VRFieldOfViewReadOnly(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

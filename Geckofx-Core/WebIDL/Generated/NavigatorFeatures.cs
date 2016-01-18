@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class NavigatorFeatures : WebIDLBase
     {
         
-        public NavigatorFeatures(nsISupports thisObject) : 
-                base(thisObject)
+        public NavigatorFeatures(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TVManager : WebIDLBase
     {
         
-        public TVManager(nsISupports thisObject) : 
-                base(thisObject)
+        public TVManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

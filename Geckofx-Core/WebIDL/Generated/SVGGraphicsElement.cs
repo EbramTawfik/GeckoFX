@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGGraphicsElement : WebIDLBase
     {
         
-        public SVGGraphicsElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGGraphicsElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -33,6 +33,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<nsISupports>("farthestViewportElement");
             }
+        }
+        
+        public nsISupports GetBBox()
+        {
+            return this.CallMethod<nsISupports>("getBBox");
         }
         
         public nsISupports GetBBox(object aOptions)

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AudioDestinationNode : WebIDLBase
     {
         
-        public AudioDestinationNode(nsISupports thisObject) : 
-                base(thisObject)
+        public AudioDestinationNode(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

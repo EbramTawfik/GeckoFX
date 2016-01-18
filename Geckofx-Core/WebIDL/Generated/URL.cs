@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class URL : WebIDLBase
     {
         
-        public URL(nsISupports thisObject) : 
-                base(thisObject)
+        public URL(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

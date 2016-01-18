@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DominatorTree : WebIDLBase
     {
         
-        public DominatorTree(nsISupports thisObject) : 
-                base(thisObject)
+        public DominatorTree(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

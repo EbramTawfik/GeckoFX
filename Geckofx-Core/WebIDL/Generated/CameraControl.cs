@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CameraControl : WebIDLBase
     {
         
-        public CameraControl(nsISupports thisObject) : 
-                base(thisObject)
+        public CameraControl(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -184,6 +184,11 @@ namespace Gecko.WebIDL
             return this.CallMethod<object[]>("getMeteringAreas");
         }
         
+        public void SetMeteringAreas()
+        {
+            this.CallVoidMethod("setMeteringAreas");
+        }
+        
         public void SetMeteringAreas(object[] meteringAreas)
         {
             this.CallVoidMethod("setMeteringAreas", meteringAreas);
@@ -192,6 +197,11 @@ namespace Gecko.WebIDL
         public object[] GetFocusAreas()
         {
             return this.CallMethod<object[]>("getFocusAreas");
+        }
+        
+        public void SetFocusAreas()
+        {
+            this.CallVoidMethod("setFocusAreas");
         }
         
         public void SetFocusAreas(object[] focusAreas)
@@ -204,6 +214,11 @@ namespace Gecko.WebIDL
             return this.CallMethod<object>("getPictureSize");
         }
         
+        public void SetPictureSize()
+        {
+            this.CallVoidMethod("setPictureSize");
+        }
+        
         public void SetPictureSize(object size)
         {
             this.CallVoidMethod("setPictureSize", size);
@@ -214,6 +229,11 @@ namespace Gecko.WebIDL
             return this.CallMethod<object>("getThumbnailSize");
         }
         
+        public void SetThumbnailSize()
+        {
+            this.CallVoidMethod("setThumbnailSize");
+        }
+        
         public void SetThumbnailSize(object size)
         {
             this.CallVoidMethod("setThumbnailSize", size);
@@ -222,6 +242,11 @@ namespace Gecko.WebIDL
         public Promise <bool> AutoFocus()
         {
             return this.CallMethod<Promise <bool>>("autoFocus");
+        }
+        
+        public Promise < nsIDOMBlob > TakePicture()
+        {
+            return this.CallMethod<Promise < nsIDOMBlob >>("takePicture");
         }
         
         public Promise < nsIDOMBlob > TakePicture(object options)
@@ -257,6 +282,11 @@ namespace Gecko.WebIDL
         public Promise Release()
         {
             return this.CallMethod<Promise>("release");
+        }
+        
+        public Promise <object> SetConfiguration()
+        {
+            return this.CallMethod<Promise <object>>("setConfiguration");
         }
         
         public Promise <object> SetConfiguration(object configuration)

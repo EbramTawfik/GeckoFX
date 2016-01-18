@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MediaDeviceInfo : WebIDLBase
     {
         
-        public MediaDeviceInfo(nsISupports thisObject) : 
-                base(thisObject)
+        public MediaDeviceInfo(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

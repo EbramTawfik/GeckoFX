@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class nsIFile : WebIDLBase
     {
         
-        public nsIFile(nsISupports thisObject) : 
-                base(thisObject)
+        public nsIFile(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

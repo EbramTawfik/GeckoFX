@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozWifiP2pManager : WebIDLBase
     {
         
-        public MozWifiP2pManager(nsISupports thisObject) : 
-                base(thisObject)
+        public MozWifiP2pManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -32,6 +32,11 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("setScanEnabled", enabled);
         }
         
+        public nsISupports Connect(nsAString address, WPSMethod wpsMethod)
+        {
+            return this.CallMethod<nsISupports>("connect", address, wpsMethod);
+        }
+        
         public nsISupports Connect(nsAString address, WPSMethod wpsMethod, sbyte goIntent)
         {
             return this.CallMethod<nsISupports>("connect", address, wpsMethod, goIntent);
@@ -45,6 +50,11 @@ namespace Gecko.WebIDL
         public nsISupports GetPeerList()
         {
             return this.CallMethod<nsISupports>("getPeerList");
+        }
+        
+        public nsISupports SetPairingConfirmation(bool accepted)
+        {
+            return this.CallMethod<nsISupports>("setPairingConfirmation", accepted);
         }
         
         public nsISupports SetPairingConfirmation(bool accepted, nsAString pin)

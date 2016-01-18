@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CameraStateChangeEvent : WebIDLBase
     {
         
-        public CameraStateChangeEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public CameraStateChangeEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

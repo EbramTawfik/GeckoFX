@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BarProp : WebIDLBase
     {
         
-        public BarProp(nsISupports thisObject) : 
-                base(thisObject)
+        public BarProp(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

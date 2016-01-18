@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DataStoreChangeEvent : WebIDLBase
     {
         
-        public DataStoreChangeEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public DataStoreChangeEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

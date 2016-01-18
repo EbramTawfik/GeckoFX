@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Presentation : WebIDLBase
     {
         
-        public Presentation(nsISupports thisObject) : 
-                base(thisObject)
+        public Presentation(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

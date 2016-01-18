@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGFESpecularLightingElement : WebIDLBase
     {
         
-        public SVGFESpecularLightingElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGFESpecularLightingElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

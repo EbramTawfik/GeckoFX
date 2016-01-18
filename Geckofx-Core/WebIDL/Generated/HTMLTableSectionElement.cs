@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLTableSectionElement : WebIDLBase
     {
         
-        public HTMLTableSectionElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLTableSectionElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -17,6 +17,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<nsISupports>("rows");
             }
+        }
+        
+        public nsISupports InsertRow()
+        {
+            return this.CallMethod<nsISupports>("insertRow");
         }
         
         public nsISupports InsertRow(int index)

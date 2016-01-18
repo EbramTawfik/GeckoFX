@@ -15,12 +15,14 @@ namespace Gecko.Interop
 		where T:class
 	{
 		protected T _instance;
+	    private readonly bool _releaseRCW;
 
 		#region ctor & dtor
 
-		public ComPtr( T instance )
+        public ComPtr(T instance, bool releaseRCW = true)
 		{
 			_instance = instance;
+            _releaseRCW = releaseRCW;
 		}
 
 		~ComPtr()
@@ -36,7 +38,7 @@ namespace Gecko.Interop
 
 		private void Free()
 		{
-			if (_instance != null)
+            if (_instance != null && _releaseRCW)
 				Xpcom.FreeComObject( ref _instance );
 			_instance = null;
 		}

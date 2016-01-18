@@ -6,9 +6,14 @@ namespace Gecko.WebIDL
     public class FormData : WebIDLBase
     {
         
-        public FormData(nsISupports thisObject) : 
-                base(thisObject)
+        public FormData(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
+        }
+        
+        public void Append(USVString name, nsIDOMBlob value)
+        {
+            this.CallVoidMethod("append", name, value);
         }
         
         public void Append(USVString name, nsIDOMBlob value, USVString filename)
@@ -39,6 +44,11 @@ namespace Gecko.WebIDL
         public bool Has(USVString name)
         {
             return this.CallMethod<bool>("has", name);
+        }
+        
+        public void Set(USVString name, nsIDOMBlob value)
+        {
+            this.CallVoidMethod("set", name, value);
         }
         
         public void Set(USVString name, nsIDOMBlob value, USVString filename)

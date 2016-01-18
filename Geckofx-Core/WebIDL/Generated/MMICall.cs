@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MMICall : WebIDLBase
     {
         
-        public MMICall(nsISupports thisObject) : 
-                base(thisObject)
+        public MMICall(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

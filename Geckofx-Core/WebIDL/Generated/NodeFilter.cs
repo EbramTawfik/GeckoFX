@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class NodeFilter : WebIDLBase
     {
         
-        public NodeFilter(nsISupports thisObject) : 
-                base(thisObject)
+        public NodeFilter(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

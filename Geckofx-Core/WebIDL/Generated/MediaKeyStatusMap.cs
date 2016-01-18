@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MediaKeyStatusMap : WebIDLBase
     {
         
-        public MediaKeyStatusMap(nsISupports thisObject) : 
-                base(thisObject)
+        public MediaKeyStatusMap(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

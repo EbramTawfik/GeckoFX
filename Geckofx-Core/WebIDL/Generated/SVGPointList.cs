@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGPointList : WebIDLBase
     {
         
-        public SVGPointList(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGPointList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

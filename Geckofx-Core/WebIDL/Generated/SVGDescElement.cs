@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGDescElement : WebIDLBase
     {
         
-        public SVGDescElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGDescElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

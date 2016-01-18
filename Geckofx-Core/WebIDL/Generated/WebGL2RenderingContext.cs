@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WebGL2RenderingContext : WebIDLBase
     {
         
-        public WebGL2RenderingContext(nsISupports thisObject) : 
-                base(thisObject)
+        public WebGL2RenderingContext(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

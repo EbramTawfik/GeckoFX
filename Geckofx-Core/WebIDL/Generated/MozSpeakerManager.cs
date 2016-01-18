@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozSpeakerManager : WebIDLBase
     {
         
-        public MozSpeakerManager(nsISupports thisObject) : 
-                base(thisObject)
+        public MozSpeakerManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

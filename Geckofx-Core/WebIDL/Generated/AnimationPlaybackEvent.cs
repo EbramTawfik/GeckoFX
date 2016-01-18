@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AnimationPlaybackEvent : WebIDLBase
     {
         
-        public AnimationPlaybackEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public AnimationPlaybackEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

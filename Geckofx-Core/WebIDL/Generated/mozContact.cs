@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class mozContact : WebIDLBase
     {
         
-        public mozContact(nsISupports thisObject) : 
-                base(thisObject)
+        public mozContact(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -325,6 +325,11 @@ namespace Gecko.WebIDL
             {
                 this.SetProperty("key", value);
             }
+        }
+        
+        public void Init()
+        {
+            this.CallVoidMethod("init");
         }
         
         public void Init(object properties)

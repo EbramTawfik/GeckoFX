@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CSSStyleDeclaration : WebIDLBase
     {
         
-        public CSSStyleDeclaration(nsISupports thisObject) : 
-                base(thisObject)
+        public CSSStyleDeclaration(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -52,6 +52,11 @@ namespace Gecko.WebIDL
         public nsAString GetPropertyPriority(nsAString property)
         {
             return this.CallMethod<nsAString>("getPropertyPriority", property);
+        }
+        
+        public void SetProperty(nsAString property, nsAString value)
+        {
+            this.CallVoidMethod("setProperty", property, value);
         }
         
         public void SetProperty(nsAString property, nsAString value, nsAString priority)

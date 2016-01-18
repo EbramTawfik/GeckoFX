@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CameraClosedEvent : WebIDLBase
     {
         
-        public CameraClosedEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public CameraClosedEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

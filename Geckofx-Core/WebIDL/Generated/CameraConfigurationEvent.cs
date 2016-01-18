@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CameraConfigurationEvent : WebIDLBase
     {
         
-        public CameraConfigurationEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public CameraConfigurationEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

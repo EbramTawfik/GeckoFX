@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class VRPositionState : WebIDLBase
     {
         
-        public VRPositionState(nsISupports thisObject) : 
-                base(thisObject)
+        public VRPositionState(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

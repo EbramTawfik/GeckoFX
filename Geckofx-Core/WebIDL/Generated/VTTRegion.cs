@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class VTTRegion : WebIDLBase
     {
         
-        public VTTRegion(nsISupports thisObject) : 
-                base(thisObject)
+        public VTTRegion(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

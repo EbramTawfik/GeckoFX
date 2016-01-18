@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class OfflineResourceList : WebIDLBase
     {
         
-        public OfflineResourceList(nsISupports thisObject) : 
-                base(thisObject)
+        public OfflineResourceList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

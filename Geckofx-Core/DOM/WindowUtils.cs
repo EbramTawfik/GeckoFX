@@ -795,17 +795,6 @@ namespace Gecko.DOM
 		{
 			throw new NotImplementedException();
 		}
-
-        // inteface nsIDOMFile not longer exists in gecko 45.
-#if PORT
-		/// <summary>
-        /// Wrap an nsIFile in an nsIDOMFile
-        /// </summary>		
-		public nsIDOMFile WrapDOMFile(nsIFile aFile)
-		{
-			throw new NotImplementedException();
-		}
-#endif
 		
 		/// <summary>
         /// Get the type of the currently focused html input, if any.

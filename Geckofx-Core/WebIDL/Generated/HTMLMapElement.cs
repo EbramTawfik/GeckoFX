@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLMapElement : WebIDLBase
     {
         
-        public HTMLMapElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLMapElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

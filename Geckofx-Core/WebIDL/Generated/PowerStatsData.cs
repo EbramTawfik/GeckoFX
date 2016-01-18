@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PowerStatsData : WebIDLBase
     {
         
-        public PowerStatsData(nsISupports thisObject) : 
-                base(thisObject)
+        public PowerStatsData(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AudioBufferSourceNode : WebIDLBase
     {
         
-        public AudioBufferSourceNode(nsISupports thisObject) : 
-                base(thisObject)
+        public AudioBufferSourceNode(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -75,9 +75,29 @@ namespace Gecko.WebIDL
             }
         }
         
+        public void Start()
+        {
+            this.CallVoidMethod("start");
+        }
+        
+        public void Start(double when)
+        {
+            this.CallVoidMethod("start", when);
+        }
+        
+        public void Start(double when, double grainOffset)
+        {
+            this.CallVoidMethod("start", when, grainOffset);
+        }
+        
         public void Start(double when, double grainOffset, double grainDuration)
         {
             this.CallVoidMethod("start", when, grainOffset, grainDuration);
+        }
+        
+        public void Stop()
+        {
+            this.CallVoidMethod("stop");
         }
         
         public void Stop(double when)

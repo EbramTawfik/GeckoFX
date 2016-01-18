@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Plugin : WebIDLBase
     {
         
-        public Plugin(nsISupports thisObject) : 
-                base(thisObject)
+        public Plugin(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

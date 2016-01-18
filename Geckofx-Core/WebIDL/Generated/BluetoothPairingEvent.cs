@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BluetoothPairingEvent : WebIDLBase
     {
         
-        public BluetoothPairingEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public BluetoothPairingEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

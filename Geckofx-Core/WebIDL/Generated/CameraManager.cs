@@ -6,9 +6,14 @@ namespace Gecko.WebIDL
     public class CameraManager : WebIDLBase
     {
         
-        public CameraManager(nsISupports thisObject) : 
-                base(thisObject)
+        public CameraManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
+        }
+        
+        public Promise <object> GetCamera(nsAString camera)
+        {
+            return this.CallMethod<Promise <object>>("getCamera", camera);
         }
         
         public Promise <object> GetCamera(nsAString camera, object initialConfiguration)

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class nsIInputStreamCallback : WebIDLBase
     {
         
-        public nsIInputStreamCallback(nsISupports thisObject) : 
-                base(thisObject)
+        public nsIInputStreamCallback(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

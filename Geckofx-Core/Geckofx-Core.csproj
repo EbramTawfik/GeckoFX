@@ -185,6 +185,7 @@
     <Compile Include="Generated\nsISubstitutingProtocolHandler.cs" />
     <Compile Include="Interop\ClassInfo.cs" />
     <Compile Include="Interop\HandWrittenInterfaces\nsIDOMScriptObjectFactory.cs" />
+    <Compile Include="Interop\HandWrittenInterfaces\nsIGlobalObject.cs" />
     <Compile Include="Interop\HandWrittenInterfaces\nsIScriptContext.cs" />
     <Compile Include="Interop\HandWrittenInterfaces\nsIXPathResult.cs" />
     <Compile Include="Interop\SpiderMonkey\JSAutoCompartment.cs" />
@@ -258,7 +259,6 @@
     <Compile Include="Generated\nsIRadioInterfaceLayer.cs" />
     <Compile Include="Generated\nsIWifi.cs" />
     <Compile Include="Generated\nsIWorkerHolder.cs" />
-    <Compile Include="GlobalJSContextHolder.cs" />
     <Compile Include="Interfaces\IGeckoWebBrowser.cs" />
     <Compile Include="Images\ImageContainer.cs" />
     <Compile Include="BaseTypes\DOMHighResTimeStamp.cs" />

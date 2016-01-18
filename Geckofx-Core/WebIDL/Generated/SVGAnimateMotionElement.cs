@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGAnimateMotionElement : WebIDLBase
     {
         
-        public SVGAnimateMotionElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGAnimateMotionElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

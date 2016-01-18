@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WindowLocalStorage : WebIDLBase
     {
         
-        public WindowLocalStorage(nsISupports thisObject) : 
-                base(thisObject)
+        public WindowLocalStorage(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

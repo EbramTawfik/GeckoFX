@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WebSocket : WebIDLBase
     {
         
-        public WebSocket(nsISupports thisObject) : 
-                base(thisObject)
+        public WebSocket(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -61,6 +61,16 @@ namespace Gecko.WebIDL
             {
                 this.SetProperty("binaryType", value);
             }
+        }
+        
+        public void Close()
+        {
+            this.CallVoidMethod("close");
+        }
+        
+        public void Close(ushort code)
+        {
+            this.CallVoidMethod("close", code);
         }
         
         public void Close(ushort code, nsAString reason)

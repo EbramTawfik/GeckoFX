@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BluetoothMapRequestHandle : WebIDLBase
     {
         
-        public BluetoothMapRequestHandle(nsISupports thisObject) : 
-                base(thisObject)
+        public BluetoothMapRequestHandle(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PopStateEvent : WebIDLBase
     {
         
-        public PopStateEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public PopStateEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SpeechRecognitionAlternative : WebIDLBase
     {
         
-        public SpeechRecognitionAlternative(nsISupports thisObject) : 
-                base(thisObject)
+        public SpeechRecognitionAlternative(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

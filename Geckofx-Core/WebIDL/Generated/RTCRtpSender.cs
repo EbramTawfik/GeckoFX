@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class RTCRtpSender : WebIDLBase
     {
         
-        public RTCRtpSender(nsISupports thisObject) : 
-                base(thisObject)
+        public RTCRtpSender(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

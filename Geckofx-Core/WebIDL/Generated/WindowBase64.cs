@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WindowBase64 : WebIDLBase
     {
         
-        public WindowBase64(nsISupports thisObject) : 
-                base(thisObject)
+        public WindowBase64(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

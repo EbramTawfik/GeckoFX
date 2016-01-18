@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AudioTrack : WebIDLBase
     {
         
-        public AudioTrack(nsISupports thisObject) : 
-                base(thisObject)
+        public AudioTrack(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

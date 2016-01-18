@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PositionSensorVRDevice : WebIDLBase
     {
         
-        public PositionSensorVRDevice(nsISupports thisObject) : 
-                base(thisObject)
+        public PositionSensorVRDevice(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,9 +6,14 @@ namespace Gecko.WebIDL
     public class RequestSyncScheduler : WebIDLBase
     {
         
-        public RequestSyncScheduler(nsISupports thisObject) : 
-                base(thisObject)
+        public RequestSyncScheduler(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
+        }
+        
+        public Promise Register(USVString task)
+        {
+            return this.CallMethod<Promise>("register", task);
         }
         
         public Promise Register(USVString task, object @params)

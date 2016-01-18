@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozInputContextFocusEventDetail : WebIDLBase
     {
         
-        public MozInputContextFocusEventDetail(nsISupports thisObject) : 
-                base(thisObject)
+        public MozInputContextFocusEventDetail(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

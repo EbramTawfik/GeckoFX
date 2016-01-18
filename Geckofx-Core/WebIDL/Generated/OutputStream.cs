@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class OutputStream : WebIDLBase
     {
         
-        public OutputStream(nsISupports thisObject) : 
-                base(thisObject)
+        public OutputStream(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

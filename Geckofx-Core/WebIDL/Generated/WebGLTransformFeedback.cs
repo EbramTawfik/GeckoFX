@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WebGLTransformFeedback : WebIDLBase
     {
         
-        public WebGLTransformFeedback(nsISupports thisObject) : 
-                base(thisObject)
+        public WebGLTransformFeedback(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

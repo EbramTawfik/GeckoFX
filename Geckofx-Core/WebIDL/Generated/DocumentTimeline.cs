@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DocumentTimeline : WebIDLBase
     {
         
-        public DocumentTimeline(nsISupports thisObject) : 
-                base(thisObject)
+        public DocumentTimeline(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

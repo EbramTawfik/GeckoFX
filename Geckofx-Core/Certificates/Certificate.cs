@@ -61,13 +61,6 @@ namespace Gecko.Certificates
 			get { return nsString.Get(_cert.Instance.GetSha1FingerprintAttribute); }
 		}
 
-#if PORT
-		public string Md5Fingerprint
-		{
-			get { return nsString.Get(_cert.Instance.GetMd5FingerprintAttribute); }
-		}
-#endif
-
 		public string TokenName
 		{
 			get { return nsString.Get(_cert.Instance.GetTokenNameAttribute); }

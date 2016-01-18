@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGFEMergeNodeElement : WebIDLBase
     {
         
-        public SVGFEMergeNodeElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGFEMergeNodeElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

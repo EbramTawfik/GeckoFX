@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class NotifyPaintEvent : WebIDLBase
     {
         
-        public NotifyPaintEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public NotifyPaintEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

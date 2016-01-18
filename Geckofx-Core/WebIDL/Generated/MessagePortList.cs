@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MessagePortList : WebIDLBase
     {
         
-        public MessagePortList(nsISupports thisObject) : 
-                base(thisObject)
+        public MessagePortList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGRadialGradientElement : WebIDLBase
     {
         
-        public SVGRadialGradientElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGRadialGradientElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

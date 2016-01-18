@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DeviceStorageChangeEvent : WebIDLBase
     {
         
-        public DeviceStorageChangeEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public DeviceStorageChangeEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

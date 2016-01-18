@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class nsIScriptableRegion : WebIDLBase
     {
         
-        public nsIScriptableRegion(nsISupports thisObject) : 
-                base(thisObject)
+        public nsIScriptableRegion(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CDATASection : WebIDLBase
     {
         
-        public CDATASection(nsISupports thisObject) : 
-                base(thisObject)
+        public CDATASection(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

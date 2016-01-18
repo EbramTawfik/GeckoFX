@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGFEDisplacementMapElement : WebIDLBase
     {
         
-        public SVGFEDisplacementMapElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGFEDisplacementMapElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

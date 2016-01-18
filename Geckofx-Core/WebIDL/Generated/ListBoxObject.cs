@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ListBoxObject : WebIDLBase
     {
         
-        public ListBoxObject(nsISupports thisObject) : 
-                base(thisObject)
+        public ListBoxObject(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

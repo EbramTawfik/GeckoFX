@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Storage : WebIDLBase
     {
         
-        public Storage(nsISupports thisObject) : 
-                base(thisObject)
+        public Storage(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

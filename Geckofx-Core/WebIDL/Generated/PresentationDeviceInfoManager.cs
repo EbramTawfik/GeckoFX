@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PresentationDeviceInfoManager : WebIDLBase
     {
         
-        public PresentationDeviceInfoManager(nsISupports thisObject) : 
-                base(thisObject)
+        public PresentationDeviceInfoManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGPolygonElement : WebIDLBase
     {
         
-        public SVGPolygonElement(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGPolygonElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

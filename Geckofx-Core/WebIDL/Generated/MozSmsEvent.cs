@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozSmsEvent : WebIDLBase
     {
         
-        public MozSmsEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public MozSmsEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

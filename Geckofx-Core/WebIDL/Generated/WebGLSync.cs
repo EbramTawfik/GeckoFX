@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WebGLSync : WebIDLBase
     {
         
-        public WebGLSync(nsISupports thisObject) : 
-                base(thisObject)
+        public WebGLSync(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

@@ -6,9 +6,14 @@ namespace Gecko.WebIDL
     public class RTCIdentityProvider : WebIDLBase
     {
         
-        public RTCIdentityProvider(nsISupports thisObject) : 
-                base(thisObject)
+        public RTCIdentityProvider(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
+        }
+        
+        public Promise <object> GenerateAssertion(nsAString contents, nsAString origin)
+        {
+            return this.CallMethod<Promise <object>>("generateAssertion", contents, origin);
         }
         
         public Promise <object> GenerateAssertion(nsAString contents, nsAString origin, nsAString usernameHint)

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WorkerDebuggerGlobalScope : WebIDLBase
     {
         
-        public WorkerDebuggerGlobalScope(nsISupports thisObject) : 
-                base(thisObject)
+        public WorkerDebuggerGlobalScope(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -22,6 +22,11 @@ namespace Gecko.WebIDL
         public object CreateSandbox(nsAString name, object prototype)
         {
             return this.CallMethod<object>("createSandbox", name, prototype);
+        }
+        
+        public void LoadSubScript(nsAString url)
+        {
+            this.CallVoidMethod("loadSubScript", url);
         }
         
         public void LoadSubScript(nsAString url, object sandbox)
@@ -47,6 +52,11 @@ namespace Gecko.WebIDL
         public void ReportError(nsAString message)
         {
             this.CallVoidMethod("reportError", message);
+        }
+        
+        public void Dump()
+        {
+            this.CallVoidMethod("dump");
         }
         
         public void Dump(nsAString @string)

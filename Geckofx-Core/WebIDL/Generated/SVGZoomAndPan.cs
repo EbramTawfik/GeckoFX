@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SVGZoomAndPan : WebIDLBase
     {
         
-        public SVGZoomAndPan(nsISupports thisObject) : 
-                base(thisObject)
+        public SVGZoomAndPan(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

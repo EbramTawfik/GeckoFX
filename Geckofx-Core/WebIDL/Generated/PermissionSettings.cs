@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PermissionSettings : WebIDLBase
     {
         
-        public PermissionSettings(nsISupports thisObject) : 
-                base(thisObject)
+        public PermissionSettings(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

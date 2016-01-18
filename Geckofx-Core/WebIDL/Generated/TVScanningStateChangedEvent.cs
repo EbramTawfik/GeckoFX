@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TVScanningStateChangedEvent : WebIDLBase
     {
         
-        public TVScanningStateChangedEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public TVScanningStateChangedEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozTimeManager : WebIDLBase
     {
         
-        public MozTimeManager(nsISupports thisObject) : 
-                base(thisObject)
+        public MozTimeManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

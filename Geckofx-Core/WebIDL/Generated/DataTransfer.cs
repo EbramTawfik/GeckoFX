@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DataTransfer : WebIDLBase
     {
         
-        public DataTransfer(nsISupports thisObject) : 
-                base(thisObject)
+        public DataTransfer(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -64,6 +64,11 @@ namespace Gecko.WebIDL
         public void SetData(nsAString format, nsAString data)
         {
             this.CallVoidMethod("setData", format, data);
+        }
+        
+        public void ClearData()
+        {
+            this.CallVoidMethod("clearData");
         }
         
         public void ClearData(nsAString format)

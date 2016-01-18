@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class XULCommandEvent : WebIDLBase
     {
         
-        public XULCommandEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public XULCommandEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

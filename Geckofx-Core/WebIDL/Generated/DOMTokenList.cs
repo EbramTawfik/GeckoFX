@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DOMTokenList : WebIDLBase
     {
         
-        public DOMTokenList(nsISupports thisObject) : 
-                base(thisObject)
+        public DOMTokenList(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -32,6 +32,11 @@ namespace Gecko.WebIDL
         public void Remove(nsAString tokens)
         {
             this.CallVoidMethod("remove", tokens);
+        }
+        
+        public bool Toggle(nsAString token)
+        {
+            return this.CallMethod<bool>("toggle", token);
         }
         
         public bool Toggle(nsAString token, bool force)

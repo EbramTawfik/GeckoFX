@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class UncaughtRejectionObserver : WebIDLBase
     {
         
-        public UncaughtRejectionObserver(nsISupports thisObject) : 
-                base(thisObject)
+        public UncaughtRejectionObserver(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class RequestSyncTask : WebIDLBase
     {
         
-        public RequestSyncTask(nsISupports thisObject) : 
-                base(thisObject)
+        public RequestSyncTask(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -89,6 +89,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<object>("data");
             }
+        }
+        
+        public Promise SetPolicy(RequestSyncTaskPolicyState aState)
+        {
+            return this.CallMethod<Promise>("setPolicy", aState);
         }
         
         public Promise SetPolicy(RequestSyncTaskPolicyState aState, int ovewrittenMinInterval)

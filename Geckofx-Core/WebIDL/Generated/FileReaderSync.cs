@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class FileReaderSync : WebIDLBase
     {
         
-        public FileReaderSync(nsISupports thisObject) : 
-                base(thisObject)
+        public FileReaderSync(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -19,6 +19,11 @@ namespace Gecko.WebIDL
         public nsAString ReadAsBinaryString(nsIDOMBlob blob)
         {
             return this.CallMethod<nsAString>("readAsBinaryString", blob);
+        }
+        
+        public nsAString ReadAsText(nsIDOMBlob blob)
+        {
+            return this.CallMethod<nsAString>("readAsText", blob);
         }
         
         public nsAString ReadAsText(nsIDOMBlob blob, nsAString encoding)

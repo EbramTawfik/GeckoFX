@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SESession : WebIDLBase
     {
         
-        public SESession(nsISupports thisObject) : 
-                base(thisObject)
+        public SESession(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

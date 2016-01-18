@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MediaStreamTrack : WebIDLBase
     {
         
-        public MediaStreamTrack(nsISupports thisObject) : 
-                base(thisObject)
+        public MediaStreamTrack(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -50,6 +50,11 @@ namespace Gecko.WebIDL
         public void Stop()
         {
             this.CallVoidMethod("stop");
+        }
+        
+        public Promise ApplyConstraints()
+        {
+            return this.CallMethod<Promise>("applyConstraints");
         }
         
         public Promise ApplyConstraints(object constraints)

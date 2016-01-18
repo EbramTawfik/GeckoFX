@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLDirectoryElement : WebIDLBase
     {
         
-        public HTMLDirectoryElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLDirectoryElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

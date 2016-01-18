@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CSSRule : WebIDLBase
     {
         
-        public CSSRule(nsISupports thisObject) : 
-                base(thisObject)
+        public CSSRule(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

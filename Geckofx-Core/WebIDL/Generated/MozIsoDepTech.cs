@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozIsoDepTech : WebIDLBase
     {
         
-        public MozIsoDepTech(nsISupports thisObject) : 
-                base(thisObject)
+        public MozIsoDepTech(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozInterAppConnectionRequest : WebIDLBase
     {
         
-        public MozInterAppConnectionRequest(nsISupports thisObject) : 
-                base(thisObject)
+        public MozInterAppConnectionRequest(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

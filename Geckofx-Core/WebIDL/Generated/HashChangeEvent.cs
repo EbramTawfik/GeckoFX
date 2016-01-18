@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HashChangeEvent : WebIDLBase
     {
         
-        public HashChangeEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public HashChangeEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

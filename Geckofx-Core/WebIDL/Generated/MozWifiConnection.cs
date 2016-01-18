@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozWifiConnection : WebIDLBase
     {
         
-        public MozWifiConnection(nsISupports thisObject) : 
-                base(thisObject)
+        public MozWifiConnection(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

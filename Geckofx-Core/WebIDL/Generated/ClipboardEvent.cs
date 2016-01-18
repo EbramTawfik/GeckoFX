@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ClipboardEvent : WebIDLBase
     {
         
-        public ClipboardEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public ClipboardEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

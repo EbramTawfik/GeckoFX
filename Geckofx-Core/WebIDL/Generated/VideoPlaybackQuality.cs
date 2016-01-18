@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class VideoPlaybackQuality : WebIDLBase
     {
         
-        public VideoPlaybackQuality(nsISupports thisObject) : 
-                base(thisObject)
+        public VideoPlaybackQuality(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

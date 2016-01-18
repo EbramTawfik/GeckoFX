@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class IDBEnvironment : WebIDLBase
     {
         
-        public IDBEnvironment(nsISupports thisObject) : 
-                base(thisObject)
+        public IDBEnvironment(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

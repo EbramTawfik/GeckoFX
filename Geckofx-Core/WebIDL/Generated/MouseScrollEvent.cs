@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MouseScrollEvent : WebIDLBase
     {
         
-        public MouseScrollEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public MouseScrollEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PerformanceObserver : WebIDLBase
     {
         
-        public PerformanceObserver(nsISupports thisObject) : 
-                base(thisObject)
+        public PerformanceObserver(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

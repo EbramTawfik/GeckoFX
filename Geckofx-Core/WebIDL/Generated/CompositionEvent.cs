@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CompositionEvent : WebIDLBase
     {
         
-        public CompositionEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public CompositionEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

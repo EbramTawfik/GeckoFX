@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozXULTemplateBuilder : WebIDLBase
     {
         
-        public MozXULTemplateBuilder(nsISupports thisObject) : 
-                base(thisObject)
+        public MozXULTemplateBuilder(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

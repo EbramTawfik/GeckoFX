@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class OES_vertex_array_object : WebIDLBase
     {
         
-        public OES_vertex_array_object(nsISupports thisObject) : 
-                base(thisObject)
+        public OES_vertex_array_object(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

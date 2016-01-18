@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozVoicemailEvent : WebIDLBase
     {
         
-        public MozVoicemailEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public MozVoicemailEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

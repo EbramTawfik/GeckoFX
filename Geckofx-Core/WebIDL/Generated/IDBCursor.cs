@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class IDBCursor : WebIDLBase
     {
         
-        public IDBCursor(nsISupports thisObject) : 
-                base(thisObject)
+        public IDBCursor(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -51,6 +51,11 @@ namespace Gecko.WebIDL
         public void Advance(uint count)
         {
             this.CallVoidMethod("advance", count);
+        }
+        
+        public void Continue()
+        {
+            this.CallVoidMethod("continue");
         }
         
         public void Continue(object key)

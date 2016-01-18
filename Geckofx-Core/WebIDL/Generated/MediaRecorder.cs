@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MediaRecorder : WebIDLBase
     {
         
-        public MediaRecorder(nsISupports thisObject) : 
-                base(thisObject)
+        public MediaRecorder(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -33,6 +33,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<nsAString>("mimeType");
             }
+        }
+        
+        public void Start()
+        {
+            this.CallVoidMethod("start");
         }
         
         public void Start(int timeSlice)

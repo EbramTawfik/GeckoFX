@@ -6,14 +6,24 @@ namespace Gecko.WebIDL
     public class IdentityManager : WebIDLBase
     {
         
-        public IdentityManager(nsISupports thisObject) : 
-                base(thisObject)
+        public IdentityManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
+        }
+        
+        public void Watch()
+        {
+            this.CallVoidMethod("watch");
         }
         
         public void Watch(object options)
         {
             this.CallVoidMethod("watch", options);
+        }
+        
+        public void Request()
+        {
+            this.CallVoidMethod("request");
         }
         
         public void Request(object options)

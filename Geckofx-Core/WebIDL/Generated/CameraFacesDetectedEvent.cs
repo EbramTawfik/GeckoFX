@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CameraFacesDetectedEvent : WebIDLBase
     {
         
-        public CameraFacesDetectedEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public CameraFacesDetectedEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

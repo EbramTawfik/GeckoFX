@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AnonymousContent : WebIDLBase
     {
         
-        public AnonymousContent(nsISupports thisObject) : 
-                base(thisObject)
+        public AnonymousContent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CSSAnimation : WebIDLBase
     {
         
-        public CSSAnimation(nsISupports thisObject) : 
-                base(thisObject)
+        public CSSAnimation(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

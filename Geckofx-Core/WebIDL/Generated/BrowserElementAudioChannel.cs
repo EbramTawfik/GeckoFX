@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BrowserElementAudioChannel : WebIDLBase
     {
         
-        public BrowserElementAudioChannel(nsISupports thisObject) : 
-                base(thisObject)
+        public BrowserElementAudioChannel(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

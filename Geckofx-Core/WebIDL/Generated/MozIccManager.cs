@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozIccManager : WebIDLBase
     {
         
-        public MozIccManager(nsISupports thisObject) : 
-                base(thisObject)
+        public MozIccManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

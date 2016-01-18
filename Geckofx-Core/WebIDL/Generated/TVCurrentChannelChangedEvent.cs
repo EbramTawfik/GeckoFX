@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TVCurrentChannelChangedEvent : WebIDLBase
     {
         
-        public TVCurrentChannelChangedEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public TVCurrentChannelChangedEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

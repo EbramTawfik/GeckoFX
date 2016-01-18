@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MediaElementAudioSourceNode : WebIDLBase
     {
         
-        public MediaElementAudioSourceNode(nsISupports thisObject) : 
-                base(thisObject)
+        public MediaElementAudioSourceNode(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BluetoothMapGetMessageEvent : WebIDLBase
     {
         
-        public BluetoothMapGetMessageEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public BluetoothMapGetMessageEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

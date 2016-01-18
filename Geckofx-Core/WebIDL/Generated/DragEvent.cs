@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DragEvent : WebIDLBase
     {
         
-        public DragEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public DragEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class AudioListener : WebIDLBase
     {
         
-        public AudioListener(nsISupports thisObject) : 
-                base(thisObject)
+        public AudioListener(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

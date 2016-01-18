@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLMediaElement : WebIDLBase
     {
         
-        public HTMLMediaElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLMediaElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -298,6 +298,16 @@ namespace Gecko.WebIDL
         public void Pause()
         {
             this.CallVoidMethod("pause");
+        }
+        
+        public nsISupports AddTextTrack(TextTrackKind kind)
+        {
+            return this.CallMethod<nsISupports>("addTextTrack", kind);
+        }
+        
+        public nsISupports AddTextTrack(TextTrackKind kind, nsAString label)
+        {
+            return this.CallMethod<nsISupports>("addTextTrack", kind, label);
         }
         
         public nsISupports AddTextTrack(TextTrackKind kind, nsAString label, nsAString language)

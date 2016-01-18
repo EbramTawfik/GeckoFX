@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WorkerLocation : WebIDLBase
     {
         
-        public WorkerLocation(nsISupports thisObject) : 
-                base(thisObject)
+        public WorkerLocation(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

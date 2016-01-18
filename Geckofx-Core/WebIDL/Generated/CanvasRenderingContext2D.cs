@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CanvasRenderingContext2D : WebIDLBase
     {
         
-        public CanvasRenderingContext2D(nsISupports thisObject) : 
-                base(thisObject)
+        public CanvasRenderingContext2D(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -286,9 +286,19 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("beginPath");
         }
         
+        public void Fill()
+        {
+            this.CallVoidMethod("fill");
+        }
+        
         public void Fill(CanvasWindingRule winding)
         {
             this.CallVoidMethod("fill", winding);
+        }
+        
+        public void Fill(nsISupports path)
+        {
+            this.CallVoidMethod("fill", path);
         }
         
         public void Fill(nsISupports path, CanvasWindingRule winding)
@@ -316,9 +326,19 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("drawCustomFocusRing", element);
         }
         
+        public void Clip()
+        {
+            this.CallVoidMethod("clip");
+        }
+        
         public void Clip(CanvasWindingRule winding)
         {
             this.CallVoidMethod("clip", winding);
+        }
+        
+        public void Clip(nsISupports path)
+        {
+            this.CallVoidMethod("clip", path);
         }
         
         public void Clip(nsISupports path, CanvasWindingRule winding)
@@ -326,9 +346,19 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("clip", path, winding);
         }
         
+        public bool IsPointInPath(double x, double y)
+        {
+            return this.CallMethod<bool>("isPointInPath", x, y);
+        }
+        
         public bool IsPointInPath(double x, double y, CanvasWindingRule winding)
         {
             return this.CallMethod<bool>("isPointInPath", x, y, winding);
+        }
+        
+        public bool IsPointInPath(nsISupports path, double x, double y)
+        {
+            return this.CallMethod<bool>("isPointInPath", path, x, y);
         }
         
         public bool IsPointInPath(nsISupports path, double x, double y, CanvasWindingRule winding)
@@ -346,9 +376,19 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("isPointInStroke", path, x, y);
         }
         
+        public void FillText(nsAString text, double x, double y)
+        {
+            this.CallVoidMethod("fillText", text, x, y);
+        }
+        
         public void FillText(nsAString text, double x, double y, double maxWidth)
         {
             this.CallVoidMethod("fillText", text, x, y, maxWidth);
+        }
+        
+        public void StrokeText(nsAString text, double x, double y)
+        {
+            this.CallVoidMethod("strokeText", text, x, y);
         }
         
         public void StrokeText(nsAString text, double x, double y, double maxWidth)
@@ -374,6 +414,11 @@ namespace Gecko.WebIDL
         public void DrawImage(WebIDLUnion<nsIDOMHTMLImageElement,nsIDOMHTMLCanvasElement,nsISupports,nsISupports> image, double sx, double sy, double sw, double sh, double dx, double dy, double dw, double dh)
         {
             this.CallVoidMethod("drawImage", image, sx, sy, sw, sh, dx, dy, dw, dh);
+        }
+        
+        public void AddHitRegion()
+        {
+            this.CallVoidMethod("addHitRegion");
         }
         
         public void AddHitRegion(object options)
@@ -416,9 +461,19 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("putImageData", imagedata, dx, dy, dirtyX, dirtyY, dirtyWidth, dirtyHeight);
         }
         
+        public void DrawWindow(nsIDOMWindow window, double x, double y, double w, double h, nsAString bgColor)
+        {
+            this.CallVoidMethod("drawWindow", window, x, y, w, h, bgColor);
+        }
+        
         public void DrawWindow(nsIDOMWindow window, double x, double y, double w, double h, nsAString bgColor, uint flags)
         {
             this.CallVoidMethod("drawWindow", window, x, y, w, h, bgColor, flags);
+        }
+        
+        public void AsyncDrawXULElement(nsISupports elem, double x, double y, double w, double h, nsAString bgColor)
+        {
+            this.CallVoidMethod("asyncDrawXULElement", elem, x, y, w, h, bgColor);
         }
         
         public void AsyncDrawXULElement(nsISupports elem, double x, double y, double w, double h, nsAString bgColor, uint flags)

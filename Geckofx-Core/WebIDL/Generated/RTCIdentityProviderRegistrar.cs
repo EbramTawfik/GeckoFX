@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class RTCIdentityProviderRegistrar : WebIDLBase
     {
         
-        public RTCIdentityProviderRegistrar(nsISupports thisObject) : 
-                base(thisObject)
+        public RTCIdentityProviderRegistrar(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -22,6 +22,11 @@ namespace Gecko.WebIDL
         public void Register(nsISupports idp)
         {
             this.CallVoidMethod("register", idp);
+        }
+        
+        public Promise <object> GenerateAssertion(nsAString contents, nsAString origin)
+        {
+            return this.CallMethod<Promise <object>>("generateAssertion", contents, origin);
         }
         
         public Promise <object> GenerateAssertion(nsAString contents, nsAString origin, nsAString usernameHint)

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class WindowRoot : WebIDLBase
     {
         
-        public WindowRoot(nsISupports thisObject) : 
-                base(thisObject)
+        public WindowRoot(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

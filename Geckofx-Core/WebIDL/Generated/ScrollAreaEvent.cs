@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class ScrollAreaEvent : WebIDLBase
     {
         
-        public ScrollAreaEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public ScrollAreaEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

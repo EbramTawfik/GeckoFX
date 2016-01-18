@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class PluginArray : WebIDLBase
     {
         
-        public PluginArray(nsISupports thisObject) : 
-                base(thisObject)
+        public PluginArray(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -17,6 +17,11 @@ namespace Gecko.WebIDL
             {
                 return this.GetProperty<uint>("length");
             }
+        }
+        
+        public void Refresh()
+        {
+            this.CallVoidMethod("refresh");
         }
         
         public void Refresh(bool reloadDocuments)

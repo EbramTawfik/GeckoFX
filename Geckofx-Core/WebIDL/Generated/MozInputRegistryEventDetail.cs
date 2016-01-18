@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class MozInputRegistryEventDetail : WebIDLBase
     {
         
-        public MozInputRegistryEventDetail(nsISupports thisObject) : 
-                base(thisObject)
+        public MozInputRegistryEventDetail(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

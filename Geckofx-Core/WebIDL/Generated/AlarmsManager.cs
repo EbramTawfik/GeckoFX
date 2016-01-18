@@ -6,14 +6,19 @@ namespace Gecko.WebIDL
     public class AlarmsManager : WebIDLBase
     {
         
-        public AlarmsManager(nsISupports thisObject) : 
-                base(thisObject)
+        public AlarmsManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
         public nsISupports GetAll()
         {
             return this.CallMethod<nsISupports>("getAll");
+        }
+        
+        public nsISupports Add(object date, nsAString respectTimezone)
+        {
+            return this.CallMethod<nsISupports>("add", date, respectTimezone);
         }
         
         public nsISupports Add(object date, nsAString respectTimezone, object data)

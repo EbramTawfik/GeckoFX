@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Principal : WebIDLBase
     {
         
-        public Principal(nsISupports thisObject) : 
-                base(thisObject)
+        public Principal(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

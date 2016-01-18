@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DeviceLightEvent : WebIDLBase
     {
         
-        public DeviceLightEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public DeviceLightEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

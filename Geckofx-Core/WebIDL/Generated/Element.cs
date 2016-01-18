@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Element : WebIDLBase
     {
         
-        public Element(nsISupports thisObject) : 
-                base(thisObject)
+        public Element(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -162,6 +162,11 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("releasePointerCapture", pointerId);
         }
         
+        public void SetCapture()
+        {
+            this.CallVoidMethod("setCapture");
+        }
+        
         public void SetCapture(bool retargetToElement)
         {
             this.CallVoidMethod("setCapture", retargetToElement);
@@ -170,6 +175,11 @@ namespace Gecko.WebIDL
         public void ReleaseCapture()
         {
             this.CallVoidMethod("releaseCapture");
+        }
+        
+        public void MozRequestFullScreen()
+        {
+            this.CallVoidMethod("mozRequestFullScreen");
         }
         
         public void MozRequestFullScreen(object options)
@@ -331,6 +341,11 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("scrollIntoView", top);
         }
         
+        public void ScrollIntoView()
+        {
+            this.CallVoidMethod("scrollIntoView");
+        }
+        
         public void ScrollIntoView(object options)
         {
             this.CallVoidMethod("scrollIntoView", options);
@@ -339,6 +354,11 @@ namespace Gecko.WebIDL
         public void Scroll(double x, double y)
         {
             this.CallVoidMethod("scroll", x, y);
+        }
+        
+        public void Scroll()
+        {
+            this.CallVoidMethod("scroll");
         }
         
         public void Scroll(object options)
@@ -351,6 +371,11 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("scrollTo", x, y);
         }
         
+        public void ScrollTo()
+        {
+            this.CallVoidMethod("scrollTo");
+        }
+        
         public void ScrollTo(object options)
         {
             this.CallVoidMethod("scrollTo", options);
@@ -359,6 +384,11 @@ namespace Gecko.WebIDL
         public void ScrollBy(double x, double y)
         {
             this.CallVoidMethod("scrollBy", x, y);
+        }
+        
+        public void ScrollBy()
+        {
+            this.CallVoidMethod("scrollBy");
         }
         
         public void ScrollBy(object options)

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class CryptoKey : WebIDLBase
     {
         
-        public CryptoKey(nsISupports thisObject) : 
-                base(thisObject)
+        public CryptoKey(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

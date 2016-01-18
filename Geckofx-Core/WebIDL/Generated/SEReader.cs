@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class SEReader : WebIDLBase
     {
         
-        public SEReader(nsISupports thisObject) : 
-                base(thisObject)
+        public SEReader(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

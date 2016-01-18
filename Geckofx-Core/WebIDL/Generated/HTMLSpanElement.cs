@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLSpanElement : WebIDLBase
     {
         
-        public HTMLSpanElement(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLSpanElement(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

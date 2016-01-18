@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class nsIControllers : WebIDLBase
     {
         
-        public nsIControllers(nsISupports thisObject) : 
-                base(thisObject)
+        public nsIControllers(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class Window : WebIDLBase
     {
         
-        public Window(nsISupports thisObject) : 
-                base(thisObject)
+        public Window(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -219,6 +219,21 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("blur");
         }
         
+        public nsIDOMWindow Open()
+        {
+            return this.CallMethod<nsIDOMWindow>("open");
+        }
+        
+        public nsIDOMWindow Open(nsAString url)
+        {
+            return this.CallMethod<nsIDOMWindow>("open", url);
+        }
+        
+        public nsIDOMWindow Open(nsAString url, nsAString target)
+        {
+            return this.CallMethod<nsIDOMWindow>("open", url, target);
+        }
+        
         public nsIDOMWindow Open(nsAString url, nsAString target, nsAString features)
         {
             return this.CallMethod<nsIDOMWindow>("open", url, target, features);
@@ -234,9 +249,24 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("alert", message);
         }
         
+        public bool Confirm()
+        {
+            return this.CallMethod<bool>("confirm");
+        }
+        
         public bool Confirm(nsAString message)
         {
             return this.CallMethod<bool>("confirm", message);
+        }
+        
+        public nsAString Prompt()
+        {
+            return this.CallMethod<nsAString>("prompt");
+        }
+        
+        public nsAString Prompt(nsAString message)
+        {
+            return this.CallMethod<nsAString>("prompt", message);
         }
         
         public nsAString Prompt(nsAString message, nsAString @default)
@@ -249,9 +279,24 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("print");
         }
         
+        public object ShowModalDialog(nsAString url)
+        {
+            return this.CallMethod<object>("showModalDialog", url);
+        }
+        
+        public object ShowModalDialog(nsAString url, object argument)
+        {
+            return this.CallMethod<object>("showModalDialog", url, argument);
+        }
+        
         public object ShowModalDialog(nsAString url, object argument, nsAString options)
         {
             return this.CallMethod<object>("showModalDialog", url, argument, options);
+        }
+        
+        public void PostMessage(object message, nsAString targetOrigin)
+        {
+            this.CallVoidMethod("postMessage", message, targetOrigin);
         }
         
         public void PostMessage(object message, nsAString targetOrigin, Object[] transfer)
@@ -272,6 +317,11 @@ namespace Gecko.WebIDL
         public nsISelection GetSelection()
         {
             return this.CallMethod<nsISelection>("getSelection");
+        }
+        
+        public nsIDOMCSSStyleDeclaration GetComputedStyle(nsIDOMElement elt)
+        {
+            return this.CallMethod<nsIDOMCSSStyleDeclaration>("getComputedStyle", elt);
         }
         
         public nsIDOMCSSStyleDeclaration GetComputedStyle(nsIDOMElement elt, nsAString pseudoElt)
@@ -421,6 +471,11 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("scroll", x, y);
         }
         
+        public void Scroll()
+        {
+            this.CallVoidMethod("scroll");
+        }
+        
         public void Scroll(object options)
         {
             this.CallVoidMethod("scroll", options);
@@ -431,6 +486,11 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("scrollTo", x, y);
         }
         
+        public void ScrollTo()
+        {
+            this.CallVoidMethod("scrollTo");
+        }
+        
         public void ScrollTo(object options)
         {
             this.CallVoidMethod("scrollTo", options);
@@ -439,6 +499,11 @@ namespace Gecko.WebIDL
         public void ScrollBy(double x, double y)
         {
             this.CallVoidMethod("scrollBy", x, y);
+        }
+        
+        public void ScrollBy()
+        {
+            this.CallVoidMethod("scrollBy");
         }
         
         public void ScrollBy(object options)
@@ -596,14 +661,29 @@ namespace Gecko.WebIDL
             }
         }
         
+        public nsIDOMCSSStyleDeclaration GetDefaultComputedStyle(nsIDOMElement elt)
+        {
+            return this.CallMethod<nsIDOMCSSStyleDeclaration>("getDefaultComputedStyle", elt);
+        }
+        
         public nsIDOMCSSStyleDeclaration GetDefaultComputedStyle(nsIDOMElement elt, nsAString pseudoElt)
         {
             return this.CallMethod<nsIDOMCSSStyleDeclaration>("getDefaultComputedStyle", elt, pseudoElt);
         }
         
+        public void ScrollByLines(int numLines)
+        {
+            this.CallVoidMethod("scrollByLines", numLines);
+        }
+        
         public void ScrollByLines(int numLines, object options)
         {
             this.CallVoidMethod("scrollByLines", numLines, options);
+        }
+        
+        public void ScrollByPages(int numPages)
+        {
+            this.CallVoidMethod("scrollByPages", numPages);
         }
         
         public void ScrollByPages(int numPages, object options)
@@ -631,9 +711,54 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("home");
         }
         
+        public void UpdateCommands(nsAString action)
+        {
+            this.CallVoidMethod("updateCommands", action);
+        }
+        
+        public void UpdateCommands(nsAString action, nsISelection sel)
+        {
+            this.CallVoidMethod("updateCommands", action, sel);
+        }
+        
         public void UpdateCommands(nsAString action, nsISelection sel, short reason)
         {
             this.CallVoidMethod("updateCommands", action, sel, reason);
+        }
+        
+        public bool Find()
+        {
+            return this.CallMethod<bool>("find");
+        }
+        
+        public bool Find(nsAString str)
+        {
+            return this.CallMethod<bool>("find", str);
+        }
+        
+        public bool Find(nsAString str, bool caseSensitive)
+        {
+            return this.CallMethod<bool>("find", str, caseSensitive);
+        }
+        
+        public bool Find(nsAString str, bool caseSensitive, bool backwards)
+        {
+            return this.CallMethod<bool>("find", str, caseSensitive, backwards);
+        }
+        
+        public bool Find(nsAString str, bool caseSensitive, bool backwards, bool wrapAround)
+        {
+            return this.CallMethod<bool>("find", str, caseSensitive, backwards, wrapAround);
+        }
+        
+        public bool Find(nsAString str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord)
+        {
+            return this.CallMethod<bool>("find", str, caseSensitive, backwards, wrapAround, wholeWord);
+        }
+        
+        public bool Find(nsAString str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord, bool searchInFrames)
+        {
+            return this.CallMethod<bool>("find", str, caseSensitive, backwards, wrapAround, wholeWord, searchInFrames);
         }
         
         public bool Find(nsAString str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord, bool searchInFrames, bool showDialog)
@@ -649,6 +774,26 @@ namespace Gecko.WebIDL
         public void SetResizable(bool resizable)
         {
             this.CallVoidMethod("setResizable", resizable);
+        }
+        
+        public nsIDOMWindow OpenDialog()
+        {
+            return this.CallMethod<nsIDOMWindow>("openDialog");
+        }
+        
+        public nsIDOMWindow OpenDialog(nsAString url)
+        {
+            return this.CallMethod<nsIDOMWindow>("openDialog", url);
+        }
+        
+        public nsIDOMWindow OpenDialog(nsAString url, nsAString name)
+        {
+            return this.CallMethod<nsIDOMWindow>("openDialog", url, name);
+        }
+        
+        public nsIDOMWindow OpenDialog(nsAString url, nsAString name, nsAString options)
+        {
+            return this.CallMethod<nsIDOMWindow>("openDialog", url, name, options);
         }
         
         public nsIDOMWindow OpenDialog(nsAString url, nsAString name, nsAString options, object extraArguments)

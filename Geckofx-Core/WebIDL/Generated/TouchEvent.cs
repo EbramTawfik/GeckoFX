@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TouchEvent : WebIDLBase
     {
         
-        public TouchEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public TouchEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

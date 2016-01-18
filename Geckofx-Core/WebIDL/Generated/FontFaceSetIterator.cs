@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class FontFaceSetIterator : WebIDLBase
     {
         
-        public FontFaceSetIterator(nsISupports thisObject) : 
-                base(thisObject)
+        public FontFaceSetIterator(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

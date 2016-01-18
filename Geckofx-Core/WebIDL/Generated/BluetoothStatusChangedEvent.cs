@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class BluetoothStatusChangedEvent : WebIDLBase
     {
         
-        public BluetoothStatusChangedEvent(nsISupports thisObject) : 
-                base(thisObject)
+        public BluetoothStatusChangedEvent(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

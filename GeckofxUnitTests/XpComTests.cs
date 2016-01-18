@@ -151,15 +151,7 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.CreateInstance<nsIXMLHttpRequest>("@mozilla.org/xmlextras/xmlhttprequest;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingNSChannelPolicy_ReturnsValidInstance()
-		{
-			var instance = Xpcom.CreateInstance<nsIChannelPolicy>("@mozilla.org/nschannelpolicy;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
+		}		
 
 		[Test]
 		public void CreateInstance_CreatingCspService_ReturnsValidInstance()
@@ -877,15 +869,7 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.CreateInstance<nsISAXXMLReader>("@mozilla.org/saxparser/xmlreader;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingSecurityWarningDialogs_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsISecurityWarningDialogs>("@mozilla.org/nsSecurityWarningDialogs;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
+		}		
 
 		[Test]
 		public void CreateInstance_CreatingASN1Tree_ReturnsValidInstance()
@@ -893,15 +877,7 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.CreateInstance<nsIASN1Tree>("@mozilla.org/security/nsASN1Tree;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingPkiParamBlocl_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsIPKIParamBlock>("@mozilla.org/security/pkiparamblock;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
+		}		
 
 		[Test]
 		public void CreateInstance_CreatingCertificateDialogs_ReturnsValidInstance()
@@ -1024,15 +1000,7 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.CreateInstance<nsIPrefetchService>("@mozilla.org/prefetch-service;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingDebug_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsIDebug>("@mozilla.org/xpcom/debug;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
+		}		
 
 		[Test]
 		public void CreateInstance_CreatingConsoleService_ReturnsValidInstance()
@@ -1346,14 +1314,7 @@ namespace GeckofxUnitTests
 		{
 			var instance = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1");
 			Assert.IsNotNull(instance);
-		}
-
-		[Test]
-		public void GetJsRuntimeService_CleanXpComInstance_ReturnsValidInstance()
-		{		
-			nsIJSRuntimeService instance = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
-			Assert.IsNotNull(instance);
-		}
+		}		
 
 		[Test]
 		public void GetScriptSecurityManager_CleanXpComInstance_ReturnsValidInstance()
@@ -1420,15 +1381,6 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
-
-		[Test]
-		public void GetDownloadManagerUI_CleanXpComInstance_ReturnsValidInstance()
-		{
-			var instance = Xpcom.GetService<nsIDownloadManagerUI>("@mozilla.org/download-manager-ui;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
 
 		[Test]
 		public void GetHandlerService_CleanXpComInstance_ReturnsValidInstance()

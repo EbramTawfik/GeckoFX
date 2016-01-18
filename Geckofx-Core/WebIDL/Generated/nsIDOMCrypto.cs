@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class nsIDOMCrypto : WebIDLBase
     {
         
-        public nsIDOMCrypto(nsISupports thisObject) : 
-                base(thisObject)
+        public nsIDOMCrypto(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }

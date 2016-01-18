@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class HTMLDocument : WebIDLBase
     {
         
-        public HTMLDocument(nsISupports thisObject) : 
-                base(thisObject)
+        public HTMLDocument(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         
@@ -204,14 +204,34 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getElementsByName", elementName);
         }
         
+        public nsISupports GetItems()
+        {
+            return this.CallMethod<nsISupports>("getItems");
+        }
+        
         public nsISupports GetItems(nsAString typeNames)
         {
             return this.CallMethod<nsISupports>("getItems", typeNames);
         }
         
+        public nsIDOMDocument Open()
+        {
+            return this.CallMethod<nsIDOMDocument>("open");
+        }
+        
+        public nsIDOMDocument Open(nsAString type)
+        {
+            return this.CallMethod<nsIDOMDocument>("open", type);
+        }
+        
         public nsIDOMDocument Open(nsAString type, nsAString replace)
         {
             return this.CallMethod<nsIDOMDocument>("open", type, replace);
+        }
+        
+        public nsIDOMWindow Open(nsAString url, nsAString name, nsAString features)
+        {
+            return this.CallMethod<nsIDOMWindow>("open", url, name, features);
         }
         
         public nsIDOMWindow Open(nsAString url, nsAString name, nsAString features, bool replace)
@@ -232,6 +252,16 @@ namespace Gecko.WebIDL
         public void Writeln(nsAString text)
         {
             this.CallVoidMethod("writeln", text);
+        }
+        
+        public bool ExecCommand(nsAString commandId)
+        {
+            return this.CallMethod<bool>("execCommand", commandId);
+        }
+        
+        public bool ExecCommand(nsAString commandId, bool showUI)
+        {
+            return this.CallMethod<bool>("execCommand", commandId, showUI);
         }
         
         public bool ExecCommand(nsAString commandId, bool showUI, nsAString value)

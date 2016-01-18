@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class TreeBoxObject : WebIDLBase
     {
         
-        public TreeBoxObject(nsISupports thisObject) : 
-                base(thisObject)
+        public TreeBoxObject(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

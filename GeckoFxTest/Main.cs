@@ -29,6 +29,7 @@ namespace GeckoFxTest
 			// Gecko.PromptService already implements those interfaces, and may be sub-classed.
 
 			string xulrunnerPath = XULRunnerLocator.GetXULRunnerLocation();
+		    //xulrunnerPath = @"C:\mozilla-central\obj-i686-pc-mingw32\dist\bin";
 #if GTK		
 			if (!Environment.GetEnvironmentVariable("LD_LIBRARY_PATH").Contains(xulrunnerPath))
 				throw new ApplicationException(String.Format("LD_LIBRARY_PATH must contain {0}", xulrunnerPath));			
@@ -41,8 +42,10 @@ namespace GeckoFxTest
 
 			GeckoPreferences.User["full-screen-api.enabled"] = true;
 
+#if PORT
 			if (RemoteDebuggerEnabled)
 				StartDebugServer();
+#endif
 
 			Application.ApplicationExit += (sender, e) =>
 			{

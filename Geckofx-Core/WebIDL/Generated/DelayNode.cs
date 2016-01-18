@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class DelayNode : WebIDLBase
     {
         
-        public DelayNode(nsISupports thisObject) : 
-                base(thisObject)
+        public DelayNode(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
         

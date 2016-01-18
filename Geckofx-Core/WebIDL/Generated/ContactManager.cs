@@ -6,14 +6,24 @@ namespace Gecko.WebIDL
     public class ContactManager : WebIDLBase
     {
         
-        public ContactManager(nsISupports thisObject) : 
-                base(thisObject)
+        public ContactManager(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
+        }
+        
+        public nsISupports Find()
+        {
+            return this.CallMethod<nsISupports>("find");
         }
         
         public nsISupports Find(object options)
         {
             return this.CallMethod<nsISupports>("find", options);
+        }
+        
+        public nsISupports GetAll()
+        {
+            return this.CallMethod<nsISupports>("getAll");
         }
         
         public nsISupports GetAll(object options)

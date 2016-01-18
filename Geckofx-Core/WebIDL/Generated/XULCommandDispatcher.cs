@@ -6,8 +6,8 @@ namespace Gecko.WebIDL
     public class XULCommandDispatcher : WebIDLBase
     {
         
-        public XULCommandDispatcher(nsISupports thisObject) : 
-                base(thisObject)
+        public XULCommandDispatcher(nsIDOMWindow globalWindow, nsISupports thisObject) : 
+                base(globalWindow, thisObject)
         {
         }
     }
