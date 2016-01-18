@@ -2,6 +2,13 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.2 ==
+
+This build is an Alpha version.
+
+1. Add ScrollMinX, ScrollMinY, ScrollMaxX, ScrollMaxY, MozPaintCount, Content properties and Find Method to GeckoWindow.
+2. Fix bug which prevented ComputedStyle (and similar typed properties) from working.
+
 == v45.0-0.1 ==
 
 This build is an Alpha version.
