@@ -19,7 +19,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports GetCueById(nsAString id)
+        public nsISupports GetCueById(string id)
         {
             return this.CallMethod<nsISupports>("getCueById", id);
         }

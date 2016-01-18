@@ -19,22 +19,22 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void AddFromURI(nsAString src)
+        public void AddFromURI(string src)
         {
             this.CallVoidMethod("addFromURI", src);
         }
         
-        public void AddFromURI(nsAString src, float weight)
+        public void AddFromURI(string src, float weight)
         {
             this.CallVoidMethod("addFromURI", src, weight);
         }
         
-        public void AddFromString(nsAString @string)
+        public void AddFromString(string @string)
         {
             this.CallVoidMethod("addFromString", @string);
         }
         
-        public void AddFromString(nsAString @string, float weight)
+        public void AddFromString(string @string, float weight)
         {
             this.CallVoidMethod("addFromString", @string, weight);
         }

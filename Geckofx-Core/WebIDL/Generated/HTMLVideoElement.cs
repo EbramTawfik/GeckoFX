@@ -51,11 +51,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Poster
+        public string Poster
         {
             get
             {
-                return this.GetProperty<nsAString>("poster");
+                return this.GetProperty<string>("poster");
             }
             set
             {

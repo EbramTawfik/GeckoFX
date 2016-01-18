@@ -11,17 +11,17 @@ namespace Gecko.WebIDL
         {
         }
         
-        public Promise <object> GenerateAssertion(nsAString contents, nsAString origin)
+        public Promise <object> GenerateAssertion(string contents, string origin)
         {
             return this.CallMethod<Promise <object>>("generateAssertion", contents, origin);
         }
         
-        public Promise <object> GenerateAssertion(nsAString contents, nsAString origin, nsAString usernameHint)
+        public Promise <object> GenerateAssertion(string contents, string origin, string usernameHint)
         {
             return this.CallMethod<Promise <object>>("generateAssertion", contents, origin, usernameHint);
         }
         
-        public Promise <object> ValidateAssertion(nsAString assertion, nsAString origin)
+        public Promise <object> ValidateAssertion(string assertion, string origin)
         {
             return this.CallMethod<Promise <object>>("validateAssertion", assertion, origin);
         }

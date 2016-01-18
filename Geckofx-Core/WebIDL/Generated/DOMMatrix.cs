@@ -400,7 +400,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("invertSelf");
         }
         
-        public nsISupports SetMatrixValue(nsAString transformList)
+        public nsISupports SetMatrixValue(string transformList)
         {
             return this.CallMethod<nsISupports>("setMatrixValue", transformList);
         }

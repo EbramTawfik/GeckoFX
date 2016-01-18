@@ -43,51 +43,51 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] FileFormats
+        public string[] FileFormats
         {
             get
             {
-                return this.GetProperty<nsAString[]>("fileFormats");
+                return this.GetProperty<string[]>("fileFormats");
             }
         }
         
-        public nsAString[] WhiteBalanceModes
+        public string[] WhiteBalanceModes
         {
             get
             {
-                return this.GetProperty<nsAString[]>("whiteBalanceModes");
+                return this.GetProperty<string[]>("whiteBalanceModes");
             }
         }
         
-        public nsAString[] SceneModes
+        public string[] SceneModes
         {
             get
             {
-                return this.GetProperty<nsAString[]>("sceneModes");
+                return this.GetProperty<string[]>("sceneModes");
             }
         }
         
-        public nsAString[] Effects
+        public string[] Effects
         {
             get
             {
-                return this.GetProperty<nsAString[]>("effects");
+                return this.GetProperty<string[]>("effects");
             }
         }
         
-        public nsAString[] FlashModes
+        public string[] FlashModes
         {
             get
             {
-                return this.GetProperty<nsAString[]>("flashModes");
+                return this.GetProperty<string[]>("flashModes");
             }
         }
         
-        public nsAString[] FocusModes
+        public string[] FocusModes
         {
             get
             {
-                return this.GetProperty<nsAString[]>("focusModes");
+                return this.GetProperty<string[]>("focusModes");
             }
         }
         
@@ -155,19 +155,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] IsoModes
+        public string[] IsoModes
         {
             get
             {
-                return this.GetProperty<nsAString[]>("isoModes");
+                return this.GetProperty<string[]>("isoModes");
             }
         }
         
-        public nsAString[] MeteringModes
+        public string[] MeteringModes
         {
             get
             {
-                return this.GetProperty<nsAString[]>("meteringModes");
+                return this.GetProperty<string[]>("meteringModes");
             }
         }
     }

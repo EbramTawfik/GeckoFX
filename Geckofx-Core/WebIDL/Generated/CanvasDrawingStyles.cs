@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString LineCap
+        public string LineCap
         {
             get
             {
-                return this.GetProperty<nsAString>("lineCap");
+                return this.GetProperty<string>("lineCap");
             }
             set
             {
@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString LineJoin
+        public string LineJoin
         {
             get
             {
-                return this.GetProperty<nsAString>("lineJoin");
+                return this.GetProperty<string>("lineJoin");
             }
             set
             {
@@ -71,11 +71,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Font
+        public string Font
         {
             get
             {
-                return this.GetProperty<nsAString>("font");
+                return this.GetProperty<string>("font");
             }
             set
             {
@@ -83,11 +83,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString TextAlign
+        public string TextAlign
         {
             get
             {
-                return this.GetProperty<nsAString>("textAlign");
+                return this.GetProperty<string>("textAlign");
             }
             set
             {
@@ -95,11 +95,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString TextBaseline
+        public string TextBaseline
         {
             get
             {
-                return this.GetProperty<nsAString>("textBaseline");
+                return this.GetProperty<string>("textBaseline");
             }
             set
             {

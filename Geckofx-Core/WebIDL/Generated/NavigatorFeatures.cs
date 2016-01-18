@@ -11,12 +11,12 @@ namespace Gecko.WebIDL
         {
         }
         
-        public Promise <object> GetFeature(nsAString name)
+        public Promise <object> GetFeature(string name)
         {
             return this.CallMethod<Promise <object>>("getFeature", name);
         }
         
-        public Promise <object> HasFeature(nsAString name)
+        public Promise <object> HasFeature(string name)
         {
             return this.CallMethod<Promise <object>>("hasFeature", name);
         }

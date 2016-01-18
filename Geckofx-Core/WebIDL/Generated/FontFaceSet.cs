@@ -65,22 +65,22 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("values");
         }
         
-        public Promise < nsISupports[] > Load(nsAString font)
+        public Promise < nsISupports[] > Load(string font)
         {
             return this.CallMethod<Promise < nsISupports[] >>("load", font);
         }
         
-        public Promise < nsISupports[] > Load(nsAString font, nsAString text)
+        public Promise < nsISupports[] > Load(string font, string text)
         {
             return this.CallMethod<Promise < nsISupports[] >>("load", font, text);
         }
         
-        public bool Check(nsAString font)
+        public bool Check(string font)
         {
             return this.CallMethod<bool>("check", font);
         }
         
-        public bool Check(nsAString font, nsAString text)
+        public bool Check(string font, string text)
         {
             return this.CallMethod<bool>("check", font, text);
         }

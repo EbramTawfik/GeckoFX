@@ -45,12 +45,12 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("isContextLost");
         }
         
-        public nsAString[] GetSupportedExtensions()
+        public string[] GetSupportedExtensions()
         {
-            return this.CallMethod<nsAString[]>("getSupportedExtensions");
+            return this.CallMethod<string[]>("getSupportedExtensions");
         }
         
-        public object GetExtension(nsAString name)
+        public object GetExtension(string name)
         {
             return this.CallMethod<object>("getExtension", name);
         }
@@ -65,7 +65,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("attachShader", program, shader);
         }
         
-        public void BindAttribLocation(nsISupports program, UInt32 index, nsAString name)
+        public void BindAttribLocation(nsISupports program, UInt32 index, string name)
         {
             this.CallVoidMethod("bindAttribLocation", program, index, name);
         }
@@ -355,7 +355,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports[]>("getAttachedShaders", program);
         }
         
-        public Int32 GetAttribLocation(nsISupports program, nsAString name)
+        public Int32 GetAttribLocation(nsISupports program, string name)
         {
             return this.CallMethod<Int32>("getAttribLocation", program, name);
         }
@@ -385,9 +385,9 @@ namespace Gecko.WebIDL
             return this.CallMethod<object>("getProgramParameter", program, pname);
         }
         
-        public nsAString GetProgramInfoLog(nsISupports program)
+        public string GetProgramInfoLog(nsISupports program)
         {
-            return this.CallMethod<nsAString>("getProgramInfoLog", program);
+            return this.CallMethod<string>("getProgramInfoLog", program);
         }
         
         public object GetRenderbufferParameter(UInt32 target, UInt32 pname)
@@ -405,14 +405,14 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getShaderPrecisionFormat", shadertype, precisiontype);
         }
         
-        public nsAString GetShaderInfoLog(nsISupports shader)
+        public string GetShaderInfoLog(nsISupports shader)
         {
-            return this.CallMethod<nsAString>("getShaderInfoLog", shader);
+            return this.CallMethod<string>("getShaderInfoLog", shader);
         }
         
-        public nsAString GetShaderSource(nsISupports shader)
+        public string GetShaderSource(nsISupports shader)
         {
-            return this.CallMethod<nsAString>("getShaderSource", shader);
+            return this.CallMethod<string>("getShaderSource", shader);
         }
         
         public object GetTexParameter(UInt32 target, UInt32 pname)
@@ -425,7 +425,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<object>("getUniform", program, location);
         }
         
-        public nsISupports GetUniformLocation(nsISupports program, nsAString name)
+        public nsISupports GetUniformLocation(nsISupports program, string name)
         {
             return this.CallMethod<nsISupports>("getUniformLocation", program, name);
         }
@@ -520,7 +520,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("scissor", x, y, width, height);
         }
         
-        public void ShaderSource(nsISupports shader, nsAString source)
+        public void ShaderSource(nsISupports shader, string source)
         {
             this.CallVoidMethod("shaderSource", shader, source);
         }

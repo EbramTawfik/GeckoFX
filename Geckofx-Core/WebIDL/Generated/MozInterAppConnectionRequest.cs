@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Keyword
+        public string Keyword
         {
             get
             {
-                return this.GetProperty<nsAString>("keyword");
+                return this.GetProperty<string>("keyword");
             }
         }
         
@@ -27,11 +27,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString From
+        public string From
         {
             get
             {
-                return this.GetProperty<nsAString>("from");
+                return this.GetProperty<string>("from");
             }
         }
     }

@@ -47,15 +47,15 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString MozDebugReaderData
+        public string MozDebugReaderData
         {
             get
             {
-                return this.GetProperty<nsAString>("mozDebugReaderData");
+                return this.GetProperty<string>("mozDebugReaderData");
             }
         }
         
-        public nsISupports AddSourceBuffer(nsAString type)
+        public nsISupports AddSourceBuffer(string type)
         {
             return this.CallMethod<nsISupports>("addSourceBuffer", type);
         }

@@ -11,12 +11,12 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString SerializeToString(nsIDOMNode root)
+        public string SerializeToString(nsIDOMNode root)
         {
-            return this.CallMethod<nsAString>("serializeToString", root);
+            return this.CallMethod<string>("serializeToString", root);
         }
         
-        public void SerializeToStream(nsIDOMNode root, nsISupports stream, nsAString charset)
+        public void SerializeToStream(nsIDOMNode root, nsISupports stream, string charset)
         {
             this.CallVoidMethod("serializeToStream", root, stream, charset);
         }

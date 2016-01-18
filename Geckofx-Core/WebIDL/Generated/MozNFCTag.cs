@@ -100,11 +100,11 @@ namespace Gecko.WebIDL
             return this.CallMethod<WebIDLUnion<nsISupports,nsISupports>>("selectTech", tech);
         }
         
-        public nsAString Session
+        public string Session
         {
             get
             {
-                return this.GetProperty<nsAString>("session");
+                return this.GetProperty<string>("session");
             }
             set
             {

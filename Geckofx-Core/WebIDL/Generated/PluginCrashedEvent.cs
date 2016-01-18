@@ -19,35 +19,35 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString PluginDumpID
+        public string PluginDumpID
         {
             get
             {
-                return this.GetProperty<nsAString>("pluginDumpID");
+                return this.GetProperty<string>("pluginDumpID");
             }
         }
         
-        public nsAString PluginName
+        public string PluginName
         {
             get
             {
-                return this.GetProperty<nsAString>("pluginName");
+                return this.GetProperty<string>("pluginName");
             }
         }
         
-        public nsAString BrowserDumpID
+        public string BrowserDumpID
         {
             get
             {
-                return this.GetProperty<nsAString>("browserDumpID");
+                return this.GetProperty<string>("browserDumpID");
             }
         }
         
-        public nsAString PluginFilename
+        public string PluginFilename
         {
             get
             {
-                return this.GetProperty<nsAString>("pluginFilename");
+                return this.GetProperty<string>("pluginFilename");
             }
         }
         

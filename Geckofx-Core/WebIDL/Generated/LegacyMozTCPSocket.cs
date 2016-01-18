@@ -11,12 +11,12 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsISupports Open(nsAString host, ushort port)
+        public nsISupports Open(string host, ushort port)
         {
             return this.CallMethod<nsISupports>("open", host, port);
         }
         
-        public nsISupports Open(nsAString host, ushort port, object options)
+        public nsISupports Open(string host, ushort port, object options)
         {
             return this.CallMethod<nsISupports>("open", host, port, options);
         }

@@ -11,12 +11,12 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString GetCustomProperty(nsAString name)
+        public string GetCustomProperty(string name)
         {
-            return this.CallMethod<nsAString>("getCustomProperty", name);
+            return this.CallMethod<string>("getCustomProperty", name);
         }
         
-        public void PostMessage(nsAString name)
+        public void PostMessage(string name)
         {
             this.CallVoidMethod("postMessage", name);
         }

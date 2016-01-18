@@ -11,15 +11,15 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString[] IccIds
+        public string[] IccIds
         {
             get
             {
-                return this.GetProperty<nsAString[]>("iccIds");
+                return this.GetProperty<string[]>("iccIds");
             }
         }
         
-        public nsISupports GetIccById(nsAString iccId)
+        public nsISupports GetIccById(string iccId)
         {
             return this.CallMethod<nsISupports>("getIccById", iccId);
         }

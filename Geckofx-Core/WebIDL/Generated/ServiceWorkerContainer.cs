@@ -52,9 +52,9 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise < nsISupports[] >>("getRegistrations");
         }
         
-        public nsAString GetScopeForUrl(nsAString url)
+        public string GetScopeForUrl(string url)
         {
-            return this.CallMethod<nsAString>("getScopeForUrl", url);
+            return this.CallMethod<string>("getScopeForUrl", url);
         }
     }
 }

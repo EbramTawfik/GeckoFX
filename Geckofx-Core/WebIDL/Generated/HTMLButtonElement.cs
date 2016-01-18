@@ -43,11 +43,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString FormAction
+        public string FormAction
         {
             get
             {
-                return this.GetProperty<nsAString>("formAction");
+                return this.GetProperty<string>("formAction");
             }
             set
             {
@@ -55,11 +55,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString FormEnctype
+        public string FormEnctype
         {
             get
             {
-                return this.GetProperty<nsAString>("formEnctype");
+                return this.GetProperty<string>("formEnctype");
             }
             set
             {
@@ -67,11 +67,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString FormMethod
+        public string FormMethod
         {
             get
             {
-                return this.GetProperty<nsAString>("formMethod");
+                return this.GetProperty<string>("formMethod");
             }
             set
             {
@@ -91,11 +91,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString FormTarget
+        public string FormTarget
         {
             get
             {
-                return this.GetProperty<nsAString>("formTarget");
+                return this.GetProperty<string>("formTarget");
             }
             set
             {
@@ -103,11 +103,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
             set
             {
@@ -115,11 +115,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Type
+        public string Type
         {
             get
             {
-                return this.GetProperty<nsAString>("type");
+                return this.GetProperty<string>("type");
             }
             set
             {
@@ -127,11 +127,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Value
+        public string Value
         {
             get
             {
-                return this.GetProperty<nsAString>("value");
+                return this.GetProperty<string>("value");
             }
             set
             {
@@ -155,11 +155,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ValidationMessage
+        public string ValidationMessage
         {
             get
             {
-                return this.GetProperty<nsAString>("validationMessage");
+                return this.GetProperty<string>("validationMessage");
             }
         }
         
@@ -168,7 +168,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("checkValidity");
         }
         
-        public void SetCustomValidity(nsAString error)
+        public void SetCustomValidity(string error)
         {
             this.CallVoidMethod("setCustomValidity", error);
         }

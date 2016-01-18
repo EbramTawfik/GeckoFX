@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Src
+        public string Src
         {
             get
             {
-                return this.GetProperty<nsAString>("src");
+                return this.GetProperty<string>("src");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Type
+        public string Type
         {
             get
             {
-                return this.GetProperty<nsAString>("type");
+                return this.GetProperty<string>("type");
             }
             set
             {
@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Width
+        public string Width
         {
             get
             {
-                return this.GetProperty<nsAString>("width");
+                return this.GetProperty<string>("width");
             }
             set
             {
@@ -47,11 +47,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Height
+        public string Height
         {
             get
             {
-                return this.GetProperty<nsAString>("height");
+                return this.GetProperty<string>("height");
             }
             set
             {
@@ -59,11 +59,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Align
+        public string Align
         {
             get
             {
-                return this.GetProperty<nsAString>("align");
+                return this.GetProperty<string>("align");
             }
             set
             {
@@ -71,11 +71,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
             set
             {

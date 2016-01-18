@@ -19,11 +19,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Src
+        public string Src
         {
             get
             {
-                return this.GetProperty<nsAString>("src");
+                return this.GetProperty<string>("src");
             }
             set
             {
@@ -31,19 +31,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString CurrentSrc
+        public string CurrentSrc
         {
             get
             {
-                return this.GetProperty<nsAString>("currentSrc");
+                return this.GetProperty<string>("currentSrc");
             }
         }
         
-        public nsAString CrossOrigin
+        public string CrossOrigin
         {
             get
             {
-                return this.GetProperty<nsAString>("crossOrigin");
+                return this.GetProperty<string>("crossOrigin");
             }
             set
             {
@@ -59,11 +59,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Preload
+        public string Preload
         {
             get
             {
-                return this.GetProperty<nsAString>("preload");
+                return this.GetProperty<string>("preload");
             }
             set
             {
@@ -280,9 +280,9 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("load");
         }
         
-        public nsAString CanPlayType(nsAString type)
+        public string CanPlayType(string type)
         {
-            return this.CallMethod<nsAString>("canPlayType", type);
+            return this.CallMethod<string>("canPlayType", type);
         }
         
         public void FastSeek(double time)
@@ -305,12 +305,12 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("addTextTrack", kind);
         }
         
-        public nsISupports AddTextTrack(TextTrackKind kind, nsAString label)
+        public nsISupports AddTextTrack(TextTrackKind kind, string label)
         {
             return this.CallMethod<nsISupports>("addTextTrack", kind, label);
         }
         
-        public nsISupports AddTextTrack(TextTrackKind kind, nsAString label, nsAString language)
+        public nsISupports AddTextTrack(TextTrackKind kind, string label, string language)
         {
             return this.CallMethod<nsISupports>("addTextTrack", kind, label, language);
         }

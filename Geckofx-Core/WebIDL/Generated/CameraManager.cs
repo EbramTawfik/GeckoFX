@@ -11,19 +11,19 @@ namespace Gecko.WebIDL
         {
         }
         
-        public Promise <object> GetCamera(nsAString camera)
+        public Promise <object> GetCamera(string camera)
         {
             return this.CallMethod<Promise <object>>("getCamera", camera);
         }
         
-        public Promise <object> GetCamera(nsAString camera, object initialConfiguration)
+        public Promise <object> GetCamera(string camera, object initialConfiguration)
         {
             return this.CallMethod<Promise <object>>("getCamera", camera, initialConfiguration);
         }
         
-        public nsAString[] GetListOfCameras()
+        public string[] GetListOfCameras()
         {
-            return this.CallMethod<nsAString[]>("getListOfCameras");
+            return this.CallMethod<string[]>("getListOfCameras");
         }
     }
 }

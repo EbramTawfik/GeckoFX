@@ -21,22 +21,22 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("updateEnabled");
         }
         
-        public bool Install(MozMap < WebIDLUnion<nsAString,System.Object>> installs)
+        public bool Install(MozMap < WebIDLUnion<System.String,System.Object>> installs)
         {
             return this.CallMethod<bool>("install", installs);
         }
         
-        public bool InstallChrome(ushort type, nsAString url, nsAString skin)
+        public bool InstallChrome(ushort type, string url, string skin)
         {
             return this.CallMethod<bool>("installChrome", type, url, skin);
         }
         
-        public bool StartSoftwareUpdate(nsAString url)
+        public bool StartSoftwareUpdate(string url)
         {
             return this.CallMethod<bool>("startSoftwareUpdate", url);
         }
         
-        public bool StartSoftwareUpdate(nsAString url, ushort flags)
+        public bool StartSoftwareUpdate(string url, ushort flags)
         {
             return this.CallMethod<bool>("startSoftwareUpdate", url, flags);
         }

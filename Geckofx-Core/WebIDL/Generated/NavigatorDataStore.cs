@@ -11,12 +11,12 @@ namespace Gecko.WebIDL
         {
         }
         
-        public Promise < nsISupports[] > GetDataStores(nsAString name)
+        public Promise < nsISupports[] > GetDataStores(string name)
         {
             return this.CallMethod<Promise < nsISupports[] >>("getDataStores", name);
         }
         
-        public Promise < nsISupports[] > GetDataStores(nsAString name, nsAString owner)
+        public Promise < nsISupports[] > GetDataStores(string name, string owner)
         {
             return this.CallMethod<Promise < nsISupports[] >>("getDataStores", name, owner);
         }

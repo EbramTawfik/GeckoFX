@@ -48,7 +48,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void ImportScripts(nsAString urls)
+        public void ImportScripts(string urls)
         {
             this.CallVoidMethod("importScripts", urls);
         }
@@ -74,7 +74,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("dump");
         }
         
-        public void Dump(nsAString str)
+        public void Dump(string str)
         {
             this.CallVoidMethod("dump", str);
         }

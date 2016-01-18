@@ -11,12 +11,12 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsISupports GetData(nsAString key)
+        public nsISupports GetData(string key)
         {
             return this.CallMethod<nsISupports>("getData", key);
         }
         
-        public void SetData(nsAString key, object data)
+        public void SetData(string key, object data)
         {
             this.CallVoidMethod("setData", key, data);
         }

@@ -44,7 +44,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("isActive");
         }
         
-        public nsISupports NotifyChannel(nsAString aEvent)
+        public nsISupports NotifyChannel(string aEvent)
         {
             return this.CallMethod<nsISupports>("notifyChannel", aEvent);
         }

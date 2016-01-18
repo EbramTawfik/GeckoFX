@@ -59,11 +59,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString PointerType
+        public string PointerType
         {
             get
             {
-                return this.GetProperty<nsAString>("pointerType");
+                return this.GetProperty<string>("pointerType");
             }
         }
         

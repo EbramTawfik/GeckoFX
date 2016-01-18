@@ -19,19 +19,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Address
+        public string Address
         {
             get
             {
-                return this.GetProperty<nsAString>("address");
+                return this.GetProperty<string>("address");
             }
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
         }
         
@@ -77,7 +77,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise>("disable");
         }
         
-        public Promise SetName(nsAString name)
+        public Promise SetName(string name)
         {
             return this.CallMethod<Promise>("setName", name);
         }
@@ -97,12 +97,12 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise>("stopDiscovery");
         }
         
-        public Promise Pair(nsAString deviceAddress)
+        public Promise Pair(string deviceAddress)
         {
             return this.CallMethod<Promise>("pair", deviceAddress);
         }
         
-        public Promise Unpair(nsAString deviceAddress)
+        public Promise Unpair(string deviceAddress)
         {
             return this.CallMethod<Promise>("unpair", deviceAddress);
         }
@@ -112,7 +112,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports[]>("getPairedDevices");
         }
         
-        public Promise < nsISupports > StartLeScan(nsAString[] serviceUuids)
+        public Promise < nsISupports > StartLeScan(string[] serviceUuids)
         {
             return this.CallMethod<Promise < nsISupports >>("startLeScan", serviceUuids);
         }
@@ -147,17 +147,17 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("disconnect", device, serviceUuid);
         }
         
-        public nsISupports SendFile(nsAString deviceAddress, nsIDOMBlob blob)
+        public nsISupports SendFile(string deviceAddress, nsIDOMBlob blob)
         {
             return this.CallMethod<nsISupports>("sendFile", deviceAddress, blob);
         }
         
-        public nsISupports StopSendingFile(nsAString deviceAddress)
+        public nsISupports StopSendingFile(string deviceAddress)
         {
             return this.CallMethod<nsISupports>("stopSendingFile", deviceAddress);
         }
         
-        public nsISupports ConfirmReceivingFile(nsAString deviceAddress, bool confirmation)
+        public nsISupports ConfirmReceivingFile(string deviceAddress, bool confirmation)
         {
             return this.CallMethod<nsISupports>("confirmReceivingFile", deviceAddress, confirmation);
         }

@@ -24,7 +24,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("set", settings);
         }
         
-        public nsISupports Get(nsAString name)
+        public nsISupports Get(string name)
         {
             return this.CallMethod<nsISupports>("get", name);
         }

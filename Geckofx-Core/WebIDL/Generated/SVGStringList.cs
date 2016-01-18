@@ -32,34 +32,34 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("clear");
         }
         
-        public nsAString Initialize(nsAString newItem)
+        public string Initialize(string newItem)
         {
-            return this.CallMethod<nsAString>("initialize", newItem);
+            return this.CallMethod<string>("initialize", newItem);
         }
         
-        public nsAString GetItem(uint index)
+        public string GetItem(uint index)
         {
-            return this.CallMethod<nsAString>("getItem", index);
+            return this.CallMethod<string>("getItem", index);
         }
         
-        public nsAString InsertItemBefore(nsAString newItem, uint index)
+        public string InsertItemBefore(string newItem, uint index)
         {
-            return this.CallMethod<nsAString>("insertItemBefore", newItem, index);
+            return this.CallMethod<string>("insertItemBefore", newItem, index);
         }
         
-        public nsAString ReplaceItem(nsAString newItem, uint index)
+        public string ReplaceItem(string newItem, uint index)
         {
-            return this.CallMethod<nsAString>("replaceItem", newItem, index);
+            return this.CallMethod<string>("replaceItem", newItem, index);
         }
         
-        public nsAString RemoveItem(uint index)
+        public string RemoveItem(uint index)
         {
-            return this.CallMethod<nsAString>("removeItem", index);
+            return this.CallMethod<string>("removeItem", index);
         }
         
-        public nsAString AppendItem(nsAString newItem)
+        public string AppendItem(string newItem)
         {
-            return this.CallMethod<nsAString>("appendItem", newItem);
+            return this.CallMethod<string>("appendItem", newItem);
         }
     }
 }

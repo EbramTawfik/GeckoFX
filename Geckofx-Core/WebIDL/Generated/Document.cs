@@ -19,59 +19,59 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString URL
+        public string URL
         {
             get
             {
-                return this.GetProperty<nsAString>("URL");
+                return this.GetProperty<string>("URL");
             }
         }
         
-        public nsAString DocumentURI
+        public string DocumentURI
         {
             get
             {
-                return this.GetProperty<nsAString>("documentURI");
+                return this.GetProperty<string>("documentURI");
             }
         }
         
-        public nsAString CompatMode
+        public string CompatMode
         {
             get
             {
-                return this.GetProperty<nsAString>("compatMode");
+                return this.GetProperty<string>("compatMode");
             }
         }
         
-        public nsAString CharacterSet
+        public string CharacterSet
         {
             get
             {
-                return this.GetProperty<nsAString>("characterSet");
+                return this.GetProperty<string>("characterSet");
             }
         }
         
-        public nsAString Charset
+        public string Charset
         {
             get
             {
-                return this.GetProperty<nsAString>("charset");
+                return this.GetProperty<string>("charset");
             }
         }
         
-        public nsAString InputEncoding
+        public string InputEncoding
         {
             get
             {
-                return this.GetProperty<nsAString>("inputEncoding");
+                return this.GetProperty<string>("inputEncoding");
             }
         }
         
-        public nsAString ContentType
+        public string ContentType
         {
             get
             {
-                return this.GetProperty<nsAString>("contentType");
+                return this.GetProperty<string>("contentType");
             }
         }
         
@@ -91,32 +91,32 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports GetElementsByTagName(nsAString localName)
+        public nsISupports GetElementsByTagName(string localName)
         {
             return this.CallMethod<nsISupports>("getElementsByTagName", localName);
         }
         
-        public nsISupports GetElementsByTagNameNS(nsAString @namespace, nsAString localName)
+        public nsISupports GetElementsByTagNameNS(string @namespace, string localName)
         {
             return this.CallMethod<nsISupports>("getElementsByTagNameNS", @namespace, localName);
         }
         
-        public nsISupports GetElementsByClassName(nsAString classNames)
+        public nsISupports GetElementsByClassName(string classNames)
         {
             return this.CallMethod<nsISupports>("getElementsByClassName", classNames);
         }
         
-        public nsIDOMElement GetElementById(nsAString elementId)
+        public nsIDOMElement GetElementById(string elementId)
         {
             return this.CallMethod<nsIDOMElement>("getElementById", elementId);
         }
         
-        public nsIDOMElement CreateElement(nsAString localName)
+        public nsIDOMElement CreateElement(string localName)
         {
             return this.CallMethod<nsIDOMElement>("createElement", localName);
         }
         
-        public nsIDOMElement CreateElementNS(nsAString @namespace, nsAString qualifiedName)
+        public nsIDOMElement CreateElementNS(string @namespace, string qualifiedName)
         {
             return this.CallMethod<nsIDOMElement>("createElementNS", @namespace, qualifiedName);
         }
@@ -126,17 +126,17 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("createDocumentFragment");
         }
         
-        public nsIDOMText CreateTextNode(nsAString data)
+        public nsIDOMText CreateTextNode(string data)
         {
             return this.CallMethod<nsIDOMText>("createTextNode", data);
         }
         
-        public nsISupports CreateComment(nsAString data)
+        public nsISupports CreateComment(string data)
         {
             return this.CallMethod<nsISupports>("createComment", data);
         }
         
-        public nsISupports CreateProcessingInstruction(nsAString target, nsAString data)
+        public nsISupports CreateProcessingInstruction(string target, string data)
         {
             return this.CallMethod<nsISupports>("createProcessingInstruction", target, data);
         }
@@ -156,7 +156,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsIDOMNode>("adoptNode", node);
         }
         
-        public nsIDOMEvent CreateEvent(nsAString @interface)
+        public nsIDOMEvent CreateEvent(string @interface)
         {
             return this.CallMethod<nsIDOMEvent>("createEvent", @interface);
         }
@@ -196,17 +196,17 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("createTreeWalker", root, whatToShow, filter);
         }
         
-        public nsISupports CreateCDATASection(nsAString data)
+        public nsISupports CreateCDATASection(string data)
         {
             return this.CallMethod<nsISupports>("createCDATASection", data);
         }
         
-        public nsISupports CreateAttribute(nsAString name)
+        public nsISupports CreateAttribute(string name)
         {
             return this.CallMethod<nsISupports>("createAttribute", name);
         }
         
-        public nsISupports CreateAttributeNS(nsAString @namespace, nsAString name)
+        public nsISupports CreateAttributeNS(string @namespace, string name)
         {
             return this.CallMethod<nsISupports>("createAttributeNS", @namespace, name);
         }
@@ -219,35 +219,35 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Referrer
+        public string Referrer
         {
             get
             {
-                return this.GetProperty<nsAString>("referrer");
+                return this.GetProperty<string>("referrer");
             }
         }
         
-        public nsAString LastModified
+        public string LastModified
         {
             get
             {
-                return this.GetProperty<nsAString>("lastModified");
+                return this.GetProperty<string>("lastModified");
             }
         }
         
-        public nsAString ReadyState
+        public string ReadyState
         {
             get
             {
-                return this.GetProperty<nsAString>("readyState");
+                return this.GetProperty<string>("readyState");
             }
         }
         
-        public nsAString Title
+        public string Title
         {
             get
             {
-                return this.GetProperty<nsAString>("title");
+                return this.GetProperty<string>("title");
             }
             set
             {
@@ -255,11 +255,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Dir
+        public string Dir
         {
             get
             {
-                return this.GetProperty<nsAString>("dir");
+                return this.GetProperty<string>("dir");
             }
             set
             {
@@ -325,7 +325,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("releaseCapture");
         }
         
-        public void MozSetImageElement(nsAString aImageElementId, nsIDOMElement aImageElement)
+        public void MozSetImageElement(string aImageElementId, nsIDOMElement aImageElement)
         {
             this.CallVoidMethod("mozSetImageElement", aImageElementId, aImageElement);
         }
@@ -372,22 +372,22 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("mozExitPointerLock");
         }
         
-        public object RegisterElement(nsAString name)
+        public object RegisterElement(string name)
         {
             return this.CallMethod<object>("registerElement", name);
         }
         
-        public object RegisterElement(nsAString name, object options)
+        public object RegisterElement(string name, object options)
         {
             return this.CallMethod<object>("registerElement", name, options);
         }
         
-        public nsIDOMElement CreateElement(nsAString localName, nsAString typeExtension)
+        public nsIDOMElement CreateElement(string localName, string typeExtension)
         {
             return this.CallMethod<nsIDOMElement>("createElement", localName, typeExtension);
         }
         
-        public nsIDOMElement CreateElementNS(nsAString @namespace, nsAString qualifiedName, nsAString typeExtension)
+        public nsIDOMElement CreateElementNS(string @namespace, string qualifiedName, string typeExtension)
         {
             return this.CallMethod<nsIDOMElement>("createElementNS", @namespace, qualifiedName, typeExtension);
         }
@@ -432,11 +432,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString SelectedStyleSheetSet
+        public string SelectedStyleSheetSet
         {
             get
             {
-                return this.GetProperty<nsAString>("selectedStyleSheetSet");
+                return this.GetProperty<string>("selectedStyleSheetSet");
             }
             set
             {
@@ -444,19 +444,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString LastStyleSheetSet
+        public string LastStyleSheetSet
         {
             get
             {
-                return this.GetProperty<nsAString>("lastStyleSheetSet");
+                return this.GetProperty<string>("lastStyleSheetSet");
             }
         }
         
-        public nsAString PreferredStyleSheetSet
+        public string PreferredStyleSheetSet
         {
             get
             {
-                return this.GetProperty<nsAString>("preferredStyleSheetSet");
+                return this.GetProperty<string>("preferredStyleSheetSet");
             }
         }
         
@@ -468,7 +468,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void EnableStyleSheetsForSet(nsAString name)
+        public void EnableStyleSheetsForSet(string name)
         {
             this.CallVoidMethod("enableStyleSheetsForSet", name);
         }
@@ -491,12 +491,12 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsIDOMElement QuerySelector(nsAString selectors)
+        public nsIDOMElement QuerySelector(string selectors)
         {
             return this.CallMethod<nsIDOMElement>("querySelector", selectors);
         }
         
-        public nsISupports QuerySelectorAll(nsAString selectors)
+        public nsISupports QuerySelectorAll(string selectors)
         {
             return this.CallMethod<nsISupports>("querySelectorAll", selectors);
         }
@@ -529,11 +529,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ContentLanguage
+        public string ContentLanguage
         {
             get
             {
-                return this.GetProperty<nsAString>("contentLanguage");
+                return this.GetProperty<string>("contentLanguage");
             }
         }
         
@@ -550,7 +550,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getAnonymousNodes", elt);
         }
         
-        public nsIDOMElement GetAnonymousElementByAttribute(nsIDOMElement elt, nsAString attrName, nsAString attrValue)
+        public nsIDOMElement GetAnonymousElementByAttribute(nsIDOMElement elt, string attrName, string attrValue)
         {
             return this.CallMethod<nsIDOMElement>("getAnonymousElementByAttribute", elt, attrName, attrValue);
         }
@@ -560,7 +560,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsIDOMElement>("getBindingParent", node);
         }
         
-        public void LoadBindingDocument(nsAString documentURL)
+        public void LoadBindingDocument(string documentURL)
         {
             this.CallVoidMethod("loadBindingDocument", documentURL);
         }
@@ -655,7 +655,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("obsoleteSheet", sheetURI);
         }
         
-        public void ObsoleteSheet(nsAString sheetURI)
+        public void ObsoleteSheet(string sheetURI)
         {
             this.CallVoidMethod("obsoleteSheet", sheetURI);
         }

@@ -27,7 +27,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void InitTimeEvent(nsAString aType, nsIDOMWindow aView, int aDetail)
+        public void InitTimeEvent(string aType, nsIDOMWindow aView, int aDetail)
         {
             this.CallVoidMethod("initTimeEvent", aType, aView, aDetail);
         }

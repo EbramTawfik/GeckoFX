@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
             set
             {
@@ -111,11 +111,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Status
+        public string Status
         {
             get
             {
-                return this.GetProperty<nsAString>("status");
+                return this.GetProperty<string>("status");
             }
             set
             {
@@ -224,17 +224,17 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsIDOMWindow>("open");
         }
         
-        public nsIDOMWindow Open(nsAString url)
+        public nsIDOMWindow Open(string url)
         {
             return this.CallMethod<nsIDOMWindow>("open", url);
         }
         
-        public nsIDOMWindow Open(nsAString url, nsAString target)
+        public nsIDOMWindow Open(string url, string target)
         {
             return this.CallMethod<nsIDOMWindow>("open", url, target);
         }
         
-        public nsIDOMWindow Open(nsAString url, nsAString target, nsAString features)
+        public nsIDOMWindow Open(string url, string target, string features)
         {
             return this.CallMethod<nsIDOMWindow>("open", url, target, features);
         }
@@ -244,7 +244,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("alert");
         }
         
-        public void Alert(nsAString message)
+        public void Alert(string message)
         {
             this.CallVoidMethod("alert", message);
         }
@@ -254,24 +254,24 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("confirm");
         }
         
-        public bool Confirm(nsAString message)
+        public bool Confirm(string message)
         {
             return this.CallMethod<bool>("confirm", message);
         }
         
-        public nsAString Prompt()
+        public string Prompt()
         {
-            return this.CallMethod<nsAString>("prompt");
+            return this.CallMethod<string>("prompt");
         }
         
-        public nsAString Prompt(nsAString message)
+        public string Prompt(string message)
         {
-            return this.CallMethod<nsAString>("prompt", message);
+            return this.CallMethod<string>("prompt", message);
         }
         
-        public nsAString Prompt(nsAString message, nsAString @default)
+        public string Prompt(string message, string @default)
         {
-            return this.CallMethod<nsAString>("prompt", message, @default);
+            return this.CallMethod<string>("prompt", message, @default);
         }
         
         public void Print()
@@ -279,27 +279,27 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("print");
         }
         
-        public object ShowModalDialog(nsAString url)
+        public object ShowModalDialog(string url)
         {
             return this.CallMethod<object>("showModalDialog", url);
         }
         
-        public object ShowModalDialog(nsAString url, object argument)
+        public object ShowModalDialog(string url, object argument)
         {
             return this.CallMethod<object>("showModalDialog", url, argument);
         }
         
-        public object ShowModalDialog(nsAString url, object argument, nsAString options)
+        public object ShowModalDialog(string url, object argument, string options)
         {
             return this.CallMethod<object>("showModalDialog", url, argument, options);
         }
         
-        public void PostMessage(object message, nsAString targetOrigin)
+        public void PostMessage(object message, string targetOrigin)
         {
             this.CallVoidMethod("postMessage", message, targetOrigin);
         }
         
-        public void PostMessage(object message, nsAString targetOrigin, Object[] transfer)
+        public void PostMessage(object message, string targetOrigin, Object[] transfer)
         {
             this.CallVoidMethod("postMessage", message, targetOrigin, transfer);
         }
@@ -324,7 +324,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsIDOMCSSStyleDeclaration>("getComputedStyle", elt);
         }
         
-        public nsIDOMCSSStyleDeclaration GetComputedStyle(nsIDOMElement elt, nsAString pseudoElt)
+        public nsIDOMCSSStyleDeclaration GetComputedStyle(nsIDOMElement elt, string pseudoElt)
         {
             return this.CallMethod<nsIDOMCSSStyleDeclaration>("getComputedStyle", elt, pseudoElt);
         }
@@ -441,7 +441,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports MatchMedia(nsAString query)
+        public nsISupports MatchMedia(string query)
         {
             return this.CallMethod<nsISupports>("matchMedia", query);
         }
@@ -666,7 +666,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsIDOMCSSStyleDeclaration>("getDefaultComputedStyle", elt);
         }
         
-        public nsIDOMCSSStyleDeclaration GetDefaultComputedStyle(nsIDOMElement elt, nsAString pseudoElt)
+        public nsIDOMCSSStyleDeclaration GetDefaultComputedStyle(nsIDOMElement elt, string pseudoElt)
         {
             return this.CallMethod<nsIDOMCSSStyleDeclaration>("getDefaultComputedStyle", elt, pseudoElt);
         }
@@ -711,17 +711,17 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("home");
         }
         
-        public void UpdateCommands(nsAString action)
+        public void UpdateCommands(string action)
         {
             this.CallVoidMethod("updateCommands", action);
         }
         
-        public void UpdateCommands(nsAString action, nsISelection sel)
+        public void UpdateCommands(string action, nsISelection sel)
         {
             this.CallVoidMethod("updateCommands", action, sel);
         }
         
-        public void UpdateCommands(nsAString action, nsISelection sel, short reason)
+        public void UpdateCommands(string action, nsISelection sel, short reason)
         {
             this.CallVoidMethod("updateCommands", action, sel, reason);
         }
@@ -731,42 +731,42 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("find");
         }
         
-        public bool Find(nsAString str)
+        public bool Find(string str)
         {
             return this.CallMethod<bool>("find", str);
         }
         
-        public bool Find(nsAString str, bool caseSensitive)
+        public bool Find(string str, bool caseSensitive)
         {
             return this.CallMethod<bool>("find", str, caseSensitive);
         }
         
-        public bool Find(nsAString str, bool caseSensitive, bool backwards)
+        public bool Find(string str, bool caseSensitive, bool backwards)
         {
             return this.CallMethod<bool>("find", str, caseSensitive, backwards);
         }
         
-        public bool Find(nsAString str, bool caseSensitive, bool backwards, bool wrapAround)
+        public bool Find(string str, bool caseSensitive, bool backwards, bool wrapAround)
         {
             return this.CallMethod<bool>("find", str, caseSensitive, backwards, wrapAround);
         }
         
-        public bool Find(nsAString str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord)
+        public bool Find(string str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord)
         {
             return this.CallMethod<bool>("find", str, caseSensitive, backwards, wrapAround, wholeWord);
         }
         
-        public bool Find(nsAString str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord, bool searchInFrames)
+        public bool Find(string str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord, bool searchInFrames)
         {
             return this.CallMethod<bool>("find", str, caseSensitive, backwards, wrapAround, wholeWord, searchInFrames);
         }
         
-        public bool Find(nsAString str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord, bool searchInFrames, bool showDialog)
+        public bool Find(string str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord, bool searchInFrames, bool showDialog)
         {
             return this.CallMethod<bool>("find", str, caseSensitive, backwards, wrapAround, wholeWord, searchInFrames, showDialog);
         }
         
-        public void Dump(nsAString str)
+        public void Dump(string str)
         {
             this.CallVoidMethod("dump", str);
         }
@@ -781,22 +781,22 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsIDOMWindow>("openDialog");
         }
         
-        public nsIDOMWindow OpenDialog(nsAString url)
+        public nsIDOMWindow OpenDialog(string url)
         {
             return this.CallMethod<nsIDOMWindow>("openDialog", url);
         }
         
-        public nsIDOMWindow OpenDialog(nsAString url, nsAString name)
+        public nsIDOMWindow OpenDialog(string url, string name)
         {
             return this.CallMethod<nsIDOMWindow>("openDialog", url, name);
         }
         
-        public nsIDOMWindow OpenDialog(nsAString url, nsAString name, nsAString options)
+        public nsIDOMWindow OpenDialog(string url, string name, string options)
         {
             return this.CallMethod<nsIDOMWindow>("openDialog", url, name, options);
         }
         
-        public nsIDOMWindow OpenDialog(nsAString url, nsAString name, nsAString options, object extraArguments)
+        public nsIDOMWindow OpenDialog(string url, string name, string options, object extraArguments)
         {
             return this.CallMethod<nsIDOMWindow>("openDialog", url, name, options, extraArguments);
         }

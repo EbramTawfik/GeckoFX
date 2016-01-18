@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Title
+        public string Title
         {
             get
             {
-                return this.GetProperty<nsAString>("title");
+                return this.GetProperty<string>("title");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Lang
+        public string Lang
         {
             get
             {
-                return this.GetProperty<nsAString>("lang");
+                return this.GetProperty<string>("lang");
             }
             set
             {
@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Dir
+        public string Dir
         {
             get
             {
-                return this.GetProperty<nsAString>("dir");
+                return this.GetProperty<string>("dir");
             }
             set
             {
@@ -55,11 +55,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString InnerText
+        public string InnerText
         {
             get
             {
-                return this.GetProperty<nsAString>("innerText");
+                return this.GetProperty<string>("innerText");
             }
             set
             {
@@ -87,11 +87,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ItemId
+        public string ItemId
         {
             get
             {
-                return this.GetProperty<nsAString>("itemId");
+                return this.GetProperty<string>("itemId");
             }
             set
             {
@@ -159,11 +159,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString AccessKey
+        public string AccessKey
         {
             get
             {
-                return this.GetProperty<nsAString>("accessKey");
+                return this.GetProperty<string>("accessKey");
             }
             set
             {
@@ -171,11 +171,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString AccessKeyLabel
+        public string AccessKeyLabel
         {
             get
             {
-                return this.GetProperty<nsAString>("accessKeyLabel");
+                return this.GetProperty<string>("accessKeyLabel");
             }
         }
         
@@ -191,11 +191,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ContentEditable
+        public string ContentEditable
         {
             get
             {
-                return this.GetProperty<nsAString>("contentEditable");
+                return this.GetProperty<string>("contentEditable");
             }
             set
             {

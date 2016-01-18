@@ -19,11 +19,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Id
+        public string Id
         {
             get
             {
-                return this.GetProperty<nsAString>("id");
+                return this.GetProperty<string>("id");
             }
         }
     }

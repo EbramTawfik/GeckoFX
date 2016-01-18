@@ -19,11 +19,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString VolumeControlChannel
+        public string VolumeControlChannel
         {
             get
             {
-                return this.GetProperty<nsAString>("volumeControlChannel");
+                return this.GetProperty<string>("volumeControlChannel");
             }
             set
             {

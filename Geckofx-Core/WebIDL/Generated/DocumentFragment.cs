@@ -11,17 +11,17 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsIDOMElement GetElementById(nsAString elementId)
+        public nsIDOMElement GetElementById(string elementId)
         {
             return this.CallMethod<nsIDOMElement>("getElementById", elementId);
         }
         
-        public nsIDOMElement QuerySelector(nsAString selectors)
+        public nsIDOMElement QuerySelector(string selectors)
         {
             return this.CallMethod<nsIDOMElement>("querySelector", selectors);
         }
         
-        public nsISupports QuerySelectorAll(nsAString selectors)
+        public nsISupports QuerySelectorAll(string selectors)
         {
             return this.CallMethod<nsISupports>("querySelectorAll", selectors);
         }

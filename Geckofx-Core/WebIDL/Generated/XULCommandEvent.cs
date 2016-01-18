@@ -51,7 +51,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void InitCommandEvent(nsAString type, bool canBubble, bool cancelable, nsIDOMWindow view, int detail, bool ctrlKey, bool altKey, bool shiftKey, bool metaKey, nsIDOMEvent sourceEvent)
+        public void InitCommandEvent(string type, bool canBubble, bool cancelable, nsIDOMWindow view, int detail, bool ctrlKey, bool altKey, bool shiftKey, bool metaKey, nsIDOMEvent sourceEvent)
         {
             this.CallVoidMethod("initCommandEvent", type, canBubble, cancelable, view, detail, ctrlKey, altKey, shiftKey, metaKey, sourceEvent);
         }

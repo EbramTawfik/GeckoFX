@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Data
+        public string Data
         {
             get
             {
-                return this.GetProperty<nsAString>("data");
+                return this.GetProperty<string>("data");
             }
             set
             {
@@ -31,17 +31,17 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString SubstringData(uint offset, uint count)
+        public string SubstringData(uint offset, uint count)
         {
-            return this.CallMethod<nsAString>("substringData", offset, count);
+            return this.CallMethod<string>("substringData", offset, count);
         }
         
-        public void AppendData(nsAString data)
+        public void AppendData(string data)
         {
             this.CallVoidMethod("appendData", data);
         }
         
-        public void InsertData(uint offset, nsAString data)
+        public void InsertData(uint offset, string data)
         {
             this.CallVoidMethod("insertData", offset, data);
         }
@@ -51,7 +51,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("deleteData", offset, count);
         }
         
-        public void ReplaceData(uint offset, uint count, nsAString data)
+        public void ReplaceData(uint offset, uint count, string data)
         {
             this.CallVoidMethod("replaceData", offset, count, data);
         }

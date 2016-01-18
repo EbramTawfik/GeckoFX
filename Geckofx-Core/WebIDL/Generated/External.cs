@@ -11,17 +11,17 @@ namespace Gecko.WebIDL
         {
         }
         
-        public void AddSearchProvider(nsAString aDescriptionURL)
+        public void AddSearchProvider(string aDescriptionURL)
         {
             this.CallVoidMethod("AddSearchProvider", aDescriptionURL);
         }
         
-        public uint IsSearchProviderInstalled(nsAString aSearchURL)
+        public uint IsSearchProviderInstalled(string aSearchURL)
         {
             return this.CallMethod<uint>("IsSearchProviderInstalled", aSearchURL);
         }
         
-        public void AddSearchEngine(nsAString engineURL, nsAString iconURL, nsAString suggestedTitle, nsAString suggestedCategory)
+        public void AddSearchEngine(string engineURL, string iconURL, string suggestedTitle, string suggestedCategory)
         {
             this.CallVoidMethod("addSearchEngine", engineURL, iconURL, suggestedTitle, suggestedCategory);
         }

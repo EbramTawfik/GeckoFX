@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Type
+        public string Type
         {
             get
             {
-                return this.GetProperty<nsAString>("type");
+                return this.GetProperty<string>("type");
             }
         }
         
@@ -35,59 +35,59 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString IccId
+        public string IccId
         {
             get
             {
-                return this.GetProperty<nsAString>("iccId");
+                return this.GetProperty<string>("iccId");
             }
         }
         
-        public nsAString Delivery
+        public string Delivery
         {
             get
             {
-                return this.GetProperty<nsAString>("delivery");
+                return this.GetProperty<string>("delivery");
             }
         }
         
-        public nsAString DeliveryStatus
+        public string DeliveryStatus
         {
             get
             {
-                return this.GetProperty<nsAString>("deliveryStatus");
+                return this.GetProperty<string>("deliveryStatus");
             }
         }
         
-        public nsAString Sender
+        public string Sender
         {
             get
             {
-                return this.GetProperty<nsAString>("sender");
+                return this.GetProperty<string>("sender");
             }
         }
         
-        public nsAString Receiver
+        public string Receiver
         {
             get
             {
-                return this.GetProperty<nsAString>("receiver");
+                return this.GetProperty<string>("receiver");
             }
         }
         
-        public nsAString Body
+        public string Body
         {
             get
             {
-                return this.GetProperty<nsAString>("body");
+                return this.GetProperty<string>("body");
             }
         }
         
-        public nsAString MessageClass
+        public string MessageClass
         {
             get
             {
-                return this.GetProperty<nsAString>("messageClass");
+                return this.GetProperty<string>("messageClass");
             }
         }
         

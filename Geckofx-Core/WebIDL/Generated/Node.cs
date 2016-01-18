@@ -19,19 +19,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString NodeName
+        public string NodeName
         {
             get
             {
-                return this.GetProperty<nsAString>("nodeName");
+                return this.GetProperty<string>("nodeName");
             }
         }
         
-        public nsAString BaseURI
+        public string BaseURI
         {
             get
             {
-                return this.GetProperty<nsAString>("baseURI");
+                return this.GetProperty<string>("baseURI");
             }
         }
         
@@ -99,11 +99,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString NodeValue
+        public string NodeValue
         {
             get
             {
-                return this.GetProperty<nsAString>("nodeValue");
+                return this.GetProperty<string>("nodeValue");
             }
             set
             {
@@ -111,11 +111,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString TextContent
+        public string TextContent
         {
             get
             {
-                return this.GetProperty<nsAString>("textContent");
+                return this.GetProperty<string>("textContent");
             }
             set
             {
@@ -123,27 +123,27 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString NamespaceURI
+        public string NamespaceURI
         {
             get
             {
-                return this.GetProperty<nsAString>("namespaceURI");
+                return this.GetProperty<string>("namespaceURI");
             }
         }
         
-        public nsAString Prefix
+        public string Prefix
         {
             get
             {
-                return this.GetProperty<nsAString>("prefix");
+                return this.GetProperty<string>("prefix");
             }
         }
         
-        public nsAString LocalName
+        public string LocalName
         {
             get
             {
-                return this.GetProperty<nsAString>("localName");
+                return this.GetProperty<string>("localName");
             }
         }
         
@@ -218,27 +218,27 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("contains", other);
         }
         
-        public nsAString LookupPrefix(nsAString @namespace)
+        public string LookupPrefix(string @namespace)
         {
-            return this.CallMethod<nsAString>("lookupPrefix", @namespace);
+            return this.CallMethod<string>("lookupPrefix", @namespace);
         }
         
-        public nsAString LookupNamespaceURI(nsAString prefix)
+        public string LookupNamespaceURI(string prefix)
         {
-            return this.CallMethod<nsAString>("lookupNamespaceURI", prefix);
+            return this.CallMethod<string>("lookupNamespaceURI", prefix);
         }
         
-        public bool IsDefaultNamespace(nsAString @namespace)
+        public bool IsDefaultNamespace(string @namespace)
         {
             return this.CallMethod<bool>("isDefaultNamespace", @namespace);
         }
         
-        public object SetUserData(nsAString key, object data)
+        public object SetUserData(string key, object data)
         {
             return this.CallMethod<object>("setUserData", key, data);
         }
         
-        public object GetUserData(nsAString key)
+        public object GetUserData(string key)
         {
             return this.CallMethod<object>("getUserData", key);
         }

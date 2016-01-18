@@ -27,35 +27,35 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Url
+        public string Url
         {
             get
             {
-                return this.GetProperty<nsAString>("url");
+                return this.GetProperty<string>("url");
             }
         }
         
-        public nsAString Path
+        public string Path
         {
             get
             {
-                return this.GetProperty<nsAString>("path");
+                return this.GetProperty<string>("path");
             }
         }
         
-        public nsAString StorageName
+        public string StorageName
         {
             get
             {
-                return this.GetProperty<nsAString>("storageName");
+                return this.GetProperty<string>("storageName");
             }
         }
         
-        public nsAString StoragePath
+        public string StoragePath
         {
             get
             {
-                return this.GetProperty<nsAString>("storagePath");
+                return this.GetProperty<string>("storagePath");
             }
         }
         
@@ -67,11 +67,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ContentType
+        public string ContentType
         {
             get
             {
-                return this.GetProperty<nsAString>("contentType");
+                return this.GetProperty<string>("contentType");
             }
         }
         
@@ -83,19 +83,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Id
+        public string Id
         {
             get
             {
-                return this.GetProperty<nsAString>("id");
+                return this.GetProperty<string>("id");
             }
         }
         
-        public nsAString SourceAppManifestURL
+        public string SourceAppManifestURL
         {
             get
             {
-                return this.GetProperty<nsAString>("sourceAppManifestURL");
+                return this.GetProperty<string>("sourceAppManifestURL");
             }
         }
         

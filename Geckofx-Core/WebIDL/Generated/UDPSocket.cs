@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString LocalAddress
+        public string LocalAddress
         {
             get
             {
-                return this.GetProperty<nsAString>("localAddress");
+                return this.GetProperty<string>("localAddress");
             }
         }
         
@@ -27,11 +27,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString RemoteAddress
+        public string RemoteAddress
         {
             get
             {
-                return this.GetProperty<nsAString>("remoteAddress");
+                return this.GetProperty<string>("remoteAddress");
             }
         }
         
@@ -88,27 +88,27 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise>("close");
         }
         
-        public void JoinMulticastGroup(nsAString multicastGroupAddress)
+        public void JoinMulticastGroup(string multicastGroupAddress)
         {
             this.CallVoidMethod("joinMulticastGroup", multicastGroupAddress);
         }
         
-        public void LeaveMulticastGroup(nsAString multicastGroupAddress)
+        public void LeaveMulticastGroup(string multicastGroupAddress)
         {
             this.CallVoidMethod("leaveMulticastGroup", multicastGroupAddress);
         }
         
-        public bool Send(WebIDLUnion<nsAString,nsIDOMBlob,IntPtr,IntPtr> data)
+        public bool Send(WebIDLUnion<System.String,nsIDOMBlob,IntPtr,IntPtr> data)
         {
             return this.CallMethod<bool>("send", data);
         }
         
-        public bool Send(WebIDLUnion<nsAString,nsIDOMBlob,IntPtr,IntPtr> data, nsAString remoteAddress)
+        public bool Send(WebIDLUnion<System.String,nsIDOMBlob,IntPtr,IntPtr> data, string remoteAddress)
         {
             return this.CallMethod<bool>("send", data, remoteAddress);
         }
         
-        public bool Send(WebIDLUnion<nsAString,nsIDOMBlob,IntPtr,IntPtr> data, nsAString remoteAddress, System.Nullable<ushort> remotePort)
+        public bool Send(WebIDLUnion<System.String,nsIDOMBlob,IntPtr,IntPtr> data, string remoteAddress, System.Nullable<ushort> remotePort)
         {
             return this.CallMethod<bool>("send", data, remoteAddress, remotePort);
         }

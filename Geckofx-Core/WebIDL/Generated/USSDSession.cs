@@ -11,7 +11,7 @@ namespace Gecko.WebIDL
         {
         }
         
-        public Promise Send(nsAString ussd)
+        public Promise Send(string ussd)
         {
             return this.CallMethod<Promise>("send", ussd);
         }

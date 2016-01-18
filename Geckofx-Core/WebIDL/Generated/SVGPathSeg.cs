@@ -19,11 +19,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString PathSegTypeAsLetter
+        public string PathSegTypeAsLetter
         {
             get
             {
-                return this.GetProperty<nsAString>("pathSegTypeAsLetter");
+                return this.GetProperty<string>("pathSegTypeAsLetter");
             }
         }
     }

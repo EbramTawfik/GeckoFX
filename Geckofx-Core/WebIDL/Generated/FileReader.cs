@@ -45,7 +45,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("readAsText", blob);
         }
         
-        public void ReadAsText(nsIDOMBlob blob, nsAString label)
+        public void ReadAsText(nsIDOMBlob blob, string label)
         {
             this.CallVoidMethod("readAsText", blob, label);
         }

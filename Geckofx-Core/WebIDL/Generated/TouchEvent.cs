@@ -67,7 +67,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void InitTouchEvent(nsAString type, bool canBubble, bool cancelable, nsIDOMWindow view, int detail, bool ctrlKey, bool altKey, bool shiftKey, bool metaKey, nsISupports touches, nsISupports targetTouches, nsISupports changedTouches)
+        public void InitTouchEvent(string type, bool canBubble, bool cancelable, nsIDOMWindow view, int detail, bool ctrlKey, bool altKey, bool shiftKey, bool metaKey, nsISupports touches, nsISupports targetTouches, nsISupports changedTouches)
         {
             this.CallVoidMethod("initTouchEvent", type, canBubble, cancelable, view, detail, ctrlKey, altKey, shiftKey, metaKey, touches, targetTouches, changedTouches);
         }

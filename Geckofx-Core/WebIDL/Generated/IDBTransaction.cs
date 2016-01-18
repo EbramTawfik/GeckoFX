@@ -35,7 +35,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports ObjectStore(nsAString name)
+        public nsISupports ObjectStore(string name)
         {
             return this.CallMethod<nsISupports>("objectStore", name);
         }

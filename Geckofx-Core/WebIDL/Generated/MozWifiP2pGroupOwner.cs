@@ -11,43 +11,43 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString GroupName
+        public string GroupName
         {
             get
             {
-                return this.GetProperty<nsAString>("groupName");
+                return this.GetProperty<string>("groupName");
             }
         }
         
-        public nsAString MacAddress
+        public string MacAddress
         {
             get
             {
-                return this.GetProperty<nsAString>("macAddress");
+                return this.GetProperty<string>("macAddress");
             }
         }
         
-        public nsAString IpAddress
+        public string IpAddress
         {
             get
             {
-                return this.GetProperty<nsAString>("ipAddress");
+                return this.GetProperty<string>("ipAddress");
             }
         }
         
-        public nsAString Passphrase
+        public string Passphrase
         {
             get
             {
-                return this.GetProperty<nsAString>("passphrase");
+                return this.GetProperty<string>("passphrase");
             }
         }
         
-        public nsAString Ssid
+        public string Ssid
         {
             get
             {
-                return this.GetProperty<nsAString>("ssid");
+                return this.GetProperty<string>("ssid");
             }
         }
         

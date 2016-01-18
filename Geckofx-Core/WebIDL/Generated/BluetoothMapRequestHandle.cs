@@ -11,12 +11,12 @@ namespace Gecko.WebIDL
         {
         }
         
-        public Promise ReplyToFolderListing(int masId, nsAString folders)
+        public Promise ReplyToFolderListing(int masId, string folders)
         {
             return this.CallMethod<Promise>("replyToFolderListing", masId, folders);
         }
         
-        public Promise ReplyToMessagesListing(int masId, nsIDOMBlob messageslisting, bool newmessage, nsAString timestamp, uint size)
+        public Promise ReplyToMessagesListing(int masId, nsIDOMBlob messageslisting, bool newmessage, string timestamp, uint size)
         {
             return this.CallMethod<Promise>("replyToMessagesListing", masId, messageslisting, newmessage, timestamp, size);
         }
@@ -31,7 +31,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise>("replyToSetMessageStatus", masId, status);
         }
         
-        public Promise ReplyToSendMessage(int masId, nsAString handleId, bool status)
+        public Promise ReplyToSendMessage(int masId, string handleId, bool status)
         {
             return this.CallMethod<Promise>("replyToSendMessage", masId, handleId, status);
         }

@@ -115,11 +115,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Region
+        public string Region
         {
             get
             {
-                return this.GetProperty<nsAString>("region");
+                return this.GetProperty<string>("region");
             }
         }
         
@@ -139,12 +139,12 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void InitMouseEvent(nsAString typeArg, bool canBubbleArg, bool cancelableArg, nsIDOMWindow viewArg, int detailArg, int screenXArg, int screenYArg, int clientXArg, int clientYArg, bool ctrlKeyArg, bool altKeyArg, bool shiftKeyArg, bool metaKeyArg, short buttonArg, nsISupports relatedTargetArg)
+        public void InitMouseEvent(string typeArg, bool canBubbleArg, bool cancelableArg, nsIDOMWindow viewArg, int detailArg, int screenXArg, int screenYArg, int clientXArg, int clientYArg, bool ctrlKeyArg, bool altKeyArg, bool shiftKeyArg, bool metaKeyArg, short buttonArg, nsISupports relatedTargetArg)
         {
             this.CallVoidMethod("initMouseEvent", typeArg, canBubbleArg, cancelableArg, viewArg, detailArg, screenXArg, screenYArg, clientXArg, clientYArg, ctrlKeyArg, altKeyArg, shiftKeyArg, metaKeyArg, buttonArg, relatedTargetArg);
         }
         
-        public bool GetModifierState(nsAString keyArg)
+        public bool GetModifierState(string keyArg)
         {
             return this.CallMethod<bool>("getModifierState", keyArg);
         }
@@ -190,7 +190,7 @@ namespace Gecko.WebIDL
         }
         
         public void InitNSMouseEvent(
-                    nsAString typeArg, 
+                    string typeArg, 
                     bool canBubbleArg, 
                     bool cancelableArg, 
                     nsIDOMWindow viewArg, 

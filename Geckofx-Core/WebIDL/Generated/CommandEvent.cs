@@ -11,15 +11,15 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Command
+        public string Command
         {
             get
             {
-                return this.GetProperty<nsAString>("command");
+                return this.GetProperty<string>("command");
             }
         }
         
-        public void InitCommandEvent(nsAString type, bool canBubble, bool cancelable, nsAString command)
+        public void InitCommandEvent(string type, bool canBubble, bool cancelable, string command)
         {
             this.CallVoidMethod("initCommandEvent", type, canBubble, cancelable, command);
         }

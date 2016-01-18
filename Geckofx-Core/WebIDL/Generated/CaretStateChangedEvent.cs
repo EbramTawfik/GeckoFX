@@ -67,11 +67,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString SelectedTextContent
+        public string SelectedTextContent
         {
             get
             {
-                return this.GetProperty<nsAString>("selectedTextContent");
+                return this.GetProperty<string>("selectedTextContent");
             }
         }
     }

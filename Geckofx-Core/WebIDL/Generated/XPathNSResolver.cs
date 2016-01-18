@@ -11,9 +11,9 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString LookupNamespaceURI(nsAString prefix)
+        public string LookupNamespaceURI(string prefix)
         {
-            return this.CallMethod<nsAString>("lookupNamespaceURI", prefix);
+            return this.CallMethod<string>("lookupNamespaceURI", prefix);
         }
     }
 }

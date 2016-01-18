@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Href
+        public string Href
         {
             get
             {
-                return this.GetProperty<nsAString>("href");
+                return this.GetProperty<string>("href");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Target
+        public string Target
         {
             get
             {
-                return this.GetProperty<nsAString>("target");
+                return this.GetProperty<string>("target");
             }
             set
             {

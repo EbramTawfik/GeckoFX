@@ -35,29 +35,29 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports GetContext(nsAString contextId)
+        public nsISupports GetContext(string contextId)
         {
             return this.CallMethod<nsISupports>("getContext", contextId);
         }
         
-        public nsISupports GetContext(nsAString contextId, object contextOptions)
+        public nsISupports GetContext(string contextId, object contextOptions)
         {
             return this.CallMethod<nsISupports>("getContext", contextId, contextOptions);
         }
         
-        public nsAString ToDataURL()
+        public string ToDataURL()
         {
-            return this.CallMethod<nsAString>("toDataURL");
+            return this.CallMethod<string>("toDataURL");
         }
         
-        public nsAString ToDataURL(nsAString type)
+        public string ToDataURL(string type)
         {
-            return this.CallMethod<nsAString>("toDataURL", type);
+            return this.CallMethod<string>("toDataURL", type);
         }
         
-        public nsAString ToDataURL(nsAString type, object encoderOptions)
+        public string ToDataURL(string type, object encoderOptions)
         {
-            return this.CallMethod<nsAString>("toDataURL", type, encoderOptions);
+            return this.CallMethod<string>("toDataURL", type, encoderOptions);
         }
         
         public bool MozOpaque
@@ -72,17 +72,17 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports MozGetAsFile(nsAString name)
+        public nsISupports MozGetAsFile(string name)
         {
             return this.CallMethod<nsISupports>("mozGetAsFile", name);
         }
         
-        public nsISupports MozGetAsFile(nsAString name, nsAString type)
+        public nsISupports MozGetAsFile(string name, string type)
         {
             return this.CallMethod<nsISupports>("mozGetAsFile", name, type);
         }
         
-        public nsISupports MozGetIPCContext(nsAString contextId)
+        public nsISupports MozGetIPCContext(string contextId)
         {
             return this.CallMethod<nsISupports>("MozGetIPCContext", contextId);
         }

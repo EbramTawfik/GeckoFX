@@ -11,17 +11,17 @@ namespace Gecko.WebIDL
         {
         }
         
-        public int SetTimeout(nsAString handler)
+        public int SetTimeout(string handler)
         {
             return this.CallMethod<int>("setTimeout", handler);
         }
         
-        public int SetTimeout(nsAString handler, int timeout)
+        public int SetTimeout(string handler, int timeout)
         {
             return this.CallMethod<int>("setTimeout", handler, timeout);
         }
         
-        public int SetTimeout(nsAString handler, int timeout, object unused)
+        public int SetTimeout(string handler, int timeout, object unused)
         {
             return this.CallMethod<int>("setTimeout", handler, timeout, unused);
         }
@@ -36,17 +36,17 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("clearTimeout", handle);
         }
         
-        public int SetInterval(nsAString handler)
+        public int SetInterval(string handler)
         {
             return this.CallMethod<int>("setInterval", handler);
         }
         
-        public int SetInterval(nsAString handler, int timeout)
+        public int SetInterval(string handler, int timeout)
         {
             return this.CallMethod<int>("setInterval", handler, timeout);
         }
         
-        public int SetInterval(nsAString handler, int timeout, object unused)
+        public int SetInterval(string handler, int timeout, object unused)
         {
             return this.CallMethod<int>("setInterval", handler, timeout, unused);
         }

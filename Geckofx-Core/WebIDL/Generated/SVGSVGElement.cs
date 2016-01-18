@@ -193,7 +193,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("createSVGTransformFromMatrix", matrix);
         }
         
-        public nsIDOMElement GetElementById(nsAString elementId)
+        public nsIDOMElement GetElementById(string elementId)
         {
             return this.CallMethod<nsIDOMElement>("getElementById", elementId);
         }

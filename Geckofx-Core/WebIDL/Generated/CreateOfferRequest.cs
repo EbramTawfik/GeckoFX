@@ -27,11 +27,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString CallID
+        public string CallID
         {
             get
             {
-                return this.GetProperty<nsAString>("callID");
+                return this.GetProperty<string>("callID");
             }
         }
         

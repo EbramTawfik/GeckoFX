@@ -16,24 +16,24 @@ namespace Gecko.WebIDL
             return this.CallMethod<IntPtr>("readAsArrayBuffer", blob);
         }
         
-        public nsAString ReadAsBinaryString(nsIDOMBlob blob)
+        public string ReadAsBinaryString(nsIDOMBlob blob)
         {
-            return this.CallMethod<nsAString>("readAsBinaryString", blob);
+            return this.CallMethod<string>("readAsBinaryString", blob);
         }
         
-        public nsAString ReadAsText(nsIDOMBlob blob)
+        public string ReadAsText(nsIDOMBlob blob)
         {
-            return this.CallMethod<nsAString>("readAsText", blob);
+            return this.CallMethod<string>("readAsText", blob);
         }
         
-        public nsAString ReadAsText(nsIDOMBlob blob, nsAString encoding)
+        public string ReadAsText(nsIDOMBlob blob, string encoding)
         {
-            return this.CallMethod<nsAString>("readAsText", blob, encoding);
+            return this.CallMethod<string>("readAsText", blob, encoding);
         }
         
-        public nsAString ReadAsDataURL(nsIDOMBlob blob)
+        public string ReadAsDataURL(nsIDOMBlob blob)
         {
-            return this.CallMethod<nsAString>("readAsDataURL", blob);
+            return this.CallMethod<string>("readAsDataURL", blob);
         }
     }
 }

@@ -114,6 +114,20 @@ namespace GeckofxUnitTests
             Assert.NotNull(Xpcom.QueryInterface<nsIWebBrowserPrint>(content));            
 	    }
 
+        [Test]
+        public void Name_Get()
+        {
+            var name = browser.Window.Name;
+            Assert.AreEqual(String.Empty, name);
+        }
+
+        [Test]
+        public void Name_Set()
+        {
+            browser.Window.Name = "hello world";
+            Assert.AreEqual("hello world", browser.Window.Name);
+        }
+
         [Ignore("Find always seems to show window even though I pass false as showDialog param.")]
 	    [Test]
 	    public void Find()

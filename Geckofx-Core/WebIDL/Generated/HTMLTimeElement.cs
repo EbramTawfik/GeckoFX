@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString DateTime
+        public string DateTime
         {
             get
             {
-                return this.GetProperty<nsAString>("dateTime");
+                return this.GetProperty<string>("dateTime");
             }
             set
             {

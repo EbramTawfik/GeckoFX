@@ -16,12 +16,12 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getAll");
         }
         
-        public nsISupports Add(object date, nsAString respectTimezone)
+        public nsISupports Add(object date, string respectTimezone)
         {
             return this.CallMethod<nsISupports>("add", date, respectTimezone);
         }
         
-        public nsISupports Add(object date, nsAString respectTimezone, object data)
+        public nsISupports Add(object date, string respectTimezone, object data)
         {
             return this.CallMethod<nsISupports>("add", date, respectTimezone, data);
         }

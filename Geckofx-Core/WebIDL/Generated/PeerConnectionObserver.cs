@@ -11,22 +11,22 @@ namespace Gecko.WebIDL
         {
         }
         
-        public void OnCreateOfferSuccess(nsAString offer)
+        public void OnCreateOfferSuccess(string offer)
         {
             this.CallVoidMethod("onCreateOfferSuccess", offer);
         }
         
-        public void OnCreateOfferError(uint name, nsAString message)
+        public void OnCreateOfferError(uint name, string message)
         {
             this.CallVoidMethod("onCreateOfferError", name, message);
         }
         
-        public void OnCreateAnswerSuccess(nsAString answer)
+        public void OnCreateAnswerSuccess(string answer)
         {
             this.CallVoidMethod("onCreateAnswerSuccess", answer);
         }
         
-        public void OnCreateAnswerError(uint name, nsAString message)
+        public void OnCreateAnswerError(uint name, string message)
         {
             this.CallVoidMethod("onCreateAnswerError", name, message);
         }
@@ -41,12 +41,12 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("onSetRemoteDescriptionSuccess");
         }
         
-        public void OnSetLocalDescriptionError(uint name, nsAString message)
+        public void OnSetLocalDescriptionError(uint name, string message)
         {
             this.CallVoidMethod("onSetLocalDescriptionError", name, message);
         }
         
-        public void OnSetRemoteDescriptionError(uint name, nsAString message)
+        public void OnSetRemoteDescriptionError(uint name, string message)
         {
             this.CallVoidMethod("onSetRemoteDescriptionError", name, message);
         }
@@ -56,12 +56,12 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("onAddIceCandidateSuccess");
         }
         
-        public void OnAddIceCandidateError(uint name, nsAString message)
+        public void OnAddIceCandidateError(uint name, string message)
         {
             this.CallVoidMethod("onAddIceCandidateError", name, message);
         }
         
-        public void OnIceCandidate(ushort level, nsAString mid, nsAString candidate)
+        public void OnIceCandidate(ushort level, string mid, string candidate)
         {
             this.CallVoidMethod("onIceCandidate", level, mid, candidate);
         }
@@ -81,7 +81,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("onGetStatsSuccess", report);
         }
         
-        public void OnGetStatsError(uint name, nsAString message)
+        public void OnGetStatsError(uint name, string message)
         {
             this.CallVoidMethod("onGetStatsError", name, message);
         }
@@ -91,7 +91,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("onReplaceTrackSuccess");
         }
         
-        public void OnReplaceTrackError(uint name, nsAString message)
+        public void OnReplaceTrackError(uint name, string message)
         {
             this.CallVoidMethod("onReplaceTrackError", name, message);
         }

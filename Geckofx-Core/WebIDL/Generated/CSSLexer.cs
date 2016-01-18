@@ -27,9 +27,9 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString PerformEOFFixup(nsAString inputString, bool preserveBackslash)
+        public string PerformEOFFixup(string inputString, bool preserveBackslash)
         {
-            return this.CallMethod<nsAString>("performEOFFixup", inputString, preserveBackslash);
+            return this.CallMethod<string>("performEOFFixup", inputString, preserveBackslash);
         }
         
         public object NextToken()

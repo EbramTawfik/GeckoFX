@@ -75,17 +75,17 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("readAsText", size);
         }
         
-        public nsISupports ReadAsText(ulong size, nsAString encoding)
+        public nsISupports ReadAsText(ulong size, string encoding)
         {
             return this.CallMethod<nsISupports>("readAsText", size, encoding);
         }
         
-        public nsISupports Write(WebIDLUnion<nsAString,IntPtr,IntPtr,nsIDOMBlob> value)
+        public nsISupports Write(WebIDLUnion<System.String,IntPtr,IntPtr,nsIDOMBlob> value)
         {
             return this.CallMethod<nsISupports>("write", value);
         }
         
-        public nsISupports Append(WebIDLUnion<nsAString,IntPtr,IntPtr,nsIDOMBlob> value)
+        public nsISupports Append(WebIDLUnion<System.String,IntPtr,IntPtr,nsIDOMBlob> value)
         {
             return this.CallMethod<nsISupports>("append", value);
         }

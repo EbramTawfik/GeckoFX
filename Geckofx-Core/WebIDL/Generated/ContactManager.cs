@@ -41,7 +41,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("save", contact);
         }
         
-        public nsISupports Remove(WebIDLUnion<nsISupports,nsAString> contactOrId)
+        public nsISupports Remove(WebIDLUnion<nsISupports,System.String> contactOrId)
         {
             return this.CallMethod<nsISupports>("remove", contactOrId);
         }

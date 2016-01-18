@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Autocomplete
+        public string Autocomplete
         {
             get
             {
-                return this.GetProperty<nsAString>("autocomplete");
+                return this.GetProperty<string>("autocomplete");
             }
             set
             {
@@ -67,11 +67,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
             set
             {
@@ -103,11 +103,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Type
+        public string Type
         {
             get
             {
-                return this.GetProperty<nsAString>("type");
+                return this.GetProperty<string>("type");
             }
         }
         
@@ -151,11 +151,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Value
+        public string Value
         {
             get
             {
-                return this.GetProperty<nsAString>("value");
+                return this.GetProperty<string>("value");
             }
             set
             {
@@ -179,15 +179,15 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ValidationMessage
+        public string ValidationMessage
         {
             get
             {
-                return this.GetProperty<nsAString>("validationMessage");
+                return this.GetProperty<string>("validationMessage");
             }
         }
         
-        public nsISupports NamedItem(nsAString name)
+        public nsISupports NamedItem(string name)
         {
             return this.CallMethod<nsISupports>("namedItem", name);
         }

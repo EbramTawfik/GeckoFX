@@ -19,7 +19,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports GetTrackById(nsAString id)
+        public nsISupports GetTrackById(string id)
         {
             return this.CallMethod<nsISupports>("getTrackById", id);
         }

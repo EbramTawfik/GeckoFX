@@ -183,12 +183,12 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("getCellAt", x, y, row, column, childElt);
         }
         
-        public nsISupports GetCoordsForCellItem(int row, nsISupports col, nsAString element)
+        public nsISupports GetCoordsForCellItem(int row, nsISupports col, string element)
         {
             return this.CallMethod<nsISupports>("getCoordsForCellItem", row, col, element);
         }
         
-        public void GetCoordsForCellItem(int row, nsISupports col, nsAString element, object x, object y, object width, object height)
+        public void GetCoordsForCellItem(int row, nsISupports col, string element, object x, object y, object width, object height)
         {
             this.CallVoidMethod("getCoordsForCellItem", row, col, element, x, y, width, height);
         }

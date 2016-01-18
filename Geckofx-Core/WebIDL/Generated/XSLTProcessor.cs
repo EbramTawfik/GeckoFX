@@ -38,17 +38,17 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsIDOMDocument>("transformToDocument", source);
         }
         
-        public void SetParameter(nsAString namespaceURI, nsAString localName, object value)
+        public void SetParameter(string namespaceURI, string localName, object value)
         {
             this.CallVoidMethod("setParameter", namespaceURI, localName, value);
         }
         
-        public nsISupports GetParameter(nsAString namespaceURI, nsAString localName)
+        public nsISupports GetParameter(string namespaceURI, string localName)
         {
             return this.CallMethod<nsISupports>("getParameter", namespaceURI, localName);
         }
         
-        public void RemoveParameter(nsAString namespaceURI, nsAString localName)
+        public void RemoveParameter(string namespaceURI, string localName)
         {
             this.CallVoidMethod("removeParameter", namespaceURI, localName);
         }

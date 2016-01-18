@@ -27,11 +27,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Uuid
+        public string Uuid
         {
             get
             {
-                return this.GetProperty<nsAString>("uuid");
+                return this.GetProperty<string>("uuid");
             }
         }
         
@@ -87,7 +87,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise>("stopNotifications");
         }
         
-        public Promise < nsISupports > AddDescriptor(nsAString uuid, object permissions, IntPtr value)
+        public Promise < nsISupports > AddDescriptor(string uuid, object permissions, IntPtr value)
         {
             return this.CallMethod<Promise < nsISupports >>("addDescriptor", uuid, permissions, value);
         }

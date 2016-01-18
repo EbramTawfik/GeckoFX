@@ -11,12 +11,12 @@ namespace Gecko.WebIDL
         {
         }
         
-        public void SendMouseEvent(nsAString type, uint x, uint y, uint button, uint clickCount, uint modifiers)
+        public void SendMouseEvent(string type, uint x, uint y, uint button, uint clickCount, uint modifiers)
         {
             this.CallVoidMethod("sendMouseEvent", type, x, y, button, clickCount, modifiers);
         }
         
-        public void SendTouchEvent(nsAString type, uint[] identifiers, int[] x, int[] y, uint[] rx, uint[] ry, float[] rotationAngles, float[] forces, uint count, uint modifiers)
+        public void SendTouchEvent(string type, uint[] identifiers, int[] x, int[] y, uint[] rx, uint[] ry, float[] rotationAngles, float[] forces, uint count, uint modifiers)
         {
             this.CallVoidMethod("sendTouchEvent", type, identifiers, x, y, rx, ry, rotationAngles, forces, count, modifiers);
         }
@@ -46,12 +46,12 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("stop");
         }
         
-        public nsISupports Download(nsAString url)
+        public nsISupports Download(string url)
         {
             return this.CallMethod<nsISupports>("download", url);
         }
         
-        public nsISupports Download(nsAString url, object options)
+        public nsISupports Download(string url, object options)
         {
             return this.CallMethod<nsISupports>("download", url, options);
         }
@@ -66,7 +66,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getScreenshot", width, height);
         }
         
-        public nsISupports GetScreenshot(uint width, uint height, nsAString mimeType)
+        public nsISupports GetScreenshot(uint width, uint height, string mimeType)
         {
             return this.CallMethod<nsISupports>("getScreenshot", width, height, mimeType);
         }
@@ -101,7 +101,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("setNFCFocus", isFocus);
         }
         
-        public void FindAll(nsAString searchString, BrowserFindCaseSensitivity caseSensitivity)
+        public void FindAll(string searchString, BrowserFindCaseSensitivity caseSensitivity)
         {
             this.CallVoidMethod("findAll", searchString, caseSensitivity);
         }
@@ -116,12 +116,12 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("clearMatch");
         }
         
-        public nsISupports ExecuteScript(nsAString script)
+        public nsISupports ExecuteScript(string script)
         {
             return this.CallMethod<nsISupports>("executeScript", script);
         }
         
-        public nsISupports ExecuteScript(nsAString script, object options)
+        public nsISupports ExecuteScript(string script, object options)
         {
             return this.CallMethod<nsISupports>("executeScript", script, options);
         }

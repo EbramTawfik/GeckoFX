@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Headers
+        public string Headers
         {
             get
             {
-                return this.GetProperty<nsAString>("headers");
+                return this.GetProperty<string>("headers");
             }
             set
             {
@@ -55,11 +55,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Abbr
+        public string Abbr
         {
             get
             {
-                return this.GetProperty<nsAString>("abbr");
+                return this.GetProperty<string>("abbr");
             }
             set
             {
@@ -67,11 +67,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Scope
+        public string Scope
         {
             get
             {
-                return this.GetProperty<nsAString>("scope");
+                return this.GetProperty<string>("scope");
             }
             set
             {
@@ -79,11 +79,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Align
+        public string Align
         {
             get
             {
-                return this.GetProperty<nsAString>("align");
+                return this.GetProperty<string>("align");
             }
             set
             {
@@ -91,11 +91,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Axis
+        public string Axis
         {
             get
             {
-                return this.GetProperty<nsAString>("axis");
+                return this.GetProperty<string>("axis");
             }
             set
             {
@@ -103,11 +103,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Height
+        public string Height
         {
             get
             {
-                return this.GetProperty<nsAString>("height");
+                return this.GetProperty<string>("height");
             }
             set
             {
@@ -115,11 +115,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Width
+        public string Width
         {
             get
             {
-                return this.GetProperty<nsAString>("width");
+                return this.GetProperty<string>("width");
             }
             set
             {
@@ -127,11 +127,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Ch
+        public string Ch
         {
             get
             {
-                return this.GetProperty<nsAString>("ch");
+                return this.GetProperty<string>("ch");
             }
             set
             {
@@ -139,11 +139,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ChOff
+        public string ChOff
         {
             get
             {
-                return this.GetProperty<nsAString>("chOff");
+                return this.GetProperty<string>("chOff");
             }
             set
             {
@@ -163,11 +163,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString VAlign
+        public string VAlign
         {
             get
             {
-                return this.GetProperty<nsAString>("vAlign");
+                return this.GetProperty<string>("vAlign");
             }
             set
             {
@@ -175,11 +175,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString BgColor
+        public string BgColor
         {
             get
             {
-                return this.GetProperty<nsAString>("bgColor");
+                return this.GetProperty<string>("bgColor");
             }
             set
             {

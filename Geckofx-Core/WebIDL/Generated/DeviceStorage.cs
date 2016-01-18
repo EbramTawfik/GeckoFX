@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString StorageName
+        public string StorageName
         {
             get
             {
-                return this.GetProperty<nsAString>("storageName");
+                return this.GetProperty<string>("storageName");
             }
         }
         
@@ -72,27 +72,27 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("add", aBlob);
         }
         
-        public nsISupports AddNamed(nsIDOMBlob aBlob, nsAString aName)
+        public nsISupports AddNamed(nsIDOMBlob aBlob, string aName)
         {
             return this.CallMethod<nsISupports>("addNamed", aBlob, aName);
         }
         
-        public nsISupports AppendNamed(nsIDOMBlob aBlob, nsAString aName)
+        public nsISupports AppendNamed(nsIDOMBlob aBlob, string aName)
         {
             return this.CallMethod<nsISupports>("appendNamed", aBlob, aName);
         }
         
-        public nsISupports Get(nsAString aName)
+        public nsISupports Get(string aName)
         {
             return this.CallMethod<nsISupports>("get", aName);
         }
         
-        public nsISupports GetEditable(nsAString aName)
+        public nsISupports GetEditable(string aName)
         {
             return this.CallMethod<nsISupports>("getEditable", aName);
         }
         
-        public nsISupports Delete(nsAString aName)
+        public nsISupports Delete(string aName)
         {
             return this.CallMethod<nsISupports>("delete", aName);
         }
@@ -107,12 +107,12 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("enumerate", options);
         }
         
-        public nsISupports Enumerate(nsAString path)
+        public nsISupports Enumerate(string path)
         {
             return this.CallMethod<nsISupports>("enumerate", path);
         }
         
-        public nsISupports Enumerate(nsAString path, object options)
+        public nsISupports Enumerate(string path, object options)
         {
             return this.CallMethod<nsISupports>("enumerate", path, options);
         }
@@ -127,12 +127,12 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("enumerateEditable", options);
         }
         
-        public nsISupports EnumerateEditable(nsAString path)
+        public nsISupports EnumerateEditable(string path)
         {
             return this.CallMethod<nsISupports>("enumerateEditable", path);
         }
         
-        public nsISupports EnumerateEditable(nsAString path, object options)
+        public nsISupports EnumerateEditable(string path, object options)
         {
             return this.CallMethod<nsISupports>("enumerateEditable", path, options);
         }

@@ -51,11 +51,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ResponseURL
+        public string ResponseURL
         {
             get
             {
-                return this.GetProperty<nsAString>("responseURL");
+                return this.GetProperty<string>("responseURL");
             }
         }
         
@@ -95,11 +95,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ResponseText
+        public string ResponseText
         {
             get
             {
-                return this.GetProperty<nsAString>("responseText");
+                return this.GetProperty<string>("responseText");
             }
         }
         
@@ -159,22 +159,22 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void Open(ByteString method, nsAString url)
+        public void Open(ByteString method, string url)
         {
             this.CallVoidMethod("open", method, url);
         }
         
-        public void Open(ByteString method, nsAString url, bool async)
+        public void Open(ByteString method, string url, bool async)
         {
             this.CallVoidMethod("open", method, url, async);
         }
         
-        public void Open(ByteString method, nsAString url, bool async, nsAString user)
+        public void Open(ByteString method, string url, bool async, string user)
         {
             this.CallVoidMethod("open", method, url, async, user);
         }
         
-        public void Open(ByteString method, nsAString url, bool async, nsAString user, nsAString password)
+        public void Open(ByteString method, string url, bool async, string user, string password)
         {
             this.CallVoidMethod("open", method, url, async, user, password);
         }
@@ -204,7 +204,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("send", data);
         }
         
-        public void Send(nsAString data)
+        public void Send(string data)
         {
             this.CallVoidMethod("send", data);
         }
@@ -234,7 +234,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<ByteString>("getAllResponseHeaders");
         }
         
-        public void OverrideMimeType(nsAString mime)
+        public void OverrideMimeType(string mime)
         {
             this.CallVoidMethod("overrideMimeType", mime);
         }

@@ -11,49 +11,49 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
         }
         
-        public Promise < nsISupports > CreateFile(nsAString path)
+        public Promise < nsISupports > CreateFile(string path)
         {
             return this.CallMethod<Promise < nsISupports >>("createFile", path);
         }
         
-        public Promise < nsISupports > CreateFile(nsAString path, object options)
+        public Promise < nsISupports > CreateFile(string path, object options)
         {
             return this.CallMethod<Promise < nsISupports >>("createFile", path, options);
         }
         
-        public Promise < nsISupports > CreateDirectory(nsAString path)
+        public Promise < nsISupports > CreateDirectory(string path)
         {
             return this.CallMethod<Promise < nsISupports >>("createDirectory", path);
         }
         
-        public Promise < WebIDLUnion<nsISupports,nsISupports>> Get(nsAString path)
+        public Promise < WebIDLUnion<nsISupports,nsISupports>> Get(string path)
         {
             return this.CallMethod<Promise < WebIDLUnion<nsISupports,nsISupports>>>("get", path);
         }
         
-        public Promise <bool> Remove(WebIDLUnion<nsAString,nsISupports,nsISupports> path)
+        public Promise <bool> Remove(WebIDLUnion<System.String,nsISupports,nsISupports> path)
         {
             return this.CallMethod<Promise <bool>>("remove", path);
         }
         
-        public Promise <bool> RemoveDeep(WebIDLUnion<nsAString,nsISupports,nsISupports> path)
+        public Promise <bool> RemoveDeep(WebIDLUnion<System.String,nsISupports,nsISupports> path)
         {
             return this.CallMethod<Promise <bool>>("removeDeep", path);
         }
         
-        public nsAString Path
+        public string Path
         {
             get
             {
-                return this.GetProperty<nsAString>("path");
+                return this.GetProperty<string>("path");
             }
         }
         

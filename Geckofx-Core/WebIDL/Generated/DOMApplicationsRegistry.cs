@@ -19,22 +19,22 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports Install(nsAString url)
+        public nsISupports Install(string url)
         {
             return this.CallMethod<nsISupports>("install", url);
         }
         
-        public nsISupports Install(nsAString url, object @params)
+        public nsISupports Install(string url, object @params)
         {
             return this.CallMethod<nsISupports>("install", url, @params);
         }
         
-        public nsISupports InstallPackage(nsAString url)
+        public nsISupports InstallPackage(string url)
         {
             return this.CallMethod<nsISupports>("installPackage", url);
         }
         
-        public nsISupports InstallPackage(nsAString url, object @params)
+        public nsISupports InstallPackage(string url, object @params)
         {
             return this.CallMethod<nsISupports>("installPackage", url, @params);
         }
@@ -49,7 +49,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getInstalled");
         }
         
-        public nsISupports CheckInstalled(nsAString manifestUrl)
+        public nsISupports CheckInstalled(string manifestUrl)
         {
             return this.CallMethod<nsISupports>("checkInstalled", manifestUrl);
         }
@@ -59,7 +59,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise < MozMap < System.Object[] >>>("getAdditionalLanguages");
         }
         
-        public Promise <object> GetLocalizationResource(nsAString language, nsAString version, nsAString path, LocaleResourceType dataType)
+        public Promise <object> GetLocalizationResource(string language, string version, string path, LocaleResourceType dataType)
         {
             return this.CallMethod<Promise <object>>("getLocalizationResource", language, version, path, dataType);
         }

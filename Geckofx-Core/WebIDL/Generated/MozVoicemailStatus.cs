@@ -35,19 +35,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ReturnNumber
+        public string ReturnNumber
         {
             get
             {
-                return this.GetProperty<nsAString>("returnNumber");
+                return this.GetProperty<string>("returnNumber");
             }
         }
         
-        public nsAString ReturnMessage
+        public string ReturnMessage
         {
             get
             {
-                return this.GetProperty<nsAString>("returnMessage");
+                return this.GetProperty<string>("returnMessage");
             }
         }
     }

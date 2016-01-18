@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Sdp
+        public string Sdp
         {
             get
             {
-                return this.GetProperty<nsAString>("sdp");
+                return this.GetProperty<string>("sdp");
             }
             set
             {

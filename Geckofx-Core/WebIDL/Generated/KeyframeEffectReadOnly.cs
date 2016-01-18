@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Spacing
+        public string Spacing
         {
             get
             {
-                return this.GetProperty<nsAString>("spacing");
+                return this.GetProperty<string>("spacing");
             }
         }
         

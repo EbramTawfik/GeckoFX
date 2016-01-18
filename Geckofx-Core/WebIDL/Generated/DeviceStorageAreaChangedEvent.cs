@@ -19,11 +19,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString StorageName
+        public string StorageName
         {
             get
             {
-                return this.GetProperty<nsAString>("storageName");
+                return this.GetProperty<string>("storageName");
             }
         }
     }

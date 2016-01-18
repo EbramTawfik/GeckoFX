@@ -11,35 +11,35 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString RevisionId
+        public string RevisionId
         {
             get
             {
-                return this.GetProperty<nsAString>("revisionId");
+                return this.GetProperty<string>("revisionId");
             }
         }
         
-        public WebIDLUnion<nsAString,UInt32> Id
+        public WebIDLUnion<String,UInt32> Id
         {
             get
             {
-                return this.GetProperty<WebIDLUnion<nsAString,UInt32>>("id");
+                return this.GetProperty<WebIDLUnion<String,UInt32>>("id");
             }
         }
         
-        public nsAString Operation
+        public string Operation
         {
             get
             {
-                return this.GetProperty<nsAString>("operation");
+                return this.GetProperty<string>("operation");
             }
         }
         
-        public nsAString Owner
+        public string Owner
         {
             get
             {
-                return this.GetProperty<nsAString>("owner");
+                return this.GetProperty<string>("owner");
             }
         }
     }

@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Id
+        public string Id
         {
             get
             {
-                return this.GetProperty<nsAString>("id");
+                return this.GetProperty<string>("id");
             }
             set
             {
@@ -63,11 +63,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Sex
+        public string Sex
         {
             get
             {
-                return this.GetProperty<nsAString>("sex");
+                return this.GetProperty<string>("sex");
             }
             set
             {
@@ -75,11 +75,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString GenderIdentity
+        public string GenderIdentity
         {
             get
             {
-                return this.GetProperty<nsAString>("genderIdentity");
+                return this.GetProperty<string>("genderIdentity");
             }
             set
             {
@@ -159,11 +159,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] Name
+        public string[] Name
         {
             get
             {
-                return this.GetProperty<nsAString[]>("name");
+                return this.GetProperty<string[]>("name");
             }
             set
             {
@@ -171,11 +171,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] HonorificPrefix
+        public string[] HonorificPrefix
         {
             get
             {
-                return this.GetProperty<nsAString[]>("honorificPrefix");
+                return this.GetProperty<string[]>("honorificPrefix");
             }
             set
             {
@@ -183,11 +183,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] GivenName
+        public string[] GivenName
         {
             get
             {
-                return this.GetProperty<nsAString[]>("givenName");
+                return this.GetProperty<string[]>("givenName");
             }
             set
             {
@@ -195,11 +195,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] PhoneticGivenName
+        public string[] PhoneticGivenName
         {
             get
             {
-                return this.GetProperty<nsAString[]>("phoneticGivenName");
+                return this.GetProperty<string[]>("phoneticGivenName");
             }
             set
             {
@@ -207,11 +207,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] AdditionalName
+        public string[] AdditionalName
         {
             get
             {
-                return this.GetProperty<nsAString[]>("additionalName");
+                return this.GetProperty<string[]>("additionalName");
             }
             set
             {
@@ -219,11 +219,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] FamilyName
+        public string[] FamilyName
         {
             get
             {
-                return this.GetProperty<nsAString[]>("familyName");
+                return this.GetProperty<string[]>("familyName");
             }
             set
             {
@@ -231,11 +231,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] PhoneticFamilyName
+        public string[] PhoneticFamilyName
         {
             get
             {
-                return this.GetProperty<nsAString[]>("phoneticFamilyName");
+                return this.GetProperty<string[]>("phoneticFamilyName");
             }
             set
             {
@@ -243,11 +243,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] HonorificSuffix
+        public string[] HonorificSuffix
         {
             get
             {
-                return this.GetProperty<nsAString[]>("honorificSuffix");
+                return this.GetProperty<string[]>("honorificSuffix");
             }
             set
             {
@@ -255,11 +255,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] Nickname
+        public string[] Nickname
         {
             get
             {
-                return this.GetProperty<nsAString[]>("nickname");
+                return this.GetProperty<string[]>("nickname");
             }
             set
             {
@@ -267,11 +267,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] Category
+        public string[] Category
         {
             get
             {
-                return this.GetProperty<nsAString[]>("category");
+                return this.GetProperty<string[]>("category");
             }
             set
             {
@@ -279,11 +279,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] Org
+        public string[] Org
         {
             get
             {
-                return this.GetProperty<nsAString[]>("org");
+                return this.GetProperty<string[]>("org");
             }
             set
             {
@@ -291,11 +291,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] JobTitle
+        public string[] JobTitle
         {
             get
             {
-                return this.GetProperty<nsAString[]>("jobTitle");
+                return this.GetProperty<string[]>("jobTitle");
             }
             set
             {
@@ -303,11 +303,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] Note
+        public string[] Note
         {
             get
             {
-                return this.GetProperty<nsAString[]>("note");
+                return this.GetProperty<string[]>("note");
             }
             set
             {
@@ -315,11 +315,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] Key
+        public string[] Key
         {
             get
             {
-                return this.GetProperty<nsAString[]>("key");
+                return this.GetProperty<string[]>("key");
             }
             set
             {
@@ -337,7 +337,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("init", properties);
         }
         
-        public void SetMetadata(nsAString id, IntPtr published, IntPtr updated)
+        public void SetMetadata(string id, IntPtr published, IntPtr updated)
         {
             this.CallVoidMethod("setMetadata", id, published, updated);
         }

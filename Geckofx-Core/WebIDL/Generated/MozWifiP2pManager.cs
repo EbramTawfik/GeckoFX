@@ -32,17 +32,17 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("setScanEnabled", enabled);
         }
         
-        public nsISupports Connect(nsAString address, WPSMethod wpsMethod)
+        public nsISupports Connect(string address, WPSMethod wpsMethod)
         {
             return this.CallMethod<nsISupports>("connect", address, wpsMethod);
         }
         
-        public nsISupports Connect(nsAString address, WPSMethod wpsMethod, sbyte goIntent)
+        public nsISupports Connect(string address, WPSMethod wpsMethod, sbyte goIntent)
         {
             return this.CallMethod<nsISupports>("connect", address, wpsMethod, goIntent);
         }
         
-        public nsISupports Disconnect(nsAString address)
+        public nsISupports Disconnect(string address)
         {
             return this.CallMethod<nsISupports>("disconnect", address);
         }
@@ -57,12 +57,12 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("setPairingConfirmation", accepted);
         }
         
-        public nsISupports SetPairingConfirmation(bool accepted, nsAString pin)
+        public nsISupports SetPairingConfirmation(bool accepted, string pin)
         {
             return this.CallMethod<nsISupports>("setPairingConfirmation", accepted, pin);
         }
         
-        public nsISupports SetDeviceName(nsAString deviceName)
+        public nsISupports SetDeviceName(string deviceName)
         {
             return this.CallMethod<nsISupports>("setDeviceName", deviceName);
         }

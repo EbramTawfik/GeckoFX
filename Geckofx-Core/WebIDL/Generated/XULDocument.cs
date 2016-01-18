@@ -75,27 +75,27 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports GetElementsByAttribute(nsAString name, nsAString value)
+        public nsISupports GetElementsByAttribute(string name, string value)
         {
             return this.CallMethod<nsISupports>("getElementsByAttribute", name, value);
         }
         
-        public nsISupports GetElementsByAttributeNS(nsAString namespaceURI, nsAString name, nsAString value)
+        public nsISupports GetElementsByAttributeNS(string namespaceURI, string name, string value)
         {
             return this.CallMethod<nsISupports>("getElementsByAttributeNS", namespaceURI, name, value);
         }
         
-        public void AddBroadcastListenerFor(nsIDOMElement broadcaster, nsIDOMElement observer, nsAString attr)
+        public void AddBroadcastListenerFor(nsIDOMElement broadcaster, nsIDOMElement observer, string attr)
         {
             this.CallVoidMethod("addBroadcastListenerFor", broadcaster, observer, attr);
         }
         
-        public void RemoveBroadcastListenerFor(nsIDOMElement broadcaster, nsIDOMElement observer, nsAString attr)
+        public void RemoveBroadcastListenerFor(nsIDOMElement broadcaster, nsIDOMElement observer, string attr)
         {
             this.CallVoidMethod("removeBroadcastListenerFor", broadcaster, observer, attr);
         }
         
-        public void Persist(nsAString id, nsAString attr)
+        public void Persist(string id, string attr)
         {
             this.CallVoidMethod("persist", id, attr);
         }
@@ -105,7 +105,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getBoxObjectFor", element);
         }
         
-        public void LoadOverlay(nsAString url, nsISupports observer)
+        public void LoadOverlay(string url, nsISupports observer)
         {
             this.CallVoidMethod("loadOverlay", url, observer);
         }

@@ -11,15 +11,15 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Passkey
+        public string Passkey
         {
             get
             {
-                return this.GetProperty<nsAString>("passkey");
+                return this.GetProperty<string>("passkey");
             }
         }
         
-        public Promise SetPinCode(nsAString aPinCode)
+        public Promise SetPinCode(string aPinCode)
         {
             return this.CallMethod<Promise>("setPinCode", aPinCode);
         }

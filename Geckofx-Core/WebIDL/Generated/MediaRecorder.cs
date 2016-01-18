@@ -27,11 +27,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString MimeType
+        public string MimeType
         {
             get
             {
-                return this.GetProperty<nsAString>("mimeType");
+                return this.GetProperty<string>("mimeType");
             }
         }
         

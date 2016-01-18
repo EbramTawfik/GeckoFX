@@ -19,19 +19,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Origin
+        public string Origin
         {
             get
             {
-                return this.GetProperty<nsAString>("origin");
+                return this.GetProperty<string>("origin");
             }
         }
         
-        public nsAString LastEventId
+        public string LastEventId
         {
             get
             {
-                return this.GetProperty<nsAString>("lastEventId");
+                return this.GetProperty<string>("lastEventId");
             }
         }
         

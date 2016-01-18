@@ -11,32 +11,32 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString GetTextContentForElement(nsAString elementId)
+        public string GetTextContentForElement(string elementId)
         {
-            return this.CallMethod<nsAString>("getTextContentForElement", elementId);
+            return this.CallMethod<string>("getTextContentForElement", elementId);
         }
         
-        public void SetTextContentForElement(nsAString elementId, nsAString text)
+        public void SetTextContentForElement(string elementId, string text)
         {
             this.CallVoidMethod("setTextContentForElement", elementId, text);
         }
         
-        public nsAString GetAttributeForElement(nsAString elementId, nsAString attributeName)
+        public string GetAttributeForElement(string elementId, string attributeName)
         {
-            return this.CallMethod<nsAString>("getAttributeForElement", elementId, attributeName);
+            return this.CallMethod<string>("getAttributeForElement", elementId, attributeName);
         }
         
-        public void SetAttributeForElement(nsAString elementId, nsAString attributeName, nsAString value)
+        public void SetAttributeForElement(string elementId, string attributeName, string value)
         {
             this.CallVoidMethod("setAttributeForElement", elementId, attributeName, value);
         }
         
-        public void RemoveAttributeForElement(nsAString elementId, nsAString attributeName)
+        public void RemoveAttributeForElement(string elementId, string attributeName)
         {
             this.CallVoidMethod("removeAttributeForElement", elementId, attributeName);
         }
         
-        public nsISupports GetCanvasContext(nsAString elementId, nsAString contextId)
+        public nsISupports GetCanvasContext(string elementId, string contextId)
         {
             return this.CallMethod<nsISupports>("getCanvasContext", elementId, contextId);
         }

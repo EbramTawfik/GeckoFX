@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Target
+        public string Target
         {
             get
             {
-                return this.GetProperty<nsAString>("target");
+                return this.GetProperty<string>("target");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Download
+        public string Download
         {
             get
             {
-                return this.GetProperty<nsAString>("download");
+                return this.GetProperty<string>("download");
             }
             set
             {
@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Ping
+        public string Ping
         {
             get
             {
-                return this.GetProperty<nsAString>("ping");
+                return this.GetProperty<string>("ping");
             }
             set
             {
@@ -47,11 +47,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Rel
+        public string Rel
         {
             get
             {
-                return this.GetProperty<nsAString>("rel");
+                return this.GetProperty<string>("rel");
             }
             set
             {
@@ -59,11 +59,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ReferrerPolicy
+        public string ReferrerPolicy
         {
             get
             {
-                return this.GetProperty<nsAString>("referrerPolicy");
+                return this.GetProperty<string>("referrerPolicy");
             }
             set
             {
@@ -79,11 +79,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Hreflang
+        public string Hreflang
         {
             get
             {
-                return this.GetProperty<nsAString>("hreflang");
+                return this.GetProperty<string>("hreflang");
             }
             set
             {
@@ -91,11 +91,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Type
+        public string Type
         {
             get
             {
-                return this.GetProperty<nsAString>("type");
+                return this.GetProperty<string>("type");
             }
             set
             {
@@ -103,11 +103,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Text
+        public string Text
         {
             get
             {
-                return this.GetProperty<nsAString>("text");
+                return this.GetProperty<string>("text");
             }
             set
             {
@@ -115,11 +115,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Coords
+        public string Coords
         {
             get
             {
-                return this.GetProperty<nsAString>("coords");
+                return this.GetProperty<string>("coords");
             }
             set
             {
@@ -127,11 +127,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Charset
+        public string Charset
         {
             get
             {
-                return this.GetProperty<nsAString>("charset");
+                return this.GetProperty<string>("charset");
             }
             set
             {
@@ -139,11 +139,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
             set
             {
@@ -151,11 +151,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Rev
+        public string Rev
         {
             get
             {
-                return this.GetProperty<nsAString>("rev");
+                return this.GetProperty<string>("rev");
             }
             set
             {
@@ -163,11 +163,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Shape
+        public string Shape
         {
             get
             {
-                return this.GetProperty<nsAString>("shape");
+                return this.GetProperty<string>("shape");
             }
             set
             {

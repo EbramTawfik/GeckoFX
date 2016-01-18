@@ -11,12 +11,12 @@ namespace Gecko.WebIDL
         {
         }
         
-        public void RegisterProtocolHandler(nsAString scheme, nsAString url, nsAString title)
+        public void RegisterProtocolHandler(string scheme, string url, string title)
         {
             this.CallVoidMethod("registerProtocolHandler", scheme, url, title);
         }
         
-        public void RegisterContentHandler(nsAString mimeType, nsAString url, nsAString title)
+        public void RegisterContentHandler(string mimeType, string url, string title)
         {
             this.CallVoidMethod("registerContentHandler", mimeType, url, title);
         }

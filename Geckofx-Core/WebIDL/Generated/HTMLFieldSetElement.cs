@@ -31,11 +31,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
             set
             {
@@ -43,11 +43,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Type
+        public string Type
         {
             get
             {
-                return this.GetProperty<nsAString>("type");
+                return this.GetProperty<string>("type");
             }
         }
         
@@ -75,11 +75,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ValidationMessage
+        public string ValidationMessage
         {
             get
             {
-                return this.GetProperty<nsAString>("validationMessage");
+                return this.GetProperty<string>("validationMessage");
             }
         }
         
@@ -88,7 +88,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("checkValidity");
         }
         
-        public void SetCustomValidity(nsAString error)
+        public void SetCustomValidity(string error)
         {
             this.CallVoidMethod("setCustomValidity", error);
         }

@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString IccId
+        public string IccId
         {
             get
             {
-                return this.GetProperty<nsAString>("iccId");
+                return this.GetProperty<string>("iccId");
             }
         }
     }

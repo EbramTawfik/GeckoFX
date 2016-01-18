@@ -21,24 +21,24 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise < nsISupports >>("match", request, options);
         }
         
-        public Promise <bool> Has(nsAString cacheName)
+        public Promise <bool> Has(string cacheName)
         {
             return this.CallMethod<Promise <bool>>("has", cacheName);
         }
         
-        public Promise < nsISupports > Open(nsAString cacheName)
+        public Promise < nsISupports > Open(string cacheName)
         {
             return this.CallMethod<Promise < nsISupports >>("open", cacheName);
         }
         
-        public Promise <bool> Delete(nsAString cacheName)
+        public Promise <bool> Delete(string cacheName)
         {
             return this.CallMethod<Promise <bool>>("delete", cacheName);
         }
         
-        public Promise < nsAString[] > Keys()
+        public Promise < System.String[] > Keys()
         {
-            return this.CallMethod<Promise < nsAString[] >>("keys");
+            return this.CallMethod<Promise < System.String[] >>("keys");
         }
     }
 }

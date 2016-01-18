@@ -113,11 +113,11 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("deleteRow", index);
         }
         
-        public nsAString Align
+        public string Align
         {
             get
             {
-                return this.GetProperty<nsAString>("align");
+                return this.GetProperty<string>("align");
             }
             set
             {
@@ -125,11 +125,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Border
+        public string Border
         {
             get
             {
-                return this.GetProperty<nsAString>("border");
+                return this.GetProperty<string>("border");
             }
             set
             {
@@ -137,11 +137,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Frame
+        public string Frame
         {
             get
             {
-                return this.GetProperty<nsAString>("frame");
+                return this.GetProperty<string>("frame");
             }
             set
             {
@@ -149,11 +149,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Rules
+        public string Rules
         {
             get
             {
-                return this.GetProperty<nsAString>("rules");
+                return this.GetProperty<string>("rules");
             }
             set
             {
@@ -161,11 +161,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Summary
+        public string Summary
         {
             get
             {
-                return this.GetProperty<nsAString>("summary");
+                return this.GetProperty<string>("summary");
             }
             set
             {
@@ -173,11 +173,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Width
+        public string Width
         {
             get
             {
-                return this.GetProperty<nsAString>("width");
+                return this.GetProperty<string>("width");
             }
             set
             {
@@ -185,11 +185,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString BgColor
+        public string BgColor
         {
             get
             {
-                return this.GetProperty<nsAString>("bgColor");
+                return this.GetProperty<string>("bgColor");
             }
             set
             {
@@ -197,11 +197,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString CellPadding
+        public string CellPadding
         {
             get
             {
-                return this.GetProperty<nsAString>("cellPadding");
+                return this.GetProperty<string>("cellPadding");
             }
             set
             {
@@ -209,11 +209,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString CellSpacing
+        public string CellSpacing
         {
             get
             {
-                return this.GetProperty<nsAString>("cellSpacing");
+                return this.GetProperty<string>("cellSpacing");
             }
             set
             {

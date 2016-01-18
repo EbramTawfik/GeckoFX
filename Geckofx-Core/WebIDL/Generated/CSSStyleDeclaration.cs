@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString CssText
+        public string CssText
         {
             get
             {
-                return this.GetProperty<nsAString>("cssText");
+                return this.GetProperty<string>("cssText");
             }
             set
             {
@@ -39,39 +39,39 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString GetPropertyValue(nsAString property)
+        public string GetPropertyValue(string property)
         {
-            return this.CallMethod<nsAString>("getPropertyValue", property);
+            return this.CallMethod<string>("getPropertyValue", property);
         }
         
-        public nsISupports GetPropertyCSSValue(nsAString property)
+        public nsISupports GetPropertyCSSValue(string property)
         {
             return this.CallMethod<nsISupports>("getPropertyCSSValue", property);
         }
         
-        public nsAString GetPropertyPriority(nsAString property)
+        public string GetPropertyPriority(string property)
         {
-            return this.CallMethod<nsAString>("getPropertyPriority", property);
+            return this.CallMethod<string>("getPropertyPriority", property);
         }
         
-        public void SetProperty(nsAString property, nsAString value)
+        public void SetProperty(string property, string value)
         {
             this.CallVoidMethod("setProperty", property, value);
         }
         
-        public void SetProperty(nsAString property, nsAString value, nsAString priority)
+        public void SetProperty(string property, string value, string priority)
         {
             this.CallVoidMethod("setProperty", property, value, priority);
         }
         
-        public nsAString RemoveProperty(nsAString property)
+        public string RemoveProperty(string property)
         {
-            return this.CallMethod<nsAString>("removeProperty", property);
+            return this.CallMethod<string>("removeProperty", property);
         }
         
-        public nsAString GetAuthoredPropertyValue(nsAString property)
+        public string GetAuthoredPropertyValue(string property)
         {
-            return this.CallMethod<nsAString>("getAuthoredPropertyValue", property);
+            return this.CallMethod<string>("getAuthoredPropertyValue", property);
         }
     }
 }

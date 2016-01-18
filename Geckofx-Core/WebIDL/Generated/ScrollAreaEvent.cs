@@ -43,7 +43,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void InitScrollAreaEvent(nsAString type, bool canBubble, bool cancelable, nsIDOMWindow view, int detail, float x, float y, float width, float height)
+        public void InitScrollAreaEvent(string type, bool canBubble, bool cancelable, nsIDOMWindow view, int detail, float x, float y, float width, float height)
         {
             this.CallVoidMethod("initScrollAreaEvent", type, canBubble, cancelable, view, detail, x, y, width, height);
         }

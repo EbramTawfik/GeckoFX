@@ -16,7 +16,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise < System.Object[] >>("getProviders");
         }
         
-        public Promise < nsISupports > SetActiveProvider(nsAString uuid)
+        public Promise < nsISupports > SetActiveProvider(string uuid)
         {
             return this.CallMethod<Promise < nsISupports >>("setActiveProvider", uuid);
         }

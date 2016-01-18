@@ -43,11 +43,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ValueAsString
+        public string ValueAsString
         {
             get
             {
-                return this.GetProperty<nsAString>("valueAsString");
+                return this.GetProperty<string>("valueAsString");
             }
             set
             {

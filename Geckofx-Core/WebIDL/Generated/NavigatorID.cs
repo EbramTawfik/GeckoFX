@@ -11,51 +11,51 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString AppCodeName
+        public string AppCodeName
         {
             get
             {
-                return this.GetProperty<nsAString>("appCodeName");
+                return this.GetProperty<string>("appCodeName");
             }
         }
         
-        public nsAString AppName
+        public string AppName
         {
             get
             {
-                return this.GetProperty<nsAString>("appName");
+                return this.GetProperty<string>("appName");
             }
         }
         
-        public nsAString AppVersion
+        public string AppVersion
         {
             get
             {
-                return this.GetProperty<nsAString>("appVersion");
+                return this.GetProperty<string>("appVersion");
             }
         }
         
-        public nsAString Platform
+        public string Platform
         {
             get
             {
-                return this.GetProperty<nsAString>("platform");
+                return this.GetProperty<string>("platform");
             }
         }
         
-        public nsAString UserAgent
+        public string UserAgent
         {
             get
             {
-                return this.GetProperty<nsAString>("userAgent");
+                return this.GetProperty<string>("userAgent");
             }
         }
         
-        public nsAString Product
+        public string Product
         {
             get
             {
-                return this.GetProperty<nsAString>("product");
+                return this.GetProperty<string>("product");
             }
         }
         

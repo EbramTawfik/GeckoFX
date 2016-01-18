@@ -11,19 +11,19 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
         }
         
-        public nsAString Uuid
+        public string Uuid
         {
             get
             {
-                return this.GetProperty<nsAString>("uuid");
+                return this.GetProperty<string>("uuid");
             }
         }
         
@@ -47,14 +47,14 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("applyUpdate");
         }
         
-        public bool SetParameter(nsAString name, nsAString value)
+        public bool SetParameter(string name, string value)
         {
             return this.CallMethod<bool>("setParameter", name, value);
         }
         
-        public nsAString GetParameter(nsAString name)
+        public string GetParameter(string name)
         {
-            return this.CallMethod<nsAString>("getParameter", name);
+            return this.CallMethod<string>("getParameter", name);
         }
     }
 }

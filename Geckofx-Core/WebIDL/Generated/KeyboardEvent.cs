@@ -83,23 +83,23 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Key
+        public string Key
         {
             get
             {
-                return this.GetProperty<nsAString>("key");
+                return this.GetProperty<string>("key");
             }
         }
         
-        public nsAString Code
+        public string Code
         {
             get
             {
-                return this.GetProperty<nsAString>("code");
+                return this.GetProperty<string>("code");
             }
         }
         
-        public bool GetModifierState(nsAString key)
+        public bool GetModifierState(string key)
         {
             return this.CallMethod<bool>("getModifierState", key);
         }

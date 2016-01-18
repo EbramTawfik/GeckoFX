@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Scrolling
+        public string Scrolling
         {
             get
             {
-                return this.GetProperty<nsAString>("scrolling");
+                return this.GetProperty<string>("scrolling");
             }
             set
             {
@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Src
+        public string Src
         {
             get
             {
-                return this.GetProperty<nsAString>("src");
+                return this.GetProperty<string>("src");
             }
             set
             {
@@ -47,11 +47,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString FrameBorder
+        public string FrameBorder
         {
             get
             {
-                return this.GetProperty<nsAString>("frameBorder");
+                return this.GetProperty<string>("frameBorder");
             }
             set
             {
@@ -59,11 +59,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString LongDesc
+        public string LongDesc
         {
             get
             {
-                return this.GetProperty<nsAString>("longDesc");
+                return this.GetProperty<string>("longDesc");
             }
             set
             {
@@ -99,11 +99,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString MarginHeight
+        public string MarginHeight
         {
             get
             {
-                return this.GetProperty<nsAString>("marginHeight");
+                return this.GetProperty<string>("marginHeight");
             }
             set
             {
@@ -111,11 +111,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString MarginWidth
+        public string MarginWidth
         {
             get
             {
-                return this.GetProperty<nsAString>("marginWidth");
+                return this.GetProperty<string>("marginWidth");
             }
             set
             {

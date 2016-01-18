@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString EventId
+        public string EventId
         {
             get
             {
-                return this.GetProperty<nsAString>("eventId");
+                return this.GetProperty<string>("eventId");
             }
         }
         
@@ -27,11 +27,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Title
+        public string Title
         {
             get
             {
-                return this.GetProperty<nsAString>("title");
+                return this.GetProperty<string>("title");
             }
         }
         
@@ -51,30 +51,30 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Description
+        public string Description
         {
             get
             {
-                return this.GetProperty<nsAString>("description");
+                return this.GetProperty<string>("description");
             }
         }
         
-        public nsAString Rating
+        public string Rating
         {
             get
             {
-                return this.GetProperty<nsAString>("rating");
+                return this.GetProperty<string>("rating");
             }
         }
         
-        public nsAString[] GetAudioLanguages()
+        public string[] GetAudioLanguages()
         {
-            return this.CallMethod<nsAString[]>("getAudioLanguages");
+            return this.CallMethod<string[]>("getAudioLanguages");
         }
         
-        public nsAString[] GetSubtitleLanguages()
+        public string[] GetSubtitleLanguages()
         {
-            return this.CallMethod<nsAString[]>("getSubtitleLanguages");
+            return this.CallMethod<string[]>("getSubtitleLanguages");
         }
     }
 }

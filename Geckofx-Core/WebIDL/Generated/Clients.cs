@@ -11,7 +11,7 @@ namespace Gecko.WebIDL
         {
         }
         
-        public Promise <object> Get(nsAString id)
+        public Promise <object> Get(string id)
         {
             return this.CallMethod<Promise <object>>("get", id);
         }

@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString DeviceName
+        public string DeviceName
         {
             get
             {
-                return this.GetProperty<nsAString>("deviceName");
+                return this.GetProperty<string>("deviceName");
             }
         }
         

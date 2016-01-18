@@ -11,7 +11,7 @@ namespace Gecko.WebIDL
         {
         }
         
-        public void AddColorStop(float offset, nsAString color)
+        public void AddColorStop(float offset, string color)
         {
             this.CallVoidMethod("addColorStop", offset, color);
         }

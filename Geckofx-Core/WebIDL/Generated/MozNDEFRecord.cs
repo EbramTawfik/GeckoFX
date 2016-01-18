@@ -51,9 +51,9 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString GetAsURI()
+        public string GetAsURI()
         {
-            return this.CallMethod<nsAString>("getAsURI");
+            return this.CallMethod<string>("getAsURI");
         }
     }
 }

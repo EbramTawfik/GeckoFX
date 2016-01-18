@@ -19,19 +19,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Origin
+        public string Origin
         {
             get
             {
-                return this.GetProperty<nsAString>("origin");
+                return this.GetProperty<string>("origin");
             }
         }
         
-        public nsAString LastEventId
+        public string LastEventId
         {
             get
             {
-                return this.GetProperty<nsAString>("lastEventId");
+                return this.GetProperty<string>("lastEventId");
             }
         }
         
@@ -51,7 +51,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void InitMessageEvent(nsAString type, bool bubbles, bool cancelable, object data, nsAString origin, nsAString lastEventId, WebIDLUnion<nsIDOMWindow,nsISupports> source, nsISupports[] ports)
+        public void InitMessageEvent(string type, bool bubbles, bool cancelable, object data, string origin, string lastEventId, WebIDLUnion<nsIDOMWindow,nsISupports> source, nsISupports[] ports)
         {
             this.CallVoidMethod("initMessageEvent", type, bubbles, cancelable, data, origin, lastEventId, source, ports);
         }

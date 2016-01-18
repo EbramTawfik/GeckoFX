@@ -19,7 +19,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public bool Contains(nsAString @string)
+        public bool Contains(string @string)
         {
             return this.CallMethod<bool>("contains", @string);
         }

@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Phonetic
+        public string Phonetic
         {
             get
             {
-                return this.GetProperty<nsAString>("phonetic");
+                return this.GetProperty<string>("phonetic");
             }
         }
     }

@@ -19,19 +19,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString LastMessageSubject
+        public string LastMessageSubject
         {
             get
             {
-                return this.GetProperty<nsAString>("lastMessageSubject");
+                return this.GetProperty<string>("lastMessageSubject");
             }
         }
         
-        public nsAString Body
+        public string Body
         {
             get
             {
-                return this.GetProperty<nsAString>("body");
+                return this.GetProperty<string>("body");
             }
         }
         
@@ -43,11 +43,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] Participants
+        public string[] Participants
         {
             get
             {
-                return this.GetProperty<nsAString[]>("participants");
+                return this.GetProperty<string[]>("participants");
             }
         }
         
@@ -59,11 +59,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString LastMessageType
+        public string LastMessageType
         {
             get
             {
-                return this.GetProperty<nsAString>("lastMessageType");
+                return this.GetProperty<string>("lastMessageType");
             }
         }
     }

@@ -114,7 +114,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("containsNode", node, allowPartialContainment);
         }
         
-        public void Modify(nsAString alter, nsAString direction, nsAString granularity)
+        public void Modify(string alter, string direction, string granularity)
         {
             this.CallVoidMethod("modify", alter, direction, granularity);
         }
@@ -151,9 +151,9 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ToStringWithFormat(nsAString formatType, uint flags, int wrapColumn)
+        public string ToStringWithFormat(string formatType, uint flags, int wrapColumn)
         {
-            return this.CallMethod<nsAString>("toStringWithFormat", formatType, flags, wrapColumn);
+            return this.CallMethod<string>("toStringWithFormat", formatType, flags, wrapColumn);
         }
         
         public void AddSelectionListener(nsISupports newListener)

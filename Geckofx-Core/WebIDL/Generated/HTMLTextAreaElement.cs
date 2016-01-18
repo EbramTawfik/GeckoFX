@@ -67,11 +67,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
             set
             {
@@ -79,11 +79,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Placeholder
+        public string Placeholder
         {
             get
             {
-                return this.GetProperty<nsAString>("placeholder");
+                return this.GetProperty<string>("placeholder");
             }
             set
             {
@@ -127,11 +127,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Wrap
+        public string Wrap
         {
             get
             {
-                return this.GetProperty<nsAString>("wrap");
+                return this.GetProperty<string>("wrap");
             }
             set
             {
@@ -139,19 +139,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Type
+        public string Type
         {
             get
             {
-                return this.GetProperty<nsAString>("type");
+                return this.GetProperty<string>("type");
             }
         }
         
-        public nsAString DefaultValue
+        public string DefaultValue
         {
             get
             {
-                return this.GetProperty<nsAString>("defaultValue");
+                return this.GetProperty<string>("defaultValue");
             }
             set
             {
@@ -159,11 +159,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Value
+        public string Value
         {
             get
             {
-                return this.GetProperty<nsAString>("value");
+                return this.GetProperty<string>("value");
             }
             set
             {
@@ -195,11 +195,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ValidationMessage
+        public string ValidationMessage
         {
             get
             {
-                return this.GetProperty<nsAString>("validationMessage");
+                return this.GetProperty<string>("validationMessage");
             }
         }
         
@@ -227,11 +227,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString SelectionDirection
+        public string SelectionDirection
         {
             get
             {
-                return this.GetProperty<nsAString>("selectionDirection");
+                return this.GetProperty<string>("selectionDirection");
             }
             set
             {
@@ -244,7 +244,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("checkValidity");
         }
         
-        public void SetCustomValidity(nsAString error)
+        public void SetCustomValidity(string error)
         {
             this.CallVoidMethod("setCustomValidity", error);
         }
@@ -254,17 +254,17 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("select");
         }
         
-        public void SetRangeText(nsAString replacement)
+        public void SetRangeText(string replacement)
         {
             this.CallVoidMethod("setRangeText", replacement);
         }
         
-        public void SetRangeText(nsAString replacement, uint start, uint end)
+        public void SetRangeText(string replacement, uint start, uint end)
         {
             this.CallVoidMethod("setRangeText", replacement, start, end);
         }
         
-        public void SetRangeText(nsAString replacement, uint start, uint end, SelectionMode selectionMode)
+        public void SetRangeText(string replacement, uint start, uint end, SelectionMode selectionMode)
         {
             this.CallVoidMethod("setRangeText", replacement, start, end, selectionMode);
         }
@@ -274,7 +274,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("setSelectionRange", start, end);
         }
         
-        public void SetSelectionRange(uint start, uint end, nsAString direction)
+        public void SetSelectionRange(uint start, uint end, string direction)
         {
             this.CallVoidMethod("setSelectionRange", start, end, direction);
         }
@@ -295,7 +295,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void SetUserInput(nsAString input)
+        public void SetUserInput(string input)
         {
             this.CallVoidMethod("setUserInput", input);
         }

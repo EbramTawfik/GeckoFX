@@ -43,11 +43,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Referrer
+        public string Referrer
         {
             get
             {
-                return this.GetProperty<nsAString>("referrer");
+                return this.GetProperty<string>("referrer");
             }
         }
         

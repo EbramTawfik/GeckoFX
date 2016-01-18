@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString GlyphRef
+        public string GlyphRef
         {
             get
             {
-                return this.GetProperty<nsAString>("glyphRef");
+                return this.GetProperty<string>("glyphRef");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Format
+        public string Format
         {
             get
             {
-                return this.GetProperty<nsAString>("format");
+                return this.GetProperty<string>("format");
             }
             set
             {

@@ -27,27 +27,27 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ManifestURL
+        public string ManifestURL
         {
             get
             {
-                return this.GetProperty<nsAString>("manifestURL");
+                return this.GetProperty<string>("manifestURL");
             }
         }
         
-        public nsAString Origin
+        public string Origin
         {
             get
             {
-                return this.GetProperty<nsAString>("origin");
+                return this.GetProperty<string>("origin");
             }
         }
         
-        public nsAString InstallOrigin
+        public string InstallOrigin
         {
             get
             {
-                return this.GetProperty<nsAString>("installOrigin");
+                return this.GetProperty<string>("installOrigin");
             }
         }
         
@@ -75,11 +75,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] Receipts
+        public string[] Receipts
         {
             get
             {
-                return this.GetProperty<nsAString[]>("receipts");
+                return this.GetProperty<string[]>("receipts");
             }
         }
         
@@ -91,11 +91,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString InstallState
+        public string InstallState
         {
             get
             {
-                return this.GetProperty<nsAString>("installState");
+                return this.GetProperty<string>("installState");
             }
         }
         
@@ -170,7 +170,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("launch");
         }
         
-        public nsISupports Launch(nsAString url)
+        public nsISupports Launch(string url)
         {
             return this.CallMethod<nsISupports>("launch", url);
         }
@@ -185,12 +185,12 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("checkForUpdate");
         }
         
-        public Promise < nsISupports > Connect(nsAString keyword)
+        public Promise < nsISupports > Connect(string keyword)
         {
             return this.CallMethod<Promise < nsISupports >>("connect", keyword);
         }
         
-        public Promise < nsISupports > Connect(nsAString keyword, object rules)
+        public Promise < nsISupports > Connect(string keyword, object rules)
         {
             return this.CallMethod<Promise < nsISupports >>("connect", keyword, rules);
         }
@@ -205,7 +205,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("addReceipt");
         }
         
-        public nsISupports AddReceipt(nsAString receipt)
+        public nsISupports AddReceipt(string receipt)
         {
             return this.CallMethod<nsISupports>("addReceipt", receipt);
         }
@@ -215,7 +215,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("removeReceipt");
         }
         
-        public nsISupports RemoveReceipt(nsAString receipt)
+        public nsISupports RemoveReceipt(string receipt)
         {
             return this.CallMethod<nsISupports>("removeReceipt", receipt);
         }
@@ -225,12 +225,12 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("replaceReceipt");
         }
         
-        public nsISupports ReplaceReceipt(nsAString oldReceipt)
+        public nsISupports ReplaceReceipt(string oldReceipt)
         {
             return this.CallMethod<nsISupports>("replaceReceipt", oldReceipt);
         }
         
-        public nsISupports ReplaceReceipt(nsAString oldReceipt, nsAString newReceipt)
+        public nsISupports ReplaceReceipt(string oldReceipt, string newReceipt)
         {
             return this.CallMethod<nsISupports>("replaceReceipt", oldReceipt, newReceipt);
         }
@@ -240,14 +240,14 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise < nsIDOMBlob >>("export");
         }
         
-        public Promise < nsAString > GetLocalizedValue(nsAString property, nsAString locale)
+        public Promise <string> GetLocalizedValue(string property, string locale)
         {
-            return this.CallMethod<Promise < nsAString >>("getLocalizedValue", property, locale);
+            return this.CallMethod<Promise <string>>("getLocalizedValue", property, locale);
         }
         
-        public Promise < nsAString > GetLocalizedValue(nsAString property, nsAString locale, nsAString entryPoint)
+        public Promise <string> GetLocalizedValue(string property, string locale, string entryPoint)
         {
-            return this.CallMethod<Promise < nsAString >>("getLocalizedValue", property, locale, entryPoint);
+            return this.CallMethod<Promise <string>>("getLocalizedValue", property, locale, entryPoint);
         }
     }
 }

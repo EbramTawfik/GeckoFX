@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Uuid
+        public string Uuid
         {
             get
             {
-                return this.GetProperty<nsAString>("uuid");
+                return this.GetProperty<string>("uuid");
             }
         }
         
@@ -51,7 +51,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public Promise < nsISupports > AddCharacteristic(nsAString uuid, object permissions, object properties, IntPtr value)
+        public Promise < nsISupports > AddCharacteristic(string uuid, object permissions, object properties, IntPtr value)
         {
             return this.CallMethod<Promise < nsISupports >>("addCharacteristic", uuid, permissions, properties, value);
         }

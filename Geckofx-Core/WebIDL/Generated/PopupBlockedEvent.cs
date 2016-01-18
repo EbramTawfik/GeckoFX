@@ -27,19 +27,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString PopupWindowName
+        public string PopupWindowName
         {
             get
             {
-                return this.GetProperty<nsAString>("popupWindowName");
+                return this.GetProperty<string>("popupWindowName");
             }
         }
         
-        public nsAString PopupWindowFeatures
+        public string PopupWindowFeatures
         {
             get
             {
-                return this.GetProperty<nsAString>("popupWindowFeatures");
+                return this.GetProperty<string>("popupWindowFeatures");
             }
         }
     }

@@ -27,7 +27,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void InitUIEvent(nsAString aType, bool aCanBubble, bool aCancelable, nsIDOMWindow aView, int aDetail)
+        public void InitUIEvent(string aType, bool aCanBubble, bool aCancelable, nsIDOMWindow aView, int aDetail)
         {
             this.CallVoidMethod("initUIEvent", aType, aCanBubble, aCancelable, aView, aDetail);
         }

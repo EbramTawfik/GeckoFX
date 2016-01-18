@@ -89,9 +89,9 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("removeWakeLockListener", aListener);
         }
         
-        public nsAString GetWakeLockState(nsAString aTopic)
+        public string GetWakeLockState(string aTopic)
         {
-            return this.CallMethod<nsAString>("getWakeLockState", aTopic);
+            return this.CallMethod<string>("getWakeLockState", aTopic);
         }
     }
 }

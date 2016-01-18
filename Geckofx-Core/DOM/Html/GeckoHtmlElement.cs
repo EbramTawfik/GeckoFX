@@ -75,13 +75,9 @@ namespace Gecko
 			{
 				nsIDOMCSSStyleDeclaration style;
 				using (var element = new ComPtr<nsIDOMElement>(Xpcom.QueryInterface<nsIDOMElement>(this.DomObject)))
-				{
-					using (var nullString = new nsAString())
-					{
-						nullString.SetData(null);
-                        var window = new WebIDL.Window(OwnerDocument.DefaultView.DomWindow, (nsISupports)OwnerDocument.DefaultView.DomWindow);
-                        style = window.GetComputedStyle(element.Instance, nullString);
-					}
+				{									
+                    var window = new WebIDL.Window(OwnerDocument.DefaultView.DomWindow, (nsISupports)OwnerDocument.DefaultView.DomWindow);
+                    style = window.GetComputedStyle(element.Instance);
 				}
 				return GeckoStyle.Create(style);
 			}

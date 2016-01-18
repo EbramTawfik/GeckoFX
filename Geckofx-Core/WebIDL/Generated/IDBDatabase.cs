@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
         }
         
@@ -35,27 +35,27 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports CreateObjectStore(nsAString name)
+        public nsISupports CreateObjectStore(string name)
         {
             return this.CallMethod<nsISupports>("createObjectStore", name);
         }
         
-        public nsISupports CreateObjectStore(nsAString name, object optionalParameters)
+        public nsISupports CreateObjectStore(string name, object optionalParameters)
         {
             return this.CallMethod<nsISupports>("createObjectStore", name, optionalParameters);
         }
         
-        public void DeleteObjectStore(nsAString name)
+        public void DeleteObjectStore(string name)
         {
             this.CallVoidMethod("deleteObjectStore", name);
         }
         
-        public nsISupports Transaction(WebIDLUnion<nsAString,nsAString[]> storeNames)
+        public nsISupports Transaction(WebIDLUnion<System.String,System.String[]> storeNames)
         {
             return this.CallMethod<nsISupports>("transaction", storeNames);
         }
         
-        public nsISupports Transaction(WebIDLUnion<nsAString,nsAString[]> storeNames, IDBTransactionMode mode)
+        public nsISupports Transaction(WebIDLUnion<System.String,System.String[]> storeNames, IDBTransactionMode mode)
         {
             return this.CallMethod<nsISupports>("transaction", storeNames, mode);
         }
@@ -73,22 +73,22 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports CreateMutableFile(nsAString name)
+        public nsISupports CreateMutableFile(string name)
         {
             return this.CallMethod<nsISupports>("createMutableFile", name);
         }
         
-        public nsISupports CreateMutableFile(nsAString name, nsAString type)
+        public nsISupports CreateMutableFile(string name, string type)
         {
             return this.CallMethod<nsISupports>("createMutableFile", name, type);
         }
         
-        public nsISupports MozCreateFileHandle(nsAString name)
+        public nsISupports MozCreateFileHandle(string name)
         {
             return this.CallMethod<nsISupports>("mozCreateFileHandle", name);
         }
         
-        public nsISupports MozCreateFileHandle(nsAString name, nsAString type)
+        public nsISupports MozCreateFileHandle(string name, string type)
         {
             return this.CallMethod<nsISupports>("mozCreateFileHandle", name, type);
         }

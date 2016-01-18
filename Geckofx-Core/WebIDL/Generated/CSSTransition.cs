@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString TransitionProperty
+        public string TransitionProperty
         {
             get
             {
-                return this.GetProperty<nsAString>("transitionProperty");
+                return this.GetProperty<string>("transitionProperty");
             }
         }
     }

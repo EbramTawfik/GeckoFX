@@ -111,7 +111,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("compressedTexSubImage3D", target, level, xoffset, yoffset, zoffset, width, height, depth, format, data);
         }
         
-        public Int32 GetFragDataLocation(nsISupports program, nsAString name)
+        public Int32 GetFragDataLocation(nsISupports program, string name)
         {
             return this.CallMethod<Int32>("getFragDataLocation", program, name);
         }
@@ -451,7 +451,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("endTransformFeedback");
         }
         
-        public void TransformFeedbackVaryings(nsISupports program, nsAString[] varyings, UInt32 bufferMode)
+        public void TransformFeedbackVaryings(nsISupports program, string[] varyings, UInt32 bufferMode)
         {
             this.CallVoidMethod("transformFeedbackVaryings", program, varyings, bufferMode);
         }
@@ -486,7 +486,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<WebIDLUnion<nsISupports,Int64>>("getIndexedParameter", target, index);
         }
         
-        public UInt32[] GetUniformIndices(nsISupports program, nsAString[] uniformNames)
+        public UInt32[] GetUniformIndices(nsISupports program, string[] uniformNames)
         {
             return this.CallMethod<UInt32[]>("getUniformIndices", program, uniformNames);
         }
@@ -496,7 +496,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<Int32[]>("getActiveUniforms", program, uniformIndices, pname);
         }
         
-        public UInt32 GetUniformBlockIndex(nsISupports program, nsAString uniformBlockName)
+        public UInt32 GetUniformBlockIndex(nsISupports program, string uniformBlockName)
         {
             return this.CallMethod<UInt32>("getUniformBlockIndex", program, uniformBlockName);
         }
@@ -506,9 +506,9 @@ namespace Gecko.WebIDL
             return this.CallMethod<WebIDLUnion<UInt32,IntPtr,Boolean>>("getActiveUniformBlockParameter", program, uniformBlockIndex, pname);
         }
         
-        public nsAString GetActiveUniformBlockName(nsISupports program, UInt32 uniformBlockIndex)
+        public string GetActiveUniformBlockName(nsISupports program, UInt32 uniformBlockIndex)
         {
-            return this.CallMethod<nsAString>("getActiveUniformBlockName", program, uniformBlockIndex);
+            return this.CallMethod<string>("getActiveUniformBlockName", program, uniformBlockIndex);
         }
         
         public void UniformBlockBinding(nsISupports program, UInt32 uniformBlockIndex, UInt32 uniformBlockBinding)

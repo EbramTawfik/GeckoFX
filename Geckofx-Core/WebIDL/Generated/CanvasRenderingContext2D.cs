@@ -31,11 +31,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString GlobalCompositeOperation
+        public string GlobalCompositeOperation
         {
             get
             {
-                return this.GetProperty<nsAString>("globalCompositeOperation");
+                return this.GetProperty<string>("globalCompositeOperation");
             }
             set
             {
@@ -43,11 +43,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public WebIDLUnion<nsAString,nsISupports,nsISupports> StrokeStyle
+        public WebIDLUnion<System.String,nsISupports,nsISupports> StrokeStyle
         {
             get
             {
-                return this.GetProperty<WebIDLUnion<nsAString,nsISupports,nsISupports>>("strokeStyle");
+                return this.GetProperty<WebIDLUnion<System.String,nsISupports,nsISupports>>("strokeStyle");
             }
             set
             {
@@ -55,11 +55,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public WebIDLUnion<nsAString,nsISupports,nsISupports> FillStyle
+        public WebIDLUnion<System.String,nsISupports,nsISupports> FillStyle
         {
             get
             {
-                return this.GetProperty<WebIDLUnion<nsAString,nsISupports,nsISupports>>("fillStyle");
+                return this.GetProperty<WebIDLUnion<System.String,nsISupports,nsISupports>>("fillStyle");
             }
             set
             {
@@ -103,11 +103,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ShadowColor
+        public string ShadowColor
         {
             get
             {
-                return this.GetProperty<nsAString>("shadowColor");
+                return this.GetProperty<string>("shadowColor");
             }
             set
             {
@@ -115,11 +115,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Filter
+        public string Filter
         {
             get
             {
-                return this.GetProperty<nsAString>("filter");
+                return this.GetProperty<string>("filter");
             }
             set
             {
@@ -151,11 +151,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString MozFillRule
+        public string MozFillRule
         {
             get
             {
-                return this.GetProperty<nsAString>("mozFillRule");
+                return this.GetProperty<string>("mozFillRule");
             }
             set
             {
@@ -187,11 +187,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString MozTextStyle
+        public string MozTextStyle
         {
             get
             {
-                return this.GetProperty<nsAString>("mozTextStyle");
+                return this.GetProperty<string>("mozTextStyle");
             }
             set
             {
@@ -261,7 +261,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("createRadialGradient", x0, y0, r0, x1, y1, r1);
         }
         
-        public nsISupports CreatePattern(WebIDLUnion<nsIDOMHTMLImageElement,nsIDOMHTMLCanvasElement,nsISupports,nsISupports> image, nsAString repetition)
+        public nsISupports CreatePattern(WebIDLUnion<nsIDOMHTMLImageElement,nsIDOMHTMLCanvasElement,nsISupports,nsISupports> image, string repetition)
         {
             return this.CallMethod<nsISupports>("createPattern", image, repetition);
         }
@@ -376,27 +376,27 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("isPointInStroke", path, x, y);
         }
         
-        public void FillText(nsAString text, double x, double y)
+        public void FillText(string text, double x, double y)
         {
             this.CallVoidMethod("fillText", text, x, y);
         }
         
-        public void FillText(nsAString text, double x, double y, double maxWidth)
+        public void FillText(string text, double x, double y, double maxWidth)
         {
             this.CallVoidMethod("fillText", text, x, y, maxWidth);
         }
         
-        public void StrokeText(nsAString text, double x, double y)
+        public void StrokeText(string text, double x, double y)
         {
             this.CallVoidMethod("strokeText", text, x, y);
         }
         
-        public void StrokeText(nsAString text, double x, double y, double maxWidth)
+        public void StrokeText(string text, double x, double y, double maxWidth)
         {
             this.CallVoidMethod("strokeText", text, x, y, maxWidth);
         }
         
-        public nsISupports MeasureText(nsAString text)
+        public nsISupports MeasureText(string text)
         {
             return this.CallMethod<nsISupports>("measureText", text);
         }
@@ -426,7 +426,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("addHitRegion", options);
         }
         
-        public void RemoveHitRegion(nsAString id)
+        public void RemoveHitRegion(string id)
         {
             this.CallVoidMethod("removeHitRegion", id);
         }
@@ -461,22 +461,22 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("putImageData", imagedata, dx, dy, dirtyX, dirtyY, dirtyWidth, dirtyHeight);
         }
         
-        public void DrawWindow(nsIDOMWindow window, double x, double y, double w, double h, nsAString bgColor)
+        public void DrawWindow(nsIDOMWindow window, double x, double y, double w, double h, string bgColor)
         {
             this.CallVoidMethod("drawWindow", window, x, y, w, h, bgColor);
         }
         
-        public void DrawWindow(nsIDOMWindow window, double x, double y, double w, double h, nsAString bgColor, uint flags)
+        public void DrawWindow(nsIDOMWindow window, double x, double y, double w, double h, string bgColor, uint flags)
         {
             this.CallVoidMethod("drawWindow", window, x, y, w, h, bgColor, flags);
         }
         
-        public void AsyncDrawXULElement(nsISupports elem, double x, double y, double w, double h, nsAString bgColor)
+        public void AsyncDrawXULElement(nsISupports elem, double x, double y, double w, double h, string bgColor)
         {
             this.CallVoidMethod("asyncDrawXULElement", elem, x, y, w, h, bgColor);
         }
         
-        public void AsyncDrawXULElement(nsISupports elem, double x, double y, double w, double h, nsAString bgColor, uint flags)
+        public void AsyncDrawXULElement(nsISupports elem, double x, double y, double w, double h, string bgColor, uint flags)
         {
             this.CallVoidMethod("asyncDrawXULElement", elem, x, y, w, h, bgColor, flags);
         }

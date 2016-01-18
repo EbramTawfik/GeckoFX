@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Title
+        public string Title
         {
             get
             {
-                return this.GetProperty<nsAString>("title");
+                return this.GetProperty<string>("title");
             }
         }
         
@@ -39,35 +39,35 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Lang
+        public string Lang
         {
             get
             {
-                return this.GetProperty<nsAString>("lang");
+                return this.GetProperty<string>("lang");
             }
         }
         
-        public nsAString Body
+        public string Body
         {
             get
             {
-                return this.GetProperty<nsAString>("body");
+                return this.GetProperty<string>("body");
             }
         }
         
-        public nsAString Tag
+        public string Tag
         {
             get
             {
-                return this.GetProperty<nsAString>("tag");
+                return this.GetProperty<string>("tag");
             }
         }
         
-        public nsAString Icon
+        public string Icon
         {
             get
             {
-                return this.GetProperty<nsAString>("icon");
+                return this.GetProperty<string>("icon");
             }
         }
         

@@ -20,7 +20,7 @@ namespace Gecko.WebIDL
         }
         
         public void InitDragEvent(
-                    nsAString type, 
+                    string type, 
                     bool canBubble, 
                     bool cancelable, 
                     nsIDOMWindow aView, 

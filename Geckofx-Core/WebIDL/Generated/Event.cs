@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Type
+        public string Type
         {
             get
             {
-                return this.GetProperty<nsAString>("type");
+                return this.GetProperty<string>("type");
             }
         }
         
@@ -98,7 +98,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("preventDefault");
         }
         
-        public void InitEvent(nsAString type, bool bubbles, bool cancelable)
+        public void InitEvent(string type, bool bubbles, bool cancelable)
         {
             this.CallVoidMethod("initEvent", type, bubbles, cancelable);
         }

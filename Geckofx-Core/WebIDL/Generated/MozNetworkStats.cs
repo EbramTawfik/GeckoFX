@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString AppManifestURL
+        public string AppManifestURL
         {
             get
             {
-                return this.GetProperty<nsAString>("appManifestURL");
+                return this.GetProperty<string>("appManifestURL");
             }
         }
         
@@ -27,11 +27,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ServiceType
+        public string ServiceType
         {
             get
             {
-                return this.GetProperty<nsAString>("serviceType");
+                return this.GetProperty<string>("serviceType");
             }
         }
         

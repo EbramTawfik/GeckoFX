@@ -11,35 +11,35 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Id
+        public string Id
         {
             get
             {
-                return this.GetProperty<nsAString>("id");
+                return this.GetProperty<string>("id");
             }
         }
         
-        public nsAString Kind
+        public string Kind
         {
             get
             {
-                return this.GetProperty<nsAString>("kind");
+                return this.GetProperty<string>("kind");
             }
         }
         
-        public nsAString Label
+        public string Label
         {
             get
             {
-                return this.GetProperty<nsAString>("label");
+                return this.GetProperty<string>("label");
             }
         }
         
-        public nsAString Language
+        public string Language
         {
             get
             {
-                return this.GetProperty<nsAString>("language");
+                return this.GetProperty<string>("language");
             }
         }
         

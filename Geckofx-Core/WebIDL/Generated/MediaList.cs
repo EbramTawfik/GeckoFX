@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString MediaText
+        public string MediaText
         {
             get
             {
-                return this.GetProperty<nsAString>("mediaText");
+                return this.GetProperty<string>("mediaText");
             }
             set
             {
@@ -31,12 +31,12 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void DeleteMedium(nsAString oldMedium)
+        public void DeleteMedium(string oldMedium)
         {
             this.CallVoidMethod("deleteMedium", oldMedium);
         }
         
-        public void AppendMedium(nsAString newMedium)
+        public void AppendMedium(string newMedium)
         {
             this.CallVoidMethod("appendMedium", newMedium);
         }

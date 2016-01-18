@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString PaymentServiceId
+        public string PaymentServiceId
         {
             get
             {
-                return this.GetProperty<nsAString>("paymentServiceId");
+                return this.GetProperty<string>("paymentServiceId");
             }
         }
         
@@ -32,7 +32,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("paymentSuccess");
         }
         
-        public void PaymentSuccess(nsAString result)
+        public void PaymentSuccess(string result)
         {
             this.CallVoidMethod("paymentSuccess", result);
         }
@@ -42,12 +42,12 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("paymentFailed");
         }
         
-        public void PaymentFailed(nsAString error)
+        public void PaymentFailed(string error)
         {
             this.CallVoidMethod("paymentFailed", error);
         }
         
-        public nsISupports SendSilentSms(nsAString number, nsAString message)
+        public nsISupports SendSilentSms(string number, string message)
         {
             return this.CallMethod<nsISupports>("sendSilentSms", number, message);
         }

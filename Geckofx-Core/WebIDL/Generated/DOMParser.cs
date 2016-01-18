@@ -11,7 +11,7 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsIDOMDocument ParseFromString(nsAString str, SupportedType type)
+        public nsIDOMDocument ParseFromString(string str, SupportedType type)
         {
             return this.CallMethod<nsIDOMDocument>("parseFromString", str, type);
         }
@@ -26,7 +26,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsIDOMDocument>("parseFromBuffer", buf, bufLen, type);
         }
         
-        public nsIDOMDocument ParseFromStream(nsISupports stream, nsAString charset, int contentLength, SupportedType type)
+        public nsIDOMDocument ParseFromStream(nsISupports stream, string charset, int contentLength, SupportedType type)
         {
             return this.CallMethod<nsIDOMDocument>("parseFromStream", stream, charset, contentLength, type);
         }

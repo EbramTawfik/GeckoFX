@@ -11,7 +11,7 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsISupports CreateExpression(nsAString expression, nsISupports resolver)
+        public nsISupports CreateExpression(string expression, nsISupports resolver)
         {
             return this.CallMethod<nsISupports>("createExpression", expression, resolver);
         }
@@ -21,7 +21,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsIDOMNode>("createNSResolver", nodeResolver);
         }
         
-        public nsISupports Evaluate(nsAString expression, nsIDOMNode contextNode, nsISupports resolver, ushort type, object result)
+        public nsISupports Evaluate(string expression, nsIDOMNode contextNode, nsISupports resolver, ushort type, object result)
         {
             return this.CallMethod<nsISupports>("evaluate", expression, contextNode, resolver, type, result);
         }

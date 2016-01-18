@@ -11,23 +11,23 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString OldURL
+        public string OldURL
         {
             get
             {
-                return this.GetProperty<nsAString>("oldURL");
+                return this.GetProperty<string>("oldURL");
             }
         }
         
-        public nsAString NewURL
+        public string NewURL
         {
             get
             {
-                return this.GetProperty<nsAString>("newURL");
+                return this.GetProperty<string>("newURL");
             }
         }
         
-        public void InitHashChangeEvent(nsAString typeArg, bool canBubbleArg, bool cancelableArg, nsAString oldURLArg, nsAString newURLArg)
+        public void InitHashChangeEvent(string typeArg, bool canBubbleArg, bool cancelableArg, string oldURLArg, string newURLArg)
         {
             this.CallVoidMethod("initHashChangeEvent", typeArg, canBubbleArg, cancelableArg, oldURLArg, newURLArg);
         }

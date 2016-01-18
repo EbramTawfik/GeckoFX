@@ -48,7 +48,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise < nsISupports[] >>("getChannels");
         }
         
-        public Promise SetCurrentChannel(nsAString channelNumber)
+        public Promise SetCurrentChannel(string channelNumber)
         {
             return this.CallMethod<Promise>("setCurrentChannel", channelNumber);
         }

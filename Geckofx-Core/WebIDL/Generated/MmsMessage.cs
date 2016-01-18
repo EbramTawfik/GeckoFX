@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Type
+        public string Type
         {
             get
             {
-                return this.GetProperty<nsAString>("type");
+                return this.GetProperty<string>("type");
             }
         }
         
@@ -35,19 +35,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString IccId
+        public string IccId
         {
             get
             {
-                return this.GetProperty<nsAString>("iccId");
+                return this.GetProperty<string>("iccId");
             }
         }
         
-        public nsAString Delivery
+        public string Delivery
         {
             get
             {
-                return this.GetProperty<nsAString>("delivery");
+                return this.GetProperty<string>("delivery");
             }
         }
         
@@ -59,19 +59,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Sender
+        public string Sender
         {
             get
             {
-                return this.GetProperty<nsAString>("sender");
+                return this.GetProperty<string>("sender");
             }
         }
         
-        public nsAString[] Receivers
+        public string[] Receivers
         {
             get
             {
-                return this.GetProperty<nsAString[]>("receivers");
+                return this.GetProperty<string[]>("receivers");
             }
         }
         
@@ -99,19 +99,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Subject
+        public string Subject
         {
             get
             {
-                return this.GetProperty<nsAString>("subject");
+                return this.GetProperty<string>("subject");
             }
         }
         
-        public nsAString Smil
+        public string Smil
         {
             get
             {
-                return this.GetProperty<nsAString>("smil");
+                return this.GetProperty<string>("smil");
             }
         }
         

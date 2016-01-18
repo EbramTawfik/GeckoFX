@@ -83,11 +83,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Scroll
+        public string Scroll
         {
             get
             {
-                return this.GetProperty<nsAString>("scroll");
+                return this.GetProperty<string>("scroll");
             }
             set
             {

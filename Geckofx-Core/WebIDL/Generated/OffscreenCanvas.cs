@@ -35,12 +35,12 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports GetContext(nsAString contextId)
+        public nsISupports GetContext(string contextId)
         {
             return this.CallMethod<nsISupports>("getContext", contextId);
         }
         
-        public nsISupports GetContext(nsAString contextId, object contextOptions)
+        public nsISupports GetContext(string contextId, object contextOptions)
         {
             return this.CallMethod<nsISupports>("getContext", contextId, contextOptions);
         }

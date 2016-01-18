@@ -11,12 +11,12 @@ namespace Gecko.WebIDL
         {
         }
         
-        public Promise ShowNotification(nsAString title)
+        public Promise ShowNotification(string title)
         {
             return this.CallMethod<Promise>("showNotification", title);
         }
         
-        public Promise ShowNotification(nsAString title, object options)
+        public Promise ShowNotification(string title, object options)
         {
             return this.CallMethod<Promise>("showNotification", title, options);
         }

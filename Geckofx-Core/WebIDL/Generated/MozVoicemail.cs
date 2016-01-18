@@ -21,24 +21,24 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getStatus", serviceId);
         }
         
-        public nsAString GetNumber()
+        public string GetNumber()
         {
-            return this.CallMethod<nsAString>("getNumber");
+            return this.CallMethod<string>("getNumber");
         }
         
-        public nsAString GetNumber(uint serviceId)
+        public string GetNumber(uint serviceId)
         {
-            return this.CallMethod<nsAString>("getNumber", serviceId);
+            return this.CallMethod<string>("getNumber", serviceId);
         }
         
-        public nsAString GetDisplayName()
+        public string GetDisplayName()
         {
-            return this.CallMethod<nsAString>("getDisplayName");
+            return this.CallMethod<string>("getDisplayName");
         }
         
-        public nsAString GetDisplayName(uint serviceId)
+        public string GetDisplayName(uint serviceId)
         {
-            return this.CallMethod<nsAString>("getDisplayName", serviceId);
+            return this.CallMethod<string>("getDisplayName", serviceId);
         }
     }
 }

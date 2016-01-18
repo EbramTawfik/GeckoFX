@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Alt
+        public string Alt
         {
             get
             {
-                return this.GetProperty<nsAString>("alt");
+                return this.GetProperty<string>("alt");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Src
+        public string Src
         {
             get
             {
-                return this.GetProperty<nsAString>("src");
+                return this.GetProperty<string>("src");
             }
             set
             {
@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Srcset
+        public string Srcset
         {
             get
             {
-                return this.GetProperty<nsAString>("srcset");
+                return this.GetProperty<string>("srcset");
             }
             set
             {
@@ -47,11 +47,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString CrossOrigin
+        public string CrossOrigin
         {
             get
             {
-                return this.GetProperty<nsAString>("crossOrigin");
+                return this.GetProperty<string>("crossOrigin");
             }
             set
             {
@@ -59,11 +59,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString UseMap
+        public string UseMap
         {
             get
             {
-                return this.GetProperty<nsAString>("useMap");
+                return this.GetProperty<string>("useMap");
             }
             set
             {
@@ -71,11 +71,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ReferrerPolicy
+        public string ReferrerPolicy
         {
             get
             {
-                return this.GetProperty<nsAString>("referrerPolicy");
+                return this.GetProperty<string>("referrerPolicy");
             }
             set
             {
@@ -143,11 +143,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
             set
             {
@@ -155,11 +155,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Align
+        public string Align
         {
             get
             {
-                return this.GetProperty<nsAString>("align");
+                return this.GetProperty<string>("align");
             }
             set
             {
@@ -191,11 +191,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString LongDesc
+        public string LongDesc
         {
             get
             {
-                return this.GetProperty<nsAString>("longDesc");
+                return this.GetProperty<string>("longDesc");
             }
             set
             {
@@ -203,11 +203,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Border
+        public string Border
         {
             get
             {
-                return this.GetProperty<nsAString>("border");
+                return this.GetProperty<string>("border");
             }
             set
             {
@@ -215,11 +215,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Sizes
+        public string Sizes
         {
             get
             {
-                return this.GetProperty<nsAString>("sizes");
+                return this.GetProperty<string>("sizes");
             }
             set
             {
@@ -227,19 +227,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString CurrentSrc
+        public string CurrentSrc
         {
             get
             {
-                return this.GetProperty<nsAString>("currentSrc");
+                return this.GetProperty<string>("currentSrc");
             }
         }
         
-        public nsAString Lowsrc
+        public string Lowsrc
         {
             get
             {
-                return this.GetProperty<nsAString>("lowsrc");
+                return this.GetProperty<string>("lowsrc");
             }
             set
             {

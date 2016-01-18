@@ -11,27 +11,27 @@ namespace Gecko.WebIDL
         {
         }
         
-        public void AddEventListener(nsAString type, nsISupports listener)
+        public void AddEventListener(string type, nsISupports listener)
         {
             this.CallVoidMethod("addEventListener", type, listener);
         }
         
-        public void AddEventListener(nsAString type, nsISupports listener, bool capture)
+        public void AddEventListener(string type, nsISupports listener, bool capture)
         {
             this.CallVoidMethod("addEventListener", type, listener, capture);
         }
         
-        public void AddEventListener(nsAString type, nsISupports listener, bool capture, System.Nullable<bool> wantsUntrusted)
+        public void AddEventListener(string type, nsISupports listener, bool capture, System.Nullable<bool> wantsUntrusted)
         {
             this.CallVoidMethod("addEventListener", type, listener, capture, wantsUntrusted);
         }
         
-        public void RemoveEventListener(nsAString type, nsISupports listener)
+        public void RemoveEventListener(string type, nsISupports listener)
         {
             this.CallVoidMethod("removeEventListener", type, listener);
         }
         
-        public void RemoveEventListener(nsAString type, nsISupports listener, bool capture)
+        public void RemoveEventListener(string type, nsISupports listener, bool capture)
         {
             this.CallVoidMethod("removeEventListener", type, listener, capture);
         }

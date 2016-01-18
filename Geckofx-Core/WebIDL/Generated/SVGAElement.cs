@@ -19,11 +19,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Download
+        public string Download
         {
             get
             {
-                return this.GetProperty<nsAString>("download");
+                return this.GetProperty<string>("download");
             }
             set
             {

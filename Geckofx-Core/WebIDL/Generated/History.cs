@@ -47,22 +47,22 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("forward");
         }
         
-        public void PushState(object data, nsAString title)
+        public void PushState(object data, string title)
         {
             this.CallVoidMethod("pushState", data, title);
         }
         
-        public void PushState(object data, nsAString title, nsAString url)
+        public void PushState(object data, string title, string url)
         {
             this.CallVoidMethod("pushState", data, title, url);
         }
         
-        public void ReplaceState(object data, nsAString title)
+        public void ReplaceState(object data, string title)
         {
             this.CallVoidMethod("replaceState", data, title);
         }
         
-        public void ReplaceState(object data, nsAString title, nsAString url)
+        public void ReplaceState(object data, string title, string url)
         {
             this.CallVoidMethod("replaceState", data, title, url);
         }

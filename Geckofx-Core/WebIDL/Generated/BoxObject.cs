@@ -107,27 +107,27 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports GetPropertyAsSupports(nsAString propertyName)
+        public nsISupports GetPropertyAsSupports(string propertyName)
         {
             return this.CallMethod<nsISupports>("getPropertyAsSupports", propertyName);
         }
         
-        public void SetPropertyAsSupports(nsAString propertyName, nsISupports value)
+        public void SetPropertyAsSupports(string propertyName, nsISupports value)
         {
             this.CallVoidMethod("setPropertyAsSupports", propertyName, value);
         }
         
-        public nsAString GetProperty(nsAString propertyName)
+        public string GetProperty(string propertyName)
         {
-            return this.CallMethod<nsAString>("getProperty", propertyName);
+            return this.CallMethod<string>("getProperty", propertyName);
         }
         
-        public void SetProperty(nsAString propertyName, nsAString propertyValue)
+        public void SetProperty(string propertyName, string propertyValue)
         {
             this.CallVoidMethod("setProperty", propertyName, propertyValue);
         }
         
-        public void RemoveProperty(nsAString propertyName)
+        public void RemoveProperty(string propertyName)
         {
             this.CallVoidMethod("removeProperty", propertyName);
         }

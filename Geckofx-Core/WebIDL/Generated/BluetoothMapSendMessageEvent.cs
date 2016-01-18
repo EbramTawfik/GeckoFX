@@ -11,19 +11,19 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Recipient
+        public string Recipient
         {
             get
             {
-                return this.GetProperty<nsAString>("recipient");
+                return this.GetProperty<string>("recipient");
             }
         }
         
-        public nsAString MessageBody
+        public string MessageBody
         {
             get
             {
-                return this.GetProperty<nsAString>("messageBody");
+                return this.GetProperty<string>("messageBody");
             }
         }
         

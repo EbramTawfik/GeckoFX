@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Src
+        public string Src
         {
             get
             {
-                return this.GetProperty<nsAString>("src");
+                return this.GetProperty<string>("src");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Type
+        public string Type
         {
             get
             {
-                return this.GetProperty<nsAString>("type");
+                return this.GetProperty<string>("type");
             }
             set
             {
@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Srcset
+        public string Srcset
         {
             get
             {
-                return this.GetProperty<nsAString>("srcset");
+                return this.GetProperty<string>("srcset");
             }
             set
             {
@@ -47,11 +47,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Sizes
+        public string Sizes
         {
             get
             {
-                return this.GetProperty<nsAString>("sizes");
+                return this.GetProperty<string>("sizes");
             }
             set
             {
@@ -59,11 +59,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Media
+        public string Media
         {
             get
             {
-                return this.GetProperty<nsAString>("media");
+                return this.GetProperty<string>("media");
             }
             set
             {

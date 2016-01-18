@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Type
+        public string Type
         {
             get
             {
-                return this.GetProperty<nsAString>("type");
+                return this.GetProperty<string>("type");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString CrossOrigin
+        public string CrossOrigin
         {
             get
             {
-                return this.GetProperty<nsAString>("crossOrigin");
+                return this.GetProperty<string>("crossOrigin");
             }
             set
             {

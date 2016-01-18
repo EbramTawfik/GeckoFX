@@ -87,12 +87,12 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("updateContact", contactType, contact);
         }
         
-        public nsISupports UpdateContact(IccContactType contactType, nsISupports contact, nsAString pin2)
+        public nsISupports UpdateContact(IccContactType contactType, nsISupports contact, string pin2)
         {
             return this.CallMethod<nsISupports>("updateContact", contactType, contact, pin2);
         }
         
-        public nsISupports MatchMvno(IccMvnoType mvnoType, nsAString matchData)
+        public nsISupports MatchMvno(IccMvnoType mvnoType, string matchData)
         {
             return this.CallMethod<nsISupports>("matchMvno", mvnoType, matchData);
         }

@@ -136,9 +136,9 @@ namespace Gecko
 		{
 		    get
 		    {
-		        return new WebIDL.Window(_domWindow.Instance, (nsISupports) _domWindow.Instance).Name.ToString();
+		        return new WebIDL.Window(_domWindow.Instance, (nsISupports) _domWindow.Instance).Name;
 		    }
-			set { nsString.Set((s) => { new WebIDL.Window(_domWindow.Instance, (nsISupports) _domWindow.Instance).Name = s; }, value ); }
+            set { new WebIDL.Window(_domWindow.Instance, (nsISupports) _domWindow.Instance).Name = value; }
 		}
 
 	    public ulong MozPaintCount
@@ -152,12 +152,9 @@ namespace Gecko
 	    }
 
 	    public bool Find(string str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord, bool searchInFrames, bool showDialog)
-	    {
-	        using (var nsStr = new nsAString(str))
-	        {
-	            return new WebIDL.Window(_domWindow.Instance, (nsISupports) _domWindow.Instance).Find(nsStr, caseSensitive,
-	                backwards, wrapAround, wholeWord, searchInFrames, showDialog);
-	        }
+	    {	        
+            return new WebIDL.Window(_domWindow.Instance, (nsISupports) _domWindow.Instance).Find(str, caseSensitive,
+	            backwards, wrapAround, wholeWord, searchInFrames, showDialog);
 	    }
 		
 		public void Print()

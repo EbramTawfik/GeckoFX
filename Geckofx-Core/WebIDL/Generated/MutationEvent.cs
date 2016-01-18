@@ -19,27 +19,27 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString PrevValue
+        public string PrevValue
         {
             get
             {
-                return this.GetProperty<nsAString>("prevValue");
+                return this.GetProperty<string>("prevValue");
             }
         }
         
-        public nsAString NewValue
+        public string NewValue
         {
             get
             {
-                return this.GetProperty<nsAString>("newValue");
+                return this.GetProperty<string>("newValue");
             }
         }
         
-        public nsAString AttrName
+        public string AttrName
         {
             get
             {
-                return this.GetProperty<nsAString>("attrName");
+                return this.GetProperty<string>("attrName");
             }
         }
         
@@ -51,7 +51,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void InitMutationEvent(nsAString type, bool canBubble, bool cancelable, nsIDOMNode relatedNode, nsAString prevValue, nsAString newValue, nsAString attrName, ushort attrChange)
+        public void InitMutationEvent(string type, bool canBubble, bool cancelable, nsIDOMNode relatedNode, string prevValue, string newValue, string attrName, ushort attrChange)
         {
             this.CallVoidMethod("initMutationEvent", type, canBubble, cancelable, relatedNode, prevValue, newValue, attrName, attrChange);
         }

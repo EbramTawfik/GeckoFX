@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
         }
         
@@ -101,32 +101,32 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("openCursor", range, direction);
         }
         
-        public nsISupports CreateIndex(nsAString name, nsAString keyPath)
+        public nsISupports CreateIndex(string name, string keyPath)
         {
             return this.CallMethod<nsISupports>("createIndex", name, keyPath);
         }
         
-        public nsISupports CreateIndex(nsAString name, nsAString keyPath, object optionalParameters)
+        public nsISupports CreateIndex(string name, string keyPath, object optionalParameters)
         {
             return this.CallMethod<nsISupports>("createIndex", name, keyPath, optionalParameters);
         }
         
-        public nsISupports CreateIndex(nsAString name, nsAString[] keyPath)
+        public nsISupports CreateIndex(string name, string[] keyPath)
         {
             return this.CallMethod<nsISupports>("createIndex", name, keyPath);
         }
         
-        public nsISupports CreateIndex(nsAString name, nsAString[] keyPath, object optionalParameters)
+        public nsISupports CreateIndex(string name, string[] keyPath, object optionalParameters)
         {
             return this.CallMethod<nsISupports>("createIndex", name, keyPath, optionalParameters);
         }
         
-        public nsISupports Index(nsAString name)
+        public nsISupports Index(string name)
         {
             return this.CallMethod<nsISupports>("index", name);
         }
         
-        public void DeleteIndex(nsAString indexName)
+        public void DeleteIndex(string indexName)
         {
             this.CallVoidMethod("deleteIndex", indexName);
         }

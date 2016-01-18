@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Family
+        public string Family
         {
             get
             {
-                return this.GetProperty<nsAString>("family");
+                return this.GetProperty<string>("family");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Style
+        public string Style
         {
             get
             {
-                return this.GetProperty<nsAString>("style");
+                return this.GetProperty<string>("style");
             }
             set
             {
@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Weight
+        public string Weight
         {
             get
             {
-                return this.GetProperty<nsAString>("weight");
+                return this.GetProperty<string>("weight");
             }
             set
             {
@@ -47,11 +47,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Stretch
+        public string Stretch
         {
             get
             {
-                return this.GetProperty<nsAString>("stretch");
+                return this.GetProperty<string>("stretch");
             }
             set
             {
@@ -59,11 +59,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString UnicodeRange
+        public string UnicodeRange
         {
             get
             {
-                return this.GetProperty<nsAString>("unicodeRange");
+                return this.GetProperty<string>("unicodeRange");
             }
             set
             {
@@ -71,11 +71,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Variant
+        public string Variant
         {
             get
             {
-                return this.GetProperty<nsAString>("variant");
+                return this.GetProperty<string>("variant");
             }
             set
             {
@@ -83,11 +83,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString FeatureSettings
+        public string FeatureSettings
         {
             get
             {
-                return this.GetProperty<nsAString>("featureSettings");
+                return this.GetProperty<string>("featureSettings");
             }
             set
             {

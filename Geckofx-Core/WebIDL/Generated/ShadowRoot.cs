@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString InnerHTML
+        public string InnerHTML
         {
             get
             {
-                return this.GetProperty<nsAString>("innerHTML");
+                return this.GetProperty<string>("innerHTML");
             }
             set
             {
@@ -59,22 +59,22 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsIDOMElement GetElementById(nsAString elementId)
+        public nsIDOMElement GetElementById(string elementId)
         {
             return this.CallMethod<nsIDOMElement>("getElementById", elementId);
         }
         
-        public nsISupports GetElementsByTagName(nsAString localName)
+        public nsISupports GetElementsByTagName(string localName)
         {
             return this.CallMethod<nsISupports>("getElementsByTagName", localName);
         }
         
-        public nsISupports GetElementsByTagNameNS(nsAString @namespace, nsAString localName)
+        public nsISupports GetElementsByTagNameNS(string @namespace, string localName)
         {
             return this.CallMethod<nsISupports>("getElementsByTagNameNS", @namespace, localName);
         }
         
-        public nsISupports GetElementsByClassName(nsAString classNames)
+        public nsISupports GetElementsByClassName(string classNames)
         {
             return this.CallMethod<nsISupports>("getElementsByClassName", classNames);
         }

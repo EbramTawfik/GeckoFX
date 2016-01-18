@@ -19,12 +19,12 @@ namespace Gecko.WebIDL
             }
         }
         
-        public Promise Connect(nsAString address)
+        public Promise Connect(string address)
         {
             return this.CallMethod<Promise>("connect", address);
         }
         
-        public Promise Disconnect(nsAString address)
+        public Promise Disconnect(string address)
         {
             return this.CallMethod<Promise>("disconnect", address);
         }
@@ -39,12 +39,12 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise>("removeService", service);
         }
         
-        public Promise NotifyCharacteristicChanged(nsAString address, nsISupports characteristic, bool confirm)
+        public Promise NotifyCharacteristicChanged(string address, nsISupports characteristic, bool confirm)
         {
             return this.CallMethod<Promise>("notifyCharacteristicChanged", address, characteristic, confirm);
         }
         
-        public Promise SendResponse(nsAString address, ushort status, int requestId)
+        public Promise SendResponse(string address, ushort status, int requestId)
         {
             return this.CallMethod<Promise>("sendResponse", address, status, requestId);
         }

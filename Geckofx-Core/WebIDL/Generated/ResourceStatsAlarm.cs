@@ -27,11 +27,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Component
+        public string Component
         {
             get
             {
-                return this.GetProperty<nsAString>("component");
+                return this.GetProperty<string>("component");
             }
         }
         
@@ -43,11 +43,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ManifestURL
+        public string ManifestURL
         {
             get
             {
-                return this.GetProperty<nsAString>("manifestURL");
+                return this.GetProperty<string>("manifestURL");
             }
         }
         

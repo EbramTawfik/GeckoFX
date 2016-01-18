@@ -11,19 +11,19 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Type
+        public string Type
         {
             get
             {
-                return this.GetProperty<nsAString>("type");
+                return this.GetProperty<string>("type");
             }
         }
         
-        public nsAString Href
+        public string Href
         {
             get
             {
-                return this.GetProperty<nsAString>("href");
+                return this.GetProperty<string>("href");
             }
         }
         
@@ -43,11 +43,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Title
+        public string Title
         {
             get
             {
-                return this.GetProperty<nsAString>("title");
+                return this.GetProperty<string>("title");
             }
         }
         

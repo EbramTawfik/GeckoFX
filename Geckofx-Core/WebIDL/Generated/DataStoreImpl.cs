@@ -11,19 +11,19 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
         }
         
-        public nsAString Owner
+        public string Owner
         {
             get
             {
-                return this.GetProperty<nsAString>("owner");
+                return this.GetProperty<string>("owner");
             }
         }
         
@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString RevisionId
+        public string RevisionId
         {
             get
             {
-                return this.GetProperty<nsAString>("revisionId");
+                return this.GetProperty<string>("revisionId");
             }
         }
         
@@ -48,42 +48,42 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("setEventTarget", eventTarget);
         }
         
-        public Promise <object> Get(WebIDLUnion<nsAString,UInt32> id)
+        public Promise <object> Get(WebIDLUnion<String,UInt32> id)
         {
             return this.CallMethod<Promise <object>>("get", id);
         }
         
-        public Promise Put(object obj, WebIDLUnion<nsAString,UInt32> id)
+        public Promise Put(object obj, WebIDLUnion<String,UInt32> id)
         {
             return this.CallMethod<Promise>("put", obj, id);
         }
         
-        public Promise Put(object obj, WebIDLUnion<nsAString,UInt32> id, nsAString revisionId)
+        public Promise Put(object obj, WebIDLUnion<String,UInt32> id, string revisionId)
         {
             return this.CallMethod<Promise>("put", obj, id, revisionId);
         }
         
-        public Promise < WebIDLUnion<nsAString,UInt32>> Add(object obj)
+        public Promise < WebIDLUnion<String,UInt32>> Add(object obj)
         {
-            return this.CallMethod<Promise < WebIDLUnion<nsAString,UInt32>>>("add", obj);
+            return this.CallMethod<Promise < WebIDLUnion<String,UInt32>>>("add", obj);
         }
         
-        public Promise < WebIDLUnion<nsAString,UInt32>> Add(object obj, WebIDLUnion<nsAString,UInt32> id)
+        public Promise < WebIDLUnion<String,UInt32>> Add(object obj, WebIDLUnion<String,UInt32> id)
         {
-            return this.CallMethod<Promise < WebIDLUnion<nsAString,UInt32>>>("add", obj, id);
+            return this.CallMethod<Promise < WebIDLUnion<String,UInt32>>>("add", obj, id);
         }
         
-        public Promise < WebIDLUnion<nsAString,UInt32>> Add(object obj, WebIDLUnion<nsAString,UInt32> id, nsAString revisionId)
+        public Promise < WebIDLUnion<String,UInt32>> Add(object obj, WebIDLUnion<String,UInt32> id, string revisionId)
         {
-            return this.CallMethod<Promise < WebIDLUnion<nsAString,UInt32>>>("add", obj, id, revisionId);
+            return this.CallMethod<Promise < WebIDLUnion<String,UInt32>>>("add", obj, id, revisionId);
         }
         
-        public Promise <bool> Remove(WebIDLUnion<nsAString,UInt32> id)
+        public Promise <bool> Remove(WebIDLUnion<String,UInt32> id)
         {
             return this.CallMethod<Promise <bool>>("remove", id);
         }
         
-        public Promise <bool> Remove(WebIDLUnion<nsAString,UInt32> id, nsAString revisionId)
+        public Promise <bool> Remove(WebIDLUnion<String,UInt32> id, string revisionId)
         {
             return this.CallMethod<Promise <bool>>("remove", id, revisionId);
         }
@@ -93,7 +93,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise>("clear");
         }
         
-        public Promise Clear(nsAString revisionId)
+        public Promise Clear(string revisionId)
         {
             return this.CallMethod<Promise>("clear", revisionId);
         }
@@ -108,7 +108,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("sync");
         }
         
-        public nsISupports Sync(nsAString revisionId)
+        public nsISupports Sync(string revisionId)
         {
             return this.CallMethod<nsISupports>("sync", revisionId);
         }

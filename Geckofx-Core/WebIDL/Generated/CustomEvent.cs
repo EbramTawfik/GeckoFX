@@ -19,7 +19,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void InitCustomEvent(nsAString type, bool canBubble, bool cancelable, object detail)
+        public void InitCustomEvent(string type, bool canBubble, bool cancelable, object detail)
         {
             this.CallVoidMethod("initCustomEvent", type, canBubble, cancelable, detail);
         }

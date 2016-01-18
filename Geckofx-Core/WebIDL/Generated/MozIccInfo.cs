@@ -19,35 +19,35 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Iccid
+        public string Iccid
         {
             get
             {
-                return this.GetProperty<nsAString>("iccid");
+                return this.GetProperty<string>("iccid");
             }
         }
         
-        public nsAString Mcc
+        public string Mcc
         {
             get
             {
-                return this.GetProperty<nsAString>("mcc");
+                return this.GetProperty<string>("mcc");
             }
         }
         
-        public nsAString Mnc
+        public string Mnc
         {
             get
             {
-                return this.GetProperty<nsAString>("mnc");
+                return this.GetProperty<string>("mnc");
             }
         }
         
-        public nsAString Spn
+        public string Spn
         {
             get
             {
-                return this.GetProperty<nsAString>("spn");
+                return this.GetProperty<string>("spn");
             }
         }
         

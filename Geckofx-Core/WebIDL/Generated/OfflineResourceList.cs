@@ -45,17 +45,17 @@ namespace Gecko.WebIDL
             }
         }
         
-        public bool MozHasItem(nsAString uri)
+        public bool MozHasItem(string uri)
         {
             return this.CallMethod<bool>("mozHasItem", uri);
         }
         
-        public void MozAdd(nsAString uri)
+        public void MozAdd(string uri)
         {
             this.CallVoidMethod("mozAdd", uri);
         }
         
-        public void MozRemove(nsAString uri)
+        public void MozRemove(string uri)
         {
             this.CallVoidMethod("mozRemove", uri);
         }

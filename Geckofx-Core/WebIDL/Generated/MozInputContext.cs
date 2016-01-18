@@ -27,19 +27,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString InputMode
+        public string InputMode
         {
             get
             {
-                return this.GetProperty<nsAString>("inputMode");
+                return this.GetProperty<string>("inputMode");
             }
         }
         
-        public nsAString Lang
+        public string Lang
         {
             get
             {
-                return this.GetProperty<nsAString>("lang");
+                return this.GetProperty<string>("lang");
             }
         }
         
@@ -59,35 +59,35 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString TextBeforeCursor
+        public string TextBeforeCursor
         {
             get
             {
-                return this.GetProperty<nsAString>("textBeforeCursor");
+                return this.GetProperty<string>("textBeforeCursor");
             }
         }
         
-        public nsAString TextAfterCursor
+        public string TextAfterCursor
         {
             get
             {
-                return this.GetProperty<nsAString>("textAfterCursor");
+                return this.GetProperty<string>("textAfterCursor");
             }
         }
         
-        public Promise < nsAString > GetText()
+        public Promise <string> GetText()
         {
-            return this.CallMethod<Promise < nsAString >>("getText");
+            return this.CallMethod<Promise <string>>("getText");
         }
         
-        public Promise < nsAString > GetText(int offset)
+        public Promise <string> GetText(int offset)
         {
-            return this.CallMethod<Promise < nsAString >>("getText", offset);
+            return this.CallMethod<Promise <string>>("getText", offset);
         }
         
-        public Promise < nsAString > GetText(int offset, int length)
+        public Promise <string> GetText(int offset, int length)
         {
-            return this.CallMethod<Promise < nsAString >>("getText", offset, length);
+            return this.CallMethod<Promise <string>>("getText", offset, length);
         }
         
         public Promise <bool> SetSelectionRange(int start, int length)
@@ -95,17 +95,17 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise <bool>>("setSelectionRange", start, length);
         }
         
-        public Promise <bool> ReplaceSurroundingText(nsAString text)
+        public Promise <bool> ReplaceSurroundingText(string text)
         {
             return this.CallMethod<Promise <bool>>("replaceSurroundingText", text);
         }
         
-        public Promise <bool> ReplaceSurroundingText(nsAString text, int offset)
+        public Promise <bool> ReplaceSurroundingText(string text, int offset)
         {
             return this.CallMethod<Promise <bool>>("replaceSurroundingText", text, offset);
         }
         
-        public Promise <bool> ReplaceSurroundingText(nsAString text, int offset, int length)
+        public Promise <bool> ReplaceSurroundingText(string text, int offset, int length)
         {
             return this.CallMethod<Promise <bool>>("replaceSurroundingText", text, offset, length);
         }
@@ -145,22 +145,22 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise <bool>>("keyup", dict);
         }
         
-        public Promise <bool> SetComposition(nsAString text)
+        public Promise <bool> SetComposition(string text)
         {
             return this.CallMethod<Promise <bool>>("setComposition", text);
         }
         
-        public Promise <bool> SetComposition(nsAString text, int cursor)
+        public Promise <bool> SetComposition(string text, int cursor)
         {
             return this.CallMethod<Promise <bool>>("setComposition", text, cursor);
         }
         
-        public Promise <bool> SetComposition(nsAString text, int cursor, object[] clauses)
+        public Promise <bool> SetComposition(string text, int cursor, object[] clauses)
         {
             return this.CallMethod<Promise <bool>>("setComposition", text, cursor, clauses);
         }
         
-        public Promise <bool> SetComposition(nsAString text, int cursor, object[] clauses, object dict)
+        public Promise <bool> SetComposition(string text, int cursor, object[] clauses, object dict)
         {
             return this.CallMethod<Promise <bool>>("setComposition", text, cursor, clauses, dict);
         }
@@ -170,12 +170,12 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise <bool>>("endComposition");
         }
         
-        public Promise <bool> EndComposition(nsAString text)
+        public Promise <bool> EndComposition(string text)
         {
             return this.CallMethod<Promise <bool>>("endComposition", text);
         }
         
-        public Promise <bool> EndComposition(nsAString text, object dict)
+        public Promise <bool> EndComposition(string text, object dict)
         {
             return this.CallMethod<Promise <bool>>("endComposition", text, dict);
         }

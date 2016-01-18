@@ -11,19 +11,19 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString TagName
+        public string TagName
         {
             get
             {
-                return this.GetProperty<nsAString>("tagName");
+                return this.GetProperty<string>("tagName");
             }
         }
         
-        public nsAString Id
+        public string Id
         {
             get
             {
-                return this.GetProperty<nsAString>("id");
+                return this.GetProperty<string>("id");
             }
             set
             {
@@ -31,11 +31,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ClassName
+        public string ClassName
         {
             get
             {
-                return this.GetProperty<nsAString>("className");
+                return this.GetProperty<string>("className");
             }
             set
             {
@@ -67,47 +67,47 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] GetAttributeNames()
+        public string[] GetAttributeNames()
         {
-            return this.CallMethod<nsAString[]>("getAttributeNames");
+            return this.CallMethod<string[]>("getAttributeNames");
         }
         
-        public nsAString GetAttribute(nsAString name)
+        public string GetAttribute(string name)
         {
-            return this.CallMethod<nsAString>("getAttribute", name);
+            return this.CallMethod<string>("getAttribute", name);
         }
         
-        public nsAString GetAttributeNS(nsAString @namespace, nsAString localName)
+        public string GetAttributeNS(string @namespace, string localName)
         {
-            return this.CallMethod<nsAString>("getAttributeNS", @namespace, localName);
+            return this.CallMethod<string>("getAttributeNS", @namespace, localName);
         }
         
-        public void SetAttribute(nsAString name, nsAString value)
+        public void SetAttribute(string name, string value)
         {
             this.CallVoidMethod("setAttribute", name, value);
         }
         
-        public void SetAttributeNS(nsAString @namespace, nsAString name, nsAString value)
+        public void SetAttributeNS(string @namespace, string name, string value)
         {
             this.CallVoidMethod("setAttributeNS", @namespace, name, value);
         }
         
-        public void RemoveAttribute(nsAString name)
+        public void RemoveAttribute(string name)
         {
             this.CallVoidMethod("removeAttribute", name);
         }
         
-        public void RemoveAttributeNS(nsAString @namespace, nsAString localName)
+        public void RemoveAttributeNS(string @namespace, string localName)
         {
             this.CallVoidMethod("removeAttributeNS", @namespace, localName);
         }
         
-        public bool HasAttribute(nsAString name)
+        public bool HasAttribute(string name)
         {
             return this.CallMethod<bool>("hasAttribute", name);
         }
         
-        public bool HasAttributeNS(nsAString @namespace, nsAString localName)
+        public bool HasAttributeNS(string @namespace, string localName)
         {
             return this.CallMethod<bool>("hasAttributeNS", @namespace, localName);
         }
@@ -117,37 +117,37 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("hasAttributes");
         }
         
-        public nsIDOMElement Closest(nsAString selector)
+        public nsIDOMElement Closest(string selector)
         {
             return this.CallMethod<nsIDOMElement>("closest", selector);
         }
         
-        public bool Matches(nsAString selector)
+        public bool Matches(string selector)
         {
             return this.CallMethod<bool>("matches", selector);
         }
         
-        public bool WebkitMatchesSelector(nsAString selector)
+        public bool WebkitMatchesSelector(string selector)
         {
             return this.CallMethod<bool>("webkitMatchesSelector", selector);
         }
         
-        public nsISupports GetElementsByTagName(nsAString localName)
+        public nsISupports GetElementsByTagName(string localName)
         {
             return this.CallMethod<nsISupports>("getElementsByTagName", localName);
         }
         
-        public nsISupports GetElementsByTagNameNS(nsAString @namespace, nsAString localName)
+        public nsISupports GetElementsByTagNameNS(string @namespace, string localName)
         {
             return this.CallMethod<nsISupports>("getElementsByTagNameNS", @namespace, localName);
         }
         
-        public nsISupports GetElementsByClassName(nsAString classNames)
+        public nsISupports GetElementsByClassName(string classNames)
         {
             return this.CallMethod<nsISupports>("getElementsByClassName", classNames);
         }
         
-        public bool MozMatchesSelector(nsAString selector)
+        public bool MozMatchesSelector(string selector)
         {
             return this.CallMethod<bool>("mozMatchesSelector", selector);
         }
@@ -192,7 +192,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("mozRequestPointerLock");
         }
         
-        public nsISupports GetAttributeNode(nsAString name)
+        public nsISupports GetAttributeNode(string name)
         {
             return this.CallMethod<nsISupports>("getAttributeNode", name);
         }
@@ -207,7 +207,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("removeAttributeNode", oldAttr);
         }
         
-        public nsISupports GetAttributeNodeNS(nsAString namespaceURI, nsAString localName)
+        public nsISupports GetAttributeNodeNS(string namespaceURI, string localName)
         {
             return this.CallMethod<nsISupports>("getAttributeNodeNS", namespaceURI, localName);
         }
@@ -421,11 +421,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString InnerHTML
+        public string InnerHTML
         {
             get
             {
-                return this.GetProperty<nsAString>("innerHTML");
+                return this.GetProperty<string>("innerHTML");
             }
             set
             {
@@ -433,11 +433,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString OuterHTML
+        public string OuterHTML
         {
             get
             {
-                return this.GetProperty<nsAString>("outerHTML");
+                return this.GetProperty<string>("outerHTML");
             }
             set
             {
@@ -445,17 +445,17 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void InsertAdjacentHTML(nsAString position, nsAString text)
+        public void InsertAdjacentHTML(string position, string text)
         {
             this.CallVoidMethod("insertAdjacentHTML", position, text);
         }
         
-        public nsIDOMElement QuerySelector(nsAString selectors)
+        public nsIDOMElement QuerySelector(string selectors)
         {
             return this.CallMethod<nsIDOMElement>("querySelector", selectors);
         }
         
-        public nsISupports QuerySelectorAll(nsAString selectors)
+        public nsISupports QuerySelectorAll(string selectors)
         {
             return this.CallMethod<nsISupports>("querySelectorAll", selectors);
         }

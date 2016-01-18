@@ -11,27 +11,27 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsISupports Open(nsAString name, ulong version)
+        public nsISupports Open(string name, ulong version)
         {
             return this.CallMethod<nsISupports>("open", name, version);
         }
         
-        public nsISupports Open(nsAString name)
+        public nsISupports Open(string name)
         {
             return this.CallMethod<nsISupports>("open", name);
         }
         
-        public nsISupports Open(nsAString name, object options)
+        public nsISupports Open(string name, object options)
         {
             return this.CallMethod<nsISupports>("open", name, options);
         }
         
-        public nsISupports DeleteDatabase(nsAString name)
+        public nsISupports DeleteDatabase(string name)
         {
             return this.CallMethod<nsISupports>("deleteDatabase", name);
         }
         
-        public nsISupports DeleteDatabase(nsAString name, object options)
+        public nsISupports DeleteDatabase(string name, object options)
         {
             return this.CallMethod<nsISupports>("deleteDatabase", name, options);
         }
@@ -41,27 +41,27 @@ namespace Gecko.WebIDL
             return this.CallMethod<short>("cmp", first, second);
         }
         
-        public nsISupports OpenForPrincipal(nsISupports principal, nsAString name, ulong version)
+        public nsISupports OpenForPrincipal(nsISupports principal, string name, ulong version)
         {
             return this.CallMethod<nsISupports>("openForPrincipal", principal, name, version);
         }
         
-        public nsISupports OpenForPrincipal(nsISupports principal, nsAString name)
+        public nsISupports OpenForPrincipal(nsISupports principal, string name)
         {
             return this.CallMethod<nsISupports>("openForPrincipal", principal, name);
         }
         
-        public nsISupports OpenForPrincipal(nsISupports principal, nsAString name, object options)
+        public nsISupports OpenForPrincipal(nsISupports principal, string name, object options)
         {
             return this.CallMethod<nsISupports>("openForPrincipal", principal, name, options);
         }
         
-        public nsISupports DeleteForPrincipal(nsISupports principal, nsAString name)
+        public nsISupports DeleteForPrincipal(nsISupports principal, string name)
         {
             return this.CallMethod<nsISupports>("deleteForPrincipal", principal, name);
         }
         
-        public nsISupports DeleteForPrincipal(nsISupports principal, nsAString name, object options)
+        public nsISupports DeleteForPrincipal(nsISupports principal, string name, object options)
         {
             return this.CallMethod<nsISupports>("deleteForPrincipal", principal, name, options);
         }

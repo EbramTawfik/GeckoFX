@@ -43,7 +43,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void InitDeviceOrientationEvent(nsAString type, bool canBubble, bool cancelable, System.Nullable<double> alpha, System.Nullable<double> beta, System.Nullable<double> gamma, bool absolute)
+        public void InitDeviceOrientationEvent(string type, bool canBubble, bool cancelable, System.Nullable<double> alpha, System.Nullable<double> beta, System.Nullable<double> gamma, bool absolute)
         {
             this.CallVoidMethod("initDeviceOrientationEvent", type, canBubble, cancelable, alpha, beta, gamma, absolute);
         }

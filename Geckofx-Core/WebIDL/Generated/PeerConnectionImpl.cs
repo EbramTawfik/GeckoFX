@@ -23,27 +23,27 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Fingerprint
+        public string Fingerprint
         {
             get
             {
-                return this.GetProperty<nsAString>("fingerprint");
+                return this.GetProperty<string>("fingerprint");
             }
         }
         
-        public nsAString LocalDescription
+        public string LocalDescription
         {
             get
             {
-                return this.GetProperty<nsAString>("localDescription");
+                return this.GetProperty<string>("localDescription");
             }
         }
         
-        public nsAString RemoteDescription
+        public string RemoteDescription
         {
             get
             {
-                return this.GetProperty<nsAString>("remoteDescription");
+                return this.GetProperty<string>("remoteDescription");
             }
         }
         
@@ -71,11 +71,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Id
+        public string Id
         {
             get
             {
-                return this.GetProperty<nsAString>("id");
+                return this.GetProperty<string>("id");
             }
             set
             {
@@ -83,11 +83,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString PeerIdentity
+        public string PeerIdentity
         {
             get
             {
-                return this.GetProperty<nsAString>("peerIdentity");
+                return this.GetProperty<string>("peerIdentity");
             }
             set
             {
@@ -123,12 +123,12 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("createAnswer");
         }
         
-        public void SetLocalDescription(int action, nsAString sdp)
+        public void SetLocalDescription(int action, string sdp)
         {
             this.CallVoidMethod("setLocalDescription", action, sdp);
         }
         
-        public void SetRemoteDescription(int action, nsAString sdp)
+        public void SetRemoteDescription(int action, string sdp)
         {
             this.CallVoidMethod("setRemoteDescription", action, sdp);
         }
@@ -168,7 +168,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports[]>("getRemoteStreams");
         }
         
-        public void AddIceCandidate(nsAString candidate, nsAString mid, ushort level)
+        public void AddIceCandidate(string candidate, string mid, ushort level)
         {
             this.CallVoidMethod("addIceCandidate", candidate, mid, level);
         }
@@ -178,12 +178,12 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("close");
         }
         
-        public bool PluginCrash(ulong pluginId, nsAString name)
+        public bool PluginCrash(ulong pluginId, string name)
         {
             return this.CallMethod<bool>("pluginCrash", pluginId, name);
         }
         
-        public nsISupports CreateDataChannel(nsAString label, nsAString protocol, ushort type, bool outOfOrderAllowed, ushort maxTime, ushort maxNum, bool externalNegotiated, ushort stream)
+        public nsISupports CreateDataChannel(string label, string protocol, ushort type, bool outOfOrderAllowed, ushort maxTime, ushort maxNum, bool externalNegotiated, ushort stream)
         {
             return this.CallMethod<nsISupports>("createDataChannel", label, protocol, type, outOfOrderAllowed, maxTime, maxNum, externalNegotiated, stream);
         }

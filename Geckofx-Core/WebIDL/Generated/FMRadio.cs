@@ -95,19 +95,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Ps
+        public string Ps
         {
             get
             {
-                return this.GetProperty<nsAString>("ps");
+                return this.GetProperty<string>("ps");
             }
         }
         
-        public nsAString Rt
+        public string Rt
         {
             get
             {
-                return this.GetProperty<nsAString>("rt");
+                return this.GetProperty<string>("rt");
             }
         }
         

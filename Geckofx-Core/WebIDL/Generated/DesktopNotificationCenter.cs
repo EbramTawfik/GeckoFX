@@ -11,12 +11,12 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsISupports CreateNotification(nsAString title, nsAString description)
+        public nsISupports CreateNotification(string title, string description)
         {
             return this.CallMethod<nsISupports>("createNotification", title, description);
         }
         
-        public nsISupports CreateNotification(nsAString title, nsAString description, nsAString iconURL)
+        public nsISupports CreateNotification(string title, string description, string iconURL)
         {
             return this.CallMethod<nsISupports>("createNotification", title, description, iconURL);
         }

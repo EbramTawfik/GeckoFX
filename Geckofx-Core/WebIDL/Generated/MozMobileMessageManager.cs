@@ -11,27 +11,27 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsISupports GetSegmentInfoForText(nsAString text)
+        public nsISupports GetSegmentInfoForText(string text)
         {
             return this.CallMethod<nsISupports>("getSegmentInfoForText", text);
         }
         
-        public nsISupports Send(nsAString number, nsAString text)
+        public nsISupports Send(string number, string text)
         {
             return this.CallMethod<nsISupports>("send", number, text);
         }
         
-        public nsISupports Send(nsAString number, nsAString text, object sendParameters)
+        public nsISupports Send(string number, string text, object sendParameters)
         {
             return this.CallMethod<nsISupports>("send", number, text, sendParameters);
         }
         
-        public nsISupports[] Send(nsAString[] numbers, nsAString text)
+        public nsISupports[] Send(string[] numbers, string text)
         {
             return this.CallMethod<nsISupports[]>("send", numbers, text);
         }
         
-        public nsISupports[] Send(nsAString[] numbers, nsAString text, object sendParameters)
+        public nsISupports[] Send(string[] numbers, string text, object sendParameters)
         {
             return this.CallMethod<nsISupports[]>("send", numbers, text, sendParameters);
         }

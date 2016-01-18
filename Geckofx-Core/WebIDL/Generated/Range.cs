@@ -164,7 +164,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<bool>("intersectsNode", node);
         }
         
-        public nsISupports CreateContextualFragment(nsAString fragment)
+        public nsISupports CreateContextualFragment(string fragment)
         {
             return this.CallMethod<nsISupports>("createContextualFragment", fragment);
         }

@@ -27,11 +27,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Value
+        public string Value
         {
             get
             {
-                return this.GetProperty<nsAString>("value");
+                return this.GetProperty<string>("value");
             }
         }
         
@@ -43,19 +43,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Min
+        public string Min
         {
             get
             {
-                return this.GetProperty<nsAString>("min");
+                return this.GetProperty<string>("min");
             }
         }
         
-        public nsAString Max
+        public string Max
         {
             get
             {
-                return this.GetProperty<nsAString>("max");
+                return this.GetProperty<string>("max");
             }
         }
     }

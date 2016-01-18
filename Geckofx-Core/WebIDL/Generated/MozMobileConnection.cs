@@ -11,19 +11,19 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString LastKnownNetwork
+        public string LastKnownNetwork
         {
             get
             {
-                return this.GetProperty<nsAString>("lastKnownNetwork");
+                return this.GetProperty<string>("lastKnownNetwork");
             }
         }
         
-        public nsAString LastKnownHomeNetwork
+        public string LastKnownHomeNetwork
         {
             get
             {
-                return this.GetProperty<nsAString>("lastKnownHomeNetwork");
+                return this.GetProperty<string>("lastKnownHomeNetwork");
             }
         }
         
@@ -43,11 +43,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString IccId
+        public string IccId
         {
             get
             {
-                return this.GetProperty<nsAString>("iccId");
+                return this.GetProperty<string>("iccId");
             }
         }
         

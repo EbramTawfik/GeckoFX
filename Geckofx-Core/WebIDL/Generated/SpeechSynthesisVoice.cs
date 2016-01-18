@@ -11,27 +11,27 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString VoiceURI
+        public string VoiceURI
         {
             get
             {
-                return this.GetProperty<nsAString>("voiceURI");
+                return this.GetProperty<string>("voiceURI");
             }
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
         }
         
-        public nsAString Lang
+        public string Lang
         {
             get
             {
-                return this.GetProperty<nsAString>("lang");
+                return this.GetProperty<string>("lang");
             }
         }
         

@@ -48,7 +48,7 @@ namespace Gecko.WebIDL
         }
         
         public void InitSimpleGestureEvent(
-                    nsAString typeArg, 
+                    string typeArg, 
                     bool canBubbleArg, 
                     bool cancelableArg, 
                     nsIDOMWindow viewArg, 

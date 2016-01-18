@@ -33,7 +33,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise < System.Object[] >>("getTelemetryPingList");
         }
         
-        public Promise <object> GetTelemetryPing(nsAString pingID)
+        public Promise <object> GetTelemetryPing(string pingID)
         {
             return this.CallMethod<Promise <object>>("getTelemetryPing", pingID);
         }
@@ -48,7 +48,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise <object>>("getCurrentTelemetrySubsessionPing");
         }
         
-        public void ResetPref(nsAString name)
+        public void ResetPref(string name)
         {
             this.CallVoidMethod("resetPref", name);
         }

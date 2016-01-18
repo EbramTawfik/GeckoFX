@@ -19,11 +19,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString MacAddress
+        public string MacAddress
         {
             get
             {
-                return this.GetProperty<nsAString>("macAddress");
+                return this.GetProperty<string>("macAddress");
             }
         }
         
@@ -106,7 +106,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("setHttpProxy", network, info);
         }
         
-        public nsISupports ImportCert(nsIDOMBlob certBlob, nsAString certPassword, nsAString certNickname)
+        public nsISupports ImportCert(nsIDOMBlob certBlob, string certPassword, string certNickname)
         {
             return this.CallMethod<nsISupports>("importCert", certBlob, certPassword, certNickname);
         }
@@ -116,7 +116,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getImportedCerts");
         }
         
-        public nsISupports DeleteCert(nsAString certNickname)
+        public nsISupports DeleteCert(string certNickname)
         {
             return this.CallMethod<nsISupports>("deleteCert", certNickname);
         }

@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Text
+        public string Text
         {
             get
             {
-                return this.GetProperty<nsAString>("text");
+                return this.GetProperty<string>("text");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Link
+        public string Link
         {
             get
             {
-                return this.GetProperty<nsAString>("link");
+                return this.GetProperty<string>("link");
             }
             set
             {
@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString VLink
+        public string VLink
         {
             get
             {
-                return this.GetProperty<nsAString>("vLink");
+                return this.GetProperty<string>("vLink");
             }
             set
             {
@@ -47,11 +47,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ALink
+        public string ALink
         {
             get
             {
-                return this.GetProperty<nsAString>("aLink");
+                return this.GetProperty<string>("aLink");
             }
             set
             {
@@ -59,11 +59,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString BgColor
+        public string BgColor
         {
             get
             {
-                return this.GetProperty<nsAString>("bgColor");
+                return this.GetProperty<string>("bgColor");
             }
             set
             {
@@ -71,11 +71,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Background
+        public string Background
         {
             get
             {
-                return this.GetProperty<nsAString>("background");
+                return this.GetProperty<string>("background");
             }
             set
             {

@@ -19,11 +19,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString RecorderProfile
+        public string RecorderProfile
         {
             get
             {
-                return this.GetProperty<nsAString>("recorderProfile");
+                return this.GetProperty<string>("recorderProfile");
             }
         }
         

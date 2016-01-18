@@ -35,7 +35,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public bool HasExtension(nsAString extension)
+        public bool HasExtension(string extension)
         {
             return this.CallMethod<bool>("hasExtension", extension);
         }

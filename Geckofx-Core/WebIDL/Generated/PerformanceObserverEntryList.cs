@@ -21,17 +21,17 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports[]>("getEntries", filter);
         }
         
-        public nsISupports[] GetEntriesByType(nsAString entryType)
+        public nsISupports[] GetEntriesByType(string entryType)
         {
             return this.CallMethod<nsISupports[]>("getEntriesByType", entryType);
         }
         
-        public nsISupports[] GetEntriesByName(nsAString name)
+        public nsISupports[] GetEntriesByName(string name)
         {
             return this.CallMethod<nsISupports[]>("getEntriesByName", name);
         }
         
-        public nsISupports[] GetEntriesByName(nsAString name, nsAString entryType)
+        public nsISupports[] GetEntriesByName(string name, string entryType)
         {
             return this.CallMethod<nsISupports[]>("getEntriesByName", name, entryType);
         }

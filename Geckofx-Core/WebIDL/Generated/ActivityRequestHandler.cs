@@ -24,7 +24,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("postResult", result);
         }
         
-        public void PostError(nsAString error)
+        public void PostError(string error)
         {
             this.CallVoidMethod("postError", error);
         }

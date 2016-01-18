@@ -29,11 +29,11 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise>("sendFile", blob);
         }
         
-        public nsAString Session
+        public string Session
         {
             get
             {
-                return this.GetProperty<nsAString>("session");
+                return this.GetProperty<string>("session");
             }
             set
             {

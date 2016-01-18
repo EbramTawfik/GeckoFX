@@ -49,7 +49,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("getAttentionWithCycleCount", aCycleCount);
         }
         
-        public void SetCursor(nsAString cursor)
+        public void SetCursor(string cursor)
         {
             this.CallVoidMethod("setCursor", cursor);
         }
@@ -74,7 +74,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("notifyDefaultButtonLoaded", defaultButton);
         }
         
-        public nsISupports GetGroupMessageManager(nsAString aGroup)
+        public nsISupports GetGroupMessageManager(string aGroup)
         {
             return this.CallMethod<nsISupports>("getGroupMessageManager", aGroup);
         }

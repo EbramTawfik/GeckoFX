@@ -16,7 +16,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getFilenames");
         }
         
-        public nsISupports GetFile(nsAString filename)
+        public nsISupports GetFile(string filename)
         {
             return this.CallMethod<nsISupports>("getFile", filename);
         }

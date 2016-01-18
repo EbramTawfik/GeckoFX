@@ -19,9 +19,9 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Key(uint index)
+        public string Key(uint index)
         {
-            return this.CallMethod<nsAString>("key", index);
+            return this.CallMethod<string>("key", index);
         }
     }
 }

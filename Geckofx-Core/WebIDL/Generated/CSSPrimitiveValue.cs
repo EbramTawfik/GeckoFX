@@ -29,14 +29,14 @@ namespace Gecko.WebIDL
             return this.CallMethod<float>("getFloatValue", unitType);
         }
         
-        public void SetStringValue(ushort stringType, nsAString stringValue)
+        public void SetStringValue(ushort stringType, string stringValue)
         {
             this.CallVoidMethod("setStringValue", stringType, stringValue);
         }
         
-        public nsAString GetStringValue()
+        public string GetStringValue()
         {
-            return this.CallMethod<nsAString>("getStringValue");
+            return this.CallMethod<string>("getStringValue");
         }
         
         public nsISupports GetCounterValue()

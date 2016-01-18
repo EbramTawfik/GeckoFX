@@ -19,11 +19,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Effect
+        public string Effect
         {
             get
             {
-                return this.GetProperty<nsAString>("effect");
+                return this.GetProperty<string>("effect");
             }
             set
             {
@@ -31,11 +31,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString WhiteBalanceMode
+        public string WhiteBalanceMode
         {
             get
             {
-                return this.GetProperty<nsAString>("whiteBalanceMode");
+                return this.GetProperty<string>("whiteBalanceMode");
             }
             set
             {
@@ -43,11 +43,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString SceneMode
+        public string SceneMode
         {
             get
             {
-                return this.GetProperty<nsAString>("sceneMode");
+                return this.GetProperty<string>("sceneMode");
             }
             set
             {
@@ -55,11 +55,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString FlashMode
+        public string FlashMode
         {
             get
             {
-                return this.GetProperty<nsAString>("flashMode");
+                return this.GetProperty<string>("flashMode");
             }
             set
             {
@@ -67,11 +67,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString FocusMode
+        public string FocusMode
         {
             get
             {
-                return this.GetProperty<nsAString>("focusMode");
+                return this.GetProperty<string>("focusMode");
             }
             set
             {
@@ -135,11 +135,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString IsoMode
+        public string IsoMode
         {
             get
             {
-                return this.GetProperty<nsAString>("isoMode");
+                return this.GetProperty<string>("isoMode");
             }
             set
             {
@@ -167,11 +167,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString MeteringMode
+        public string MeteringMode
         {
             get
             {
-                return this.GetProperty<nsAString>("meteringMode");
+                return this.GetProperty<string>("meteringMode");
             }
             set
             {
@@ -254,7 +254,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise < nsIDOMBlob >>("takePicture", options);
         }
         
-        public Promise StartRecording(object options, nsISupports storageArea, nsAString filename)
+        public Promise StartRecording(object options, nsISupports storageArea, string filename)
         {
             return this.CallMethod<Promise>("startRecording", options, storageArea, filename);
         }

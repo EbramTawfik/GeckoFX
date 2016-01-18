@@ -42,17 +42,17 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports[]>("getEntries");
         }
         
-        public nsISupports[] GetEntriesByType(nsAString entryType)
+        public nsISupports[] GetEntriesByType(string entryType)
         {
             return this.CallMethod<nsISupports[]>("getEntriesByType", entryType);
         }
         
-        public nsISupports[] GetEntriesByName(nsAString name)
+        public nsISupports[] GetEntriesByName(string name)
         {
             return this.CallMethod<nsISupports[]>("getEntriesByName", name);
         }
         
-        public nsISupports[] GetEntriesByName(nsAString name, nsAString entryType)
+        public nsISupports[] GetEntriesByName(string name, string entryType)
         {
             return this.CallMethod<nsISupports[]>("getEntriesByName", name, entryType);
         }
@@ -75,7 +75,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void Mark(nsAString markName)
+        public void Mark(string markName)
         {
             this.CallVoidMethod("mark", markName);
         }
@@ -85,22 +85,22 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("clearMarks");
         }
         
-        public void ClearMarks(nsAString markName)
+        public void ClearMarks(string markName)
         {
             this.CallVoidMethod("clearMarks", markName);
         }
         
-        public void Measure(nsAString measureName)
+        public void Measure(string measureName)
         {
             this.CallVoidMethod("measure", measureName);
         }
         
-        public void Measure(nsAString measureName, nsAString startMark)
+        public void Measure(string measureName, string startMark)
         {
             this.CallVoidMethod("measure", measureName, startMark);
         }
         
-        public void Measure(nsAString measureName, nsAString startMark, nsAString endMark)
+        public void Measure(string measureName, string startMark, string endMark)
         {
             this.CallVoidMethod("measure", measureName, startMark, endMark);
         }
@@ -110,7 +110,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("clearMeasures");
         }
         
-        public void ClearMeasures(nsAString measureName)
+        public void ClearMeasures(string measureName)
         {
             this.CallVoidMethod("clearMeasures", measureName);
         }

@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString DropEffect
+        public string DropEffect
         {
             get
             {
-                return this.GetProperty<nsAString>("dropEffect");
+                return this.GetProperty<string>("dropEffect");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString EffectAllowed
+        public string EffectAllowed
         {
             get
             {
-                return this.GetProperty<nsAString>("effectAllowed");
+                return this.GetProperty<string>("effectAllowed");
             }
             set
             {
@@ -56,12 +56,12 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("setDragImage", image, x, y);
         }
         
-        public nsAString GetData(nsAString format)
+        public string GetData(string format)
         {
-            return this.CallMethod<nsAString>("getData", format);
+            return this.CallMethod<string>("getData", format);
         }
         
-        public void SetData(nsAString format, nsAString data)
+        public void SetData(string format, string data)
         {
             this.CallVoidMethod("setData", format, data);
         }
@@ -71,7 +71,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("clearData");
         }
         
-        public void ClearData(nsAString format)
+        public void ClearData(string format)
         {
             this.CallVoidMethod("clearData", format);
         }
@@ -89,11 +89,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString MozCursor
+        public string MozCursor
         {
             get
             {
-                return this.GetProperty<nsAString>("mozCursor");
+                return this.GetProperty<string>("mozCursor");
             }
             set
             {
@@ -127,17 +127,17 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("mozTypesAt", index);
         }
         
-        public void MozClearDataAt(nsAString format, uint index)
+        public void MozClearDataAt(string format, uint index)
         {
             this.CallVoidMethod("mozClearDataAt", format, index);
         }
         
-        public void MozSetDataAt(nsAString format, object data, uint index)
+        public void MozSetDataAt(string format, object data, uint index)
         {
             this.CallVoidMethod("mozSetDataAt", format, data, index);
         }
         
-        public object MozGetDataAt(nsAString format, uint index)
+        public object MozGetDataAt(string format, uint index)
         {
             return this.CallMethod<object>("mozGetDataAt", format, index);
         }

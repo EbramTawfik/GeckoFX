@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString[] ResourceTypes
+        public string[] ResourceTypes
         {
             get
             {
-                return this.GetProperty<nsAString[]>("resourceTypes");
+                return this.GetProperty<string[]>("resourceTypes");
             }
         }
         
@@ -115,9 +115,9 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise <object>>("removeAllAlarms");
         }
         
-        public Promise < nsAString[] > GetAvailableComponents()
+        public Promise < System.String[] > GetAvailableComponents()
         {
-            return this.CallMethod<Promise < nsAString[] >>("getAvailableComponents");
+            return this.CallMethod<Promise < System.String[] >>("getAvailableComponents");
         }
     }
 }

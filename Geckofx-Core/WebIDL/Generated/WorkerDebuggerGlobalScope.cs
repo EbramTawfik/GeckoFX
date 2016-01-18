@@ -19,17 +19,17 @@ namespace Gecko.WebIDL
             }
         }
         
-        public object CreateSandbox(nsAString name, object prototype)
+        public object CreateSandbox(string name, object prototype)
         {
             return this.CallMethod<object>("createSandbox", name, prototype);
         }
         
-        public void LoadSubScript(nsAString url)
+        public void LoadSubScript(string url)
         {
             this.CallVoidMethod("loadSubScript", url);
         }
         
-        public void LoadSubScript(nsAString url, object sandbox)
+        public void LoadSubScript(string url, object sandbox)
         {
             this.CallVoidMethod("loadSubScript", url, sandbox);
         }
@@ -44,12 +44,12 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("leaveEventLoop");
         }
         
-        public void PostMessage(nsAString message)
+        public void PostMessage(string message)
         {
             this.CallVoidMethod("postMessage", message);
         }
         
-        public void ReportError(nsAString message)
+        public void ReportError(string message)
         {
             this.CallVoidMethod("reportError", message);
         }
@@ -59,7 +59,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("dump");
         }
         
-        public void Dump(nsAString @string)
+        public void Dump(string @string)
         {
             this.CallVoidMethod("dump", @string);
         }

@@ -24,7 +24,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsIDOMNode>("item", index);
         }
         
-        public WebIDLUnion<nsIDOMNode,nsISupports> Item(nsAString name)
+        public WebIDLUnion<nsIDOMNode,nsISupports> Item(string name)
         {
             return this.CallMethod<WebIDLUnion<nsIDOMNode,nsISupports>>("item", name);
         }

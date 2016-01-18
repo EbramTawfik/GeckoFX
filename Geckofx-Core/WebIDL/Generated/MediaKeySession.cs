@@ -19,19 +19,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString KeySystem
+        public string KeySystem
         {
             get
             {
-                return this.GetProperty<nsAString>("keySystem");
+                return this.GetProperty<string>("keySystem");
             }
         }
         
-        public nsAString SessionId
+        public string SessionId
         {
             get
             {
-                return this.GetProperty<nsAString>("sessionId");
+                return this.GetProperty<string>("sessionId");
             }
         }
         
@@ -59,12 +59,12 @@ namespace Gecko.WebIDL
             }
         }
         
-        public Promise GenerateRequest(nsAString initDataType, IntPtr initData)
+        public Promise GenerateRequest(string initDataType, IntPtr initData)
         {
             return this.CallMethod<Promise>("generateRequest", initDataType, initData);
         }
         
-        public Promise <bool> Load(nsAString sessionId)
+        public Promise <bool> Load(string sessionId)
         {
             return this.CallMethod<Promise <bool>>("load", sessionId);
         }

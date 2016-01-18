@@ -23,7 +23,7 @@ namespace Gecko.WebIDL
                 var jsObject = context.ConvertCOMObjectToJSObject(_thisObject);
                 var result = SpiderMonkey.JS_GetProperty(context.ContextPointer, jsObject, propertyName);
                 if (result.IsUndefined)
-                    throw new GeckoException(String.Format("Property {0} of type {1} does not exist on object", propertyName, typeof(T).Name));
+                    throw new GeckoException(String.Format("Property '{0}' of type '{1}' does not exist on object", propertyName, typeof(T).Name));
                 var retObject = result.ToObject();
                 return ConvertObject<T>(retObject);
             }
@@ -31,7 +31,12 @@ namespace Gecko.WebIDL
 
         public void SetProperty(string propertyName, object value)
         {
-            throw new NotImplementedException("Set Property hasn't been implemented yet.");
+            using (var context = new AutoJSContext(_globalWindow))
+            {
+                var jsObject = context.ConvertCOMObjectToJSObject(_thisObject);
+                if (!SpiderMonkey.JS_SetProperty(context.ContextPointer, jsObject, propertyName, ConvertTypes(new[] {value}, context, jsObject).First()))
+                    throw new GeckoException(String.Format("Property '{0}' of value '{1}' could not be set on object", propertyName, value));
+            }
         }
 
         public void CallVoidMethod(string methodName, params object[] paramObjects)
@@ -63,7 +68,7 @@ namespace Gecko.WebIDL
             foreach (var p in paramObjects)
             {
                 JsVal val;
-                if (p is nsAString || p is nsACString || p is nsAUTF8String)
+                if (p is nsAString || p is nsACString || p is nsAUTF8String || p is String)
                     SpiderMonkey.JS_ExecuteScript(context.ContextPointer, '"' + p.ToString() + '"', out val);
                 else if (p is nsISupports)
                 {

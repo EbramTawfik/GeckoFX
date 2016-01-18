@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
         }
         
@@ -35,19 +35,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Path
+        public string Path
         {
             get
             {
-                return this.GetProperty<nsAString>("path");
+                return this.GetProperty<string>("path");
             }
         }
         
-        public nsAString MozFullPath
+        public string MozFullPath
         {
             get
             {
-                return this.GetProperty<nsAString>("mozFullPath");
+                return this.GetProperty<string>("mozFullPath");
             }
         }
     }

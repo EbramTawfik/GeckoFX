@@ -27,7 +27,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public uint InsertRule(nsAString rule, uint index)
+        public uint InsertRule(string rule, uint index)
         {
             return this.CallMethod<uint>("insertRule", rule, index);
         }

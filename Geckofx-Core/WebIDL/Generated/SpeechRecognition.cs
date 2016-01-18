@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Lang
+        public string Lang
         {
             get
             {
-                return this.GetProperty<nsAString>("lang");
+                return this.GetProperty<string>("lang");
             }
             set
             {
@@ -71,11 +71,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString ServiceURI
+        public string ServiceURI
         {
             get
             {
-                return this.GetProperty<nsAString>("serviceURI");
+                return this.GetProperty<string>("serviceURI");
             }
             set
             {

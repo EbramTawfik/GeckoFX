@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString AnimationName
+        public string AnimationName
         {
             get
             {
-                return this.GetProperty<nsAString>("animationName");
+                return this.GetProperty<string>("animationName");
             }
         }
         
@@ -27,11 +27,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString PseudoElement
+        public string PseudoElement
         {
             get
             {
-                return this.GetProperty<nsAString>("pseudoElement");
+                return this.GetProperty<string>("pseudoElement");
             }
         }
     }

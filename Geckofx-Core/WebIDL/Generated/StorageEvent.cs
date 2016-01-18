@@ -11,35 +11,35 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Key
+        public string Key
         {
             get
             {
-                return this.GetProperty<nsAString>("key");
+                return this.GetProperty<string>("key");
             }
         }
         
-        public nsAString OldValue
+        public string OldValue
         {
             get
             {
-                return this.GetProperty<nsAString>("oldValue");
+                return this.GetProperty<string>("oldValue");
             }
         }
         
-        public nsAString NewValue
+        public string NewValue
         {
             get
             {
-                return this.GetProperty<nsAString>("newValue");
+                return this.GetProperty<string>("newValue");
             }
         }
         
-        public nsAString Url
+        public string Url
         {
             get
             {
-                return this.GetProperty<nsAString>("url");
+                return this.GetProperty<string>("url");
             }
         }
         
@@ -51,7 +51,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void InitStorageEvent(nsAString type, bool canBubble, bool cancelable, nsAString key, nsAString oldValue, nsAString newValue, nsAString url, nsISupports storageArea)
+        public void InitStorageEvent(string type, bool canBubble, bool cancelable, string key, string oldValue, string newValue, string url, nsISupports storageArea)
         {
             this.CallVoidMethod("initStorageEvent", type, canBubble, cancelable, key, oldValue, newValue, url, storageArea);
         }

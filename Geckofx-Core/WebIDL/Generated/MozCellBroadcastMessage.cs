@@ -43,19 +43,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Language
+        public string Language
         {
             get
             {
-                return this.GetProperty<nsAString>("language");
+                return this.GetProperty<string>("language");
             }
         }
         
-        public nsAString Body
+        public string Body
         {
             get
             {
-                return this.GetProperty<nsAString>("body");
+                return this.GetProperty<string>("body");
             }
         }
         

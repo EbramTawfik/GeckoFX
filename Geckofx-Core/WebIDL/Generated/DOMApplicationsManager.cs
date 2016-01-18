@@ -46,12 +46,12 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("setEnabled", app, state);
         }
         
-        public Promise < nsIDOMBlob > GetIcon(nsISupports app, nsAString iconID)
+        public Promise < nsIDOMBlob > GetIcon(nsISupports app, string iconID)
         {
             return this.CallMethod<Promise < nsIDOMBlob >>("getIcon", app, iconID);
         }
         
-        public Promise < nsIDOMBlob > GetIcon(nsISupports app, nsAString iconID, nsAString entryPoint)
+        public Promise < nsIDOMBlob > GetIcon(nsISupports app, string iconID, string entryPoint)
         {
             return this.CallMethod<Promise < nsIDOMBlob >>("getIcon", app, iconID, entryPoint);
         }

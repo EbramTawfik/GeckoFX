@@ -119,11 +119,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Text
+        public string Text
         {
             get
             {
-                return this.GetProperty<nsAString>("text");
+                return this.GetProperty<string>("text");
             }
             set
             {

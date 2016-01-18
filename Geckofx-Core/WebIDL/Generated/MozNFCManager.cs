@@ -11,17 +11,17 @@ namespace Gecko.WebIDL
         {
         }
         
-        public Promise <bool> CheckP2PRegistration(nsAString manifestUrl)
+        public Promise <bool> CheckP2PRegistration(string manifestUrl)
         {
             return this.CallMethod<Promise <bool>>("checkP2PRegistration", manifestUrl);
         }
         
-        public void NotifyUserAcceptedP2P(nsAString manifestUrl)
+        public void NotifyUserAcceptedP2P(string manifestUrl)
         {
             this.CallVoidMethod("notifyUserAcceptedP2P", manifestUrl);
         }
         
-        public void NotifySendFileStatus(byte status, nsAString requestId)
+        public void NotifySendFileStatus(byte status, string requestId)
         {
             this.CallVoidMethod("notifySendFileStatus", status, requestId);
         }

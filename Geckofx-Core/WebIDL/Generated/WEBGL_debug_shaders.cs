@@ -11,9 +11,9 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString GetTranslatedShaderSource(nsISupports shader)
+        public string GetTranslatedShaderSource(nsISupports shader)
         {
-            return this.CallMethod<nsAString>("getTranslatedShaderSource", shader);
+            return this.CallMethod<string>("getTranslatedShaderSource", shader);
         }
     }
 }

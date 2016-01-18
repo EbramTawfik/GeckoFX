@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Color
+        public string Color
         {
             get
             {
-                return this.GetProperty<nsAString>("color");
+                return this.GetProperty<string>("color");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Face
+        public string Face
         {
             get
             {
-                return this.GetProperty<nsAString>("face");
+                return this.GetProperty<string>("face");
             }
             set
             {
@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Size
+        public string Size
         {
             get
             {
-                return this.GetProperty<nsAString>("size");
+                return this.GetProperty<string>("size");
             }
             set
             {

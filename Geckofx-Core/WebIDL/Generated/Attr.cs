@@ -11,19 +11,19 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString LocalName
+        public string LocalName
         {
             get
             {
-                return this.GetProperty<nsAString>("localName");
+                return this.GetProperty<string>("localName");
             }
         }
         
-        public nsAString Value
+        public string Value
         {
             get
             {
-                return this.GetProperty<nsAString>("value");
+                return this.GetProperty<string>("value");
             }
             set
             {
@@ -31,27 +31,27 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
         }
         
-        public nsAString NamespaceURI
+        public string NamespaceURI
         {
             get
             {
-                return this.GetProperty<nsAString>("namespaceURI");
+                return this.GetProperty<string>("namespaceURI");
             }
         }
         
-        public nsAString Prefix
+        public string Prefix
         {
             get
             {
-                return this.GetProperty<nsAString>("prefix");
+                return this.GetProperty<string>("prefix");
             }
         }
         

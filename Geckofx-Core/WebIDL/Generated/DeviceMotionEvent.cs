@@ -43,7 +43,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void InitDeviceMotionEvent(nsAString type, bool canBubble, bool cancelable, object acceleration, object accelerationIncludingGravity, object rotationRate, System.Nullable<double> interval)
+        public void InitDeviceMotionEvent(string type, bool canBubble, bool cancelable, object acceleration, object accelerationIncludingGravity, object rotationRate, System.Nullable<double> interval)
         {
             this.CallVoidMethod("initDeviceMotionEvent", type, canBubble, cancelable, acceleration, accelerationIncludingGravity, rotationRate, interval);
         }

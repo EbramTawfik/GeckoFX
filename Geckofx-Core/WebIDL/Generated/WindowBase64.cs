@@ -11,14 +11,14 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Btoa(nsAString btoa)
+        public string Btoa(string btoa)
         {
-            return this.CallMethod<nsAString>("btoa", btoa);
+            return this.CallMethod<string>("btoa", btoa);
         }
         
-        public nsAString Atob(nsAString atob)
+        public string Atob(string atob)
         {
-            return this.CallMethod<nsAString>("atob", atob);
+            return this.CallMethod<string>("atob", atob);
         }
     }
 }

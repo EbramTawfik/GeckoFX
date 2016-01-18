@@ -11,20 +11,20 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString MozPcid
+        public string MozPcid
         {
             get
             {
-                return this.GetProperty<nsAString>("mozPcid");
+                return this.GetProperty<string>("mozPcid");
             }
         }
         
-        public object Get(nsAString key)
+        public object Get(string key)
         {
             return this.CallMethod<object>("get", key);
         }
         
-        public bool Has(nsAString key)
+        public bool Has(string key)
         {
             return this.CallMethod<bool>("has", key);
         }

@@ -19,12 +19,12 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void EventListenerWasAdded(nsAString aType)
+        public void EventListenerWasAdded(string aType)
         {
             this.CallVoidMethod("eventListenerWasAdded", aType);
         }
         
-        public void EventListenerWasRemoved(nsAString aType)
+        public void EventListenerWasRemoved(string aType)
         {
             this.CallVoidMethod("eventListenerWasRemoved", aType);
         }

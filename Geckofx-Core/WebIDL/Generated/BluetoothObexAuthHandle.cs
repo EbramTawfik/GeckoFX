@@ -11,7 +11,7 @@ namespace Gecko.WebIDL
         {
         }
         
-        public Promise SetPassword(nsAString aPassword)
+        public Promise SetPassword(string aPassword)
         {
             return this.CallMethod<Promise>("setPassword", aPassword);
         }

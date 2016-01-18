@@ -26,7 +26,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise < PushPermissionState >>("permissionState");
         }
         
-        public void SetScope(nsAString scope)
+        public void SetScope(string scope)
         {
             this.CallVoidMethod("setScope", scope);
         }

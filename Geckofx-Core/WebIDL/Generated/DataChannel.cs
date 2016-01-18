@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Label
+        public string Label
         {
             get
             {
-                return this.GetProperty<nsAString>("label");
+                return this.GetProperty<string>("label");
             }
         }
         
@@ -72,7 +72,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("close");
         }
         
-        public void Send(nsAString data)
+        public void Send(string data)
         {
             this.CallVoidMethod("send", data);
         }
@@ -87,11 +87,11 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("send", data);
         }
         
-        public nsAString Protocol
+        public string Protocol
         {
             get
             {
-                return this.GetProperty<nsAString>("protocol");
+                return this.GetProperty<string>("protocol");
             }
         }
         

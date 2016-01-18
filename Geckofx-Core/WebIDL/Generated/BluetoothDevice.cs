@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Address
+        public string Address
         {
             get
             {
-                return this.GetProperty<nsAString>("address");
+                return this.GetProperty<string>("address");
             }
         }
         
@@ -27,11 +27,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Name
+        public string Name
         {
             get
             {
-                return this.GetProperty<nsAString>("name");
+                return this.GetProperty<string>("name");
             }
         }
         
@@ -59,17 +59,17 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString[] Uuids
+        public string[] Uuids
         {
             get
             {
-                return this.GetProperty<nsAString[]>("uuids");
+                return this.GetProperty<string[]>("uuids");
             }
         }
         
-        public Promise < nsAString[] > FetchUuids()
+        public Promise < System.String[] > FetchUuids()
         {
-            return this.CallMethod<Promise < nsAString[] >>("fetchUuids");
+            return this.CallMethod<Promise < System.String[] >>("fetchUuids");
         }
     }
 }

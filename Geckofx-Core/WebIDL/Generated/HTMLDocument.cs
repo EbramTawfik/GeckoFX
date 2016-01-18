@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Domain
+        public string Domain
         {
             get
             {
-                return this.GetProperty<nsAString>("domain");
+                return this.GetProperty<string>("domain");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Cookie
+        public string Cookie
         {
             get
             {
-                return this.GetProperty<nsAString>("cookie");
+                return this.GetProperty<string>("cookie");
             }
             set
             {
@@ -103,11 +103,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString DesignMode
+        public string DesignMode
         {
             get
             {
-                return this.GetProperty<nsAString>("designMode");
+                return this.GetProperty<string>("designMode");
             }
             set
             {
@@ -115,11 +115,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString FgColor
+        public string FgColor
         {
             get
             {
-                return this.GetProperty<nsAString>("fgColor");
+                return this.GetProperty<string>("fgColor");
             }
             set
             {
@@ -127,11 +127,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString LinkColor
+        public string LinkColor
         {
             get
             {
-                return this.GetProperty<nsAString>("linkColor");
+                return this.GetProperty<string>("linkColor");
             }
             set
             {
@@ -139,11 +139,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString VlinkColor
+        public string VlinkColor
         {
             get
             {
-                return this.GetProperty<nsAString>("vlinkColor");
+                return this.GetProperty<string>("vlinkColor");
             }
             set
             {
@@ -151,11 +151,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString AlinkColor
+        public string AlinkColor
         {
             get
             {
-                return this.GetProperty<nsAString>("alinkColor");
+                return this.GetProperty<string>("alinkColor");
             }
             set
             {
@@ -163,11 +163,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString BgColor
+        public string BgColor
         {
             get
             {
-                return this.GetProperty<nsAString>("bgColor");
+                return this.GetProperty<string>("bgColor");
             }
             set
             {
@@ -199,7 +199,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports GetElementsByName(nsAString elementName)
+        public nsISupports GetElementsByName(string elementName)
         {
             return this.CallMethod<nsISupports>("getElementsByName", elementName);
         }
@@ -209,7 +209,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("getItems");
         }
         
-        public nsISupports GetItems(nsAString typeNames)
+        public nsISupports GetItems(string typeNames)
         {
             return this.CallMethod<nsISupports>("getItems", typeNames);
         }
@@ -219,22 +219,22 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsIDOMDocument>("open");
         }
         
-        public nsIDOMDocument Open(nsAString type)
+        public nsIDOMDocument Open(string type)
         {
             return this.CallMethod<nsIDOMDocument>("open", type);
         }
         
-        public nsIDOMDocument Open(nsAString type, nsAString replace)
+        public nsIDOMDocument Open(string type, string replace)
         {
             return this.CallMethod<nsIDOMDocument>("open", type, replace);
         }
         
-        public nsIDOMWindow Open(nsAString url, nsAString name, nsAString features)
+        public nsIDOMWindow Open(string url, string name, string features)
         {
             return this.CallMethod<nsIDOMWindow>("open", url, name, features);
         }
         
-        public nsIDOMWindow Open(nsAString url, nsAString name, nsAString features, bool replace)
+        public nsIDOMWindow Open(string url, string name, string features, bool replace)
         {
             return this.CallMethod<nsIDOMWindow>("open", url, name, features, replace);
         }
@@ -244,54 +244,54 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("close");
         }
         
-        public void Write(nsAString text)
+        public void Write(string text)
         {
             this.CallVoidMethod("write", text);
         }
         
-        public void Writeln(nsAString text)
+        public void Writeln(string text)
         {
             this.CallVoidMethod("writeln", text);
         }
         
-        public bool ExecCommand(nsAString commandId)
+        public bool ExecCommand(string commandId)
         {
             return this.CallMethod<bool>("execCommand", commandId);
         }
         
-        public bool ExecCommand(nsAString commandId, bool showUI)
+        public bool ExecCommand(string commandId, bool showUI)
         {
             return this.CallMethod<bool>("execCommand", commandId, showUI);
         }
         
-        public bool ExecCommand(nsAString commandId, bool showUI, nsAString value)
+        public bool ExecCommand(string commandId, bool showUI, string value)
         {
             return this.CallMethod<bool>("execCommand", commandId, showUI, value);
         }
         
-        public bool QueryCommandEnabled(nsAString commandId)
+        public bool QueryCommandEnabled(string commandId)
         {
             return this.CallMethod<bool>("queryCommandEnabled", commandId);
         }
         
-        public bool QueryCommandIndeterm(nsAString commandId)
+        public bool QueryCommandIndeterm(string commandId)
         {
             return this.CallMethod<bool>("queryCommandIndeterm", commandId);
         }
         
-        public bool QueryCommandState(nsAString commandId)
+        public bool QueryCommandState(string commandId)
         {
             return this.CallMethod<bool>("queryCommandState", commandId);
         }
         
-        public bool QueryCommandSupported(nsAString commandId)
+        public bool QueryCommandSupported(string commandId)
         {
             return this.CallMethod<bool>("queryCommandSupported", commandId);
         }
         
-        public nsAString QueryCommandValue(nsAString commandId)
+        public string QueryCommandValue(string commandId)
         {
-            return this.CallMethod<nsAString>("queryCommandValue", commandId);
+            return this.CallMethod<string>("queryCommandValue", commandId);
         }
         
         public void Clear()

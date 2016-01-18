@@ -67,52 +67,52 @@ namespace Gecko.WebIDL
             }
         }
         
-        public Promise < WebIDLUnion<nsISupports,nsISupports>> Dial(nsAString number)
+        public Promise < WebIDLUnion<nsISupports,nsISupports>> Dial(string number)
         {
             return this.CallMethod<Promise < WebIDLUnion<nsISupports,nsISupports>>>("dial", number);
         }
         
-        public Promise < WebIDLUnion<nsISupports,nsISupports>> Dial(nsAString number, uint serviceId)
+        public Promise < WebIDLUnion<nsISupports,nsISupports>> Dial(string number, uint serviceId)
         {
             return this.CallMethod<Promise < WebIDLUnion<nsISupports,nsISupports>>>("dial", number, serviceId);
         }
         
-        public Promise < nsISupports > DialEmergency(nsAString number)
+        public Promise < nsISupports > DialEmergency(string number)
         {
             return this.CallMethod<Promise < nsISupports >>("dialEmergency", number);
         }
         
-        public Promise < nsISupports > DialEmergency(nsAString number, uint serviceId)
+        public Promise < nsISupports > DialEmergency(string number, uint serviceId)
         {
             return this.CallMethod<Promise < nsISupports >>("dialEmergency", number, serviceId);
         }
         
-        public Promise SendTones(nsAString tones)
+        public Promise SendTones(string tones)
         {
             return this.CallMethod<Promise>("sendTones", tones);
         }
         
-        public Promise SendTones(nsAString tones, uint pauseDuration)
+        public Promise SendTones(string tones, uint pauseDuration)
         {
             return this.CallMethod<Promise>("sendTones", tones, pauseDuration);
         }
         
-        public Promise SendTones(nsAString tones, uint pauseDuration, uint toneDuration)
+        public Promise SendTones(string tones, uint pauseDuration, uint toneDuration)
         {
             return this.CallMethod<Promise>("sendTones", tones, pauseDuration, toneDuration);
         }
         
-        public Promise SendTones(nsAString tones, uint pauseDuration, uint toneDuration, uint serviceId)
+        public Promise SendTones(string tones, uint pauseDuration, uint toneDuration, uint serviceId)
         {
             return this.CallMethod<Promise>("sendTones", tones, pauseDuration, toneDuration, serviceId);
         }
         
-        public void StartTone(nsAString tone)
+        public void StartTone(string tone)
         {
             this.CallVoidMethod("startTone", tone);
         }
         
-        public void StartTone(nsAString tone, uint serviceId)
+        public void StartTone(string tone, uint serviceId)
         {
             this.CallVoidMethod("startTone", tone, serviceId);
         }

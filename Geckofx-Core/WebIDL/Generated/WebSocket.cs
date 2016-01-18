@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Url
+        public string Url
         {
             get
             {
-                return this.GetProperty<nsAString>("url");
+                return this.GetProperty<string>("url");
             }
         }
         
@@ -35,19 +35,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Extensions
+        public string Extensions
         {
             get
             {
-                return this.GetProperty<nsAString>("extensions");
+                return this.GetProperty<string>("extensions");
             }
         }
         
-        public nsAString Protocol
+        public string Protocol
         {
             get
             {
-                return this.GetProperty<nsAString>("protocol");
+                return this.GetProperty<string>("protocol");
             }
         }
         
@@ -73,12 +73,12 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("close", code);
         }
         
-        public void Close(ushort code, nsAString reason)
+        public void Close(ushort code, string reason)
         {
             this.CallVoidMethod("close", code, reason);
         }
         
-        public void Send(nsAString data)
+        public void Send(string data)
         {
             this.CallVoidMethod("send", data);
         }

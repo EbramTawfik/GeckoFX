@@ -59,19 +59,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString IdpLoginUrl
+        public string IdpLoginUrl
         {
             get
             {
-                return this.GetProperty<nsAString>("idpLoginUrl");
+                return this.GetProperty<string>("idpLoginUrl");
             }
         }
         
-        public nsAString Id
+        public string Id
         {
             get
             {
-                return this.GetProperty<nsAString>("id");
+                return this.GetProperty<string>("id");
             }
             set
             {
@@ -79,24 +79,24 @@ namespace Gecko.WebIDL
             }
         }
         
-        public void SetIdentityProvider(nsAString provider)
+        public void SetIdentityProvider(string provider)
         {
             this.CallVoidMethod("setIdentityProvider", provider);
         }
         
-        public void SetIdentityProvider(nsAString provider, nsAString protocol)
+        public void SetIdentityProvider(string provider, string protocol)
         {
             this.CallVoidMethod("setIdentityProvider", provider, protocol);
         }
         
-        public void SetIdentityProvider(nsAString provider, nsAString protocol, nsAString username)
+        public void SetIdentityProvider(string provider, string protocol, string username)
         {
             this.CallVoidMethod("setIdentityProvider", provider, protocol, username);
         }
         
-        public Promise < nsAString > GetIdentityAssertion()
+        public Promise <string> GetIdentityAssertion()
         {
-            return this.CallMethod<Promise < nsAString >>("getIdentityAssertion");
+            return this.CallMethod<Promise <string>>("getIdentityAssertion");
         }
         
         public Promise < nsISupports > CreateOffer()
@@ -159,7 +159,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports[]>("getRemoteStreams");
         }
         
-        public nsISupports GetStreamById(nsAString streamId)
+        public nsISupports GetStreamById(string streamId)
         {
             return this.CallMethod<nsISupports>("getStreamById", streamId);
         }
@@ -209,12 +209,12 @@ namespace Gecko.WebIDL
             return this.CallMethod<Promise < nsISupports >>("getStats", selector);
         }
         
-        public nsISupports CreateDataChannel(nsAString label)
+        public nsISupports CreateDataChannel(string label)
         {
             return this.CallMethod<nsISupports>("createDataChannel", label);
         }
         
-        public nsISupports CreateDataChannel(nsAString label, object dataChannelDict)
+        public nsISupports CreateDataChannel(string label, object dataChannelDict)
         {
             return this.CallMethod<nsISupports>("createDataChannel", label, dataChannelDict);
         }

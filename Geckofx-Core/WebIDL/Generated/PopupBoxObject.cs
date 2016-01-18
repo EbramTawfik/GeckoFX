@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString PopupState
+        public string PopupState
         {
             get
             {
-                return this.GetProperty<nsAString>("popupState");
+                return this.GetProperty<string>("popupState");
             }
         }
         
@@ -47,11 +47,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString AlignmentPosition
+        public string AlignmentPosition
         {
             get
             {
-                return this.GetProperty<nsAString>("alignmentPosition");
+                return this.GetProperty<string>("alignmentPosition");
             }
         }
         
@@ -68,17 +68,17 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("showPopup", srcContent, popupContent, xpos, ypos);
         }
         
-        public void ShowPopup(nsIDOMElement srcContent, nsIDOMElement popupContent, int xpos, int ypos, nsAString popupType)
+        public void ShowPopup(nsIDOMElement srcContent, nsIDOMElement popupContent, int xpos, int ypos, string popupType)
         {
             this.CallVoidMethod("showPopup", srcContent, popupContent, xpos, ypos, popupType);
         }
         
-        public void ShowPopup(nsIDOMElement srcContent, nsIDOMElement popupContent, int xpos, int ypos, nsAString popupType, nsAString anchorAlignment)
+        public void ShowPopup(nsIDOMElement srcContent, nsIDOMElement popupContent, int xpos, int ypos, string popupType, string anchorAlignment)
         {
             this.CallVoidMethod("showPopup", srcContent, popupContent, xpos, ypos, popupType, anchorAlignment);
         }
         
-        public void ShowPopup(nsIDOMElement srcContent, nsIDOMElement popupContent, int xpos, int ypos, nsAString popupType, nsAString anchorAlignment, nsAString popupAlignment)
+        public void ShowPopup(nsIDOMElement srcContent, nsIDOMElement popupContent, int xpos, int ypos, string popupType, string anchorAlignment, string popupAlignment)
         {
             this.CallVoidMethod("showPopup", srcContent, popupContent, xpos, ypos, popupType, anchorAlignment, popupAlignment);
         }
@@ -123,32 +123,32 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("openPopup", anchorElement);
         }
         
-        public void OpenPopup(nsIDOMElement anchorElement, nsAString position)
+        public void OpenPopup(nsIDOMElement anchorElement, string position)
         {
             this.CallVoidMethod("openPopup", anchorElement, position);
         }
         
-        public void OpenPopup(nsIDOMElement anchorElement, nsAString position, int x)
+        public void OpenPopup(nsIDOMElement anchorElement, string position, int x)
         {
             this.CallVoidMethod("openPopup", anchorElement, position, x);
         }
         
-        public void OpenPopup(nsIDOMElement anchorElement, nsAString position, int x, int y)
+        public void OpenPopup(nsIDOMElement anchorElement, string position, int x, int y)
         {
             this.CallVoidMethod("openPopup", anchorElement, position, x, y);
         }
         
-        public void OpenPopup(nsIDOMElement anchorElement, nsAString position, int x, int y, bool isContextMenu)
+        public void OpenPopup(nsIDOMElement anchorElement, string position, int x, int y, bool isContextMenu)
         {
             this.CallVoidMethod("openPopup", anchorElement, position, x, y, isContextMenu);
         }
         
-        public void OpenPopup(nsIDOMElement anchorElement, nsAString position, int x, int y, bool isContextMenu, bool attributesOverride)
+        public void OpenPopup(nsIDOMElement anchorElement, string position, int x, int y, bool isContextMenu, bool attributesOverride)
         {
             this.CallVoidMethod("openPopup", anchorElement, position, x, y, isContextMenu, attributesOverride);
         }
         
-        public void OpenPopup(nsIDOMElement anchorElement, nsAString position, int x, int y, bool isContextMenu, bool attributesOverride, nsIDOMEvent triggerEvent)
+        public void OpenPopup(nsIDOMElement anchorElement, string position, int x, int y, bool isContextMenu, bool attributesOverride, nsIDOMEvent triggerEvent)
         {
             this.CallVoidMethod("openPopup", anchorElement, position, x, y, isContextMenu, attributesOverride, triggerEvent);
         }
@@ -163,42 +163,42 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("openPopupAtScreenRect");
         }
         
-        public void OpenPopupAtScreenRect(nsAString position)
+        public void OpenPopupAtScreenRect(string position)
         {
             this.CallVoidMethod("openPopupAtScreenRect", position);
         }
         
-        public void OpenPopupAtScreenRect(nsAString position, int x)
+        public void OpenPopupAtScreenRect(string position, int x)
         {
             this.CallVoidMethod("openPopupAtScreenRect", position, x);
         }
         
-        public void OpenPopupAtScreenRect(nsAString position, int x, int y)
+        public void OpenPopupAtScreenRect(string position, int x, int y)
         {
             this.CallVoidMethod("openPopupAtScreenRect", position, x, y);
         }
         
-        public void OpenPopupAtScreenRect(nsAString position, int x, int y, int width)
+        public void OpenPopupAtScreenRect(string position, int x, int y, int width)
         {
             this.CallVoidMethod("openPopupAtScreenRect", position, x, y, width);
         }
         
-        public void OpenPopupAtScreenRect(nsAString position, int x, int y, int width, int height)
+        public void OpenPopupAtScreenRect(string position, int x, int y, int width, int height)
         {
             this.CallVoidMethod("openPopupAtScreenRect", position, x, y, width, height);
         }
         
-        public void OpenPopupAtScreenRect(nsAString position, int x, int y, int width, int height, bool isContextMenu)
+        public void OpenPopupAtScreenRect(string position, int x, int y, int width, int height, bool isContextMenu)
         {
             this.CallVoidMethod("openPopupAtScreenRect", position, x, y, width, height, isContextMenu);
         }
         
-        public void OpenPopupAtScreenRect(nsAString position, int x, int y, int width, int height, bool isContextMenu, bool attributesOverride)
+        public void OpenPopupAtScreenRect(string position, int x, int y, int width, int height, bool isContextMenu, bool attributesOverride)
         {
             this.CallVoidMethod("openPopupAtScreenRect", position, x, y, width, height, isContextMenu, attributesOverride);
         }
         
-        public void OpenPopupAtScreenRect(nsAString position, int x, int y, int width, int height, bool isContextMenu, bool attributesOverride, nsIDOMEvent triggerEvent)
+        public void OpenPopupAtScreenRect(string position, int x, int y, int width, int height, bool isContextMenu, bool attributesOverride, nsIDOMEvent triggerEvent)
         {
             this.CallVoidMethod("openPopupAtScreenRect", position, x, y, width, height, isContextMenu, attributesOverride, triggerEvent);
         }
@@ -213,22 +213,22 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("moveToAnchor", anchorElement);
         }
         
-        public void MoveToAnchor(nsIDOMElement anchorElement, nsAString position)
+        public void MoveToAnchor(nsIDOMElement anchorElement, string position)
         {
             this.CallVoidMethod("moveToAnchor", anchorElement, position);
         }
         
-        public void MoveToAnchor(nsIDOMElement anchorElement, nsAString position, int x)
+        public void MoveToAnchor(nsIDOMElement anchorElement, string position, int x)
         {
             this.CallVoidMethod("moveToAnchor", anchorElement, position, x);
         }
         
-        public void MoveToAnchor(nsIDOMElement anchorElement, nsAString position, int x, int y)
+        public void MoveToAnchor(nsIDOMElement anchorElement, string position, int x, int y)
         {
             this.CallVoidMethod("moveToAnchor", anchorElement, position, x, y);
         }
         
-        public void MoveToAnchor(nsIDOMElement anchorElement, nsAString position, int x, int y, bool attributesOverride)
+        public void MoveToAnchor(nsIDOMElement anchorElement, string position, int x, int y, bool attributesOverride)
         {
             this.CallVoidMethod("moveToAnchor", anchorElement, position, x, y, attributesOverride);
         }

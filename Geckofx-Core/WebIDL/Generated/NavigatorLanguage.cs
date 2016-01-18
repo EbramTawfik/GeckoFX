@@ -11,19 +11,19 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Language
+        public string Language
         {
             get
             {
-                return this.GetProperty<nsAString>("language");
+                return this.GetProperty<string>("language");
             }
         }
         
-        public nsAString[] Languages
+        public string[] Languages
         {
             get
             {
-                return this.GetProperty<nsAString[]>("languages");
+                return this.GetProperty<string[]>("languages");
             }
         }
     }

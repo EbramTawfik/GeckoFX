@@ -11,12 +11,12 @@ namespace Gecko.WebIDL
         {
         }
         
-        public Promise < nsAString > GetValue(nsAString name)
+        public Promise <string> GetValue(string name)
         {
-            return this.CallMethod<Promise < nsAString >>("getValue", name);
+            return this.CallMethod<Promise <string>>("getValue", name);
         }
         
-        public Promise SetValue(nsAString name, nsAString value)
+        public Promise SetValue(string name, string value)
         {
             return this.CallMethod<Promise>("setValue", name, value);
         }

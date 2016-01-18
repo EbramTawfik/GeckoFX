@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Encoding
+        public string Encoding
         {
             get
             {
-                return this.GetProperty<nsAString>("encoding");
+                return this.GetProperty<string>("encoding");
             }
         }
         

@@ -32,12 +32,12 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("setActive", isActive);
         }
         
-        public Promise AddInput(nsAString inputId, object inputManifest)
+        public Promise AddInput(string inputId, object inputManifest)
         {
             return this.CallMethod<Promise>("addInput", inputId, inputManifest);
         }
         
-        public Promise RemoveInput(nsAString id)
+        public Promise RemoveInput(string id)
         {
             return this.CallMethod<Promise>("removeInput", id);
         }
@@ -47,7 +47,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("removeFocus");
         }
         
-        public void SetValue(nsAString value)
+        public void SetValue(string value)
         {
             this.CallVoidMethod("setValue", value);
         }

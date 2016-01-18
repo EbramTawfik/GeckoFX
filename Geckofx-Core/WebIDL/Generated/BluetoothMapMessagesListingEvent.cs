@@ -51,19 +51,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString FilterPeriodBegin
+        public string FilterPeriodBegin
         {
             get
             {
-                return this.GetProperty<nsAString>("filterPeriodBegin");
+                return this.GetProperty<string>("filterPeriodBegin");
             }
         }
         
-        public nsAString FilterPeriodEnd
+        public string FilterPeriodEnd
         {
             get
             {
-                return this.GetProperty<nsAString>("filterPeriodEnd");
+                return this.GetProperty<string>("filterPeriodEnd");
             }
         }
         
@@ -75,19 +75,19 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString FilterRecipient
+        public string FilterRecipient
         {
             get
             {
-                return this.GetProperty<nsAString>("filterRecipient");
+                return this.GetProperty<string>("filterRecipient");
             }
         }
         
-        public nsAString FilterOriginator
+        public string FilterOriginator
         {
             get
             {
-                return this.GetProperty<nsAString>("filterOriginator");
+                return this.GetProperty<string>("filterOriginator");
             }
         }
         

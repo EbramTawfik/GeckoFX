@@ -16,7 +16,7 @@ namespace Gecko.WebIDL
             return this.CallMethod<nsISupports>("register");
         }
         
-        public nsISupports Unregister(nsAString pushEndpoint)
+        public nsISupports Unregister(string pushEndpoint)
         {
             return this.CallMethod<nsISupports>("unregister", pushEndpoint);
         }

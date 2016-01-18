@@ -91,20 +91,20 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString MozOrientation
+        public string MozOrientation
         {
             get
             {
-                return this.GetProperty<nsAString>("mozOrientation");
+                return this.GetProperty<string>("mozOrientation");
             }
         }
         
-        public bool MozLockOrientation(nsAString orientation)
+        public bool MozLockOrientation(string orientation)
         {
             return this.CallMethod<bool>("mozLockOrientation", orientation);
         }
         
-        public bool MozLockOrientation(nsAString[] orientation)
+        public bool MozLockOrientation(string[] orientation)
         {
             return this.CallMethod<bool>("mozLockOrientation", orientation);
         }

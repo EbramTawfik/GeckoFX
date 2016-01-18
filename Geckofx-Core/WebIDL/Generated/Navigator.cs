@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString DoNotTrack
+        public string DoNotTrack
         {
             get
             {
-                return this.GetProperty<nsAString>("doNotTrack");
+                return this.GetProperty<string>("doNotTrack");
             }
         }
         
@@ -74,35 +74,35 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString Oscpu
+        public string Oscpu
         {
             get
             {
-                return this.GetProperty<nsAString>("oscpu");
+                return this.GetProperty<string>("oscpu");
             }
         }
         
-        public nsAString Vendor
+        public string Vendor
         {
             get
             {
-                return this.GetProperty<nsAString>("vendor");
+                return this.GetProperty<string>("vendor");
             }
         }
         
-        public nsAString VendorSub
+        public string VendorSub
         {
             get
             {
-                return this.GetProperty<nsAString>("vendorSub");
+                return this.GetProperty<string>("vendorSub");
             }
         }
         
-        public nsAString ProductSub
+        public string ProductSub
         {
             get
             {
-                return this.GetProperty<nsAString>("productSub");
+                return this.GetProperty<string>("productSub");
             }
         }
         
@@ -114,11 +114,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString BuildID
+        public string BuildID
         {
             get
             {
-                return this.GetProperty<nsAString>("buildID");
+                return this.GetProperty<string>("buildID");
             }
         }
         
@@ -145,7 +145,7 @@ namespace Gecko.WebIDL
             this.CallVoidMethod("removeIdleObserver", aIdleObserver);
         }
         
-        public nsISupports RequestWakeLock(nsAString aTopic)
+        public nsISupports RequestWakeLock(string aTopic)
         {
             return this.CallMethod<nsISupports>("requestWakeLock", aTopic);
         }
@@ -158,17 +158,17 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsISupports GetDeviceStorage(nsAString type)
+        public nsISupports GetDeviceStorage(string type)
         {
             return this.CallMethod<nsISupports>("getDeviceStorage", type);
         }
         
-        public nsISupports[] GetDeviceStorages(nsAString type)
+        public nsISupports[] GetDeviceStorages(string type)
         {
             return this.CallMethod<nsISupports[]>("getDeviceStorages", type);
         }
         
-        public nsISupports GetDeviceStorageByNameAndType(nsAString name, nsAString type)
+        public nsISupports GetDeviceStorageByNameAndType(string name, string type)
         {
             return this.CallMethod<nsISupports>("getDeviceStorageByNameAndType", name, type);
         }
@@ -197,7 +197,7 @@ namespace Gecko.WebIDL
             }
         }
         
-        public bool MozHasPendingMessage(nsAString type)
+        public bool MozHasPendingMessage(string type)
         {
             return this.CallMethod<bool>("mozHasPendingMessage", type);
         }
@@ -220,12 +220,12 @@ namespace Gecko.WebIDL
             }
         }
         
-        public bool SendBeacon(nsAString url)
+        public bool SendBeacon(string url)
         {
             return this.CallMethod<bool>("sendBeacon", url);
         }
         
-        public bool SendBeacon(nsAString url, WebIDLUnion<IntPtr,nsIDOMBlob,nsAString,nsIDOMFormData> data)
+        public bool SendBeacon(string url, WebIDLUnion<IntPtr,nsIDOMBlob,System.String,nsIDOMFormData> data)
         {
             return this.CallMethod<bool>("sendBeacon", url, data);
         }

@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString Address
+        public string Address
         {
             get
             {
-                return this.GetProperty<nsAString>("address");
+                return this.GetProperty<string>("address");
             }
         }
         

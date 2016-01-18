@@ -35,11 +35,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString IpAddress
+        public string IpAddress
         {
             get
             {
-                return this.GetProperty<nsAString>("ipAddress");
+                return this.GetProperty<string>("ipAddress");
             }
         }
     }

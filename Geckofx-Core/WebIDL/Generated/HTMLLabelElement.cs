@@ -19,11 +19,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString HtmlFor
+        public string HtmlFor
         {
             get
             {
-                return this.GetProperty<nsAString>("htmlFor");
+                return this.GetProperty<string>("htmlFor");
             }
             set
             {

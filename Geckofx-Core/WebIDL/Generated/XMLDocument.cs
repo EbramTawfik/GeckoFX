@@ -11,7 +11,7 @@ namespace Gecko.WebIDL
         {
         }
         
-        public bool Load(nsAString url)
+        public bool Load(string url)
         {
             return this.CallMethod<bool>("load", url);
         }

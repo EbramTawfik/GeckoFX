@@ -11,11 +11,11 @@ namespace Gecko.WebIDL
         {
         }
         
-        public nsAString BaseVal
+        public string BaseVal
         {
             get
             {
-                return this.GetProperty<nsAString>("baseVal");
+                return this.GetProperty<string>("baseVal");
             }
             set
             {
@@ -23,11 +23,11 @@ namespace Gecko.WebIDL
             }
         }
         
-        public nsAString AnimVal
+        public string AnimVal
         {
             get
             {
-                return this.GetProperty<nsAString>("animVal");
+                return this.GetProperty<string>("animVal");
             }
         }
     }
