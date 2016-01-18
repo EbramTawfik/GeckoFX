@@ -218,13 +218,6 @@ namespace Gecko
 				{
 				    var window = GetGlobalWindow();
                     var val = context.EvaluateScript("this.document.styleSheets[0].cssRules;", window);
-#if false
-                    var val = context.EvaluateScript("this.document.styleSheets[0];", window);
-
-				    var ss = new Gecko.WebIDL.CSSStyleSheet(GetGlobalWindow(), (nsISupports) val.ToObject());
-				    ss.InsertRule(new nsAString("a { };"), 0);
-				    return (nsIDOMCSSRuleList) ss.CssRules;
-#endif
 				    return (nsIDOMCSSRuleList)val.ToObject();
 				}
 			}

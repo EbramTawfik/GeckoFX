@@ -104,15 +104,6 @@ namespace Gecko
             new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).SizeToContent();
 		}
 
-// prop no longer exist in gecko 45        
-#if false
-		public float TextZoom
-		{
-			get { return _domWindow.Instance.GetTextZoomAttribute(); }
-			set { _domWindow.Instance.SetTextZoomAttribute( value ); }
-		}
-#endif
-		
 		public GeckoWindow Top
 		{
 		    get
