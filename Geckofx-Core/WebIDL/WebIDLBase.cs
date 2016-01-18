@@ -34,7 +34,7 @@ namespace Gecko.WebIDL
             using (var context = new AutoJSContext(_globalWindow))
             {
                 var jsObject = context.ConvertCOMObjectToJSObject(_thisObject);
-                if (!SpiderMonkey.JS_SetProperty(context.ContextPointer, jsObject, propertyName, ConvertTypes(new[] {value}, context, jsObject).First()))
+                if (!SpiderMonkey.JS_SetProperty(context.ContextPointer, jsObject, propertyName, ConvertTypes(new[] {value}, context).First()))
                     throw new GeckoException(String.Format("Property '{0}' of value '{1}' could not be set on object", propertyName, value));
             }
         }
@@ -43,9 +43,8 @@ namespace Gecko.WebIDL
         {
             using (var context = new AutoJSContext(_globalWindow))
             {
-                var jsObject = context.ConvertCOMObjectToJSObject(_thisObject);
-                
-                var collection = ConvertTypes(paramObjects, context, jsObject);
+                var jsObject = context.ConvertCOMObjectToJSObject(_thisObject);                
+                var collection = ConvertTypes(paramObjects, context);
                 SpiderMonkey.JS_CallFunctionName(context.ContextPointer, jsObject, methodName, collection.ToArray() );
             }
         }
@@ -55,14 +54,13 @@ namespace Gecko.WebIDL
             using (var context = new AutoJSContext(_globalWindow))
             {
                 var jsObject = context.ConvertCOMObjectToJSObject(_thisObject);
-
-                var collection = ConvertTypes(paramObjects, context, jsObject);
+                var collection = ConvertTypes(paramObjects, context);
                 var retObject = SpiderMonkey.JS_CallFunctionName(context.ContextPointer, jsObject, methodName, collection.ToArray()).ToObject();
                 return ConvertObject<T>(retObject);
             }
         }
 
-        private static List<JsVal> ConvertTypes(object[] paramObjects, AutoJSContext context, IntPtr jsObject)
+        private static List<JsVal> ConvertTypes(object[] paramObjects, AutoJSContext context)
         {
             var collection = new List<JsVal>();
             foreach (var p in paramObjects)
@@ -75,7 +73,7 @@ namespace Gecko.WebIDL
                     // This returns a  [xpconnect wrapped nsISupports] - why may or may not be good enought - if not could try and access the objects wrappedJSObject property?
                     // val = SpiderMonkey.JS_CallFunctionName(context.ContextPointer, jsObject, "valueOf");
                     // Replaced CallFunctionName 'valueOf' method with 'managed convert' (for speed reasons)
-                    val = JsVal.FromPtr(jsObject);
+                    val = JsVal.FromPtr(context.ConvertCOMObjectToJSObject((nsISupports)p));
                 }
                 else if (p is bool)
                 {

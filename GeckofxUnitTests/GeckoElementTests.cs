@@ -123,5 +123,14 @@ namespace GeckofxUnitTests
 			var attributes = span.Attributes;
 			Assert.AreEqual(0, attributes.Count());
 		}
+
+        [Test]
+        public void ComputedStyle_ReturnsValidStyleObject()
+        {
+            browser.TestLoadHtml(@"<div id='abc' style='height: 123px;'><span>hi</span></div>");
+
+            var div = browser.Document.GetHtmlElementById("abc");
+            Assert.AreEqual("123px", div.ComputedStyle.GetPropertyValue("height"));
+        }
 	}
 }

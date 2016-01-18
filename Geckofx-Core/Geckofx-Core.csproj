@@ -1357,7 +1357,6 @@
     <Compile Include="DOM\Html\HTMLUListElement.cs" />
     <Compile Include="DOM\GeckoComment.cs" />
     <Compile Include="GeckoElementExtensions.cs" />
-    <Compile Include="GeckoMarkupDocumentViewer.cs" />
     <Compile Include="GeckoMIMEInputStream.cs" />
     <Compile Include="GeckoMouseButton.cs" />
     <Compile Include="DOM\GeckoNode.cs" />
