@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ce9d05f4-0c20-4f52-87e1-3a425e61e2f3")]
+    [Guid("a1b2e167-b748-42bf-ba85-996ec39062b9")]
 	public interface nsIXULRuntime
 	{
 		
@@ -119,14 +119,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAccessibilityEnabledAttribute();
-		
-		/// <summary>
-        /// Indicates if the active accessibility client is blacklisted for e10s.
-        /// DO NOT USE! This is temporary and will be removed.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAccessibilityIsBlacklistedForE10SAttribute();
 		
 		/// <summary>
         /// Indicates whether the current Firefox build is 64-bit.
