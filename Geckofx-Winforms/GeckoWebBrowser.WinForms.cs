@@ -221,6 +221,22 @@ namespace Gecko
 	        _eventsAttached = true;
 	    }
 
+        void DetachEvents()
+        {
+            if (!_eventsAttached)
+                return;
+            _eventsAttached = false;
+
+            //Remove Event Listener			
+            foreach (string sEventType in this.DefaultEvents)
+            {
+                using (var eventType = new nsAString(sEventType))
+                {
+                    EventTarget.Instance.RemoveEventListener(eventType, this, true);
+                }
+            }
+        }
+
 		protected override void OnHandleDestroyed( EventArgs e )
 		{
 			if (BaseWindow != null)
@@ -263,14 +279,7 @@ namespace Gecko
 				
 				if (EventTarget != null)
 				{
-					//Remove Event Listener			
-					foreach (string sEventType in this.DefaultEvents)
-					{
-						using (var eventType = new nsAString(sEventType))
-						{
-							EventTarget.Instance.RemoveEventListener(eventType, this, true);
-						}
-					}
+                    DetachEvents();					
 					EventTarget.Dispose();
 					EventTarget = null;
 				}
