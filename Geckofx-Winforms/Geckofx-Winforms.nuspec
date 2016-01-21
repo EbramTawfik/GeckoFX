@@ -8,7 +8,22 @@
     <owners>Tom Hindle</owners>
     <projectUrl>https://bitbucket.org/geckofx/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>library that allows embeding gecko in C# applications.</description>
+    <description>library that allows embeding gecko in C# applications.
+	
+	Example Usage:
+	
+		[STAThread]
+        static void Main(string[] args)
+        {
+            Xpcom.Initialize("Firefox");
+            var geckoWebBrowser = new GeckoWebBrowser {Dock = DockStyle.Fill};
+            Form f = new Form();
+            f.Controls.Add(geckoWebBrowser);
+            geckoWebBrowser.Navigate("www.google.com");
+            Application.Run(f);
+        }
+	
+	</description>
     <copyright>Copyright 2015</copyright>
     <tags>Firefox Gecko Geckofx</tags>
 	<references>
