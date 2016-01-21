@@ -197,7 +197,11 @@ namespace Gecko
 
 		}
 
+        /// <summary>
+        /// True if events have been attached to the 'Root' window.
+        /// </summary>
 	    private bool _eventsAttached;
+
 	    void AttachEvents()
 	    {
 	        if (_eventsAttached)

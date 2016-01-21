@@ -2,6 +2,13 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.3 ==
+
+This build is an Alpha version.
+
+1. Fix event handling.
+2. Work with newer versions of the firefox 45 Alpha.
+
 == v45.0-0.2 ==
 
 This build is an Alpha version.
