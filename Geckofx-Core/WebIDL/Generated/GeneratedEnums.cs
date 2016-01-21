@@ -2548,6 +2548,9 @@ namespace Gecko.WebIDL
         
         [Description("p256dh")]
         p256dh,
+        
+        [Description("auth")]
+        auth,
     }
     
     public enum RequestContext

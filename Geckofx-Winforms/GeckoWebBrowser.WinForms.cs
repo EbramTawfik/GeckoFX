@@ -157,20 +157,16 @@ namespace Gecko
     					Net.HttpActivityDistributor.AddObserver(this);
     				}
 
-    				// var domEventListener = new GeckoDOMEventListener(this);
-
-    				{
+                    // force inital window initialization. (Events now get added after document navigation.
+                    {
                         var domWindow = WebBrowser.GetContentDOMWindowAttribute();
                         EventTarget = ((nsIDOMEventTarget)domWindow).AsComPtr();
-    				}
-
-    				foreach (string sEventName in this.DefaultEvents)
-    				{
-    					using (var eventType = new nsAString(sEventName))
-    					{
-    						EventTarget.Instance.AddEventListener(eventType, this, true, true, 2);
-    					}
-    				}
+                        using (var eventType = new nsAString("somedummyevent"))
+                        {
+                            EventTarget.Instance.AddEventListener(eventType, this, true, true, 2);
+                            EventTarget.Instance.RemoveEventListener(eventType, this, true);
+                        }
+                    }
 
     				// history
     				{
@@ -200,6 +196,26 @@ namespace Gecko
             }
 
 		}
+
+	    private bool _eventsAttached;
+	    void AttachEvents()
+	    {
+	        if (_eventsAttached)
+	            return;
+
+            var domWindow = WebBrowser.GetContentDOMWindowAttribute();
+            EventTarget = ((nsIDOMEventTarget)new WebIDL.Window(domWindow, (nsISupports)domWindow).PrivateRoot).AsComPtr();
+            //EventTarget = ((nsIDOMEventTarget)domWindow).AsComPtr();
+            Marshal.ReleaseComObject(domWindow);
+
+            foreach (string sEventName in this.DefaultEvents)
+            {
+                using (var eventType = new nsAString(sEventName))
+                    EventTarget.Instance.AddEventListener(eventType, this, true, true, 2);
+            }
+
+	        _eventsAttached = true;
+	    }
 
 		protected override void OnHandleDestroyed( EventArgs e )
 		{

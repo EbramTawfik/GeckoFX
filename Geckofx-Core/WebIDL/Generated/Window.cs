@@ -155,6 +155,14 @@ namespace Gecko.WebIDL
             }
         }
         
+        public nsIDOMWindow PrivateRoot
+        {
+            get
+            {
+                return this.GetProperty<nsIDOMWindow>("privateRoot");
+            }
+        }
+        
         public object Opener
         {
             get

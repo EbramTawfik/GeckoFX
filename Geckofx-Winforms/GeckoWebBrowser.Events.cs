@@ -250,13 +250,15 @@ namespace Gecko
 			remove { Events.RemoveHandler( DocumentCompletedEvent, value ); }
 		}
 
-		/// <summary>Raises the <see cref="DocumentCompleted"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDocumentCompleted(GeckoDocumentCompletedEventArgs e)
-		{
-			var evnt = (EventHandler<GeckoDocumentCompletedEventArgs>)Events[DocumentCompletedEvent];
-			if ( evnt != null ) evnt( this, e );
-		}
+        /// <summary>Raises the <see cref="DocumentCompleted"/> event.</summary>
+        /// <param name="e">The data for the event.</param>
+        protected virtual void OnDocumentCompleted(GeckoDocumentCompletedEventArgs e)
+        {
+            AttachEvents();
+
+            var evnt = (EventHandler<GeckoDocumentCompletedEventArgs>)Events[DocumentCompletedEvent];
+            if (evnt != null) evnt(this, e);
+        }
 
 		#endregion
 
