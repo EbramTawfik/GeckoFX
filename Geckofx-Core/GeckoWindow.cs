@@ -104,7 +104,7 @@ namespace Gecko
             new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).ScrollTo(xScroll, yScroll);
 		}
 
-		public void ScrollBy(int xScrollDif, int yScrollDif)
+        public void ScrollBy(double xScrollDif, double yScrollDif)
 		{
             new WebIDL.Window(_domWindow.Instance, (nsISupports)_domWindow.Instance).ScrollBy(xScrollDif, yScrollDif);
 		}

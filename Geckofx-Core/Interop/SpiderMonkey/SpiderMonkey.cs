@@ -869,25 +869,20 @@ namespace Gecko
             /// <returns></returns>
             private IntPtr CopyToNativeMemory()
             {
-                IntPtr ptr = Marshal.AllocCoTaskMem(4 + (_length * 8));
+                IntPtr ptr = Marshal.AllocCoTaskMem(4 + IntPtr.Size);
                 Marshal.WriteInt32(ptr, 0, _length);
+                IntPtr arrayPtr = Marshal.AllocCoTaskMem(8 * _length);
+                Marshal.WriteIntPtr(ptr, 4 , arrayPtr);
                 for (int i = 0; i < _length; i++)
-                {
-                    IntPtr jsvalPtr = Marshal.AllocCoTaskMem(8);
-                    Marshal.StructureToPtr(_args[0], jsvalPtr, true);
-                    Marshal.WriteIntPtr(ptr, 4 + (i * 8), jsvalPtr);
-                }
+                    Marshal.StructureToPtr(_args[i], new IntPtr(arrayPtr.ToInt64() + (i * 8)), true);
 
                 return ptr;
             }
 
             private void FreeNativeMemory(IntPtr ptr)
             {
-                for (int i = 0; i < _length; i++)
-                {
-                    var p = Marshal.ReadIntPtr(ptr, 4 + (i * 8));
-                    Marshal.FreeCoTaskMem(p);
-                }
+                var p = Marshal.ReadIntPtr(ptr, 4);
+                Marshal.FreeCoTaskMem(p);
                 Marshal.FreeCoTaskMem(ptr);
             }
 
