@@ -42,7 +42,12 @@ namespace Gecko
             }
 	    }
 
-		[FieldOffset(0)]
+	    public static JsVal FromDouble(double d)
+	    {
+            return new JsVal() { AsDouble = d };
+	    }
+
+	    [FieldOffset(0)]
 		public ulong AsBits;
 		[FieldOffset(0)]
 		public double AsDouble;

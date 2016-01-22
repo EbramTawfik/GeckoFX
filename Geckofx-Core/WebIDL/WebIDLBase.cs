@@ -79,6 +79,10 @@ namespace Gecko.WebIDL
                 {
                     SpiderMonkey.JS_ExecuteScript(context.ContextPointer, ((bool)p) ? "true;" : "false;", out val);
                 }
+                else if (p is double)
+                {
+                    val = JsVal.FromDouble((double)p);
+                }
                 else
                     SpiderMonkey.JS_ExecuteScript(context.ContextPointer, p.ToString(), out val);
                 collection.Add(val);

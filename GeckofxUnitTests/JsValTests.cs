@@ -94,5 +94,17 @@ namespace GeckofxUnitTests
 
             browser.Dispose();
 	    }
+
+	    [TestCase(23)]
+        [TestCase(23.3)]
+        [TestCase(-23)]
+        [TestCase(-23.3)]
+        [TestCase(double.MaxValue)]
+	    public void FromDouble(double d)
+	    {
+            var jsVal = JsVal.FromDouble(d);
+            Assert.IsTrue(jsVal.IsDouble);
+            Assert.AreEqual(d, jsVal.ToDouble());
+	    }
 	}
 }
