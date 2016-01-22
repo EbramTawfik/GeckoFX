@@ -2,6 +2,13 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.4 ==
+
+This build is an Alpha version.
+
+1. More fixes to event handling so that event handlers still work after document reloaded.
+2. Fix bug were only first argument was passed to webidl methods. (Fixes Window.ScrollBy ignore 'y' argument)
+
 == v45.0-0.3 ==
 
 This build is an Alpha version.
