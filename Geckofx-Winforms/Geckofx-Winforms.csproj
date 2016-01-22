@@ -193,7 +193,7 @@
   <Target Name="AfterBuild">
     <!-- Only download a new copy of nuget.exe if we don't have a copy available -->
     <WebDownload Condition="!Exists('nuget.exe')" Filename="nuget.exe" FileUri="https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" />
-    <Exec Command="nuget pack Geckofx-Winforms.csproj -Prop Configuration=Debug -Prop Platform=x86">
+    <Exec Command="nuget pack Geckofx-Winforms.csproj -Prop Configuration=Debug -Prop Platform=x86 -MinClientVersion 2.5">
     </Exec>
   </Target>
 </Project>
