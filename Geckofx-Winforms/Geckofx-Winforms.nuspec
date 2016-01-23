@@ -41,6 +41,7 @@
    <file src="bin\Debug\*.config" target="lib" />
    <file src="..\PutXulRunnerFolderHere\Firefox\*.dll" target="content\Firefox" />
    <file src="..\PutXulRunnerFolderHere\Firefox\*.ja" target="content\Firefox" />
+   <file src="..\PutXulRunnerFolderHere\Firefox\plugin-*.exe" target="content\Firefox" />
    <file src="Geckofx45.targets" target="build" />
   </files>
 </package>
