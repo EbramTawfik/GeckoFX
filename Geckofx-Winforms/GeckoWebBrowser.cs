@@ -356,7 +356,6 @@ namespace Gecko
 
 				try
 				{
-                    DetachEvents();
 					WebNav.LoadURI(
 						url, (uint) loadFlags, referrerUri, postData != null ? postData._inputStream : null,
 						headers != null ? headers._inputStream : null );
@@ -420,7 +419,6 @@ namespace Gecko
 
 		private void InternalLoadContent(string content, string url, string contentType)
 		{
-		    DetachEvents();
 			using (var sContentType = new nsACString(contentType))
 			using (var sUtf8 = new nsACString("UTF8"))
 			{

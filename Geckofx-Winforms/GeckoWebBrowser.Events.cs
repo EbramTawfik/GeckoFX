@@ -154,6 +154,9 @@ namespace Gecko
 		/// <param name="e">The data for the event.</param>
 		protected virtual void OnNavigated( GeckoNavigatedEventArgs e )
 		{
+            DetachEvents();
+            AttachEvents();
+
 			var evnt = ( EventHandler<GeckoNavigatedEventArgs> ) Events[ NavigatedEvent ];
 			if ( evnt != null ) evnt( this, e );
 		}
@@ -254,8 +257,6 @@ namespace Gecko
         /// <param name="e">The data for the event.</param>
         protected virtual void OnDocumentCompleted(GeckoDocumentCompletedEventArgs e)
         {
-            AttachEvents();
-
             var evnt = (EventHandler<GeckoDocumentCompletedEventArgs>)Events[DocumentCompletedEvent];
             if (evnt != null) evnt(this, e);
         }
