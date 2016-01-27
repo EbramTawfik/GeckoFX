@@ -16,7 +16,7 @@ namespace Gecko.JQuery
 		{
 			JsVal jsValue;
 
-			using (var autoContext = new AutoJSContext())
+			using (var autoContext = new AutoJSContext(_window))
 			{				
                 jsValue = autoContext.EvaluateScript(jQuery, _window.DomWindow);
 			}
@@ -28,7 +28,7 @@ namespace Gecko.JQuery
 		{
 			JsVal jsValue;
 
-			using (var autoContext = new AutoJSContext())
+			using (var autoContext = new AutoJSContext(_window))
 			{
 				autoContext.PushCompartmentScope((nsISupports)_window.Document.DomObject);
 				jsValue = autoContext.EvaluateScript(jQuery, _window.DomWindow);
@@ -66,13 +66,12 @@ namespace Gecko.JQuery
 
 		public IEnumerable<GeckoElement> GetElementsByJQuery(string jQuery)
 		{
-			JsVal jsValue;
-			var elements = new List<GeckoElement>();
+		    var elements = new List<GeckoElement>();
 
-			using (var autoContext = new AutoJSContext())
+			using (var autoContext = new AutoJSContext(_window))
 			{
 				autoContext.PushCompartmentScope((nsISupports)_window.Document.DomObject);
-				jsValue = autoContext.EvaluateScript(jQuery, _window.DomWindow);
+				var jsValue = autoContext.EvaluateScript(jQuery, _window.DomWindow);
 				if (!jsValue.IsObject) 
 					return elements;
 
