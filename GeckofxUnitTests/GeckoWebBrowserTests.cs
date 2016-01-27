@@ -8,6 +8,7 @@ using Gecko;
 using System.IO;
 using System.Runtime.InteropServices;
 using Gecko.DOM;
+using Gecko.JQuery;
 
 namespace GeckofxUnitTests
 {
@@ -246,7 +247,58 @@ namespace GeckofxUnitTests
 			Assert.AreEqual("some data", payload);
 		}
 
-		[Test]
+        [Test]
+        public void AddEventListener_JScriptFiresEvent_ListenerIsCalledWithMessage_Using_JQueryExecutor()
+        {
+            string payload = null;
+
+            browser.AddMessageEventListener("callMe", ((string p) => payload = p));
+
+            browser.LoadHtml(
+                @"<!DOCTYPE html>
+			                 <html><head>No Content
+			                
+							</head><body></body></html>");
+
+            browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+            var javaScript = @"var event = new MessageEvent('callMe',  { 'view' : window, 'bubbles' : true, 'cancelable' : false, 'data' : 'some data'}); document.dispatchEvent(event);";
+            var executor = new JQueryExecutor(browser.Window);
+
+            executor.ExecuteJQuery(javaScript);
+
+            Assert.AreEqual("some data", payload);
+        }
+
+        [Test]
+        public void AddEventListener_JScriptFiresEvent_ListenerIsCalledWithMessage_After_navigated_to_another_page()
+        {
+            string payload = null;
+
+            browser.LoadHtml(
+                @"<!DOCTYPE html>
+			                 <html><head>No Content
+			                
+							</head><body></body></html>");
+
+
+
+            browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+            browser.AddMessageEventListener("callMe", ((string p) => payload = p));
+            browser.Navigate("about:blank");
+            browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+            var javaScript = @"var event = new MessageEvent('callMe',  { 'view' : window, 'bubbles' : true, 'cancelable' : false, 'data' : 'some data'}); document.dispatchEvent(event);";
+            var executor = new JQueryExecutor(browser.Window);
+
+            executor.ExecuteJQuery(javaScript);
+
+            Assert.AreEqual("some data", payload);
+        }
+
+
+
+        [Test]
 		public void EvaluateScript_SimpleJavascript_ScriptExecutesAndReturnsExpectedResult()
 		{
 			browser.TestLoadHtml("");
