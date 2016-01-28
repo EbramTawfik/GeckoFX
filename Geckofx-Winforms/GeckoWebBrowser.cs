@@ -2210,11 +2210,18 @@ namespace Gecko
         public void RemoveMessageEventListener(string eventName, bool useCapture)
         {
             var target = Xpcom.QueryInterface<nsIDOMEventTarget>(Window.DomWindow);
-            if (target != null)
+            if (target == null)
             {
-                target.RemoveEventListener(new nsAString(eventName), this, useCapture);
-                _messageEventListeners.Remove(eventName);
+                return;
             }
+
+            if (!_messageEventListeners.ContainsKey(eventName))
+            {
+                return;
+            }
+
+            target.RemoveEventListener(new nsAString(eventName), this, useCapture);
+            _messageEventListeners.Remove(eventName);
         }
 
         public void Observe(nsISupports aSubject, string aTopic, string aData)
