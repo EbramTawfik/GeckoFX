@@ -237,6 +237,17 @@ namespace Gecko
             }
         }
 
+	    void ReattachMessageEventListerns()
+	    {
+            foreach (var i in _messageEventListeners)
+            {
+                var eventName = i.Key;
+                var details = i.Value;
+                RemoveMessageEventListener(eventName, i.Value.Value);
+                AddMessageEventListener(eventName, i.Value.Key, i.Value.Value);
+            }
+	    }
+
 		protected override void OnHandleDestroyed( EventArgs e )
 		{
 			if (BaseWindow != null)

@@ -74,8 +74,9 @@ namespace Gecko
         #region Fields
         /// <summary>
         /// Additional DOM message listeners
+        /// Dictionary mapping name to action and useCapture flag.
         /// </summary>
-        Dictionary<string, Action<string>> _messageEventListeners = new Dictionary<string, Action<string>>();
+        Dictionary<string, KeyValuePair<Action<string>, bool>> _messageEventListeners = new Dictionary<string, KeyValuePair<Action<string>, bool>>();
         /// <summary>
         /// nsIWebBrowser instance
         /// </summary>
@@ -2034,11 +2035,11 @@ namespace Gecko
             }
             if (e is DomMessageEventArgs)
             {
-                Action<string> action;
+                KeyValuePair<Action<string>, bool> pair;
                 DomMessageEventArgs mea = (DomMessageEventArgs)e;
-                if (_messageEventListeners.TryGetValue(e.Type, out action))
+                if (_messageEventListeners.TryGetValue(e.Type, out pair))
                 {
-                    action.Invoke(mea.Message);
+                   pair.Key.Invoke(mea.Message);
                 }
             }
 
@@ -2182,11 +2183,11 @@ namespace Gecko
 
             if (_messageEventListeners.ContainsKey(eventName))
             {
-                _messageEventListeners[eventName] = action;
+                _messageEventListeners[eventName] = new KeyValuePair<Action<string>, bool>(action, useCapture);
             }
             else
             {
-                _messageEventListeners.Add(eventName, action);
+                _messageEventListeners.Add(eventName, new KeyValuePair<Action<string>, bool>(action, useCapture));
             }
 
         }

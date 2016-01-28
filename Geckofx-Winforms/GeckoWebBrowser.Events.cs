@@ -150,16 +150,18 @@ namespace Gecko
 			remove { Events.RemoveHandler( NavigatedEvent, value ); }
 		}
 
-		/// <summary>Raises the <see cref="Navigated"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnNavigated( GeckoNavigatedEventArgs e )
-		{
+        /// <summary>Raises the <see cref="Navigated"/> event.</summary>
+        /// <param name="e">The data for the event.</param>
+        protected virtual void OnNavigated(GeckoNavigatedEventArgs e)
+        {
             DetachEvents();
             AttachEvents();
 
-			var evnt = ( EventHandler<GeckoNavigatedEventArgs> ) Events[ NavigatedEvent ];
-			if ( evnt != null ) evnt( this, e );
-		}
+            ReattachMessageEventListerns();
+
+            var evnt = (EventHandler<GeckoNavigatedEventArgs>)Events[NavigatedEvent];
+            if (evnt != null) evnt(this, e);
+        }
 
 		#endregion
 
