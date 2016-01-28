@@ -230,7 +230,7 @@ namespace GeckofxUnitTests
 		{
 			string payload = null;
 
-			browser.AddMessageEventListener("callMe", ((string p) => payload = p));
+			browser.AddMessageEventListener("callMe", p => payload = p);
 
 			browser.LoadHtml(
 				@"<!DOCTYPE html>
@@ -246,6 +246,31 @@ namespace GeckofxUnitTests
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 			Assert.AreEqual("some data", payload);
 		}
+
+        [Test]
+        public void RemoveMessageEventListener_JScriptFiresEvent_ListenerIsNotCalled()
+        {
+            string payload = null;
+
+            browser.AddMessageEventListener("callMe", p => payload = p);
+            browser.RemoveMessageEventListener("callMe");
+
+            browser.LoadHtml(
+                @"<!DOCTYPE html>
+			                 <html><head>
+			                 <script type='text/javascript'>
+								window.onload= function() {
+									var event = new MessageEvent('callMe',  { 'view' : window, 'bubbles' : true, 'cancelable' : false, 'data' : 'some data'}); document.dispatchEvent (event);
+									document.dispatchEvent (event);
+								}
+							</script>
+							</head><body></body></html>");
+
+            browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+            
+
+            Assert.AreEqual(null, payload);
+        }
 
         [Test]
         public void AddEventListener_JScriptFiresEvent_ListenerIsCalledWithMessage_Using_JQueryExecutor()
