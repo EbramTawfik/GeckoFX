@@ -277,7 +277,7 @@ namespace GeckofxUnitTests
         {
             string payload = null;
 
-            browser.AddMessageEventListener("callMe", ((string p) => payload = p));
+            browser.AddMessageEventListener("callMe", p => payload = p);
 
             browser.LoadHtml(
                 @"<!DOCTYPE html>
@@ -309,7 +309,7 @@ namespace GeckofxUnitTests
 
 
             browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
-            browser.AddMessageEventListener("callMe", ((string p) => payload = p));
+            browser.AddMessageEventListener("callMe", p => payload = p);
             browser.Navigate("about:blank");
             browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 
@@ -332,7 +332,7 @@ namespace GeckofxUnitTests
 			{				
 				string result;
 				Assert.IsTrue(context.EvaluateScript("3 + 2;", out result));
-				Assert.AreEqual(5, Int32.Parse(result));
+				Assert.AreEqual(5, int.Parse(result));
 
 				Assert.IsTrue(context.EvaluateScript("'hello' + ' ' + 'world';", out result));
 				Assert.AreEqual("hello world", result);
