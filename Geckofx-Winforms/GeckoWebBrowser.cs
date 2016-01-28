@@ -2197,15 +2197,13 @@ namespace Gecko
 		/// <example>AddMessageEventListener("callMe", (message=>MessageBox.Show(message)));</example>
 		public void RemoveMessageEventListener(string eventName, bool useCapture)
 		{
-		    var window = Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute());
-            nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMEventTarget>(new WebIDL.Window(window, (nsISupports)window).WindowRoot);
+            var target = Xpcom.QueryInterface<nsIDOMEventTarget>(Window.DomWindow);
 			if (target != null)
 			{
 				target.RemoveEventListener(new nsAString(eventName), this, useCapture);
 				_messageEventListeners.Remove(eventName);
 			}
 		}
-
 
 		public void Observe(nsISupports aSubject, string aTopic, string aData) {
 			if (aTopic.Equals(ObserverNotifications.HttpRequests.HttpOnModifyRequest)) {
