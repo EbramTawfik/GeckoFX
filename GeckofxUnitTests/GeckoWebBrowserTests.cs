@@ -226,7 +226,7 @@ namespace GeckofxUnitTests
         }
 
         [Test]
-        public void AddEventListener_JScriptFiresEvent_ListenerIsCalledWithMessage()
+        public void AddMessageEventListener_JScriptFiresEvent_ListenerIsCalledWithMessage()
         {
             string payload = null;
 
@@ -248,7 +248,7 @@ namespace GeckofxUnitTests
         }
 
         [Test]
-        public void AddEventListenerIsCalledTwice_JScriptFiresEvent_LatestListenerIsCalledWithMessage()
+        public void AddMessageEventListener_CalledTwice_LatestListenerIsCalledWithMessage()
         {
             string payload = null;
 
@@ -295,7 +295,7 @@ namespace GeckofxUnitTests
         }
 
         [Test]
-        public void AddEventListener_JScriptFiresEvent_ListenerIsCalledWithMessage_Using_JQueryExecutor()
+        public void AddMessageEventListener_JScriptFiresEventUsingJQueryExecutor_ListenerIsCalledWithMessage()
         {
             string payload = null;
 
@@ -318,7 +318,7 @@ namespace GeckofxUnitTests
         }
 
         [Test]
-        public void AddEventListener_JScriptFiresEvent_ListenerIsCalledWithMessage_After_navigated_to_another_page()
+        public void AddMessageEventListener_JScriptFiresEventAfterNavigatedToAnotherPage_ListenerIsCalledWithMessage()
         {
             string payload = null;
 
@@ -342,8 +342,6 @@ namespace GeckofxUnitTests
 
             Assert.AreEqual("some data", payload);
         }
-
-
 
         [Test]
         public void EvaluateScript_SimpleJavascript_ScriptExecutesAndReturnsExpectedResult()
