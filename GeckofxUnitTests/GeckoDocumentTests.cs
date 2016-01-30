@@ -136,8 +136,18 @@ namespace GeckofxUnitTests
 	    [Test]
 	    public void GetNotes_NonGenericGetEnumerator_ReturnsExpectedNodes()
 	    {
-            browser.TestLoadHtml("<h1>text</h1>>");
+            browser.TestLoadHtml("<h1>text</h1>");
             Assert.AreEqual(5, browser.Document.EvaluateXPath("//*").GetNodes().Cast<GeckoHtmlElement>().Count());
+	    }
+
+        [TestCase("MouseEvent", typeof(DomMouseEventArgs))]
+        [TestCase("KeyEvents", typeof(DomKeyEventArgs))]
+	    public void CreateEvent_VariousEvents_ExpectedWrapperTypesProduced(string eventName, Type expectedWrapperType)
+	    {
+            browser.TestLoadHtml("hello world");
+            var eventArg = browser.Document.CreateEvent(eventName);
+            Assert.NotNull(DomEventArgs.Create(eventArg.DomEvent));
+            Assert.AreEqual(expectedWrapperType, DomEventArgs.Create(eventArg.DomEvent).GetType());
 	    }
 	}
 }

@@ -17,6 +17,11 @@ namespace Gecko
 			{
 				return DomMouseEventArgs.Create( (nsIDOMMouseEvent)ev );
 			}
+            else if (ev is nsIDOMKeyEvent)
+            {
+                return DomKeyEventArgs.Create((nsIDOMKeyEvent)ev);
+            }
+
 			return new DomUIEventArgs( ev );
 		}
 		
