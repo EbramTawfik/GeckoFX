@@ -2,12 +2,20 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.6 ==
+
+This build is an Beta version.
+
+1. Message event listeners for custom event not longer get lost after page navigation. (Thanks SBetzin)
+2. Fix issue https://bitbucket.org/geckofx/geckofx-45.0/issues/10
+3. Update to latest Beta Firefox 45.
+
 == v45.0-0.5 ==
 
 This build is an Alpha version.
 
 1. Another attempt at fixing events.
-1. Include Plugin exe's in nuget package.
+2. Include Plugin exe's in nuget package.
 
 == v45.0-0.4 ==
 
