@@ -47,7 +47,7 @@ namespace Gecko
 	/// <summary>nsITelemetry </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fabde631-c128-41c3-b7cb-9eb96f1276ff")]
+	[Guid("273d2dd0-6c63-475a-b864-cb65160a1909")]
 	public interface nsITelemetry
 	{
 		
@@ -354,6 +354,17 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterAddonHistograms([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase addon_id);
+		
+		/// <summary>
+        /// Enable/disable recording for this histogram at runtime.
+        /// Recording is enabled by default, unless listed at kRecordingInitiallyDisabledIDs[].
+        /// Name must be a valid Histogram identifier, otherwise an assertion will be triggered.
+        ///
+        /// @param id - unique identifier from histograms.json
+        /// @param enabled - whether or not to enable recording from now on.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetHistogramRecordingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase id, [MarshalAs(UnmanagedType.U1)] bool enabled);
 		
 		/// <summary>
         /// An object containing a snapshot from all of the currently

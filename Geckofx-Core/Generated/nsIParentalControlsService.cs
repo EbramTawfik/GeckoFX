@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f35733bc-114b-49ce-a8dd-a423f19318bc")]
+	[Guid("2e97e5dd-467b-4aea-a1bb-6773c0f2beb0")]
 	public interface nsIParentalControlsService
 	{
 		
@@ -198,6 +198,21 @@ namespace Gecko
         // Advanced settings
         // </summary>
 		public const short CAMERA_MICROPHONE = 18;
+		
+		// <summary>
+        // Camera and microphone (WebRTC)
+        // </summary>
+		public const short TELEMETRY = 19;
+		
+		// <summary>
+        // Submit telemetry data
+        // </summary>
+		public const short HEALTH_REPORT = 20;
+		
+		// <summary>
+        // Submit FHR data
+        // </summary>
+		public const short DEFAULT_THEME = 21;
 		
 		// <summary>
         // Log entry types. Additional types can be defined and implemented

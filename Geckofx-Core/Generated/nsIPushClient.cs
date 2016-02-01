@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dc201064-8e5c-4a26-bd37-d1e33558a903")]
+	[Guid("d83e398f-9920-4451-b23a-6d5a5ad2fa26")]
 	public interface nsIPushEndpointCallback
 	{
 		
@@ -51,7 +51,7 @@ namespace Gecko
         /// endpoint.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPushEndpoint(int status, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase endpoint, uint keyLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] key);
+		void OnPushEndpoint(int status, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase endpoint, uint keyLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] key, uint authSecretLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=4)] byte[] authSecret);
 	}
 	
 	/// <summary>

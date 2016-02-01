@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("41e311d0-5894-4aaa-80b5-5b7099dfc404")]
+	[Guid("ddc65bf9-2f60-41ab-b22a-4f1ae9efcd36")]
 	public interface nsILoadInfo
 	{
 		
@@ -219,13 +219,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUpgradeInsecureRequestsAttribute();
-		
-		/// <summary>
-        /// Same as upgradeInsecureRequests but for preloads.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetUpgradeInsecurePreloadsAttribute();
 		
 		/// <summary>
         /// Typically these are the window IDs of the window in which the element being

@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("950a829e-c20e-4dc3-b447-f8b753ae54da")]
+	[Guid("95309fd2-7b3a-47fb-97f3-5c460d9473cd")]
 	public interface nsIFeedResultService
 	{
 		
@@ -62,9 +62,12 @@ namespace Gecko
         /// The subtitle of the feed to add.
         /// @param   feedType
         /// The nsIFeed type of the feed.  See nsIFeed.idl
+        /// @param   feedReader
+        /// The type of feed reader we're using (client, bookmarks, default)
+        /// If this parameter is null, the type is set to default
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddToClientReader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase uri, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase title, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase subtitle, uint feedType);
+		void AddToClientReader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase uri, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase title, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase subtitle, uint feedType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.AStringMarshaler")] nsAStringBase feedReader);
 		
 		/// <summary>
         /// Registers a Feed Result object with a globally accessible service

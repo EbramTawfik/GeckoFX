@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid("a1b2e167-b748-42bf-ba85-996ec39062b9")]
+	[Guid("a1b2e167-b748-42bf-ba85-996ec39062b9")]
 	public interface nsIXULRuntime
 	{
 		
