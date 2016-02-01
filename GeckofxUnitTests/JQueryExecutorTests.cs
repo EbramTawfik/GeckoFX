@@ -148,8 +148,8 @@ namespace GeckofxUnitTests
 
         private static string CreateTempFile(int lineCount)
         {
-            var bodyContent = string.Concat(Enumerable.Repeat($@"<p>Content</p>{Environment.NewLine}", lineCount).ToArray());
-            var htmlDocument = $@"<html><head><script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script></head><body>{bodyContent}</body></html>";
+            var bodyContent = string.Concat(Enumerable.Repeat(@"<p>Content</p>{Environment.NewLine}", lineCount).ToArray());
+            var htmlDocument = string.Format(@"<html><head><script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script></head><body>{0}</body></html>", bodyContent);
             var tempFile = Path.GetTempFileName();
 
             using (var writer = new StreamWriter(tempFile, false))
