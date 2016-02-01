@@ -1627,7 +1627,6 @@
     <Compile Include="Generated\nsIDOMEventListener.cs" />
     <Compile Include="Generated\nsIDOMEventTarget.cs" />
     <Compile Include="Generated\nsIDOMFileList.cs" />
-    <Compile Include="Generated\nsIDOMFileReader.cs" />
     <Compile Include="Generated\nsIDOMFontFace.cs" />
     <Compile Include="Generated\nsIDOMFontFaceList.cs" />
     <Compile Include="Generated\nsIDOMFormData.cs" />
