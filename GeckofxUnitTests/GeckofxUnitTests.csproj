@@ -108,6 +108,7 @@
     <Compile Include="GeckoWebBrowserTestExtensionMethods.cs" />
     <Compile Include="GeckoWebBrowserTests.cs" />
     <Compile Include="IOServiceTests.cs" />
+    <Compile Include="JQueryExecutorTests.cs" />
     <Compile Include="JsValTests.cs" />
     <Compile Include="ManagedServiceFactoriesTests.cs" />
     <Compile Include="nsACStringTests.cs" />

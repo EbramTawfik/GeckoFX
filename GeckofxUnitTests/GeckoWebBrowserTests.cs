@@ -561,64 +561,6 @@ namespace GeckofxUnitTests
             }
         }
 
-        #region JQueryExecutor
-
-        private const string JQueryExecutorTestsHtml = @"
-<html>
-	<body>
-		<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
-		<div id='a' class='divs'></div>
-		<div id='b' class='divs'></div>
-	</body>
-</html>
-";
-
-        [Test]
-        public void JQueryExecutor_ExecuteJQuery_ScriptExecutesAndReturnsJsValOfExpectedType()
-        {
-            browser.TestLoadHtml(JQueryExecutorTestsHtml);
-
-            var executor = new Gecko.JQuery.JQueryExecutor(browser.Window);
-            JsVal value = executor.ExecuteJQuery("$('#a')");
-            Assert.IsTrue(value.IsObject);
-        }
-
-        [Test]
-        [Platform(Exclude = "Linux", Reason = "Crashes on Linux")]
-        public void JQueryExecutor_GetElementByJQuery_ScriptExecutesAndReturnsExpectedResult()
-        {
-            browser.TestLoadHtml(JQueryExecutorTestsHtml);
-
-            var executor = new Gecko.JQuery.JQueryExecutor(browser.Window);
-            GeckoElement div = null;
-            Assert.DoesNotThrow(() => div = executor.GetElementByJQuery("$('#a')"));
-            Assert.IsNotNull(div);
-            Assert.AreEqual("DIV", div.TagName);
-            Assert.AreEqual("a", div.GetAttribute("id"));
-        }
-
-        [Test]
-        [Platform(Exclude = "Linux", Reason = "Crashes on Linux")]
-        public void JQueryExecutor_GetElementsByJQuery_ScriptExecutesAndReturnsExpectedResult()
-        {
-            browser.TestLoadHtml(JQueryExecutorTestsHtml);
-
-            var executor = new Gecko.JQuery.JQueryExecutor(browser.Window);
-
-            IEnumerable<GeckoElement> elements = null;
-            Assert.DoesNotThrow(() => elements = executor.GetElementsByJQuery("$('.divs')"));
-            Assert.IsNotNull(elements);
-            Assert.AreEqual(2, elements.Count());
-
-            foreach (var div in elements)
-            {
-                Assert.IsNotNull(div);
-                Assert.AreEqual("DIV", div.TagName);
-                Assert.AreEqual("divs", div.GetAttribute("class"));
-            }
-        }
-
-        #endregion
 
         [Test]
         public void Navigating_FrameDocumentLoaded_NavigatigAndFrameNavigatingEventIsCalled()
