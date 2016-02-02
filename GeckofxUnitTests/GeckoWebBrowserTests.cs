@@ -344,6 +344,28 @@ namespace GeckofxUnitTests
         }
 
         [Test]
+        public void AddMessageEventListener_NavigatingToSeveralPages_ListenerIsReattachedAndCalledWithMessage()
+        {
+            string payload = null;
+
+            var document = @"<!DOCTYPE html><html><head>No Content</head><body></body></html>";
+
+            browser.AddMessageEventListener("callMe", p => payload = p);
+            browser.LoadHtml(document);
+            browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+            browser.LoadHtml(document);
+            browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+            var javaScript = @"var event = new MessageEvent('callMe',  { 'view' : window, 'bubbles' : true, 'cancelable' : false, 'data' : 'some data'}); document.dispatchEvent(event);";
+            var executor = new JQueryExecutor(browser.Window);
+
+            executor.ExecuteJQuery(javaScript);
+
+            Assert.AreEqual("some data", payload);
+        }
+
+        [Test]
         public void EvaluateScript_SimpleJavascript_ScriptExecutesAndReturnsExpectedResult()
         {
             browser.TestLoadHtml("");
