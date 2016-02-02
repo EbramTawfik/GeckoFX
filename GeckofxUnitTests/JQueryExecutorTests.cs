@@ -142,6 +142,48 @@ namespace GeckofxUnitTests
             CleanUp(tempFile);
         }
 
+        [Test, Explicit]
+        [Platform(Exclude = "Linux", Reason = "Crashes on Linux")]
+        public void JQueryExecutor_ExecuteJQueryWithLargeHTML_ReturnsNothing_DoesNotProduceMemoryLeak()
+        {
+            const int lineCount = 100;
+            var tempFile = CreateTempFile(lineCount);
+
+            NavigateToTempFile(tempFile);
+            for (var testCounter = 0; testCounter < 1000000; testCounter++)
+            {
+                NavigateToTempFile(tempFile);
+                var executor = new JQueryExecutor(browser.Window);
+
+                executor.ExecuteJQuery(@"$('p').first().hide()");
+
+                GC.Collect();
+            }
+
+            CleanUp(tempFile);
+        }
+
+        [Test, Explicit]
+        [Platform(Exclude = "Linux", Reason = "Crashes on Linux")]
+        public void GeckoWebBrowser_ExecuteJQueryWithLargeHTML_ReturnsNothing_DoesNotProduceMemoryLeak()
+        {
+            const int lineCount = 100;
+            var tempFile = CreateTempFile(lineCount);
+
+            NavigateToTempFile(tempFile);
+            for (var testCounter = 0; testCounter < 1000000; testCounter++)
+            {
+                using (var context = new AutoJSContext(browser.Window))
+                {
+                    context.EvaluateScript(@"$('p').first().hide()");
+                }
+
+                GC.Collect();
+            }
+
+            CleanUp(tempFile);
+        }
+
         private void CleanUp(string tempFile)
         {
             try
