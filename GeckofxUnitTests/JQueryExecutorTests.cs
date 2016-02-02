@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using Gecko;
+using Gecko.JQuery;
 using NUnit.Framework;
 
 namespace GeckofxUnitTests
@@ -45,7 +45,7 @@ namespace GeckofxUnitTests
         {
             browser.TestLoadHtml(JQueryExecutorTestsHtml);
 
-            var executor = new Gecko.JQuery.JQueryExecutor(browser.Window);
+            var executor = new JQueryExecutor(browser.Window);
             JsVal value = executor.ExecuteJQuery("$('#a')");
             Assert.IsTrue(value.IsObject);
         }
@@ -56,7 +56,7 @@ namespace GeckofxUnitTests
         {
             browser.TestLoadHtml(JQueryExecutorTestsHtml);
 
-            var executor = new Gecko.JQuery.JQueryExecutor(browser.Window);
+            var executor = new JQueryExecutor(browser.Window);
             GeckoElement div = null;
             Assert.DoesNotThrow(() => div = executor.GetElementByJQuery("$('#a')"));
             Assert.IsNotNull(div);
@@ -70,7 +70,7 @@ namespace GeckofxUnitTests
         {
             browser.TestLoadHtml(JQueryExecutorTestsHtml);
 
-            var executor = new Gecko.JQuery.JQueryExecutor(browser.Window);
+            var executor = new JQueryExecutor(browser.Window);
 
             List<GeckoElement> elements = null;
             Assert.DoesNotThrow(() => elements = executor.GetElementsByJQuery("$('.divs')").ToList());
@@ -120,6 +120,28 @@ namespace GeckofxUnitTests
             CleanUp(tempFile);
         }
 
+        [Test, Explicit]
+        [Platform(Exclude = "Linux", Reason = "Crashes on Linux")]
+        public void JQueryExecutor_ExecuteJQueryWithLargeHTML_ReturnsString_DoesNotProduceMemoryLeak()
+        {
+            const int lineCount = 100;
+            var tempFile = CreateTempFile(lineCount);
+
+            NavigateToTempFile(tempFile);
+            for (var testCounter = 0; testCounter < 1000000; testCounter++)
+            {
+                var executor = new JQueryExecutor(browser.Window);
+
+                var value = executor.ExecuteJQuery(@"$('p').first().text()").ToString();
+
+                Assert.That(value, Is.EqualTo("Content"));
+
+                GC.Collect();
+            }
+
+            CleanUp(tempFile);
+        }
+
         private void CleanUp(string tempFile)
         {
             try
@@ -134,7 +156,7 @@ namespace GeckofxUnitTests
 
         private List<GeckoElement> GetPElementsWithJQuery()
         {
-            var executor = new Gecko.JQuery.JQueryExecutor(browser.Window);
+            var executor = new JQueryExecutor(browser.Window);
 
             var elements = executor.GetElementsByJQuery(@"$('p')").ToList();
             return elements;
