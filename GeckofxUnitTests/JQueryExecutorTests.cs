@@ -98,6 +98,7 @@ namespace GeckofxUnitTests
             {
                 var elements = GetPElementsWithJQuery();
                 Assert.That(elements.Count, Is.EqualTo(lineCount));
+                GC.Collect();
             }
 
             CleanUp(tempFile);
@@ -115,6 +116,7 @@ namespace GeckofxUnitTests
                 NavigateToTempFile(tempFile);
                 var elements = GetPElementsWithJQuery();
                 Assert.That(elements.Count, Is.EqualTo(lineCount));
+                GC.Collect();
             }
 
             CleanUp(tempFile);
