@@ -1,4 +1,5 @@
 ﻿#region ***** BEGIN LICENSE BLOCK *****
+
 /* Version: MPL 1.1/GPL 2.0/LGPL 2.1
  *
  * The contents of this file are subject to the Mozilla Public License Version
@@ -31,6 +32,7 @@
  * the provisions above, a recipient may use your version of this file under
  * the terms of any one of the MPL, the GPL or the LGPL.
  */
+
 #endregion END LICENSE BLOCK
 
 using System;
@@ -55,7 +57,7 @@ namespace Gecko
     /// A Gecko-based web browser.
     /// </summary>
     public partial class GeckoWebBrowser :
-         IGeckoWebBrowser,
+        IGeckoWebBrowser,
         nsIWebBrowserChrome,
         nsIContextMenuListener2,
         nsIWebProgressListener,
@@ -69,33 +71,40 @@ namespace Gecko
         nsIObserver,
         nsIHttpActivityObserver,
         nsISupportsWeakReference
-    //nsIWindowProvider,
+        //nsIWindowProvider,
     {
         #region Fields
+
         /// <summary>
         /// Additional DOM message listeners
         /// Dictionary mapping name to action and useCapture flag.
         /// </summary>
-        Dictionary<string, KeyValuePair<Action<string>, bool>> _messageEventListeners = new Dictionary<string, KeyValuePair<Action<string>, bool>>();
+        private Dictionary<string, KeyValuePair<Action<string>, bool>> _messageEventListeners =
+            new Dictionary<string, KeyValuePair<Action<string>, bool>>();
+
         /// <summary>
         /// nsIWebBrowser instance
         /// </summary>
-        nsIWebBrowser WebBrowser;
+        private nsIWebBrowser WebBrowser;
+
         /// <summary>
         /// nsIWebBrowser casted to nsIBaseWindow
         /// </summary>
-        nsIBaseWindow BaseWindow;
+        private nsIBaseWindow BaseWindow;
+
         /// <summary>
         /// nsIWebBrowser casted no nsIWebNavigation
         /// </summary>
-        nsIWebNavigation WebNav;
-        nsICommandParams CommandParams;
+        private nsIWebNavigation WebNav;
 
-        uint ChromeFlags;
-        bool m_javascriptDebuggingEnabled;
+        private nsICommandParams CommandParams;
 
-        GeckoWindow _Window;
-        GeckoDomDocument _Document;
+        private uint ChromeFlags;
+        private bool m_javascriptDebuggingEnabled;
+
+        private GeckoWindow _Window;
+        private GeckoDomDocument _Document;
+
         #endregion
 
         #region public static methods
@@ -123,6 +132,7 @@ namespace Gecko
         }
 
         #region protected override void Dispose(bool disposing)
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -159,10 +169,7 @@ namespace Gecko
 
         #endregion
 
-        public nsIWebBrowserFocus WebBrowserFocus
-        {
-            get; protected set;
-        }
+        public nsIWebBrowserFocus WebBrowserFocus { get; protected set; }
 
         /// <summary>
         /// returns null if window is not editable.
@@ -172,21 +179,17 @@ namespace Gecko
             get
             {
                 var editingSession = Xpcom.CreateInstance<nsIEditingSession>("@mozilla.org/editor/editingsession;1");
-                var returnValue = editingSession.GetEditorForWindow((nsIDOMWindow)Window.DomWindow);
+                var returnValue = editingSession.GetEditorForWindow((nsIDOMWindow) Window.DomWindow);
                 Marshal.ReleaseComObject(editingSession);
                 return returnValue;
             }
         }
 
         // defaults to false
-        public bool UseHttpActivityObserver
-        {
-            get;
-            set;
-        }
+        public bool UseHttpActivityObserver { get; set; }
 
 
-        class WindowCreator : nsIWindowCreator2
+        private class WindowCreator : nsIWindowCreator2
         {
             static WindowCreator()
             {
@@ -199,7 +202,8 @@ namespace Gecko
                 // calling this method simply invokes the static ctor
             }
 
-            private nsIWebBrowserChrome DoCreateChromeWindow(nsIWebBrowserChrome parent, uint chromeFlags, uint contextFlags, nsIURI uri, ref bool cancel)
+            private nsIWebBrowserChrome DoCreateChromeWindow(nsIWebBrowserChrome parent, uint chromeFlags,
+                uint contextFlags, nsIURI uri, ref bool cancel)
             {
                 var url = "";
                 if (uri != null)
@@ -208,7 +212,7 @@ namespace Gecko
                     url = "about:blank";
 
                 // for chrome windows, we can use the AppShellService to create the window using some built-in xulrunner code
-                GeckoWindowFlags flags = (GeckoWindowFlags)chromeFlags;
+                GeckoWindowFlags flags = (GeckoWindowFlags) chromeFlags;
                 if ((flags & GeckoWindowFlags.OpenAsChrome) != 0)
                 {
                     // obtain the services we need
@@ -221,9 +225,9 @@ namespace Gecko
                     if (parent is GeckoWebBrowser && (flags & GeckoWindowFlags.OpenAsDialog) != 0)
                     {
                         EventHandler gotFocus = null;
-                        gotFocus = delegate (object sender, EventArgs e)
+                        gotFocus = delegate(object sender, EventArgs e)
                         {
-                            var geckoWebBrowser = (GeckoWebBrowser)sender;
+                            var geckoWebBrowser = (GeckoWebBrowser) sender;
                             geckoWebBrowser.GotFocus -= gotFocus;
 
                             if (geckoWebBrowser.WebBrowserFocus != null)
@@ -253,11 +257,12 @@ namespace Gecko
                     if (e.WebBrowser != null)
                     {
                         // set flags
-                        ((nsIWebBrowserChrome)e.WebBrowser).SetChromeFlagsAttribute(chromeFlags);
+                        ((nsIWebBrowserChrome) e.WebBrowser).SetChromeFlagsAttribute(chromeFlags);
                         return e.WebBrowser;
                     }
 
-                    nsIXULWindow xulChild = AppShellService.CreateTopLevelWindow(null, null, chromeFlags, e.InitialWidth, e.InitialHeight);
+                    nsIXULWindow xulChild = AppShellService.CreateTopLevelWindow(null, null, chromeFlags, e.InitialWidth,
+                        e.InitialHeight);
                     return Xpcom.QueryInterface<nsIWebBrowserChrome>(xulChild);
                 }
                 return null;
@@ -269,7 +274,8 @@ namespace Gecko
                 return DoCreateChromeWindow(parent, chromeFlags, 0, null, ref cancel);
             }
 
-            public nsIWebBrowserChrome CreateChromeWindow2(nsIWebBrowserChrome parent, uint chromeFlags, uint contextFlags, nsIURI uri,
+            public nsIWebBrowserChrome CreateChromeWindow2(nsIWebBrowserChrome parent, uint chromeFlags,
+                uint contextFlags, nsIURI uri,
                 nsITabParent aOpeningTab, ref bool cancel)
             {
                 return DoCreateChromeWindow(parent, chromeFlags, contextFlags, uri, ref cancel);
@@ -282,6 +288,7 @@ namespace Gecko
         }
 
         #region Navigation
+
         /// <summary>
         /// Navigates to the specified URL.
         /// In order to find out when Navigate has finished attach a handler to NavigateFinishedNotifier.NavigateFinished.
@@ -327,7 +334,8 @@ namespace Gecko
         /// <param name="postData">post data and headers, or null</param>
         /// <param name="headers">headers, or null</param>
         /// <returns>true if Navigate started. false otherwise.</returns>
-        public bool Navigate(string url, GeckoLoadFlags loadFlags, string referrer, MimeInputStream postData, MimeInputStream headers)
+        public bool Navigate(string url, GeckoLoadFlags loadFlags, string referrer, MimeInputStream postData,
+            MimeInputStream headers)
         {
             if (string.IsNullOrEmpty(url))
                 return false;
@@ -358,7 +366,7 @@ namespace Gecko
                 try
                 {
                     WebNav.LoadURI(
-                        url, (uint)loadFlags, referrerUri, postData != null ? postData._inputStream : null,
+                        url, (uint) loadFlags, referrerUri, postData != null ? postData._inputStream : null,
                         headers != null ? headers._inputStream : null);
                 }
                 catch (COMException ce)
@@ -426,7 +434,9 @@ namespace Gecko
                 ByteArrayInputStream inputStream = null;
                 try
                 {
-                    inputStream = ByteArrayInputStream.Create(System.Text.Encoding.UTF8.GetBytes(content != null ? content : string.Empty));
+                    inputStream =
+                        ByteArrayInputStream.Create(
+                            System.Text.Encoding.UTF8.GetBytes(content != null ? content : string.Empty));
 
                     nsIDocShell docShell = Xpcom.QueryInterface<nsIDocShell>(this.WebBrowser);
                     docShell.LoadStream(inputStream, IOService.CreateNsIUri(url), sContentType, sUtf8, null);
@@ -453,19 +463,22 @@ namespace Gecko
             return IsHandleCreated;
         }
 
-        [Obsolete]
-        public NavigateFinishedNotifier NavigateFinishedNotifier;
+        [Obsolete] public NavigateFinishedNotifier NavigateFinishedNotifier;
 
         /// <summary>
         /// Gets or sets whether all default items are removed from the standard context menu.
         /// </summary>
-        [DefaultValue(false), Description("Removes default items from the standard context menu.  The ShowContextMenu event is still raised to add custom items.")]
+        [DefaultValue(false),
+         Description(
+             "Removes default items from the standard context menu.  The ShowContextMenu event is still raised to add custom items."
+             )]
         public bool NoDefaultContextMenu
         {
             get { return _NoDefaultContextMenu; }
             set { _NoDefaultContextMenu = value; }
         }
-        bool _NoDefaultContextMenu;
+
+        private bool _NoDefaultContextMenu;
 
         /// <summary>
         /// Gets or sets the text displayed in the status bar.
@@ -483,8 +496,8 @@ namespace Gecko
                 }
             }
         }
-        string _StatusText;
 
+        private string _StatusText;
 
 
         /// <summary>
@@ -501,8 +514,8 @@ namespace Gecko
                 OnDocumentTitleChanged(EventArgs.Empty);
             }
         }
-        string _DocumentTitle;
 
+        private string _DocumentTitle;
 
 
         /// <summary>
@@ -513,7 +526,8 @@ namespace Gecko
         {
             get { return _CanGoBack; }
         }
-        bool _CanGoBack;
+
+        private bool _CanGoBack;
 
         /// <summary>
         /// Gets whether the browser may navigate forward in the history.
@@ -523,12 +537,12 @@ namespace Gecko
         {
             get { return _CanGoForward; }
         }
-        bool _CanGoForward;
 
+        private bool _CanGoForward;
 
 
         /// <summary>Raises the CanGoBackChanged or CanGoForwardChanged events when necessary.</summary>
-        void UpdateCommandStatus()
+        private void UpdateCommandStatus()
         {
             bool canGoBack = false;
             bool canGoForward = false;
@@ -614,7 +628,7 @@ namespace Gecko
                     return;
                 try
                 {
-                    WebNav.Stop((int)nsIWebNavigationConsts.STOP_ALL);
+                    WebNav.Stop((int) nsIWebNavigationConsts.STOP_ALL);
                 }
                 catch (COMException ex)
                 {
@@ -628,7 +642,6 @@ namespace Gecko
                 BeginInvoke(a);
             else
                 a();
-
         }
 
         /// <summary>
@@ -652,7 +665,7 @@ namespace Gecko
             {
                 try
                 {
-                    WebNav.Reload((uint)flags);
+                    WebNav.Reload((uint) flags);
                 }
                 catch (COMException e)
                 {
@@ -663,16 +676,20 @@ namespace Gecko
             return true;
         }
 
-        nsIClipboardCommands ClipboardCommands
+        private nsIClipboardCommands ClipboardCommands
         {
-            get { return _ClipboardCommands ?? (_ClipboardCommands = Xpcom.QueryInterface<nsIClipboardCommands>(WebBrowser)); }
+            get
+            {
+                return _ClipboardCommands ??
+                       (_ClipboardCommands = Xpcom.QueryInterface<nsIClipboardCommands>(WebBrowser));
+            }
         }
 
-        nsIClipboardCommands _ClipboardCommands;
+        private nsIClipboardCommands _ClipboardCommands;
 
-        delegate bool CanPerformMethod();
+        private delegate bool CanPerformMethod();
 
-        bool CanPerform(CanPerformMethod method)
+        private bool CanPerform(CanPerformMethod method)
         {
             // in xulrunner (tested on version 5.0)
             // nsIController.IsCommandEnabled("cmd_copyImageContents") can return E_FAIL when clicking on certain objects.
@@ -855,11 +872,12 @@ namespace Gecko
             ClipboardCommands.SelectNone();
         }
 
-        nsICommandManager CommandManager
+        private nsICommandManager CommandManager
         {
             get { return _CommandManager ?? (_CommandManager = Xpcom.QueryInterface<nsICommandManager>(WebBrowser)); }
         }
-        nsICommandManager _CommandManager;
+
+        private nsICommandManager _CommandManager;
 
         /// <summary>
         /// Returns true if the undo command is enabled.
@@ -1002,11 +1020,10 @@ namespace Gecko
             {
                 if (WebBrowser == null)
                     return null;
-                var domDocument = new WebIDL.Window(Window.DomWindow, (nsISupports)Window.DomWindow).Document;
+                var domDocument = new WebIDL.Window(Window.DomWindow, (nsISupports) Window.DomWindow).Document;
 
                 if (_Document != null)
                 {
-
                     if (_Document.NativeDomDocument == domDocument)
                         return _Document;
                     // In some situations when ajax is used dom document wrapper is 1 per page,
@@ -1058,8 +1075,8 @@ namespace Gecko
             get { return _IsBusy; }
             private set { _IsBusy = value; }
         }
-        bool _IsBusy;
 
+        private bool _IsBusy;
 
 
         /// <summary>
@@ -1079,7 +1096,7 @@ namespace Gecko
         /// <param name="path">Patht to the file you want to save</param>
         /// <param name="outputMimeType">the mimmtype of the save file, or null</param>
         /// <returns></returns>
-        public void SaveDocument(string path, string outputMimeType)//hatton added mimeType param
+        public void SaveDocument(string path, string outputMimeType) //hatton added mimeType param
         {
             if (!Directory.Exists(Path.GetDirectoryName(path)))
                 throw new System.IO.DirectoryNotFoundException();
@@ -1097,7 +1114,8 @@ namespace Gecko
             nsIWebBrowserPersist persist = Xpcom.QueryInterface<nsIWebBrowserPersist>(WebBrowser);
             if (persist != null)
             {
-                persist.SaveDocument((nsISupports)DomDocument._domDocument, (nsISupports)Xpcom.NewNativeLocalFile(path), null,
+                persist.SaveDocument((nsISupports) DomDocument._domDocument,
+                    (nsISupports) Xpcom.NewNativeLocalFile(path), null,
                     outputMimeType, 0, 0);
             }
             else
@@ -1120,7 +1138,8 @@ namespace Gecko
                 return _History ?? (_History = new GeckoSessionHistory(WebNav));
             }
         }
-        GeckoSessionHistory _History;
+
+        private GeckoSessionHistory _History;
 
         #region nsIWebBrowserChrome Members
 
@@ -1146,7 +1165,7 @@ namespace Gecko
 
         void nsIWebBrowserChrome.SetChromeFlagsAttribute(uint flags)
         {
-            this.ChromeFlags = (uint)flags;
+            this.ChromeFlags = (uint) flags;
         }
 
         public nsIXULWindow CreateNewWindow(int aChromeFlags, nsITabParent aOpeningTab)
@@ -1172,7 +1191,8 @@ namespace Gecko
 
             _IsWindowModal = true;
         }
-        bool _IsWindowModal;
+
+        private bool _IsWindowModal;
 
         bool nsIWebBrowserChrome.IsWindowModal()
         {
@@ -1194,7 +1214,7 @@ namespace Gecko
 
         #region nsIContextMenuListener2 Members
 
-        ContextMenu menu = null;
+        private ContextMenu menu = null;
 
         void nsIContextMenuListener2.OnShowContextMenu(uint aContextFlags, nsIContextMenuInfo info)
         {
@@ -1254,7 +1274,8 @@ namespace Gecko
                 MenuItem mnuSelectAll = new MenuItem("Select All");
                 mnuSelectAll.Click += delegate { SelectAll(); };
 
-                GeckoDomDocument doc = GeckoDomDocument.CreateDomDocumentWraper(info.GetTargetNodeAttribute().GetOwnerDocumentAttribute());
+                GeckoDomDocument doc =
+                    GeckoDomDocument.CreateDomDocumentWraper(info.GetTargetNodeAttribute().GetOwnerDocumentAttribute());
 
                 string viewSourceUrl = (doc == null) ? null : Convert.ToString(doc.Uri);
 
@@ -1262,7 +1283,8 @@ namespace Gecko
                 mnuViewSource.Enabled = !string.IsNullOrEmpty(viewSourceUrl);
                 mnuViewSource.Click += delegate { ViewSource(viewSourceUrl); };
 
-                MenuItem mnuOpenInSystemBrowser = new MenuItem("View In System Browser");//nice for debugging with firefox/firebug
+                MenuItem mnuOpenInSystemBrowser = new MenuItem("View In System Browser");
+                    //nice for debugging with firefox/firebug
                 mnuOpenInSystemBrowser.Enabled = !string.IsNullOrEmpty(viewSourceUrl);
                 mnuOpenInSystemBrowser.Click += delegate { ViewInSystemBrowser(viewSourceUrl); };
 
@@ -1320,22 +1342,25 @@ namespace Gecko
                 }
             }
 
-            using (GeckoNode mParamNode = GeckoNode.Create(Xpcom.QueryInterface<nsIDOMNode>(info.GetTargetNodeAttribute())))
+            using (
+                GeckoNode mParamNode = GeckoNode.Create(Xpcom.QueryInterface<nsIDOMNode>(info.GetTargetNodeAttribute()))
+                )
             {
-                GeckoContextMenuEventArgs e = new GeckoContextMenuEventArgs(PointToClient(MousePosition), menu, associatedLink, backgroundImageSrc, imageSrc, mParamNode);
+                GeckoContextMenuEventArgs e = new GeckoContextMenuEventArgs(PointToClient(MousePosition), menu,
+                    associatedLink, backgroundImageSrc, imageSrc, mParamNode);
 
                 OnShowContextMenu(e);
 
                 if (e.ContextMenu != null && e.ContextMenu.MenuItems.Count > 0)
                 {
 #if GTK
-				// When using GTK we can't use SWF to display the context menu: SWF displays
-				// the context menu and then tries to track the mouse so that it knows when to
-				// close the context menu. However, GTK intercepts the mouse click before SWF gets
-				// it, so the menu never closes. Instead we display a GTK menu and translate
-				// the SWF menu items into Gtk.MenuItems.
-				// TODO: currently this code only handles text menu items. Would be nice to also
-				// translate images etc.
+    // When using GTK we can't use SWF to display the context menu: SWF displays
+    // the context menu and then tries to track the mouse so that it knows when to
+    // close the context menu. However, GTK intercepts the mouse click before SWF gets
+    // it, so the menu never closes. Instead we display a GTK menu and translate
+    // the SWF menu items into Gtk.MenuItems.
+    // TODO: currently this code only handles text menu items. Would be nice to also
+    // translate images etc.
 				var popupMenu = new Gtk.Menu();
 
 				foreach (MenuItem swfMenuItem in e.ContextMenu.MenuItems)
@@ -1391,7 +1416,6 @@ namespace Gecko
             }
             catch (Exception)
             {
-
             }
 
             form.ClientSize = this.ClientSize;
@@ -1412,7 +1436,7 @@ namespace Gecko
             if (document == null)
                 throw new ArgumentNullException("document");
 
-            new PropertiesDialog((nsIDOMDocument)document.DomObject).ShowDialog(this);
+            new PropertiesDialog((nsIDOMDocument) document.DomObject).ShowDialog(this);
         }
 
         #endregion
@@ -1427,13 +1451,15 @@ namespace Gecko
             // to set the starting url
             if (this.WebBrowser != null)
             {
-                if (uuid == typeof(nsIDOMWindow).GUID)
+                if (uuid == typeof (nsIDOMWindow).GUID)
                 {
                     obj = this.WebBrowser.GetContentDOMWindowAttribute();
                 }
-                else if (uuid == typeof(nsIDOMDocument).GUID)
+                else if (uuid == typeof (nsIDOMDocument).GUID)
                 {
-                    obj = new WebIDL.Window(this.WebBrowser.GetContentDOMWindowAttribute(), (nsISupports)this.WebBrowser.GetContentDOMWindowAttribute()).Document;
+                    obj =
+                        new WebIDL.Window(this.WebBrowser.GetContentDOMWindowAttribute(),
+                            (nsISupports) this.WebBrowser.GetContentDOMWindowAttribute()).Document;
                 }
             }
 
@@ -1471,8 +1497,8 @@ namespace Gecko
 
         unsafe void nsIEmbeddingSiteWindow.GetDimensions(uint flags, int* x, int* y, int* cx, int* cy)
         {
-            int localX = (x != (void*)0) ? *x : 0;
-            int localY = (y != (void*)0) ? *y : 0;
+            int localX = (x != (void*) 0) ? *x : 0;
+            int localY = (y != (void*) 0) ? *y : 0;
             int localCX = 0;
             int localCY = 0;
             if (!IsDisposed)
@@ -1486,7 +1512,7 @@ namespace Gecko
                 localCX = ClientSize.Width;
                 localCY = ClientSize.Height;
 
-                if ((this.ChromeFlags & (int)GeckoWindowFlags.OpenAsChrome) != 0)
+                if ((this.ChromeFlags & (int) GeckoWindowFlags.OpenAsChrome) != 0)
                 {
                     BaseWindow.GetSize(ref localCX, ref localCY);
                 }
@@ -1502,10 +1528,10 @@ namespace Gecko
                     }
                 }
             }
-            if (x != (void*)0) *x = localX;
-            if (y != (void*)0) *y = localY;
-            if (cx != (void*)0) *cx = localCX;
-            if (cy != (void*)0) *cy = localCY;
+            if (x != (void*) 0) *x = localX;
+            if (y != (void*) 0) *y = localY;
+            if (cx != (void*) 0) *cx = localCX;
+            if (cy != (void*) 0) *cy = localCY;
         }
 
         void nsIEmbeddingSiteWindow.SetFocus()
@@ -1555,11 +1581,13 @@ namespace Gecko
 
         #region nsIWebProgressListener Members
 
-        void nsIWebProgressListener.OnStateChange(nsIWebProgress aWebProgress, nsIRequest aRequest, uint aStateFlags, int aStatus)
+        void nsIWebProgressListener.OnStateChange(nsIWebProgress aWebProgress, nsIRequest aRequest, uint aStateFlags,
+            int aStatus)
         {
-            const int NS_BINDING_ABORTED = unchecked((int)0x804B0002);
+            const int NS_BINDING_ABORTED = unchecked((int) 0x804B0002);
 
             #region validity checks
+
             // The request parametere may be null
             if (aRequest == null)
                 return;
@@ -1580,6 +1608,7 @@ namespace Gecko
             using (var request = Gecko.Net.Request.CreateRequest(aRequest))
             {
                 #region request parameters
+
                 Uri destUri = null;
                 Uri.TryCreate(request.Name, UriKind.Absolute, out destUri);
                 var domWindow = aWebProgress.GetDOMWindowAttribute().Wrap(x => new GeckoWindow(x));
@@ -1617,9 +1646,11 @@ namespace Gecko
 				 * flag may be set). This second STATE_STOP event may be useful as a way to partition the work that occurs when a document request completes.
 				 */
                 bool stateIsWindow = ((aStateFlags & nsIWebProgressListenerConstants.STATE_IS_WINDOW) != 0);
+
                 #endregion request parameters
 
                 #region STATE_START
+
                 /* This flag indicates the start of a request.
 				 * This flag is set when a request is initiated.
 				 * The request is complete when onStateChange() is called for the same request with the STATE_STOP flag set.
@@ -1661,17 +1692,16 @@ namespace Gecko
                         }
                     }
                 }
-                #endregion STATE_START
+                    #endregion STATE_START
 
-                #region STATE_REDIRECTING
-                /* This flag indicates that a request is being redirected.
+                    #region STATE_REDIRECTING
+                    /* This flag indicates that a request is being redirected.
 				 * The request passed to onStateChange() is the request that is being redirected.
 				 * When a redirect occurs, a new request is generated automatically to process the new request.
 				 * Expect a corresponding STATE_START event for the new request, and a STATE_STOP for the redirected request.
 				 */
                 else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_REDIRECTING) != 0)
                 {
-
                     // make sure we're loading the top-level window
                     GeckoRedirectingEventArgs ea = new GeckoRedirectingEventArgs(destUri, domWindow);
                     OnRedirecting(ea);
@@ -1681,19 +1711,19 @@ namespace Gecko
                         aRequest.Cancel(NS_BINDING_ABORTED);
                     }
                 }
-                #endregion STATE_REDIRECTING
+                    #endregion STATE_REDIRECTING
 
-                #region STATE_TRANSFERRING
-                /* This flag indicates that data for a request is being transferred to an end consumer.
+                    #region STATE_TRANSFERRING
+                    /* This flag indicates that data for a request is being transferred to an end consumer.
 				 * This flag indicates that the request has been targeted, and that the user may start seeing content corresponding to the request.
 				 */
                 else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_TRANSFERRING) != 0)
                 {
                 }
-                #endregion STATE_TRANSFERRING
+                    #endregion STATE_TRANSFERRING
 
-                #region STATE_STOP
-                /* This flag indicates the completion of a request.
+                    #region STATE_STOP
+                    /* This flag indicates the completion of a request.
 				 * The aStatus parameter to onStateChange() indicates the final status of the request.
 				 */
                 else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_STOP) != 0)
@@ -1736,8 +1766,8 @@ namespace Gecko
 
                     if (stateIsRequest)
                     {
-
-                        if ((aStatus & 0xff0000) == ((GeckoError.NS_ERROR_MODULE_SECURITY + GeckoError.NS_ERROR_MODULE_BASE_OFFSET) << 16))
+                        if ((aStatus & 0xff0000) ==
+                            ((GeckoError.NS_ERROR_MODULE_SECURITY + GeckoError.NS_ERROR_MODULE_BASE_OFFSET) << 16))
                         {
                             SSLStatus sslStatus = null;
                             nsIChannel aChannel = null;
@@ -1781,7 +1811,9 @@ namespace Gecko
                         }
                     }
                 }
+
                 #endregion STATE_STOP
+
                 if (domWindow != null)
                 {
                     domWindow.Dispose();
@@ -1789,27 +1821,29 @@ namespace Gecko
             }
         }
 
-        void nsIWebProgressListener.OnProgressChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress)
+        void nsIWebProgressListener.OnProgressChange(nsIWebProgress aWebProgress, nsIRequest aRequest,
+            int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress)
         {
             // Note: If any progress value is unknown, then its value is replaced with -1.
             using (var request = Gecko.Net.Request.CreateRequest(aRequest))
             {
                 if ((aCurSelfProgress != -1) && (aMaxSelfProgress != -1))
-                    OnRequestProgressChanged(new GeckoRequestProgressEventArgs(aCurTotalProgress, aMaxTotalProgress, aRequest));
+                    OnRequestProgressChanged(new GeckoRequestProgressEventArgs(aCurTotalProgress, aMaxTotalProgress,
+                        aRequest));
 
                 if ((aCurTotalProgress != -1) && (aMaxTotalProgress != -1))
                     OnProgressChanged(new GeckoProgressEventArgs(aCurTotalProgress, aMaxTotalProgress));
             }
         }
 
-        void nsIWebProgressListener.OnLocationChange(nsIWebProgress aWebProgress, nsIRequest aRequest, nsIURI aLocation, uint flags)
+        void nsIWebProgressListener.OnLocationChange(nsIWebProgress aWebProgress, nsIRequest aRequest, nsIURI aLocation,
+            uint flags)
         {
             if (IsDisposed) return;
 
             Uri uri = new Uri(nsString.Get(aLocation.GetSpecAttribute));
             using (var domWindow = aWebProgress.GetDOMWindowAttribute().Wrap(x => new GeckoWindow(x)))
             {
-
                 bool sameDocument = (flags & nsIWebProgressListenerConstants.LOCATION_CHANGE_SAME_DOCUMENT) != 0;
                 bool errorPage = (flags & nsIWebProgressListenerConstants.LOCATION_CHANGE_ERROR_PAGE) != 0;
                 var ea = new GeckoNavigatedEventArgs(uri, aRequest, domWindow, sameDocument, errorPage);
@@ -1819,7 +1853,8 @@ namespace Gecko
             UpdateCommandStatus();
         }
 
-        void nsIWebProgressListener.OnStatusChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aStatus, string aMessage)
+        void nsIWebProgressListener.OnStatusChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aStatus,
+            string aMessage)
         {
             if (aWebProgress.GetIsLoadingDocumentAttribute())
             {
@@ -1830,7 +1865,7 @@ namespace Gecko
 
         void nsIWebProgressListener.OnSecurityChange(nsIWebProgress aWebProgress, nsIRequest aRequest, uint aState)
         {
-            SecurityState = (GeckoSecurityState)aState;
+            SecurityState = (GeckoSecurityState) aState;
         }
 
         /// <summary>
@@ -1847,10 +1882,11 @@ namespace Gecko
                 OnSecurityStateChanged(EventArgs.Empty);
             }
         }
-        GeckoSecurityState _SecurityState;
 
+        private GeckoSecurityState _SecurityState;
 
         #region public event EventHandler SecurityStateChanged
+
         /// <summary>
         /// Occurs when the value of the <see cref="SecurityState"/> property is changed.
         /// </summary>
@@ -1860,15 +1896,17 @@ namespace Gecko
             add { this.Events.AddHandler(SecurityStateChangedEvent, value); }
             remove { this.Events.RemoveHandler(SecurityStateChangedEvent, value); }
         }
+
         private static object SecurityStateChangedEvent = new object();
 
         /// <summary>Raises the <see cref="SecurityStateChanged"/> event.</summary>
         /// <param name="e">The data for the event.</param>
         protected virtual void OnSecurityStateChanged(EventArgs e)
         {
-            if (((EventHandler)this.Events[SecurityStateChangedEvent]) != null)
-                ((EventHandler)this.Events[SecurityStateChangedEvent])(this, e);
+            if (((EventHandler) this.Events[SecurityStateChangedEvent]) != null)
+                ((EventHandler) this.Events[SecurityStateChangedEvent])(this, e);
         }
+
         #endregion
 
         #endregion
@@ -1876,22 +1914,27 @@ namespace Gecko
         #region nsIWebProgressListener2 Members
 
         #region implemented in nsIWebProgressListener
-        void nsIWebProgressListener2.OnStateChange(nsIWebProgress aWebProgress, nsIRequest aRequest, uint aStateFlags, int aStatus)
+
+        void nsIWebProgressListener2.OnStateChange(nsIWebProgress aWebProgress, nsIRequest aRequest, uint aStateFlags,
+            int aStatus)
         {
             throw new NotImplementedException("implemented in nsIWebProgressListener");
         }
 
-        void nsIWebProgressListener2.OnProgressChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress)
+        void nsIWebProgressListener2.OnProgressChange(nsIWebProgress aWebProgress, nsIRequest aRequest,
+            int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress)
         {
             throw new NotImplementedException("implemented in nsIWebProgressListener");
         }
 
-        void nsIWebProgressListener2.OnLocationChange(nsIWebProgress aWebProgress, nsIRequest aRequest, nsIURI aLocation, uint aFlags)
+        void nsIWebProgressListener2.OnLocationChange(nsIWebProgress aWebProgress, nsIRequest aRequest, nsIURI aLocation,
+            uint aFlags)
         {
             throw new NotImplementedException("implemented in nsIWebProgressListener");
         }
 
-        void nsIWebProgressListener2.OnStatusChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aStatus, string aMessage)
+        void nsIWebProgressListener2.OnStatusChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aStatus,
+            string aMessage)
         {
             throw new NotImplementedException("implemented in nsIWebProgressListener");
         }
@@ -1900,9 +1943,11 @@ namespace Gecko
         {
             throw new NotImplementedException("implemented in nsIWebProgressListener");
         }
+
         #endregion implemented in nsIWebProgressListener
 
-        void nsIWebProgressListener2.OnProgressChange64(nsIWebProgress aWebProgress, nsIRequest aRequest, long aCurSelfProgress, long aMaxSelfProgress, long aCurTotalProgress, long aMaxTotalProgress)
+        void nsIWebProgressListener2.OnProgressChange64(nsIWebProgress aWebProgress, nsIRequest aRequest,
+            long aCurSelfProgress, long aMaxSelfProgress, long aCurTotalProgress, long aMaxTotalProgress)
         {
             // Note: If any progress value is unknown, then its value is replaced with -1.
 
@@ -1913,7 +1958,8 @@ namespace Gecko
                 OnProgressChanged(new GeckoProgressEventArgs(aCurTotalProgress, aMaxTotalProgress));
         }
 
-        bool nsIWebProgressListener2.OnRefreshAttempted(nsIWebProgress aWebProgress, nsIURI aRefreshURI, int aMillis, bool aSameURI)
+        bool nsIWebProgressListener2.OnRefreshAttempted(nsIWebProgress aWebProgress, nsIURI aRefreshURI, int aMillis,
+            bool aSameURI)
         {
             Uri destUri = new Uri(nsString.Get(aRefreshURI.GetSpecAttribute));
             bool cancel = false;
@@ -1927,7 +1973,6 @@ namespace Gecko
         }
 
         #endregion
-
 
         #region nsIDOMEventListener Members
 
@@ -1943,34 +1988,34 @@ namespace Gecko
             switch (e.Type)
             {
                 case "keydown":
-                    OnDomKeyDown((DomKeyEventArgs)e);
+                    OnDomKeyDown((DomKeyEventArgs) e);
                     break;
                 case "keyup":
-                    OnDomKeyUp((DomKeyEventArgs)e);
+                    OnDomKeyUp((DomKeyEventArgs) e);
                     break;
                 case "keypress":
-                    OnDomKeyPress((DomKeyEventArgs)e);
+                    OnDomKeyPress((DomKeyEventArgs) e);
                     break;
                 case "mousedown":
-                    OnDomMouseDown((DomMouseEventArgs)e);
+                    OnDomMouseDown((DomMouseEventArgs) e);
                     break;
                 case "mouseup":
-                    OnDomMouseUp((DomMouseEventArgs)e);
+                    OnDomMouseUp((DomMouseEventArgs) e);
                     break;
                 case "mousemove":
-                    OnDomMouseMove((DomMouseEventArgs)e);
+                    OnDomMouseMove((DomMouseEventArgs) e);
                     break;
                 case "mouseover":
-                    OnDomMouseOver((DomMouseEventArgs)e);
+                    OnDomMouseOver((DomMouseEventArgs) e);
                     break;
                 case "mouseout":
-                    OnDomMouseOut((DomMouseEventArgs)e);
+                    OnDomMouseOut((DomMouseEventArgs) e);
                     break;
                 case "click":
-                    OnDomClick((DomMouseEventArgs)e);
+                    OnDomClick((DomMouseEventArgs) e);
                     break;
                 case "dblclick":
-                    OnDomDoubleClick((DomMouseEventArgs)e);
+                    OnDomDoubleClick((DomMouseEventArgs) e);
                     break;
                 case "submit":
                     OnDomSubmit(e);
@@ -1982,10 +2027,10 @@ namespace Gecko
                     OnDomCompositionEnd(e);
                     break;
                 case "contextmenu":
-                    OnDomContextMenu((DomMouseEventArgs)e);
+                    OnDomContextMenu((DomMouseEventArgs) e);
                     break;
                 case "DOMMouseScroll":
-                    OnDomMouseScroll((DomMouseEventArgs)e);
+                    OnDomMouseScroll((DomMouseEventArgs) e);
                     break;
                 case "focus":
                     OnDomFocus(e);
@@ -2006,25 +2051,25 @@ namespace Gecko
                     OnDomContentChanged(e);
                     break;
                 case "dragstart":
-                    OnDomDragStart((DomDragEventArgs)e);
+                    OnDomDragStart((DomDragEventArgs) e);
                     break;
                 case "dragenter":
-                    OnDomDragEnter((DomDragEventArgs)e);
+                    OnDomDragEnter((DomDragEventArgs) e);
                     break;
                 case "dragover":
-                    OnDomDragOver((DomDragEventArgs)e);
+                    OnDomDragOver((DomDragEventArgs) e);
                     break;
                 case "dragleave":
-                    OnDomDragLeave((DomDragEventArgs)e);
+                    OnDomDragLeave((DomDragEventArgs) e);
                     break;
                 case "drag":
-                    OnDomDrag((DomDragEventArgs)e);
+                    OnDomDrag((DomDragEventArgs) e);
                     break;
                 case "drop":
-                    OnDomDrop((DomDragEventArgs)e);
+                    OnDomDrop((DomDragEventArgs) e);
                     break;
                 case "dragend":
-                    OnDomDragEnd((DomDragEventArgs)e);
+                    OnDomDragEnd((DomDragEventArgs) e);
                     break;
                 case "mozfullscreenchange": //TODO: change to "fullscreenchange" after prefix removed
                     OnFullscreenChange(e);
@@ -2036,10 +2081,10 @@ namespace Gecko
             if (e is DomMessageEventArgs)
             {
                 KeyValuePair<Action<string>, bool> pair;
-                DomMessageEventArgs mea = (DomMessageEventArgs)e;
+                DomMessageEventArgs mea = (DomMessageEventArgs) e;
                 if (_messageEventListeners.TryGetValue(e.Type, out pair))
                 {
-                   pair.Key.Invoke(mea.Message);
+                    pair.Key.Invoke(mea.Message);
                 }
             }
 
@@ -2050,6 +2095,7 @@ namespace Gecko
         #endregion
 
         #region nsIWindowProvider Members
+
         //int nsIWindowProvider.provideWindow(nsIDOMWindow aParent, uint aChromeFlags, bool aPositionSpecified, bool aSizeSpecified, nsIURI aURI, nsAString aName, nsAString aFeatures, out bool aWindowIsNew, out nsIDOMWindow ret)
         //{
         //      if (!this.IsDisposed)
@@ -2073,9 +2119,11 @@ namespace Gecko
         //      ret = null;
         //      return -1;
         //}
+
         #endregion
 
         #region nsISHistoryListener Members
+
         void nsISHistoryListener.OnHistoryNewEntry(nsIURI aNewURI)
         {
             OnHistoryNewEntry(new GeckoHistoryEventArgs(new Uri(nsString.Get(aNewURI.GetSpecAttribute))));
@@ -2104,7 +2152,8 @@ namespace Gecko
 
         bool nsISHistoryListener.OnHistoryGotoIndex(int aIndex, nsIURI aGotoURI)
         {
-            GeckoHistoryGotoIndexEventArgs e = new GeckoHistoryGotoIndexEventArgs(new Uri(nsString.Get(aGotoURI.GetSpecAttribute)), aIndex);
+            GeckoHistoryGotoIndexEventArgs e =
+                new GeckoHistoryGotoIndexEventArgs(new Uri(nsString.Get(aGotoURI.GetSpecAttribute)), aIndex);
             OnHistoryGotoIndex(e);
             return !e.Cancel;
         }
@@ -2134,7 +2183,7 @@ namespace Gecko
             }
         }
 
-        ToolTipWindow ToolTip;
+        private ToolTipWindow ToolTip;
 
         void nsITooltipListener.OnHideTooltip()
         {
@@ -2144,8 +2193,8 @@ namespace Gecko
                 ToolTip.Dispose();
                 ToolTip = null;
             }
-
         }
+
         #endregion
 
         /// <summary>
@@ -2189,7 +2238,6 @@ namespace Gecko
             {
                 _messageEventListeners.Add(eventName, new KeyValuePair<Action<string>, bool>(action, useCapture));
             }
-
         }
 
         /// <summary>
@@ -2231,7 +2279,6 @@ namespace Gecko
             {
                 using (var httpChannel = HttpChannel.Create(aSubject))
                 {
-
                     var origUri = httpChannel.OriginalUri;
 
                     var uri = httpChannel.Uri;
@@ -2259,9 +2306,9 @@ namespace Gecko
                                 var reqBodyStream = new MemoryStream();
                                 try
                                 {
-                                    reqBody = new byte[] { };
+                                    reqBody = new byte[] {};
                                     int avl = 0;
-                                    while ((avl = ((int)uploadStream.Available)) > 0)
+                                    while ((avl = ((int) uploadStream.Available)) > 0)
                                     {
                                         reqBodyStream.Write(rdr.ReadBytes(avl), 0, avl);
                                     }
@@ -2283,7 +2330,8 @@ namespace Gecko
 
                     #endregion POST data
 
-                    var evt = new GeckoObserveHttpModifyRequestEventArgs(uri, uriRef, reqMethod, reqBody, reqHeaders, httpChannel, reqBodyContainsHeaders);
+                    var evt = new GeckoObserveHttpModifyRequestEventArgs(uri, uriRef, reqMethod, reqBody, reqHeaders,
+                        httpChannel, reqBodyContainsHeaders);
 
                     OnObserveHttpModifyRequest(evt);
 
@@ -2297,22 +2345,17 @@ namespace Gecko
 
         #region nsIHttpActivityObserver members
 
-        public Dictionary<nsIHttpChannel, GeckoJavaScriptHttpChannelWrapper> origJavaScriptHttpChannels = new Dictionary<nsIHttpChannel, GeckoJavaScriptHttpChannelWrapper>();
+        public Dictionary<nsIHttpChannel, GeckoJavaScriptHttpChannelWrapper> origJavaScriptHttpChannels =
+            new Dictionary<nsIHttpChannel, GeckoJavaScriptHttpChannelWrapper>();
 
         public bool IsAjaxBusy
         {
-            get
-            {
-                return (origJavaScriptHttpChannels.Count > 0);
-            }
+            get { return (origJavaScriptHttpChannels.Count > 0); }
         }
 
         public int ActiveAjaxHttpChannels
         {
-            get
-            {
-                return origJavaScriptHttpChannels.Count;
-            }
+            get { return origJavaScriptHttpChannels.Count; }
         }
 
         private uint activeNetworkChannels = 0;
@@ -2320,10 +2363,7 @@ namespace Gecko
 
         public uint ActiveNetworkChannels
         {
-            get
-            {
-                return activeNetworkChannels;
-            }
+            get { return activeNetworkChannels; }
         }
 
         public List<string> ActiveNetworkChannelUrls
@@ -2333,11 +2373,11 @@ namespace Gecko
 
         //public void ObserveActivity(nsISupports aHttpChannel, uint aActivityType, uint aActivitySubtype, uint aTimestamp, ulong aExtraSizeData, nsACString aExtraStringData)
         public void ObserveActivity(nsISupports aHttpChannel,
-                                                 UInt32 aActivityType,
-                                                 UInt32 aActivitySubtype,
-                                                 Int64 aTimestamp,
-                                                 UInt64 aExtraSizeData,
-                     nsACStringBase aExtraStringData)
+            UInt32 aActivityType,
+            UInt32 aActivitySubtype,
+            Int64 aTimestamp,
+            UInt64 aExtraSizeData,
+            nsACStringBase aExtraStringData)
         {
             nsIHttpChannel httpChannel = Xpcom.QueryInterface<nsIHttpChannel>(aHttpChannel);
 
@@ -2368,50 +2408,51 @@ namespace Gecko
                         switch (aActivitySubtype)
                         {
                             case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_REQUEST_HEADER:
+                            {
+                                activeNetworkChannels++;
+                                ActiveNetworkChannelUrls.Add(nsString.Get(httpChannel.GetURIAttribute().GetSpecAttribute));
+
+                                var callbacks = httpChannel.GetNotificationCallbacksAttribute();
+
+                                if (callbacks != null)
                                 {
-                                    activeNetworkChannels++;
-                                    ActiveNetworkChannelUrls.Add(nsString.Get(httpChannel.GetURIAttribute().GetSpecAttribute));
+                                    var httpChannelXHR = Xpcom.QueryInterface<nsIXMLHttpRequest>(callbacks);
 
-                                    var callbacks = httpChannel.GetNotificationCallbacksAttribute();
-
-                                    if (callbacks != null)
+                                    if (httpChannelXHR != null)
                                     {
-                                        var httpChannelXHR = Xpcom.QueryInterface<nsIXMLHttpRequest>(callbacks);
+                                        nsIXMLHttpRequestEventTarget mXMLRequestEvent =
+                                            Xpcom.QueryInterface<nsIXMLHttpRequestEventTarget>(httpChannelXHR);
 
-                                        if (httpChannelXHR != null)
+                                        if (mXMLRequestEvent != null)
                                         {
-                                            nsIXMLHttpRequestEventTarget mXMLRequestEvent = Xpcom.QueryInterface<nsIXMLHttpRequestEventTarget>(httpChannelXHR);
+                                            GeckoJavaScriptHttpChannelWrapper mEventListener =
+                                                new GeckoJavaScriptHttpChannelWrapper(this, httpChannel);
+                                            origJavaScriptHttpChannels.Add(httpChannel, mEventListener);
 
-                                            if (mXMLRequestEvent != null)
+                                            using (nsAString mLoads = new nsAString("load"))
                                             {
-                                                GeckoJavaScriptHttpChannelWrapper mEventListener = new GeckoJavaScriptHttpChannelWrapper(this, httpChannel);
-                                                origJavaScriptHttpChannels.Add(httpChannel, mEventListener);
-
-                                                using (nsAString mLoads = new nsAString("load"))
-                                                {
-                                                    mXMLRequestEvent.AddEventListener(mLoads, mEventListener, true, false, 0);
-                                                }
-
-                                                using (nsAString mLoads = new nsAString("abort"))
-                                                {
-                                                    mXMLRequestEvent.AddEventListener(mLoads, mEventListener, true, false, 0);
-                                                }
-
-                                                using (nsAString mLoads = new nsAString("error"))
-                                                {
-                                                    mXMLRequestEvent.AddEventListener(mLoads, mEventListener, true, false, 0);
-                                                }
-
-                                                Marshal.ReleaseComObject(mXMLRequestEvent);
+                                                mXMLRequestEvent.AddEventListener(mLoads, mEventListener, true, false, 0);
                                             }
 
-                                            Marshal.ReleaseComObject(httpChannelXHR);
+                                            using (nsAString mLoads = new nsAString("abort"))
+                                            {
+                                                mXMLRequestEvent.AddEventListener(mLoads, mEventListener, true, false, 0);
+                                            }
+
+                                            using (nsAString mLoads = new nsAString("error"))
+                                            {
+                                                mXMLRequestEvent.AddEventListener(mLoads, mEventListener, true, false, 0);
+                                            }
+
+                                            Marshal.ReleaseComObject(mXMLRequestEvent);
                                         }
 
-                                        Marshal.ReleaseComObject(callbacks);
+                                        Marshal.ReleaseComObject(httpChannelXHR);
                                     }
 
+                                    Marshal.ReleaseComObject(callbacks);
                                 }
+                            }
                                 break;
                             case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_REQUEST_BODY_SENT:
                                 break;
@@ -2421,7 +2462,8 @@ namespace Gecko
                                 break;
                             case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_TRANSACTION_CLOSE:
                                 activeNetworkChannels--;
-                                ActiveNetworkChannelUrls.Remove(nsString.Get(httpChannel.GetURIAttribute().GetSpecAttribute));
+                                ActiveNetworkChannelUrls.Remove(
+                                    nsString.Get(httpChannel.GetURIAttribute().GetSpecAttribute));
                                 break;
                         }
                         break;
@@ -2433,9 +2475,10 @@ namespace Gecko
         {
             return true;
         }
+
         #endregion nsIHttpActivityObserver members
 
-        GeckoWebBrowserWeakRef _weakRef;
+        private GeckoWebBrowserWeakRef _weakRef;
 
         public nsIWeakReference GetWeakReference()
         {
@@ -2446,26 +2489,31 @@ namespace Gecko
     }
 
     #region public enum GeckoSecurityState
+
     public enum GeckoSecurityState
     {
         /// <summary>
         /// This flag indicates that the data corresponding to the request was received over an insecure channel.
         /// </summary>
-        Insecure = unchecked((int)nsIWebProgressListenerConstants.STATE_IS_INSECURE),
+        Insecure = unchecked((int) nsIWebProgressListenerConstants.STATE_IS_INSECURE),
+
         /// <summary>
         /// This flag indicates an unknown security state.  This may mean that the request is being loaded as part of
         /// a page in which some content was received over an insecure channel.
         /// </summary>
-        Broken = unchecked((int)nsIWebProgressListenerConstants.STATE_IS_BROKEN),
+        Broken = unchecked((int) nsIWebProgressListenerConstants.STATE_IS_BROKEN),
+
         /// <summary>
         /// This flag indicates that the data corresponding to the request was received over a secure channel.
         /// The degree of security is expressed by GeckoSecurityStrength.
         /// </summary>
-        Secure = unchecked((int)nsIWebProgressListenerConstants.STATE_IS_SECURE),
+        Secure = unchecked((int) nsIWebProgressListenerConstants.STATE_IS_SECURE),
     }
+
     #endregion
 
     #region GeckoJavaScriptHttpChannelWrapper
+
     public class GeckoJavaScriptHttpChannelWrapper : nsIDOMEventListener
     {
         private readonly GeckoWebBrowser m_browser;
@@ -2477,7 +2525,8 @@ namespace Gecko
             m_browser = p_browser;
             m_httpChannel = p_httpChannel;
 
-            m_notificationCallsbacks = Xpcom.QueryInterface<nsIXMLHttpRequest>(m_httpChannel.GetNotificationCallbacksAttribute());
+            m_notificationCallsbacks =
+                Xpcom.QueryInterface<nsIXMLHttpRequest>(m_httpChannel.GetNotificationCallbacksAttribute());
         }
 
         public void HandleEvent(nsIDOMEvent @event)
@@ -2494,5 +2543,6 @@ namespace Gecko
             }
         }
     }
+
     #endregion GeckoJavaScriptHttpChannelWrapper
 }

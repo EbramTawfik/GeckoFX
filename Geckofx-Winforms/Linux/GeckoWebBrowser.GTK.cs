@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 // place GTK stuff here :)
+
 namespace Gecko
 {
 #if GTK

@@ -1,4 +1,5 @@
 ﻿#region ***** BEGIN LICENSE BLOCK *****
+
 /* Version: MPL 1.1/GPL 2.0/LGPL 2.1
  *
  * The contents of this file are subject to the Mozilla Public License Version
@@ -31,6 +32,7 @@
  * the provisions above, a recipient may use your version of this file under
  * the terms of any one of the MPL, the GPL or the LGPL.
  */
+
 #endregion END LICENSE BLOCK
 
 using System.Drawing;
@@ -38,32 +40,38 @@ using System.Windows.Forms;
 
 namespace Gecko
 {
-	partial class PromptDialog : Form
-	{
-		public PromptDialog()
-		{
-			InitializeComponent();
-		}
-		
-		public PromptDialog(string title, string message, string original, string checkMessage) : this()
-		{
-			this.Text = title;
-			this.label.Text = message;
-			this.txtResult.Text = original;
-			
-			if (!string.IsNullOrEmpty(checkMessage))
-			{
-				this.checkBox.Text = checkMessage;
-			}
-			else
-			{
-				this.ClientSize = new Size(this.ClientSize.Width, checkBox.Top - 4);
-				this.checkBox.Visible = false;
-			}
-		}
-		
-		public string Result { get { return this.txtResult.Text; } }	
-		
-		public bool IsChecked { get { return checkBox.Checked; } }
-	}
+    partial class PromptDialog : Form
+    {
+        public PromptDialog()
+        {
+            InitializeComponent();
+        }
+
+        public PromptDialog(string title, string message, string original, string checkMessage) : this()
+        {
+            this.Text = title;
+            this.label.Text = message;
+            this.txtResult.Text = original;
+
+            if (!string.IsNullOrEmpty(checkMessage))
+            {
+                this.checkBox.Text = checkMessage;
+            }
+            else
+            {
+                this.ClientSize = new Size(this.ClientSize.Width, checkBox.Top - 4);
+                this.checkBox.Visible = false;
+            }
+        }
+
+        public string Result
+        {
+            get { return this.txtResult.Text; }
+        }
+
+        public bool IsChecked
+        {
+            get { return checkBox.Checked; }
+        }
+    }
 }

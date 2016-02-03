@@ -12,6 +12,7 @@ using Gecko.Windows;
 using Gecko.Interop;
 
 // PLZ keep all Windows Forms related code here
+
 namespace Gecko
 {
     partial class GeckoWebBrowser
@@ -107,7 +108,7 @@ namespace Gecko
 
         public event EventHandler GeckoHandleCreated = delegate { };
 
-        bool InOnHandleCreate;
+        private bool InOnHandleCreate;
 
         protected override void OnHandleCreated(EventArgs e)
         {
@@ -131,9 +132,9 @@ namespace Gecko
 #endif
 
                     WebBrowser = Xpcom.CreateInstance<nsIWebBrowser>(Contracts.WebBrowser);
-                    WebBrowserFocus = (nsIWebBrowserFocus)WebBrowser;
-                    BaseWindow = (nsIBaseWindow)WebBrowser;
-                    WebNav = (nsIWebNavigation)WebBrowser;
+                    WebBrowserFocus = (nsIWebBrowserFocus) WebBrowser;
+                    BaseWindow = (nsIBaseWindow) WebBrowser;
+                    WebNav = (nsIWebNavigation) WebBrowser;
 
                     WebBrowser.SetContainerWindowAttribute(this);
 #if GTK
@@ -146,8 +147,8 @@ namespace Gecko
 
                     BaseWindow.Create();
 
-                    Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
-                    Guid nsIWebProgressListener2GUID = typeof(nsIWebProgressListener2).GUID;
+                    Guid nsIWebProgressListenerGUID = typeof (nsIWebProgressListener).GUID;
+                    Guid nsIWebProgressListener2GUID = typeof (nsIWebProgressListener2).GUID;
                     WebBrowser.AddWebBrowserListener(this.GetWeakReference(), ref nsIWebProgressListenerGUID);
                     WebBrowser.AddWebBrowserListener(this.GetWeakReference(), ref nsIWebProgressListener2GUID);
 
@@ -160,7 +161,7 @@ namespace Gecko
                     // force inital window initialization. (Events now get added after document navigation.
                     {
                         var domWindow = WebBrowser.GetContentDOMWindowAttribute();
-                        EventTarget = ((nsIDOMEventTarget)domWindow).AsComPtr();
+                        EventTarget = ((nsIDOMEventTarget) domWindow).AsComPtr();
                         using (var eventType = new nsAString("somedummyevent"))
                         {
                             EventTarget.Instance.AddEventListener(eventType, this, true, true, 2);
@@ -195,21 +196,21 @@ namespace Gecko
                 InOnHandleCreate = false;
                 GeckoHandleCreated(this, EventArgs.Empty);
             }
-
         }
 
         /// <summary>
         /// True if events have been attached to the 'Root' window.
         /// </summary>
-	    private bool _eventsAttached;
+        private bool _eventsAttached;
 
-        void AttachEvents()
+        private void AttachEvents()
         {
             if (_eventsAttached)
                 return;
 
             var domWindow = WebBrowser.GetContentDOMWindowAttribute();
-            EventTarget = ((nsIDOMEventTarget)new WebIDL.Window(domWindow, (nsISupports)domWindow).PrivateRoot).AsComPtr();
+            EventTarget =
+                ((nsIDOMEventTarget) new WebIDL.Window(domWindow, (nsISupports) domWindow).PrivateRoot).AsComPtr();
             //EventTarget = ((nsIDOMEventTarget)domWindow).AsComPtr();
             Marshal.ReleaseComObject(domWindow);
 
@@ -222,7 +223,7 @@ namespace Gecko
             _eventsAttached = true;
         }
 
-        void DetachEvents()
+        private void DetachEvents()
         {
             if (!_eventsAttached)
                 return;
@@ -238,9 +239,11 @@ namespace Gecko
             }
         }
 
-        void ReattachMessageEventListerns()
+        private void ReattachMessageEventListerns()
         {
-            var messageEventListeners = _messageEventListeners.Select(kvp => new { EventName = kvp.Key, Action = kvp.Value.Key, UseCapture = kvp.Value.Value }).ToList();
+            var messageEventListeners =
+                _messageEventListeners.Select(
+                    kvp => new {EventName = kvp.Key, Action = kvp.Value.Key, UseCapture = kvp.Value.Value}).ToList();
 
             foreach (var listener in messageEventListeners)
             {
@@ -273,7 +276,7 @@ namespace Gecko
                         {
                             try
                             {
-                                var w = new WebIDL.Window(window, (nsISupports)window);
+                                var w = new WebIDL.Window(window, (nsISupports) window);
                                 if (!w.Closed)
                                     w.Close();
                             }
@@ -351,7 +354,8 @@ namespace Gecko
         {
             if (BaseWindow != null)
             {
-                BaseWindow.SetPositionAndSize(0, 0, ClientSize.Width != 0 ? ClientSize.Width : 1, ClientSize.Height != 0 ? ClientSize.Height : 1, true);
+                BaseWindow.SetPositionAndSize(0, 0, ClientSize.Width != 0 ? ClientSize.Width : 1,
+                    ClientSize.Height != 0 ? ClientSize.Height : 1, true);
             }
 
             base.OnSizeChanged(e);
@@ -371,14 +375,14 @@ namespace Gecko
             const int WM_KILLFOCUS = 0x0008;
 
 
-            const int ISC_SHOWUICOMPOSITIONWINDOW = unchecked((int)0x80000000);
+            const int ISC_SHOWUICOMPOSITIONWINDOW = unchecked((int) 0x80000000);
             if (!DesignMode)
             {
                 IntPtr focus;
                 switch (m.Msg)
                 {
                     case WM_GETDLGCODE:
-                        m.Result = (IntPtr)DLGC_WANTALLKEYS;
+                        m.Result = (IntPtr) DLGC_WANTALLKEYS;
                         return;
                     case WM_SETFOCUS:
                         break;
@@ -386,7 +390,7 @@ namespace Gecko
                         // TODO FIXME: port for Linux
                         if (Xpcom.IsWindows)
                         {
-                            m.Result = (IntPtr)MA_ACTIVATE;
+                            m.Result = (IntPtr) MA_ACTIVATE;
                             focus = User32.GetFocus();
                             // Console.WriteLine( "focus {0:X8}, Handle {1:X8}", focus.ToInt32(), Handle.ToInt32() );
                             if (!IsSubWindow(Handle, focus))
@@ -415,7 +419,7 @@ namespace Gecko
                         }
                         return;
 
-                    //http://msdn.microsoft.com/en-US/library/windows/desktop/dd374142%28v=vs.85%29.aspx
+                        //http://msdn.microsoft.com/en-US/library/windows/desktop/dd374142%28v=vs.85%29.aspx
                     case WM_IME_SETCONTEXT:
                         focus = User32.GetFocus();
                         if (User32.IsChild(Handle, focus))
@@ -432,7 +436,6 @@ namespace Gecko
                             var param = m.LParam.ToInt64();
                             if ((param & ISC_SHOWUICOMPOSITIONWINDOW) != 0)
                             {
-
                             }
                             if (m.WParam == IntPtr.Zero)
                             {
@@ -484,11 +487,12 @@ namespace Gecko
             {
                 string versionString =
                     ((AssemblyFileVersionAttribute)
-                      Attribute.GetCustomAttribute(GetType().Assembly, typeof(AssemblyFileVersionAttribute))).Version;
+                        Attribute.GetCustomAttribute(GetType().Assembly, typeof (AssemblyFileVersionAttribute))).Version;
 
                 using (
-                    Brush brush = new System.Drawing.Drawing2D.HatchBrush(System.Drawing.Drawing2D.HatchStyle.SolidDiamond,
-                                                                           Color.FromArgb(240, 240, 240), Color.White))
+                    Brush brush =
+                        new System.Drawing.Drawing2D.HatchBrush(System.Drawing.Drawing2D.HatchStyle.SolidDiamond,
+                            Color.FromArgb(240, 240, 240), Color.White))
                     e.Graphics.FillRectangle(brush, this.ClientRectangle);
 
                 e.Graphics.DrawString(
@@ -507,7 +511,7 @@ namespace Gecko
             if (!this.DesignMode)
             {
                 ImageCreator creator = new ImageCreator(this);
-                byte[] mBytes = creator.CanvasGetPngImage((uint)0, (uint)0, (uint)this.Width, (uint)this.Height);
+                byte[] mBytes = creator.CanvasGetPngImage((uint) 0, (uint) 0, (uint) this.Width, (uint) this.Height);
                 using (Image image = Image.FromStream(new System.IO.MemoryStream(mBytes)))
                 {
                     e.Graphics.DrawImage(image, 0.0f, 0.0f);
@@ -611,14 +615,13 @@ namespace Gecko
 
         #endregion
 
-
         public void ForceRedraw()
         {
             BaseWindow.Repaint(true);
         }
 
-
         #region UserInterfaceThreadInvoke
+
         /// <summary>
         /// UI platform independent call function from UI thread
         /// </summary>
@@ -661,7 +664,7 @@ namespace Gecko
         {
             if (InvokeRequired)
             {
-                return (T)Invoke(new Func<T>(() => SafeFunc(func)));
+                return (T) Invoke(new Func<T>(() => SafeFunc(func)));
             }
             return SafeFunc(func);
         }
@@ -685,6 +688,7 @@ namespace Gecko
             }
             return ret;
         }
+
         #endregion
     }
 }

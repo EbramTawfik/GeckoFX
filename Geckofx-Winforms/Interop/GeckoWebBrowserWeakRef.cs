@@ -3,15 +3,16 @@ using System.Runtime.InteropServices;
 
 namespace Gecko
 {
-    class GeckoWebBrowserWeakRef : nsIWeakReference,  IDisposable
+    internal class GeckoWebBrowserWeakRef : nsIWeakReference, IDisposable
     {
         #region nsIWeakReference implementation
 
-        IntPtr _iUnknown;
+        private IntPtr _iUnknown;
+
         public GeckoWebBrowserWeakRef(GeckoWebBrowser gwb)
         {
             // Don't hold a ref count for this.
-            var iuknown = Marshal.GetIUnknownForObject(gwb);           
+            var iuknown = Marshal.GetIUnknownForObject(gwb);
             Marshal.Release(iuknown);
             _iUnknown = iuknown;
         }
@@ -37,6 +38,4 @@ namespace Gecko
 
         #endregion
     }
-
 }
-

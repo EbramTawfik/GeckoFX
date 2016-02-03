@@ -1,4 +1,5 @@
 ﻿#region ***** BEGIN LICENSE BLOCK *****
+
 /* Version: MPL 1.1/GPL 2.0/LGPL 2.1
  *
  * The contents of this file are subject to the Mozilla Public License Version
@@ -31,6 +32,7 @@
  * the provisions above, a recipient may use your version of this file under
  * the terms of any one of the MPL, the GPL or the LGPL.
  */
+
 #endregion END LICENSE BLOCK
 
 using System;
@@ -39,54 +41,55 @@ using System.Windows.Forms;
 
 namespace Gecko
 {
-	partial class PasswordDialog : Form
-	{
-		public PasswordDialog()
-		{
-			InitializeComponent();
-		}
-		
-		public PasswordDialog(string title, string text, string username, string password, string checkMessage, bool checkState) : this()
-		{
-			if (!string.IsNullOrEmpty(title))
-				this.Text = title;
-			
-			lblText.Text = text;
-			txtUserName.Text = username;
-			txtPassword.Text = password;
-			
-			if (!string.IsNullOrEmpty(checkMessage))
-			{
-				checkBox.Text = checkMessage;
-				checkBox.Checked = checkState;
-			}
-			else
-			{
-				checkBox.Visible = false;
-				btnOK.Top = checkBox.Top;
-				btnCancel.Top = checkBox.Top;
-				this.ClientSize = new Size(this.ClientSize.Width, btnOK.Bottom + 6);
-			}
-		}
-		
-		public void DisableUserName()
-		{
-			txtUserName.Enabled = false;
-		}
+    partial class PasswordDialog : Form
+    {
+        public PasswordDialog()
+        {
+            InitializeComponent();
+        }
 
-		public string UserName
-		{
-			get { return txtUserName.Text; }
-		}
+        public PasswordDialog(string title, string text, string username, string password, string checkMessage,
+            bool checkState) : this()
+        {
+            if (!string.IsNullOrEmpty(title))
+                this.Text = title;
 
-		public string Password
-		{
-			get { return txtPassword.Text; }
-		}
+            lblText.Text = text;
+            txtUserName.Text = username;
+            txtPassword.Text = password;
 
-		public bool IsChecked
-		{
-			get { return checkBox.Checked; }
-		}
-	}
+            if (!string.IsNullOrEmpty(checkMessage))
+            {
+                checkBox.Text = checkMessage;
+                checkBox.Checked = checkState;
+            }
+            else
+            {
+                checkBox.Visible = false;
+                btnOK.Top = checkBox.Top;
+                btnCancel.Top = checkBox.Top;
+                this.ClientSize = new Size(this.ClientSize.Width, btnOK.Bottom + 6);
+            }
+        }
+
+        public void DisableUserName()
+        {
+            txtUserName.Enabled = false;
+        }
+
+        public string UserName
+        {
+            get { return txtUserName.Text; }
+        }
+
+        public string Password
+        {
+            get { return txtPassword.Text; }
+        }
+
+        public bool IsChecked
+        {
+            get { return checkBox.Checked; }
+        }
+    }
 }
