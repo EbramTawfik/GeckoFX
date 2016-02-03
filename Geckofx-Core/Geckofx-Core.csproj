@@ -1228,7 +1228,6 @@
     <Compile Include="WiFiMonitor.cs" />
     <Compile Include="WindowMediator.cs" />
     <Compile Include="Services\XulRuntime.cs" />
-    <None Include="ClassDiagrams\nsIDOMNode.cd" />
     <None Include="DOM\Events\DomEvents.cd" />
     <None Include="GeckoFX.snk" />
     <Compile Include="BaseNsFactory.cs" />
@@ -2312,8 +2311,6 @@
     <None Include="Geckofx-Core.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Net\Requests.cd" />
-    <None Include="Windows\Taskbar\JumpListItems.cd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Readme.txt" />
