@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mime;
 using System.Text;
 
 namespace Gecko
@@ -47,7 +46,10 @@ namespace Gecko
             _oldCompartment = SpiderMonkey.JS_EnterCompartment(_cx, _obj);
         }
 
-        public IntPtr ScopeObject { get { return _obj; } }
+        public IntPtr ScopeObject
+        {
+            get { return _obj; }
+        }
 
         public void Dispose()
         {

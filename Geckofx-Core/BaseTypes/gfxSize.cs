@@ -7,10 +7,10 @@ using System.Text;
 namespace Gecko
 {
     // TODO: make this class binary marshalable from struct gfxSize
-	[StructLayout(LayoutKind.Sequential)]
-	public class gfxSize
-	{
-		public double Width;
-		public double Height;
-	}
+    [StructLayout(LayoutKind.Sequential)]
+    public class gfxSize
+    {
+        public double Width;
+        public double Height;
+    }
 }

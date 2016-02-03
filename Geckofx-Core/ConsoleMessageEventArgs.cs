@@ -5,13 +5,13 @@ using System.Text;
 
 namespace Gecko
 {
-	public class ConsoleMessageEventArgs : EventArgs
-	{
-		public string Message { get; protected set; }
+    public class ConsoleMessageEventArgs : EventArgs
+    {
+        public string Message { get; protected set; }
 
-		public ConsoleMessageEventArgs( string message )
-		{
-			Message = message;
-		}
-	}
+        public ConsoleMessageEventArgs(string message)
+        {
+            Message = message;
+        }
+    }
 }

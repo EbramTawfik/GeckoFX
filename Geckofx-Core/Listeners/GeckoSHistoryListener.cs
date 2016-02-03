@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Gecko.Listeners
 {
-	[Obsolete]
-    class GeckoSHistoryListener : GeckoBaseListener, nsISHistoryListener
+    [Obsolete]
+    internal class GeckoSHistoryListener : GeckoBaseListener, nsISHistoryListener
     {
         public GeckoSHistoryListener(nsISHistoryListener p_broowser)
         {
@@ -15,14 +15,14 @@ namespace Gecko.Listeners
 
         public void OnHistoryNewEntry(nsIURI aNewURI)
         {
-            nsISHistoryListener b = (nsISHistoryListener)_browser;
+            nsISHistoryListener b = (nsISHistoryListener) _browser;
             if (b != null)
                 b.OnHistoryNewEntry(aNewURI);
         }
 
         public bool OnHistoryGoBack(nsIURI aBackURI)
         {
-            nsISHistoryListener b = (nsISHistoryListener)_browser;
+            nsISHistoryListener b = (nsISHistoryListener) _browser;
             if (b != null)
                 return b.OnHistoryGoBack(aBackURI);
             else
@@ -31,7 +31,7 @@ namespace Gecko.Listeners
 
         public bool OnHistoryGoForward(nsIURI aForwardURI)
         {
-            nsISHistoryListener b = (nsISHistoryListener)_browser;
+            nsISHistoryListener b = (nsISHistoryListener) _browser;
             if (b != null)
                 return b.OnHistoryGoForward(aForwardURI);
             else
@@ -40,7 +40,7 @@ namespace Gecko.Listeners
 
         public bool OnHistoryReload(nsIURI aReloadURI, uint aReloadFlags)
         {
-            nsISHistoryListener b = (nsISHistoryListener)_browser;
+            nsISHistoryListener b = (nsISHistoryListener) _browser;
             if (b != null)
                 return b.OnHistoryReload(aReloadURI, aReloadFlags);
             else
@@ -49,7 +49,7 @@ namespace Gecko.Listeners
 
         public bool OnHistoryGotoIndex(int aIndex, nsIURI aGotoURI)
         {
-            nsISHistoryListener b = (nsISHistoryListener)_browser;
+            nsISHistoryListener b = (nsISHistoryListener) _browser;
             if (b != null)
                 return b.OnHistoryGotoIndex(aIndex, aGotoURI);
             else
@@ -58,16 +58,16 @@ namespace Gecko.Listeners
 
         public bool OnHistoryPurge(int aNumEntries)
         {
-            nsISHistoryListener b = (nsISHistoryListener)_browser;
+            nsISHistoryListener b = (nsISHistoryListener) _browser;
             if (b != null)
                 return b.OnHistoryPurge(aNumEntries);
             else
                 return false;
         }
 
-	    public void OnHistoryReplaceEntry(int aIndex)
-	    {
-	        throw new NotImplementedException();
-	    }
+        public void OnHistoryReplaceEntry(int aIndex)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

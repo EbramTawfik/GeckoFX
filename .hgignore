@@ -22,3 +22,5 @@ GeckoFxWpfWinFormsTest/obj/
 GeckoFxWpfTest/bin/
 GeckoFxWpfTest/obj/
 mozilla-release/
+*.nupkg
+nuget.exe

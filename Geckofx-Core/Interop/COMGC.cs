@@ -5,120 +5,118 @@ using System.Threading;
 
 namespace Gecko.Interop
 {
-	sealed class COMGC : nsITimerCallback, IDisposable
-	{
-		private sealed class GCData
-		{
-			object obj;
-			bool final;
+    internal sealed class COMGC : nsITimerCallback, IDisposable
+    {
+        private sealed class GCData
+        {
+            private object obj;
+            private bool final;
 
-			public GCData(object obj, bool final)
-			{
-				this.obj = obj;
-				this.final = final;
-			}
+            public GCData(object obj, bool final)
+            {
+                this.obj = obj;
+                this.final = final;
+            }
 
-			public bool CanFree
-			{
-				get { return obj != null; }
-			}
+            public bool CanFree
+            {
+                get { return obj != null; }
+            }
 
-			public void Free()
-			{
-				var localObj = Interlocked.Exchange(ref this.obj, null);
-				if (final)
-					Marshal.FinalReleaseComObject(localObj);
-				else
-					Marshal.ReleaseComObject(localObj);
-			}
-		}
-
-		
-		private nsITimer _timer;
-		private object _syncRoot = new object();
-		private Queue<GCData> _queue = new Queue<GCData>();
+            public void Free()
+            {
+                var localObj = Interlocked.Exchange(ref this.obj, null);
+                if (final)
+                    Marshal.FinalReleaseComObject(localObj);
+                else
+                    Marshal.ReleaseComObject(localObj);
+            }
+        }
 
 
-		public COMGC()
-		{
-			_timer = Xpcom.CreateInstance<nsITimer>("@mozilla.org/timer;1");
-			_timer.InitWithCallback(this, 5000, (uint)nsITimerConsts.TYPE_REPEATING_SLACK);
-		}
+        private nsITimer _timer;
+        private object _syncRoot = new object();
+        private Queue<GCData> _queue = new Queue<GCData>();
 
-		public void SetDelay(uint delay)
-		{
-			if (_timer == null)
-				throw new ObjectDisposedException(this.GetType().Name);
 
-			_timer.SetDelayAttribute(delay);
-		}
+        public COMGC()
+        {
+            _timer = Xpcom.CreateInstance<nsITimer>("@mozilla.org/timer;1");
+            _timer.InitWithCallback(this, 5000, (uint) nsITimerConsts.TYPE_REPEATING_SLACK);
+        }
 
-		public void Free<T>(ref T obj)
-			where T: class
-		{
-			Free(ref obj, false);
-		}
+        public void SetDelay(uint delay)
+        {
+            if (_timer == null)
+                throw new ObjectDisposedException(this.GetType().Name);
 
-		public void FinalFree<T>(ref T obj)
-			where T : class
-		{
-			Free(ref obj, true);
-		}
+            _timer.SetDelayAttribute(delay);
+        }
 
-		private void Free<T>(ref T obj, bool finalize)
-			where T : class
-		{
-			if (_timer != null)
-			{
+        public void Free<T>(ref T obj)
+            where T : class
+        {
+            Free(ref obj, false);
+        }
 
-				var data = new GCData(Interlocked.Exchange(ref obj, null), finalize);
-				if (data.CanFree)
-				{
-					Monitor.Enter(_syncRoot);
-					try
-					{
-						_queue.Enqueue(data);
-					}
-					finally
-					{
-						Monitor.Exit(_syncRoot);
-					}
-				}
-			}
-		}
+        public void FinalFree<T>(ref T obj)
+            where T : class
+        {
+            Free(ref obj, true);
+        }
 
-		public void Notify(nsITimer timer)
-		{
-			if (Monitor.TryEnter(_syncRoot))
-			{
-				try
-				{
-					for (int i = _queue.Count; i > 0; i--)
-					{
-						_queue.Dequeue().Free();						
-					}
-				}
-				finally
-				{
-					Monitor.Exit(_syncRoot);
-				}
-			}
-		}
+        private void Free<T>(ref T obj, bool finalize)
+            where T : class
+        {
+            if (_timer != null)
+            {
+                var data = new GCData(Interlocked.Exchange(ref obj, null), finalize);
+                if (data.CanFree)
+                {
+                    Monitor.Enter(_syncRoot);
+                    try
+                    {
+                        _queue.Enqueue(data);
+                    }
+                    finally
+                    {
+                        Monitor.Exit(_syncRoot);
+                    }
+                }
+            }
+        }
 
-		public void Dispose()
-		{
-			if (_timer != null)
-			{
-				_timer.Cancel();
+        public void Notify(nsITimer timer)
+        {
+            if (Monitor.TryEnter(_syncRoot))
+            {
+                try
+                {
+                    for (int i = _queue.Count; i > 0; i--)
+                    {
+                        _queue.Dequeue().Free();
+                    }
+                }
+                finally
+                {
+                    Monitor.Exit(_syncRoot);
+                }
+            }
+        }
 
-				var localObj = Interlocked.Exchange(ref _timer, null);
-				if (localObj != null)
-					Marshal.ReleaseComObject(localObj);
+        public void Dispose()
+        {
+            if (_timer != null)
+            {
+                _timer.Cancel();
 
-				_timer = null;
-			}
-			GC.SuppressFinalize(this);
-		}
+                var localObj = Interlocked.Exchange(ref _timer, null);
+                if (localObj != null)
+                    Marshal.ReleaseComObject(localObj);
 
-	}
+                _timer = null;
+            }
+            GC.SuppressFinalize(this);
+        }
+    }
 }

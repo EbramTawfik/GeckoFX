@@ -11,7 +11,7 @@ namespace Gecko
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     [Guid("662f2c9a-c7cd-4cab-9349-e733df5a838c")]
     public interface nsIXPathResult
-    {        
+    {
         // Methods on this object are defined by WebIdl.
         // We call them via the SpiderMonkey api's.
         // (eg. JS_CallFunctionName, JS_GetProperty)

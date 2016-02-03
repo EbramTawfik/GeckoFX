@@ -6,19 +6,20 @@ using System.Runtime.InteropServices;
 
 namespace Gecko.Listeners
 {
-	[Obsolete]
-    abstract class GeckoBaseListener : nsISupportsWeakReference, nsIWeakReference
+    [Obsolete]
+    internal abstract class GeckoBaseListener : nsISupportsWeakReference, nsIWeakReference
     {
         protected System.WeakReference _weakBrowser;
 
-		protected IGeckoWebBrowser _browser
-		{
-            get {
+        protected IGeckoWebBrowser _browser
+        {
+            get
+            {
                 if (!_weakBrowser.IsAlive) return null;
-				IGeckoWebBrowser b = (IGeckoWebBrowser)_weakBrowser.Target;
+                IGeckoWebBrowser b = (IGeckoWebBrowser) _weakBrowser.Target;
                 if (b.IsDisposed) return null;
 
-				return (IGeckoWebBrowser)b;
+                return (IGeckoWebBrowser) b;
             }
         }
 
@@ -29,7 +30,7 @@ namespace Gecko.Listeners
 
         public IntPtr QueryReferent(ref Guid uuid)
         {
-        	return Xpcom.QueryReferent( this, ref uuid );
+            return Xpcom.QueryReferent(this, ref uuid);
         }
     }
 }

@@ -7,10 +7,10 @@ using Gecko.Interop;
 namespace Gecko
 {
 #if false
-	/// <summary>
-	/// By default Xulrunner DOES NOT IMPLEMENT PrivateBrowsingService
-	/// YOU MUST REGISTER YOUR OWN IMPLEMENTATION BEFORE USE THIS WRAPPER!!!
-	/// </summary>
+    /// <summary>
+    /// By default Xulrunner DOES NOT IMPLEMENT PrivateBrowsingService
+    /// YOU MUST REGISTER YOUR OWN IMPLEMENTATION BEFORE USE THIS WRAPPER!!!
+    /// </summary>
 	public static class PrivateBrowsingService
 	{
 		private static ServiceWrapper<nsIPrivateBrowsingService> _privateBrowsingService;

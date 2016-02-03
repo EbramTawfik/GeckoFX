@@ -4,18 +4,18 @@ using Gecko.Interop;
 
 namespace Gecko
 {
-	public static class ConsoleService
-	{
-		internal static ComPtr<nsIConsoleService> _consoleService;
+    public static class ConsoleService
+    {
+        internal static ComPtr<nsIConsoleService> _consoleService;
 
-		static ConsoleService()
-		{
-			_consoleService = Xpcom.GetService2<nsIConsoleService>(Contracts.ConsoleService);
-		}
+        static ConsoleService()
+        {
+            _consoleService = Xpcom.GetService2<nsIConsoleService>(Contracts.ConsoleService);
+        }
 
-		public static void Reset()
-		{
-			_consoleService.Instance.Reset();
-		}
-	}
+        public static void Reset()
+        {
+            _consoleService.Instance.Reset();
+        }
+    }
 }

@@ -1,4 +1,5 @@
 ﻿#region ***** BEGIN LICENSE BLOCK *****
+
 /* Version: MPL 1.1/GPL 2.0/LGPL 2.1
  *
  * The contents of this file are subject to the Mozilla Public License Version
@@ -31,6 +32,7 @@
  * the provisions above, a recipient may use your version of this file under
  * the terms of any one of the MPL, the GPL or the LGPL.
  */
+
 #endregion END LICENSE BLOCK
 
 using System.Collections.Generic;
@@ -38,48 +40,48 @@ using System.Text;
 
 namespace Gecko
 {
-	/// <summary>
-	/// Provides data about a DOM key event.
-	/// </summary>
-	public class DomKeyEventArgs
-		: DomUIEventArgs
-	{
-		nsIDOMKeyEvent _Event;
+    /// <summary>
+    /// Provides data about a DOM key event.
+    /// </summary>
+    public class DomKeyEventArgs
+        : DomUIEventArgs
+    {
+        private nsIDOMKeyEvent _Event;
 
-		protected DomKeyEventArgs(nsIDOMKeyEvent ev)
-			: base(ev)
-		{
-			_Event = ev;
-		}
-		
-		public static DomKeyEventArgs Create(nsIDOMKeyEvent ev)
-		{
-			return new DomKeyEventArgs( ev );
-		}
-		
-		public uint KeyChar
-		{
-			get { return _Event.GetCharCodeAttribute(); }
-		}
-		
-		public uint KeyCode
-		{
-			get { return _Event.GetKeyCodeAttribute(); }
-		}
-		
-		public bool AltKey
-		{
-			get { return _Event.GetAltKeyAttribute(); }
-		}
-		
-		public bool CtrlKey
-		{
-			get { return _Event.GetCtrlKeyAttribute(); }
-		}
-		
-		public bool ShiftKey
-		{
-			get { return _Event.GetShiftKeyAttribute(); }
-		}
-	}
+        protected DomKeyEventArgs(nsIDOMKeyEvent ev)
+            : base(ev)
+        {
+            _Event = ev;
+        }
+
+        public static DomKeyEventArgs Create(nsIDOMKeyEvent ev)
+        {
+            return new DomKeyEventArgs(ev);
+        }
+
+        public uint KeyChar
+        {
+            get { return _Event.GetCharCodeAttribute(); }
+        }
+
+        public uint KeyCode
+        {
+            get { return _Event.GetKeyCodeAttribute(); }
+        }
+
+        public bool AltKey
+        {
+            get { return _Event.GetAltKeyAttribute(); }
+        }
+
+        public bool CtrlKey
+        {
+            get { return _Event.GetCtrlKeyAttribute(); }
+        }
+
+        public bool ShiftKey
+        {
+            get { return _Event.GetShiftKeyAttribute(); }
+        }
+    }
 }

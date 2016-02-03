@@ -3,23 +3,23 @@ using Gecko.Interop;
 
 namespace Gecko.Certificates
 {
-	public sealed class CertTreeItem
-	{
-		private ComPtr<nsICertTreeItem> _certTreeItem;
+    public sealed class CertTreeItem
+    {
+        private ComPtr<nsICertTreeItem> _certTreeItem;
 
-		internal CertTreeItem(nsICertTreeItem certTreeItem)
-		{
-			_certTreeItem = new ComPtr<nsICertTreeItem>( certTreeItem );
-		}
+        internal CertTreeItem(nsICertTreeItem certTreeItem)
+        {
+            _certTreeItem = new ComPtr<nsICertTreeItem>(certTreeItem);
+        }
 
-		public Certificate Certificate
-		{
-			get { return Certificate.Create( (nsIX509Cert) _certTreeItem.Instance.GetCertAttribute() ); }
-		}
+        public Certificate Certificate
+        {
+            get { return Certificate.Create((nsIX509Cert) _certTreeItem.Instance.GetCertAttribute()); }
+        }
 
-		public string HostPort
-		{
-			get { return nsString.Get(_certTreeItem.Instance.GetHostPortAttribute); }
-		}
-	}
+        public string HostPort
+        {
+            get { return nsString.Get(_certTreeItem.Instance.GetHostPortAttribute); }
+        }
+    }
 }

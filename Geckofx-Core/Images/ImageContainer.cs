@@ -6,40 +6,41 @@ using Gecko.Interop;
 
 namespace Gecko.Images
 {
-	public sealed class ImgContainer
-	{
-		private ComPtr<imgIContainer> _container;
+    public sealed class ImgContainer
+    {
+        private ComPtr<imgIContainer> _container;
 
-		public ImgContainer()
-		{
-			_container = Xpcom.CreateInstance2<imgIContainer>( Contracts.ImageContainer );
-		}
+        public ImgContainer()
+        {
+            _container = Xpcom.CreateInstance2<imgIContainer>(Contracts.ImageContainer);
+        }
 
-		internal ImgContainer(imgIContainer container)
-		{
-			_container = new ComPtr<imgIContainer>( container );
-		}		
+        internal ImgContainer(imgIContainer container)
+        {
+            _container = new ComPtr<imgIContainer>(container);
+        }
 
-		public void Draw(gfxContext context, gfxGraphicsFilter filter, gfxMatrix matrix, gfxRect fill, nsIntRect subImage, uint viewportSize, IntPtr aSVGContext, uint aWhichFrame, uint flags)
-		{
+        public void Draw(gfxContext context, gfxGraphicsFilter filter, gfxMatrix matrix, gfxRect fill,
+            nsIntRect subImage, uint viewportSize, IntPtr aSVGContext, uint aWhichFrame, uint flags)
+        {
 #if PORT
 			_container.Instance.Draw(context, filter, matrix, fill, subImage, viewportSize, aSVGContext, aWhichFrame, flags);
 #endif
             throw new NotImplementedException("Need to implement for gecko 45");
-		}
+        }
 
-		public IntPtr GetFrame(uint whichFrame, uint flags)
-		{
-			return _container.Instance.GetFrame(whichFrame, flags);
-		}
+        public IntPtr GetFrame(uint whichFrame, uint flags)
+        {
+            return _container.Instance.GetFrame(whichFrame, flags);
+        }
 
-		//GetImageContainer
-		//nsIFrame GetRootLayoutFrame()
+        //GetImageContainer
+        //nsIFrame GetRootLayoutFrame()
 
-		public void LockImage()
-		{
-			_container.Instance.LockImage();
-		}
+        public void LockImage()
+        {
+            _container.Instance.LockImage();
+        }
 
         // RequestDecode does not exist on inteface in gecko 45
 #if false
@@ -49,54 +50,54 @@ namespace Gecko.Images
 		}
 #endif
 
-		public void RequestDiscard()
-		{
-			//void requestDiscard(); Requires Gecko 13.0
-		}
-		
-		public void RequestRefresh(ulong time)
-		{
-			_container.Instance.RequestRefresh( time );
-		}
+        public void RequestDiscard()
+        {
+            //void requestDiscard(); Requires Gecko 13.0
+        }
 
-		public void ResetAnimation()
-		{
-			_container.Instance.ResetAnimation();
-		}
+        public void RequestRefresh(ulong time)
+        {
+            _container.Instance.RequestRefresh(time);
+        }
+
+        public void ResetAnimation()
+        {
+            _container.Instance.ResetAnimation();
+        }
 
 
-		public void UnlockImage()
-		{
-			_container.Instance.UnlockImage();
-		}
+        public void UnlockImage()
+        {
+            _container.Instance.UnlockImage();
+        }
 
-		public Locker Lock()
-		{
-			return new Locker( this );
-		}
+        public Locker Lock()
+        {
+            return new Locker(this);
+        }
 
-		public bool Animated
-		{
-			get { return _container.Instance.GetAnimatedAttribute(); }
-		}
+        public bool Animated
+        {
+            get { return _container.Instance.GetAnimatedAttribute(); }
+        }
 
-		public Animation AnimationMode
-		{
-			get { return ( Animation ) _container.Instance.GetAnimationModeAttribute(); }
-			set { _container.Instance.SetAnimationModeAttribute( ( ushort ) value ); }
-		}
-		
-		public int Height
-		{
-			get { return _container.Instance.GetHeightAttribute(); }
-		}
+        public Animation AnimationMode
+        {
+            get { return (Animation) _container.Instance.GetAnimationModeAttribute(); }
+            set { _container.Instance.SetAnimationModeAttribute((ushort) value); }
+        }
 
-		public uint Type
-		{
-			get
-			{
+        public int Height
+        {
+            get { return _container.Instance.GetHeightAttribute(); }
+        }
+
+        public uint Type
+        {
+            get
+            {
 #if PORT_GECKO45
-				// type1 getter may be faster (C++ vs scriptable)
+    // type1 getter may be faster (C++ vs scriptable)
 				var type1 = _container.Instance.GetType();
 				var type2=_container.Instance.GetTypeAttribute();
 				if (type1!=type2)
@@ -107,53 +108,52 @@ namespace Gecko.Images
 #else
                 return _container.Instance.GetTypeAttribute();
 #endif
-			}
-		}
+            }
+        }
 
-		public int Width
-		{
-			get { return _container.Instance.GetWidthAttribute(); }
-		}
-
-
+        public int Width
+        {
+            get { return _container.Instance.GetWidthAttribute(); }
+        }
 
 
-		public enum Animation
-			:ushort
-		{
-			Normal=0,
-			DontAnimate=1,
-			LoopOnce=2
-		}
-		
+        public enum Animation
+            : ushort
+        {
+            Normal = 0,
+            DontAnimate = 1,
+            LoopOnce = 2
+        }
 
-		public sealed class Locker
-			:IDisposable
-		{
-			private ImgContainer _container;
-			internal Locker(ImgContainer container)
-			{
-				_container = container;
-				_container.LockImage();
-			}
 
-			~Locker()
-			{
-				Free();
-			}
+        public sealed class Locker
+            : IDisposable
+        {
+            private ImgContainer _container;
 
-			public void Dispose()
-			{
-				Free();
-				GC.SuppressFinalize( this );
-			}
+            internal Locker(ImgContainer container)
+            {
+                _container = container;
+                _container.LockImage();
+            }
 
-			private void Free()
-			{
-				if (_container == null) return;
-				_container.UnlockImage();
-				_container = null;
-			}
-		}
-	}
+            ~Locker()
+            {
+                Free();
+            }
+
+            public void Dispose()
+            {
+                Free();
+                GC.SuppressFinalize(this);
+            }
+
+            private void Free()
+            {
+                if (_container == null) return;
+                _container.UnlockImage();
+                _container = null;
+            }
+        }
+    }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Gecko
 {
-	public class nsConstRect
-	{
-	}
+    public class nsConstRect
+    {
+    }
 }

@@ -1,4 +1,5 @@
 ﻿#region ***** BEGIN LICENSE BLOCK *****
+
 /* Version: MPL 1.1/GPL 2.0/LGPL 2.1
  *
  * The contents of this file are subject to the Mozilla Public License Version
@@ -31,6 +32,7 @@
  * the provisions above, a recipient may use your version of this file under
  * the terms of any one of the MPL, the GPL or the LGPL.
  */
+
 #endregion END LICENSE BLOCK
 
 using System;
@@ -43,293 +45,298 @@ using Gecko.Interop;
 
 namespace Gecko
 {
-	public class GeckoElement
-		: GeckoNode
-	{
-		private nsIDOMElement _domElement;
+    public class GeckoElement
+        : GeckoNode
+    {
+        private nsIDOMElement _domElement;
 
-		private string m_cachedTagName;
+        private string m_cachedTagName;
 
-		internal GeckoElement(nsIDOMElement domElement)
-			:base(domElement)
-		{
-			_domElement = domElement;
-		}
+        internal GeckoElement(nsIDOMElement domElement)
+            : base(domElement)
+        {
+            _domElement = domElement;
+        }
 
-		internal GeckoElement(object domElement)
-			: base(domElement)
-		{
-			if (domElement is nsIDOMElement)
-				_domElement = (nsIDOMElement)domElement;
-			else
-				throw new ArgumentException("domDlement is not a nsIDOMElement");
-		}
+        internal GeckoElement(object domElement)
+            : base(domElement)
+        {
+            if (domElement is nsIDOMElement)
+                _domElement = (nsIDOMElement) domElement;
+            else
+                throw new ArgumentException("domDlement is not a nsIDOMElement");
+        }
 
-		public nsIDOMElement DOMElement
-		{
-			get { return _domElement; }
-		}
-		
-
-		/// <summary>
-		/// Gets the name of the tag.
-		/// </summary>
-		public string TagName
-		{
-			get
-			{
-				if (m_cachedTagName != null)
-					return m_cachedTagName;
-
-				return m_cachedTagName = nsString.Get(_domElement.GetTagNameAttribute);
-			}
-		}
-
-		#region Attribute
-
-		public GeckoNamedNodeMap Attributes
-		{
-			get { return _domElement.GetAttributesAttribute().Wrap( x => new GeckoNamedNodeMap( x ) ); }
-		}
-		/// <summary>
-		/// Gets the value of an attribute on this element with the specified name.
-		/// </summary>
-		/// <param name="attributeName"></param>
-		/// <returns></returns>
-		public string GetAttribute(string attributeName)
-		{
-			if (string.IsNullOrEmpty(attributeName))
-				throw new ArgumentException("attributeName");
-
-			return nsString.Get(_domElement.GetAttribute, attributeName);
-		}
-
-		/// <summary>
-		/// Check if Element contains specified attribute.
-		/// </summary>
-		/// <param name="attributeName">The name of the attribute to look for</param>
-		/// <returns>true if attribute exists false otherwise</returns>
-		public bool HasAttribute(string attributeName)
-		{
-			if (string.IsNullOrEmpty(attributeName))
-				throw new ArgumentException("attributeName");
-
-			return nsString.Pass<bool>( _domElement.HasAttribute, attributeName );
-		}
-
-		/// <summary>
-		/// Sets the value of an attribute on this element with the specified name.
-		/// </summary>
-		/// <param name="attributeName"></param>
-		/// <param name="value"></param>
-		public void SetAttribute(string attributeName, string value)
-		{
-			if (string.IsNullOrEmpty(attributeName))
-				throw new ArgumentException("attributeName");
-
-			nsString.Set( _domElement.SetAttribute, attributeName, value );
-		}
-
-		/// <summary>
-		/// Removes an attribute from this element.
-		/// </summary>
-		/// <param name="attributeName"></param>
-		public void RemoveAttribute(string attributeName)
-		{
-			if (string.IsNullOrEmpty(attributeName))
-				throw new ArgumentException("attributeName");
+        public nsIDOMElement DOMElement
+        {
+            get { return _domElement; }
+        }
 
 
-			nsString.Set(_domElement.RemoveAttribute,attributeName);
-		}
+        /// <summary>
+        /// Gets the name of the tag.
+        /// </summary>
+        public string TagName
+        {
+            get
+            {
+                if (m_cachedTagName != null)
+                    return m_cachedTagName;
+
+                return m_cachedTagName = nsString.Get(_domElement.GetTagNameAttribute);
+            }
+        }
+
+        #region Attribute
+
+        public GeckoNamedNodeMap Attributes
+        {
+            get { return _domElement.GetAttributesAttribute().Wrap(x => new GeckoNamedNodeMap(x)); }
+        }
+
+        /// <summary>
+        /// Gets the value of an attribute on this element with the specified name.
+        /// </summary>
+        /// <param name="attributeName"></param>
+        /// <returns></returns>
+        public string GetAttribute(string attributeName)
+        {
+            if (string.IsNullOrEmpty(attributeName))
+                throw new ArgumentException("attributeName");
+
+            return nsString.Get(_domElement.GetAttribute, attributeName);
+        }
+
+        /// <summary>
+        /// Check if Element contains specified attribute.
+        /// </summary>
+        /// <param name="attributeName">The name of the attribute to look for</param>
+        /// <returns>true if attribute exists false otherwise</returns>
+        public bool HasAttribute(string attributeName)
+        {
+            if (string.IsNullOrEmpty(attributeName))
+                throw new ArgumentException("attributeName");
+
+            return nsString.Pass<bool>(_domElement.HasAttribute, attributeName);
+        }
+
+        /// <summary>
+        /// Sets the value of an attribute on this element with the specified name.
+        /// </summary>
+        /// <param name="attributeName"></param>
+        /// <param name="value"></param>
+        public void SetAttribute(string attributeName, string value)
+        {
+            if (string.IsNullOrEmpty(attributeName))
+                throw new ArgumentException("attributeName");
+
+            nsString.Set(_domElement.SetAttribute, attributeName, value);
+        }
+
+        /// <summary>
+        /// Removes an attribute from this element.
+        /// </summary>
+        /// <param name="attributeName"></param>
+        public void RemoveAttribute(string attributeName)
+        {
+            if (string.IsNullOrEmpty(attributeName))
+                throw new ArgumentException("attributeName");
 
 
-		#endregion
+            nsString.Set(_domElement.RemoveAttribute, attributeName);
+        }
 
-		#region Attribute Nodes
-		public GeckoAttribute GetAttributeNode(string name)
-		{
-			var ret = nsString.Pass<nsIDOMAttr>(_domElement.GetAttributeNode, name);
-			return (ret == null) ? null : new GeckoAttribute(ret);
-		}
+        #endregion
 
-		public GeckoAttribute SetAttributeNode(GeckoAttribute newAttr)
-		{
-			var ret = _domElement.SetAttributeNode(newAttr.DomAttr);
-			return ret == null ? null : new GeckoAttribute(ret);
-		}
+        #region Attribute Nodes
 
-		public GeckoAttribute RemoveAttributeNode(GeckoAttribute newAttr)
-		{
-			var ret = _domElement.RemoveAttributeNode(newAttr.DomAttr);
-			return ret == null ? null : new GeckoAttribute(ret);
-		}
+        public GeckoAttribute GetAttributeNode(string name)
+        {
+            var ret = nsString.Pass<nsIDOMAttr>(_domElement.GetAttributeNode, name);
+            return (ret == null) ? null : new GeckoAttribute(ret);
+        }
 
-        public bool HasAttributes { get { return _domElement.HasAttributes(); } }
-		#endregion
+        public GeckoAttribute SetAttributeNode(GeckoAttribute newAttr)
+        {
+            var ret = _domElement.SetAttributeNode(newAttr.DomAttr);
+            return ret == null ? null : new GeckoAttribute(ret);
+        }
 
+        public GeckoAttribute RemoveAttributeNode(GeckoAttribute newAttr)
+        {
+            var ret = _domElement.RemoveAttributeNode(newAttr.DomAttr);
+            return ret == null ? null : new GeckoAttribute(ret);
+        }
 
+        public bool HasAttributes
+        {
+            get { return _domElement.HasAttributes(); }
+        }
 
-		#region Attribute NS
-		public bool HasAttributeNS(string namespaceUri, string attributeName)
-		{
-			if (string.IsNullOrEmpty(namespaceUri))
-				return HasAttribute(attributeName);
+        #endregion
 
-			if (string.IsNullOrEmpty(attributeName))
-				throw new ArgumentException("attributeName");
+        #region Attribute NS
 
-			return nsString.Pass<bool>( _domElement.HasAttributeNS, namespaceUri, attributeName );
-		}
-		
-		/// <summary>
-		/// Gets the value of an attribute on this element with the specified name and namespace.
-		/// </summary>
-		/// <param name="attributeName"></param>
-		/// <returns></returns>
-		public string GetAttributeNS(string namespaceUri, string attributeName)
-		{
-			if (string.IsNullOrEmpty(namespaceUri))
-				return GetAttribute(attributeName);
+        public bool HasAttributeNS(string namespaceUri, string attributeName)
+        {
+            if (string.IsNullOrEmpty(namespaceUri))
+                return HasAttribute(attributeName);
 
-			if (string.IsNullOrEmpty(attributeName))
-				throw new ArgumentException("attributeName");
-			nsAString retval = new nsAString();
-			_domElement.GetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName), retval);
-			return retval.ToString();
-		}
+            if (string.IsNullOrEmpty(attributeName))
+                throw new ArgumentException("attributeName");
 
-		/// <summary>
-		/// Sets the value of an attribute on this element with the specified name and namespace.
-		/// </summary>
-		/// <param name="attributeName"></param>
-		/// <param name="value"></param>
-		public void SetAttributeNS(string namespaceUri, string attributeName, string value)
-		{
-			if (string.IsNullOrEmpty(namespaceUri))
-			{
-				SetAttribute(attributeName, value);
-			}
-			else
-			{
-				if (string.IsNullOrEmpty(attributeName))
-					throw new ArgumentException("attributeName");
+            return nsString.Pass<bool>(_domElement.HasAttributeNS, namespaceUri, attributeName);
+        }
 
-				_domElement.SetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName), new nsAString(value));
-			}
-		}
-		#endregion
+        /// <summary>
+        /// Gets the value of an attribute on this element with the specified name and namespace.
+        /// </summary>
+        /// <param name="attributeName"></param>
+        /// <returns></returns>
+        public string GetAttributeNS(string namespaceUri, string attributeName)
+        {
+            if (string.IsNullOrEmpty(namespaceUri))
+                return GetAttribute(attributeName);
 
-		#region Attribute Node NS
-		
-		public GeckoAttribute GetAttributeNodeNS(string namespaceUri, string localName)
-		{
-			if (string.IsNullOrEmpty(namespaceUri))
-				return GetAttributeNode(localName);
+            if (string.IsNullOrEmpty(attributeName))
+                throw new ArgumentException("attributeName");
+            nsAString retval = new nsAString();
+            _domElement.GetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName), retval);
+            return retval.ToString();
+        }
 
-			var ret = nsString.Pass<nsIDOMAttr>(_domElement.GetAttributeNodeNS, namespaceUri,localName);
-			return (ret == null) ? null : new GeckoAttribute(ret);
-		}
+        /// <summary>
+        /// Sets the value of an attribute on this element with the specified name and namespace.
+        /// </summary>
+        /// <param name="attributeName"></param>
+        /// <param name="value"></param>
+        public void SetAttributeNS(string namespaceUri, string attributeName, string value)
+        {
+            if (string.IsNullOrEmpty(namespaceUri))
+            {
+                SetAttribute(attributeName, value);
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(attributeName))
+                    throw new ArgumentException("attributeName");
 
-		public GeckoAttribute SetAttributeNodeNS(GeckoAttribute attribute)
-		{
-			var ret = _domElement.SetAttributeNodeNS( attribute.DomAttr );
-			return (ret == null) ? null : new GeckoAttribute(ret);
-		}
-		#endregion
+                _domElement.SetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName),
+                    new nsAString(value));
+            }
+        }
 
+        #endregion
 
-		public int ScrollLeft
-		{
-			get { return _domElement.GetScrollLeftAttribute(); }
-			set { _domElement.SetScrollLeftAttribute( value ); }
-		}
+        #region Attribute Node NS
 
-		public int ScrollTop
-		{
-			get { return _domElement.GetScrollTopAttribute(); }
-			set { _domElement.SetScrollTopAttribute( value ); }
-		}
+        public GeckoAttribute GetAttributeNodeNS(string namespaceUri, string localName)
+        {
+            if (string.IsNullOrEmpty(namespaceUri))
+                return GetAttributeNode(localName);
 
-		public int ScrollWidth
-		{
-			get { return _domElement.GetScrollWidthAttribute(); }
-		}
+            var ret = nsString.Pass<nsIDOMAttr>(_domElement.GetAttributeNodeNS, namespaceUri, localName);
+            return (ret == null) ? null : new GeckoAttribute(ret);
+        }
 
-		public int ScrollHeight
-		{
-			get { return _domElement.GetScrollHeightAttribute(); }
-		}
+        public GeckoAttribute SetAttributeNodeNS(GeckoAttribute attribute)
+        {
+            var ret = _domElement.SetAttributeNodeNS(attribute.DomAttr);
+            return (ret == null) ? null : new GeckoAttribute(ret);
+        }
 
-		public int ClientWidth
-		{
-			get { return _domElement.GetClientWidthAttribute(); }
-		}
+        #endregion
 
-		public int ClientHeight
-		{
-			get { return _domElement.GetClientHeightAttribute(); }
-		}
+        public int ScrollLeft
+        {
+            get { return _domElement.GetScrollLeftAttribute(); }
+            set { _domElement.SetScrollLeftAttribute(value); }
+        }
 
+        public int ScrollTop
+        {
+            get { return _domElement.GetScrollTopAttribute(); }
+            set { _domElement.SetScrollTopAttribute(value); }
+        }
 
+        public int ScrollWidth
+        {
+            get { return _domElement.GetScrollWidthAttribute(); }
+        }
 
-		/// <summary>
-		/// Returns a collection containing the child elements of this element with a given tag name.
-		/// </summary>
-		/// <param name="tagName"></param>
-		/// <returns></returns>
-		public IDomHtmlCollection<GeckoElement> GetElementsByTagName(string tagName)
-		{
-			if ( string.IsNullOrEmpty( tagName ) )
-				return null;
-			//return new GeckoHtmlElementCollection(_domElement.GetElementsByTagName(new nsAString(tagName)));
-			return nsString.Pass<nsIDOMHTMLCollection>( _domElement.GetElementsByTagName, tagName )
-				.Wrap( x => new DomHtmlCollection<GeckoElement, nsIDOMHTMLElement>( x, CreateDomElementWrapper ) );
-		}
+        public int ScrollHeight
+        {
+            get { return _domElement.GetScrollHeightAttribute(); }
+        }
 
-		public IDomHtmlCollection<GeckoElement> GetElementsByTagNameNS(string namespaceURI, string localName)
-		{
-			if ( string.IsNullOrEmpty( namespaceURI ) ) return GetElementsByTagName( localName );
+        public int ClientWidth
+        {
+            get { return _domElement.GetClientWidthAttribute(); }
+        }
 
-			if ( string.IsNullOrEmpty( localName ) )
-				return null;
-
-			//var ret = nsString.Pass<nsIDOMHTMLCollection>(_domElement.GetElementsByTagNameNS, namespaceURI, localName);
-			//return ret == null ? null : new GeckoHtmlElementCollection(ret);
-			return nsString.Pass<nsIDOMHTMLCollection>( _domElement.GetElementsByTagNameNS, namespaceURI, localName )
-						   .Wrap(x => new DomHtmlCollection<GeckoElement, nsIDOMHTMLElement>(x, CreateDomElementWrapper));
-		}
+        public int ClientHeight
+        {
+            get { return _domElement.GetClientHeightAttribute(); }
+        }
 
 
-		public static GeckoElement CreateDomElementWrapper(nsIDOMElement element)
-		{
-			if (element == null)
-				return null;
+        /// <summary>
+        /// Returns a collection containing the child elements of this element with a given tag name.
+        /// </summary>
+        /// <param name="tagName"></param>
+        /// <returns></returns>
+        public IDomHtmlCollection<GeckoElement> GetElementsByTagName(string tagName)
+        {
+            if (string.IsNullOrEmpty(tagName))
+                return null;
+            //return new GeckoHtmlElementCollection(_domElement.GetElementsByTagName(new nsAString(tagName)));
+            return nsString.Pass<nsIDOMHTMLCollection>(_domElement.GetElementsByTagName, tagName)
+                .Wrap(x => new DomHtmlCollection<GeckoElement, nsIDOMHTMLElement>(x, CreateDomElementWrapper));
+        }
 
-			var htmlElement=Xpcom.QueryInterface<nsIDOMHTMLElement>( element );
-			if (htmlElement!=null)
-			{
-				Marshal.ReleaseComObject( htmlElement );
-				return GeckoHtmlElement.Create((nsIDOMHTMLElement)element);
-			}
-			var svgElement=Xpcom.QueryInterface<nsIDOMSVGElement>( element );
-			if (svgElement!=null)
-			{
-				Marshal.ReleaseComObject(svgElement);
-				return DOM.Svg.SvgElement.CreateSvgElementWrapper((nsIDOMSVGElement)element);
-			}
-			var xulElement=Xpcom.QueryInterface<nsIDOMXULElement>( element );
-			if (xulElement!=null)
-			{
-				Marshal.ReleaseComObject(xulElement);
-				return DOM.Xul.XulElement.CreateXulElementWrapper((nsIDOMXULElement)element);
-			}
-			return new GeckoElement( element );
-		}
+        public IDomHtmlCollection<GeckoElement> GetElementsByTagNameNS(string namespaceURI, string localName)
+        {
+            if (string.IsNullOrEmpty(namespaceURI)) return GetElementsByTagName(localName);
 
-		public GeckoElement QuerySelector( string selectors )
-		{
-			return nsString.Pass( _domElement.QuerySelector, selectors ).Wrap( CreateDomElementWrapper );
-		}
-	}
+            if (string.IsNullOrEmpty(localName))
+                return null;
+
+            //var ret = nsString.Pass<nsIDOMHTMLCollection>(_domElement.GetElementsByTagNameNS, namespaceURI, localName);
+            //return ret == null ? null : new GeckoHtmlElementCollection(ret);
+            return nsString.Pass<nsIDOMHTMLCollection>(_domElement.GetElementsByTagNameNS, namespaceURI, localName)
+                .Wrap(x => new DomHtmlCollection<GeckoElement, nsIDOMHTMLElement>(x, CreateDomElementWrapper));
+        }
+
+
+        public static GeckoElement CreateDomElementWrapper(nsIDOMElement element)
+        {
+            if (element == null)
+                return null;
+
+            var htmlElement = Xpcom.QueryInterface<nsIDOMHTMLElement>(element);
+            if (htmlElement != null)
+            {
+                Marshal.ReleaseComObject(htmlElement);
+                return GeckoHtmlElement.Create((nsIDOMHTMLElement) element);
+            }
+            var svgElement = Xpcom.QueryInterface<nsIDOMSVGElement>(element);
+            if (svgElement != null)
+            {
+                Marshal.ReleaseComObject(svgElement);
+                return DOM.Svg.SvgElement.CreateSvgElementWrapper((nsIDOMSVGElement) element);
+            }
+            var xulElement = Xpcom.QueryInterface<nsIDOMXULElement>(element);
+            if (xulElement != null)
+            {
+                Marshal.ReleaseComObject(xulElement);
+                return DOM.Xul.XulElement.CreateXulElementWrapper((nsIDOMXULElement) element);
+            }
+            return new GeckoElement(element);
+        }
+
+        public GeckoElement QuerySelector(string selectors)
+        {
+            return nsString.Pass(_domElement.QuerySelector, selectors).Wrap(CreateDomElementWrapper);
+        }
+    }
 }

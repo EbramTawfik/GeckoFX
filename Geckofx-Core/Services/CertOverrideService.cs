@@ -6,217 +6,220 @@ using Gecko.Events;
 
 namespace Gecko
 {
-	public sealed class CertOverrideService : ComPtr<nsICertOverrideService>, nsICertOverrideService
-	{
-		#region Static members & internal classes
+    public sealed class CertOverrideService : ComPtr<nsICertOverrideService>, nsICertOverrideService
+    {
+        #region Static members & internal classes
 
-		sealed class CertOverrideServiceFactory : nsIFactory
-		{
-			private CertOverrideService _instance;
-			
-			public CertOverrideServiceFactory(CertOverrideService instance)
-			{
-				_instance = instance;
-			}
+        private sealed class CertOverrideServiceFactory : nsIFactory
+        {
+            private CertOverrideService _instance;
 
-			public IntPtr CreateInstance(nsISupports aOuter, ref Guid iid)
-			{
-				if (aOuter != null)
-					Marshal.ThrowExceptionForHR(GeckoError.NS_ERROR_NO_AGGREGATION);
+            public CertOverrideServiceFactory(CertOverrideService instance)
+            {
+                _instance = instance;
+            }
 
-				IntPtr pvv;
-				IntPtr pUnk = Marshal.GetIUnknownForObject(_instance);
-				try
-				{
-					Marshal.ThrowExceptionForHR(Marshal.QueryInterface(pUnk, ref iid, out pvv));
-				}
-				finally
-				{
-					Marshal.Release(pUnk);
-				}
-				return pvv;
-			}
+            public IntPtr CreateInstance(nsISupports aOuter, ref Guid iid)
+            {
+                if (aOuter != null)
+                    Marshal.ThrowExceptionForHR(GeckoError.NS_ERROR_NO_AGGREGATION);
 
-			public void LockFactory(bool @lock)
-			{
-				throw new NotImplementedException();
-			}
-		}
+                IntPtr pvv;
+                IntPtr pUnk = Marshal.GetIUnknownForObject(_instance);
+                try
+                {
+                    Marshal.ThrowExceptionForHR(Marshal.QueryInterface(pUnk, ref iid, out pvv));
+                }
+                finally
+                {
+                    Marshal.Release(pUnk);
+                }
+                return pvv;
+            }
 
-		public static CertOverrideService GetService()
-		{
-			var svc = Xpcom.GetService<nsICertOverrideService>(Contracts.CertOverride);
-			var certSvc = svc as CertOverrideService;
-			if(certSvc != null)
-			{
-				Marshal.Release(certSvc._pUnknown);
-				return certSvc;
-			}
-			return svc.Wrap(CertOverrideService.Create);
-		}
+            public void LockFactory(bool @lock)
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-		private static CertOverrideService Create(nsICertOverrideService instance)
-		{
-			return new CertOverrideService(instance);
-		}
+        public static CertOverrideService GetService()
+        {
+            var svc = Xpcom.GetService<nsICertOverrideService>(Contracts.CertOverride);
+            var certSvc = svc as CertOverrideService;
+            if (certSvc != null)
+            {
+                Marshal.Release(certSvc._pUnknown);
+                return certSvc;
+            }
+            return svc.Wrap(CertOverrideService.Create);
+        }
 
-		#endregion
+        private static CertOverrideService Create(nsICertOverrideService instance)
+        {
+            return new CertOverrideService(instance);
+        }
 
-		#region Instance members
+        #endregion
 
-		#region Instance fields
+        #region Instance members
 
-		private EventHandler<CertOverrideEventArgs> validityOverrideEvent;
-		private IntPtr _pUnknown;
-		private CertOverrideServiceFactory _factory;
+        #region Instance fields
 
-		#endregion Instance fields
-		
-		private CertOverrideService(nsICertOverrideService instance)
-			: base(instance)
-		{
-			_pUnknown = Marshal.GetIUnknownForObject(this);
-			Marshal.Release(_pUnknown);
-		}
+        private EventHandler<CertOverrideEventArgs> validityOverrideEvent;
+        private IntPtr _pUnknown;
+        private CertOverrideServiceFactory _factory;
 
-		public event EventHandler<CertOverrideEventArgs> ValidityOverride
-		{
-			add
-			{
-				if (_factory == null)
-				{
-					_factory = new CertOverrideServiceFactory(this);
-					Xpcom.RegisterFactory(typeof(nsICertOverrideService).GUID, this.GetType().Name, Contracts.CertOverride, _factory);
-				}
-				validityOverrideEvent += value;
-			}
-			remove
-			{
-				validityOverrideEvent -= value;
-			}
-		}
+        #endregion Instance fields
 
-		[Obsolete("RememberRecentBadCert is deprecated, please use RememberValidityOverride instead.")]
-		public bool RememberRecentBadCert(Uri url, SSLStatus sslStatus)
-		{
-			if (url == null)
-				throw new ArgumentNullException("url");
-			if (sslStatus == null)
-				throw new ArgumentNullException("sslStatus");
+        private CertOverrideService(nsICertOverrideService instance)
+            : base(instance)
+        {
+            _pUnknown = Marshal.GetIUnknownForObject(this);
+            Marshal.Release(_pUnknown);
+        }
 
-			Certificate cert = sslStatus.ServerCert;
-			if (HasMatchingOverride(url, cert))
-				return false;
+        public event EventHandler<CertOverrideEventArgs> ValidityOverride
+        {
+            add
+            {
+                if (_factory == null)
+                {
+                    _factory = new CertOverrideServiceFactory(this);
+                    Xpcom.RegisterFactory(typeof (nsICertOverrideService).GUID, this.GetType().Name,
+                        Contracts.CertOverride, _factory);
+                }
+                validityOverrideEvent += value;
+            }
+            remove { validityOverrideEvent -= value; }
+        }
 
-			CertOverride flags = 0;
-			if (sslStatus.IsUntrusted)
-				flags |= CertOverride.Untrusted;
-			if (sslStatus.IsDomainMismatch)
-				flags |= CertOverride.Mismatch;
-			if (sslStatus.IsNotValidAtThisTime)
-				flags |= CertOverride.Time;
+        [Obsolete("RememberRecentBadCert is deprecated, please use RememberValidityOverride instead.")]
+        public bool RememberRecentBadCert(Uri url, SSLStatus sslStatus)
+        {
+            if (url == null)
+                throw new ArgumentNullException("url");
+            if (sslStatus == null)
+                throw new ArgumentNullException("sslStatus");
 
-			RememberValidityOverride(url, cert, flags, true);
-			return true;
-		}
+            Certificate cert = sslStatus.ServerCert;
+            if (HasMatchingOverride(url, cert))
+                return false;
 
-		public bool HasMatchingOverride(Uri url, Certificate cert)
-		{
-			if (url == null)
-				throw new ArgumentNullException("url");
+            CertOverride flags = 0;
+            if (sslStatus.IsUntrusted)
+                flags |= CertOverride.Untrusted;
+            if (sslStatus.IsDomainMismatch)
+                flags |= CertOverride.Mismatch;
+            if (sslStatus.IsNotValidAtThisTime)
+                flags |= CertOverride.Time;
 
-			var mapping = new System.Globalization.IdnMapping();
-			using (var aHostName = new nsACString(mapping.GetAscii(url.Host)))
-			{
-				uint flags = 0;
-				bool isTemp = false;
-				return Instance.HasMatchingOverride(aHostName, url.Port, cert._cert.Instance, ref flags, ref isTemp);
-			}
-		}
+            RememberValidityOverride(url, cert, flags, true);
+            return true;
+        }
 
-		/// <summary>
-		///  The given cert should always be accepted for the given hostname:port,
-		///  regardless of errors verifying the cert.
-		///  Host:Port is a primary key, only one entry per host:port can exist.
-		/// </summary>
-		/// <param name="url"></param>
-		/// <param name="cert">The cert that should always be accepted</param>
-		/// <param name="flags">The errors we want to be overriden.</param>
-		public void RememberValidityOverride(Uri url, Certificate cert, CertOverride flags, bool temporary)
-		{
-			if (url == null)
-				throw new ArgumentNullException("url");
-			if (cert == null)
-				throw new ArgumentNullException("cert");
+        public bool HasMatchingOverride(Uri url, Certificate cert)
+        {
+            if (url == null)
+                throw new ArgumentNullException("url");
 
-			var mapping = new System.Globalization.IdnMapping();
-			using (var aHostName = new nsACString(mapping.GetAscii(url.Host)))
-			{
-				Instance.RememberValidityOverride(aHostName, url.Port, cert._cert.Instance, (uint)flags, true);
-			}
-		}
+            var mapping = new System.Globalization.IdnMapping();
+            using (var aHostName = new nsACString(mapping.GetAscii(url.Host)))
+            {
+                uint flags = 0;
+                bool isTemp = false;
+                return Instance.HasMatchingOverride(aHostName, url.Port, cert._cert.Instance, ref flags, ref isTemp);
+            }
+        }
 
-		/// <summary>
-		/// Remove a override for the given hostname:port.
-		/// </summary>
-		/// <param name="url"></param>
-		public void ClearValidityOverride(Uri url)
-		{
-			if (url == null)
-				throw new ArgumentNullException("url");
+        /// <summary>
+        ///  The given cert should always be accepted for the given hostname:port,
+        ///  regardless of errors verifying the cert.
+        ///  Host:Port is a primary key, only one entry per host:port can exist.
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="cert">The cert that should always be accepted</param>
+        /// <param name="flags">The errors we want to be overriden.</param>
+        public void RememberValidityOverride(Uri url, Certificate cert, CertOverride flags, bool temporary)
+        {
+            if (url == null)
+                throw new ArgumentNullException("url");
+            if (cert == null)
+                throw new ArgumentNullException("cert");
 
-			var mapping = new System.Globalization.IdnMapping();
-			using (var aHostName = new nsACString(url.Scheme != "all" ? mapping.GetAscii(url.Host) : url.OriginalString))
-			{
-				Instance.ClearValidityOverride(aHostName, url.Port);
-			}
-		}
+            var mapping = new System.Globalization.IdnMapping();
+            using (var aHostName = new nsACString(mapping.GetAscii(url.Host)))
+            {
+                Instance.RememberValidityOverride(aHostName, url.Port, cert._cert.Instance, (uint) flags, true);
+            }
+        }
 
-		#endregion
+        /// <summary>
+        /// Remove a override for the given hostname:port.
+        /// </summary>
+        /// <param name="url"></param>
+        public void ClearValidityOverride(Uri url)
+        {
+            if (url == null)
+                throw new ArgumentNullException("url");
 
-		#region nsICertOverrideService
+            var mapping = new System.Globalization.IdnMapping();
+            using (var aHostName = new nsACString(url.Scheme != "all" ? mapping.GetAscii(url.Host) : url.OriginalString)
+                )
+            {
+                Instance.ClearValidityOverride(aHostName, url.Port);
+            }
+        }
 
-		void nsICertOverrideService.RememberValidityOverride(nsACStringBase aHostName, int aPort, nsIX509Cert aCert, uint aOverrideBits, bool aTemporary)
-		{
-			Instance.RememberValidityOverride(aHostName, aPort, aCert, aOverrideBits, aTemporary);
-		}
+        #endregion
 
-		bool nsICertOverrideService.HasMatchingOverride(nsACStringBase aHostName, int aPort, nsIX509Cert aCert, ref uint aOverrideBits, ref bool aIsTemporary)
-		{
-			if (validityOverrideEvent != null)
-			{
-				var ea = new CertOverrideEventArgs(
-					aHostName.ToString(),
-					aPort,
-					Xpcom.QueryInterface<nsIX509Cert>(aCert).Wrap(Certificate.Create) // addref
-				);
-				validityOverrideEvent(this, ea);
-				if(ea.Handled)
-				{
-					aOverrideBits = (uint)ea.OverrideResult;
-					aIsTemporary = ea.Temporary;
-					return true;
-				}
-			}
-			return Instance.HasMatchingOverride(aHostName, aPort, aCert, ref aOverrideBits, ref aIsTemporary);
-		}
+        #region nsICertOverrideService
 
-		bool nsICertOverrideService.GetValidityOverride(nsACStringBase aHostName, int aPort, nsACStringBase aHashAlg, nsACStringBase aFingerprint, ref uint aOverrideBits, ref bool aIsTemporary)
-		{
-			return Instance.GetValidityOverride(aHostName, aPort, aHashAlg, aFingerprint, ref aOverrideBits, ref aIsTemporary);
-		}
+        void nsICertOverrideService.RememberValidityOverride(nsACStringBase aHostName, int aPort, nsIX509Cert aCert,
+            uint aOverrideBits, bool aTemporary)
+        {
+            Instance.RememberValidityOverride(aHostName, aPort, aCert, aOverrideBits, aTemporary);
+        }
 
-		void nsICertOverrideService.ClearValidityOverride(nsACStringBase aHostName, int aPort)
-		{
-			Instance.ClearValidityOverride(aHostName, aPort);
-		}		
+        bool nsICertOverrideService.HasMatchingOverride(nsACStringBase aHostName, int aPort, nsIX509Cert aCert,
+            ref uint aOverrideBits, ref bool aIsTemporary)
+        {
+            if (validityOverrideEvent != null)
+            {
+                var ea = new CertOverrideEventArgs(
+                    aHostName.ToString(),
+                    aPort,
+                    Xpcom.QueryInterface<nsIX509Cert>(aCert).Wrap(Certificate.Create) // addref
+                    );
+                validityOverrideEvent(this, ea);
+                if (ea.Handled)
+                {
+                    aOverrideBits = (uint) ea.OverrideResult;
+                    aIsTemporary = ea.Temporary;
+                    return true;
+                }
+            }
+            return Instance.HasMatchingOverride(aHostName, aPort, aCert, ref aOverrideBits, ref aIsTemporary);
+        }
 
-		uint nsICertOverrideService.IsCertUsedForOverrides(nsIX509Cert aCert, bool aCheckTemporaries, bool aCheckPermanents)
-		{
-			return Instance.IsCertUsedForOverrides(aCert, aCheckTemporaries, aCheckPermanents);
-		}
+        bool nsICertOverrideService.GetValidityOverride(nsACStringBase aHostName, int aPort, nsACStringBase aHashAlg,
+            nsACStringBase aFingerprint, ref uint aOverrideBits, ref bool aIsTemporary)
+        {
+            return Instance.GetValidityOverride(aHostName, aPort, aHashAlg, aFingerprint, ref aOverrideBits,
+                ref aIsTemporary);
+        }
 
-		#endregion
+        void nsICertOverrideService.ClearValidityOverride(nsACStringBase aHostName, int aPort)
+        {
+            Instance.ClearValidityOverride(aHostName, aPort);
+        }
 
-	}
+        uint nsICertOverrideService.IsCertUsedForOverrides(nsIX509Cert aCert, bool aCheckTemporaries,
+            bool aCheckPermanents)
+        {
+            return Instance.IsCertUsedForOverrides(aCert, aCheckTemporaries, aCheckPermanents);
+        }
+
+        #endregion
+    }
 }

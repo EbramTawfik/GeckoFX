@@ -1,4 +1,5 @@
 ﻿#region ***** BEGIN LICENSE BLOCK *****
+
 /* Version: MPL 1.1/GPL 2.0/LGPL 2.1
  *
  * The contents of this file are subject to the Mozilla Public License Version
@@ -31,6 +32,7 @@
  * the provisions above, a recipient may use your version of this file under
  * the terms of any one of the MPL, the GPL or the LGPL.
  */
+
 #endregion END LICENSE BLOCK
 
 using System;
@@ -41,94 +43,95 @@ using System.Runtime.CompilerServices;
 // PLZ remove ANY constants, that are automatically generated (located in Generated\ folder)
 
 namespace Gecko
-{	
-	public enum nsDirection 
-	{
-		eDirNext = 0,
-		eDirPrevious = 1
-	};
+{
+    public enum nsDirection
+    {
+        eDirNext = 0,
+        eDirPrevious = 1
+    };
 
-	public static class nsIContextMenuListener2Constants
-	{
-		public const uint CONTEXT_NONE = 0;
-		public const uint CONTEXT_LINK = 1;
-		public const uint CONTEXT_IMAGE = 2;
-		public const uint CONTEXT_DOCUMENT = 4;
-		public const uint CONTEXT_TEXT = 8;
-		public const uint CONTEXT_INPUT = 16;
-		public const uint CONTEXT_BACKGROUND_IMAGE = 32;
-	}
+    public static class nsIContextMenuListener2Constants
+    {
+        public const uint CONTEXT_NONE = 0;
+        public const uint CONTEXT_LINK = 1;
+        public const uint CONTEXT_IMAGE = 2;
+        public const uint CONTEXT_DOCUMENT = 4;
+        public const uint CONTEXT_TEXT = 8;
+        public const uint CONTEXT_INPUT = 16;
+        public const uint CONTEXT_BACKGROUND_IMAGE = 32;
+    }
 
 
-	public static class nsIEmbeddingSiteWindowConstants
-	{
-		public const int DIM_FLAGS_POSITION = 1;
-		public const int DIM_FLAGS_SIZE_INNER = 2;
-		public const int DIM_FLAGS_SIZE_OUTER = 4;
-	}
+    public static class nsIEmbeddingSiteWindowConstants
+    {
+        public const int DIM_FLAGS_POSITION = 1;
+        public const int DIM_FLAGS_SIZE_INNER = 2;
+        public const int DIM_FLAGS_SIZE_OUTER = 4;
+    }
 
-	public static class nsIWebProgressListenerConstants
-	{
-		// State transition flags
-		public const ulong STATE_START = nsIWebProgressListenerConsts.STATE_START;
-		public const ulong STATE_REDIRECTING = nsIWebProgressListenerConsts.STATE_REDIRECTING;
-		public const ulong STATE_TRANSFERRING = nsIWebProgressListenerConsts.STATE_TRANSFERRING;
-		public const ulong STATE_NEGOTIATING = nsIWebProgressListenerConsts.STATE_NEGOTIATING;
-		public const ulong STATE_STOP = nsIWebProgressListenerConsts.STATE_STOP;
+    public static class nsIWebProgressListenerConstants
+    {
+        // State transition flags
+        public const ulong STATE_START = nsIWebProgressListenerConsts.STATE_START;
+        public const ulong STATE_REDIRECTING = nsIWebProgressListenerConsts.STATE_REDIRECTING;
+        public const ulong STATE_TRANSFERRING = nsIWebProgressListenerConsts.STATE_TRANSFERRING;
+        public const ulong STATE_NEGOTIATING = nsIWebProgressListenerConsts.STATE_NEGOTIATING;
+        public const ulong STATE_STOP = nsIWebProgressListenerConsts.STATE_STOP;
 
-		// State type flags
-		public const ulong STATE_IS_REQUEST = nsIWebProgressListenerConsts.STATE_IS_REQUEST;
-		public const ulong STATE_IS_DOCUMENT = nsIWebProgressListenerConsts.STATE_IS_DOCUMENT;
-		public const ulong STATE_IS_NETWORK = nsIWebProgressListenerConsts.STATE_IS_NETWORK;
-		public const ulong STATE_IS_WINDOW = nsIWebProgressListenerConsts.STATE_IS_WINDOW;
+        // State type flags
+        public const ulong STATE_IS_REQUEST = nsIWebProgressListenerConsts.STATE_IS_REQUEST;
+        public const ulong STATE_IS_DOCUMENT = nsIWebProgressListenerConsts.STATE_IS_DOCUMENT;
+        public const ulong STATE_IS_NETWORK = nsIWebProgressListenerConsts.STATE_IS_NETWORK;
+        public const ulong STATE_IS_WINDOW = nsIWebProgressListenerConsts.STATE_IS_WINDOW;
 
-		// State modifier flags
-		public const ulong STATE_RESTORING = nsIWebProgressListenerConsts.STATE_RESTORING;
+        // State modifier flags
+        public const ulong STATE_RESTORING = nsIWebProgressListenerConsts.STATE_RESTORING;
 
-		// State security flags
-		public const ulong STATE_IS_INSECURE = nsIWebProgressListenerConsts.STATE_IS_INSECURE;
-		public const ulong STATE_IS_BROKEN = nsIWebProgressListenerConsts.STATE_IS_BROKEN;
-		public const ulong STATE_IS_SECURE = nsIWebProgressListenerConsts.STATE_IS_SECURE;
+        // State security flags
+        public const ulong STATE_IS_INSECURE = nsIWebProgressListenerConsts.STATE_IS_INSECURE;
+        public const ulong STATE_IS_BROKEN = nsIWebProgressListenerConsts.STATE_IS_BROKEN;
+        public const ulong STATE_IS_SECURE = nsIWebProgressListenerConsts.STATE_IS_SECURE;
 
-		// Security strength flags
-		public const ulong STATE_SECURE_HIGH = nsIWebProgressListenerConsts.STATE_SECURE_HIGH;
-		public const ulong STATE_SECURE_MED = nsIWebProgressListenerConsts.STATE_SECURE_MED;
-		public const ulong STATE_SECURE_LOW = nsIWebProgressListenerConsts.STATE_SECURE_LOW;
+        // Security strength flags
+        public const ulong STATE_SECURE_HIGH = nsIWebProgressListenerConsts.STATE_SECURE_HIGH;
+        public const ulong STATE_SECURE_MED = nsIWebProgressListenerConsts.STATE_SECURE_MED;
+        public const ulong STATE_SECURE_LOW = nsIWebProgressListenerConsts.STATE_SECURE_LOW;
 
-		// State identity flags
-		public const ulong LOCATION_CHANGE_SAME_DOCUMENT = nsIWebProgressListenerConsts.LOCATION_CHANGE_SAME_DOCUMENT;
-		public const ulong LOCATION_CHANGE_ERROR_PAGE = nsIWebProgressListenerConsts.LOCATION_CHANGE_ERROR_PAGE;
-	}
+        // State identity flags
+        public const ulong LOCATION_CHANGE_SAME_DOCUMENT = nsIWebProgressListenerConsts.LOCATION_CHANGE_SAME_DOCUMENT;
+        public const ulong LOCATION_CHANGE_ERROR_PAGE = nsIWebProgressListenerConsts.LOCATION_CHANGE_ERROR_PAGE;
+    }
 
-	public static class nsIPromptServiceConstants
-	{
-		public const int BUTTON_POS_0 = 1;
-		public const int BUTTON_POS_1 = 256;
-		public const int BUTTON_POS_2 = 65536;
+    public static class nsIPromptServiceConstants
+    {
+        public const int BUTTON_POS_0 = 1;
+        public const int BUTTON_POS_1 = 256;
+        public const int BUTTON_POS_2 = 65536;
 
-		public const int BUTTON_TITLE_OK = 1;
-		public const int BUTTON_TITLE_CANCEL = 2;
-		public const int BUTTON_TITLE_YES = 3;
-		public const int BUTTON_TITLE_NO = 4;
-		public const int BUTTON_TITLE_SAVE = 5;
-		public const int BUTTON_TITLE_DONT_SAVE = 6;
-		public const int BUTTON_TITLE_REVERT = 7;
-		public const int BUTTON_TITLE_IS_STRING = 127;
+        public const int BUTTON_TITLE_OK = 1;
+        public const int BUTTON_TITLE_CANCEL = 2;
+        public const int BUTTON_TITLE_YES = 3;
+        public const int BUTTON_TITLE_NO = 4;
+        public const int BUTTON_TITLE_SAVE = 5;
+        public const int BUTTON_TITLE_DONT_SAVE = 6;
+        public const int BUTTON_TITLE_REVERT = 7;
+        public const int BUTTON_TITLE_IS_STRING = 127;
 
-		public const int BUTTON_POS_0_DEFAULT = 0;
-		public const int BUTTON_POS_1_DEFAULT = 16777216;
-		public const int BUTTON_POS_2_DEFAULT = 33554432;
-		
-		public const int BUTTON_DELAY_ENABLE = 67108864;
-		public const int STD_OK_CANCEL_BUTTONS = 513;
-		public const int STD_YES_NO_BUTTONS = 1027;
-	}
-	
-	public delegate int nsWriteSegmentFun(nsIInputStream aInStream, IntPtr aClosure, IntPtr aFromSegment, int aToOffset, int aCount, out int aWriteCount);
+        public const int BUTTON_POS_0_DEFAULT = 0;
+        public const int BUTTON_POS_1_DEFAULT = 16777216;
+        public const int BUTTON_POS_2_DEFAULT = 33554432;
+
+        public const int BUTTON_DELAY_ENABLE = 67108864;
+        public const int STD_OK_CANCEL_BUTTONS = 513;
+        public const int STD_YES_NO_BUTTONS = 1027;
+    }
+
+    public delegate int nsWriteSegmentFun(
+        nsIInputStream aInStream, IntPtr aClosure, IntPtr aFromSegment, int aToOffset, int aCount, out int aWriteCount);
 
 
     /// <see cref="https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIHttpActivityObserver"/>
-	public static class nsIHttpActivityObserverConstants
+    public static class nsIHttpActivityObserverConstants
     {
         public const uint ACTIVITY_TYPE_SOCKET_TRANSPORT = 0x0001;
         public const uint ACTIVITY_TYPE_HTTP_TRANSACTION = 0x0002;
@@ -140,15 +143,14 @@ namespace Gecko
     }
 
     /// <see cref="https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsISocketTransport"/>
-	public static class nsISocketTransportConstants
+    public static class nsISocketTransportConstants
     {
-        public const uint STATUS_RESOLVING      = 0x804b0003;
-        public const uint STATUS_RESOLVED       = 0x804b000b;
-        public const uint STATUS_CONNECTING_TO  = 0x804b0007;
-        public const uint STATUS_CONNECTED_TO   = 0x804b0004;
-        public const uint STATUS_SENDING_TO     = 0x804b0005;
-        public const uint STATUS_WAITING_FOR    = 0x804b000a;
+        public const uint STATUS_RESOLVING = 0x804b0003;
+        public const uint STATUS_RESOLVED = 0x804b000b;
+        public const uint STATUS_CONNECTING_TO = 0x804b0007;
+        public const uint STATUS_CONNECTED_TO = 0x804b0004;
+        public const uint STATUS_SENDING_TO = 0x804b0005;
+        public const uint STATUS_WAITING_FOR = 0x804b000a;
         public const uint STATUS_RECEIVING_FROM = 0x804b0006;
     }
-
 }

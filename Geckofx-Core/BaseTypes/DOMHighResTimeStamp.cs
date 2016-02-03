@@ -2,8 +2,8 @@
 
 namespace Gecko
 {
-	public struct DOMHighResTimeStamp
-	{
-		public double value;
-	}
+    public struct DOMHighResTimeStamp
+    {
+        public double value;
+    }
 }

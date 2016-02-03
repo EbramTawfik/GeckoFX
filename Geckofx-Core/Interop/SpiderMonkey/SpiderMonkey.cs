@@ -5,13 +5,15 @@ using System;
 // functions are declared like
 // extern JS_PUBLIC_API(JSContextCallback) JS_SetContextCallback(JSRuntime *rt, JSContextCallback cxCallback);
 // C++ default convention is Cdecl
+
 namespace Gecko
 {
-	public static class SpiderMonkey
-	{
-		// Different compilers name munge C++ signitures differently.
-		// Assumes Firefox built with MSVC compiler on Windows and gcc compiler on Linux
-		#region compiler independent wrappers
+    public static class SpiderMonkey
+    {
+        // Different compilers name munge C++ signitures differently.
+        // Assumes Firefox built with MSVC compiler on Windows and gcc compiler on Linux
+
+        #region compiler independent wrappers
 
         // Keep in alphabetical order.
 
@@ -109,7 +111,6 @@ namespace Gecko
                     value = JsVal.FromPtr(mutableHandle.Handle);
                     result = true;
                 }
-
             }
             else
             {
@@ -187,23 +188,23 @@ namespace Gecko
                 JS_DestroyRuntime_Linux64(rt);
         }
 
-		public static IntPtr JS_EncodeString(IntPtr cx, IntPtr jsString)
-		{
-			if (Xpcom.Is32Bit)
-			{
-				if (Xpcom.IsLinux)
-					return JS_EncodeString_Linux32(cx, jsString);
+        public static IntPtr JS_EncodeString(IntPtr cx, IntPtr jsString)
+        {
+            if (Xpcom.Is32Bit)
+            {
+                if (Xpcom.IsLinux)
+                    return JS_EncodeString_Linux32(cx, jsString);
 
-				return JS_EncodeString_Win32(cx, jsString);
-			}
-			else
-			{
-				if (Xpcom.IsLinux)
-					return JS_EncodeString_Linux64(cx, jsString);
+                return JS_EncodeString_Win32(cx, jsString);
+            }
+            else
+            {
+                if (Xpcom.IsLinux)
+                    return JS_EncodeString_Linux64(cx, jsString);
 
-				return JS_EncodeString_Win64(cx, jsString);
-			}
-		}
+                return JS_EncodeString_Win64(cx, jsString);
+            }
+        }
 
         public static IntPtr JS_EncodeStringToUTF8(IntPtr cx, IntPtr jsString)
         {
@@ -275,7 +276,8 @@ namespace Gecko
             return true;
         }
 
-        public static bool JS_EvaluateScript(IntPtr cx, string src, UInt32 length, string filename, UInt32 lineno, ref JsVal jsval)
+        public static bool JS_EvaluateScript(IntPtr cx, string src, UInt32 length, string filename, UInt32 lineno,
+            ref JsVal jsval)
         {
             src = EncodeUnicodeScript(src);
             if (cx == IntPtr.Zero)
@@ -706,42 +708,42 @@ namespace Gecko
 
             return success;
         }
-        
+
         public static void JS_SetTrustedPrincipals(IntPtr runtime, IntPtr principals)
-		{
-			if (Xpcom.Is32Bit)
-			{
-				if (Xpcom.IsLinux)
-					JS_SetTrustedPrincipals_Linux32(runtime, principals);
-				else
-					JS_SetTrustedPrincipals_Win32(runtime, principals);
-			}
-			else
-			{
-				if (Xpcom.IsLinux)
-					JS_SetTrustedPrincipals_Linux64(runtime, principals);
-				else
-					throw new NotImplementedException();
-			}
-		}
+        {
+            if (Xpcom.Is32Bit)
+            {
+                if (Xpcom.IsLinux)
+                    JS_SetTrustedPrincipals_Linux32(runtime, principals);
+                else
+                    JS_SetTrustedPrincipals_Win32(runtime, principals);
+            }
+            else
+            {
+                if (Xpcom.IsLinux)
+                    JS_SetTrustedPrincipals_Linux64(runtime, principals);
+                else
+                    throw new NotImplementedException();
+            }
+        }
 
-		public static JSType JS_TypeOfValue(IntPtr cx, JsVal jsVal)
-		{
-			if (Xpcom.Is32Bit)
-			{
-				if (Xpcom.IsLinux)
-					return JS_TypeOfValue_Linux32(cx, ref jsVal);
+        public static JSType JS_TypeOfValue(IntPtr cx, JsVal jsVal)
+        {
+            if (Xpcom.Is32Bit)
+            {
+                if (Xpcom.IsLinux)
+                    return JS_TypeOfValue_Linux32(cx, ref jsVal);
 
-				return JS_TypeOfValue_Win32(cx, ref jsVal);
-			}
-			else
-			{
-				if (Xpcom.IsLinux)
-					return JS_TypeOfValue_Linux64(cx, ref jsVal);
+                return JS_TypeOfValue_Win32(cx, ref jsVal);
+            }
+            else
+            {
+                if (Xpcom.IsLinux)
+                    return JS_TypeOfValue_Linux64(cx, ref jsVal);
 
-				return JS_TypeOfValue_Win64(cx, ref jsVal);
-			}
-		}
+                return JS_TypeOfValue_Win64(cx, ref jsVal);
+            }
+        }
 
         public static IntPtr JS_ValueToObject(IntPtr cx, JsVal v)
         {
@@ -784,52 +786,52 @@ namespace Gecko
             }
             return success ? mh.Handle : IntPtr.Zero;
         }
-		
-		public static IntPtr ToStringSlow(IntPtr cx, JsVal v)
-		{
-			if (Xpcom.Is32Bit)
-			{
-				if (Xpcom.IsLinux)
-					return JS_ValueToString_Linux32(cx, ref v);
-				
-				return ToStringSlow_Win32(cx, ref v);
-			}
-			else
-			{
-				if (Xpcom.IsLinux)
-					return JS_ValueToString_Linux64(cx, ref v);
 
-				return JS_ValueToString_Win64(cx, ref v);
-			}
-		}
+        public static IntPtr ToStringSlow(IntPtr cx, JsVal v)
+        {
+            if (Xpcom.Is32Bit)
+            {
+                if (Xpcom.IsLinux)
+                    return JS_ValueToString_Linux32(cx, ref v);
 
-		public static IntPtr JS_GetRuntime(IntPtr jsContext)
-		{
-			if (Xpcom.Is32Bit)
-			{
-				if (Xpcom.IsLinux)
-					return JS_GetRuntime_Linux32(jsContext);
+                return ToStringSlow_Win32(cx, ref v);
+            }
+            else
+            {
+                if (Xpcom.IsLinux)
+                    return JS_ValueToString_Linux64(cx, ref v);
 
-				return JS_GetRuntime_Win32(jsContext);
-			}
-			else
-			{
-				if (Xpcom.IsLinux)
-					return JS_GetRuntime_Linux64(jsContext);
+                return JS_ValueToString_Win64(cx, ref v);
+            }
+        }
 
-				throw new NotImplementedException();
-			}
-		}
+        public static IntPtr JS_GetRuntime(IntPtr jsContext)
+        {
+            if (Xpcom.Is32Bit)
+            {
+                if (Xpcom.IsLinux)
+                    return JS_GetRuntime_Linux32(jsContext);
 
-		#endregion
+                return JS_GetRuntime_Win32(jsContext);
+            }
+            else
+            {
+                if (Xpcom.IsLinux)
+                    return JS_GetRuntime_Linux64(jsContext);
+
+                throw new NotImplementedException();
+            }
+        }
+
+        #endregion
 
         #region delegates
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-		public delegate JSBool JSContextCallback(IntPtr cx, UInt32 contextOp);
+        public delegate JSBool JSContextCallback(IntPtr cx, UInt32 contextOp);
 
-		[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-		public delegate void JSErrorReportCallback(IntPtr cx, string message, IntPtr report);
+        [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public delegate void JSErrorReportCallback(IntPtr cx, string message, IntPtr report);
 
         #endregion
 
@@ -871,10 +873,10 @@ namespace Gecko
             {
                 IntPtr ptr = Marshal.AllocCoTaskMem(4 + IntPtr.Size);
                 Marshal.WriteInt32(ptr, 0, _length);
-                IntPtr arrayPtr = Marshal.AllocCoTaskMem(8 * _length);
-                Marshal.WriteIntPtr(ptr, 4 , arrayPtr);
+                IntPtr arrayPtr = Marshal.AllocCoTaskMem(8*_length);
+                Marshal.WriteIntPtr(ptr, 4, arrayPtr);
                 for (int i = 0; i < _length; i++)
-                    Marshal.StructureToPtr(_args[i], new IntPtr(arrayPtr.ToInt64() + (i * 8)), true);
+                    Marshal.StructureToPtr(_args[i], new IntPtr(arrayPtr.ToInt64() + (i*8)), true);
 
                 return ptr;
             }
@@ -915,13 +917,13 @@ namespace Gecko
                 else
                 {
                     sb.Append("\\u");
-                    sb.Append(((int)c).ToString("X4"));
+                    sb.Append(((int) c).ToString("X4"));
                 }
             }
             return sb.ToString();
         }
 
-        static Dictionary<IntPtr, IntPtr> ContextToCompileOptionsMap = new Dictionary<IntPtr, IntPtr>();
+        private static Dictionary<IntPtr, IntPtr> ContextToCompileOptionsMap = new Dictionary<IntPtr, IntPtr>();
 
         private static IntPtr GetCompileOptions(IntPtr context)
         {
@@ -941,117 +943,166 @@ namespace Gecko
 
         // These should be in Alphabetical order.
 
-        [DllImport("xul", CallingConvention = CallingConvention.ThisCall, CharSet = CharSet.Ansi, ExactSpelling = false, EntryPoint = "??0CompileOptions@JS@@QAE@PAUJSContext@@W4JSVersion@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.ThisCall, CharSet = CharSet.Ansi, ExactSpelling = false,
+            EntryPoint = "??0CompileOptions@JS@@QAE@PAUJSContext@@W4JSVersion@@@Z")]
         private static extern IntPtr CompileOptions_Win32(IntPtr @this, IntPtr cx, int jsver);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?CurrentGlobalOrNull@JS@@YAPAVJSObject@@PAUJSContext@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?CurrentGlobalOrNull@JS@@YAPAVJSObject@@PAUJSContext@@@Z")]
         private static extern IntPtr CurrentGlobalOrNull_Win32(IntPtr aJSContext);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?GetGlobalForObjectCrossCompartment@js@@YAPAVJSObject@@PAV2@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?GetGlobalForObjectCrossCompartment@js@@YAPAVJSObject@@PAV2@@Z")]
         private static extern IntPtr GetGlobalForObjectCrossCompartment_Win32(IntPtr jsObject);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?IsObjectInContextCompartment@js@@YA_NPAVJSObject@@PBUJSContext@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?IsObjectInContextCompartment@js@@YA_NPAVJSObject@@PBUJSContext@@@Z")]
         [return: MarshalAs(UnmanagedType.U1)]
         private static extern bool IsObjectInContextCompartment_Win32(IntPtr jsObject, IntPtr context);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_BeginRequest@@YAXPAUJSContext@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_BeginRequest@@YAXPAUJSContext@@@Z")]
         private static extern IntPtr JS_BeginRequest_Win32(IntPtr cx);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, ExactSpelling = false, EntryPoint = "?JS_CompileScript@@YA_NPAUJSContext@@PBDIABVCompileOptions@JS@@V?$MutableHandle@PAVJSScript@@@3@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, ExactSpelling = false,
+            EntryPoint =
+                "?JS_CompileScript@@YA_NPAUJSContext@@PBDIABVCompileOptions@JS@@V?$MutableHandle@PAVJSScript@@@3@@Z")]
         [return: MarshalAs(UnmanagedType.U1)]
-        private static extern bool JS_CompileScript_Win32(IntPtr cx, string str, int strlen, IntPtr compileOptions, ref MutableHandle jsValue);        
+        private static extern bool JS_CompileScript_Win32(IntPtr cx, string str, int strlen, IntPtr compileOptions,
+            ref MutableHandle jsValue);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_CallFunctionName@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDABVHandleValueArray@3@V?$MutableHandle@VValue@JS@@@3@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint =
+                "?JS_CallFunctionName@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDABVHandleValueArray@3@V?$MutableHandle@VValue@JS@@@3@@Z"
+            )]
         [return: MarshalAs(UnmanagedType.U1)]
-        private static extern bool JS_CallFunctionName_Win32(IntPtr cx, ref IntPtr jsObject, string name, IntPtr data, ref MutableHandleValue jsValue);
+        private static extern bool JS_CallFunctionName_Win32(IntPtr cx, ref IntPtr jsObject, string name, IntPtr data,
+            ref MutableHandleValue jsValue);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_CallFunctionName@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDABVHandleValueArray@3@V?$MutableHandle@VValue@JS@@@3@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint =
+                "?JS_CallFunctionName@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDABVHandleValueArray@3@V?$MutableHandle@VValue@JS@@@3@@Z"
+            )]
         [return: MarshalAs(UnmanagedType.U1)]
-        private static extern bool JS_CallFunctionName_Win32(IntPtr cx, ref IntPtr jsObject, string name, ref int args, ref MutableHandleValue jsValue);
+        private static extern bool JS_CallFunctionName_Win32(IntPtr cx, ref IntPtr jsObject, string name, ref int args,
+            ref MutableHandleValue jsValue);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_CallFunctionValue@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@V?$Handle@VValue@JS@@@3@ABVHandleValueArray@3@V?$MutableHandle@VValue@JS@@@3@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint =
+                "?JS_CallFunctionValue@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@V?$Handle@VValue@JS@@@3@ABVHandleValueArray@3@V?$MutableHandle@VValue@JS@@@3@@Z"
+            )]
         [return: MarshalAs(UnmanagedType.U1)]
-        private static extern bool JS_CallFunctionValue_Win32(IntPtr cx, IntPtr jsObject, ref JsVal fval, IntPtr passZero, ref MutableHandleValue jsValue);
+        private static extern bool JS_CallFunctionValue_Win32(IntPtr cx, IntPtr jsObject, ref JsVal fval,
+            IntPtr passZero, ref MutableHandleValue jsValue);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EncodeString@@YAPADPAUJSContext@@PAVJSString@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_EncodeString@@YAPADPAUJSContext@@PAVJSString@@@Z")]
         private static extern IntPtr JS_EncodeString_Win32(IntPtr cx, IntPtr jsString);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EncodeStringToUTF8@@YAPADPAUJSContext@@V?$Handle@PAVJSString@@@JS@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_EncodeStringToUTF8@@YAPADPAUJSContext@@V?$Handle@PAVJSString@@@JS@@@Z")]
         private static extern IntPtr JS_EncodeStringUTF8_Win32(IntPtr cx, ref IntPtr jsString);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EndRequest@@YAXPAUJSContext@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_EndRequest@@YAXPAUJSContext@@@Z")]
         private static extern IntPtr JS_EndRequest_Win32(IntPtr cx);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EnterCompartment@@YAPAUJSCompartment@@PAUJSContext@@PAVJSObject@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_EnterCompartment@@YAPAUJSCompartment@@PAUJSContext@@PAVJSObject@@@Z")]
         private static extern IntPtr JS_EnterCompartment_Win32(IntPtr cx, IntPtr obj);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_ExecuteScript@@YA_NPAUJSContext@@V?$Handle@PAVJSScript@@@JS@@V?$MutableHandle@VValue@JS@@@3@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint =
+                "?JS_ExecuteScript@@YA_NPAUJSContext@@V?$Handle@PAVJSScript@@@JS@@V?$MutableHandle@VValue@JS@@@3@@Z")]
         [return: MarshalAs(UnmanagedType.U1)]
-        private static extern bool JS_ExecuteScript_Win32(IntPtr cx, ref IntPtr handleScript, ref MutableHandleValue jsValue);        
+        private static extern bool JS_ExecuteScript_Win32(IntPtr cx, ref IntPtr handleScript,
+            ref MutableHandleValue jsValue);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_free@@YAXPAUJSContext@@PAX@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_free@@YAXPAUJSContext@@PAX@Z")]
         private static extern void JS_Free_Win32(IntPtr cx, IntPtr p);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetClass@@YAPBUJSClass@@PAVJSObject@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_GetClass@@YAPBUJSClass@@PAVJSObject@@@Z")]
         private static extern IntPtr JS_GetClass_Win32(IntPtr obj);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetClassObject@@YA_NPAUJSContext@@W4JSProtoKey@@V?$MutableHandle@PAVJSObject@@@JS@@@Z")]
-        private static extern IntPtr JS_GetClassObject_Win32(IntPtr context, IntPtr proto, ref MutableHandle jsObject);		
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_GetClassObject@@YA_NPAUJSContext@@W4JSProtoKey@@V?$MutableHandle@PAVJSObject@@@JS@@@Z")]
+        private static extern IntPtr JS_GetClassObject_Win32(IntPtr context, IntPtr proto, ref MutableHandle jsObject);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetCompartmentPrincipals@@YAPAUJSPrincipals@@PAUJSCompartment@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_GetCompartmentPrincipals@@YAPAUJSPrincipals@@PAUJSCompartment@@@Z")]
         private static extern IntPtr JS_GetCompartmentPrincipals_Win32(IntPtr jsCompartment);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_ContextIterator@@YAPAUJSContext@@PAUJSRuntime@@PAPAU1@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_ContextIterator@@YAPAUJSContext@@PAUJSRuntime@@PAPAU1@@Z")]
         private static extern IntPtr JS_ContextIterator_Win32(IntPtr rt, ref IntPtr iterp);
 
         // if JSOPTION_PRIVATE_IS_NSISUPPORTS is set on the runtime then ContextPrivate should contain the nsISupports object.
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetContextPrivate@@YAPAXPAUJSContext@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_GetContextPrivate@@YAPAXPAUJSContext@@@Z")]
         private static extern IntPtr JS_GetContextPrivate_Win32(IntPtr context);
 
-        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetEmptyStringValue@@YA?AVValue@JS@@PAUJSContext@@@Z")]
+        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_GetEmptyStringValue@@YA?AVValue@JS@@PAUJSContext@@@Z")]
         private static extern JsVal JS_GetEmptyStringValue_Win32(IntPtr cx);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetGlobalForObject@@YAPAVJSObject@@PAUJSContext@@PAV1@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_GetGlobalForObject@@YAPAVJSObject@@PAUJSContext@@PAV1@@Z")]
         private static extern IntPtr JS_GetGlobalForObject_Win32(IntPtr aJSContext, IntPtr jsObject);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_LeaveCompartment@@YAXPAUJSContext@@PAUJSCompartment@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_LeaveCompartment@@YAXPAUJSContext@@PAUJSCompartment@@@Z")]
         private static extern void JS_LeaveCompartment_Win32(IntPtr cx, IntPtr oldCompartment);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetProperty@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDV?$MutableHandle@VValue@JS@@@3@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint =
+                "?JS_GetProperty@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDV?$MutableHandle@VValue@JS@@@3@@Z")]
         [return: MarshalAs(UnmanagedType.U1)]
-        private static extern bool JS_GetProperty_Win32(IntPtr cx, ref IntPtr jsObject, string name, ref JsVal jsValue);        
+        private static extern bool JS_GetProperty_Win32(IntPtr cx, ref IntPtr jsObject, string name, ref JsVal jsValue);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetStringLength@@YAIPAVJSString@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_GetStringLength@@YAIPAVJSString@@@Z")]
         private static extern int JS_GetStringLength_Win32(IntPtr jsString);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetStringEncodingLength@@YAIPAUJSContext@@PAVJSString@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_GetStringEncodingLength@@YAIPAUJSContext@@PAVJSString@@@Z")]
         private static extern int JS_GetStringEncodingLength_Win32(IntPtr cx, IntPtr jsString);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_HasProperty@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDPA_N@Z")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool JS_HasProperty_Win32(IntPtr cx, ref IntPtr jsObject, string name, [MarshalAs(UnmanagedType.U1)] out bool found);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_HasProperty@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDPA_N@Z")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_HasProperty_Win32(IntPtr cx, ref IntPtr jsObject, string name,
+            [MarshalAs(UnmanagedType.U1)] out bool found);
 
-        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetNegativeInfinityValue@@YA?AVValue@JS@@PAUJSContext@@@Z")]
+        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_GetNegativeInfinityValue@@YA?AVValue@JS@@PAUJSContext@@@Z")]
         private static extern JsVal JS_GetNegativeInfinityValue_Win32(IntPtr cx);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetPendingException@@YA_NPAUJSContext@@V?$MutableHandle@VValue@JS@@@JS@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_GetPendingException@@YA_NPAUJSContext@@V?$MutableHandle@VValue@JS@@@JS@@@Z")]
         [return: MarshalAs(UnmanagedType.U1)]
         private static extern bool JS_GetPendingException_Win32(IntPtr cx, ref MutableHandle handle);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_NewContext@@YAPAUJSContext@@PAUJSRuntime@@I@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_NewContext@@YAPAUJSContext@@PAUJSRuntime@@I@Z")]
         private static extern IntPtr JS_NewContext_Win32(IntPtr runtime, int stacksize);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_NewPlainObject@@YAPAVJSObject@@PAUJSContext@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_NewPlainObject@@YAPAVJSObject@@PAUJSContext@@@Z")]
         private static extern IntPtr JS_NewPlainObject_Win32(IntPtr cx);
-        
-        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_NewStringCopyN@@YAPAVJSString@@PAUJSContext@@PBDI@Z")]
+
+        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_NewStringCopyN@@YAPAVJSString@@PAUJSContext@@PBDI@Z")]
         private static extern IntPtr JS_NewStringCopyN_Win32(IntPtr cx, string str, int length);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SaveFrameChain@@YA_NPAUJSContext@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_SaveFrameChain@@YA_NPAUJSContext@@@Z")]
         [return: MarshalAs(UnmanagedType.U1)]
         private static extern bool JS_SaveFrameChain_Win32(IntPtr jsContext);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetCompartmentPrincipals@@YAXPAUJSCompartment@@PAUJSPrincipals@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_SetCompartmentPrincipals@@YAXPAUJSCompartment@@PAUJSPrincipals@@@Z")]
         private static extern void JS_SetCompartmentPrincipals_Win32(IntPtr jsCompartment, IntPtr principals);
 
         /// <summary>
@@ -1061,372 +1112,511 @@ namespace Gecko
         /// <param name="rt"></param>
         /// <param name="cb"></param>
         /// <returns></returns>
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetContextCallback@@YAXPAUJSRuntime@@P6A_NPAUJSContext@@IPAX@Z2@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_SetContextCallback@@YAXPAUJSRuntime@@P6A_NPAUJSContext@@IPAX@Z2@Z")]
         private static extern void JS_SetContextCallback_Win32(IntPtr rt, JSContextCallback cb, IntPtr data);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetContextPrivate@@YAXPAUJSContext@@PAX@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_SetContextPrivate@@YAXPAUJSContext@@PAX@Z")]
         private static extern void JS_SetContextPrivate_Win32(IntPtr context, IntPtr data);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetErrorReporter@@YAP6AXPAUJSContext@@PBDPAVJSErrorReport@@@ZPAUJSRuntime@@P6AX012@Z@Z")]
-        private static extern JSErrorReportCallback JS_SetErrorReporter_Win32(IntPtr runtime, JSErrorReportCallback callback);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_SetErrorReporter@@YAP6AXPAUJSContext@@PBDPAVJSErrorReport@@@ZPAUJSRuntime@@P6AX012@Z@Z")]
+        private static extern JSErrorReportCallback JS_SetErrorReporter_Win32(IntPtr runtime,
+            JSErrorReportCallback callback);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetProperty@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDV?$Handle@VValue@JS@@@3@@Z")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool JS_SetProperty_Win32(IntPtr cx, ref IntPtr jsObject, string name, ref JsVal jsValue);
-		
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetTrustedPrincipals@@YAXPAUJSRuntime@@PAUJSPrincipals@@@Z")]
-		private static extern void JS_SetTrustedPrincipals_Win32(IntPtr runtime, IntPtr principals);
-                               
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_TypeOfValue@@YA?AW4JSType@@PAUJSContext@@V?$Handle@VValue@JS@@@JS@@@Z")]
-		private static extern JSType JS_TypeOfValue_Win32(IntPtr cx, ref JsVal jsVal);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_SetProperty@@YA_NPAUJSContext@@V?$Handle@PAVJSObject@@@JS@@PBDV?$Handle@VValue@JS@@@3@@Z")
+        ]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_SetProperty_Win32(IntPtr cx, ref IntPtr jsObject, string name, ref JsVal jsValue);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_ValueToObject@@YA_NPAUJSContext@@V?$Handle@VValue@JS@@@JS@@V?$MutableHandle@PAVJSObject@@@3@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_SetTrustedPrincipals@@YAXPAUJSRuntime@@PAUJSPrincipals@@@Z")]
+        private static extern void JS_SetTrustedPrincipals_Win32(IntPtr runtime, IntPtr principals);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_TypeOfValue@@YA?AW4JSType@@PAUJSContext@@V?$Handle@VValue@JS@@@JS@@@Z")]
+        private static extern JSType JS_TypeOfValue_Win32(IntPtr cx, ref JsVal jsVal);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint =
+                "?JS_ValueToObject@@YA_NPAUJSContext@@V?$Handle@VValue@JS@@@JS@@V?$MutableHandle@PAVJSObject@@@3@@Z")]
         [return: MarshalAs(UnmanagedType.U1)]
         private static extern bool JS_ValueToObject_Win32(IntPtr cx, ref JsVal jsValue, ref MutableHandle jsObject);
-		
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?ToStringSlow@js@@YAPAVJSString@@PAUJSContext@@V?$Handle@VValue@JS@@@JS@@@Z")]
-		private static extern IntPtr ToStringSlow_Win32(IntPtr cx, ref JsVal v);
 
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetRuntime@@YAPAUJSRuntime@@PAUJSContext@@@Z")]
-		private static extern IntPtr JS_GetRuntime_Win32(IntPtr context);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?ToStringSlow@js@@YAPAVJSString@@PAUJSContext@@V?$Handle@VValue@JS@@@JS@@@Z")]
+        private static extern IntPtr ToStringSlow_Win32(IntPtr cx, ref JsVal v);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_WrapObject@@YA_NPAUJSContext@@V?$MutableHandle@PAVJSObject@@@JS@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_GetRuntime@@YAPAUJSRuntime@@PAUJSContext@@@Z")]
+        private static extern IntPtr JS_GetRuntime_Win32(IntPtr context);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_WrapObject@@YA_NPAUJSContext@@V?$MutableHandle@PAVJSObject@@@JS@@@Z")]
         [return: MarshalAs(UnmanagedType.U1)]
         private static extern bool JS_WrapObject_Win32(IntPtr cx, ref MutableHandle p);
 
-		#endregion
+        #endregion
 
-		#region Windows x64
+        #region Windows x64
 
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EncodeString@@YAPEADPEAUJSContext@@PEAVJSString@@@Z")]
-		private static extern IntPtr JS_EncodeString_Win64(IntPtr cx, IntPtr jsString);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_EncodeString@@YAPEADPEAUJSContext@@PEAVJSString@@@Z")]
+        private static extern IntPtr JS_EncodeString_Win64(IntPtr cx, IntPtr jsString);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EncodeStringToUTF8@@YAPADPAUJSContext@@V?$Handle@PAVJSString@@@JS@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_EncodeStringToUTF8@@YAPADPAUJSContext@@V?$Handle@PAVJSString@@@JS@@@Z")]
         private static extern IntPtr JS_EncodeStringUTF8_Win64(IntPtr cx, ref IntPtr jsString);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetStringLength@@YAIPAVJSString@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_GetStringLength@@YAIPAVJSString@@@Z")]
         private static extern int JS_GetStringLength_Win64(IntPtr jsString);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetStringEncodingLength@@YAIPAUJSContext@@PAVJSString@@@Z")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_GetStringEncodingLength@@YAIPAUJSContext@@PAVJSString@@@Z")]
         private static extern int JS_GetStringEncodingLength_Win64(IntPtr cx, IntPtr jsString);
 
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_TypeOfValue@@YA?AW4JSType@@PEAUJSContext@@V?$Handle@VValue@JS@@@JS@@@Z")]
-		private static extern JSType JS_TypeOfValue_Win64(IntPtr cx, ref JsVal jsVal);		
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_TypeOfValue@@YA?AW4JSType@@PEAUJSContext@@V?$Handle@VValue@JS@@@JS@@@Z")]
+        private static extern JSType JS_TypeOfValue_Win64(IntPtr cx, ref JsVal jsVal);
 
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?ToStringSlow@js@@YAPEAVJSString@@PEAUJSContext@@V?$Handle@VValue@JS@@@JS@@@Z")]
-		private static extern IntPtr JS_ValueToString_Win64(IntPtr cx, ref JsVal v);		
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?ToStringSlow@js@@YAPEAVJSString@@PEAUJSContext@@V?$Handle@VValue@JS@@@JS@@@Z")]
+        private static extern IntPtr JS_ValueToString_Win64(IntPtr cx, ref JsVal v);
 
-		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_NewStringCopyN@@YAPEAVJSString@@PEAUJSContext@@PEBD_K@Z")]
-		private static extern IntPtr JS_NewStringCopyN_Win64(IntPtr cx, string str, int length);
+        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_NewStringCopyN@@YAPEAVJSString@@PEAUJSContext@@PEBD_K@Z")]
+        private static extern IntPtr JS_NewStringCopyN_Win64(IntPtr cx, string str, int length);
 
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_ValueToObject@@YA_NPEAUJSContext@@V?$Handle@VValue@JS@@@JS@@V?$MutableHandle@PEAVJSObject@@@3@@Z")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		// JS_ValueToObject(JSContext *cx, JS::HandleValue v, JS::MutableHandleObject objp);
-		private static extern bool JS_ValueToObject_Win64(IntPtr cx, ref JsVal jsValue, ref MutableHandle jsObject);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?CurrentGlobalOrNull@JS@@YAPEAVJSObject@@PEAUJSContext@@@Z")]
-		private static extern IntPtr CurrentGlobalOrNull_Win64(IntPtr aJSContext);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_BeginRequest@@YAXPEAUJSContext@@@Z")]
-		private static extern IntPtr JS_BeginRequest_Win64(IntPtr cx);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?DefaultObjectForContextOrNull@js@@YAPEAVJSObject@@PEAUJSContext@@@Z")]
-		private static extern IntPtr DefaultObjectForContextOrNull_Win64(IntPtr aJSContext);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EndRequest@@YAXPEAUJSContext@@@Z")]
-		private static extern IntPtr JS_EndRequest_Win64(IntPtr cx);
-
-        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_EvaluateScriptP9JSContextN2JS6HandleIP8JSObjectEEPKcjS7_jNS1_13MutableHandleINS1_5ValueEEE")]
-        private static extern bool JS_EvaluateScript_Win64(IntPtr cx, ref IntPtr obj, string src, UInt32 length, string filename, UInt32 lineno, ref MutableJSVal jsval);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_GetClass@@YAPEBUJSClass@@PEAVJSObject@@@Z")]
-		private static extern IntPtr JS_GetClass_Win64(IntPtr obj);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_ContextIterator@@YAPEAUJSContext@@PEAUJSRuntime@@PEAPEAU1@@Z")]
-		private static extern IntPtr JS_ContextIterator_Win64(IntPtr rt, ref IntPtr iterp);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_EnterCompartment@@YAPEAUJSCompartment@@PEAUJSContext@@PEAVJSObject@@@Z")]
-		private static extern IntPtr JS_EnterCompartment_Win64(IntPtr cx, IntPtr obj);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_LeaveCompartment@@YAXPEAUJSContext@@PEAUJSCompartment@@@Z")]
-		private static extern void JS_LeaveCompartment_Win64(IntPtr cx, IntPtr oldCompartment);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_free@@YAXPEAUJSContext@@PEAX@Z")]
-		private static extern void JS_Free_Win64(IntPtr cx, IntPtr p);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetContextCallback@@YAXPEAUJSRuntime@@P6A_NPEAUJSContext@@IPEAX@Z2@Z")]
-		private static extern SpiderMonkey.JSContextCallback JS_SetContextCallback_Win64(IntPtr rt, JSContextCallback cb, IntPtr data);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "?JS_SetErrorReporter@@YAP6AXPEAUJSContext@@PEBDPEAUJSErrorReport@@@Z0P6AX012@Z@Z")]
-		private static extern JSErrorReportCallback JS_SetErrorReporter_Win64(IntPtr runtime, JSErrorReportCallback callback);
-
-		#endregion
-
-		#region Linux x86
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z14JS_HasPropertyP9JSContextN2JS6HandleIP8JSObjectEEPKcPb")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool JS_HasProperty_Linux32(IntPtr cx, ref IntPtr jsObject, string name, [MarshalAs(UnmanagedType.U1)] out bool found);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z14JS_GetPropertyP9JSContextN2JS6HandleIP8JSObjectEEPKcNS1_13MutableHandleINS1_5ValueEEE")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool JS_GetProperty_Linux32(IntPtr cx, ref IntPtr jsObject, string name, ref JsVal jsValue);
-
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_CallFunctionNameP9JSContextN2JS6HandleIP8JSObjectEEPKcRKNS1_16HandleValueArrayENS1_13MutableHandleINS1_5ValueEEE")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint =
+                "?JS_ValueToObject@@YA_NPEAUJSContext@@V?$Handle@VValue@JS@@@JS@@V?$MutableHandle@PEAVJSObject@@@3@@Z")]
         [return: MarshalAs(UnmanagedType.U1)]
-        private static extern bool JS_CallFunctionName_Linux32(IntPtr cx, ref IntPtr jsObject, string name, IntPtr data, ref JsVal jsValue);
+        // JS_ValueToObject(JSContext *cx, JS::HandleValue v, JS::MutableHandleObject objp);
+        private static extern bool JS_ValueToObject_Win64(IntPtr cx, ref JsVal jsValue, ref MutableHandle jsObject);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_CallFunctionNameP9JSContextN2JS6HandleIP8JSObjectEEPKcRKNS1_16HandleValueArrayENS1_13MutableHandleINS1_5ValueEEE")]
-		[return: MarshalAs( UnmanagedType.U1 )]
-		private static extern bool JS_CallFunctionName_Linux32( IntPtr cx, ref IntPtr jsObject, string name, ref int args, ref JsVal jsValue );
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?CurrentGlobalOrNull@JS@@YAPEAVJSObject@@PEAUJSContext@@@Z")]
+        private static extern IntPtr CurrentGlobalOrNull_Win64(IntPtr aJSContext);
 
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z27JS_SetCompartmentPrincipalsP13JSCompartmentP12JSPrincipals")]
-		private static extern void JS_SetCompartmentPrincipals_Linux32(IntPtr jsCompartment, IntPtr principals);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_BeginRequest@@YAXPEAUJSContext@@@Z")]
+        private static extern IntPtr JS_BeginRequest_Win64(IntPtr cx);
 
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z27JS_GetCompartmentPrincipalsP13JSCompartment")]
-		private static extern IntPtr JS_GetCompartmentPrincipals_Linux32(IntPtr jsCompartment);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?DefaultObjectForContextOrNull@js@@YAPEAVJSObject@@PEAUJSContext@@@Z")]
+        private static extern IntPtr DefaultObjectForContextOrNull_Win64(IntPtr aJSContext);
 
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z23JS_SetTrustedPrincipalsP9JSRuntimePK12JSPrincipals")]
-		private static extern void JS_SetTrustedPrincipals_Linux32(IntPtr runtime, IntPtr principals);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_EndRequest@@YAXPEAUJSContext@@@Z")]
+        private static extern IntPtr JS_EndRequest_Win64(IntPtr cx);
 
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z15JS_EncodeStringP9JSContextP8JSString")]
-		private static extern IntPtr JS_EncodeString_Linux32(IntPtr cx, IntPtr jsString);
+        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint =
+                "_Z17JS_EvaluateScriptP9JSContextN2JS6HandleIP8JSObjectEEPKcjS7_jNS1_13MutableHandleINS1_5ValueEEE")]
+        private static extern bool JS_EvaluateScript_Win64(IntPtr cx, ref IntPtr obj, string src, UInt32 length,
+            string filename, UInt32 lineno, ref MutableJSVal jsval);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z21JS_EncodeStringToUTF8P9JSContextN2JS6HandleIP8JSStringEE")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_GetClass@@YAPEBUJSClass@@PEAVJSObject@@@Z")]
+        private static extern IntPtr JS_GetClass_Win64(IntPtr obj);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_ContextIterator@@YAPEAUJSContext@@PEAUJSRuntime@@PEAPEAU1@@Z")]
+        private static extern IntPtr JS_ContextIterator_Win64(IntPtr rt, ref IntPtr iterp);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_EnterCompartment@@YAPEAUJSCompartment@@PEAUJSContext@@PEAVJSObject@@@Z")]
+        private static extern IntPtr JS_EnterCompartment_Win64(IntPtr cx, IntPtr obj);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_LeaveCompartment@@YAXPEAUJSContext@@PEAUJSCompartment@@@Z")]
+        private static extern void JS_LeaveCompartment_Win64(IntPtr cx, IntPtr oldCompartment);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_free@@YAXPEAUJSContext@@PEAX@Z")]
+        private static extern void JS_Free_Win64(IntPtr cx, IntPtr p);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_SetContextCallback@@YAXPEAUJSRuntime@@P6A_NPEAUJSContext@@IPEAX@Z2@Z")]
+        private static extern SpiderMonkey.JSContextCallback JS_SetContextCallback_Win64(IntPtr rt, JSContextCallback cb,
+            IntPtr data);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "?JS_SetErrorReporter@@YAP6AXPEAUJSContext@@PEBDPEAUJSErrorReport@@@Z0P6AX012@Z@Z")]
+        private static extern JSErrorReportCallback JS_SetErrorReporter_Win64(IntPtr runtime,
+            JSErrorReportCallback callback);
+
+        #endregion
+
+        #region Linux x86
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z14JS_HasPropertyP9JSContextN2JS6HandleIP8JSObjectEEPKcPb")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_HasProperty_Linux32(IntPtr cx, ref IntPtr jsObject, string name,
+            [MarshalAs(UnmanagedType.U1)] out bool found);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z14JS_GetPropertyP9JSContextN2JS6HandleIP8JSObjectEEPKcNS1_13MutableHandleINS1_5ValueEEE")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_GetProperty_Linux32(IntPtr cx, ref IntPtr jsObject, string name, ref JsVal jsValue);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint =
+                "_Z19JS_CallFunctionNameP9JSContextN2JS6HandleIP8JSObjectEEPKcRKNS1_16HandleValueArrayENS1_13MutableHandleINS1_5ValueEEE"
+            )]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_CallFunctionName_Linux32(IntPtr cx, ref IntPtr jsObject, string name, IntPtr data,
+            ref JsVal jsValue);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint =
+                "_Z19JS_CallFunctionNameP9JSContextN2JS6HandleIP8JSObjectEEPKcRKNS1_16HandleValueArrayENS1_13MutableHandleINS1_5ValueEEE"
+            )]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_CallFunctionName_Linux32(IntPtr cx, ref IntPtr jsObject, string name, ref int args,
+            ref JsVal jsValue);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z27JS_SetCompartmentPrincipalsP13JSCompartmentP12JSPrincipals")]
+        private static extern void JS_SetCompartmentPrincipals_Linux32(IntPtr jsCompartment, IntPtr principals);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z27JS_GetCompartmentPrincipalsP13JSCompartment")]
+        private static extern IntPtr JS_GetCompartmentPrincipals_Linux32(IntPtr jsCompartment);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z23JS_SetTrustedPrincipalsP9JSRuntimePK12JSPrincipals")]
+        private static extern void JS_SetTrustedPrincipals_Linux32(IntPtr runtime, IntPtr principals);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z15JS_EncodeStringP9JSContextP8JSString")]
+        private static extern IntPtr JS_EncodeString_Linux32(IntPtr cx, IntPtr jsString);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z21JS_EncodeStringToUTF8P9JSContextN2JS6HandleIP8JSStringEE")]
         private static extern IntPtr JS_EncodeStringUTF8_Linux32(IntPtr cx, ref IntPtr jsString);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z18JS_GetStringLengthP8JSString")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z18JS_GetStringLengthP8JSString")]
         private static extern int JS_GetStringLength_Linux32(IntPtr jsString);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z26JS_GetStringEncodingLengthP9JSContextP8JSString")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z26JS_GetStringEncodingLengthP9JSContextP8JSString")]
         private static extern int JS_GetStringEncodingLength_Linux32(IntPtr cx, IntPtr jsString);
 
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z14JS_TypeOfValueP9JSContextN2JS6HandleINS1_5ValueEEE")]
-		private static extern JSType JS_TypeOfValue_Linux32(IntPtr cx, ref JsVal jsVal);
-		
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_ZN2js12ToStringSlowEP9JSContextN2JS6HandleINS2_5ValueEEE")]
-		private static extern IntPtr JS_ValueToString_Linux32(IntPtr cx, ref JsVal v);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z14JS_TypeOfValueP9JSContextN2JS6HandleINS1_5ValueEEE")]
+        private static extern JSType JS_TypeOfValue_Linux32(IntPtr cx, ref JsVal jsVal);
 
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z16JS_ValueToObjectP9JSContextN2JS6HandleINS1_5ValueEEENS1_13MutableHandleIP8JSObjectEE")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool JS_ValueToObject_Linux32(IntPtr cx, ref JsVal jsValue, ref MutableHandle jsObject);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_ZN2js12ToStringSlowEP9JSContextN2JS6HandleINS2_5ValueEEE")]
+        private static extern IntPtr JS_ValueToString_Linux32(IntPtr cx, ref JsVal v);
 
-		[DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_NewStringCopyNP9JSContextPKcj")]
-		private static extern IntPtr JS_NewStringCopyN_Linux32(IntPtr cx, string str, int length);	
-		
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_ZN2JS19CurrentGlobalOrNullEP9JSContext")]
-		private static extern IntPtr CurrentGlobalOrNull_Linux32(IntPtr aJSContext);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z21JS_GetGlobalForObjectP9JSContextP8JSObject")]
-		private static extern IntPtr JS_GetGlobalForObject_Linux32(IntPtr aJSContext, IntPtr jsObject);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_ZN2js34GetGlobalForObjectCrossCompartmentEP8JSObject")]
-		private static extern IntPtr GetGlobalForObjectCrossCompartment_Linux32(IntPtr jsObject);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_SaveFrameChainP9JSContext")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool JS_SaveFrameChain_Linux32(IntPtr jsContext);		
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z12JS_GetParentP8JSObject")]
-		private static extern IntPtr JS_GetParent_Linux32(IntPtr jsObject);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z13JS_NewContextP9JSRuntimej")]
-		private static extern IntPtr JS_NewContext_Linux32(IntPtr runtime, int stacksize);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z13JS_GetRuntimeP9JSContext")]
-		private static extern IntPtr JS_GetRuntime_Linux32(IntPtr context);
-		
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z20JS_GetContextPrivateP9JSContext")]
-		private static extern IntPtr JS_GetContextPrivate_Linux32(IntPtr context);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z20JS_SetContextPrivateP9JSContextPv")]
-		private static extern void JS_SetContextPrivate_Linux32(IntPtr context, IntPtr data);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_ZN2js29DefaultObjectForContextOrNullEP9JSContext")]
-		private static extern IntPtr DefaultObjectForContextOrNull_Linux32(IntPtr aJSContext);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z15JS_BeginRequestP9JSContext")]
-		private static extern IntPtr JS_BeginRequest_Linux32(IntPtr cx);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z13JS_EndRequestP9JSContext")]
-		private static extern IntPtr JS_EndRequest_Linux32(IntPtr cx);
-
-        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_EvaluateScriptP9JSContextN2JS6HandleIP8JSObjectEEPKcjS7_jNS1_13MutableHandleINS1_5ValueEEE")]
-		[return: MarshalAs(UnmanagedType.U1)]
-        private static extern bool JS_EvaluateScript_Linux32(IntPtr cx, ref IntPtr obj, string src, UInt32 length, string filename, UInt32 lineno, ref MutableJSVal jsval);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z11JS_GetClassP8JSObject")]
-		private static extern IntPtr JS_GetClass_Linux32(IntPtr obj);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_GetClassObjectP9JSContext10JSProtoKeyN2JS13MutableHandleIP8JSObjectEE")]
-		private static extern IntPtr JS_GetClassObject_Linux32(IntPtr context, IntPtr proto, ref MutableHandle jsObject);		
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z18JS_ContextIteratorP9JSRuntimePP9JSContext")]
-		private static extern IntPtr JS_ContextIterator_Linux32(IntPtr rt, ref IntPtr iterp);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_EnterCompartmentP9JSContextP8JSObject")]
-		private static extern IntPtr JS_EnterCompartment_Linux32(IntPtr cx, IntPtr obj);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_LeaveCompartmentP9JSContextP13JSCompartment")]
-		private static extern void JS_LeaveCompartment_Linux32(IntPtr cx, IntPtr oldCompartment);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z7JS_freeP9JSContextPv")]
-		private static extern void JS_Free_Linux32(IntPtr cx, IntPtr p);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z13JS_WrapObjectP9JSContextN2JS13MutableHandleIP8JSObjectEE")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool JS_WrapObject_Linux32(IntPtr cx, ref MutableHandle p);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_ZN2js28IsObjectInContextCompartmentEP8JSObjectPK9JSContext")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool IsObjectInContextCompartment_Linux32(IntPtr jsObject, IntPtr context);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z21JS_SetContextCallbackP9JSRuntimePFbP9JSContextjPvES3_")]
-		private static extern void JS_SetContextCallback_Linux32(IntPtr rt, JSContextCallback cb, IntPtr data);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z22JS_GetPendingExceptionP9JSContextN2JS13MutableHandleINS1_5ValueEEE")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool JS_GetPendingException_Linux32(IntPtr cx, ref MutableHandle handle);
-
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_SetErrorReporterP9JSContextPFvS0_PKcP13JSErrorReportE")]
-		private static extern JSErrorReportCallback JS_SetErrorReporter_Linux32(IntPtr runtime, JSErrorReportCallback callback);
-		
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_DestroyRuntimeP9JSRuntime")]
-		private static extern void JS_DestroyRuntime_Linux32(IntPtr rt);
-		#endregion
-
-		#region Linux x64
-
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z14JS_HasPropertyP9JSContextN2JS6HandleIP8JSObjectEEPKcPb")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool JS_HasProperty_Linux64(IntPtr cx, ref IntPtr jsObject, string name, [MarshalAs(UnmanagedType.U1)] out bool found);
-
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z14JS_GetPropertyP9JSContextN2JS6HandleIP8JSObjectEEPKcNS1_13MutableHandleINS1_5ValueEEE")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool JS_GetProperty_Linux64(IntPtr cx, ref IntPtr jsObject, string name, ref JsVal jsValue);
-
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_CallFunctionNameP9JSContextN2JS6HandleIP8JSObjectEEPKcRKNS1_16HandleValueArrayENS1_13MutableHandleINS1_5ValueEEE")]
-		[return: MarshalAs( UnmanagedType.U1 )]
-		private static extern bool JS_CallFunctionName_Linux64( IntPtr cx, ref IntPtr jsObject, string name, ref int args, ref JsVal jsValue );
-
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_CallFunctionNameP9JSContextN2JS6HandleIP8JSObjectEEPKcRKNS1_16HandleValueArrayENS1_13MutableHandleINS1_5ValueEEE")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z16JS_ValueToObjectP9JSContextN2JS6HandleINS1_5ValueEEENS1_13MutableHandleIP8JSObjectEE")]
         [return: MarshalAs(UnmanagedType.U1)]
-        private static extern bool JS_CallFunctionName_Linux64(IntPtr cx, ref IntPtr jsObject, string name, IntPtr args, ref JsVal jsValue);
+        private static extern bool JS_ValueToObject_Linux32(IntPtr cx, ref JsVal jsValue, ref MutableHandle jsObject);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z27JS_SetCompartmentPrincipalsP13JSCompartmentP12JSPrincipals")]
-		private static extern void JS_SetCompartmentPrincipals_Linux64(IntPtr jsCompartment, IntPtr principals);
+        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z17JS_NewStringCopyNP9JSContextPKcj")]
+        private static extern IntPtr JS_NewStringCopyN_Linux32(IntPtr cx, string str, int length);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z27JS_GetCompartmentPrincipalsP13JSCompartment")]
-		private static extern IntPtr JS_GetCompartmentPrincipals_Linux64(IntPtr jsCompartment);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_ZN2JS19CurrentGlobalOrNullEP9JSContext")]
+        private static extern IntPtr CurrentGlobalOrNull_Linux32(IntPtr aJSContext);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z23JS_SetTrustedPrincipalsP9JSRuntimePK12JSPrincipals")]
-		private static extern void JS_SetTrustedPrincipals_Linux64(IntPtr runtime, IntPtr principals);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z21JS_GetGlobalForObjectP9JSContextP8JSObject")]
+        private static extern IntPtr JS_GetGlobalForObject_Linux32(IntPtr aJSContext, IntPtr jsObject);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z15JS_EncodeStringP9JSContextP8JSString")]
-		private static extern IntPtr JS_EncodeString_Linux64(IntPtr cx, IntPtr jsString);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_ZN2js34GetGlobalForObjectCrossCompartmentEP8JSObject")]
+        private static extern IntPtr GetGlobalForObjectCrossCompartment_Linux32(IntPtr jsObject);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z21JS_EncodeStringToUTF8P9JSContextN2JS6HandleIP8JSStringEE")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z17JS_SaveFrameChainP9JSContext")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_SaveFrameChain_Linux32(IntPtr jsContext);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z12JS_GetParentP8JSObject")]
+        private static extern IntPtr JS_GetParent_Linux32(IntPtr jsObject);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z13JS_NewContextP9JSRuntimej")]
+        private static extern IntPtr JS_NewContext_Linux32(IntPtr runtime, int stacksize);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z13JS_GetRuntimeP9JSContext")]
+        private static extern IntPtr JS_GetRuntime_Linux32(IntPtr context);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z20JS_GetContextPrivateP9JSContext")]
+        private static extern IntPtr JS_GetContextPrivate_Linux32(IntPtr context);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z20JS_SetContextPrivateP9JSContextPv")]
+        private static extern void JS_SetContextPrivate_Linux32(IntPtr context, IntPtr data);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_ZN2js29DefaultObjectForContextOrNullEP9JSContext")]
+        private static extern IntPtr DefaultObjectForContextOrNull_Linux32(IntPtr aJSContext);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z15JS_BeginRequestP9JSContext")]
+        private static extern IntPtr JS_BeginRequest_Linux32(IntPtr cx);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z13JS_EndRequestP9JSContext")]
+        private static extern IntPtr JS_EndRequest_Linux32(IntPtr cx);
+
+        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint =
+                "_Z17JS_EvaluateScriptP9JSContextN2JS6HandleIP8JSObjectEEPKcjS7_jNS1_13MutableHandleINS1_5ValueEEE")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_EvaluateScript_Linux32(IntPtr cx, ref IntPtr obj, string src, UInt32 length,
+            string filename, UInt32 lineno, ref MutableJSVal jsval);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z11JS_GetClassP8JSObject")]
+        private static extern IntPtr JS_GetClass_Linux32(IntPtr obj);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z17JS_GetClassObjectP9JSContext10JSProtoKeyN2JS13MutableHandleIP8JSObjectEE")]
+        private static extern IntPtr JS_GetClassObject_Linux32(IntPtr context, IntPtr proto, ref MutableHandle jsObject);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z18JS_ContextIteratorP9JSRuntimePP9JSContext")]
+        private static extern IntPtr JS_ContextIterator_Linux32(IntPtr rt, ref IntPtr iterp);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z19JS_EnterCompartmentP9JSContextP8JSObject")]
+        private static extern IntPtr JS_EnterCompartment_Linux32(IntPtr cx, IntPtr obj);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z19JS_LeaveCompartmentP9JSContextP13JSCompartment")]
+        private static extern void JS_LeaveCompartment_Linux32(IntPtr cx, IntPtr oldCompartment);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z7JS_freeP9JSContextPv")]
+        private static extern void JS_Free_Linux32(IntPtr cx, IntPtr p);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z13JS_WrapObjectP9JSContextN2JS13MutableHandleIP8JSObjectEE")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_WrapObject_Linux32(IntPtr cx, ref MutableHandle p);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_ZN2js28IsObjectInContextCompartmentEP8JSObjectPK9JSContext")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool IsObjectInContextCompartment_Linux32(IntPtr jsObject, IntPtr context);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z21JS_SetContextCallbackP9JSRuntimePFbP9JSContextjPvES3_")]
+        private static extern void JS_SetContextCallback_Linux32(IntPtr rt, JSContextCallback cb, IntPtr data);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z22JS_GetPendingExceptionP9JSContextN2JS13MutableHandleINS1_5ValueEEE")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_GetPendingException_Linux32(IntPtr cx, ref MutableHandle handle);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z19JS_SetErrorReporterP9JSContextPFvS0_PKcP13JSErrorReportE")]
+        private static extern JSErrorReportCallback JS_SetErrorReporter_Linux32(IntPtr runtime,
+            JSErrorReportCallback callback);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z17JS_DestroyRuntimeP9JSRuntime")]
+        private static extern void JS_DestroyRuntime_Linux32(IntPtr rt);
+
+        #endregion
+
+        #region Linux x64
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z14JS_HasPropertyP9JSContextN2JS6HandleIP8JSObjectEEPKcPb")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_HasProperty_Linux64(IntPtr cx, ref IntPtr jsObject, string name,
+            [MarshalAs(UnmanagedType.U1)] out bool found);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z14JS_GetPropertyP9JSContextN2JS6HandleIP8JSObjectEEPKcNS1_13MutableHandleINS1_5ValueEEE")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_GetProperty_Linux64(IntPtr cx, ref IntPtr jsObject, string name, ref JsVal jsValue);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint =
+                "_Z19JS_CallFunctionNameP9JSContextN2JS6HandleIP8JSObjectEEPKcRKNS1_16HandleValueArrayENS1_13MutableHandleINS1_5ValueEEE"
+            )]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_CallFunctionName_Linux64(IntPtr cx, ref IntPtr jsObject, string name, ref int args,
+            ref JsVal jsValue);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint =
+                "_Z19JS_CallFunctionNameP9JSContextN2JS6HandleIP8JSObjectEEPKcRKNS1_16HandleValueArrayENS1_13MutableHandleINS1_5ValueEEE"
+            )]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_CallFunctionName_Linux64(IntPtr cx, ref IntPtr jsObject, string name, IntPtr args,
+            ref JsVal jsValue);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z27JS_SetCompartmentPrincipalsP13JSCompartmentP12JSPrincipals")]
+        private static extern void JS_SetCompartmentPrincipals_Linux64(IntPtr jsCompartment, IntPtr principals);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z27JS_GetCompartmentPrincipalsP13JSCompartment")]
+        private static extern IntPtr JS_GetCompartmentPrincipals_Linux64(IntPtr jsCompartment);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z23JS_SetTrustedPrincipalsP9JSRuntimePK12JSPrincipals")]
+        private static extern void JS_SetTrustedPrincipals_Linux64(IntPtr runtime, IntPtr principals);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z15JS_EncodeStringP9JSContextP8JSString")]
+        private static extern IntPtr JS_EncodeString_Linux64(IntPtr cx, IntPtr jsString);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z21JS_EncodeStringToUTF8P9JSContextN2JS6HandleIP8JSStringEE")]
         private static extern IntPtr JS_EncodeStringUTF8_Linux64(IntPtr cx, ref IntPtr jsString);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z18JS_GetStringLengthP8JSString")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z18JS_GetStringLengthP8JSString")]
         private static extern int JS_GetStringLength_Linux64(IntPtr jsString);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z26JS_GetStringEncodingLengthP9JSContextP8JSString")]
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z26JS_GetStringEncodingLengthP9JSContextP8JSString")]
         private static extern int JS_GetStringEncodingLength_Linux64(IntPtr cx, IntPtr jsString);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z14JS_TypeOfValueP9JSContextN2JS6HandleINS1_5ValueEEE")]
-		private static extern JSType JS_TypeOfValue_Linux64(IntPtr cx, ref JsVal jsVal);
-		
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_ZN2js12ToStringSlowEP9JSContextN2JS6HandleINS2_5ValueEEE")]
-		private static extern IntPtr JS_ValueToString_Linux64(IntPtr cx, ref JsVal v);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z14JS_TypeOfValueP9JSContextN2JS6HandleINS1_5ValueEEE")]
+        private static extern JSType JS_TypeOfValue_Linux64(IntPtr cx, ref JsVal jsVal);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z16JS_ValueToObjectP9JSContextN2JS6HandleINS1_5ValueEEENS1_13MutableHandleIP8JSObjectEE")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool JS_ValueToObject_Linux64(IntPtr cx, ref JsVal jsValue, ref MutableHandle jsObject);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_ZN2js12ToStringSlowEP9JSContextN2JS6HandleINS2_5ValueEEE")]
+        private static extern IntPtr JS_ValueToString_Linux64(IntPtr cx, ref JsVal v);
 
-        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_NewStringCopyNP9JSContextPKcm")]
-		private static extern IntPtr JS_NewStringCopyN_Linux64(IntPtr cx, string str, int length);			
-		
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_ZN2JS19CurrentGlobalOrNullEP9JSContext")]
-		private static extern IntPtr CurrentGlobalOrNull_Linux64(IntPtr aJSContext);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z16JS_ValueToObjectP9JSContextN2JS6HandleINS1_5ValueEEENS1_13MutableHandleIP8JSObjectEE")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_ValueToObject_Linux64(IntPtr cx, ref JsVal jsValue, ref MutableHandle jsObject);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z21JS_GetGlobalForObjectP9JSContextP8JSObject")]
-		private static extern IntPtr JS_GetGlobalForObject_Linux64(IntPtr aJSContext, IntPtr jsObject);
+        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z17JS_NewStringCopyNP9JSContextPKcm")]
+        private static extern IntPtr JS_NewStringCopyN_Linux64(IntPtr cx, string str, int length);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_ZN2js34GetGlobalForObjectCrossCompartmentEP8JSObject")]
-		private static extern IntPtr GetGlobalForObjectCrossCompartment_Linux64(IntPtr jsObject);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_ZN2JS19CurrentGlobalOrNullEP9JSContext")]
+        private static extern IntPtr CurrentGlobalOrNull_Linux64(IntPtr aJSContext);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_SaveFrameChainP9JSContext")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool JS_SaveFrameChain_Linux64(IntPtr jsContext);        
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z21JS_GetGlobalForObjectP9JSContextP8JSObject")]
+        private static extern IntPtr JS_GetGlobalForObject_Linux64(IntPtr aJSContext, IntPtr jsObject);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z12JS_GetParentP8JSObject")]
-		private static extern IntPtr JS_GetParent_Linux64(IntPtr jsObject);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_ZN2js34GetGlobalForObjectCrossCompartmentEP8JSObject")]
+        private static extern IntPtr GetGlobalForObjectCrossCompartment_Linux64(IntPtr jsObject);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z13JS_NewContextP9JSRuntimem")]
-		private static extern IntPtr JS_NewContext_Linux64(IntPtr runtime, int stacksize);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z17JS_SaveFrameChainP9JSContext")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_SaveFrameChain_Linux64(IntPtr jsContext);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z13JS_GetRuntimeP9JSContext")]
-		private static extern IntPtr JS_GetRuntime_Linux64(IntPtr context);
-		
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z20JS_GetContextPrivateP9JSContext")]
-		private static extern IntPtr JS_GetContextPrivate_Linux64(IntPtr context);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z12JS_GetParentP8JSObject")]
+        private static extern IntPtr JS_GetParent_Linux64(IntPtr jsObject);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z20JS_SetContextPrivateP9JSContextPv")]
-		private static extern void JS_SetContextPrivate_Linux64(IntPtr context, IntPtr data);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z13JS_NewContextP9JSRuntimem")]
+        private static extern IntPtr JS_NewContext_Linux64(IntPtr runtime, int stacksize);
 
-		[DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_ZN2js29DefaultObjectForContextOrNullEP9JSContext")]
-		private static extern IntPtr DefaultObjectForContextOrNull_Linux64(IntPtr aJSContext);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z13JS_GetRuntimeP9JSContext")]
+        private static extern IntPtr JS_GetRuntime_Linux64(IntPtr context);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z15JS_BeginRequestP9JSContext")]
-		private static extern IntPtr JS_BeginRequest_Linux64(IntPtr cx);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z20JS_GetContextPrivateP9JSContext")]
+        private static extern IntPtr JS_GetContextPrivate_Linux64(IntPtr context);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z13JS_EndRequestP9JSContext")]
-		private static extern IntPtr JS_EndRequest_Linux64(IntPtr cx);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z20JS_SetContextPrivateP9JSContextPv")]
+        private static extern void JS_SetContextPrivate_Linux64(IntPtr context, IntPtr data);
 
-        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_EvaluateScriptP9JSContextN2JS6HandleIP8JSObjectEEPKcjS7_jNS1_13MutableHandleINS1_5ValueEEE")]
-		[return: MarshalAs(UnmanagedType.U1)]
-        private static extern bool JS_EvaluateScript_Linux64(IntPtr cx, ref IntPtr obj, string src, UInt32 length, string filename, UInt32 lineno, ref MutableJSVal jsval);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_ZN2js29DefaultObjectForContextOrNullEP9JSContext")]
+        private static extern IntPtr DefaultObjectForContextOrNull_Linux64(IntPtr aJSContext);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z11JS_GetClassP8JSObject")]
-		private static extern IntPtr JS_GetClass_Linux64(IntPtr obj);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z15JS_BeginRequestP9JSContext")]
+        private static extern IntPtr JS_BeginRequest_Linux64(IntPtr cx);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_GetClassObjectP9JSContext10JSProtoKeyN2JS13MutableHandleIP8JSObjectEE")]
-		private static extern IntPtr JS_GetClassObject_Linux64(IntPtr context, IntPtr proto, ref MutableHandle jsObject);		
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z13JS_EndRequestP9JSContext")]
+        private static extern IntPtr JS_EndRequest_Linux64(IntPtr cx);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z18JS_ContextIteratorP9JSRuntimePP9JSContext")]
-		private static extern IntPtr JS_ContextIterator_Linux64(IntPtr rt, ref IntPtr iterp);
+        [DllImport("xul", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint =
+                "_Z17JS_EvaluateScriptP9JSContextN2JS6HandleIP8JSObjectEEPKcjS7_jNS1_13MutableHandleINS1_5ValueEEE")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_EvaluateScript_Linux64(IntPtr cx, ref IntPtr obj, string src, UInt32 length,
+            string filename, UInt32 lineno, ref MutableJSVal jsval);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_EnterCompartmentP9JSContextP8JSObject")]
-		private static extern IntPtr JS_EnterCompartment_Linux64(IntPtr cx, IntPtr obj);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z11JS_GetClassP8JSObject")]
+        private static extern IntPtr JS_GetClass_Linux64(IntPtr obj);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_LeaveCompartmentP9JSContextP13JSCompartment")]
-		private static extern void JS_LeaveCompartment_Linux64(IntPtr cx, IntPtr oldCompartment);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z17JS_GetClassObjectP9JSContext10JSProtoKeyN2JS13MutableHandleIP8JSObjectEE")]
+        private static extern IntPtr JS_GetClassObject_Linux64(IntPtr context, IntPtr proto, ref MutableHandle jsObject);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z7JS_freeP9JSContextPv")]
-		private static extern void JS_Free_Linux64(IntPtr cx, IntPtr p);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z18JS_ContextIteratorP9JSRuntimePP9JSContext")]
+        private static extern IntPtr JS_ContextIterator_Linux64(IntPtr rt, ref IntPtr iterp);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z13JS_WrapObjectP9JSContextN2JS13MutableHandleIP8JSObjectEE")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool JS_WrapObject_Linux64(IntPtr cx, ref MutableHandle p);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z19JS_EnterCompartmentP9JSContextP8JSObject")]
+        private static extern IntPtr JS_EnterCompartment_Linux64(IntPtr cx, IntPtr obj);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_ZN2js28IsObjectInContextCompartmentEP8JSObjectPK9JSContext")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool IsObjectInContextCompartment_Linux64(IntPtr jsObject, IntPtr context);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z19JS_LeaveCompartmentP9JSContextP13JSCompartment")]
+        private static extern void JS_LeaveCompartment_Linux64(IntPtr cx, IntPtr oldCompartment);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z21JS_SetContextCallbackP9JSRuntimePFbP9JSContextjPvES3_")]
-		private static extern void JS_SetContextCallback_Linux64(IntPtr rt, JSContextCallback cb, IntPtr data);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z7JS_freeP9JSContextPv")]
+        private static extern void JS_Free_Linux64(IntPtr cx, IntPtr p);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z22JS_GetPendingExceptionP9JSContextN2JS13MutableHandleINS1_5ValueEEE")]
-		[return: MarshalAs(UnmanagedType.U1)]
-		private static extern bool JS_GetPendingException_Linux64(IntPtr cx, ref MutableHandle handle);
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z13JS_WrapObjectP9JSContextN2JS13MutableHandleIP8JSObjectEE")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_WrapObject_Linux64(IntPtr cx, ref MutableHandle p);
 
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z19JS_SetErrorReporterP9JSContextPFvS0_PKcP13JSErrorReportE")]
-		private static extern JSErrorReportCallback JS_SetErrorReporter_Linux64(IntPtr runtime, JSErrorReportCallback callback);
-		
-        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false, EntryPoint = "_Z17JS_DestroyRuntimeP9JSRuntime")]
-		private static extern void JS_DestroyRuntime_Linux64(IntPtr rt);
-		#endregion
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_ZN2js28IsObjectInContextCompartmentEP8JSObjectPK9JSContext")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool IsObjectInContextCompartment_Linux64(IntPtr jsObject, IntPtr context);
 
-	}
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z21JS_SetContextCallbackP9JSRuntimePFbP9JSContextjPvES3_")]
+        private static extern void JS_SetContextCallback_Linux64(IntPtr rt, JSContextCallback cb, IntPtr data);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z22JS_GetPendingExceptionP9JSContextN2JS13MutableHandleINS1_5ValueEEE")]
+        [return: MarshalAs(UnmanagedType.U1)]
+        private static extern bool JS_GetPendingException_Linux64(IntPtr cx, ref MutableHandle handle);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z19JS_SetErrorReporterP9JSContextPFvS0_PKcP13JSErrorReportE")]
+        private static extern JSErrorReportCallback JS_SetErrorReporter_Linux64(IntPtr runtime,
+            JSErrorReportCallback callback);
+
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
+            EntryPoint = "_Z17JS_DestroyRuntimeP9JSRuntime")]
+        private static extern void JS_DestroyRuntime_Linux64(IntPtr rt);
+
+        #endregion
+    }
 }

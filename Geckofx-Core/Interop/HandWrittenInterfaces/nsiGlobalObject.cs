@@ -3,7 +3,6 @@ using System.Runtime.InteropServices;
 
 namespace Gecko
 {
-
     [UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.ThisCall)]
     internal delegate IntPtr GetGlobalJSObject([MarshalAs(UnmanagedType.Interface)] nsIGlobalObject @this);
 

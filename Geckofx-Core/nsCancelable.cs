@@ -5,18 +5,18 @@ using System.Text;
 
 namespace Gecko
 {
-	public class nsCancelable
-	{
-		private nsICancelable _cancelable;
+    public class nsCancelable
+    {
+        private nsICancelable _cancelable;
 
-		internal nsCancelable(nsICancelable cancelable)
-		{
-			_cancelable = cancelable;
-		}
+        internal nsCancelable(nsICancelable cancelable)
+        {
+            _cancelable = cancelable;
+        }
 
-		public void Cancel(int reason)
-		{
-			_cancelable.Cancel( reason );
-		}
-	}
+        public void Cancel(int reason)
+        {
+            _cancelable.Cancel(reason);
+        }
+    }
 }
