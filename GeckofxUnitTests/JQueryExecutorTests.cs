@@ -12,7 +12,7 @@ namespace GeckofxUnitTests
     public class JQueryExecutorTests
     {
 
-        private GeckoWebBrowser browser;
+        private GeckoWebBrowser _browser;
         private nsIMemory _memoryService;
 
         [SetUp]
@@ -21,9 +21,9 @@ namespace GeckofxUnitTests
             Xpcom.Initialize(XpComTests.XulRunnerLocation);
             //affecting browser.Realod()/GoForward()/GoBackward() of error page
             GeckoPreferences.User["browser.xul.error_pages.enabled"] = true;
-            browser = new GeckoWebBrowser();
-            var unused = browser.Handle;
-            Assert.IsNotNull(browser);
+            _browser = new GeckoWebBrowser();
+            var unused = _browser.Handle;
+            Assert.IsNotNull(_browser);
             _memoryService = Xpcom.GetService<nsIMemory>("@mozilla.org/xpcom/memory-service;1");
         }
 
@@ -31,7 +31,7 @@ namespace GeckofxUnitTests
         public void AfterEachTestTearDown()
         {
             Marshal.ReleaseComObject(_memoryService);
-            browser.Dispose();
+            _browser.Dispose();
         }
 
         private const string JQueryExecutorTestsHtml = @"
@@ -47,9 +47,9 @@ namespace GeckofxUnitTests
         [Test]
         public void JQueryExecutor_ExecuteJQuery_ScriptExecutesAndReturnsJsValOfExpectedType()
         {
-            browser.TestLoadHtml(JQueryExecutorTestsHtml);
+            _browser.TestLoadHtml(JQueryExecutorTestsHtml);
 
-            var executor = new JQueryExecutor(browser.Window);
+            var executor = new JQueryExecutor(_browser.Window);
             JsVal value = executor.ExecuteJQuery("$('#a')");
             Assert.IsTrue(value.IsObject);
         }
@@ -58,9 +58,9 @@ namespace GeckofxUnitTests
         [Platform(Exclude = "Linux", Reason = "Crashes on Linux")]
         public void JQueryExecutor_GetElementByJQuery_ScriptExecutesAndReturnsExpectedResult()
         {
-            browser.TestLoadHtml(JQueryExecutorTestsHtml);
+            _browser.TestLoadHtml(JQueryExecutorTestsHtml);
 
-            var executor = new JQueryExecutor(browser.Window);
+            var executor = new JQueryExecutor(_browser.Window);
             GeckoElement div = null;
             Assert.DoesNotThrow(() => div = executor.GetElementByJQuery("$('#a')"));
             Assert.IsNotNull(div);
@@ -72,9 +72,9 @@ namespace GeckofxUnitTests
         [Platform(Exclude = "Linux", Reason = "Crashes on Linux")]
         public void JQueryExecutor_GetElementsByJQuery_ScriptExecutesAndReturnsExpectedResult()
         {
-            browser.TestLoadHtml(JQueryExecutorTestsHtml);
+            _browser.TestLoadHtml(JQueryExecutorTestsHtml);
 
-            var executor = new JQueryExecutor(browser.Window);
+            var executor = new JQueryExecutor(_browser.Window);
 
             List<GeckoElement> elements = null;
             Assert.DoesNotThrow(() => elements = executor.GetElementsByJQuery("$('.divs')").ToList());
@@ -138,7 +138,7 @@ namespace GeckofxUnitTests
             NavigateToTempFile(tempFile);
             for (var testCounter = 0; testCounter < 1000000; testCounter++)
             {
-                var executor = new JQueryExecutor(browser.Window);
+                var executor = new JQueryExecutor(_browser.Window);
 
                 var value = executor.ExecuteJQuery(@"$('p').first().text()").ToString();
 
@@ -162,7 +162,7 @@ namespace GeckofxUnitTests
             for (var testCounter = 0; testCounter < 1000000; testCounter++)
             {
                 NavigateToTempFile(tempFile);
-                var executor = new JQueryExecutor(browser.Window);
+                var executor = new JQueryExecutor(_browser.Window);
 
                 executor.ExecuteJQuery(@"$('p').first().hide()");
 
@@ -183,7 +183,7 @@ namespace GeckofxUnitTests
             NavigateToTempFile(tempFile);
             for (var testCounter = 0; testCounter < 1000000; testCounter++)
             {
-                using (var context = new AutoJSContext(browser.Window))
+                using (var context = new AutoJSContext(_browser.Window))
                 {
                     context.EvaluateScript(@"$('p').first().hide()");
                 }
@@ -209,7 +209,7 @@ namespace GeckofxUnitTests
 
         private List<GeckoElement> GetPElementsWithJQuery()
         {
-            var executor = new JQueryExecutor(browser.Window);
+            var executor = new JQueryExecutor(_browser.Window);
 
             var elements = executor.GetElementsByJQuery(@"$('p')").ToList();
             return elements;
@@ -217,8 +217,8 @@ namespace GeckofxUnitTests
 
         private void NavigateToTempFile(string tempFile)
         {
-            browser.Navigate(tempFile);
-            browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+            _browser.Navigate(tempFile);
+            _browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
         }
 
         private static string CreateTempFile(int lineCount)
