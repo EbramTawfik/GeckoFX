@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Gecko;
 using Gecko.JQuery;
 using NUnit.Framework;
@@ -12,6 +13,7 @@ namespace GeckofxUnitTests
     {
 
         private GeckoWebBrowser browser;
+        private nsIMemory _memoryService;
 
         [SetUp]
         public void BeforeEachTestSetup()
@@ -22,11 +24,13 @@ namespace GeckofxUnitTests
             browser = new GeckoWebBrowser();
             var unused = browser.Handle;
             Assert.IsNotNull(browser);
+            _memoryService = Xpcom.GetService<nsIMemory>("@mozilla.org/xpcom/memory-service;1");
         }
 
         [TearDown]
         public void AfterEachTestTearDown()
         {
+            Marshal.ReleaseComObject(_memoryService);
             browser.Dispose();
         }
 
@@ -99,6 +103,7 @@ namespace GeckofxUnitTests
                 var elements = GetPElementsWithJQuery();
                 Assert.That(elements.Count, Is.EqualTo(lineCount));
                 GC.Collect();
+                _memoryService.HeapMinimize(true);
             }
 
             CleanUp(tempFile);
@@ -117,6 +122,7 @@ namespace GeckofxUnitTests
                 var elements = GetPElementsWithJQuery();
                 Assert.That(elements.Count, Is.EqualTo(lineCount));
                 GC.Collect();
+                _memoryService.HeapMinimize(true);
             }
 
             CleanUp(tempFile);
@@ -139,6 +145,7 @@ namespace GeckofxUnitTests
                 Assert.That(value, Is.EqualTo("Content"));
 
                 GC.Collect();
+                _memoryService.HeapMinimize(true);
             }
 
             CleanUp(tempFile);
@@ -160,6 +167,7 @@ namespace GeckofxUnitTests
                 executor.ExecuteJQuery(@"$('p').first().hide()");
 
                 GC.Collect();
+                _memoryService.HeapMinimize(true);
             }
 
             CleanUp(tempFile);
@@ -181,6 +189,7 @@ namespace GeckofxUnitTests
                 }
 
                 GC.Collect();
+                _memoryService.HeapMinimize(true);
             }
 
             CleanUp(tempFile);
