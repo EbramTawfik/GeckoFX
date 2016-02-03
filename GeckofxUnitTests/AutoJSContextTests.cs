@@ -38,42 +38,6 @@ namespace GeckofxUnitTests
 			}
 		}
 
-		[Test]
-		public void PeekCompartmentScope_NotContextHaveBeenPushed_ReturnsGlobalContext()
-		{
-			using (var context = new AutoJSContext())
-			{
-				Assert.AreNotEqual(IntPtr.Zero, context.PeekCompartmentScope());
-			}
-		}
-
-		[Test]
-		public void PushCompartmentScope_PushANewScopeObject_PeekNoLongerReturnsGlobalContext()
-		{
-			_browser.TestLoadHtml("hello world");
-			using (var context = new AutoJSContext(_browser.Window.DomWindow))
-			{
-			    var globalObject = context.PeekCompartmentScope();
-				context.PushCompartmentScope((nsISupports)_browser.Document.FirstChild.DomObject);
-				
-				Assert.AreNotEqual(context.PeekCompartmentScope(), globalObject);
-			}
-		}
-
-		[Test]
-		public void PopCompartmentScope_AfterAPushedScope_PeekNowReturnsGlobalContextAgain()
-		{
-			_browser.TestLoadHtml("hello world");
-			using (var context = new AutoJSContext(_browser.Window.DomWindow))
-			{
-				context.PushCompartmentScope((nsISupports)_browser.Document.FirstChild.DomObject);
-
-			    var poppedScope = context.PopCompartmentScope();
-			    var peekedScope = context.PeekCompartmentScope();
-                Assert.AreNotEqual(poppedScope, peekedScope);
-				Assert.AreNotEqual(IntPtr.Zero, peekedScope);
-			}
-		}
 
         [Ignore("TODO: I think this may need backstagepass access.")]
 	    [Test]

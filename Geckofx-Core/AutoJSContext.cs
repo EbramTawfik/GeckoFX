@@ -62,7 +62,6 @@ namespace Gecko
         /// These static fields allow AutoJSContext(IntPtr context) to work.
         /// </summary>
         static Dictionary<IntPtr, IntPtr> _contextToGlobalDictionary = new Dictionary<IntPtr, IntPtr>();
-        static Dictionary<nsIDOMWindow, IntPtr> _windowToJsContextDictionary = new Dictionary<nsIDOMWindow, IntPtr>();
 
         private static IntPtr _safeContext;	
 
@@ -103,7 +102,6 @@ namespace Gecko
                         "Window does not have a global JSObject. Purhaps the window doesn't have an initalized document?");
 
                 _contextToGlobalDictionary[context] = _globalJSObject;
-                _windowToJsContextDictionary[window] = _globalJSObject;
                 _defaultCompartment = new JSAutoCompartment(SafeJSContext, _globalJSObject);
                 _cx = context;
                 _window = window;
@@ -140,40 +138,6 @@ namespace Gecko
             : this(SafeJSContext)
         {
         }
-
-        #endregion
-
-        #region CompartmentScopeMethods
-
-        public void PushCompartmentScope(nsISupports obj)
-		{
-			_compartmentStack.Push(new JSAutoCompartment(this, obj));
-		}
-
-		public IntPtr PopCompartmentScope()
-		{
-			if (_compartmentStack.Count <= 0)
-				throw new InvalidOperationException("The Compartment stack is empty.");
-
-			var autoCompartment = _compartmentStack.Pop();
-			IntPtr ret = autoCompartment.ScopeObject;
-			autoCompartment.Dispose();
-
-			return ret;
-		}
-
-		public void PushCompartmentScope(IntPtr jsObject)
-		{
-			_compartmentStack.Push(new JSAutoCompartment(ContextPointer, jsObject));
-		}
-
-		public IntPtr PeekCompartmentScope()
-		{
-			if (_compartmentStack.Count > 0)
-				return _compartmentStack.Peek().ScopeObject;
-
-			return _defaultCompartment.ScopeObject;
-		}
 
         #endregion
 
@@ -236,7 +200,7 @@ namespace Gecko
 
                         javascript = InsertReturnStatement(javascript);
                         string s = "(function() { " + javascript + " }).call(this.__RequestedScope)";
-
+       
                         ret = SpiderMonkey.JS_EvaluateScript(ContextPointer, s, (uint)s.Length, "script", 1,
                             ref retJsVal);
                     }
@@ -314,23 +278,6 @@ namespace Gecko
                 }
                 return _safeContext;
             }
-        }
-
-        /// <summary>
-        /// Return the JSContext for the specified DOMWindow.
-        /// </summary>
-        /// <param name="window"></param>
-        /// <returns></returns>
-        public static IntPtr GetJsContextForWindow(nsIDOMWindow window)
-        {
-            if (_windowToJsContextDictionary.ContainsKey(window))
-                return _windowToJsContextDictionary[window];
-
-            // Side affect - causes _windowToJsContextDictionary to be populate with the context of the window.
-            using (new AutoJSContext(window))
-                ;
-
-            return _windowToJsContextDictionary[window];
         }
         
         /// <summary>
@@ -444,13 +391,6 @@ namespace Gecko
 
         public void Dispose()
 		{
-			if (_compartmentStack != null)
-			{
-				while (_compartmentStack.Count > 0)
-					_compartmentStack.Pop().Dispose();
-				_compartmentStack = null;
-			}
-
 			if (_defaultCompartment != null)
 				_defaultCompartment.Dispose();
 			_defaultCompartment = null;

@@ -188,14 +188,6 @@ namespace Gecko
 		}
 #endif
 
-		public IntPtr JSContext
-		{
-			get
-			{
-			    return AutoJSContext.GetJsContextForWindow(_domWindow.Instance);
-			}
-		}
-
 		public bool Equals(GeckoWindow other)
 		{
 			if (ReferenceEquals(this, other)) return true;

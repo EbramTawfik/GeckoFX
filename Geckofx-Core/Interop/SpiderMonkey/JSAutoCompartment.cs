@@ -25,7 +25,7 @@ namespace Gecko
             _obj = context.ConvertCOMObjectToJSObject(comObject);
             _cx = context.ContextPointer;
 
-            EnterOldCompartment();
+            EnterCompartment();
         }
 
 
@@ -39,10 +39,10 @@ namespace Gecko
             _obj = obj;
             _cx = context;
 
-            EnterOldCompartment();
+            EnterCompartment();
         }
 
-        private void EnterOldCompartment()
+        private void EnterCompartment()
         {
             _oldCompartment = SpiderMonkey.JS_EnterCompartment(_cx, _obj);
         }

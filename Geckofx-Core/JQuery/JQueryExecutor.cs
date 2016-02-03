@@ -30,7 +30,6 @@ namespace Gecko.JQuery
 
 			using (var autoContext = new AutoJSContext(_window))
 			{
-				autoContext.PushCompartmentScope((nsISupports)_window.Document.DomObject);
 				jsValue = autoContext.EvaluateScript(jQuery, _window.DomWindow);
 				if (jsValue.IsObject)
 				{					
@@ -70,7 +69,6 @@ namespace Gecko.JQuery
 
 			using (var autoContext = new AutoJSContext(_window))
 			{
-				autoContext.PushCompartmentScope((nsISupports)_window.Document.DomObject);
 				var jsValue = autoContext.EvaluateScript(jQuery, _window.DomWindow);
 				if (!jsValue.IsObject) 
 					return elements;

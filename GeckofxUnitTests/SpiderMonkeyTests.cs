@@ -79,7 +79,6 @@ namespace GeckofxUnitTests
 				return CreateJsVal(jscript);
 
 				var ptr = new JsVal();
-				IntPtr scope = cx.PeekCompartmentScope();
 				bool ret = SpiderMonkey.JS_EvaluateScript(cx.ContextPointer, jscript, (uint)jscript.Length, "script", 1, ref ptr);
 				Assert.IsTrue(ret);
 				return ptr;

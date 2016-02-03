@@ -49,9 +49,8 @@ namespace GeckofxUnitTests
 		public void FindInterfaceWithMember_OnAWindowElementLookingForNameMethod_ReturnsInterfaceThatContainsMethodNode()
 		{
 			_browser.TestLoadHtml("hello world");
-			using (var context = new AutoJSContext(_browser.Window.JSContext))
+			using (var context = new AutoJSContext(_browser.Window))
 			{
-				context.PushCompartmentScope((nsISupports)_browser.Window.DomWindow);				
 				var jsValWindow = context.EvaluateScript("this");
 				var jsVal = SpiderMonkeyTests.CreateStringJsVal(context, "name");				
 				var jsObject = SpiderMonkey.JS_ValueToObject(context.ContextPointer, jsValWindow);
@@ -71,9 +70,8 @@ namespace GeckofxUnitTests
 		public void FindInterfaceWithName_OnAWindowElementLookingForADOMWindowInterface_ReturnsExpectedInterface()
 		{
 			_browser.TestLoadHtml("hello world");
-            using (var context = new AutoJSContext(_browser.Window.JSContext))
+            using (var context = new AutoJSContext(_browser.Window))
 			{
-				context.PushCompartmentScope((nsISupports)_browser.Window.DomWindow);				
 				var jsValWindow = context.EvaluateScript("this");
 				var jsVal = SpiderMonkeyTests.CreateStringJsVal(context, "nsIDOMWindow");
                 Assert.IsFalse(jsVal.IsNull);                                
