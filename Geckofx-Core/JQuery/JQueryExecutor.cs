@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace Gecko.JQuery
 {
@@ -26,80 +27,72 @@ namespace Gecko.JQuery
 
         public GeckoElement GetElementByJQuery(string jQuery)
         {
-            JsVal jsValue;
-
-            using (var autoContext = new AutoJSContext(_window))
-            {
-                jsValue = autoContext.EvaluateScript(jQuery, _window.DomWindow);
-                if (jsValue.IsObject)
-                {
-                    var nativeComObject = jsValue.ToComObject(autoContext.ContextPointer);
-                    var element = Xpcom.QueryInterface<nsIDOMHTMLElement>(nativeComObject);
-                    if (element != null)
-                    {
-                        return GeckoHtmlElement.Create(element);
-                    }
-
-                    if (!SpiderMonkey.JS_HasProperty(autoContext.ContextPointer, jsValue.AsPtr, "length"))
-                    {
-                        return null;
-                    }
-
-                    var length =
-                        SpiderMonkey.JS_GetProperty(autoContext.ContextPointer, jsValue.AsPtr, "length").ToInteger();
-                    if (length == 0)
-                    {
-                        return null;
-                    }
-
-                    var firstNativeDom =
-                        SpiderMonkey.JS_GetProperty(autoContext.ContextPointer, jsValue.AsPtr, "0")
-                            .ToComObject(autoContext.ContextPointer);
-                    element = Xpcom.QueryInterface<nsIDOMHTMLElement>(firstNativeDom);
-                    if (element != null)
-                    {
-                        return GeckoHtmlElement.Create(element);
-                    }
-                }
-            }
-            return null;
-        }
-
-        public IEnumerable<GeckoElement> GetElementsByJQuery(string jQuery)
-        {
-            var elements = new List<GeckoElement>();
-
             using (var autoContext = new AutoJSContext(_window))
             {
                 var jsValue = autoContext.EvaluateScript(jQuery, _window.DomWindow);
+
                 if (!jsValue.IsObject)
-                    return elements;
+                {
+                    return null;
+                }
+
+                var nativeComObject = jsValue.ToComObject(autoContext.ContextPointer);
+                var element = Xpcom.QueryInterface<nsIDOMHTMLElement>(nativeComObject);
+                if (element != null)
+                {
+                    return GeckoHtmlElement.Create(element);
+                }
 
                 if (!SpiderMonkey.JS_HasProperty(autoContext.ContextPointer, jsValue.AsPtr, "length"))
                 {
                     return null;
                 }
 
-                var length =
-                    SpiderMonkey.JS_GetProperty(autoContext.ContextPointer, jsValue.AsPtr, "length").ToInteger();
+                var length = SpiderMonkey.JS_GetProperty(autoContext.ContextPointer, jsValue.AsPtr, "length").ToInteger();
                 if (length == 0)
                 {
                     return null;
                 }
 
-                for (var elementIndex = 0; elementIndex < length; elementIndex++)
-                {
-                    var firstNativeDom =
-                        SpiderMonkey.JS_GetProperty(autoContext.ContextPointer, jsValue.AsPtr,
-                            elementIndex.ToString(CultureInfo.InvariantCulture)).ToComObject(autoContext.ContextPointer);
-                    var element = Xpcom.QueryInterface<nsIDOMHTMLElement>(firstNativeDom);
-                    if (element != null)
-                    {
-                        elements.Add(GeckoHtmlElement.Create(element));
-                    }
-                }
+                return CreateHtmlElementFromDom(autoContext, jsValue, 0);
             }
-            return elements;
+        }
+
+        public IEnumerable<GeckoElement> GetElementsByJQuery(string jQuery)
+        {
+            using (var autoContext = new AutoJSContext(_window))
+            {
+                var jsValue = autoContext.EvaluateScript(jQuery, _window.DomWindow);
+                if (!jsValue.IsObject)
+                    return new List<GeckoElement>();
+
+                if (!SpiderMonkey.JS_HasProperty(autoContext.ContextPointer, jsValue.AsPtr, "length"))
+                {
+                    return new List<GeckoElement>();
+                }
+
+                var length = SpiderMonkey.JS_GetProperty(autoContext.ContextPointer, jsValue.AsPtr, "length").ToInteger();
+                if (length == 0)
+                {
+                    return new List<GeckoElement>();
+                }
+
+                return Enumerable.Range(0, length).Select(elementIndex => CreateHtmlElementFromDom(autoContext, jsValue, elementIndex)).Where(element => element != null).ToList();
+            }
+        }
+
+        private static GeckoElement CreateHtmlElementFromDom(AutoJSContext autoContext, JsVal jsValue, int elementIndex)
+        {
+            var elementIndexString = elementIndex.ToString(CultureInfo.InvariantCulture);
+            var firstNativeDom = SpiderMonkey.JS_GetProperty(autoContext.ContextPointer, jsValue.AsPtr, elementIndexString).ToComObject(autoContext.ContextPointer);
+
+            var element = Xpcom.QueryInterface<nsIDOMHTMLElement>(firstNativeDom);
+            if (element == null)
+            {
+                return null;
+            }
+
+            return GeckoHtmlElement.Create(element);
         }
     }
 }
