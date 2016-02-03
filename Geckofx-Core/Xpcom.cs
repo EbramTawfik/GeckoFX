@@ -164,6 +164,7 @@ namespace Gecko
         private static int _XpcomThreadId;
         private static string _xulrunnerVersion;
         private static COMGC _comGC;
+        private static ComPtr<nsIXPConnect> _xpconnectComPtr;
 
         #endregion
 
@@ -482,7 +483,10 @@ namespace Gecko
 
         public static ComPtr<nsIXPConnect> XPConnect
         {
-            get { return Xpcom.GetService<nsIXPConnect>("@mozilla.org/js/xpc/XPConnect;1").AsComPtr(); }
+            get
+            {
+                return _xpconnectComPtr ?? (_xpconnectComPtr = GetService<nsIXPConnect>("@mozilla.org/js/xpc/XPConnect;1").AsComPtr());
+            }
         }
 
         [UnmanagedFunctionPointer(System.Runtime.InteropServices.CallingConvention.ThisCall)]
