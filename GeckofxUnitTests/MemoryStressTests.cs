@@ -38,6 +38,7 @@ namespace GeckofxUnitTests
         {
             var aboutMemory = new UnitTestBrowser();
             var uiThreadContext = TaskScheduler.FromCurrentSynchronizationContext();
+
             var unused = Task.Factory.StartNew(() => StartUnitTest(aboutMemory), new CancellationToken(), TaskCreationOptions.LongRunning, uiThreadContext);
             Application.Run(aboutMemory);
         }
@@ -54,6 +55,7 @@ namespace GeckofxUnitTests
             }
             finally
             {
+                // Dont close this for now because we can examine memory in the window
                 //browserWindow.Close();
             }
         }
@@ -75,8 +77,9 @@ namespace GeckofxUnitTests
 
                 DoCallbacks(browser);
             }
-
             Debug.WriteLine("Found {0} repo links", repoLinks.Count);
+
+            await browser.NavigateAndWait("http://www.google.de");
         }
 
         private void DoCallbacks(IGeckoWebBrowser browser)

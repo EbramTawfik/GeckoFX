@@ -50,8 +50,8 @@
             // splitMain.Panel2
             // 
             this.splitMain.Panel2.Controls.Add(this.wbMemory);
-            this.splitMain.Size = new System.Drawing.Size(824, 420);
-            this.splitMain.SplitterDistance = 274;
+            this.splitMain.Size = new System.Drawing.Size(989, 553);
+            this.splitMain.SplitterDistance = 682;
             this.splitMain.TabIndex = 1;
             // 
             // wbUnitTest
@@ -59,7 +59,7 @@
             this.wbUnitTest.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wbUnitTest.Location = new System.Drawing.Point(0, 0);
             this.wbUnitTest.Name = "wbUnitTest";
-            this.wbUnitTest.Size = new System.Drawing.Size(274, 420);
+            this.wbUnitTest.Size = new System.Drawing.Size(682, 553);
             this.wbUnitTest.TabIndex = 0;
             this.wbUnitTest.UseHttpActivityObserver = false;
             // 
@@ -68,7 +68,7 @@
             this.wbMemory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.wbMemory.Location = new System.Drawing.Point(0, 0);
             this.wbMemory.Name = "wbMemory";
-            this.wbMemory.Size = new System.Drawing.Size(546, 420);
+            this.wbMemory.Size = new System.Drawing.Size(303, 553);
             this.wbMemory.TabIndex = 1;
             this.wbMemory.UseHttpActivityObserver = false;
             // 
@@ -76,7 +76,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 420);
+            this.ClientSize = new System.Drawing.Size(989, 553);
             this.Controls.Add(this.splitMain);
             this.Name = "UnitTestBrowser";
             this.Text = "Unit Test Browser";
