@@ -79,7 +79,7 @@ namespace GeckofxUnitTests
             }
             Debug.WriteLine("Found {0} repo links", repoLinks.Count);
 
-            await browser.NavigateAndWait("http://www.google.de");
+            //await browser.NavigateAndWait("http://www.google.de");
         }
 
         private void DoCallbacks(IGeckoWebBrowser browser)
