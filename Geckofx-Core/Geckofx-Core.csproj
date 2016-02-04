@@ -192,6 +192,7 @@
     <Compile Include="Interop\SpiderMonkey\MutableHandle.cs" />
     <Compile Include="Interop\SpiderMonkey\MutableJSVal.cs" />
     <Compile Include="IO\WrapperInputStream.cs" />
+    <Compile Include="JQuery\GeckoWebBrowserExtensions.cs" />
     <Compile Include="MemoryService.cs" />
     <Compile Include="NSSErrors.cs" />
     <Compile Include="GeckoWindowCollection.cs" />
