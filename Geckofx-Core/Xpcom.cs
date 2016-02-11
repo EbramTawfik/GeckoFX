@@ -377,6 +377,16 @@ namespace Gecko
 
             if (AfterInitalization != null)
                 AfterInitalization();
+
+            if (Xpcom.IsLinux)
+            {
+                // Firefox enable offmainthreadcomposition on Linux around May 2015. 
+                // (see https://mozillagfx.wordpress.com/2015/05/19/off-main-thread-compositing-on-linux/ )
+                // However with geckofx on Linux we end up with two Compositors.
+                // So we end up with a ClientLayerManager with an uninitalzied mTransactionIdAllocator
+                // which causes segfault on Paint.
+                GeckoPreferences.User["layers.offmainthreadcomposition.enabled"] = false;
+            }
         }
 
         public static void InitChromeContext()
