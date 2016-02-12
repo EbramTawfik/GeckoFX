@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gecko.WebIDL;
 using NUnit.Framework;
 using System.Windows.Forms;
 using Gecko;
@@ -50,5 +51,41 @@ namespace GeckofxUnitTests
 			GeckoInputElement element = (GeckoInputElement)browser.Document.GetHtmlElementById("txtbox");
 			Assert.AreEqual(0, element.SelectionEnd);
 		}
+
+        [Test]
+        public void Click_JavascriptOnClickRuns()
+        {
+            browser.TestLoadHtml(@"<input type=""text"" id=""txtbox"" value=""text"" onclick=""this.value = 'clicked';""/>");
+
+            var element = (GeckoInputElement)browser.Document.GetHtmlElementById("txtbox");
+            element.Click();
+
+            Assert.AreEqual("clicked", element.Value);
+        }
+
+        [Test]
+        public void Click_AfterMouseUpAndMouseDownEvents_ExpectedJavascriptHandlerRun()
+        {
+            browser.TestLoadHtml(@"<input type=""text"" id=""txtbox"" value=""text"" onmousedown=""this.value = 'mousedowned';"" onmouseup=""this.value = 'mouseuped';"" onclick=""this.value = 'clicked';""/>");
+
+            GeckoInputElement element = (GeckoInputElement)browser.Document.GetHtmlElementById("txtbox");
+
+            
+            DomEventArgs ev = browser.Document.CreateEvent("MouseEvent");
+            var webEvent = new Event(browser.Window.DomWindow, ev.DomEvent as nsISupports);
+            webEvent.InitEvent("mousedown", true, true);
+            element.GetEventTarget().DispatchEvent(ev);
+
+            Assert.AreEqual("mousedowned", element.Value);
+
+            webEvent.InitEvent("mouseup", true, true);
+            element.GetEventTarget().DispatchEvent(ev);
+
+            Assert.AreEqual("mouseuped", element.Value);
+
+            element.Click();
+
+            Assert.AreEqual("clicked", element.Value);
+        }
 	}
 }
