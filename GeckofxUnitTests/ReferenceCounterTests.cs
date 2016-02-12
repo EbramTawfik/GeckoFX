@@ -54,7 +54,9 @@ namespace GeckofxUnitTests
 		[Conditional( "DEBUG" )]
 		public void QueryInterfaceRefCounterTest()
 		{
-			var item1 = Xpcom.CreateInstance<nsISupports>( Contracts.Array );
+            var item1 = Xpcom.CreateInstance<nsISupports>( Contracts.Array );
+            var ptr = Marshal.GetIUnknownForObject(item1);
+            Marshal.Release(ptr);
 
 			int comCount1 = ComDebug.GetComRefCount( item1 );
 			int rcwCount1 = ComDebug.GetRcwRefCount( item1 );
@@ -64,11 +66,13 @@ namespace GeckofxUnitTests
 			int comCount2 = ComDebug.GetComRefCount( item2 );
 			int rcwCount2 = ComDebug.GetRcwRefCount( item2 );
 
-
+            Marshal.AddRef(ptr);
 			int free1 = Marshal.ReleaseComObject( item2 );
 			int free2 = Marshal.ReleaseComObject( item1 );
+            Assert.AreEqual(0, Marshal.Release(ptr));
 
-			Assert.AreEqual( 0, comCount2 - comCount1 );
+
+			Assert.AreEqual( 1, comCount2 - comCount1 );
 			Assert.AreEqual( 1, rcwCount2 - rcwCount1 );
 			Assert.AreEqual( 1, free1 );
 			Assert.AreEqual( 0, free2 );
@@ -79,8 +83,11 @@ namespace GeckofxUnitTests
 		[Conditional( "DEBUG" )]
 		public void IsOperatorRefCounterTest()
 		{
-			// operator is is NOT increment counters
+			// operator is is increment com ref count - but RCW cleanup free's both references.
+            // (This is a change from .net 3.5 -> 4.0)
 			var item1 = Xpcom.CreateInstance<nsISupports>( Contracts.Array );
+            var ptr = Marshal.GetIUnknownForObject(item1);
+            Marshal.Release(ptr);
 
 			int comCount1 = ComDebug.GetComRefCount( item1 );
 			int rcwCount1 = ComDebug.GetRcwRefCount( item1 );
@@ -90,10 +97,12 @@ namespace GeckofxUnitTests
 			int comCount2 = ComDebug.GetComRefCount( item1 );
 			int rcwCount2 = ComDebug.GetRcwRefCount( item1 );
 
+            Marshal.AddRef(ptr);
 			int free = Marshal.ReleaseComObject(item1);
+            Assert.AreEqual(0, Marshal.Release(ptr), "Releasing the RCW by ReleaseComObject should have called Release twice.");
 
-			Assert.AreEqual( 0, comCount2 - comCount1 );
-			Assert.AreEqual(0, rcwCount2 - rcwCount1);
+			Assert.AreEqual( 1, comCount2 - comCount1 );
+			Assert.AreEqual( 0, rcwCount2 - rcwCount1);
 			Assert.AreEqual( 0, free );
 		}
 
@@ -102,8 +111,11 @@ namespace GeckofxUnitTests
 		[Conditional( "DEBUG" )]
 		public void AsOperatorRefCounterTest()
 		{
-			// operator as is NOT increment counters
+            // operator is is increment com ref count - but RCW cleanup free's both references.
+            // (This is a change from .net 3.5 -> 4.0)
 			var item1 = Xpcom.CreateInstance<nsISupports>( Contracts.Array );
+		    var ptr = Marshal.GetIUnknownForObject(item1);
+            Marshal.Release(ptr);
 
 			int comCount = ComDebug.GetComRefCount( item1 );
 			int rcwCount = ComDebug.GetRcwRefCount( item1 );
@@ -115,11 +127,14 @@ namespace GeckofxUnitTests
 			int comCount2 = ComDebug.GetComRefCount( item2 );
 			int rcwCount2 = ComDebug.GetRcwRefCount( item2 );
 
+		    Marshal.AddRef(ptr);
 			int free = Marshal.ReleaseComObject(item2);
+            Assert.AreEqual(0, Marshal.Release(ptr), "Releasing the RCW by ReleaseComObject should have called Release twice.");
+
 
 			Assert.AreEqual( 0, comCount2 - comCount1 );
 			Assert.AreEqual( 0, rcwCount2 - rcwCount1 );
-			Assert.AreEqual( 0, comCount2 - comCount );
+			Assert.AreEqual( 1, comCount2 - comCount );
 			Assert.AreEqual( 0, rcwCount2 - rcwCount );
 			Assert.AreEqual( 0, free );
 		}
@@ -129,8 +144,11 @@ namespace GeckofxUnitTests
 		[Conditional( "DEBUG" )]
 		public void ExplicitOperatorRefCounterTest()
 		{
-			// operator explicit is NOT increment counters
+            // operator is is increment com ref count - but RCW cleanup free's both references.
+            // (This is a change from .net 3.5 -> 4.0)
 			var item1 = Xpcom.CreateInstance<nsISupports>( Contracts.Array );
+            var ptr = Marshal.GetIUnknownForObject(item1);
+            Marshal.Release(ptr);
 
 			int comCount = ComDebug.GetComRefCount( item1 );
 			int rcwCount = ComDebug.GetRcwRefCount( item1 );
@@ -142,11 +160,13 @@ namespace GeckofxUnitTests
 			int comCount2 = ComDebug.GetComRefCount( item2 );
 			int rcwCount2 = ComDebug.GetRcwRefCount( item2 );
 
+            Marshal.AddRef(ptr);
 			int free = Marshal.ReleaseComObject( item2 );
+            Assert.AreEqual(0, Marshal.Release(ptr), "Releasing the RCW by ReleaseComObject should have called Release twice.");
 
 			Assert.AreEqual( 0, comCount2 - comCount1 );
 			Assert.AreEqual( 0, rcwCount2 - rcwCount1 );
-			Assert.AreEqual( 0, comCount2 - comCount );
+			Assert.AreEqual( 1, comCount2 - comCount );
 			Assert.AreEqual( 0, rcwCount2 - rcwCount );
 			Assert.AreEqual( 0, free );
 		}
