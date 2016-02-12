@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using Gecko.Interop;
 
 namespace Gecko.DOM
 {
@@ -85,6 +86,15 @@ namespace Gecko.DOM
             {
                 var doc = DOMHTMLElement.GetContentDocumentAttribute() as nsIDOMHTMLDocument;
                 return (doc == null) ? null : new GeckoDocument(doc);
+            }
+        }
+
+        public GeckoWindow ContentWindow
+        {
+            get
+            {
+                var window = DOMHTMLElement.GetContentWindowAttribute();
+                return (window == null) ? null : new GeckoWindow(window);
             }
         }
     }
