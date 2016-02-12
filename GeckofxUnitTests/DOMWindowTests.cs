@@ -83,14 +83,14 @@ namespace GeckofxUnitTests
             Assert.LessOrEqual(browser.Window.ScrollMaxY, 60, "Expected 56 - but be flexable because of pixel pos");
 	    }
 
-        [Test]
+        [Test, Ignore("Not in this version of firefox yet.")]
         public void ScrollMinX()
         {
             Assert.AreEqual(0, _domWindow.ScrollMinX);
             Assert.AreEqual(0, browser.Window.ScrollMinX);
         }
 
-        [Test]
+        [Test, Ignore("Not in this version of firefox yet.")]
         public void ScrollMinY()
         {
             Assert.AreEqual(0, _domWindow.ScrollMinY);

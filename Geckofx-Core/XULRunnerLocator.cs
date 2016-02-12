@@ -76,7 +76,7 @@ namespace Gecko
             };
 
             var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-            return folderSearch.Select(t => Path.Combine(programFiles, t)).FirstOrDefault(Directory.Exists);
+            return folderSearch.Select(t => Path.Combine(programFiles, t)).FirstOrDefault(Directory.Exists); 
         }
 
         private static string DirectoryOfTheApplicationExecutable
