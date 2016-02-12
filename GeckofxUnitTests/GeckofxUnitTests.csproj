@@ -136,6 +136,7 @@
     <Compile Include="MemoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="app1.manifest" />
     <None Include="GeckoFX.snk" />
     <None Include="NUnit\nunit-console-runner.dll" />
