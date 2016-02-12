@@ -155,8 +155,7 @@ namespace GeckofxUnitTests
             yield return new KeyValuePair<string, Action<IntPtr>>("IsObjectInContextCompartment", (c) => SpiderMonkey.IsObjectInContextCompartment(IntPtr.Zero, c));
             yield return new KeyValuePair<string, Action<IntPtr>>("JS_BeginRequest", (c) => SpiderMonkey.JS_BeginRequest(c));
             yield return new KeyValuePair<string, Action<IntPtr>>("JS_CallFunctionName", (c) => SpiderMonkey.JS_CallFunctionName(c, IntPtr.Zero, "", new JsVal[0]));
-            yield return new KeyValuePair<string, Action<IntPtr>>("JS_CallFunctionValue", (c) => SpiderMonkey.JS_CallFunctionValue(c, IntPtr.Zero, new JsVal()));
-            yield return new KeyValuePair<string, Action<IntPtr>>("JS_DestroyRuntime", (c) => SpiderMonkey.JS_DestroyRuntime(IntPtr.Zero));
+            yield return new KeyValuePair<string, Action<IntPtr>>("JS_CallFunctionValue", (c) => SpiderMonkey.JS_CallFunctionValue(c, IntPtr.Zero, new JsVal()));            
             yield return new KeyValuePair<string, Action<IntPtr>>("JS_EncodeString", (c) => SpiderMonkey.JS_EncodeString(IntPtr.Zero, IntPtr.Zero));
             yield return new KeyValuePair<string, Action<IntPtr>>("JS_EncodeStringToUTF8", (c) => SpiderMonkey.JS_EncodeStringToUTF8(c, IntPtr.Zero));
             yield return new KeyValuePair<string, Action<IntPtr>>("JS_EndRequest", (c) => SpiderMonkey.JS_EndRequest(c));
