@@ -55,16 +55,21 @@ namespace GeckofxUnitTests
         [Test]
         public void MissingDisposeTest_ControlIsNotYetCreated_DoesNotThrowExceptions()
         {
-            var nonDisposedBrowser = new TestGeckoWebBrowser();
+            WeakReference reference = null;
+            new Action(() =>
+            {
+                var nonDisposedBrowser = new TestGeckoWebBrowser();
 
-            nonDisposedBrowser = null;
+                reference = new WeakReference(nonDisposedBrowser, true);
+            })();
 
-            for (int i = 5; i >= 0; i--)
+            for (var i = 5; i >= 0; i--)
             {
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
 
+            Assert.IsNull(reference.Target, "Weak ref hasn't been released rendering this test meaningless");
             Assert.IsTrue(errorMessage.Contains("Disposed called by"));
         }
 
