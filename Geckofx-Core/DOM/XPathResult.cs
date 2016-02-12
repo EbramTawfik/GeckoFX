@@ -6,23 +6,22 @@ using Gecko.Interop;
 
 namespace Gecko.DOM
 {
-    /// <summary>
-    /// // TODO: (Idenally this class would be generated using a webidl-> C# compiler but for now just do it via manually written spidermonkey calls..)
-    /// </summary>
     public class XPathResult
     {
-        private ComPtr<nsIXPathResult> xpathResult = null;
+        private ComPtr<nsIDOMWindow> _window;
+        private ComPtr<nsIXPathResult> _xpathResult = null;
 
-        internal XPathResult(nsIXPathResult xpathResult)
+        internal XPathResult(nsIDOMWindow window, nsIXPathResult xpathResult)
         {
-            this.xpathResult = new ComPtr<nsIXPathResult>(xpathResult);
+            _window = new ComPtr<nsIDOMWindow>(window);
+            _xpathResult = new ComPtr<nsIXPathResult>(xpathResult);
         }
 
         public XPathResultType GetResultType()
         {
             using (var context = new AutoJSContext())
             {
-                var jsObject = context.ConvertCOMObjectToJSObject((nsISupports) xpathResult.Instance);
+                var jsObject = context.ConvertCOMObjectToJSObject((nsISupports) _xpathResult.Instance);
                 return
                     (XPathResultType)
                         SpiderMonkey.JS_GetProperty(context.ContextPointer, jsObject, "resultType").ToInteger();
@@ -33,7 +32,7 @@ namespace Gecko.DOM
         {
             using (var context = new AutoJSContext())
             {
-                var jsObject = context.ConvertCOMObjectToJSObject((nsISupports) xpathResult.Instance);
+                var jsObject = context.ConvertCOMObjectToJSObject((nsISupports) _xpathResult.Instance);
                 return SpiderMonkey.JS_GetProperty(context.ContextPointer, jsObject, "numberValue").ToDouble();
             }
         }
@@ -42,7 +41,7 @@ namespace Gecko.DOM
         {
             using (var context = new AutoJSContext())
             {
-                var jsObject = context.ConvertCOMObjectToJSObject((nsISupports) xpathResult.Instance);
+                var jsObject = context.ConvertCOMObjectToJSObject((nsISupports) _xpathResult.Instance);
                 return SpiderMonkey.JS_GetProperty(context.ContextPointer, jsObject, "stringValue").ToString();
             }
         }
@@ -51,25 +50,21 @@ namespace Gecko.DOM
         {
             using (var context = new AutoJSContext())
             {
-                var jsObject = context.ConvertCOMObjectToJSObject((nsISupports) xpathResult.Instance);
+                var jsObject = context.ConvertCOMObjectToJSObject((nsISupports) _xpathResult.Instance);
                 return SpiderMonkey.JS_GetProperty(context.ContextPointer, jsObject, "booleanValue").ToBoolean();
             }
         }
 
         public GeckoNode GetSingleNodeValue()
         {
-            using (var context = new AutoJSContext())
-            {
-                var jsObject = context.ConvertCOMObjectToJSObject((nsISupports) xpathResult.Instance);
-                return
-                    (SpiderMonkey.JS_GetProperty(context.ContextPointer, jsObject, "singleNodeValue")
-                        .ToComObject(context.ContextPointer) as nsIDOMNode).Wrap(GeckoNode.Create);
-            }
+            // TODO: fixme - GetSingleNodeValue is returning property not found - even though it exists in the webidl?
+            return new WebIDL.XPathResult(_window.Instance, _xpathResult.Instance as nsISupports).IterateNext().Wrap(GeckoNode.Create);
         }
 
         public IEnumerable<GeckoNode> GetNodes()
         {
-            return new GeckoNodeEnumerable(xpathResult.Instance);
+            // TODO: fixme this should return a new copy of the results.
+            return new GeckoNodeEnumerable(new WebIDL.XPathResult(_window.Instance, _xpathResult.Instance as nsISupports));
         }
     }
 

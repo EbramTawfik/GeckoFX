@@ -8,28 +8,23 @@ namespace Gecko
     /// </summary>
     internal class GeckoNodeEnumerable : IEnumerable<GeckoNode>
     {
-        private nsIXPathResult xpathResult = null;
+        private readonly WebIDL.XPathResult _xpathResult;
 
-        internal GeckoNodeEnumerable(nsIXPathResult xpathResult)
+        internal GeckoNodeEnumerable(WebIDL.XPathResult xpathResult)
         {
-            this.xpathResult = xpathResult;
+            _xpathResult = xpathResult;
         }
 
         #region IEnumerable<GeckoNode> Members
 
         public IEnumerator<GeckoNode> GetEnumerator()
         {
-            using (var context = new AutoJSContext())
+            while (!_xpathResult.InvalidIteratorState)
             {
-                var jsObject = context.ConvertCOMObjectToJSObject((nsISupports) xpathResult);
-                JsVal jsVal;
-                do
-                {
-                    while (
-                        !(jsVal = SpiderMonkey.JS_CallFunctionName(context.ContextPointer, jsObject, "iterateNext"))
-                            .IsNull)
-                        yield return (jsVal.ToComObject(context.ContextPointer) as nsIDOMNode).Wrap(GeckoNode.Create);
-                } while (!jsVal.IsNull);
+                var result = _xpathResult.IterateNext().Wrap(GeckoNode.Create);
+                if (result == null)
+                    yield break;
+                yield return result;
             }
         }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gecko.Interop;
 using NUnit.Framework;
 using System.Windows.Forms;
 using Gecko;
@@ -134,11 +135,21 @@ namespace GeckofxUnitTests
 		}
 
 	    [Test]
-	    public void GetNotes_NonGenericGetEnumerator_ReturnsExpectedNodes()
+	    public void GetNodes_NonGenericGetEnumerator_ReturnsExpectedNodes()
 	    {
             browser.TestLoadHtml("<h1>text</h1>");
-            Assert.AreEqual(5, browser.Document.EvaluateXPath("//*").GetNodes().Cast<GeckoHtmlElement>().Count());
+	        var nodes = browser.Document.EvaluateXPath("//*").GetNodes();
+            Assert.AreEqual(5, nodes.Cast<GeckoHtmlElement>().Count());
+	        var node = browser.Document.EvaluateXPath("//*").GetNodes().FirstOrDefault();
+	        Assert.NotNull(node.EvaluateXPath("*"));
 	    }
+
+        [Test]
+        public void GetSingleNodeValue_ResultsCollectionContainingMultiple_ReturnsFirstNodeInCollection()
+        {
+            browser.TestLoadHtml("<h1>text</h1>");
+            Assert.AreEqual("HTML", browser.Document.EvaluateXPath("//*").GetSingleNodeValue().NodeName);
+        }
 
         [TestCase("MouseEvent", typeof(DomMouseEventArgs))]
         [TestCase("KeyEvents", typeof(DomKeyEventArgs))]

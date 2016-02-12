@@ -4,6 +4,8 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using Gecko.DOM;
 using Gecko.Interop;
+using Gecko.WebIDL;
+using XPathResult = Gecko.DOM.XPathResult;
 
 namespace Gecko
 {
@@ -261,7 +263,7 @@ namespace Gecko
             {
                 var node = DomObject;
                 var resolver =
-                    new WebIDL.XPathEvaluator(this.OwnerDocument.DefaultView.DomWindow, (nsISupports) node)
+                    new WebIDL.XPathEvaluator(this.OwnerDocument.DefaultView.DomWindow, (nsISupports)this.OwnerDocument.DomObject)
                         .CreateNSResolver(node);
                 result = (nsIXPathResult) evaluator.Instance.Evaluate(new nsAString(xpath), node, resolver, 0, null);
             }
@@ -277,7 +279,7 @@ namespace Gecko
         public XPathResult EvaluateXPath(string xpath)
         {
             var r = EvaluateXPathInternal(xpath);
-            return new XPathResult(r);
+            return new XPathResult(OwnerDocument.DefaultView.DomWindow, r);
         }
 
 
