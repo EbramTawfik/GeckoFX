@@ -2,6 +2,15 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.7 ==
+
+1. Update to latest Beta Firefox 45.
+2. Fix a memory leak. for issue #17
+3. Added MemoryService class. (Thanks sbetzin)
+4. Removed the Push/Pop/Peek CompartmentScope Methods. (Thanks sbetzin)
+5. Improve EvaluateXPath for issue #25
+6. Added GeckoIFrameElement::ContentWindow property.
+
 == v45.0-0.6 ==
 
 This build is an Beta version.
