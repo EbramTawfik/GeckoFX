@@ -33,7 +33,7 @@ namespace GeckofxUnitTests
             Xpcom.Shutdown();
         }
 
-        [Test]
+        [Test, Explicit]
         public void StressTestGeckoFxBrowserMemory()
         {
             var aboutMemory = new UnitTestBrowser();
