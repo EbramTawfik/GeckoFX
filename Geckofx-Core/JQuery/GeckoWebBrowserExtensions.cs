@@ -4,11 +4,11 @@ namespace Gecko.JQuery
 {
     public static class GeckoWebBrowserExtensions
     {
-        public static void  ExecuteJQuery(this IGeckoWebBrowser browser, string jQuery)
+        public static JsVal  ExecuteJQuery(this IGeckoWebBrowser browser, string jQuery)
         {
             var jquery = new JQueryExecutor(browser.Window);
 
-            jquery.ExecuteJQuery(jQuery);
+            return jquery.ExecuteJQuery(jQuery);
         }
 
         public static GeckoElement GetElementByJQuery(this IGeckoWebBrowser browser, string jQuery)
