@@ -24,3 +24,4 @@ GeckoFxWpfTest/obj/
 mozilla-release/
 *.nupkg
 nuget.exe
+packages/
