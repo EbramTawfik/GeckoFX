@@ -354,8 +354,15 @@ namespace Gecko
         {
             if (BaseWindow != null)
             {
-                BaseWindow.SetPositionAndSize(0, 0, ClientSize.Width != 0 ? ClientSize.Width : 1,
-                    ClientSize.Height != 0 ? ClientSize.Height : 1, true);
+                try
+                {
+                    BaseWindow.SetPositionAndSize(0, 0, ClientSize.Width != 0 ? ClientSize.Width : 1,
+                        ClientSize.Height != 0 ? ClientSize.Height : 1, true);
+                }
+                catch
+                {
+                    // ignored
+                }
             }
 
             base.OnSizeChanged(e);
