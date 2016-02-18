@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Geckofx45</id>
+    <id>Geckofx45.64.Linux</id>
     <version>$version$</version>
-    <title>geckofx-45 Windows 32bit</title>
+    <title>geckofx-45 Linux 64bit</title>
     <authors>Tom Hindle</authors>
     <owners>Tom Hindle</owners>
     <projectUrl>https://bitbucket.org/geckofx/</projectUrl>
@@ -12,8 +12,12 @@
     <description>library that allows embeding gecko in C# applications.
 	
 	Example Usage:
+
+	// set env var LD_LIBRARY_PATH to $(ProjectDir)/Firefox
+	// set env var LD_PRELOAD to $(ProjectDir)/Firefox/libgeckofix.so
+	// add using Gecko
 	
-		[STAThread]
+	[STAThread]
         static void Main(string[] args)
         {
             Xpcom.Initialize("Firefox");
@@ -37,12 +41,14 @@
 	</frameworkAssemblies>
   </metadata>
   <files>
-   <file src="bin\Debug\*.dll" target="lib\net40" />
-   <file src="bin\Debug\*.pdb" target="lib\net40" />
-   <file src="bin\Debug\*.config" target="lib" />
-   <file src="..\PutXulRunnerFolderHere\Firefox\*.dll" target="content\Firefox" />
-   <file src="..\PutXulRunnerFolderHere\Firefox\*.ja" target="content\Firefox" />
-   <file src="..\PutXulRunnerFolderHere\Firefox\plugin-*.exe" target="content\Firefox" />
-   <file src="Geckofx45.targets" target="build" />
+   <file src="bin/Debug_Linux/*.dll" target="lib/net40" />
+   <file src="bin/Debug_Linux/*.mdb" target="lib/net40" />
+   <file src="bin/Debug_Linux/*.config" target="build" />
+   <file src="$firefoxdir$/*.so" target="content/Firefox" />
+   <file src="$firefoxdir$/*.chk" target="content/Firefox" />
+   <file src="$firefoxdir$/*.ini" target="content/Firefox" />
+   <file src="$firefoxdir$/*.ja" target="content/Firefox" />
+   <file src="$firefoxdir$/plugin-*" target="content/Firefox" />
+   <file src="Geckofx45.64.Linux.targets" target="build" />
   </files>
 </package>
