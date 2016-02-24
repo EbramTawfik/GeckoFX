@@ -901,6 +901,9 @@ namespace Gecko
         {
             if (!_isNative)
             {
+                if (IsDisposed)
+                    return;
+
                 NS_StringContainerFinish(this.Container);
                 Xpcom.Free(this.Container);
                 base.Dispose(disposing);
