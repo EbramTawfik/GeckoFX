@@ -187,13 +187,20 @@ namespace Gecko
         public JsVal EvaluateScript(string javascript, nsISupports window, nsISupports scope)
         {
             string msg = String.Empty;
+            JsVal exceptionJsVal = default(JsVal);
 
             IntPtr globalObject = ConvertCOMObjectToJSObject(window);
 
             using (new JSAutoCompartment(ContextPointer, globalObject))
             {
                 var old = SpiderMonkey.JS_SetErrorReporter(SpiderMonkey.JS_GetRuntime(ContextPointer),
-                    (cx, message, report) => { msg = message; });
+                    (cx, message, report) =>
+                    {
+                        var exception = SpiderMonkey.JS_GetPendingException(ContextPointer);
+                        if (exception != IntPtr.Zero)
+                            exceptionJsVal = JsVal.FromPtr(exception);
+                        msg = message;
+                    });
                 try
                 {
                     var retJsVal = new JsVal();
@@ -217,10 +224,11 @@ namespace Gecko
                             "script", 1, ref retJsVal);
                     }
 
-                    if (!ret)
-                        throw new GeckoJavaScriptException(String.Format("JSError : {0}", msg));
+                    if (ret) 
+                        return retJsVal;
 
-                    return retJsVal;
+                    msg += GetStackTrace(globalObject, exceptionJsVal);
+                    throw new GeckoJavaScriptException(String.Format("JSError : {0}", msg));
                 }
                 finally
                 {
@@ -367,6 +375,8 @@ namespace Gecko
             Guid guid = typeof (nsISupports).GUID;
 
             IntPtr globalObject = GetGlobalFromContext(ContextPointer);
+            if (obj is nsIXPConnectWrappedJS)            
+                throw new GeckoException("Can't call WrapNative on Wrapped JSObject.");
 
             // In geckofx 45 the WrapNative no longer returns a 'holder'
             return Xpcom.XPConnect.Instance.WrapNative(ContextPointer, globalObject, obj, ref guid);
@@ -394,6 +404,21 @@ namespace Gecko
             }
 
             return _nsIXPCComponents;
+        }
+
+        private string GetStackTrace(IntPtr globalObject, JsVal exceptionJsVal)
+        {
+            if (!exceptionJsVal.IsObject)
+                return String.Empty;
+
+            if (!SpiderMonkey.JS_SetProperty(ContextPointer, globalObject, "__RequestedScope", exceptionJsVal))
+                throw new GeckoException("Failed to set __RequestedScope Property.");
+
+            const string s = "(function() { " + "return this.stack" + " }).call(this.__RequestedScope)";
+
+            var retJsVal = new JsVal();
+            var success = SpiderMonkey.JS_EvaluateScript(ContextPointer, s, (uint)s.Length, "script", 1, ref retJsVal);
+            return !success ? String.Empty : String.Format(" StackTrace: {0}", retJsVal);
         }
 
         #endregion

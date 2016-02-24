@@ -462,7 +462,7 @@ namespace GeckofxUnitTests
                 Assert.AreEqual("[object Window]", ret.ToString());
 
                 var execption = Assert.Throws<GeckoJavaScriptException>(() => context.EvaluateScript("body.innerHTML;", browser.Window.DomWindow));
-                Assert.AreEqual("JSError : ReferenceError: body is not defined", execption.Message);
+                Assert.AreEqual("JSError : ReferenceError: body is not defined StackTrace: @:1:1\n", execption.Message);
 
                 Assert.IsTrue(context.EvaluateScript("x=10;y=20;x*y;", out result));
                 Assert.AreEqual("200", result);
@@ -586,7 +586,7 @@ namespace GeckofxUnitTests
             using (var context = new AutoJSContext(browser.Window))
             {
                 var exception = Assert.Throws<GeckoJavaScriptException>(() => context.EvaluateScript("this.mymethodthatdontexist(3);"));
-                Assert.AreEqual("JSError : TypeError: this.mymethodthatdontexist is not a function", exception.Message);
+                Assert.AreEqual("JSError : TypeError: this.mymethodthatdontexist is not a function StackTrace: @:1:1\n", exception.Message);
             }
         }
 
