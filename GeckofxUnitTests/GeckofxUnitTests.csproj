@@ -89,14 +89,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtensionMethods\GeckoWebBrowserExtensions.cs" />
-    <Compile Include="ExtensionMethods\TaskExtensions.cs" />
-    <Compile Include="Forms\UnitTestBrowser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\UnitTestBrowser.Designer.cs">
-      <DependentUpon>UnitTestBrowser.cs</DependentUpon>
-    </Compile>
     <Compile Include="AutoJSContextTests.cs" />
     <Compile Include="ByteArrayInputStreamTests.cs" />
     <Compile Include="CacheTests.cs" />
@@ -179,11 +171,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Forms\UnitTestBrowser.resx">
-      <DependentUpon>UnitTestBrowser.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\UnitTestBrowser.resx">
