@@ -263,15 +263,15 @@ namespace Gecko
         }       
 
         public static bool JS_ExecuteScript(IntPtr cx, string script, out JsVal jsval)
-        {           
-
+        {
+            jsval = default(JsVal);
             var scriptHandle = new MutableHandle();
             if (!JS_CompileScriptFunc(cx, script, script.Length, GetCompileOptions(cx), ref scriptHandle))
                 throw new GeckoException("Failed to compile script.");
             var val = new MutableHandleValue();
             var handle = scriptHandle.Handle;
             if (!JS_ExecuteScriptFunc(cx, ref handle, ref val))
-                throw new GeckoException("Failed to execute script.");
+                return false;
 
             jsval = JsVal.FromPtr(val.Handle);
             return true;
