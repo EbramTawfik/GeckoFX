@@ -163,6 +163,7 @@
     </Compile>
     <Compile Include="Events\GeckoNavigationErrorEventArgs.cs" />
     <Compile Include="Events\GeckoNSSErrorEventArgs.cs" />
+    <Compile Include="Events\GeckoRetargetedEventArgs.cs" />
     <Compile Include="GeckoError.cs" />
     <Compile Include="Generated\imgIContainer.cs" />
     <Compile Include="Generated\mozIStorageAsyncConnection.cs" />

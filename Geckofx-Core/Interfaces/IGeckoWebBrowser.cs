@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gecko.Events;
 using Gecko.IO;
 
 namespace Gecko
@@ -187,9 +188,11 @@ namespace Gecko
 
         event EventHandler<DomEventArgs> Load;
 
-        event EventHandler<Gecko.Events.GeckoDocumentCompletedEventArgs> DocumentCompleted;
+        event EventHandler<Events.GeckoDocumentCompletedEventArgs> DocumentCompleted;
 
-        event EventHandler<Gecko.Events.GeckoNavigationErrorEventArgs> NavigationError;
+        event EventHandler<Events.GeckoNavigationErrorEventArgs> NavigationError;
+
+        event EventHandler<GeckoRetargetedEventArgs> Retargeted;
 
         #endregion
     }

@@ -8,6 +8,7 @@ using Gecko;
 using System.IO;
 using System.Runtime.InteropServices;
 using Gecko.DOM;
+using Gecko.Events;
 using Gecko.JQuery;
 
 namespace GeckofxUnitTests
