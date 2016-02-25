@@ -246,7 +246,7 @@ namespace Gecko
 
         private void AttachFrameEvents()
         {
-            if (!FrameEventsPropergateToMainWindow)
+            if (!FrameEventsPropagateToMainWindow)
                 return;
 
             foreach (var frame in Document.GetElementsByTagName("iframe").Cast<GeckoIFrameElement>())
@@ -263,7 +263,7 @@ namespace Gecko
 
         private void RemoveFrameEvents()
         {
-            if (!FrameEventsPropergateToMainWindow)
+            if (!FrameEventsPropagateToMainWindow)
                 return;
 
             foreach (var frame in Document.GetElementsByTagName("iframe").Cast<GeckoIFrameElement>())

@@ -194,7 +194,7 @@ namespace Gecko
         /// Default to false.
         /// If true events (Eg. DomClick) that occur in iframes are received by event handlers attached to main browser window.
         /// </summary>
-        public bool FrameEventsPropergateToMainWindow { get; set; }
+        public bool FrameEventsPropagateToMainWindow { get; set; }
 
         private class WindowCreator : nsIWindowCreator2
         {
