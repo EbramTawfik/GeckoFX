@@ -157,7 +157,7 @@ namespace Gecko
         /// <param name="e">The data for the event.</param>
         protected virtual void OnNavigated(GeckoNavigatedEventArgs e)
         {
-            DetachEvents();
+            DetachEvents(true);
             AttachEvents();
 
             ReattachMessageEventListerns();
@@ -255,6 +255,8 @@ namespace Gecko
         /// <param name="e">The data for the event.</param>
         protected virtual void OnDocumentCompleted(GeckoDocumentCompletedEventArgs e)
         {
+            AttachFrameEvents();
+
             var evnt = (EventHandler<GeckoDocumentCompletedEventArgs>) Events[DocumentCompletedEvent];
             if (evnt != null) evnt(this, e);
         }

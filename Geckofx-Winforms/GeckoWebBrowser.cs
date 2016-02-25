@@ -185,9 +185,16 @@ namespace Gecko
             }
         }
 
-        // defaults to false
+        /// <summary>
+        /// defaults to false.
+        /// </summary>
         public bool UseHttpActivityObserver { get; set; }
 
+        /// <summary>
+        /// Default to false.
+        /// If true events (Eg. DomClick) that occur in iframes are received by event handlers attached to main browser window.
+        /// </summary>
+        public bool FrameEventsPropergateToMainWindow { get; set; }
 
         private class WindowCreator : nsIWindowCreator2
         {

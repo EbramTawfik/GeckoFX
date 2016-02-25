@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using Gecko.DOM;
 using Gecko.Listeners;
 using Gecko.Windows;
 using Gecko.Interop;
@@ -211,7 +212,6 @@ namespace Gecko
             var domWindow = WebBrowser.GetContentDOMWindowAttribute();
             EventTarget =
                 ((nsIDOMEventTarget) new WebIDL.Window(domWindow, (nsISupports) domWindow).PrivateRoot).AsComPtr();
-            //EventTarget = ((nsIDOMEventTarget)domWindow).AsComPtr();
             Marshal.ReleaseComObject(domWindow);
 
             foreach (string sEventName in this.DefaultEvents)
@@ -223,18 +223,57 @@ namespace Gecko
             _eventsAttached = true;
         }
 
-        private void DetachEvents()
+        /// <summary>
+        /// Remove Default events listeners.
+        /// </summary>
+        /// <param name="lazy">if true doesn't actually remove the event (as expecting a pending AddEventListener which will override the existing event)</param>
+        private void DetachEvents(bool lazy = false)
         {
             if (!_eventsAttached)
                 return;
             _eventsAttached = false;
 
+            if (lazy)
+                return;
+
             //Remove Event Listener			
             foreach (string sEventType in this.DefaultEvents)
             {
                 using (var eventType = new nsAString(sEventType))
-                {
                     EventTarget.Instance.RemoveEventListener(eventType, this, true);
+            }
+        }
+
+        private void AttachFrameEvents()
+        {
+            if (!FrameEventsPropergateToMainWindow)
+                return;
+
+            foreach (var frame in Document.GetElementsByTagName("iframe").Cast<GeckoIFrameElement>())
+            {
+                var cw = frame.ContentWindow;
+                var et = ((nsIDOMEventTarget)cw.DomWindow);
+                foreach (string sEventName in this.DefaultEvents)
+                {
+                    using (var eventType = new nsAString(sEventName))
+                        et.AddEventListener(eventType, this, true, true, 2);
+                }
+            }
+        }
+
+        private void RemoveFrameEvents()
+        {
+            if (!FrameEventsPropergateToMainWindow)
+                return;
+
+            foreach (var frame in Document.GetElementsByTagName("iframe").Cast<GeckoIFrameElement>())
+            {
+                var cw = frame.ContentWindow;
+                var et = ((nsIDOMEventTarget)cw.DomWindow);
+                foreach (string sEventName in this.DefaultEvents)
+                {
+                    using (var eventType = new nsAString(sEventName))
+                        et.RemoveEventListener(eventType, this, true);
                 }
             }
         }
@@ -294,6 +333,7 @@ namespace Gecko
 
                 if (EventTarget != null)
                 {
+                    RemoveFrameEvents();
                     DetachEvents();
                     EventTarget.Dispose();
                     EventTarget = null;
