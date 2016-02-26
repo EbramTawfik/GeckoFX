@@ -2,6 +2,17 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.8 ==
+
+1. Update to latest Beta Firefox 45. (45_0b9)
+2. Upgrading to .net framework 4.0 from 3.5
+3. Fix a ref count bug in Xpcom.CreateInstance<TInterfaceType> (memory)
+4. Ignore any errors in the GeckoWebBrowser::OnSizeChanged method.
+5. Returned JSVal From ExecuteJQuery
+6. Suppress a rare ObjectIsDisposed exception running Dispose via finalizer.
+7. Improve script error exceptions from EvaluateScript. (Include stacktrace)
+8. Add GeckoWebBrowser FrameEventsPropergateToMainWindow property. (default false - set to true to get geckofx 33 type behavior.)
+
 == v45.0-0.7 ==
 
 1. Update to latest Beta Firefox 45.
