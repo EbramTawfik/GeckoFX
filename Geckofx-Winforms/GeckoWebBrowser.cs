@@ -1750,8 +1750,6 @@ namespace Gecko
                         IsBusy = false;
                         if (aStatus == 0)
                         {
-                            BaseWindow.SetVisibilityAttribute(true);
-
                             // navigating to a unrenderable file (.zip, .exe, etc.) causes the request pending;
                             // also an OnStateChange call with aStatus:804B0004(NS_BINDING_RETARGETED) has been generated previously.
                             if (!request.IsPending)

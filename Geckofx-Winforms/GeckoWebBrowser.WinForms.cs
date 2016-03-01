@@ -148,6 +148,12 @@ namespace Gecko
 
                     BaseWindow.Create();
 
+                    var docShell = Xpcom.QueryInterface<nsIDocShell>(BaseWindow);
+                    // Allow visible control before finished loading see https://bugzilla.mozilla.org/show_bug.cgi?id=1138536
+                    docShell.CreateAboutBlankContentViewer(null); 
+                    Xpcom.FreeComObject(ref docShell);
+                    BaseWindow.SetVisibilityAttribute(true);
+
                     Guid nsIWebProgressListenerGUID = typeof (nsIWebProgressListener).GUID;
                     Guid nsIWebProgressListener2GUID = typeof (nsIWebProgressListener2).GUID;
                     WebBrowser.AddWebBrowserListener(this.GetWeakReference(), ref nsIWebProgressListenerGUID);
