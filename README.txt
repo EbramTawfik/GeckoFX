@@ -2,6 +2,11 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.9 ==
+
+1. Update to Firefox 45 release (a39cbdebde6c)
+2. Geckofx now renders/paints web pages while loading.
+
 == v45.0-0.8 ==
 
 1. Update to latest Beta Firefox 45. (45_0b9)
