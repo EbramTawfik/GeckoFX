@@ -191,14 +191,18 @@
   <Target Name="BeforeBuild">
   </Target>
   <Import Project="$(MSBuildProjectDirectory)\..\.build\MSBuild.Community.Tasks.targets" />
-  <Target Name="AfterBuild" Condition=" '$(OS)' == 'Unix' ">
+  <Target Name="AfterBuild">
+    <CallTarget Targets="AfterBuildWindows"/>
+    <CallTarget Targets="AfterBuildLinux"/>
+  </Target>
+  <Target Name="AfterBuildLinux" Condition=" '$(OS)' == 'Unix' ">
     <Exec Command="wget -nc https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" />
     <Exec Command="mkdir -p Firefox" />
     <Exec Command="cp -ra ../PutXulRunnerFolderHere/Firefox/* Firefox/" />
     <Exec Command="cp -ra ../PutXulRunnerFolderHere/libgeckofix.so Firefox/" />
     <Exec Command="mono nuget.exe pack Geckofx-Winforms.64.Linux.nuspec -Prop Configuration=Debug -Prop Version=`monodis --assembly $(TargetDir)\$(TargetName).dll | grep Version | awk '{print $2}'` -Prop FirefoxDir=Firefox -MinClientVersion 2.5" />
   </Target>
-  <Target Name="AfterBuild" Condition=" '$(OS)' == 'Windows_NT' ">
+  <Target Name="AfterBuildWindows" Condition=" '$(OS)' == 'Windows_NT' ">
     <!-- Only download a new copy of nuget.exe if we don't have a copy available -->
     <WebDownload Condition="!Exists('nuget.exe')" Filename="nuget.exe" FileUri="https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" />
     <Exec Command="nuget pack Geckofx-Winforms.csproj -Prop Configuration=Debug -Prop Platform=x86 -MinClientVersion 2.5">
