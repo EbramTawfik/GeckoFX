@@ -2,6 +2,11 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.10 ==
+
+1. Add ContentWindow property to HtmlFrameElement
+2. Allow window.opener to return non null in running javascript.
+
 == v45.0-0.9 ==
 
 1. Update to Firefox 45 release (a39cbdebde6c)
