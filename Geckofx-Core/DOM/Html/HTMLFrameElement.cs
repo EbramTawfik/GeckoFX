@@ -75,5 +75,14 @@ namespace Gecko.DOM
                 return (doc == null) ? null : new GeckoDocument(doc);
             }
         }
+
+        public GeckoWindow ContentWindow
+        {
+            get
+            {
+                var window = DOMHTMLElement.GetContentWindowAttribute();
+                return (window == null) ? null : new GeckoWindow(window);
+            }
+        }
     }
 }

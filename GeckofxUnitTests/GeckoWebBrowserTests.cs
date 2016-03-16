@@ -158,8 +158,11 @@ namespace GeckofxUnitTests
         [Test]
         public void LoadFrameset_RegressionTest_ShouldNotThrowException()
         {
-            string innerHtml = "hello world";
+            string innerHtml = "<frame src=\"www.google.com\">";
             browser.TestLoadFrameset(innerHtml);
+            var frame = browser.Document.GetElementsByTagName("frame")[0] as GeckoFrameElement;
+            Assert.NotNull(frame);
+            Assert.NotNull(frame.ContentWindow);
         }
 
         [Test]
