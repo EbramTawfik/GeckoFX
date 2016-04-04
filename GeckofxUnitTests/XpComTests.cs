@@ -1306,6 +1306,14 @@ namespace GeckofxUnitTests
             Assert.IsNotNull(instance);
             Marshal.ReleaseComObject(instance);
         }
+
+	    [Test]
+	    public void CreateInstance_CreatingCacheStorageService_ReturnsValidInstance()
+	    {
+            var instance = Xpcom.CreateInstance<nsICacheStorageService>("@mozilla.org/netwerk/cache-storage-service;1");
+            Assert.IsNotNull(instance);
+            Marshal.ReleaseComObject(instance);
+	    }
 #endregion
 
 #region GetService Unittests

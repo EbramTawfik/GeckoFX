@@ -170,6 +170,12 @@
     <Compile Include="Generated\nsIAccessibleTextRange.cs" />
     <Compile Include="Generated\nsIAddonInterposition.cs" />
     <Compile Include="Generated\nsIAsyncShutdown.cs" />
+    <Compile Include="Generated\nsICacheEntry.cs" />
+    <Compile Include="Generated\nsICacheEntryDoomCallback.cs" />
+    <Compile Include="Generated\nsICacheEntryOpenCallback.cs" />
+    <Compile Include="Generated\nsICacheStorage.cs" />
+    <Compile Include="Generated\nsICacheStorageService.cs" />
+    <Compile Include="Generated\nsICacheStorageVisitor.cs" />
     <Compile Include="Generated\nsICellInfo.cs" />
     <Compile Include="Generated\nsIContentPolicyBase.cs" />
     <Compile Include="Generated\nsIDomainPolicy.cs" />
