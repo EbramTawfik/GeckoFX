@@ -2,6 +2,11 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.11 ==
+
+1. Add nsICacheStorageService interfaces. - Fixes issue #55
+2. Fix a bug in JS_SetErrorReporter on 64bit Linux.
+
 == v45.0-0.10 ==
 
 1. Add ContentWindow property to HtmlFrameElement
