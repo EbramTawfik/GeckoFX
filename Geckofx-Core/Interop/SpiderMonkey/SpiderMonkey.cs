@@ -148,7 +148,7 @@ namespace Gecko
         static JS_SetCompartmentPrincipalsDelegate JS_SetCompartmentPrincipalsFunc = Resolve<JS_SetCompartmentPrincipalsDelegate>(JS_SetCompartmentPrincipals_Win32, null, null, JS_SetCompartmentPrincipals_Linux64);
         static JS_SetContextCallbackDelegate JS_SetContextCallbackFunc = Resolve<JS_SetContextCallbackDelegate>(JS_SetContextCallback_Win32, null, null, JS_SetContextCallback_Linux64);
         static JS_SetContextPrivateDelegate JS_SetContextPrivateFunc = Resolve<JS_SetContextPrivateDelegate>(JS_SetContextPrivate_Win32, null, null, JS_SetContextPrivate_Linux64);
-        static JS_SetErrorReporterDelegate JS_SetErrorReporterFunc = Resolve<JS_SetErrorReporterDelegate>(JS_SetErrorReporter_Win32, null, null, JS_SetErrorReporter_Win64);
+        static JS_SetErrorReporterDelegate JS_SetErrorReporterFunc = Resolve<JS_SetErrorReporterDelegate>(JS_SetErrorReporter_Win32, null, null, JS_SetErrorReporter_Linux64);
         static JS_SetPropertyDelegate JS_SetPropertyFunc = Resolve<JS_SetPropertyDelegate>(JS_SetProperty_Win32, null, null, JS_SetProperty_Linux64);
         static JS_SetTrustedPrincipalsDelegate JS_SetTrustedPrincipalsFunc = Resolve<JS_SetTrustedPrincipalsDelegate>(JS_SetTrustedPrincipals_Win32, null, null, JS_SetTrustedPrincipals_Linux64);
         static JS_TypeOfValueDelegate JS_TypeOfValueFunc = Resolve<JS_TypeOfValueDelegate>(JS_TypeOfValue_Win32, null, null, JS_TypeOfValue_Linux64);
