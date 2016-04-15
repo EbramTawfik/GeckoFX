@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.12 ==
+
+1. Hookup Spidermonkey Linux 32 interops.
+
 == v45.0-0.11 ==
 
 1. Add nsICacheStorageService interfaces. - Fixes issue #55
