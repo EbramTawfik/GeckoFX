@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.13 ==
+
+1. Stop CompileOptions calls from segfaulting on 32bit Linux.
+
 == v45.0-0.12 ==
 
 1. Hookup Spidermonkey Linux 32 interops.
