@@ -32,14 +32,7 @@ namespace Gecko
         /// <returns></returns>
         public static JsVal FromPtr(IntPtr value)
         {
-            if (Xpcom.Is32Bit)
-            {
-                return new JsVal() {AsPtr = value, tag = (uint) ValueTag32Bit.Object};
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
+            return new JsVal() { AsPtr = value, tag = Xpcom.Is32Bit ? (uint)ValueTag32Bit.Object : (uint)ValueTag64Bit.Object };
         }
 
         public static JsVal FromDouble(double d)
