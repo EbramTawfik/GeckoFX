@@ -25,3 +25,4 @@ mozilla-release/
 *.nupkg
 nuget.exe
 packages/
+Geckofx-Winforms/Firefox/**

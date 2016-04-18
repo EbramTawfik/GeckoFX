@@ -175,6 +175,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Firefox\application.ini" />
+    <None Include="Firefox\crashreporter.ini" />
+    <None Include="Firefox\dependentlibs.list" />
+    <None Include="Firefox\freebl3.chk" />
+    <None Include="Firefox\nssdbm3.chk" />
+    <None Include="Firefox\omni.ja" />
+    <None Include="Firefox\platform.ini" />
+    <None Include="Firefox\softokn3.chk" />
+    <None Include="Firefox\update-settings.ini" />
+    <None Include="Firefox\updater.ini" />
+    <None Include="Firefox\voucher.bin" />
     <None Include="GeckoFX.snk" />
     <None Include="MSBuild.Community.Tasks.ReadMe.md" />
     <None Include="packages.config" />
@@ -185,6 +196,38 @@
       <Name>Geckofx-Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Firefox\AccessibleMarshal.dll" />
+    <Content Include="Firefox\breakpadinjector.dll" />
+    <Content Include="Firefox\crashreporter.exe" />
+    <Content Include="Firefox\D3DCompiler_43.dll" />
+    <Content Include="Firefox\d3dcompiler_47.dll" />
+    <Content Include="Firefox\firefox.exe" />
+    <Content Include="Firefox\freebl3.dll" />
+    <Content Include="Firefox\icudt56.dll" />
+    <Content Include="Firefox\icuin56.dll" />
+    <Content Include="Firefox\icuuc56.dll" />
+    <Content Include="Firefox\lgpllibs.dll" />
+    <Content Include="Firefox\libEGL.dll" />
+    <Content Include="Firefox\libGLESv2.dll" />
+    <Content Include="Firefox\maintenanceservice.exe" />
+    <Content Include="Firefox\maintenanceservice_installer.exe" />
+    <Content Include="Firefox\mozglue.dll" />
+    <Content Include="Firefox\msvcp120.dll" />
+    <Content Include="Firefox\msvcr120.dll" />
+    <Content Include="Firefox\nss3.dll" />
+    <Content Include="Firefox\nssckbi.dll" />
+    <Content Include="Firefox\nssdbm3.dll" />
+    <Content Include="Firefox\plugin-container.exe" />
+    <Content Include="Firefox\plugin-hang-ui.exe" />
+    <Content Include="Firefox\sandboxbroker.dll" />
+    <Content Include="Firefox\softokn3.dll" />
+    <Content Include="Firefox\updater.exe" />
+    <Content Include="Firefox\webapp-uninstaller.exe" />
+    <Content Include="Firefox\webapprt-stub.exe" />
+    <Content Include="Firefox\wow_helper.exe" />
+    <Content Include="Firefox\xul.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets. -->
@@ -192,8 +235,8 @@
   </Target>
   <Import Project="$(MSBuildProjectDirectory)\..\.build\MSBuild.Community.Tasks.targets" />
   <Target Name="AfterBuild">
-    <CallTarget Targets="AfterBuildWindows"/>
-    <CallTarget Targets="AfterBuildLinux"/>
+    <CallTarget Targets="AfterBuildWindows" />
+    <CallTarget Targets="AfterBuildLinux" />
   </Target>
   <Target Name="AfterBuildLinux" Condition=" '$(OS)' == 'Unix' ">
     <Exec Command="wget -nc https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" />
@@ -208,9 +251,17 @@
     <Exec Command="mono nuget.exe pack Geckofx-Winforms.32.Linux.nuspec -Prop Configuration=Debug -Prop Version=`monodis --assembly $(TargetDir)\$(TargetName).dll | grep Version | awk '{print $2}'` -Prop FirefoxDir=Firefox -MinClientVersion 2.5" />
   </Target>
   <Target Name="AfterBuildWindows" Condition=" '$(OS)' == 'Windows_NT' ">
+    <CallTarget Targets="CopyFirefoxFiles" />
     <!-- Only download a new copy of nuget.exe if we don't have a copy available -->
     <WebDownload Condition="!Exists('nuget.exe')" Filename="nuget.exe" FileUri="https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" />
     <Exec Command="nuget pack Geckofx-Winforms.csproj -Prop Configuration=Debug -Prop Platform=x86 -MinClientVersion 2.5">
     </Exec>
+  </Target>
+  <Import Project="..\packages\Geckofx45.32.Windows.0.3\build\Geckofx45.32.Windows.targets" Condition="Exists('..\packages\Geckofx45.32.Windows.0.3\build\Geckofx45.32.Windows.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Geckofx45.32.Windows.0.3\build\Geckofx45.32.Windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Geckofx45.32.Windows.0.3\build\Geckofx45.32.Windows.targets'))" />
   </Target>
 </Project>
