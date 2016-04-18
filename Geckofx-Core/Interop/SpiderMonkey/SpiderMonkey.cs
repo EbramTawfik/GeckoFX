@@ -892,7 +892,7 @@ namespace Gecko
 
         // These should be in Alphabetical order.
 
-        [DllImport("xul", CallingConvention = CallingConvention.ThisCall, CharSet = CharSet.Ansi, ExactSpelling = false,
+        [DllImport("xul", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, ExactSpelling = false,
                    EntryPoint = "_ZN2JS14CompileOptionsC2EP9JSContext9JSVersion")]
         private static extern IntPtr CompileOptions_Linux32(IntPtr @this, IntPtr cx, int jsver);
 
