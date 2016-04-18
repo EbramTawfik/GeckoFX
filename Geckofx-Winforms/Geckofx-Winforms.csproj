@@ -257,7 +257,7 @@
     <Exec Command="nuget pack Geckofx-Winforms.csproj -Prop Configuration=Debug -Prop Platform=x86 -MinClientVersion 2.5">
     </Exec>
   </Target>
-  <Import Project="..\packages\Geckofx45.32.Windows.0.3\build\Geckofx45.32.Windows.targets" Condition="Exists('..\packages\Geckofx45.32.Windows.0.3\build\Geckofx45.32.Windows.targets')" />
+  <Import Project="..\packages\Geckofx45.32.Windows.0.3\build\Geckofx45.32.Windows.targets" Condition="'$(OS)' == 'Windows_NT' and Exists('..\packages\Geckofx45.32.Windows.0.3\build\Geckofx45.32.Windows.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
