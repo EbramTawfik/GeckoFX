@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.14 ==
+
+1. Implement 64bit verison of JsVal::FromPtr
+
 == v45.0-0.13 ==
 
 1. Stop CompileOptions calls from segfaulting on 32bit Linux.
