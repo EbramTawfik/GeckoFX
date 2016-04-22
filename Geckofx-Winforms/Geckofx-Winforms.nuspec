@@ -32,8 +32,8 @@
 		<reference file="Geckofx-Winforms.dll" />
 	</references>
 	<frameworkAssemblies>
-		<frameworkAssembly assemblyName="System.Windows.Forms"/>
-		<frameworkAssembly assemblyName="System.Drawing"/>
+		<frameworkAssembly assemblyName="System.Windows.Forms" targetFramework="net40"/>
+		<frameworkAssembly assemblyName="System.Drawing" targetFramework="net40"/>
 	</frameworkAssemblies>
   </metadata>
   <files>
