@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.15 ==
+
+1. Fix https://bitbucket.org/geckofx/geckofx-45.0/issues/64/promptservice-not-working-on-linux
+
 == v45.0-0.14 ==
 
 1. Implement 64bit verison of JsVal::FromPtr
