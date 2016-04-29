@@ -2,6 +2,11 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.16 ==
+
+1. Disable FF use of Realtime signals on Linux. 
+Prevents lots of log files being created when debugging with mono soft debugger.
+
 == v45.0-0.15 ==
 
 1. Fix https://bitbucket.org/geckofx/geckofx-45.0/issues/64/promptservice-not-working-on-linux
