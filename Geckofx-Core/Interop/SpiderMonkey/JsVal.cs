@@ -32,7 +32,10 @@ namespace Gecko
         /// <returns></returns>
         public static JsVal FromPtr(IntPtr value)
         {
-            return new JsVal() { AsPtr = value, tag = Xpcom.Is32Bit ? (uint)ValueTag32Bit.Object : (uint)ValueTag64Bit.Object };
+            if (Xpcom.Is32Bit)
+                return new JsVal() { AsPtr = value, tag = (uint)ValueTag32Bit.Object};
+            else
+                return new JsVal() { AsBits = (ulong)(value.ToInt64() | (long)ValueTag64Bit.Object << 47) };
         }
 
         public static JsVal FromDouble(double d)
@@ -47,6 +50,7 @@ namespace Gecko
         [FieldOffset(0)] public uint U32;
         [FieldOffset(0)] public int Boo;
         [FieldOffset(0)] public ulong Ptr;
+        // This field is not valid for 64bit JsVal. (64bit little endian tag is stored in 17 most significant bits of the 8 byte JsVal)
         [FieldOffset(4)] public uint tag;
 
         public enum ValueTag64Bit : uint
@@ -77,7 +81,7 @@ namespace Gecko
 
         public uint Tag
         {
-            get { return Xpcom.Is32Bit ? tag : tag >> 47; }
+            get { return Xpcom.Is32Bit ? tag : (uint)(AsBits >> 47); }
         }
 
         public bool IsNull
