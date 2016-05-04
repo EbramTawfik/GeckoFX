@@ -426,6 +426,13 @@ namespace Gecko
 
             if (ServiceManager != null)
             {
+                var s = GetService<nsIObserverService>("@mozilla.org/observer-service;1");
+                s.NotifyObservers(null, "profile-change-net-teardown", "shutdown-persist");
+                s.NotifyObservers(null, "profile-change-teardown", "shutdown-persist");
+                s.NotifyObservers(null, "profile-before-change", "shutdown-persist");
+                s.NotifyObservers(null, "profile-before-change2", "shutdown-persist");
+                Marshal.ReleaseComObject(s);
+
                 // NS_ShutdownXPCOM calls Release on the ServiceManager COM objects.
                 // However since the ServiceManager is a __ComObject its finaliser will also call release.
                 var ptr = Marshal.GetIUnknownForObject(ServiceManager);
