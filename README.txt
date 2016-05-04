@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.17 ==
+
+1. Fix a 64bit bug when creating a JsVal from a C# IntPtr.
+
 == v45.0-0.16 ==
 
 1. Disable FF use of Realtime signals on Linux. 
