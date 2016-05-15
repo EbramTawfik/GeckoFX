@@ -2,6 +2,12 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.19 ==
+
+1. Update included firefox files to verison 0.5
+  - Fixes firefox bugs - 1263288 + 1260825
+  - Also fix use of window.opener in javascript.
+
 == v45.0-0.18 ==
 
 1. Fix a rare crash at shutdown.
