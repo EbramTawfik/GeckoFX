@@ -2,6 +2,11 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.20 ==
+
+1. Update included firefox files to verison 0.6
+  - Fixes https://bugzilla.mozilla.org/show_bug.cgi?id=1279069
+
 == v45.0-0.19 ==
 
 1. Update included firefox files to verison 0.5
