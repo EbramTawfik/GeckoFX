@@ -255,9 +255,11 @@ namespace Gecko
             if (!FrameEventsPropagateToMainWindow)
                 return;
 
-            foreach (var frame in Document.GetElementsByTagName("iframe").Cast<GeckoIFrameElement>())
+            var iframeWindows = Document.GetElementsByTagName("iframe").Cast<GeckoIFrameElement>().Select(x => x.ContentWindow);
+            var framesetWindows = Document.GetElementsByTagName("frame").Cast<GeckoFrameElement>().Select(x => x.ContentWindow);
+
+            foreach (GeckoWindow cw in iframeWindows.Concat(framesetWindows))
             {
-                var cw = frame.ContentWindow;
                 var et = ((nsIDOMEventTarget)cw.DomWindow);
                 foreach (string sEventName in this.DefaultEvents)
                 {
