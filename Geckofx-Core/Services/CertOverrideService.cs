@@ -150,7 +150,7 @@ namespace Gecko
             var mapping = new System.Globalization.IdnMapping();
             using (var aHostName = new nsACString(mapping.GetAscii(url.Host)))
             {
-                Instance.RememberValidityOverride(aHostName, url.Port, cert._cert.Instance, (uint) flags, true);
+                Instance.RememberValidityOverride(aHostName, url.Port, cert._cert.Instance, (uint)flags, temporary);
             }
         }
 
