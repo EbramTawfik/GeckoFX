@@ -732,10 +732,6 @@ namespace Gecko
             if (ptr == IntPtr.Zero)
                 return null;
 
-            // Mono (2.10.8.1) bug : Marshal.GetObjectForIUnknown is not incrementing the COM objects ref count.			
-            if (IsMono)
-                Marshal.AddRef(ptr);
-
             return Marshal.GetObjectForIUnknown(ptr);
         }
 
