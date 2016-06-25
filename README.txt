@@ -2,6 +2,12 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.21 ==
+
+1. Fix #91 - https://bitbucket.org/geckofx/geckofx-45.0/issues/91/browser-dom-mouse-events-not-working
+2. Fix #110 - https://bitbucket.org/geckofx/geckofx-33.0/issues/110/remembervalidityoverride-is-not-respecting
+3. Linux memory leak fix.
+
 == v45.0-0.20 ==
 
 1. Update included firefox files to verison 0.6
