@@ -44,11 +44,11 @@
    <file src="bin/Debug_Linux/*.dll" target="lib/net40" />
    <file src="bin/Debug_Linux/*.mdb" target="lib/net40" />
    <file src="bin/Debug_Linux/*.config" target="build" />
-   <file src="$firefoxdir$/*.so" target="content/Firefox" />
-   <file src="$firefoxdir$/*.chk" target="content/Firefox" />
-   <file src="$firefoxdir$/*.ini" target="content/Firefox" />
-   <file src="$firefoxdir$/*.ja" target="content/Firefox" />
-   <file src="$firefoxdir$/plugin-*" target="content/Firefox" />
+   <file src="$firefoxdir$/*.so" target="content/Firefox-Linux64" />
+   <file src="$firefoxdir$/*.chk" target="content/Firefox-Linux64" />
+   <file src="$firefoxdir$/*.ini" target="content/Firefox-Linux64" />
+   <file src="$firefoxdir$/*.ja" target="content/Firefox-Linux64" />
+   <file src="$firefoxdir$/plugin-*" target="content/Firefox-Linux64" />
    <file src="Geckofx45.64.Linux.targets" target="build" />
   </files>
 </package>

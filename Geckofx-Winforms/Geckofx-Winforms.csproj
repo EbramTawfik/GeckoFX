@@ -240,15 +240,14 @@
   </Target>
   <Target Name="AfterBuildLinux" Condition=" '$(OS)' == 'Unix' ">
     <Exec Command="wget -nc https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" />
-    <Exec Command="mkdir -p Firefox" />
-    <Exec Command="cp -ra ../PutXulRunnerFolderHere/64/Firefox/* Firefox/" />
-    <Exec Command="cp -ra ../PutXulRunnerFolderHere/64/libgeckofix.so Firefox/" />
-    <Exec Command="mono /opt/monodevelop/lib/monodevelop/AddIns/MonoDevelop.PackageManagement/NuGet.exe pack Geckofx-Winforms.64.Linux.nuspec -Prop Configuration=Debug -Prop Version=`monodis --assembly $(TargetDir)\$(TargetName).dll | grep Version | awk '{print $2}'` -Prop FirefoxDir=Firefox -MinClientVersion 2.5" />
-    <Exec Command="rm -rf Firefox" />
-    <Exec Command="mkdir -p Firefox" />
-    <Exec Command="cp -ra ../PutXulRunnerFolderHere/32/Firefox/* Firefox/" />
-    <Exec Command="cp -ra ../PutXulRunnerFolderHere/32/libgeckofix.so Firefox/" />
-    <Exec Command="mono /opt/monodevelop/lib/monodevelop/AddIns/MonoDevelop.PackageManagement/NuGet.exe pack Geckofx-Winforms.32.Linux.nuspec -Prop Configuration=Debug -Prop Version=`monodis --assembly $(TargetDir)\$(TargetName).dll | grep Version | awk '{print $2}'` -Prop FirefoxDir=Firefox -MinClientVersion 2.5" />
+    <Exec Command="mkdir -p Firefox-Linux64" />
+    <Exec Command="cp -ra ../PutXulRunnerFolderHere/64/Firefox/* Firefox-Linux64/" />
+    <Exec Command="cp -ra ../PutXulRunnerFolderHere/64/libgeckofix.so Firefox-Linux64/" />
+    <Exec Command="nuget pack Geckofx-Winforms.64.Linux.nuspec -Prop Configuration=Debug -Prop Version=`monodis --assembly $(TargetDir)\$(TargetName).dll | grep Version | awk '{print $2}'` -Prop FirefoxDir=Firefox-Linux64 -MinClientVersion 2.5" />
+    <Exec Command="mkdir -p Firefox-Linux32" />
+    <Exec Command="cp -ra ../PutXulRunnerFolderHere/32/Firefox/* Firefox-Linux32/" />
+    <Exec Command="cp -ra ../PutXulRunnerFolderHere/32/libgeckofix.so Firefox-Linux32/" />
+    <Exec Command="nuget pack Geckofx-Winforms.32.Linux.nuspec -Prop Configuration=Debug -Prop Version=`monodis --assembly $(TargetDir)\$(TargetName).dll | grep Version | awk '{print $2}'` -Prop FirefoxDir=Firefox-Linux32 -MinClientVersion 2.5" />
   </Target>
   <Target Name="AfterBuildWindows" Condition=" '$(OS)' == 'Windows_NT' ">
     <CallTarget Targets="CopyFirefoxFiles" />
