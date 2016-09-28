@@ -397,6 +397,7 @@ namespace Gecko
         /// In order to find out when LoadHtml has finished attach a handler to DocumentCompleted Event.
         /// </summary>
         /// <param name="htmlDocument"></param>
+        [ObsoleteAttribute("LoadHtml(string) isn't intended to load complex Html Documents. Use LoadHtml(string,string) instead")]
         public void LoadHtml(string htmlDocument)
         {
             LoadBase64EncodedData("text/html", htmlDocument);
@@ -415,10 +416,10 @@ namespace Gecko
 
         public void LoadHtml(string content, string url)
         {
-            if (url != null)
-                LoadContent(content, url, "text/html");
-            else
-                LoadHtml(content);
+            if (url == null)
+                url = "file://somepage.com";
+
+            LoadContent(content, url, "text/html");
         }
 
         public void LoadContent(string content, string url, string contentType)
