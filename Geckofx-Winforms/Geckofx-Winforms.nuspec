@@ -7,6 +7,7 @@
     <authors>Tom Hindle</authors>
     <owners>Tom Hindle</owners>
     <projectUrl>https://bitbucket.org/geckofx/</projectUrl>
+	<iconUrl>https://bitbucket.org/account/geckofx/avatar/256/?ts=1475265187<iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>library that allows embeding gecko in C# applications.</summary>
     <description>library that allows embeding gecko in C# applications.
