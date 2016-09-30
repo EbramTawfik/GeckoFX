@@ -2,6 +2,11 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.22 ==
+
+1. Location changes to nuget content folders.
+2. Mark load LoadHtml(string) as obsolete
+
 == v45.0-0.21 ==
 
 1. Fix #91 - https://bitbucket.org/geckofx/geckofx-45.0/issues/91/browser-dom-mouse-events-not-working
