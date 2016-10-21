@@ -39,7 +39,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Windows|x86'">
     <PlatformTarget>x86</PlatformTarget>
-    <OutputPath>bin\x86\Release_Windows\</OutputPath>
+    <OutputPath>bin\x86\Release\</OutputPath>
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
     <DefineConstants>GECKO_1_9_1;GECKO_1_9</DefineConstants>
@@ -70,7 +70,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Windows|AnyCPU'">
-    <OutputPath>bin\Release_Windows\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>GECKO_1_9_1;GECKO_1_9</DefineConstants>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
