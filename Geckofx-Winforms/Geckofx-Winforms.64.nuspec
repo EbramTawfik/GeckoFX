@@ -38,9 +38,9 @@
 	</frameworkAssemblies>
   </metadata>
   <files>
-   <file src="bin\Debug\*.dll" target="lib\net40" />
-   <file src="bin\Debug\*.pdb" target="lib\net40" />
-   <file src="bin\Debug\*.config" target="lib" />
+   <file src="bin\$Configuration$\*.dll" target="lib\net40" />
+   <file src="bin\$Configuration$\*.pdb" target="lib\net40" />
+   <file src="bin\$Configuration$\*.config" target="lib" />
    <file src="..\PutXulRunnerFolderHere\Firefox64\*.dll" target="content\Firefox" />
    <file src="..\PutXulRunnerFolderHere\Firefox64\*.ja" target="content\Firefox" />
    <file src="..\PutXulRunnerFolderHere\Firefox64\plugin-*.exe" target="content\Firefox" />
