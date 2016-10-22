@@ -255,14 +255,14 @@
     <!-- Only download a new copy of nuget.exe if we don't have a copy available -->
     <WebDownload Condition="!Exists('nuget.exe')" Filename="nuget.exe" FileUri="https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" />
     <!-- TODO: get version assembly version number automatically here rather than hard coding -->
-    <Exec Command="nuget pack Geckofx-Winforms.nuspec -Prop Configuration=Debug -Prop Platform=x86 -Prop Version=45.0.0.23 -MinClientVersion 2.5" />
+    <Exec Command="nuget pack Geckofx-Winforms.nuspec -Prop Configuration=Debug -Prop Platform=x86 -Prop Version=45.0.23.0 -MinClientVersion 2.5" />
   </Target>
   <Target Name="AfterBuildWindows64" Condition=" '$(OS)' == 'Windows_NT' AND '$(Platform)' == 'AnyCPU'">
     <CallTarget Targets="CopyFirefoxFiles64" />
     <!-- Only download a new copy of nuget.exe if we don't have a copy available -->
     <WebDownload Condition="!Exists('nuget.exe')" Filename="nuget.exe" FileUri="https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" />
     <!-- TODO: get version assembly version number automatically here rather than hard coding -->
-    <Exec Command="nuget pack Geckofx-Winforms.64.nuspec -Prop Configuration=Release -Prop Platform=x64 -Prop Version=45.0.0.23 -MinClientVersion 2.5" />
+    <Exec Command="nuget pack Geckofx-Winforms.64.nuspec -Prop Configuration=Release -Prop Platform=x64 -Prop Version=45.0.23.0 -MinClientVersion 2.5" />
   </Target>
   <Import Project="..\packages\Geckofx45.32.Windows.0.6\build\Geckofx45.32.Windows.targets" Condition="Exists('..\packages\Geckofx45.32.Windows.0.6\build\Geckofx45.32.Windows.targets')" />
   <Import Project="..\packages\Geckofx45.64.Windows.0.7\build\Geckofx45.64.Windows.targets" Condition="Exists('..\packages\Geckofx45.64.Windows.0.7\build\Geckofx45.64.Windows.targets')" />
