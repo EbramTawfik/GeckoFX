@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.23 ==
+
+1. Added support for 64bit windows geckofx.
+
 == v45.0-0.22 ==
 
 1. Location changes to nuget content folders.
