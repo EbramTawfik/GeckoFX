@@ -91,8 +91,7 @@ namespace Gecko
         }
 
         public bool GetPrintOptions(int aType)
-        {
-            Console.WriteLine("1 aType = {0}", aType);
+        {            
             if (!m_printOptions.ContainsKey(aType))
                 return false;
 
@@ -100,34 +99,29 @@ namespace Gecko
         }
 
         public int GetPrintOptionsBits()
-        {
-            Console.WriteLine("2");
+        {            
             return m_printOptionsBits;
         }
 
         public void GetEffectivePageSize(ref double aWidth, ref double aHeight)
         {
-            Console.WriteLine("3");
             aWidth = m_effectivePageWidth;
             aHeight = m_effectivePageHeight;
         }
 
         public nsIPrintSettings Clone()
-        {
-            Console.WriteLine("4");
+        {            
             // TODO deal with refs?
             return (PrintSettings) this.MemberwiseClone();
         }
 
         public void Assign(nsIPrintSettings aPS)
-        {
-            Console.WriteLine("5");
+        {            
             throw new NotImplementedException();
         }
 
         public nsIPrintSession GetPrintSessionAttribute()
         {
-            Console.WriteLine("6");
             return m_printSession;
         }
 
@@ -138,7 +132,6 @@ namespace Gecko
 
         public int GetStartPageRangeAttribute()
         {
-            Console.WriteLine("7");
             return m_startPageRange;
         }
 
@@ -149,7 +142,6 @@ namespace Gecko
 
         public int GetEndPageRangeAttribute()
         {
-            Console.WriteLine("8");
             return m_endPageRange;
         }
 
@@ -160,7 +152,6 @@ namespace Gecko
 
         public double GetEdgeTopAttribute()
         {
-            Console.WriteLine("9");
             return m_edgeTop;
         }
 
@@ -171,7 +162,6 @@ namespace Gecko
 
         public double GetEdgeLeftAttribute()
         {
-            Console.WriteLine("10");
             return m_edgeLeft;
         }
 
@@ -182,7 +172,6 @@ namespace Gecko
 
         public double GetEdgeBottomAttribute()
         {
-            Console.WriteLine("11");
             return m_edgeBottom;
         }
 
@@ -193,7 +182,6 @@ namespace Gecko
 
         public double GetEdgeRightAttribute()
         {
-            Console.WriteLine("12");
             return m_edgeRight;
         }
 
@@ -204,7 +192,6 @@ namespace Gecko
 
         public double GetMarginTopAttribute()
         {
-            Console.WriteLine("13");
             return m_marginTop;
         }
 
@@ -215,7 +202,6 @@ namespace Gecko
 
         public double GetMarginLeftAttribute()
         {
-            Console.WriteLine("14");
             return m_marginLeft;
         }
 
@@ -226,7 +212,6 @@ namespace Gecko
 
         public double GetMarginBottomAttribute()
         {
-            Console.WriteLine("15");
             return m_marginBottom;
         }
 
@@ -237,7 +222,6 @@ namespace Gecko
 
         public double GetMarginRightAttribute()
         {
-            Console.WriteLine("16");
             return m_marginRight;
         }
 
@@ -248,7 +232,6 @@ namespace Gecko
 
         public double GetUnwriteableMarginTopAttribute()
         {
-            Console.WriteLine("17");
             return m_unwriteableMarginTop;
         }
 
@@ -259,7 +242,6 @@ namespace Gecko
 
         public double GetUnwriteableMarginLeftAttribute()
         {
-            Console.WriteLine("18");
             return m_unwriteableMarginLeft;
         }
 
@@ -270,7 +252,6 @@ namespace Gecko
 
         public double GetUnwriteableMarginBottomAttribute()
         {
-            Console.WriteLine("19");
             return m_unwriteableMarginBottom;
         }
 
@@ -281,7 +262,6 @@ namespace Gecko
 
         public double GetUnwriteableMarginRightAttribute()
         {
-            Console.WriteLine("20");
             return m_unwriteableMarginRight;
         }
 
@@ -292,7 +272,6 @@ namespace Gecko
 
         public double GetScalingAttribute()
         {
-            Console.WriteLine("21");
             return m_scaling;
         }
 
@@ -303,7 +282,6 @@ namespace Gecko
 
         public bool GetPrintBGColorsAttribute()
         {
-            Console.WriteLine("22");
             return m_printBGColors;
         }
 
@@ -314,7 +292,6 @@ namespace Gecko
 
         public bool GetPrintBGImagesAttribute()
         {
-            Console.WriteLine("23");
             return m_printBGImages;
         }
 
@@ -325,7 +302,6 @@ namespace Gecko
 
         public short GetPrintRangeAttribute()
         {
-            Console.WriteLine("24");
             return m_printRange;
         }
 
@@ -336,7 +312,6 @@ namespace Gecko
 
         public string GetTitleAttribute()
         {
-            Console.WriteLine("25");
             return m_title;
         }
 
@@ -347,7 +322,6 @@ namespace Gecko
 
         public string GetDocURLAttribute()
         {
-            Console.WriteLine("26");
             return m_docURL;
         }
 
@@ -358,7 +332,6 @@ namespace Gecko
 
         public string GetHeaderStrLeftAttribute()
         {
-            Console.WriteLine("27");
             return m_headerStrLeft;
         }
 
@@ -369,7 +342,6 @@ namespace Gecko
 
         public string GetHeaderStrCenterAttribute()
         {
-            Console.WriteLine("28");
             return m_headerStrCenter;
         }
 
@@ -380,7 +352,6 @@ namespace Gecko
 
         public string GetHeaderStrRightAttribute()
         {
-            Console.WriteLine("29");
             return m_headerStrRight;
         }
 
@@ -391,7 +362,6 @@ namespace Gecko
 
         public string GetFooterStrLeftAttribute()
         {
-            Console.WriteLine("30");
             return m_footerStrLeft;
         }
 
@@ -402,7 +372,6 @@ namespace Gecko
 
         public string GetFooterStrCenterAttribute()
         {
-            Console.WriteLine("31");
             return m_footerStrCenter;
         }
 
@@ -413,7 +382,6 @@ namespace Gecko
 
         public string GetFooterStrRightAttribute()
         {
-            Console.WriteLine("32");
             return m_footerStrRight;
         }
 
@@ -424,7 +392,6 @@ namespace Gecko
 
         public short GetHowToEnableFrameUIAttribute()
         {
-            Console.WriteLine("33");
             return m_howToEnableFrameUI;
         }
 
@@ -435,7 +402,6 @@ namespace Gecko
 
         public bool GetIsCancelledAttribute()
         {
-            Console.WriteLine("34");
             return m_IsCancelled;
         }
 
@@ -446,7 +412,6 @@ namespace Gecko
 
         public short GetPrintFrameTypeUsageAttribute()
         {
-            Console.WriteLine("35");
             return m_printFrameTypeUsage;
         }
 
@@ -457,7 +422,6 @@ namespace Gecko
 
         public short GetPrintFrameTypeAttribute()
         {
-            Console.WriteLine("36");
             return m_printFrameType;
         }
 
@@ -468,7 +432,6 @@ namespace Gecko
 
         public bool GetPrintSilentAttribute()
         {
-            Console.WriteLine("37");
             return m_printSilent;
         }
 
@@ -479,7 +442,6 @@ namespace Gecko
 
         public bool GetShrinkToFitAttribute()
         {
-            Console.WriteLine("38");
             return m_shrinkToFit;
         }
 
@@ -490,7 +452,6 @@ namespace Gecko
 
         public bool GetShowPrintProgressAttribute()
         {
-            Console.WriteLine("39");
             return m_showPrintProgress;
         }
 
@@ -501,7 +462,6 @@ namespace Gecko
 
         public string GetPaperNameAttribute()
         {
-            Console.WriteLine("40");
             return m_paperName;
         }
 
@@ -512,7 +472,6 @@ namespace Gecko
 
         public short GetPaperSizeTypeAttribute()
         {
-            Console.WriteLine("41");
             return m_paperSizeType;
         }
 
@@ -523,7 +482,6 @@ namespace Gecko
 
         public short GetPaperDataAttribute()
         {
-            Console.WriteLine("42");
             return m_paperData;
         }
 
@@ -534,7 +492,6 @@ namespace Gecko
 
         public double GetPaperWidthAttribute()
         {
-            Console.WriteLine("43");
             return m_paperWidth;
         }
 
@@ -545,7 +502,6 @@ namespace Gecko
 
         public double GetPaperHeightAttribute()
         {
-            Console.WriteLine("44");
             return m_paperHeight;
         }
 
@@ -556,7 +512,6 @@ namespace Gecko
 
         public short GetPaperSizeUnitAttribute()
         {
-            Console.WriteLine("45");
             return m_paperSizeUnit;
         }
 
@@ -567,7 +522,6 @@ namespace Gecko
 
         public string GetPlexNameAttribute()
         {
-            Console.WriteLine("46");
             return m_plexName;
         }
 
@@ -578,7 +532,6 @@ namespace Gecko
 
         public string GetColorspaceAttribute()
         {
-            Console.WriteLine("47");
             return m_colorspace;
         }
 
@@ -589,7 +542,6 @@ namespace Gecko
 
         public string GetResolutionNameAttribute()
         {
-            Console.WriteLine("48");
             return m_resolutionName;
         }
 
@@ -600,7 +552,6 @@ namespace Gecko
 
         public bool GetDownloadFontsAttribute()
         {
-            Console.WriteLine("49");
             return m_downloadFonts;
         }
 
@@ -611,7 +562,6 @@ namespace Gecko
 
         public bool GetPrintReversedAttribute()
         {
-            Console.WriteLine("50");
             return m_printReversed;
         }
 
@@ -621,8 +571,7 @@ namespace Gecko
         }
 
         public bool GetPrintInColorAttribute()
-        {
-            Console.WriteLine("51");
+        {            
             return m_printInColor;
         }
 
@@ -633,7 +582,6 @@ namespace Gecko
 
         public int GetOrientationAttribute()
         {
-            Console.WriteLine("52");
             return m_orientation;
         }
 
@@ -643,8 +591,7 @@ namespace Gecko
         }
 
         public string GetPrintCommandAttribute()
-        {
-            Console.WriteLine("53");
+        {            
             return m_printCommand;
         }
 
@@ -655,7 +602,6 @@ namespace Gecko
 
         public int GetNumCopiesAttribute()
         {
-            Console.WriteLine("54");
             return m_numCopies;
         }
 
@@ -666,7 +612,6 @@ namespace Gecko
 
         public string GetPrinterNameAttribute()
         {
-            Console.WriteLine("55");
             return m_printerName;
         }
 
@@ -677,7 +622,6 @@ namespace Gecko
 
         public bool GetPrintToFileAttribute()
         {
-            Console.WriteLine("56");
             return m_printToFile;
         }
 
@@ -688,7 +632,6 @@ namespace Gecko
 
         public string GetToFileNameAttribute()
         {
-            Console.WriteLine("57");
             return m_toFileName;
         }
 
@@ -699,7 +642,6 @@ namespace Gecko
 
         public short GetOutputFormatAttribute()
         {
-            Console.WriteLine("58");
             return m_outputFormat;
         }
 
@@ -710,7 +652,6 @@ namespace Gecko
 
         public int GetPrintPageDelayAttribute()
         {
-            Console.WriteLine("59");
             return m_printPageDelay;
         }
 
@@ -741,7 +682,6 @@ namespace Gecko
 
         public bool GetIsInitializedFromPrinterAttribute()
         {
-            Console.WriteLine("60");
             return m_isInitializedFromPrinter;
         }
 
@@ -752,7 +692,6 @@ namespace Gecko
 
         public bool GetIsInitializedFromPrefsAttribute()
         {
-            Console.WriteLine("61");
             return m_isInitializedFromPrefs;
         }
 
@@ -764,7 +703,7 @@ namespace Gecko
 
         public void SetMarginInTwips(IntPtr aMargin)
         {
-            Console.WriteLine("62");
+
         }
 
         public void SetEdgeInTwips(IntPtr aEdge)
@@ -773,18 +712,17 @@ namespace Gecko
 
         public void GetMarginInTwips(IntPtr aMargin)
         {
-            Console.WriteLine("63");
+
         }
 
         public void GetEdgeInTwips(IntPtr aEdge)
         {
-            Console.WriteLine("65");
+            
         }
-
 
         public void SetupSilentPrinting()
         {
-            Console.WriteLine("66");
+            
         }
 
         public void SetUnwriteableMarginInTwips(IntPtr aEdge)
