@@ -373,6 +373,7 @@ namespace Gecko
                 InitChromeContext();
 
             XULAppInfoFactory.Init();
+            OnProfileStartup();
             PromptFactoryFactory.Init();
 
             if (AfterInitalization != null)
@@ -402,6 +403,91 @@ namespace Gecko
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(xulDll);
             _xulrunnerVersion = fileVersionInfo.FileVersion;
         }
+
+
+        private static void OnProfileStartup()
+        {
+            nsIObserver addonsIntegration = null;
+
+            nsIObserverService obsSvc = Xpcom.GetService<nsIObserverService>(Contracts.ObserverService);
+            obsSvc.NotifyObservers(null, "profile-do-change", "startup");
+            try
+            {
+
+                addonsIntegration = Xpcom.GetService<nsIObserver>("@mozilla.org/addons/integration;1");
+                if (addonsIntegration != null)
+                {
+                    addonsIntegration.Observe(null, "addons-startup", null);
+                }
+
+                obsSvc.NotifyObservers(null, "load-extension-defaults", null);
+            }
+            finally
+            {
+                Xpcom.FreeComObject(ref addonsIntegration);
+
+                obsSvc.NotifyObservers(null, "profile-after-change", "startup");
+                NS_CreateServicesFromCategory("profile-after-change", null, "profile-after-change");
+                obsSvc.NotifyObservers(null, "profile-initial-state", null);
+                Xpcom.FreeComObject(ref obsSvc);
+            }
+        }
+
+        private static void NS_CreateServicesFromCategory(string category, nsISupports origin, string observerTopic)
+        {
+            nsICategoryManager catMan = null;
+            nsISimpleEnumerator enumerator = null;
+            nsIUTF8StringEnumerator senumerator = null;
+            try
+            {
+                catMan = Xpcom.GetService<nsICategoryManager>(Contracts.CategoryManager);
+                if (catMan == null)
+                    return;
+
+                enumerator = catMan.EnumerateCategory(category);
+                if (enumerator == null)
+                    return;
+
+                senumerator = Xpcom.QueryInterface<nsIUTF8StringEnumerator>(enumerator);
+                if (senumerator == null)
+                    return;
+
+                while (senumerator.HasMore())
+                {
+                    nsISupports serviceInstance = null;
+                    nsIObserver observer = null;
+                    try
+                    {
+                        string entryString = nsString.Get(senumerator.GetNext);
+                        string contractID = catMan.GetCategoryEntry(category, entryString);
+                        serviceInstance = Xpcom.GetService<nsISupports>(contractID);
+                        if (serviceInstance == null || observerTopic == null)
+                            continue;
+
+                        observer = Xpcom.QueryInterface<nsIObserver>(serviceInstance);
+                        if (observer == null)
+                            continue;
+
+                        observer.Observe(origin, observerTopic, "");
+                    }
+                    catch (NotImplementedException) { }
+                    catch (OutOfMemoryException) { }
+                    catch (COMException) { }
+                    finally
+                    {
+                        Xpcom.FreeComObject(ref serviceInstance);
+                        Xpcom.FreeComObject(ref observer);
+                    }
+                }
+            }
+            finally
+            {
+                Xpcom.FreeComObject(ref catMan);
+                Xpcom.FreeComObject(ref enumerator);
+                Xpcom.FreeComObject(ref senumerator);
+            }
+        }
+
 
         public static void Shutdown()
         {
