@@ -32,7 +32,7 @@ namespace Gecko
         {
             if (context == IntPtr.Zero)
                 throw new ArgumentNullException("context");
-            if (context == IntPtr.Zero)
+            if (obj == IntPtr.Zero)
                 throw new ArgumentNullException("obj");
 
             _obj = obj;
