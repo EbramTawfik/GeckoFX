@@ -27,4 +27,4 @@ mozilla-release/
 nuget.exe
 packages/
 Geckofx-Winforms/Firefox*/**
-
+.idea/
