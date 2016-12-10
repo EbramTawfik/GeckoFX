@@ -2,6 +2,14 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.24 ==
+
+1. Fix issue #113.
+2. Fix issue #146
+3. Fix cross-platform issues when setting PATH environment variable
+4. update firefox files dep nuget package to version 0.7
+5. Upgrade to .net framework 4.5 from 4.0
+
 == v45.0-0.23 ==
 
 1. Added support for 64bit windows geckofx.
