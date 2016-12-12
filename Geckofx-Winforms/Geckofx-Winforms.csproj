@@ -279,7 +279,7 @@
     <CallTarget Targets="CopyFirefoxFiles64" />
     <!-- Only download a new copy of nuget.exe if we don't have a copy available -->
     <WebDownload Condition="!Exists('nuget.exe')" Filename="nuget.exe" FileUri="https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" />
-    <Exec Command="nuget pack Geckofx-Winforms.64.nuspec -Prop Configuration==$(Configuration) -Prop Platform=x64 -Prop Version=$(AssemblyVersionMajor).$(AssemblyVersionMinor).$(AssemblyVersionPatch)$(AssemblyVersionPreRelease) -MinClientVersion 2.5" />
+    <Exec Command="nuget pack Geckofx-Winforms.64.nuspec -Prop Configuration=$(Configuration) -Prop Platform=x64 -Prop Version=$(AssemblyVersionMajor).$(AssemblyVersionMinor).$(AssemblyVersionPatch)$(AssemblyVersionPreRelease) -MinClientVersion 2.5" />
   </Target>
   <Import Project="..\packages\Geckofx45.32.Windows.0.9\build\Geckofx45.32.Windows.targets" Condition="Exists('..\packages\Geckofx45.32.Windows.0.9\build\Geckofx45.32.Windows.targets')" />
   <Import Project="..\packages\Geckofx45.64.Windows.0.7\build\Geckofx45.64.Windows.targets" Condition="Exists('..\packages\Geckofx45.64.Windows.0.7\build\Geckofx45.64.Windows.targets')" />
