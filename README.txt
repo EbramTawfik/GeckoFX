@@ -2,6 +2,11 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.26 ==
+
+Rebuild for nuget packaging problems.
+1. update firefox files dep nuget package to version 0.9 - need to remove dep on VS 2015 runttime libs.
+
 == v45.0-0.25 ==
 
 Rebuild for nuget packaging problems.
