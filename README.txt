@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.27 ==
+
+Rebuild
+
 == v45.0-0.26 ==
 
 Rebuild for nuget packaging problems.
