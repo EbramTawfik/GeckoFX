@@ -2,6 +2,13 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.28 ==
+
+1. Add Xpcom.EnableProfileMonitoring property.
+(defaults to true so fix for #113 is still enabled by default.)
+If Handled exception are a problem for you when calling Xpcom.Initialize
+add Xpcom.EnableProfileMonitoring = true; before the Xpcom.Initialize call.
+
 == v45.0-0.27 ==
 
 Rebuild
