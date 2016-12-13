@@ -175,6 +175,7 @@ namespace Gecko
             _isMono = Type.GetType("Mono.Runtime") != null;
             _is64Bit = IntPtr.Size == 8;
             _is32Bit = IntPtr.Size == 4;
+            EnableProfileMonitoring = true;
         }
 
         #region Events
@@ -255,6 +256,8 @@ namespace Gecko
         }
 
         internal static ChromeContext ChromeContext { get; private set; }
+
+        public static bool EnableProfileMonitoring { get; set; }
 
         public static nsIComponentManager ComponentManager;
         public static nsIComponentRegistrar ComponentRegistrar;
@@ -404,10 +407,12 @@ namespace Gecko
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(xulDll);
             _xulrunnerVersion = fileVersionInfo.FileVersion;
         }
-
-
+        
         private static void OnProfileStartup()
         {
+            if (!EnableProfileMonitoring)
+                return;
+
             nsIObserver addonsIntegration = null;
 
             nsIObserverService obsSvc = Xpcom.GetService<nsIObserverService>(Contracts.ObserverService);
