@@ -263,11 +263,11 @@
     <Exec Command="mkdir -p Firefox-Linux64" />
     <Exec Command="cp -ra ../PutXulRunnerFolderHere/64/Firefox/* Firefox-Linux64/" />
     <Exec Command="cp -ra ../PutXulRunnerFolderHere/64/libgeckofix.so Firefox-Linux64/" />
-    <Exec Command="nuget pack Geckofx-Winforms.64.Linux.nuspec -Prop Configuration=$(Configuration) -Prop Version=`monodis --assembly $(TargetDir)\$(TargetName).dll | grep Version | awk '{print $2}'` -Prop FirefoxDir=Firefox-Linux64 -MinClientVersion 2.5" />
+    <Exec Command="mono nuget.exe pack Geckofx-Winforms.64.Linux.nuspec -Prop Configuration=$(Configuration) -Prop Version=`monodis --assembly $(TargetDir)\$(TargetName).dll | grep Version | awk '{print $2}'` -Prop FirefoxDir=Firefox-Linux64 -MinClientVersion 2.5" />
     <Exec Command="mkdir -p Firefox-Linux32" />
     <Exec Command="cp -ra ../PutXulRunnerFolderHere/32/Firefox/* Firefox-Linux32/" />
     <Exec Command="cp -ra ../PutXulRunnerFolderHere/32/libgeckofix.so Firefox-Linux32/" />
-    <Exec Command="nuget pack Geckofx-Winforms.32.Linux.nuspec -Prop Configuration=$(Configuration) -Prop Version=`monodis --assembly $(TargetDir)\$(TargetName).dll | grep Version | awk '{print $2}'` -Prop FirefoxDir=Firefox-Linux32 -MinClientVersion 2.5" />
+    <Exec Command="mono nuget.exe pack Geckofx-Winforms.32.Linux.nuspec -Prop Configuration=$(Configuration) -Prop Version=`monodis --assembly $(TargetDir)\$(TargetName).dll | grep Version | awk '{print $2}'` -Prop FirefoxDir=Firefox-Linux32 -MinClientVersion 2.5" />
   </Target>
   <Target Name="AfterBuildWindows" Condition=" '$(OS)' == 'Windows_NT' AND '$(Platform)' == 'x86'" DependsOnTargets="GetAssemblyVersionNumbers">
     <CallTarget Targets="CopyFirefoxFiles" />
