@@ -287,6 +287,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Geckofx45.32.Windows.0.10\build\Geckofx45.32.Windows.targets') OR !Exists('..\packages\Geckofx45.64.Windows.0.7\build\Geckofx45.64.Windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Geckofx45.32.Windows.0.10\build\Geckofx45.32.Windows.targets or ..\packages\Geckofx45.64.Windows.0.7\build\Geckofx45.64.Windows.targets'))" />
+    <Error Condition="!Exists('..\packages\Geckofx45.32.Windows.0.10\build\Geckofx45.32.Windows.targets') OR !Exists('..\packages\Geckofx45.64.Windows.0.10\build\Geckofx45.64.Windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Geckofx45.32.Windows.0.10\build\Geckofx45.32.Windows.targets or ..\packages\Geckofx45.64.Windows.0.10\build\Geckofx45.64.Windows.targets'))" />
   </Target>
 </Project>
