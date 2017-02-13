@@ -56,7 +56,7 @@ namespace Gecko
 
         public void GetVersionAttribute(nsACStringBase aVersion)
         {
-            aVersion.SetData("29");
+            aVersion.SetData("45");
         }
 
         public void GetAppBuildIDAttribute(nsACStringBase aAppBuildID)
@@ -66,7 +66,7 @@ namespace Gecko
 
         public void GetPlatformVersionAttribute(nsACStringBase aPlatformVersion)
         {
-            aPlatformVersion.SetData("29");
+            aPlatformVersion.SetData("45");
         }
 
         public void GetPlatformBuildIDAttribute(nsACStringBase aPlatformBuildID)
@@ -116,27 +116,27 @@ namespace Gecko
 
         public uint GetProcessIDAttribute()
         {
-            throw new NotImplementedException();
+            return backXulRuntime.GetProcessIDAttribute();
         }
 
         public bool GetBrowserTabsRemoteAutostartAttribute()
         {
-            throw new NotImplementedException();
+            return backXulRuntime.GetBrowserTabsRemoteAutostartAttribute();
         }
 
         public bool GetAccessibilityEnabledAttribute()
         {
-            throw new NotImplementedException();
+            return backXulRuntime.GetAccessibilityEnabledAttribute();
         }
 
         public bool GetAccessibilityIsBlacklistedForE10SAttribute()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public bool GetIs64BitAttribute()
         {
-            throw new NotImplementedException();
+            return backXulRuntime.GetIs64BitAttribute();
         }
 
         public void InvalidateCachesOnRestart()
@@ -161,27 +161,27 @@ namespace Gecko
 
         public bool GetIsReleaseBuildAttribute()
         {
-            throw new NotImplementedException();
+            return backXulRuntime.GetIsReleaseBuildAttribute();
         }
 
         public bool GetIsOfficialBrandingAttribute()
         {
-            throw new NotImplementedException();
+            return backXulRuntime.GetIsOfficialBrandingAttribute();
         }
 
         public void GetDefaultUpdateChannelAttribute(nsAUTF8StringBase aDefaultUpdateChannel)
         {
-            throw new NotImplementedException();
+            backXulRuntime.GetDefaultUpdateChannelAttribute(aDefaultUpdateChannel);
         }
 
         public void GetDistributionIDAttribute(nsAUTF8StringBase aDistributionID)
         {
-            throw new NotImplementedException();
+            backXulRuntime.GetDistributionIDAttribute(aDistributionID);
         }
 
         public bool GetIsOfficialAttribute()
         {
-            throw new NotImplementedException();
+            return backXulRuntime.GetIsOfficialAttribute();
         }
     }
 }
