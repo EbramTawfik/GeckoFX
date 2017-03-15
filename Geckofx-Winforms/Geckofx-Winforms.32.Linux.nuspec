@@ -4,8 +4,8 @@
     <id>Geckofx45.32.Linux</id>
     <version>$version$</version>
     <title>geckofx-45 Linux 32bit</title>
-    <authors>Tom Hindle</authors>
-    <owners>Tom Hindle</owners>
+    <authors>geckofx</authors>
+    <owners>geckofx</owners>
     <projectUrl>https://bitbucket.org/geckofx/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>library that allows embeding gecko in C# applications.</summary>

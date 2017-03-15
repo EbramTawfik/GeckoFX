@@ -4,8 +4,8 @@
     <id>Geckofx45.64</id>
     <version>$version$</version>
     <title>geckofx-45 Windows 64bit</title>
-    <authors>Tom Hindle</authors>
-    <owners>Tom Hindle</owners>
+    <authors>geckofx</authors>
+    <owners>geckofx</owners>
     <projectUrl>https://bitbucket.org/geckofx/</projectUrl>
     <iconUrl>https://bitbucket.org/account/geckofx/avatar/256/?ts=1475265187</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
