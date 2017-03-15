@@ -109,5 +109,31 @@ namespace Gecko
                 ? GetXULRunnerLocationLinux(hintPath)
                 : GetXULRunnerLocationWindows(hintPath);
         }
-    }
+
+		/// <remarks>development only</remarks>
+		public static string GeckoHintPath(string version)
+		{
+			// While running in development - look for the nuget packages location.
+			string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+			UriBuilder uri = new UriBuilder(codeBase);
+			string path = Uri.UnescapeDataString(uri.Path);
+			var arch = Xpcom.Is32Bit ? "32" : "64";
+			var platform = Xpcom.IsLinux ? "Linux" : "Windows";
+			var extraInfo = string.Join(".", new[] { arch, platform, version });
+
+			// ReSharper disable once AssignNullToNotNullAttribute
+			var dir = new DirectoryInfo(Path.GetDirectoryName(path));
+			do
+			{
+				dir = dir.Parent;
+				var fullPath = Path.Combine(dir.FullName, Path.Combine("packages", "Geckofx45." + extraInfo, "content", "Firefox"));
+				if (Directory.Exists(fullPath))
+					return fullPath;
+				fullPath = Path.Combine(dir.FullName, Path.Combine("packages", "Geckofx45." + extraInfo.TrimEnd('0').TrimEnd('.'), "content", "Firefox"));
+				if (Directory.Exists(fullPath))
+					return fullPath;
+			} while (dir.Parent != null);
+			return "PutXulRunnerFolderHere/xulrunner";
+		}
+	}
 }
