@@ -175,7 +175,7 @@ namespace Gecko
             _isMono = Type.GetType("Mono.Runtime") != null;
             _is64Bit = IntPtr.Size == 8;
             _is32Bit = IntPtr.Size == 4;
-            EnableProfileMonitoring = true;
+            EnableProfileMonitoring = false;
         }
 
         #region Events
