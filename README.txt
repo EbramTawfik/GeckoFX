@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.31 ==
+
+1. Upgrade to HarfBuzz 1.4.1
+
 == v45.0-0.29 ==
 
 1. update firefox files dep nuget package to version 0.10

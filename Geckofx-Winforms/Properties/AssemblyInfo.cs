@@ -36,5 +36,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("45.0.30.0")]
-[assembly: AssemblyFileVersion("45.0.30.0")]
+[assembly: AssemblyVersion("45.0.31.0")]
+[assembly: AssemblyFileVersion("45.0.31.0")]
