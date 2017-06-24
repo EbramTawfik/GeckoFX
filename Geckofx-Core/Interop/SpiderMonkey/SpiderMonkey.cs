@@ -871,7 +871,7 @@ namespace Gecko
 
         [DllImport("xul", CallingConvention = CallingConvention.Cdecl, ExactSpelling = false,
             EntryPoint =
-                "?JS_ExecuteScript@@YA_NPEAUJSContext@@AEAV?$AutoVectorRooter@PEAVJSObject@@@JS@@V?$Handle@PEAVJSScript@@@3@@Z")]
+                "?JS_ExecuteScript@@YA_NPEAUJSContext@@V?$Handle@PEAVJSScript@@@JS@@V?$MutableHandle@VValue@JS@@@3@@Z")]
         [return: MarshalAs(UnmanagedType.U1)]
         private static extern bool JS_ExecuteScript_Win64(IntPtr cx, ref IntPtr handleScript,
             ref MutableHandleValue jsValue);
