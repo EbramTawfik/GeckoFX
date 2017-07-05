@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.32 ==
+
+1. 64bit only fix. fix for issue #191 - Thanks h.b.
+
 == v45.0-0.31 ==
 
 1. Upgrade to HarfBuzz 1.4.1
