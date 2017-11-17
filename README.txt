@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.33 ==
+
+1. Fix a rare InvalidComObjectException in OnHandleCreated
+
 == v45.0-0.32 ==
 
 1. 64bit only fix. fix for issue #191 - Thanks h.b.
