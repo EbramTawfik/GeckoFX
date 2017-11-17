@@ -181,14 +181,6 @@ namespace Gecko
                         var sessionHistory = WebNav.GetSessionHistoryAttribute();
                         if (sessionHistory != null) sessionHistory.AddSHistoryListener(this);
                     }
-
-                    // this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
-                    var doc = Document;
-                    if (doc != null)
-                    {
-                        // only for html documents
-                        doc.Cookie = "";
-                    }
                     WindowMediator.RegisterWindow(this);
                 }
 
@@ -414,7 +406,7 @@ namespace Gecko
             base.OnSizeChanged(e);
         }
 
-        #region protected override void WndProc(ref Message m)
+#region protected override void WndProc(ref Message m)
 
         protected override void WndProc(ref Message m)
         {
@@ -532,7 +524,7 @@ namespace Gecko
             return false;
         }
 
-        #endregion
+#endregion
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -651,11 +643,11 @@ namespace Gecko
             return temp.Handle;
         }
 
-        #endregion
+#endregion
 
-        #region Internal classes
+#region Internal classes
 
-        #region class ToolTipWindow
+#region class ToolTipWindow
 
         /// <summary>
         /// A window to contain a tool tip.
@@ -664,16 +656,16 @@ namespace Gecko
         {
         }
 
-        #endregion
+#endregion
 
-        #endregion
+#endregion
 
         public void ForceRedraw()
         {
             BaseWindow.Repaint(true);
         }
 
-        #region UserInterfaceThreadInvoke
+#region UserInterfaceThreadInvoke
 
         /// <summary>
         /// UI platform independent call function from UI thread
@@ -742,6 +734,6 @@ namespace Gecko
             return ret;
         }
 
-        #endregion
+#endregion
     }
 }
