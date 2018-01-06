@@ -94,9 +94,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

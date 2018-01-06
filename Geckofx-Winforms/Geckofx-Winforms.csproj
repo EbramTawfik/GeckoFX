@@ -17,6 +17,8 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>GeckoFX.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -213,8 +215,9 @@
     <Content Include="Firefox\firefox.exe" />
     <Content Include="Firefox\freebl3.dll" />
     <Content Include="Firefox\icudt56.dll" />
-    <Content Include="Firefox\icuin56.dll" />
-    <Content Include="Firefox\icuuc56.dll" />
+    <Content Include="Firefox\icudt58.dll" />
+    <Content Include="Firefox\icuin58.dll" />
+    <Content Include="Firefox\icuuc58.dll" />
     <Content Include="Firefox\lgpllibs.dll" />
     <Content Include="Firefox\libEGL.dll" />
     <Content Include="Firefox\libGLESv2.dll" />
@@ -281,12 +284,12 @@
     <WebDownload Condition="!Exists('nuget.exe')" Filename="nuget.exe" FileUri="https://dist.nuget.org/win-x86-commandline/latest/nuget.exe" />
     <Exec Command="nuget pack Geckofx-Winforms.64.nuspec -Prop Configuration=$(Configuration) -Prop Platform=x64 -Prop Version=$(AssemblyVersionMajor).$(AssemblyVersionMinor).$(AssemblyVersionPatch)$(AssemblyVersionPreRelease) -MinClientVersion 2.5" />
   </Target>
-  <Import Project="..\packages\Geckofx45.32.Windows.0.11\build\Geckofx45.32.Windows.targets" Condition="Exists('..\packages\Geckofx45.32.Windows.0.11\build\Geckofx45.32.Windows.targets')" />
-  <Import Project="..\packages\Geckofx45.64.Windows.0.11\build\Geckofx45.64.Windows.targets" Condition="Exists('..\packages\Geckofx45.64.Windows.0.11\build\Geckofx45.64.Windows.targets')" />
+  <Import Project="..\packages\Geckofx45.32.Windows.0.13.0\build\Geckofx45.32.Windows.targets" Condition="Exists('..\packages\Geckofx45.32.Windows.0.13.0\build\Geckofx45.32.Windows.targets')" />
+  <Import Project="..\packages\Geckofx45.64.Windows.0.13.0\build\Geckofx45.64.Windows.targets" Condition="Exists('..\packages\Geckofx45.64.Windows.0.13.0\build\Geckofx45.64.Windows.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Geckofx45.32.Windows.0.11\build\Geckofx45.32.Windows.targets') OR !Exists('..\packages\Geckofx45.64.Windows.0.11\build\Geckofx45.64.Windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Geckofx45.32.Windows.0.11\build\Geckofx45.32.Windows.targets or ..\packages\Geckofx45.64.Windows.0.11\build\Geckofx45.64.Windows.targets'))" />
+    <Error Condition="!Exists('..\packages\Geckofx45.32.Windows.0.13.0\build\Geckofx45.32.Windows.targets') OR !Exists('..\packages\Geckofx45.64.Windows.0.13.0\build\Geckofx45.64.Windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Geckofx45.32.Windows.0.13.0\build\Geckofx45.32.Windows.targets or ..\packages\Geckofx45.64.Windows.0.13.0\build\Geckofx45.64.Windows.targets'))" />
   </Target>
 </Project>
