@@ -122,11 +122,22 @@ namespace Gecko
         public GeckoWebBrowser()
         {
 #if GTK
-			if (Xpcom.IsMono)
-			{
-				GtkDotNet.GtkOnceOnly.Init();
-				m_wrapper = new GtkDotNet.GtkReparentingWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
-			}
+            if (Xpcom.IsMono)
+            {
+                GtkDotNet.GtkOnceOnly.Init();
+                var topLevelWindow = new Gtk.Window(Gtk.WindowType.Toplevel);
+                topLevelWindow.Decorated = false;
+                topLevelWindow.CanFocus = true;
+                topLevelWindow.TypeHint = Gdk.WindowTypeHint.PopupMenu;
+                topLevelWindow.SetSizeRequest(5, 5);
+                topLevelWindow.Move(50000, 50000);
+                topLevelWindow.Visible = false;
+
+                if (Gecko.GeckoWebBrowser.GtkDontUseSetInputFocus)
+                    m_wrapper = new GtkDotNet.GtkKeyboardAwareReparentingWrapperNoThread(topLevelWindow, this);
+                else
+                    m_wrapper = new GtkDotNet.GtkReparentingWrapperNoThread(topLevelWindow, this);
+            }
 #endif
             NavigateFinishedNotifier = new NavigateFinishedNotifier(this);
         }
@@ -1048,6 +1059,19 @@ namespace Gecko
             get { return DomDocument as GeckoDocument; }
         }
 
+        /// <summary>
+        /// NullOp on windows.
+        /// On Linux must be set before creating your first GeckoWebBrower
+        /// Currently default to false (original geckofx Linux behaviour)
+        /// In future this will likely default to true.
+        /// This is needed to support geckofx on Gnome 3 window based 
+        /// windowing environments (eg. default Ubuntu 18.04)
+        /// </summary>
+        /// <value>The gtk dont use set input focus.</value>
+        public static bool GtkDontUseSetInputFocus
+        {
+            get; set;
+        }
 
         public void SetInputFocus()
         {

@@ -35,11 +35,6 @@ namespace GtkDotNet
 		/// </summary>
 		public GtkWrapperNoThread(Gtk.Window popupWindow)
 		{
-			if (popupWindow.Type != Gtk.WindowType.Popup)
-			{
-				throw new ArgumentException("Gtk Window should be of type Popup.");
-			}
-			
 			m_popupWindow = popupWindow;	
 			
 			System.Windows.Forms.Application.Idle += HandleSystemWindowsFormsApplicationIdle;			

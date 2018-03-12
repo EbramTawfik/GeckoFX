@@ -133,7 +133,7 @@
     <Compile Include="GeckoWebBrowser.WinForms.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Linux\GtkReparentingWrapperNoThread.cs" />
+    <Compile Include="Linux\GtkKeyboardawareReparentingWrapperNoThread.cs" />
     <Compile Include="Linux\GtkWrapperNoThread.cs" />
     <Compile Include="Interop\nsWeakReference.cs" />
     <Compile Include="NavigateFinishedNotifier.cs" />
@@ -161,6 +161,7 @@
     <Compile Include="Linux\GtkOnceOnly.cs" />
     <Compile Include="Utils\WindowsImageCreator.cs" />
     <Compile Include="Interop\GeckoWebBrowserWeakRef.cs" />
+    <Compile Include="Linux\GtkReparentingWrapperNoThread.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dialogs\ChromeDialog.resx">
