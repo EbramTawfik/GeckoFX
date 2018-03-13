@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.35 ==
+
+1. Linux only tag. (using gstreamer 1.0 instead of 0.10)
+
 == v45.0-0.34 ==
 
 1. Upgrade harfbuzz 1.7.2 + icu 56->58. also update: intl/unicharutil 
