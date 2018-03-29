@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v45.0-0.36 ==
+
+1. Linux only. rebuild so will work on older ubuntu's (14.04/trusty).
+
 == v45.0-0.35 ==
 
 1. Linux only tag. (using gstreamer 1.0 instead of 0.10)
