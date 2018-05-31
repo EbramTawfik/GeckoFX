@@ -133,7 +133,7 @@ namespace Gecko
 				if (Directory.Exists(fullPath))
 					return fullPath;
 			} while (dir.Parent != null);
-			return "PutXulRunnerFolderHere/xulrunner";
+			return "PutXulRunnerFolderHere/Firefox";
 		}
 	}
 }
