@@ -31,8 +31,9 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("63adb599-6dc9-4746-972e-c22e9018020b")]
-	public interface nsIDocShell : nsIDocShellTreeItem
+    //[Guid("63adb599-6dc9-4746-972e-c22e9018020b")]
+    [Guid("98358234-3936-4b95-b051-fcda4e55b52d")]
+    public interface nsIDocShell : nsIDocShellTreeItem
 	{
 		
 		/// <summary>

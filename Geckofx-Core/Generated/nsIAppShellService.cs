@@ -32,8 +32,9 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("83f23c7e-6ce0-433f-9fe2-f287ae8c6e0c")]
-	public interface nsIAppShellService
+    //[Guid("83f23c7e-6ce0-433f-9fe2-f287ae8c6e0c")]
+    [Guid("0cc1c790-6873-4b31-944f-71d3725e373d")]
+    public interface nsIAppShellService
 	{
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
